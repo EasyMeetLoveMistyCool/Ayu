@@ -24,7 +24,12 @@ body.theme-blue{--bg1:#dcecff;--bg2:#f4f9ff;--bg3:#e6f0ff;--me-bubble:rgba(150,1
 body.theme-purple{--bg1:#eadcff;--bg2:#f8f4ff;--bg3:#f0e6ff;--me-bubble:rgba(200,170,255,.6);--me-text:#5a3d7a;--other-text:#4a3d5a}
 body.theme-dark{--bg1:#1e1e24;--bg2:#26262e;--bg3:#1a1a20;--glass:rgba(255,255,255,.08);--glass-strong:rgba(255,255,255,.12);--line:rgba(255,255,255,.12);--me-bubble:rgba(255,120,160,.35);--other-bubble:rgba(255,255,255,.08);--me-text:#ffd6e2;--other-text:#d8d8de;--accent:#ff6b8a;--accent-soft:#ff8fab;color:#d8d8de}
 
-/* 锁屏 */
+/* ---------- 通用高亮 ---------- */
+.hl{outline:2px solid var(--accent);outline-offset:1px;background:var(--glass-strong)!important}
+.btn.on{background:var(--me-bubble);color:var(--me-text);border-color:var(--accent-soft)}
+.switch.on{background:var(--accent-soft)}
+
+/* ---------- 锁屏 ---------- */
 #lockScreen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--bg1),var(--bg2) 45%,var(--bg3));background-size:cover;background-position:center;padding:calc(env(safe-area-inset-top) + 20px) 20px calc(env(safe-area-inset-bottom) + 20px);transition:opacity .45s,transform .45s;z-index:20}
 #lockScreen::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.2);backdrop-filter:blur(2px);z-index:0;pointer-events:none}
 body.theme-dark #lockScreen::before{background:rgba(0,0,0,.25)}
@@ -39,7 +44,7 @@ body.theme-dark .datetime{color:#a8a8b0}
 .heart-line{width:56px;height:28px;overflow:visible}
 .heart-line path{stroke:var(--accent-soft);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:drawLine 2.4s ease-in-out infinite}
 @keyframes drawLine{0%{stroke-dashoffset:60}40%{stroke-dashoffset:0}60%{stroke-dashoffset:0}100%{stroke-dashoffset:-60}}
-.heart-center{font-size:20px;color:var(--accent);line-height:1;animation:heartBeat 2.2s ease-in-out infinite;display:inline-block}
+.heart-hollow{font-size:20px;color:var(--accent);line-height:1;animation:heartBeat 2.2s ease-in-out infinite;display:inline-block;-webkit-text-stroke:1px var(--accent);color:transparent}
 @keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 .love-word{font-size:15px;color:#5a5a5a;letter-spacing:1px;text-align:center;max-width:80%;line-height:1.6;min-height:24px;transition:opacity .3s}
 body.theme-dark .love-word{color:#b8b8c0}
@@ -48,7 +53,7 @@ body.theme-dark .love-word{color:#b8b8c0}
 body.theme-dark .enter-btn{color:#e8e8ee}
 .enter-btn:active{transform:scale(.97)}
 
-/* 密码层 */
+/* ---------- 密码层 ---------- */
 #passLayer{position:absolute;inset:0;z-index:30;background:rgba(255,255,255,.35);backdrop-filter:blur(14px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px}
 body.theme-dark #passLayer{background:rgba(0,0,0,.4)}
 #passLayer.show{display:flex}
@@ -60,19 +65,24 @@ body.theme-dark #passLayer{background:rgba(0,0,0,.4)}
 .pass-tip.err{color:var(--accent);animation:shake .3s}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-/* 聊天页 */
+/* ---------- 聊天页 ---------- */
 #chatPage{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;background:linear-gradient(160deg,var(--bg1),var(--bg2) 45%,var(--bg3));background-size:cover;background-position:center}
 #chatPage.show{display:flex}
 #chatPage::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.18);pointer-events:none;z-index:0}
 body.theme-dark #chatPage::before{background:rgba(0,0,0,.2)}
 .chat-inner{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
-.top-bar{display:flex;align-items:center;justify-content:center;gap:6px;padding:calc(env(safe-area-inset-top) + 8px) 12px 8px;background:var(--glass);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);flex-shrink:0}
+
+/* 顶栏：三排 */
+.top-bar{display:flex;flex-direction:column;align-items:center;gap:2px;padding:calc(env(safe-area-inset-top) + 6px) 12px 8px;background:var(--glass);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);flex-shrink:0}
+.top-row1{display:flex;align-items:center;justify-content:center;gap:5px}
 .top-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
-.top-heart-line{width:48px;height:24px;overflow:visible}
+.top-heart-line{width:44px;height:22px;overflow:visible}
 .top-heart-line path{stroke:var(--accent-soft);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:drawLine 2.4s ease-in-out infinite}
-.top-info{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0}
-.top-name{font-size:13px;color:var(--other-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
-.top-love{font-size:12px;color:var(--accent);display:flex;align-items:center;gap:3px}
+.top-heart-solid{font-size:18px;color:var(--accent);animation:heartBeat 2.2s ease-in-out infinite;line-height:1}
+.top-row2{font-size:13px;color:var(--other-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.top-row3{font-size:12px;color:var(--accent);display:flex;align-items:center;gap:3px}
+
+/* 消息区 */
 .msg-list{flex:1;overflow-y:auto;padding:12px 10px 8px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch}
 .msg-row{display:flex;align-items:flex-end;gap:8px;max-width:100%}
 .msg-row.me{flex-direction:row-reverse}
@@ -92,6 +102,8 @@ body.theme-dark .msg-quote{background:rgba(255,255,255,.06);color:#aaa}
 .typing-dots span:nth-child(2){animation-delay:.2s}
 .typing-dots span:nth-child(3){animation-delay:.4s}
 @keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+
+/* 底部区 */
 .bottom-bar{padding:8px 10px calc(env(safe-area-inset-bottom) + 8px);background:var(--glass);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:8px;flex-shrink:0}
 .input-box{flex:1;display:flex;align-items:flex-end;padding:8px 12px;border-radius:18px;background:var(--glass-strong);border:1px solid var(--line);backdrop-filter:blur(10px);min-height:40px}
 .input-box textarea{flex:1;border:none;outline:none;background:transparent;font-size:15px;line-height:1.4;resize:none;max-height:100px;color:var(--other-text);font-family:inherit}
@@ -101,11 +113,14 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .plus-btn svg{width:22px;height:22px;stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round}
 .send-btn{display:none;background:var(--me-bubble)}
 .send-btn svg{width:20px;height:20px;stroke:var(--me-text);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* 弹出面板 */
 .plus-panel{position:absolute;left:0;right:0;bottom:0;z-index:15;background:var(--glass-strong);backdrop-filter:blur(20px);border-top:1px solid var(--line);border-radius:22px 22px 0 0;padding:16px 14px calc(env(safe-area-inset-bottom) + 16px);transform:translateY(100%);transition:transform .3s;max-height:70vh;overflow-y:auto}
 .plus-panel.show{transform:translateY(0)}
 .plus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 8px}
 .plus-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 0;border-radius:12px}
-.plus-item svg{width:26px;height:26px;stroke:var(--accent);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.plus-icon-box{width:46px;height:46px;border-radius:14px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.plus-icon-box svg{width:28px;height:28px;stroke:var(--accent);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .plus-item span{font-size:11px;color:var(--other-text)}
 .panel-mask{position:absolute;inset:0;z-index:14;background:rgba(0,0,0,.15);display:none}
 .panel-mask.show{display:block}
@@ -116,6 +131,8 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .card-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
 .card-item{padding:10px 12px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-size:14px;color:var(--other-text);line-height:1.4}
 .card-empty{text-align:center;color:#aaa;font-size:13px;padding:30px 0}
+
+/* 页面 */
 .page{position:absolute;inset:0;z-index:25;background:linear-gradient(160deg,var(--bg1),var(--bg2) 45%,var(--bg3));display:none;flex-direction:column}
 .page.show{display:flex}
 .page-header{display:flex;align-items:center;padding:calc(env(safe-area-inset-top) + 10px) 14px 10px;background:var(--glass);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);gap:10px}
@@ -129,7 +146,6 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .setting-item:last-child{border-bottom:none}
 .setting-item .val{font-size:12px;color:#aaa}
 .switch{width:42px;height:24px;border-radius:12px;background:#ccc;position:relative;transition:.2s;flex-shrink:0}
-.switch.on{background:var(--accent-soft)}
 .switch::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
 .switch.on::after{left:20px}
 .btn{padding:9px 18px;border-radius:20px;border:1px solid var(--line);background:var(--glass-strong);color:var(--other-text);font-size:13px}
@@ -137,23 +153,48 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .card-input{width:100%;min-height:160px;border-radius:12px;border:1px solid var(--line);background:var(--glass);padding:12px;font-size:14px;line-height:1.6;resize:vertical;color:var(--other-text);font-family:inherit;outline:none}
 .card-tip{font-size:12px;color:#aaa;margin:6px 0}
 .card-mgr .ops{display:flex;flex-wrap:wrap;gap:8px}
-.float-ball{position:absolute;right:14px;bottom:120px;z-index:40;border-radius:50%;background:var(--glass-strong);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;transition:transform .12s}
-.float-ball:active{transform:scale(.94)}
+
+/* 选项行：高亮 */
+.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opt{position:relative}
+.opt.sel{background:var(--me-bubble);color:var(--me-text);border-color:var(--accent-soft)}
+
+/* 悬浮球 */
+.float-ball{position:absolute;right:14px;bottom:120px;z-index:40;border-radius:50%;background:var(--glass-strong);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;touch-action:none;transition:box-shadow .15s}
+.float-ball.dragging{box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .float-panel{position:absolute;inset:0;z-index:50;background:rgba(255,255,255,.4);backdrop-filter:blur(18px);display:none;flex-direction:column}
 body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
 .float-panel.show{display:flex}
-.float-header{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 12px) 16px 12px}
-.float-header h2{font-size:16px;color:var(--other-text);font-weight:500}
+.float-header{display:flex;align-items:center;justify-content:flex-end;padding:calc(env(safe-area-inset-top) + 12px) 16px 12px}
 .float-header .close{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .float-header .close svg{width:22px;height:22px;stroke:var(--other-text);stroke-width:2;fill:none;stroke-linecap:round}
-.float-grid{flex:1;overflow-y:auto;padding:0 16px calc(env(safe-area-inset-bottom) + 16px);display:grid;grid-template-columns:repeat(3,1fr);gap:14px 10px}
-.float-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 4px;border-radius:16px;background:var(--glass);border:1px solid var(--line)}
-.float-item svg{width:28px;height:28px;stroke:var(--accent);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.float-grid{flex:1;overflow-y:auto;padding:0 16px calc(env(safe-area-inset-bottom) + 16px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px 10px}
+.float-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.float-icon-box{width:52px;height:52px;border-radius:16px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.float-icon-box svg{width:32px;height:32px;stroke:var(--accent);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .float-item span{font-size:12px;color:var(--other-text)}
 .plus-item,.float-item{cursor:pointer}
+
+/* 小世界 */
+.world-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 10px;padding:14px}
+.world-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.world-icon-box{width:52px;height:52px;border-radius:16px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.world-icon-box svg{width:32px;height:32px;stroke:var(--accent);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.world-item span{font-size:12px;color:var(--other-text)}
+
+/* 头像配对 */
+.avatar-cell{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
+.avatar-cell.sel-him{border-color:#9ecbff}
+.avatar-cell.sel-me{border-color:#ffb6c8}
+.pair-cell{display:flex;align-items:center;gap:4px;padding:4px;border-radius:12px;border:1px solid var(--line);background:var(--glass)}
+.pair-cell img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.pair-cell .h{color:var(--accent)}
+.bg-cell{width:60px;height:90px;border-radius:8px;object-fit:cover;border:2px solid var(--line)}
+.bg-cell.sel{border-color:var(--accent)}
 </style>
 </head>
-<body>
+<!-- 此处接第 2 段 -->
+  <body>
 <div id="app">
 
   <!-- 锁屏 -->
@@ -164,7 +205,7 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
       <div class="pair-wrap">
         <img class="pair-avatar" id="avatarHim" alt="">
         <svg class="heart-line" viewBox="0 0 56 28"><path d="M0 14 H14 L18 6 L22 22 L26 14 H30"/></svg>
-        <span class="heart-center">♡</span>
+        <span class="heart-hollow">♡</span>
         <svg class="heart-line" viewBox="0 0 56 28"><path d="M26 14 H30 L34 6 L38 22 L42 14 H56"/></svg>
         <img class="pair-avatar" id="avatarMe" alt="">
       </div>
@@ -184,14 +225,15 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
   <div id="chatPage">
     <div class="chat-inner">
       <div class="top-bar">
-        <img class="top-avatar" id="topAvatarHim" alt="">
-        <svg class="top-heart-line" viewBox="0 0 48 24"><path d="M0 12 H12 L15 5 L18 19 L21 12 H24"/></svg>
-        <div class="top-info">
-          <div class="top-name" id="topName">阿遇</div>
-          <div class="top-love">♡ <span id="loveValue">0</span></div>
+        <div class="top-row1">
+          <img class="top-avatar" id="topAvatarHim" alt="">
+          <svg class="top-heart-line" viewBox="0 0 44 22"><path d="M0 11 H11 L14 4 L17 18 L20 11 H22"/></svg>
+          <span class="top-heart-solid">♡</span>
+          <svg class="top-heart-line" viewBox="0 0 44 22"><path d="M22 11 H24 L27 4 L30 18 L33 11 H44"/></svg>
+          <img class="top-avatar" id="topAvatarMe" alt="">
         </div>
-        <svg class="top-heart-line" viewBox="0 0 48 24"><path d="M24 12 H27 L30 5 L33 19 L36 12 H48"/></svg>
-        <img class="top-avatar" id="topAvatarMe" alt="">
+        <div class="top-row2" id="topName">阿遇</div>
+        <div class="top-row3">♡ <span id="loveValue">0</span></div>
       </div>
 
       <div class="msg-list" id="msgList"></div>
@@ -255,7 +297,7 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     <div class="page-body" id="settingsBody"></div>
   </div>
 
-  <!-- 子设置页：称呼管理 -->
+  <!-- 称呼管理 -->
   <div class="page" id="callPage">
     <div class="page-header">
       <div class="back" id="callBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -265,11 +307,11 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
       <textarea class="card-input" id="callInput" placeholder="一行一个称呼，点下面可选当前称呼"></textarea>
       <div class="card-tip">一行一个称呼，点下面可选当前称呼</div>
       <button class="btn" id="saveCall">保存称呼</button>
-      <div id="callList" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px"></div>
+      <div id="callList" class="opt-row"></div>
     </div>
   </div>
 
-  <!-- 子设置页：头像管理 -->
+  <!-- 头像管理 -->
   <div class="page" id="avatarPage">
     <div class="page-header">
       <div class="back" id="avatarBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -278,13 +320,11 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     <div class="page-body">
       <div class="setting-group">
         <h3>关于祂</h3>
-        <div class="setting-item"><span>祂的名字</span></div>
         <input class="card-input" id="himNameInput" style="min-height:auto" placeholder="祂的名字">
         <div class="setting-item" style="margin-top:10px"><span>祂的称呼</span><button class="btn" id="himCallBtn">管理</button></div>
       </div>
       <div class="setting-group">
         <h3>关于我</h3>
-        <div class="setting-item"><span>我的名字</span></div>
         <input class="card-input" id="meNameInput" style="min-height:auto" placeholder="我的名字">
         <div class="setting-item" style="margin-top:10px"><span>我的称呼</span><button class="btn" id="meCallBtn">管理</button></div>
       </div>
@@ -293,14 +333,14 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
         <button class="btn" id="uploadAvatar">上传头像（支持多选）</button>
         <input type="file" id="avatarFile" accept="image/*" multiple style="display:none">
         <h3 style="margin-top:14px">未配对（上传区）</h3>
-        <div id="unpairedArea" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px"></div>
+        <div id="unpairedArea" class="opt-row"></div>
         <h3 style="margin-top:14px">配对区</h3>
-        <div id="pairedArea" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px"></div>
+        <div id="pairedArea" class="opt-row"></div>
       </div>
     </div>
   </div>
 
-  <!-- 子设置页：背景管理 -->
+  <!-- 背景管理 -->
   <div class="page" id="bgPage">
     <div class="page-header">
       <div class="back" id="bgBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -311,18 +351,18 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
         <h3>聊天背景</h3>
         <button class="btn" id="uploadChatBg">上传聊天背景（支持多选）</button>
         <input type="file" id="chatBgFile" accept="image/*" multiple style="display:none">
-        <div id="chatBgList" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px"></div>
+        <div id="chatBgList" class="opt-row"></div>
       </div>
       <div class="setting-group">
         <h3>锁屏背景</h3>
         <button class="btn" id="uploadLockBg">上传锁屏背景（支持多选）</button>
         <input type="file" id="lockBgFile" accept="image/*" multiple style="display:none">
-        <div id="lockBgList" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px"></div>
+        <div id="lockBgList" class="opt-row"></div>
       </div>
     </div>
   </div>
 
-  <!-- 子设置页：主题 -->
+  <!-- 主题 -->
   <div class="page" id="themePage">
     <div class="page-header">
       <div class="back" id="themeBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -331,7 +371,7 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     <div class="page-body">
       <div class="setting-group">
         <h3>浅色主题</h3>
-        <div id="themeList" style="display:flex;flex-wrap:wrap;gap:10px"></div>
+        <div id="themeList" class="opt-row"></div>
       </div>
       <div class="setting-group">
         <h3>深色模式</h3>
@@ -340,7 +380,7 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     </div>
   </div>
 
-  <!-- 子设置页：悬浮球设置 -->
+  <!-- 悬浮球设置 -->
   <div class="page" id="floatSetPage">
     <div class="page-header">
       <div class="back" id="floatSetBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -356,12 +396,14 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
       </div>
       <div class="setting-group">
         <h3>悬浮球大小</h3>
-        <div id="floatSizeList" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+        <div id="floatSizeList" class="opt-row"></div>
+        <input class="card-input" id="floatCustom" style="min-height:auto;margin-top:8px" placeholder="自定义 32～70">
+        <button class="btn" id="saveFloatSize" style="margin-top:8px">保存</button>
       </div>
     </div>
   </div>
 
-  <!-- 子设置页：概率设置 -->
+  <!-- 概率 -->
   <div class="page" id="ratePage">
     <div class="page-header">
       <div class="back" id="rateBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -370,16 +412,14 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     <div class="page-body">
       <div class="setting-group">
         <h3>概率档位</h3>
-        <div id="rateList" style="display:flex;flex-wrap:wrap;gap:8px"></div>
-        <div style="margin-top:12px">
-          <input class="card-input" id="rateCustom" style="min-height:auto" placeholder="自定义 0～100">
-          <button class="btn" id="saveRate" style="margin-top:8px">保存</button>
-        </div>
+        <div id="rateList" class="opt-row"></div>
+        <input class="card-input" id="rateCustom" style="min-height:auto;margin-top:8px" placeholder="自定义 0～100">
+        <button class="btn" id="saveRate" style="margin-top:8px">保存</button>
       </div>
     </div>
   </div>
 
-  <!-- 子设置页：回复速度 -->
+  <!-- 速度 -->
   <div class="page" id="speedPage">
     <div class="page-header">
       <div class="back" id="speedBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
@@ -388,13 +428,43 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     <div class="page-body">
       <div class="setting-group">
         <h3>档位</h3>
-        <div id="speedList" style="display:flex;flex-wrap:wrap;gap:8px"></div>
-        <div style="margin-top:12px">
-          <input class="card-input" id="speedMin" style="min-height:auto" placeholder="最快回复速度（秒）">
-          <input class="card-input" id="speedMax" style="min-height:auto;margin-top:8px" placeholder="最慢回复速度（秒）">
-          <button class="btn" id="saveSpeed" style="margin-top:8px">保存</button>
+        <div id="speedList" class="opt-row"></div>
+        <input class="card-input" id="speedMin" style="min-height:auto;margin-top:8px" placeholder="最快回复速度（秒）">
+        <input class="card-input" id="speedMax" style="min-height:auto;margin-top:8px" placeholder="最慢回复速度（秒）">
+        <button class="btn" id="saveSpeed" style="margin-top:8px">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 开机锁屏 -->
+  <div class="page" id="lockSetPage">
+    <div class="page-header">
+      <div class="back" id="lockSetBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h2>开机锁屏</h2>
+    </div>
+    <div class="page-body">
+      <div class="setting-group">
+        <h3>触发时机</h3>
+        <div id="lockTrigList" class="opt-row"></div>
+      </div>
+      <div class="setting-group">
+        <h3>暗号（固定，不可更改）</h3>
+        <div style="font-size:13px;line-height:1.8;color:#888">
+          1. 所有的分别都是暂时的，我们一定会再次相会<br>
+          2. 用大把时间仿徨，用几个瞬间成长
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- 小世界 -->
+  <div class="page" id="worldPage">
+    <div class="page-header">
+      <div class="back" id="worldBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h2>小世界</h2>
+    </div>
+    <div class="page-body">
+      <div class="world-grid" id="worldGrid"></div>
     </div>
   </div>
 
@@ -404,14 +474,14 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
   <!-- 悬浮球面板 -->
   <div class="float-panel" id="floatPanel">
     <div class="float-header">
-      <h2>小世界</h2>
       <div class="close" id="floatClose"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
     </div>
     <div class="float-grid" id="floatGrid"></div>
   </div>
 
 </div>
-<script>
+<!-- 此处接第 3 段 -->
+    <script>
 /* ============================================================
    阿遇♡阿凉 v1.0.0.0
    ============================================================ */
@@ -438,9 +508,10 @@ const STATE = {
     activeBg:false, activeBgRate:10,
     activeCall:false, activeCallRate:10,
     maskOpacity:25, floatSize:52, floatImage:"",
+    floatX:null, floatY:null, floatVisible:true,
     avatars:[], pairs:[], activePair:null,
     chatBgs:[], lockBgs:[], chatBg:"", lockBg:"",
-    hearts:[]
+    hearts:[], lockTrigger:"daily"
   }
 };
 
@@ -486,7 +557,12 @@ $("passInput").addEventListener("keydown", e=>{ if(e.key==="Enter"&&!checkPass()
 
 function enterChat(){
   $("lockScreen").classList.add("hide");
-  setTimeout(()=>{ $("lockScreen").style.display="none"; $("chatPage").classList.add("show"); renderAll(); },450);
+  setTimeout(()=>{
+    $("lockScreen").style.display="none";
+    $("chatPage").classList.add("show");
+    if(STATE.settings.floatVisible) $("floatBall").style.display="flex";
+    renderAll();
+  },450);
 }
 $("enterBtn").addEventListener("click", openPass);
 
@@ -499,8 +575,8 @@ function renderTop(){
   $("loveValue").textContent=STATE.settings.loveValue;
   $("avatarHim").src=STATE.settings.himAvatar;
   $("avatarMe").src=STATE.settings.meAvatar;
-  if(STATE.settings.lockBg){ $("lockScreen").style.backgroundImage="url("+STATE.settings.lockBg+")"; }
-  if(STATE.settings.chatBg){ $("chatPage").style.backgroundImage="url("+STATE.settings.chatBg+")"; }
+  if(STATE.settings.lockBg) $("lockScreen").style.backgroundImage="url("+STATE.settings.lockBg+")";
+  if(STATE.settings.chatBg) $("chatPage").style.backgroundImage="url("+STATE.settings.chatBg+")";
 }
 function fmtTime(ts){ const d=new Date(ts); return pad(d.getHours())+":"+pad(d.getMinutes()); }
 function renderMessages(){
@@ -589,13 +665,7 @@ function doReply(){
   renderMessages(); renderTop(); persist();
 }
 
-/* ---------- ⊕ ---------- */
-const PLUS_ITEMS=[
-  ["拍照","camera"],["相册","album"],["视频","video"],["贴纸","sticker"],
-  ["礼物","gift"],["礼包","pack"],["盲盒","box"],["互动","chat"],
-  ["问答","qa"],["问卷","form"],["音乐","music"],["陪伴","company"],
-  ["悬浮球","float"],["关锁","lock"]
-];
+/* ---------- 图标 ---------- */
 function svgIcon(name){
   const map={
     camera:'<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
@@ -609,14 +679,14 @@ function svgIcon(name){
     qa:'<circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7"/><path d="M12 17h.01"/>',
     form:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
     music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
-    company:'<path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>',
+    company:'<circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M15 20c0-2 2-3 3.5-3S22 18 22 20"/>',
     float:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>',
     lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
     world:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
     mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/>',
     note:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>',
     choose:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
-    couple:'<path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6C19 16.5 12 21 12 21z"/>',
+    couple:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>',
     heart:'<path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>',
     diary:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18M12 8h4M12 12h4M12 16h4"/>',
     replay:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/>',
@@ -627,11 +697,19 @@ function svgIcon(name){
   };
   return '<svg viewBox="0 0 24 24">'+(map[name]||'')+'</svg>';
 }
+
+/* ---------- ⊕ ---------- */
+const PLUS_ITEMS=[
+  ["拍照","camera"],["相册","album"],["视频","video"],["贴纸","sticker"],
+  ["礼物","gift"],["礼包","pack"],["盲盒","box"],["互动","chat"],
+  ["问答","qa"],["问卷","form"],["音乐","music"],["陪伴","company"],
+  ["悬浮球","float"],["关锁","lock"]
+];
 (function renderPlus(){
   const grid=$("plusGrid");
   PLUS_ITEMS.forEach(([label,icon])=>{
     const el=document.createElement("div"); el.className="plus-item";
-    el.innerHTML=svgIcon(icon)+"<span>"+label+"</span>";
+    el.innerHTML='<div class="plus-icon-box">'+svgIcon(icon)+'</div><span>'+label+'</span>';
     el.addEventListener("click",()=>{
       if(label==="关锁"){ closePlus(); lockNow(); return; }
       if(label==="悬浮球"){ toggleFloatBall(); closePlus(); return; }
@@ -649,21 +727,23 @@ $("panelMask").addEventListener("click",()=>{ closePlus(); closeCardPanel(); });
 function openCardPanel(){ renderCards(); $("cardPanel").classList.add("show"); $("panelMask").classList.add("show"); }
 function closeCardPanel(){ $("cardPanel").classList.remove("show"); $("panelMask").classList.remove("show"); }
 
-/* ---------- 锁屏快捷键 ---------- */
+/* ---------- 锁屏 ---------- */
 function lockNow(){
   $("chatPage").classList.remove("show");
+  $("floatBall").style.display="none";
   $("lockScreen").style.display="flex";
   requestAnimationFrame(()=>$("lockScreen").classList.remove("hide"));
 }
 
-/* ---------- 字卡管理 ---------- */
+/* ---------- 页面通用 ---------- */
 function openPage(id){ $(id).classList.add("show"); }
 function closePage(id){ $(id).classList.remove("show"); }
+
+/* ---------- 字卡管理 ---------- */
 $("openCardMgr").addEventListener("click",()=>{ closeCardPanel(); openPage("cardMgrPage"); });
 $("cardMgrBack").addEventListener("click",()=>closePage("cardMgrPage"));
 const area=$("cardMgrArea");
 function clearArea(){ area.innerHTML=""; }
-
 $("opSearch").addEventListener("click",()=>{
   clearArea();
   area.innerHTML='<input class="card-input" id="searchInput" placeholder="请输入搜索内容..." style="min-height:auto"><div style="margin-top:10px"><button class="btn" id="doSearch">搜索</button></div><div id="searchResult" style="margin-top:12px"></div>';
@@ -767,7 +847,6 @@ $("opTrash").addEventListener("click",()=>{
 /* ---------- 设置页 ---------- */
 $("settingsBack").addEventListener("click",()=>closePage("settingsPage"));
 function openSettings(){ renderSettings(); openPage("settingsPage"); }
-
 function renderSettings(){
   const s=STATE.settings;
   const body=$("settingsBody");
@@ -793,11 +872,13 @@ function renderSettings(){
     <div class="setting-group"><h3>外观</h3>
       <div class="setting-item" data-open="themePage"><span>主题</span><span class="val">切换</span></div>
       <div class="setting-item" data-open="floatSetPage"><span>悬浮球</span><span class="val">${s.floatSize}px</span></div>
+      <div class="setting-item" data-open="avatarPage"><span>头像</span><span class="val">管理</span></div>
+      <div class="setting-item" data-open="bgPage"><span>背景</span><span class="val">管理</span></div>
       <div class="setting-item"><span>背景遮罩透明度</span><span class="val">${s.maskOpacity}%</span></div>
     </div>
     <div class="setting-group"><h3>功能</h3>
-      <div class="setting-item"><span>开机锁屏</span><span class="val">每天第一次</span></div>
-      <div class="setting-item"><span>暗号</span><span class="val">已设置</span></div>
+      <div class="setting-item" data-open="lockSetPage"><span>开机锁屏</span><span class="val">${lockTriggerName(s.lockTrigger)}</span></div>
+      <div class="setting-item" data-open="lockSetPage"><span>暗号</span><span class="val">查看</span></div>
     </div>
     <div class="setting-group"><h3>系统</h3>
       <div class="setting-item"><span>全屏模式</span><div class="switch" id="fullSwitch"></div></div>
@@ -824,10 +905,7 @@ function renderSettings(){
     });
   });
   body.querySelectorAll("[data-open]").forEach(item=>{
-    item.addEventListener("click",()=>{
-      const page=item.dataset.open, target=item.dataset.target;
-      openSubPage(page,target);
-    });
+    item.addEventListener("click",()=>openSubPage(item.dataset.open,item.dataset.target));
   });
   $("fullSwitch").addEventListener("click",()=>{
     if(!document.fullscreenElement) document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
@@ -857,8 +935,11 @@ function renderSettings(){
     if(confirm("确定清空所有数据？")){ STATE.messages=[]; STATE.cards=[]; STATE.trash=[]; STATE.settings.hearts=[]; renderAll(); persist(); alert("已清空"); }
   });
 }
+function lockTriggerName(v){
+  return {daily:"每天第一次",refresh:"每次刷新",first:"第一次打开",off:"关闭"}[v]||"每天第一次";
+}
 
-/* ---------- 子设置页 ---------- */
+/* ---------- 子页面 ---------- */
 let callTarget="me";
 function openSubPage(page,target){
   if(page==="speedPage"){
@@ -879,10 +960,11 @@ function openSubPage(page,target){
     $("callInput").value = arr.join("\n");
     renderCallList();
   }
-  if(page==="avatarPage"){ renderAvatarPage(); }
-  if(page==="bgPage"){ renderBgPage(); }
-  if(page==="themePage"){ renderThemeList(); }
-  if(page==="floatSetPage"){ renderFloatSet(); }
+  if(page==="avatarPage") renderAvatarPage();
+  if(page==="bgPage") renderBgPage();
+  if(page==="themePage") renderThemeList();
+  if(page==="floatSetPage") renderFloatSet();
+  if(page==="lockSetPage") renderLockSet();
   openPage(page);
 }
 
@@ -893,12 +975,14 @@ const SPEED_LEVELS = {
 };
 function renderSpeedList(target){
   const box=$("speedList"); box.innerHTML="";
+  const cur = target==="reply"?STATE.settings.replySpeed:STATE.settings.stopDetect;
   SPEED_LEVELS[target].forEach(([name,min,max])=>{
-    const b=document.createElement("button"); b.className="btn"; b.textContent=name+" "+min+"～"+max;
+    const b=document.createElement("button"); b.className="btn opt"+(cur.min===min&&cur.max===max?" sel":"");
+    b.textContent=name+" "+min+"～"+max;
     b.addEventListener("click",()=>{
       if(target==="reply") STATE.settings.replySpeed={min,max};
       else STATE.settings.stopDetect={min,max};
-      $("speedMin").value=min; $("speedMax").value=max; persist();
+      $("speedMin").value=min; $("speedMax").value=max; persist(); renderSpeedList(target);
     });
     box.appendChild(b);
   });
@@ -910,22 +994,21 @@ $("saveSpeed").addEventListener("click",()=>{
   const target=$("speedPage").dataset.target;
   if(target==="reply") STATE.settings.replySpeed={min,max};
   else STATE.settings.stopDetect={min,max};
-  persist(); alert("已保存"); closePage("speedPage"); renderSettings();
+  persist(); closePage("speedPage"); renderSettings();
 });
 
 /* 概率 */
 const RATE_LEVELS=[["偶尔",10],["有时",30],["经常",50],["总是",100]];
 function renderRateList(target){
   const box=$("rateList"); box.innerHTML="";
+  const cur=STATE.settings[target]||10;
   RATE_LEVELS.forEach(([name,val])=>{
-    const b=document.createElement("button"); b.className="btn"; b.textContent=name+" "+val+"%";
-    b.addEventListener("click",()=>{
-      STATE.settings[target]=val; persist();
-      $("rateCustom").value=val;
-    });
+    const b=document.createElement("button"); b.className="btn opt"+(cur===val?" sel":"");
+    b.textContent=name+" "+val+"%";
+    b.addEventListener("click",()=>{ STATE.settings[target]=val; persist(); renderRateList(target); });
     box.appendChild(b);
   });
-  $("rateCustom").value=STATE.settings[target]||10;
+  $("rateCustom").value=cur;
 }
 $("rateBack").addEventListener("click",()=>closePage("ratePage"));
 $("saveRate").addEventListener("click",()=>{
@@ -940,9 +1023,10 @@ function renderCallList(){
   const arr = callTarget==="me"?STATE.settings.meCalls:STATE.settings.himCalls;
   const cur = callTarget==="me"?STATE.settings.meCurrentCall:STATE.settings.himCurrentCall;
   const box=$("callList"); box.innerHTML="";
+  if(!arr.length){ box.innerHTML='<div class="card-empty">还没有称呼</div>'; return; }
   arr.forEach(name=>{
-    const b=document.createElement("button"); b.className="btn";
-    b.textContent = name + (name===cur?" ✓":"");
+    const b=document.createElement("button"); b.className="btn opt"+(name===cur?" sel":"");
+    b.textContent=name;
     b.addEventListener("click",()=>{
       if(callTarget==="me") STATE.settings.meCurrentCall=name;
       else STATE.settings.himCurrentCall=name;
@@ -966,40 +1050,44 @@ function renderAvatarPage(){
   $("himNameInput").value=STATE.settings.himName;
   $("meNameInput").value=STATE.settings.meName;
   const un=$("unpairedArea"); un.innerHTML="";
-  STATE.settings.avatars.forEach((src,i)=>{
-    const img=document.createElement("img"); img.src=src;
-    img.style.cssText="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #ddd";
+  STATE.settings.avatars.forEach(src=>{
+    const img=document.createElement("img"); img.src=src; img.className="avatar-cell";
     img.addEventListener("click",()=>{
-      img.dataset.side = img.dataset.side==="him"?"me":"him";
-      img.style.borderColor = img.dataset.side==="him"?"#9ecbff":"#ffb6c8";
+      const cur=img.dataset.side;
+      if(cur==="him"){ img.dataset.side=""; img.classList.remove("sel-him"); }
+      else if(cur==="me"){ img.dataset.side=""; img.classList.remove("sel-me"); }
+      else {
+        if(un.querySelector(".sel-him")&&un.querySelector(".sel-me")){ alert("左右各选一个就好"); return; }
+        if(!un.querySelector(".sel-him")){ img.dataset.side="him"; img.classList.add("sel-him"); }
+        else { img.dataset.side="me"; img.classList.add("sel-me"); }
+      }
       checkPair();
     });
     un.appendChild(img);
   });
   const pr=$("pairedArea"); pr.innerHTML="";
   STATE.settings.pairs.forEach((p,idx)=>{
-    const wrap=document.createElement("div");
-    wrap.style.cssText="display:flex;align-items:center;gap:4px";
-    wrap.innerHTML='<img src="'+p.him+'" style="width:40px;height:40px;border-radius:50%"><span style="color:#ff4d6d">♡</span><img src="'+p.me+'" style="width:40px;height:40px;border-radius:50%">';
+    const wrap=document.createElement("div"); wrap.className="pair-cell";
+    wrap.innerHTML='<img src="'+p.him+'"><span class="h">♡</span><img src="'+p.me+'">';
     wrap.addEventListener("click",()=>{
-      if(confirm("用这一对？")){
+      const act=confirm("用这一对？\n点取消可选择删除");
+      if(act){
         STATE.settings.himAvatar=p.him; STATE.settings.meAvatar=p.me;
         STATE.settings.activePair=idx; renderTop(); persist(); alert("已启用");
-      } else if(confirm("删除这一对？")){
-        STATE.settings.pairs.splice(idx,1); persist(); renderAvatarPage();
+      } else {
+        if(confirm("删除这一对？")){ STATE.settings.pairs.splice(idx,1); persist(); renderAvatarPage(); }
       }
     });
     pr.appendChild(wrap);
   });
 }
 function checkPair(){
-  const un=$("unpairedArea").children;
-  const him=[],me=[];
-  [...un].forEach(img=>{ if(img.dataset.side==="him") him.push(img); if(img.dataset.side==="me") me.push(img); });
-  if(him.length&&me.length){
-    const h=him[0].src, m=me[0].src;
+  const un=$("unpairedArea");
+  const him=un.querySelector(".sel-him"), me=un.querySelector(".sel-me");
+  if(him&&me){
+    const h=him.src, m=me.src;
     STATE.settings.pairs.push({him:h,me:m});
-    STATE.settings.avatars = STATE.settings.avatars.filter(s=>s!==h&&s!==m);
+    STATE.settings.avatars=STATE.settings.avatars.filter(s=>s!==h&&s!==m);
     persist(); renderAvatarPage();
   }
 }
@@ -1019,15 +1107,13 @@ $("meNameInput").addEventListener("change",e=>{ STATE.settings.meName=e.target.v
 function renderBgPage(){
   const chat=$("chatBgList"); chat.innerHTML="";
   STATE.settings.chatBgs.forEach(src=>{
-    const img=document.createElement("img"); img.src=src;
-    img.style.cssText="width:60px;height:90px;border-radius:8px;object-fit:cover;border:2px solid "+(src===STATE.settings.chatBg?"#ff4d6d":"#ddd");
+    const img=document.createElement("img"); img.src=src; img.className="bg-cell"+(src===STATE.settings.chatBg?" sel":"");
     img.addEventListener("click",()=>{ STATE.settings.chatBg=src; renderTop(); persist(); renderBgPage(); });
     chat.appendChild(img);
   });
   const lock=$("lockBgList"); lock.innerHTML="";
   STATE.settings.lockBgs.forEach(src=>{
-    const img=document.createElement("img"); img.src=src;
-    img.style.cssText="width:60px;height:90px;border-radius:8px;object-fit:cover;border:2px solid "+(src===STATE.settings.lockBg?"#ff4d6d":"#ddd");
+    const img=document.createElement("img"); img.src=src; img.className="bg-cell"+(src===STATE.settings.lockBg?" sel":"");
     img.addEventListener("click",()=>{ STATE.settings.lockBg=src; renderTop(); persist(); renderBgPage(); });
     lock.appendChild(img);
   });
@@ -1047,11 +1133,12 @@ const THEMES=[["樱粉玻璃",""],["薄荷冰","theme-mint"],["奶油暖光","th
 function renderThemeList(){
   const box=$("themeList"); box.innerHTML="";
   THEMES.forEach(([name,cls])=>{
-    const b=document.createElement("button"); b.className="btn"; b.textContent=name;
+    const b=document.createElement("button"); b.className="btn opt"+(STATE.settings.theme===cls?" sel":"");
+    b.textContent=name;
     b.addEventListener("click",()=>{
       document.body.classList.remove("theme-mint","theme-cream","theme-blue","theme-purple");
       if(cls) document.body.classList.add(cls);
-      STATE.settings.theme=cls; persist();
+      STATE.settings.theme=cls; persist(); renderThemeList();
     });
     box.appendChild(b);
   });
@@ -1060,18 +1147,19 @@ function renderThemeList(){
 $("themeBack").addEventListener("click",()=>closePage("themePage"));
 $("darkSwitch").addEventListener("click",()=>{
   document.body.classList.toggle("theme-dark");
-  $("darkSwitch").classList.toggle("on");
-  persist();
+  $("darkSwitch").classList.toggle("on"); persist();
 });
 
 /* 悬浮球设置 */
 function renderFloatSet(){
   const box=$("floatSizeList"); box.innerHTML="";
   [["小",40],["中",52],["大",64]].forEach(([name,val])=>{
-    const b=document.createElement("button"); b.className="btn"; b.textContent=name+" "+val;
-    b.addEventListener("click",()=>{ STATE.settings.floatSize=val; initFloatBall(); persist(); });
+    const b=document.createElement("button"); b.className="btn opt"+(STATE.settings.floatSize===val?" sel":"");
+    b.textContent=name+" "+val;
+    b.addEventListener("click",()=>{ STATE.settings.floatSize=val; initFloatBall(); persist(); renderFloatSet(); });
     box.appendChild(b);
   });
+  $("floatCustom").value=STATE.settings.floatSize;
   $("floatPreview").innerHTML = STATE.settings.floatImage ? '<img src="'+STATE.settings.floatImage+'" style="width:52px;height:52px;border-radius:50%">' : "默认";
 }
 $("floatSetBack").addEventListener("click",()=>closePage("floatSetPage"));
@@ -1083,8 +1171,48 @@ $("floatFile").addEventListener("change",e=>{
   r.readAsDataURL(f);
 });
 $("resetFloat").addEventListener("click",()=>{ STATE.settings.floatImage=""; initFloatBall(); persist(); renderFloatSet(); });
+$("saveFloatSize").addEventListener("click",()=>{
+  const v=parseInt($("floatCustom").value);
+  if(isNaN(v)||v<32||v>70){ alert("请输入 32～70"); return; }
+  STATE.settings.floatSize=v; initFloatBall(); persist(); renderFloatSet();
+});
 
-/* 悬浮球 */
+/* 开机锁屏 */
+const LOCK_TRIGGERS=[["每天第一次","daily"],["每次刷新","refresh"],["第一次打开","first"],["关闭","off"]];
+function renderLockSet(){
+  const box=$("lockTrigList"); box.innerHTML="";
+  LOCK_TRIGGERS.forEach(([name,val])=>{
+    const b=document.createElement("button"); b.className="btn opt"+(STATE.settings.lockTrigger===val?" sel":"");
+    b.textContent=name;
+    b.addEventListener("click",()=>{ STATE.settings.lockTrigger=val; persist(); renderLockSet(); });
+    box.appendChild(b);
+  });
+}
+$("lockSetBack").addEventListener("click",()=>closePage("lockSetPage"));
+
+/* ---------- 小世界 ---------- */
+const WORLD_ITEMS=[
+  ["字卡","note"],["头像","couple"],["背景","album"],["表情","sticker"],
+  ["贴纸","sticker"],["礼物","gift"],["礼包","pack"],["互动","chat"],
+  ["问卷","form"],["音乐","music"],["陪伴","company"]
+];
+(function renderWorld(){
+  const grid=$("worldGrid");
+  WORLD_ITEMS.forEach(([label,icon])=>{
+    const el=document.createElement("div"); el.className="world-item";
+    el.innerHTML='<div class="world-icon-box">'+svgIcon(icon)+'</div><span>'+label+'</span>';
+    el.addEventListener("click",()=>{
+      if(label==="字卡"){ closePage("worldPage"); openPage("cardMgrPage"); return; }
+      if(label==="头像"){ closePage("worldPage"); openSubPage("avatarPage"); return; }
+      if(label==="背景"){ closePage("worldPage"); openSubPage("bgPage"); return; }
+      alert(label+"：未设计");
+    });
+    grid.appendChild(el);
+  });
+})();
+$("worldBack").addEventListener("click",()=>closePage("worldPage"));
+
+/* ---------- 悬浮球 ---------- */
 const FLOAT_ITEMS=[
   ["小世界","world"],["信箱","mail"],["留言笺","note"],["抉择","choose"],
   ["恋人空间","couple"],["心动瞬间","heart"],["心情手帐","diary"],["旧梦温存","replay"],
@@ -1094,9 +1222,10 @@ function renderFloat(){
   const grid=$("floatGrid"); grid.innerHTML="";
   FLOAT_ITEMS.forEach(([label,icon])=>{
     const el=document.createElement("div"); el.className="float-item";
-    el.innerHTML=svgIcon(icon)+"<span>"+label+"</span>";
+    el.innerHTML='<div class="float-icon-box">'+svgIcon(icon)+'</div><span>'+label+'</span>';
     el.addEventListener("click",()=>{
       if(label==="设置"){ closeFloat(); openSettings(); return; }
+      if(label==="小世界"){ closeFloat(); openPage("worldPage"); return; }
       alert(label+"：未设计");
     });
     grid.appendChild(el);
@@ -1117,15 +1246,68 @@ function initFloatBall(){
     const svg=ball.querySelector("svg");
     svg.style.width="60%"; svg.style.height="60%"; svg.style.stroke="var(--accent)";
   }
-  ball.onclick=openFloat;
+  if(STATE.settings.floatX!==null){
+    ball.style.left=STATE.settings.floatX+"px";
+    ball.style.top=STATE.settings.floatY+"px";
+    ball.style.right="auto"; ball.style.bottom="auto";
+  }
+  ball.onclick=null;
+  ball.addEventListener("click", openFloat);
 }
 function toggleFloatBall(){
-  const ball=$("floatBall");
-  ball.style.display = ball.style.display==="none" ? "flex" : "none";
+  STATE.settings.floatVisible=!STATE.settings.floatVisible;
+  $("floatBall").style.display=STATE.settings.floatVisible?"flex":"none";
+  persist();
 }
+/* 拖动 */
+(function dragFloat(){
+  const ball=$("floatBall");
+  let sx=0, sy=0, ox=0, oy=0, dragging=false, moved=false;
+  ball.addEventListener("touchstart",e=>{
+    const t=e.touches[0]; const r=ball.getBoundingClientRect();
+    sx=t.clientX; sy=t.clientY; ox=r.left; oy=r.top; dragging=true; moved=false;
+  },{passive:true});
+  ball.addEventListener("touchmove",e=>{
+    if(!dragging) return;
+    const t=e.touches[0];
+    const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)>4||Math.abs(dy)>4) moved=true;
+    let nx=ox+dx, ny=oy+dy;
+    const maxX=window.innerWidth-ball.offsetWidth, maxY=window.innerHeight-ball.offsetHeight;
+    nx=Math.max(0,Math.min(maxX,nx)); ny=Math.max(0,Math.min(maxY,ny));
+    ball.style.left=nx+"px"; ball.style.top=ny+"px"; ball.style.right="auto"; ball.style.bottom="auto";
+    e.preventDefault();
+  },{passive:false});
+  ball.addEventListener("touchend",()=>{
+    if(!dragging) return; dragging=false;
+    if(moved){
+      const r=ball.getBoundingClientRect();
+      STATE.settings.floatX=r.left; STATE.settings.floatY=r.top;
+      persist();
+    } else {
+      openFloat();
+    }
+  });
+  ball.addEventListener("mousedown",e=>{
+    const r=ball.getBoundingClientRect(); sx=e.clientX; sy=e.clientY; ox=r.left; oy=r.top; dragging=true; moved=false;
+  });
+  document.addEventListener("mousemove",e=>{
+    if(!dragging) return;
+    const dx=e.clientX-sx, dy=e.clientY-sy;
+    if(Math.abs(dx)>4||Math.abs(dy)>4) moved=true;
+    let nx=ox+dx, ny=oy+dy;
+    const maxX=window.innerWidth-ball.offsetWidth, maxY=window.innerHeight-ball.offsetHeight;
+    nx=Math.max(0,Math.min(maxX,nx)); ny=Math.max(0,Math.min(maxY,ny));
+    ball.style.left=nx+"px"; ball.style.top=ny+"px"; ball.style.right="auto"; ball.style.bottom="auto";
+  });
+  document.addEventListener("mouseup",()=>{
+    if(!dragging) return; dragging=false;
+    if(moved){ const r=ball.getBoundingClientRect(); STATE.settings.floatX=r.left; STATE.settings.floatY=r.top; persist(); }
+  });
+})();
 initFloatBall();
 
-/* ---------- 存储：OPFS + Cache ---------- */
+/* ---------- 存储 ---------- */
 const STORE = {
   async opfsRoot(){
     if(!navigator.storage||!navigator.storage.getDirectory) return null;
@@ -1175,11 +1357,9 @@ const STORE = {
     return d;
   }
 };
-
 async function persist(){
   await STORE.save("state",{
-    messages:STATE.messages, cards:STATE.cards, trash:STATE.trash,
-    settings:STATE.settings
+    messages:STATE.messages, cards:STATE.cards, trash:STATE.trash, settings:STATE.settings
   });
 }
 async function restore(){
@@ -1190,7 +1370,7 @@ async function restore(){
   if(d.trash) STATE.trash=d.trash;
   if(d.settings) Object.assign(STATE.settings,d.settings);
   if(STATE.settings.theme) document.body.classList.add(STATE.settings.theme);
-  if(STATE.settings.floatImage) initFloatBall();
+  initFloatBall();
   renderAll();
 }
 restore();
