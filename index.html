@@ -17,6 +17,7 @@ body{font-family:-apple-system,"HarmonyOS Sans","PingFang SC","Microsoft YaHei",
 --me-bubble:rgba(255,182,203,.65);--other-bubble:rgba(255,255,255,.62);
 --me-text:#7a3b4d;--other-text:#4a4a4a;
 --accent:#ff4d6d;--accent-soft:#ff8fab;
+--mask:25%;
 }
 body.theme-mint{--bg1:#d9f5ec;--bg2:#f0fbf7;--bg3:#e3f2ff;--me-bubble:rgba(150,225,200,.6);--me-text:#2f6b5a;--other-text:#3d5a52}
 body.theme-cream{--bg1:#fff0d9;--bg2:#fffaf2;--bg3:#ffe9d6;--me-bubble:rgba(255,205,150,.6);--me-text:#7a5230;--other-text:#5a4a3a}
@@ -24,27 +25,27 @@ body.theme-blue{--bg1:#dcecff;--bg2:#f4f9ff;--bg3:#e6f0ff;--me-bubble:rgba(150,1
 body.theme-purple{--bg1:#eadcff;--bg2:#f8f4ff;--bg3:#f0e6ff;--me-bubble:rgba(200,170,255,.6);--me-text:#5a3d7a;--other-text:#4a3d5a}
 body.theme-dark{--bg1:#1e1e24;--bg2:#26262e;--bg3:#1a1a20;--glass:rgba(255,255,255,.08);--glass-strong:rgba(255,255,255,.12);--line:rgba(255,255,255,.12);--me-bubble:rgba(255,120,160,.35);--other-bubble:rgba(255,255,255,.08);--me-text:#ffd6e2;--other-text:#d8d8de;--accent:#ff6b8a;--accent-soft:#ff8fab;color:#d8d8de}
 
-/* ---------- 通用高亮 ---------- */
-.hl{outline:2px solid var(--accent);outline-offset:1px;background:var(--glass-strong)!important}
+/* 高亮 */
 .btn.on{background:var(--me-bubble);color:var(--me-text);border-color:var(--accent-soft)}
 .switch.on{background:var(--accent-soft)}
+.opt.sel{background:var(--me-bubble);color:var(--me-text);border-color:var(--accent-soft)}
 
-/* ---------- 锁屏 ---------- */
+/* 锁屏 */
 #lockScreen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--bg1),var(--bg2) 45%,var(--bg3));background-size:cover;background-position:center;padding:calc(env(safe-area-inset-top) + 20px) 20px calc(env(safe-area-inset-bottom) + 20px);transition:opacity .45s,transform .45s;z-index:20}
-#lockScreen::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.2);backdrop-filter:blur(2px);z-index:0;pointer-events:none}
-body.theme-dark #lockScreen::before{background:rgba(0,0,0,.25)}
+#lockScreen::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,var(--mask));backdrop-filter:blur(2px);z-index:0;pointer-events:none}
+body.theme-dark #lockScreen::before{background:rgba(0,0,0,var(--mask))}
 #lockScreen.hide{opacity:0;transform:scale(1.04);pointer-events:none}
 .lock-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
 .site-name{font-size:26px;font-weight:600;letter-spacing:2px;color:#4a4a4a}
 body.theme-dark .site-name{color:#f0f0f4}
 .datetime{font-size:13px;color:#6b6b6b;letter-spacing:1px}
 body.theme-dark .datetime{color:#a8a8b0}
-.pair-wrap{display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 0}
+.pair-wrap{display:flex;align-items:center;justify-content:center;gap:4px;margin:6px 0}
 .pair-avatar{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.5);border:2px solid var(--line);object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.heart-line{width:56px;height:28px;overflow:visible}
+.heart-line{width:40px;height:26px;overflow:visible;flex-shrink:0}
 .heart-line path{stroke:var(--accent-soft);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:drawLine 2.4s ease-in-out infinite}
 @keyframes drawLine{0%{stroke-dashoffset:60}40%{stroke-dashoffset:0}60%{stroke-dashoffset:0}100%{stroke-dashoffset:-60}}
-.heart-hollow{font-size:20px;color:var(--accent);line-height:1;animation:heartBeat 2.2s ease-in-out infinite;display:inline-block;-webkit-text-stroke:1px var(--accent);color:transparent}
+.heart-solid{font-size:20px;color:var(--accent);line-height:1;animation:heartBeat 2.2s ease-in-out infinite;display:inline-block}
 @keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 .love-word{font-size:15px;color:#5a5a5a;letter-spacing:1px;text-align:center;max-width:80%;line-height:1.6;min-height:24px;transition:opacity .3s}
 body.theme-dark .love-word{color:#b8b8c0}
@@ -53,7 +54,7 @@ body.theme-dark .love-word{color:#b8b8c0}
 body.theme-dark .enter-btn{color:#e8e8ee}
 .enter-btn:active{transform:scale(.97)}
 
-/* ---------- 密码层 ---------- */
+/* 密码层 */
 #passLayer{position:absolute;inset:0;z-index:30;background:rgba(255,255,255,.35);backdrop-filter:blur(14px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px}
 body.theme-dark #passLayer{background:rgba(0,0,0,.4)}
 #passLayer.show{display:flex}
@@ -65,25 +66,25 @@ body.theme-dark #passLayer{background:rgba(0,0,0,.4)}
 .pass-tip.err{color:var(--accent);animation:shake .3s}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-/* ---------- 聊天页 ---------- */
+/* 聊天页 */
 #chatPage{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;background:linear-gradient(160deg,var(--bg1),var(--bg2) 45%,var(--bg3));background-size:cover;background-position:center}
 #chatPage.show{display:flex}
-#chatPage::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.18);pointer-events:none;z-index:0}
-body.theme-dark #chatPage::before{background:rgba(0,0,0,.2)}
+#chatPage::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,var(--mask));pointer-events:none;z-index:0}
+body.theme-dark #chatPage::before{background:rgba(0,0,0,var(--mask))}
 .chat-inner{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
 
-/* 顶栏：三排 */
+/* 顶栏三排 */
 .top-bar{display:flex;flex-direction:column;align-items:center;gap:2px;padding:calc(env(safe-area-inset-top) + 6px) 12px 8px;background:var(--glass);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);flex-shrink:0}
-.top-row1{display:flex;align-items:center;justify-content:center;gap:5px}
+.top-row1{display:flex;align-items:center;justify-content:center;gap:4px}
 .top-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
-.top-heart-line{width:44px;height:22px;overflow:visible}
+.top-heart-line{width:40px;height:24px;overflow:visible;flex-shrink:0}
 .top-heart-line path{stroke:var(--accent-soft);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:drawLine 2.4s ease-in-out infinite}
 .top-heart-solid{font-size:18px;color:var(--accent);animation:heartBeat 2.2s ease-in-out infinite;line-height:1}
 .top-row2{font-size:13px;color:var(--other-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
 .top-row3{font-size:12px;color:var(--accent);display:flex;align-items:center;gap:3px}
 
 /* 消息区 */
-.msg-list{flex:1;overflow-y:auto;padding:12px 10px 8px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch}
+.msg-list{flex:1;overflow-y:auto;padding:12px 10px 8px;display:flex;flex-direction:column;gap:14px;-webkit-overflow-scrolling:touch}
 .msg-row{display:flex;align-items:flex-end;gap:8px;max-width:100%}
 .msg-row.me{flex-direction:row-reverse}
 .msg-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
@@ -95,7 +96,9 @@ body.theme-dark .msg-quote{background:rgba(255,255,255,.06);color:#aaa}
 .msg-row.me .msg-bubble{background:var(--me-bubble);color:var(--me-text)}
 .msg-meta{font-size:10px;color:#999;padding:0 4px;display:flex;gap:6px;align-items:center}
 .msg-meta .read{color:var(--accent-soft)}
-.typing-row{display:flex;align-items:center;gap:8px;padding:0 10px 8px}
+
+/* 正在输入：底部输入区上方 */
+.typing-bar{padding:4px 14px 2px;display:flex;align-items:center;gap:6px;flex-shrink:0}
 .typing-text{font-size:12px;color:#888}
 .typing-dots{display:flex;gap:3px}
 .typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--accent-soft);animation:typing 1.2s infinite}
@@ -118,9 +121,9 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .plus-panel{position:absolute;left:0;right:0;bottom:0;z-index:15;background:var(--glass-strong);backdrop-filter:blur(20px);border-top:1px solid var(--line);border-radius:22px 22px 0 0;padding:16px 14px calc(env(safe-area-inset-bottom) + 16px);transform:translateY(100%);transition:transform .3s;max-height:70vh;overflow-y:auto}
 .plus-panel.show{transform:translateY(0)}
 .plus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 8px}
-.plus-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 0;border-radius:12px}
-.plus-icon-box{width:46px;height:46px;border-radius:14px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-.plus-icon-box svg{width:28px;height:28px;stroke:var(--accent);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.plus-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 0}
+.plus-icon-box{width:44px;height:44px;border-radius:13px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.plus-icon-box svg{width:30px;height:30px;stroke:var(--accent);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .plus-item span{font-size:11px;color:var(--other-text)}
 .panel-mask{position:absolute;inset:0;z-index:14;background:rgba(0,0,0,.15);display:none}
 .panel-mask.show{display:block}
@@ -130,7 +133,6 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .card-panel-title button{font-size:12px;color:var(--accent);background:none;border:none}
 .card-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
 .card-item{padding:10px 12px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-size:14px;color:var(--other-text);line-height:1.4}
-.card-empty{text-align:center;color:#aaa;font-size:13px;padding:30px 0}
 
 /* 页面 */
 .page{position:absolute;inset:0;z-index:25;background:linear-gradient(160deg,var(--bg1),var(--bg2) 45%,var(--bg3));display:none;flex-direction:column}
@@ -152,15 +154,28 @@ body.theme-dark .input-box textarea{color:#e8e8ee}
 .btn.danger{color:#ff4d6d;border-color:rgba(255,77,109,.3)}
 .card-input{width:100%;min-height:160px;border-radius:12px;border:1px solid var(--line);background:var(--glass);padding:12px;font-size:14px;line-height:1.6;resize:vertical;color:var(--other-text);font-family:inherit;outline:none}
 .card-tip{font-size:12px;color:#aaa;margin:6px 0}
-.card-mgr .ops{display:flex;flex-wrap:wrap;gap:8px}
-
-/* 选项行：高亮 */
 .opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .opt{position:relative}
-.opt.sel{background:var(--me-bubble);color:var(--me-text);border-color:var(--accent-soft)}
+
+/* 字卡管理：操作固定，下面面板 */
+.card-ops{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:sticky;top:0;z-index:5;background:var(--glass-strong);backdrop-filter:blur(12px);padding:8px 0;border-bottom:1px solid var(--line);margin-bottom:12px}
+.card-ops .btn{width:100%;padding:9px 4px;font-size:12px}
+.card-panel-area{margin-top:4px}
+.card-list-mgr{display:flex;flex-direction:column;gap:10px}
+.mgr-card{padding:12px;border-radius:12px;background:var(--glass);border:1px solid var(--line);font-size:14px;color:var(--other-text);line-height:1.4}
+.sel-bar{position:sticky;top:56px;z-index:6;background:var(--glass-strong);backdrop-filter:blur(12px);padding:8px 0;margin-bottom:8px}
+.card-empty{text-align:center;color:#aaa;font-size:13px;padding:30px 0}
+
+/* 页面内弹窗 */
+.modal-mask{position:absolute;inset:0;z-index:60;background:rgba(0,0,0,.3);display:none;align-items:center;justify-content:center;padding:24px}
+.modal-mask.show{display:flex}
+.modal{background:var(--glass-strong);backdrop-filter:blur(20px);border-radius:18px;border:1px solid var(--line);padding:18px;width:100%;max-width:320px}
+.modal h3{font-size:15px;color:var(--other-text);margin-bottom:12px;font-weight:500}
+.modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.modal .row .btn{flex:1}
 
 /* 悬浮球 */
-.float-ball{position:absolute;right:14px;bottom:120px;z-index:40;border-radius:50%;background:var(--glass-strong);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;touch-action:none;transition:box-shadow .15s}
+.float-ball{position:absolute;right:14px;bottom:120px;z-index:40;border-radius:50%;background:var(--glass-strong);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;touch-action:none}
 .float-ball.dragging{box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .float-panel{position:absolute;inset:0;z-index:50;background:rgba(255,255,255,.4);backdrop-filter:blur(18px);display:none;flex-direction:column}
 body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
@@ -170,27 +185,30 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
 .float-header .close svg{width:22px;height:22px;stroke:var(--other-text);stroke-width:2;fill:none;stroke-linecap:round}
 .float-grid{flex:1;overflow-y:auto;padding:0 16px calc(env(safe-area-inset-bottom) + 16px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px 10px}
 .float-item{display:flex;flex-direction:column;align-items:center;gap:6px}
-.float-icon-box{width:52px;height:52px;border-radius:16px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-.float-icon-box svg{width:32px;height:32px;stroke:var(--accent);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.float-icon-box{width:50px;height:50px;border-radius:15px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.float-icon-box svg{width:34px;height:34px;stroke:var(--accent);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .float-item span{font-size:12px;color:var(--other-text)}
-.plus-item,.float-item{cursor:pointer}
 
 /* 小世界 */
-.world-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 10px;padding:14px}
+.world-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 10px;padding:4px}
 .world-item{display:flex;flex-direction:column;align-items:center;gap:6px}
-.world-icon-box{width:52px;height:52px;border-radius:16px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-.world-icon-box svg{width:32px;height:32px;stroke:var(--accent);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.world-icon-box{width:50px;height:50px;border-radius:15px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.world-icon-box svg{width:34px;height:34px;stroke:var(--accent);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .world-item span{font-size:12px;color:var(--other-text)}
 
-/* 头像配对 */
+/* 头像/背景 */
 .avatar-cell{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
 .avatar-cell.sel-him{border-color:#9ecbff}
 .avatar-cell.sel-me{border-color:#ffb6c8}
-.pair-cell{display:flex;align-items:center;gap:4px;padding:4px;border-radius:12px;border:1px solid var(--line);background:var(--glass)}
+.pair-cell{display:flex;align-items:center;gap:4px;padding:4px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.pair-cell.sel{border-color:var(--accent);background:var(--me-bubble)}
 .pair-cell img{width:40px;height:40px;border-radius:50%;object-fit:cover}
 .pair-cell .h{color:var(--accent)}
 .bg-cell{width:60px;height:90px;border-radius:8px;object-fit:cover;border:2px solid var(--line)}
 .bg-cell.sel{border-color:var(--accent)}
+
+/* 悬浮球设置预览 */
+.float-preview{width:52px;height:52px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
 </style>
 </head>
 <!-- 此处接第 2 段 -->
@@ -204,9 +222,9 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
       <div class="datetime" id="datetime">----年--月--日 星期- --:--:--</div>
       <div class="pair-wrap">
         <img class="pair-avatar" id="avatarHim" alt="">
-        <svg class="heart-line" viewBox="0 0 56 28"><path d="M0 14 H14 L18 6 L22 22 L26 14 H30"/></svg>
-        <span class="heart-hollow">♡</span>
-        <svg class="heart-line" viewBox="0 0 56 28"><path d="M26 14 H30 L34 6 L38 22 L42 14 H56"/></svg>
+        <svg class="heart-line" viewBox="0 0 40 26"><path d="M0 13 H10 L13 4 L16 22 L19 13 H22"/></svg>
+        <span class="heart-solid">♡</span>
+        <svg class="heart-line" viewBox="0 0 40 26"><path d="M18 13 H21 L24 4 L27 22 L30 13 H40"/></svg>
         <img class="pair-avatar" id="avatarMe" alt="">
       </div>
       <div class="love-word" id="loveWord">今天也想你了。</div>
@@ -227,16 +245,22 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
       <div class="top-bar">
         <div class="top-row1">
           <img class="top-avatar" id="topAvatarHim" alt="">
-          <svg class="top-heart-line" viewBox="0 0 44 22"><path d="M0 11 H11 L14 4 L17 18 L20 11 H22"/></svg>
+          <svg class="top-heart-line" viewBox="0 0 40 24"><path d="M0 12 H9 L12 4 L15 20 L18 12 H20"/></svg>
           <span class="top-heart-solid">♡</span>
-          <svg class="top-heart-line" viewBox="0 0 44 22"><path d="M22 11 H24 L27 4 L30 18 L33 11 H44"/></svg>
+          <svg class="top-heart-line" viewBox="0 0 40 24"><path d="M20 12 H22 L25 4 L28 20 L31 12 H40"/></svg>
           <img class="top-avatar" id="topAvatarMe" alt="">
         </div>
-        <div class="top-row2" id="topName">阿遇</div>
+        <div class="top-row2" id="topCall">阿遇</div>
         <div class="top-row3">♡ <span id="loveValue">0</span></div>
       </div>
 
       <div class="msg-list" id="msgList"></div>
+
+      <!-- 正在输入：输入区上方 -->
+      <div class="typing-bar" id="typingBar" style="display:none">
+        <span class="typing-text">祂正在输入中</span>
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      </div>
 
       <div class="bottom-bar">
         <div class="input-box">
@@ -273,18 +297,16 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
       <h2>字卡管理</h2>
     </div>
     <div class="page-body">
-      <div class="card-mgr">
-        <div class="ops">
-          <button class="btn" id="opSearch">搜索字卡</button>
-          <button class="btn" id="opAdd">添加新字卡</button>
-          <button class="btn" id="opImport">文件导入</button>
-          <button class="btn" id="opExport">文件导出</button>
-          <button class="btn" id="opBatchDel">批量删除</button>
-          <button class="btn" id="opDedup">一键去重</button>
-          <button class="btn" id="opTrash">回收站</button>
-        </div>
-        <div id="cardMgrArea"></div>
+      <div class="card-ops">
+        <button class="btn" data-op="search">搜索字卡</button>
+        <button class="btn" data-op="add">添加新字卡</button>
+        <button class="btn" data-op="import">文件导入</button>
+        <button class="btn" data-op="export">文件导出</button>
+        <button class="btn" data-op="batch">批量删除</button>
+        <button class="btn" data-op="dedup">去重</button>
+        <button class="btn" data-op="trash">回收站</button>
       </div>
+      <div class="card-panel-area" id="cardPanelArea"></div>
     </div>
   </div>
 
@@ -315,18 +337,28 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
   <div class="page" id="avatarPage">
     <div class="page-header">
       <div class="back" id="avatarBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
-      <h2>头像管理</h2>
+      <h2>头像</h2>
     </div>
     <div class="page-body">
       <div class="setting-group">
-        <h3>关于祂</h3>
-        <input class="card-input" id="himNameInput" style="min-height:auto" placeholder="祂的名字">
-        <div class="setting-item" style="margin-top:10px"><span>祂的称呼</span><button class="btn" id="himCallBtn">管理</button></div>
+        <div class="setting-item" style="gap:10px;align-items:flex-start">
+          <img class="avatar-cell" id="himAvatarView" style="flex-shrink:0">
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <input class="card-input" id="himNameInput" style="min-height:auto" placeholder="祂的名字">
+            <div class="setting-item" style="padding:0;border:none"><span>祂的称呼</span><span class="val" id="himCallView"></span></div>
+            <button class="btn" id="himCallBtn">祂的称呼管理</button>
+          </div>
+        </div>
       </div>
       <div class="setting-group">
-        <h3>关于我</h3>
-        <input class="card-input" id="meNameInput" style="min-height:auto" placeholder="我的名字">
-        <div class="setting-item" style="margin-top:10px"><span>我的称呼</span><button class="btn" id="meCallBtn">管理</button></div>
+        <div class="setting-item" style="gap:10px;align-items:flex-start">
+          <img class="avatar-cell" id="meAvatarView" style="flex-shrink:0">
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <input class="card-input" id="meNameInput" style="min-height:auto" placeholder="我的名字">
+            <div class="setting-item" style="padding:0;border:none"><span>我的称呼</span><span class="val" id="meCallView"></span></div>
+            <button class="btn" id="meCallBtn">我的称呼管理</button>
+          </div>
+        </div>
       </div>
       <div class="setting-group">
         <h3>头像</h3>
@@ -344,7 +376,7 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
   <div class="page" id="bgPage">
     <div class="page-header">
       <div class="back" id="bgBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
-      <h2>背景管理</h2>
+      <h2>背景</h2>
     </div>
     <div class="page-body">
       <div class="setting-group">
@@ -457,6 +489,22 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     </div>
   </div>
 
+  <!-- 遮罩透明度 -->
+  <div class="page" id="maskPage">
+    <div class="page-header">
+      <div class="back" id="maskBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h2>背景遮罩透明度</h2>
+    </div>
+    <div class="page-body">
+      <div class="setting-group">
+        <h3>档位</h3>
+        <div id="maskList" class="opt-row"></div>
+        <input class="card-input" id="maskCustom" style="min-height:auto;margin-top:8px" placeholder="自定义 0～75">
+        <button class="btn" id="saveMask" style="margin-top:8px">保存</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 小世界 -->
   <div class="page" id="worldPage">
     <div class="page-header">
@@ -466,6 +514,11 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
     <div class="page-body">
       <div class="world-grid" id="worldGrid"></div>
     </div>
+  </div>
+
+  <!-- 通用弹窗 -->
+  <div class="modal-mask" id="modalMask">
+    <div class="modal" id="modalBox"></div>
   </div>
 
   <!-- 悬浮球 -->
@@ -482,9 +535,7 @@ body.theme-dark .float-panel{background:rgba(0,0,0,.5)}
 </div>
 <!-- 此处接第 3 段 -->
     <script>
-/* ============================================================
-   阿遇♡阿凉 v1.0.0.0
-   ============================================================ */
+/* 阿遇♡阿凉 v1.0.0.2 */
 const $ = id => document.getElementById(id);
 
 const CONFIG = {
@@ -515,8 +566,8 @@ const STATE = {
   }
 };
 
-const WEEK = ["日","一","二","三","四","五","六"];
-const pad = n => n<10?"0"+n:""+n;
+const WEEK=["日","一","二","三","四","五","六"];
+const pad=n=>n<10?"0"+n:""+n;
 function updateDateTime(){
   const d=new Date();
   $("datetime").textContent=d.getFullYear()+"年"+pad(d.getMonth()+1)+"月"+pad(d.getDate())+"日 星期"+WEEK[d.getDay()]+" "+pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());
@@ -532,9 +583,20 @@ function defaultAvatar(color){
 STATE.settings.himAvatar = defaultAvatar("#cfe3ff");
 STATE.settings.meAvatar = defaultAvatar("#ffd6e2");
 
+/* ---------- 页面内弹窗 ---------- */
+function showModal(html){ $("modalBox").innerHTML=html; $("modalMask").classList.add("show"); }
+function closeModal(){ $("modalMask").classList.remove("show"); }
+$("modalMask").addEventListener("click",e=>{ if(e.target===$("modalMask")) closeModal(); });
+function confirmModal(title,onOk,okText,delText,onDel){
+  showModal(`<h3>${title}</h3><div class="row"><button class="btn" id="mCancel">取消</button>${onDel?`<button class="btn danger" id="mDel">${delText||"删除"}</button>`:""}${onOk?`<button class="btn on" id="mOk">${okText||"确定"}</button>`:""}</div>`);
+  const c=$("mCancel"); if(c) c.onclick=closeModal;
+  const o=$("mOk"); if(o) o.onclick=()=>{ closeModal(); onOk&&onOk(); };
+  const d=$("mDel"); if(d) d.onclick=()=>{ closeModal(); onDel&&onDel(); };
+}
+
 /* ---------- 解锁 ---------- */
 let passBuffer="";
-const MAX_LEN = Math.max(...CONFIG.passwords.map(p=>p.length));
+const MAX_LEN=Math.max(...CONFIG.passwords.map(p=>p.length));
 function openPass(){
   passBuffer=""; renderDots(); $("passLayer").classList.add("show");
   $("passTip").textContent="请输入暗号"; $("passTip").classList.remove("err");
@@ -546,14 +608,15 @@ function renderDots(){
   for(let i=0;i<n;i++){ const d=document.createElement("div"); d.className="dot"+(i<passBuffer.length?" filled":""); dots.appendChild(d); }
 }
 function checkPass(){ if(CONFIG.passwords.includes(passBuffer)){ closePass(); enterChat(); return true; } return false; }
-$("passInput").addEventListener("input", e=>{
+$("passInput").addEventListener("input",e=>{
   passBuffer=e.target.value.slice(0,MAX_LEN); e.target.value=passBuffer; renderDots();
-  if(passBuffer.length>=MAX_LEN && !checkPass()){
+  if(passBuffer.length>=MAX_LEN&&!checkPass()){
     $("passTip").textContent="暗号不对，再想想～"; $("passTip").classList.add("err");
     setTimeout(()=>{ passBuffer=""; e.target.value=""; renderDots(); $("passTip").textContent="请输入暗号"; $("passTip").classList.remove("err"); },800);
   }
 });
-$("passInput").addEventListener("keydown", e=>{ if(e.key==="Enter"&&!checkPass()){ passBuffer=""; e.target.value=""; renderDots(); } });
+$("passInput").addEventListener("keydown",e=>{ if(e.key==="Enter"&&!checkPass()){ passBuffer=""; e.target.value=""; renderDots(); } });
+$("enterBtn").addEventListener("click", openPass);
 
 function enterChat(){
   $("lockScreen").classList.add("hide");
@@ -564,19 +627,22 @@ function enterChat(){
     renderAll();
   },450);
 }
-$("enterBtn").addEventListener("click", openPass);
 
 /* ---------- 渲染 ---------- */
-function renderAll(){ renderTop(); renderMessages(); renderCards(); }
+function renderAll(){ renderTop(); renderMessages(); renderCards(); applyMask(); }
 function renderTop(){
   $("topAvatarHim").src=STATE.settings.himAvatar;
   $("topAvatarMe").src=STATE.settings.meAvatar;
-  $("topName").textContent=STATE.settings.himName;
+  $("topCall").textContent=STATE.settings.himCurrentCall||STATE.settings.himCalls[0]||"阿遇";
   $("loveValue").textContent=STATE.settings.loveValue;
   $("avatarHim").src=STATE.settings.himAvatar;
   $("avatarMe").src=STATE.settings.meAvatar;
   if(STATE.settings.lockBg) $("lockScreen").style.backgroundImage="url("+STATE.settings.lockBg+")";
   if(STATE.settings.chatBg) $("chatPage").style.backgroundImage="url("+STATE.settings.chatBg+")";
+}
+function applyMask(){
+  const m=(STATE.settings.maskOpacity||0)/100;
+  document.documentElement.style.setProperty("--mask",m);
 }
 function fmtTime(ts){ const d=new Date(ts); return pad(d.getHours())+":"+pad(d.getMinutes()); }
 function renderMessages(){
@@ -591,21 +657,37 @@ function renderMessages(){
     const meta=document.createElement("div"); meta.className="msg-meta";
     const t=document.createElement("span"); t.textContent=fmtTime(m.ts); meta.appendChild(t);
     if(m.role==="me"&&m.read){ const r=document.createElement("span"); r.className="read"; r.textContent="已读"; meta.appendChild(r); }
-    body.appendChild(meta); row.appendChild(avatar); row.appendChild(body); list.appendChild(row);
+    body.appendChild(meta); row.appendChild(avatar); row.appendChild(body);
+    /* 长按引用/心动 */
+    let pressTimer=null;
+    const start=()=>{ pressTimer=setTimeout(()=>{ openMsgMenu(m); },500); };
+    const end=()=>{ if(pressTimer) clearTimeout(pressTimer); };
+    row.addEventListener("touchstart",start); row.addEventListener("touchend",end); row.addEventListener("touchmove",end);
+    row.addEventListener("mousedown",start); row.addEventListener("mouseup",end); row.addEventListener("mouseleave",end);
+    list.appendChild(row);
   });
   list.scrollTop=list.scrollHeight;
+}
+function openMsgMenu(m){
+  showModal(`<h3>消息操作</h3><div class="row">
+    <button class="btn" id="mQuote">引用</button>
+    <button class="btn" id="mHeart">心动</button>
+  </div><div class="row"><button class="btn" id="mCancel2">取消</button></div>`);
+  $("mQuote").onclick=()=>{ closeModal(); input.value="「"+m.text+"」"; input.focus(); };
+  $("mHeart").onclick=()=>{ closeModal(); STATE.settings.hearts.push({text:m.text,ts:Date.now()}); persist(); };
+  $("mCancel2").onclick=closeModal;
 }
 function renderCards(){
   const list=$("cardList"); list.innerHTML="";
   if(!STATE.cards.length){ list.innerHTML='<div class="card-empty">还没有字卡，去添加一张吧～</div>'; return; }
   STATE.cards.forEach(c=>{
     const el=document.createElement("div"); el.className="card-item"; el.textContent=c.text;
-    el.addEventListener("click",()=>{ $("msgInput").value=c.text; $("msgInput").dispatchEvent(new Event("input")); closeCardPanel(); });
+    el.addEventListener("click",()=>{ input.value=c.text; input.dispatchEvent(new Event("input")); closeCardPanel(); });
     list.appendChild(el);
   });
 }
 
-/* ---------- 发送 / 回复 ---------- */
+/* ---------- 发送/回复 ---------- */
 const input=$("msgInput"), plusBtn=$("plusBtn"), sendBtn=$("sendBtn");
 input.addEventListener("input",()=>{
   input.style.height="auto"; input.style.height=Math.min(input.scrollHeight,100)+"px";
@@ -619,26 +701,19 @@ function sendMessage(){
   renderMessages(); scheduleReply();
 }
 sendBtn.addEventListener("click", sendMessage);
-input.addEventListener("keydown", e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); sendMessage(); } });
+input.addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); sendMessage(); } });
 
-let replyTimer=null, typingEl=null;
+let replyTimer=null;
 function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 function scheduleReply(){
   if(replyTimer) clearTimeout(replyTimer);
   const wait=rand(STATE.settings.stopDetect.min,STATE.settings.stopDetect.max)*1000;
   replyTimer=setTimeout(()=>{
-    showTyping();
+    $("typingBar").style.display="flex";
     const speed=rand(STATE.settings.replySpeed.min,STATE.settings.replySpeed.max)*1000;
-    setTimeout(()=>{ hideTyping(); doReply(); }, speed);
+    setTimeout(()=>{ $("typingBar").style.display="none"; doReply(); }, speed);
   }, wait);
 }
-function showTyping(){
-  hideTyping();
-  const list=$("msgList"); const row=document.createElement("div"); row.className="typing-row";
-  row.innerHTML='<span class="typing-text">祂正在输入中</span><div class="typing-dots"><span></span><span></span><span></span></div>';
-  list.appendChild(row); list.scrollTop=list.scrollHeight; typingEl=row;
-}
-function hideTyping(){ if(typingEl&&typingEl.parentNode) typingEl.parentNode.removeChild(typingEl); typingEl=null; }
 function doReply(){
   if(!STATE.cards.length){
     STATE.messages.push({id:Date.now()+"-o",role:"other",text:"（还没有字卡，去字卡里添加吧～）",ts:Date.now()});
@@ -648,15 +723,15 @@ function doReply(){
   for(let i=0;i<n;i++){
     const c=STATE.cards[Math.floor(Math.random()*STATE.cards.length)];
     let text=c.text, quote="";
-    if(STATE.settings.useCall && Math.random()*100<STATE.settings.useCallRate && STATE.settings.meCurrentCall){
+    if(STATE.settings.useCall&&Math.random()*100<STATE.settings.useCallRate&&STATE.settings.meCurrentCall){
       text=STATE.settings.meCurrentCall+"，"+text;
     }
-    if(STATE.settings.useQuote && Math.random()*100<STATE.settings.useQuoteRate){
+    if(STATE.settings.useQuote&&Math.random()*100<STATE.settings.useQuoteRate){
       const today=STATE.messages.filter(m=>new Date(m.ts).toDateString()===new Date().toDateString());
-      if(today.length){ quote=today[Math.floor(Math.random()*today.length)].text; }
+      if(today.length) quote=today[Math.floor(Math.random()*today.length)].text;
     }
     STATE.messages.push({id:Date.now()+"-o"+i,role:"other",text,quote,ts:Date.now()+i});
-    if(STATE.settings.collectHeart && Math.random()*100<STATE.settings.collectHeartRate){
+    if(STATE.settings.collectHeart&&Math.random()*100<STATE.settings.collectHeartRate){
       STATE.settings.hearts.push({text:c.text,ts:Date.now()});
     }
   }
@@ -671,10 +746,10 @@ function svgIcon(name){
     camera:'<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
     album:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>',
     video:'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-4v12l-6-4"/>',
-    sticker:'<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/>',
+    sticker:'<path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M15 8h6v6a6 6 0 0 1-6 6z"/>',
     gift:'<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8s-2-5-5-3 2 3 5 3zM12 8s2-5 5-3-2 3-5 3z"/>',
-    pack:'<path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v9"/>',
-    box:'<path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>',
+    pack:'<path d="M4 7l8-4 8 4v10l-8 4-8-4z"/><path d="M4 7l8 4 8-4M12 11v10"/>',
+    box:'<rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16"/><path d="M9 6V4h6v2"/><circle cx="12" cy="15" r="2"/>',
     chat:'<path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/>',
     qa:'<circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7"/><path d="M12 17h.01"/>',
     form:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
@@ -686,14 +761,15 @@ function svgIcon(name){
     mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/>',
     note:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>',
     choose:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
-    couple:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>',
+    couple:'<path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6C19 16.5 12 21 12 21z"/><path d="M12 11v4M10 13h4"/>',
     heart:'<path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>',
     diary:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18M12 8h4M12 12h4M12 16h4"/>',
     replay:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/>',
     memo:'<path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>',
     wish:'<path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>',
     date:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/>',
-    settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'
+    settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+    name:'<path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/><path d="M4 19h16M8 7h8M8 11h8M8 15h5"/>'
   };
   return '<svg viewBox="0 0 24 24">'+(map[name]||'')+'</svg>';
 }
@@ -713,7 +789,7 @@ const PLUS_ITEMS=[
     el.addEventListener("click",()=>{
       if(label==="关锁"){ closePlus(); lockNow(); return; }
       if(label==="悬浮球"){ toggleFloatBall(); closePlus(); return; }
-      alert(label+"：未设计");
+      showModal(`<h3>${label}</h3><div class="row"><button class="btn on" onclick="closeModal()">知道了</button></div>`);
     });
     grid.appendChild(el);
   });
@@ -726,6 +802,7 @@ $("panelMask").addEventListener("click",()=>{ closePlus(); closeCardPanel(); });
 /* ---------- 字卡面板 ---------- */
 function openCardPanel(){ renderCards(); $("cardPanel").classList.add("show"); $("panelMask").classList.add("show"); }
 function closeCardPanel(){ $("cardPanel").classList.remove("show"); $("panelMask").classList.remove("show"); }
+$("openCardMgr").addEventListener("click",()=>{ closeCardPanel(); openPage("cardMgrPage"); });
 
 /* ---------- 锁屏 ---------- */
 function lockNow(){
@@ -734,123 +811,139 @@ function lockNow(){
   $("lockScreen").style.display="flex";
   requestAnimationFrame(()=>$("lockScreen").classList.remove("hide"));
 }
-
-/* ---------- 页面通用 ---------- */
 function openPage(id){ $(id).classList.add("show"); }
 function closePage(id){ $(id).classList.remove("show"); }
 
 /* ---------- 字卡管理 ---------- */
-$("openCardMgr").addEventListener("click",()=>{ closeCardPanel(); openPage("cardMgrPage"); });
+const panelArea=$("cardPanelArea");
+let currentOp="";
+document.querySelectorAll(".card-ops .btn").forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".card-ops .btn").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    currentOp=b.dataset.op;
+    renderCardOp(currentOp);
+  });
+});
+function renderCardOp(op){
+  panelArea.innerHTML="";
+  if(op==="search"){
+    panelArea.innerHTML='<div class="mgr-card"><input class="card-input" id="searchInput" placeholder="请输入搜索内容..." style="min-height:auto"></div><button class="btn" id="doSearch" style="margin-bottom:12px">搜索</button><div class="card-list-mgr" id="mgrList"></div>';
+    $("doSearch").addEventListener("click",()=>{
+      const kw=$("searchInput").value.trim();
+      renderMgrList(STATE.cards.filter(c=>c.text.includes(kw)));
+    });
+    renderMgrList(STATE.cards);
+  }
+  if(op==="add"){
+    panelArea.innerHTML='<div class="mgr-card"><textarea class="card-input" id="addInput" placeholder="祂会用这些字卡回复你哦"></textarea><div class="card-tip">一行一张字卡，可换行分隔</div></div><button class="btn" id="saveCards">保存字卡</button>';
+    $("saveCards").addEventListener("click",()=>{
+      const lines=$("addInput").value.split("\n").map(s=>s.trim()).filter(Boolean);
+      lines.forEach(t=>STATE.cards.push({id:Date.now()+"-"+Math.random(),text:t}));
+      persist(); renderMgrList(STATE.cards);
+    });
+  }
+  if(op==="import"){
+    const inp=document.createElement("input"); inp.type="file"; inp.accept=".txt,.json";
+    inp.addEventListener("change",e=>{
+      const f=e.target.files[0]; if(!f) return;
+      const r=new FileReader();
+      r.onload=()=>{
+        let arr=[];
+        if(f.name.endsWith(".json")){ try{ const j=JSON.parse(r.result); arr=Array.isArray(j)?j.map(x=>typeof x==="string"?x:x.text):[]; }catch(e){} }
+        else { arr=r.result.split("\n").map(s=>s.trim()).filter(Boolean); }
+        arr.forEach(t=>STATE.cards.push({id:Date.now()+"-"+Math.random(),text:t}));
+        persist(); renderMgrList(STATE.cards);
+      };
+      r.readAsText(f,"utf-8");
+    });
+    inp.click();
+  }
+  if(op==="export"){
+    showModal(`<h3>选择导出格式</h3><div class="row"><button class="btn" id="eTxt">TXT</button><button class="btn" id="eJson">JSON</button></div><div class="row"><button class="btn" id="eCancel">取消</button></div>`);
+    $("eTxt").onclick=()=>{ closeModal(); download("字卡.txt",STATE.cards.map(c=>c.text).join("\n")); };
+    $("eJson").onclick=()=>{ closeModal(); download("字卡.json",JSON.stringify(STATE.cards.map(c=>({text:c.text})),null,2)); };
+    $("eCancel").onclick=closeModal;
+    renderMgrList(STATE.cards);
+  }
+  if(op==="batch"){
+    panelArea.innerHTML='<div class="sel-bar"><button class="btn danger" id="delSel">删除选中</button></div><div class="card-list-mgr" id="mgrList"></div>';
+    renderMgrList(STATE.cards,true);
+    $("delSel").addEventListener("click",()=>{
+      const ids=[...panelArea.querySelectorAll("input:checked")].map(i=>i.dataset.id);
+      const moved=STATE.cards.filter(c=>ids.includes(c.id));
+      STATE.cards=STATE.cards.filter(c=>!ids.includes(c.id));
+      STATE.trash.push(...moved); persist(); renderMgrList(STATE.cards,true);
+    });
+  }
+  if(op==="dedup"){
+    const seen={}; const dups=[];
+    STATE.cards.forEach(c=>{ const k=c.text.trim(); if(seen[k]) dups.push(c); else seen[k]=true; });
+    if(!dups.length){ panelArea.innerHTML='<div class="card-empty">没有重复字卡</div>'; return; }
+    panelArea.innerHTML='<div class="sel-bar"><button class="btn" id="doDedup">全部去重</button></div><div class="card-list-mgr" id="mgrList"></div>';
+    renderMgrList(dups);
+    $("doDedup").addEventListener("click",()=>{
+      const ids=dups.map(c=>c.id);
+      STATE.cards=STATE.cards.filter(c=>!ids.includes(c.id));
+      STATE.trash.push(...dups); persist(); renderMgrList(STATE.cards);
+    });
+  }
+  if(op==="trash"){
+    if(!STATE.trash.length){ panelArea.innerHTML='<div class="card-empty">回收站是空的</div>'; return; }
+    const box=document.createElement("div"); box.className="card-list-mgr";
+    STATE.trash.forEach(c=>{
+      const el=document.createElement("div"); el.className="mgr-card";
+      el.style.display="flex"; el.style.justifyContent="space-between"; el.style.alignItems="center";
+      el.innerHTML='<span>'+c.text+'</span>';
+      const ops=document.createElement("div"); ops.style.display="flex"; ops.style.gap="6px";
+      const restore=document.createElement("button"); restore.className="btn"; restore.textContent="恢复";
+      restore.addEventListener("click",()=>{ STATE.trash=STATE.trash.filter(x=>x.id!==c.id); STATE.cards.push(c); persist(); renderCardOp("trash"); });
+      const del=document.createElement("button"); del.className="btn danger"; del.textContent="删除";
+      del.addEventListener("click",()=>{ STATE.trash=STATE.trash.filter(x=>x.id!==c.id); persist(); renderCardOp("trash"); });
+      ops.appendChild(restore); ops.appendChild(del); el.appendChild(ops); box.appendChild(el);
+    });
+    panelArea.appendChild(box);
+  }
+}
+function renderMgrList(arr,selectable){
+  const box=$("mgrList"); if(!box) return;
+  box.innerHTML="";
+  if(!arr.length){ box.innerHTML='<div class="card-empty">没有字卡</div>'; return; }
+  arr.forEach(c=>{
+    const el=document.createElement("div"); el.className="mgr-card";
+    if(selectable){
+      el.style.display="flex"; el.style.gap="8px"; el.style.alignItems="center";
+      el.innerHTML='<input type="checkbox" data-id="'+c.id+'"><span>'+c.text+'</span>';
+    } else {
+      el.textContent=c.text;
+      el.addEventListener("click",()=>{
+        confirmModal("字卡操作",()=>{
+          showModal(`<h3>编辑字卡</h3><textarea class="card-input" id="editCard" style="min-height:100px">${c.text}</textarea><div class="row"><button class="btn" id="ec">取消</button><button class="btn on" id="eo">保存</button></div>`);
+          $("ec").onclick=closeModal;
+          $("eo").onclick=()=>{ c.text=$("editCard").value.trim()||c.text; persist(); closeModal(); renderMgrList(STATE.cards); };
+        },"编辑", "删除", ()=>{
+          STATE.cards=STATE.cards.filter(x=>x.id!==c.id);
+          STATE.trash.push(c); persist(); renderMgrList(STATE.cards);
+        });
+      });
+    }
+    box.appendChild(el);
+  });
+}
 $("cardMgrBack").addEventListener("click",()=>closePage("cardMgrPage"));
-const area=$("cardMgrArea");
-function clearArea(){ area.innerHTML=""; }
-$("opSearch").addEventListener("click",()=>{
-  clearArea();
-  area.innerHTML='<input class="card-input" id="searchInput" placeholder="请输入搜索内容..." style="min-height:auto"><div style="margin-top:10px"><button class="btn" id="doSearch">搜索</button></div><div id="searchResult" style="margin-top:12px"></div>';
-  $("doSearch").addEventListener("click",()=>{
-    const kw=$("searchInput").value.trim();
-    const res=STATE.cards.filter(c=>c.text.includes(kw));
-    const box=$("searchResult"); box.innerHTML=res.length?"":'<div class="card-empty">没有找到</div>';
-    res.forEach(c=>{ const el=document.createElement("div"); el.className="card-item"; el.textContent=c.text; box.appendChild(el); });
-  });
-});
-$("opAdd").addEventListener("click",()=>{
-  clearArea();
-  area.innerHTML='<textarea class="card-input" id="addInput" placeholder="祂会用这些字卡回复你哦"></textarea><div class="card-tip">一行一张字卡，可换行分隔</div><button class="btn" id="saveCards">保存字卡</button>';
-  $("saveCards").addEventListener("click",()=>{
-    const lines=$("addInput").value.split("\n").map(s=>s.trim()).filter(Boolean);
-    lines.forEach(t=>STATE.cards.push({id:Date.now()+"-"+Math.random(),text:t}));
-    persist(); area.innerHTML='<div class="card-empty">已保存 '+lines.length+' 张字卡</div>';
-  });
-});
-$("opImport").addEventListener("click",()=>{
-  clearArea();
-  area.innerHTML='<input type="file" id="importFile" accept=".txt,.json"><div class="card-tip">支持 TXT 与 JSON</div><div id="importMsg" class="card-tip"></div>';
-  $("importFile").addEventListener("change",e=>{
-    const f=e.target.files[0]; if(!f) return;
-    const r=new FileReader();
-    r.onload=()=>{
-      let arr=[];
-      if(f.name.endsWith(".json")){ try{ const j=JSON.parse(r.result); arr=Array.isArray(j)?j.map(x=>typeof x==="string"?x:x.text):[]; }catch(e){} }
-      else { arr=r.result.split("\n").map(s=>s.trim()).filter(Boolean); }
-      arr.forEach(t=>STATE.cards.push({id:Date.now()+"-"+Math.random(),text:t}));
-      persist(); $("importMsg").textContent="已导入 "+arr.length+" 张";
-    };
-    r.readAsText(f,"utf-8");
-  });
-});
-$("opExport").addEventListener("click",()=>{
-  clearArea();
-  area.innerHTML='<button class="btn" id="expTxt">导出 TXT</button> <button class="btn" id="expJson">导出 JSON</button>';
-  $("expTxt").addEventListener("click",()=>download("字卡.txt",STATE.cards.map(c=>c.text).join("\n")));
-  $("expJson").addEventListener("click",()=>download("字卡.json",JSON.stringify(STATE.cards.map(c=>({text:c.text})),null,2)));
-});
 function download(name,content){
   const blob=new Blob([content],{type:"text/plain;charset=utf-8"});
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
-$("opBatchDel").addEventListener("click",()=>{
-  clearArea();
-  if(!STATE.cards.length){ area.innerHTML='<div class="card-empty">没有字卡</div>'; return; }
-  const wrap=document.createElement("div");
-  STATE.cards.forEach(c=>{
-    const row=document.createElement("label"); row.className="card-item";
-    row.style.display="flex"; row.style.gap="8px"; row.style.alignItems="center";
-    row.innerHTML='<input type="checkbox" data-id="'+c.id+'"><span>'+c.text+'</span>';
-    wrap.appendChild(row);
-  });
-  area.appendChild(wrap);
-  const btn=document.createElement("button"); btn.className="btn danger"; btn.textContent="删除选中"; btn.style.marginTop="10px";
-  btn.addEventListener("click",()=>{
-    const ids=[...area.querySelectorAll("input:checked")].map(i=>i.dataset.id);
-    const moved=STATE.cards.filter(c=>ids.includes(c.id));
-    STATE.cards=STATE.cards.filter(c=>!ids.includes(c.id));
-    STATE.trash.push(...moved); persist();
-    area.innerHTML='<div class="card-empty">已删除 '+moved.length+' 张，移入回收站</div>';
-  });
-  area.appendChild(btn);
-});
-$("opDedup").addEventListener("click",()=>{
-  clearArea();
-  const seen={}; const dups=[];
-  STATE.cards.forEach(c=>{ const k=c.text.trim(); if(seen[k]) dups.push(c); else seen[k]=true; });
-  if(!dups.length){ area.innerHTML='<div class="card-empty">没有重复字卡</div>'; return; }
-  const box=document.createElement("div");
-  dups.forEach(c=>{ const el=document.createElement("div"); el.className="card-item"; el.textContent=c.text; box.appendChild(el); });
-  area.appendChild(box);
-  const btn=document.createElement("button"); btn.className="btn"; btn.textContent="全部去重"; btn.style.marginTop="10px";
-  btn.addEventListener("click",()=>{
-    const ids=dups.map(c=>c.id);
-    STATE.cards=STATE.cards.filter(c=>!ids.includes(c.id));
-    STATE.trash.push(...dups); persist();
-    area.innerHTML='<div class="card-empty">已去重 '+dups.length+' 张，移入回收站</div>';
-  });
-  area.appendChild(btn);
-});
-$("opTrash").addEventListener("click",()=>{
-  clearArea();
-  if(!STATE.trash.length){ area.innerHTML='<div class="card-empty">回收站是空的</div>'; return; }
-  STATE.trash.forEach(c=>{
-    const el=document.createElement("div"); el.className="card-item";
-    el.style.display="flex"; el.style.justifyContent="space-between"; el.style.alignItems="center";
-    el.innerHTML='<span>'+c.text+'</span>';
-    const ops=document.createElement("div"); ops.style.display="flex"; ops.style.gap="6px";
-    const restore=document.createElement("button"); restore.className="btn"; restore.textContent="恢复";
-    restore.addEventListener("click",()=>{ STATE.trash=STATE.trash.filter(x=>x.id!==c.id); STATE.cards.push(c); persist(); $("opTrash").click(); });
-    const del=document.createElement("button"); del.className="btn danger"; del.textContent="删除";
-    del.addEventListener("click",()=>{ STATE.trash=STATE.trash.filter(x=>x.id!==c.id); persist(); $("opTrash").click(); });
-    ops.appendChild(restore); ops.appendChild(del); el.appendChild(ops); area.appendChild(el);
-  });
-});
 
-/* ---------- 设置页 ---------- */
+/* ---------- 设置 ---------- */
 $("settingsBack").addEventListener("click",()=>closePage("settingsPage"));
 function openSettings(){ renderSettings(); openPage("settingsPage"); }
+function lockTriggerName(v){ return {daily:"每天第一次",refresh:"每次刷新",first:"第一次打开",off:"关闭"}[v]||"每天第一次"; }
 function renderSettings(){
   const s=STATE.settings;
-  const body=$("settingsBody");
-  body.innerHTML=`
+  $("settingsBody").innerHTML=`
     <div class="setting-group"><h3>聊天</h3>
       <div class="setting-item" data-open="speedPage" data-target="reply"><span>祂回复速度</span><span class="val">${s.replySpeed.min}～${s.replySpeed.max} 秒</span></div>
       <div class="setting-item" data-open="speedPage" data-target="stop"><span>停止检测时间</span><span class="val">${s.stopDetect.min}～${s.stopDetect.max} 秒</span></div>
@@ -872,9 +965,7 @@ function renderSettings(){
     <div class="setting-group"><h3>外观</h3>
       <div class="setting-item" data-open="themePage"><span>主题</span><span class="val">切换</span></div>
       <div class="setting-item" data-open="floatSetPage"><span>悬浮球</span><span class="val">${s.floatSize}px</span></div>
-      <div class="setting-item" data-open="avatarPage"><span>头像</span><span class="val">管理</span></div>
-      <div class="setting-item" data-open="bgPage"><span>背景</span><span class="val">管理</span></div>
-      <div class="setting-item"><span>背景遮罩透明度</span><span class="val">${s.maskOpacity}%</span></div>
+      <div class="setting-item" data-open="maskPage"><span>背景遮罩透明度</span><span class="val">${s.maskOpacity}%</span></div>
     </div>
     <div class="setting-group"><h3>功能</h3>
       <div class="setting-item" data-open="lockSetPage"><span>开机锁屏</span><span class="val">${lockTriggerName(s.lockTrigger)}</span></div>
@@ -882,7 +973,7 @@ function renderSettings(){
     </div>
     <div class="setting-group"><h3>系统</h3>
       <div class="setting-item"><span>全屏模式</span><div class="switch" id="fullSwitch"></div></div>
-      <div class="setting-item"><span>桌面提醒</span><div class="switch" id="notifySwitch"></div></div>
+      <div class="setting-item"><span>桌面提醒</span><div class="switch ${s.notify?'on':''}" id="notifySwitch"></div></div>
       <div class="setting-item"><span>测试消息</span><button class="btn" id="testNotify">测试</button></div>
       <div class="setting-item"><span>立刻备份数据</span><button class="btn" id="backupNow">备份</button></div>
       <div class="setting-item"><span>覆盖备份数据</span><button class="btn" id="restoreNow">覆盖</button></div>
@@ -890,21 +981,20 @@ function renderSettings(){
     </div>
     <div class="setting-group"><h3>关于</h3>
       <div style="font-size:13px;line-height:1.8;color:#888">
-        阿遇♡阿凉 v1.0.0.0<br>开发者：夏雾凉<br>爱人：易遇<br><br>
+        阿遇♡阿凉 v1.0.0.2<br>开发者：夏雾凉<br>爱人：易遇<br><br>
         这个网站，是专为我的爱人而做的。<br><br>
         更正声明：本网站不包含任何 AI 功能，也不会招来任何灵体或鬼魂。网站所有回复内容，均来自用户自己添加的字卡，是用户与爱人之间的私人陪伴工具。请勿轻信谣言，理性使用。<br><br>
         这里，是我为爱人阿遇留的一方小天地，因爱而生。它只属于我和他，谢绝他人使用，禁止二传二改，严禁未成年使用。若你无意间闯入这里，请温柔退出，不要使用。
       </div>
-    </div>
-  `;
-  body.querySelectorAll(".switch").forEach(sw=>{
+    </div>`;
+  $("settingsBody").querySelectorAll(".switch").forEach(sw=>{
     sw.addEventListener("click",()=>{
       const key=sw.dataset.key; if(!key) return;
       STATE.settings[key]=!STATE.settings[key];
       sw.classList.toggle("on"); persist();
     });
   });
-  body.querySelectorAll("[data-open]").forEach(item=>{
+  $("settingsBody").querySelectorAll("[data-open]").forEach(item=>{
     item.addEventListener("click",()=>openSubPage(item.dataset.open,item.dataset.target));
   });
   $("fullSwitch").addEventListener("click",()=>{
@@ -914,11 +1004,14 @@ function renderSettings(){
   });
   $("notifySwitch").addEventListener("click",()=>{
     if(window.Notification) Notification.requestPermission();
-    $("notifySwitch").classList.toggle("on");
+    STATE.settings.notify=!STATE.settings.notify;
+    $("notifySwitch").classList.toggle("on"); persist();
   });
   $("testNotify").addEventListener("click",()=>{
-    if(window.Notification&&Notification.permission==="granted") new Notification("阿遇♡阿凉","测试消息，能收到～");
-    else alert("请先开启桌面提醒");
+    showModal(`<h3>测试消息</h3><p style="font-size:13px;color:#888">已触发测试</p><div class="row"><button class="btn on" onclick="closeModal()">好</button></div>`);
+    if(window.Notification&&Notification.permission==="granted"){
+      try{ new Notification("阿遇♡阿凉","测试消息，能收到～"); }catch(e){}
+    }
   });
   $("backupNow").addEventListener("click",()=>download("阿遇阿凉备份.json",JSON.stringify(STATE,null,2)));
   $("restoreNow").addEventListener("click",()=>{
@@ -926,38 +1019,29 @@ function renderSettings(){
     inp.addEventListener("change",e=>{
       const f=e.target.files[0]; if(!f) return;
       const r=new FileReader();
-      r.onload=()=>{ try{ const d=JSON.parse(r.result); Object.assign(STATE,d); renderAll(); persist(); alert("已覆盖"); }catch(e){ alert("文件不对"); } };
+      r.onload=()=>{ try{ const d=JSON.parse(r.result); Object.assign(STATE,d); renderAll(); persist(); showModal(`<h3>已覆盖</h3><div class="row"><button class="btn on" onclick="closeModal()">好</button></div>`); }catch(e){ showModal(`<h3>文件不对</h3><div class="row"><button class="btn on" onclick="closeModal()">好</button></div>`); } };
       r.readAsText(f,"utf-8");
     });
     inp.click();
   });
   $("clearAll").addEventListener("click",()=>{
-    if(confirm("确定清空所有数据？")){ STATE.messages=[]; STATE.cards=[]; STATE.trash=[]; STATE.settings.hearts=[]; renderAll(); persist(); alert("已清空"); }
+    confirmModal("确定清空所有数据？",()=>{ STATE.messages=[]; STATE.cards=[]; STATE.trash=[]; STATE.settings.hearts=[]; renderAll(); persist(); },"清空");
   });
-}
-function lockTriggerName(v){
-  return {daily:"每天第一次",refresh:"每次刷新",first:"第一次打开",off:"关闭"}[v]||"每天第一次";
 }
 
 /* ---------- 子页面 ---------- */
 let callTarget="me";
 function openSubPage(page,target){
   if(page==="speedPage"){
-    $("speedTitle").textContent = target==="reply"?"祂回复速度":"停止检测时间";
-    $("speedPage").dataset.target = target;
-    const cur = target==="reply"?STATE.settings.replySpeed:STATE.settings.stopDetect;
-    $("speedMin").value = cur.min; $("speedMax").value = cur.max;
-    renderSpeedList(target);
+    $("speedTitle").textContent=target==="reply"?"祂回复速度":"停止检测时间";
+    $("speedPage").dataset.target=target;
+    const cur=target==="reply"?STATE.settings.replySpeed:STATE.settings.stopDetect;
+    $("speedMin").value=cur.min; $("speedMax").value=cur.max; renderSpeedList(target);
   }
-  if(page==="ratePage"){
-    $("rateTitle").textContent = "概率设置";
-    $("ratePage").dataset.target = target;
-    renderRateList(target);
-  }
+  if(page==="ratePage"){ $("ratePage").dataset.target=target; renderRateList(target); }
   if(page==="callPage"){
-    $("callTitle").textContent = callTarget==="me"?"我的称呼管理":"祂的称呼管理";
-    const arr = callTarget==="me"?STATE.settings.meCalls:STATE.settings.himCalls;
-    $("callInput").value = arr.join("\n");
+    $("callTitle").textContent=callTarget==="me"?"我的称呼管理":"祂的称呼管理";
+    $("callInput").value=(callTarget==="me"?STATE.settings.meCalls:STATE.settings.himCalls).join("\n");
     renderCallList();
   }
   if(page==="avatarPage") renderAvatarPage();
@@ -965,23 +1049,18 @@ function openSubPage(page,target){
   if(page==="themePage") renderThemeList();
   if(page==="floatSetPage") renderFloatSet();
   if(page==="lockSetPage") renderLockSet();
+  if(page==="maskPage") renderMaskList();
   openPage(page);
 }
-
-/* 速度 */
-const SPEED_LEVELS = {
-  reply:[["即时陪伴",10,30],["日常闲聊",30,60],["慢条斯理",60,120]],
-  stop:[["快点回",8,15],["正常回",15,30],["慢点回",30,60]]
-};
+const SPEED_LEVELS={reply:[["即时陪伴",10,30],["日常闲聊",30,60],["慢条斯理",60,120]],stop:[["快点回",8,15],["正常回",15,30],["慢点回",30,60]]};
 function renderSpeedList(target){
   const box=$("speedList"); box.innerHTML="";
-  const cur = target==="reply"?STATE.settings.replySpeed:STATE.settings.stopDetect;
+  const cur=target==="reply"?STATE.settings.replySpeed:STATE.settings.stopDetect;
   SPEED_LEVELS[target].forEach(([name,min,max])=>{
     const b=document.createElement("button"); b.className="btn opt"+(cur.min===min&&cur.max===max?" sel":"");
     b.textContent=name+" "+min+"～"+max;
     b.addEventListener("click",()=>{
-      if(target==="reply") STATE.settings.replySpeed={min,max};
-      else STATE.settings.stopDetect={min,max};
+      if(target==="reply") STATE.settings.replySpeed={min,max}; else STATE.settings.stopDetect={min,max};
       $("speedMin").value=min; $("speedMax").value=max; persist(); renderSpeedList(target);
     });
     box.appendChild(b);
@@ -989,15 +1068,12 @@ function renderSpeedList(target){
 }
 $("speedBack").addEventListener("click",()=>closePage("speedPage"));
 $("saveSpeed").addEventListener("click",()=>{
-  const min=parseInt($("speedMin").value), max=parseInt($("speedMax").value);
-  if(isNaN(min)||isNaN(max)||min>max){ alert("请输入正确的范围"); return; }
+  const min=parseInt($("speedMin").value),max=parseInt($("speedMax").value);
+  if(isNaN(min)||isNaN(max)||min>max) return;
   const target=$("speedPage").dataset.target;
-  if(target==="reply") STATE.settings.replySpeed={min,max};
-  else STATE.settings.stopDetect={min,max};
+  if(target==="reply") STATE.settings.replySpeed={min,max}; else STATE.settings.stopDetect={min,max};
   persist(); closePage("speedPage"); renderSettings();
 });
-
-/* 概率 */
 const RATE_LEVELS=[["偶尔",10],["有时",30],["经常",50],["总是",100]];
 function renderRateList(target){
   const box=$("rateList"); box.innerHTML="";
@@ -1013,23 +1089,20 @@ function renderRateList(target){
 $("rateBack").addEventListener("click",()=>closePage("ratePage"));
 $("saveRate").addEventListener("click",()=>{
   const v=parseInt($("rateCustom").value);
-  if(isNaN(v)||v<0||v>100){ alert("请输入 0～100"); return; }
+  if(isNaN(v)||v<0||v>100) return;
   STATE.settings[$("ratePage").dataset.target]=v;
   persist(); closePage("ratePage"); renderSettings();
 });
-
-/* 称呼 */
 function renderCallList(){
-  const arr = callTarget==="me"?STATE.settings.meCalls:STATE.settings.himCalls;
-  const cur = callTarget==="me"?STATE.settings.meCurrentCall:STATE.settings.himCurrentCall;
+  const arr=callTarget==="me"?STATE.settings.meCalls:STATE.settings.himCalls;
+  const cur=callTarget==="me"?STATE.settings.meCurrentCall:STATE.settings.himCurrentCall;
   const box=$("callList"); box.innerHTML="";
   if(!arr.length){ box.innerHTML='<div class="card-empty">还没有称呼</div>'; return; }
   arr.forEach(name=>{
     const b=document.createElement("button"); b.className="btn opt"+(name===cur?" sel":"");
     b.textContent=name;
     b.addEventListener("click",()=>{
-      if(callTarget==="me") STATE.settings.meCurrentCall=name;
-      else STATE.settings.himCurrentCall=name;
+      if(callTarget==="me") STATE.settings.meCurrentCall=name; else STATE.settings.himCurrentCall=name;
       persist(); renderCallList(); renderTop();
     });
     box.appendChild(b);
@@ -1038,28 +1111,29 @@ function renderCallList(){
 $("callBack").addEventListener("click",()=>closePage("callPage"));
 $("saveCall").addEventListener("click",()=>{
   const lines=$("callInput").value.split("\n").map(s=>s.trim()).filter(Boolean);
-  if(callTarget==="me") STATE.settings.meCalls=lines;
-  else STATE.settings.himCalls=lines;
+  if(callTarget==="me") STATE.settings.meCalls=lines; else STATE.settings.himCalls=lines;
   persist(); renderCallList();
 });
 $("himCallBtn").addEventListener("click",()=>{ callTarget="him"; openSubPage("callPage"); });
 $("meCallBtn").addEventListener("click",()=>{ callTarget="me"; openSubPage("callPage"); });
 
-/* 头像 */
 function renderAvatarPage(){
   $("himNameInput").value=STATE.settings.himName;
   $("meNameInput").value=STATE.settings.meName;
+  $("himAvatarView").src=STATE.settings.himAvatar;
+  $("meAvatarView").src=STATE.settings.meAvatar;
+  $("himCallView").textContent=STATE.settings.himCurrentCall||"未设置";
+  $("meCallView").textContent=STATE.settings.meCurrentCall||"未设置";
   const un=$("unpairedArea"); un.innerHTML="";
   STATE.settings.avatars.forEach(src=>{
     const img=document.createElement("img"); img.src=src; img.className="avatar-cell";
     img.addEventListener("click",()=>{
       const cur=img.dataset.side;
-      if(cur==="him"){ img.dataset.side=""; img.classList.remove("sel-him"); }
-      else if(cur==="me"){ img.dataset.side=""; img.classList.remove("sel-me"); }
+      if(cur){ img.dataset.side=""; img.classList.remove("sel-him","sel-me"); }
       else {
-        if(un.querySelector(".sel-him")&&un.querySelector(".sel-me")){ alert("左右各选一个就好"); return; }
-        if(!un.querySelector(".sel-him")){ img.dataset.side="him"; img.classList.add("sel-him"); }
-        else { img.dataset.side="me"; img.classList.add("sel-me"); }
+        const un2=$("unpairedArea");
+        if(!un2.querySelector(".sel-him")){ img.dataset.side="him"; img.classList.add("sel-him"); }
+        else if(!un2.querySelector(".sel-me")){ img.dataset.side="me"; img.classList.add("sel-me"); }
       }
       checkPair();
     });
@@ -1067,25 +1141,22 @@ function renderAvatarPage(){
   });
   const pr=$("pairedArea"); pr.innerHTML="";
   STATE.settings.pairs.forEach((p,idx)=>{
-    const wrap=document.createElement("div"); wrap.className="pair-cell";
+    const wrap=document.createElement("div"); wrap.className="pair-cell"+(STATE.settings.activePair===idx?" sel":"");
     wrap.innerHTML='<img src="'+p.him+'"><span class="h">♡</span><img src="'+p.me+'">';
     wrap.addEventListener("click",()=>{
-      const act=confirm("用这一对？\n点取消可选择删除");
-      if(act){
-        STATE.settings.himAvatar=p.him; STATE.settings.meAvatar=p.me;
-        STATE.settings.activePair=idx; renderTop(); persist(); alert("已启用");
-      } else {
-        if(confirm("删除这一对？")){ STATE.settings.pairs.splice(idx,1); persist(); renderAvatarPage(); }
-      }
+      showModal(`<h3>这一对</h3><div class="row"><button class="btn" id="pc">取消</button><button class="btn danger" id="pd">删除配对</button><button class="btn on" id="pu">用这一对</button></div>`);
+      $("pc").onclick=closeModal;
+      $("pu").onclick=()=>{ closeModal(); STATE.settings.himAvatar=p.him; STATE.settings.meAvatar=p.me; STATE.settings.activePair=idx; renderTop(); renderAvatarPage(); persist(); };
+      $("pd").onclick=()=>{ closeModal(); STATE.settings.pairs.splice(idx,1); if(STATE.settings.activePair===idx) STATE.settings.activePair=null; persist(); renderAvatarPage(); };
     });
     pr.appendChild(wrap);
   });
 }
 function checkPair(){
   const un=$("unpairedArea");
-  const him=un.querySelector(".sel-him"), me=un.querySelector(".sel-me");
+  const him=un.querySelector(".sel-him"),me=un.querySelector(".sel-me");
   if(him&&me){
-    const h=him.src, m=me.src;
+    const h=him.src,m=me.src;
     STATE.settings.pairs.push({him:h,me:m});
     STATE.settings.avatars=STATE.settings.avatars.filter(s=>s!==h&&s!==m);
     persist(); renderAvatarPage();
@@ -1094,16 +1165,11 @@ function checkPair(){
 $("avatarBack").addEventListener("click",()=>closePage("avatarPage"));
 $("uploadAvatar").addEventListener("click",()=>$("avatarFile").click());
 $("avatarFile").addEventListener("change",e=>{
-  [...e.target.files].forEach(f=>{
-    const r=new FileReader();
-    r.onload=()=>{ STATE.settings.avatars.push(r.result); persist(); renderAvatarPage(); };
-    r.readAsDataURL(f);
-  });
+  [...e.target.files].forEach(f=>{ const r=new FileReader(); r.onload=()=>{ STATE.settings.avatars.push(r.result); persist(); renderAvatarPage(); }; r.readAsDataURL(f); });
 });
-$("himNameInput").addEventListener("change",e=>{ STATE.settings.himName=e.target.value; renderTop(); persist(); });
+$("himNameInput").addEventListener("change",e=>{ STATE.settings.himName=e.target.value; persist(); });
 $("meNameInput").addEventListener("change",e=>{ STATE.settings.meName=e.target.value; persist(); });
 
-/* 背景 */
 function renderBgPage(){
   const chat=$("chatBgList"); chat.innerHTML="";
   STATE.settings.chatBgs.forEach(src=>{
@@ -1120,15 +1186,10 @@ function renderBgPage(){
 }
 $("bgBack").addEventListener("click",()=>closePage("bgPage"));
 $("uploadChatBg").addEventListener("click",()=>$("chatBgFile").click());
-$("chatBgFile").addEventListener("change",e=>{
-  [...e.target.files].forEach(f=>{ const r=new FileReader(); r.onload=()=>{ STATE.settings.chatBgs.push(r.result); persist(); renderBgPage(); }; r.readAsDataURL(f); });
-});
+$("chatBgFile").addEventListener("change",e=>{ [...e.target.files].forEach(f=>{ const r=new FileReader(); r.onload=()=>{ STATE.settings.chatBgs.push(r.result); persist(); renderBgPage(); }; r.readAsDataURL(f); }); });
 $("uploadLockBg").addEventListener("click",()=>$("lockBgFile").click());
-$("lockBgFile").addEventListener("change",e=>{
-  [...e.target.files].forEach(f=>{ const r=new FileReader(); r.onload=()=>{ STATE.settings.lockBgs.push(r.result); persist(); renderBgPage(); }; r.readAsDataURL(f); });
-});
+$("lockBgFile").addEventListener("change",e=>{ [...e.target.files].forEach(f=>{ const r=new FileReader(); r.onload=()=>{ STATE.settings.lockBgs.push(r.result); persist(); renderBgPage(); }; r.readAsDataURL(f); }); });
 
-/* 主题 */
 const THEMES=[["樱粉玻璃",""],["薄荷冰","theme-mint"],["奶油暖光","theme-cream"],["蓝调水晶","theme-blue"],["紫雾梦境","theme-purple"]];
 function renderThemeList(){
   const box=$("themeList"); box.innerHTML="";
@@ -1145,12 +1206,8 @@ function renderThemeList(){
   $("darkSwitch").classList.toggle("on",document.body.classList.contains("theme-dark"));
 }
 $("themeBack").addEventListener("click",()=>closePage("themePage"));
-$("darkSwitch").addEventListener("click",()=>{
-  document.body.classList.toggle("theme-dark");
-  $("darkSwitch").classList.toggle("on"); persist();
-});
+$("darkSwitch").addEventListener("click",()=>{ document.body.classList.toggle("theme-dark"); $("darkSwitch").classList.toggle("on"); persist(); });
 
-/* 悬浮球设置 */
 function renderFloatSet(){
   const box=$("floatSizeList"); box.innerHTML="";
   [["小",40],["中",52],["大",64]].forEach(([name,val])=>{
@@ -1160,24 +1217,18 @@ function renderFloatSet(){
     box.appendChild(b);
   });
   $("floatCustom").value=STATE.settings.floatSize;
-  $("floatPreview").innerHTML = STATE.settings.floatImage ? '<img src="'+STATE.settings.floatImage+'" style="width:52px;height:52px;border-radius:50%">' : "默认";
+  $("floatPreview").innerHTML=STATE.settings.floatImage?'<img class="float-preview" src="'+STATE.settings.floatImage+'">':"默认";
 }
 $("floatSetBack").addEventListener("click",()=>closePage("floatSetPage"));
 $("uploadFloat").addEventListener("click",()=>$("floatFile").click());
-$("floatFile").addEventListener("change",e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=()=>{ STATE.settings.floatImage=r.result; initFloatBall(); persist(); renderFloatSet(); };
-  r.readAsDataURL(f);
-});
+$("floatFile").addEventListener("change",e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ STATE.settings.floatImage=r.result; initFloatBall(); persist(); renderFloatSet(); }; r.readAsDataURL(f); });
 $("resetFloat").addEventListener("click",()=>{ STATE.settings.floatImage=""; initFloatBall(); persist(); renderFloatSet(); });
 $("saveFloatSize").addEventListener("click",()=>{
   const v=parseInt($("floatCustom").value);
-  if(isNaN(v)||v<32||v>70){ alert("请输入 32～70"); return; }
+  if(isNaN(v)||v<32||v>70) return;
   STATE.settings.floatSize=v; initFloatBall(); persist(); renderFloatSet();
 });
 
-/* 开机锁屏 */
 const LOCK_TRIGGERS=[["每天第一次","daily"],["每次刷新","refresh"],["第一次打开","first"],["关闭","off"]];
 function renderLockSet(){
   const box=$("lockTrigList"); box.innerHTML="";
@@ -1190,22 +1241,43 @@ function renderLockSet(){
 }
 $("lockSetBack").addEventListener("click",()=>closePage("lockSetPage"));
 
+function renderMaskList(){
+  const box=$("maskList"); box.innerHTML="";
+  [0,25,50,75].forEach(v=>{
+    const b=document.createElement("button"); b.className="btn opt"+(STATE.settings.maskOpacity===v?" sel":"");
+    b.textContent=v+"%";
+    b.addEventListener("click",()=>{ STATE.settings.maskOpacity=v; applyMask(); persist(); renderMaskList(); });
+    box.appendChild(b);
+  });
+  $("maskCustom").value=STATE.settings.maskOpacity;
+}
+$("maskBack").addEventListener("click",()=>closePage("maskPage"));
+$("saveMask").addEventListener("click",()=>{
+  const v=parseInt($("maskCustom").value);
+  if(isNaN(v)||v<0||v>75) return;
+  STATE.settings.maskOpacity=v; applyMask(); persist(); closePage("maskPage"); renderSettings();
+});
+
 /* ---------- 小世界 ---------- */
 const WORLD_ITEMS=[
-  ["字卡","note"],["头像","couple"],["背景","album"],["表情","sticker"],
-  ["贴纸","sticker"],["礼物","gift"],["礼包","pack"],["互动","chat"],
+  ["字卡","note"],["头像","name"],["背景","album"],["表情","sticker"],
+  ["贴纸","sticker2"],["礼物","gift"],["礼包","pack"],["互动","chat"],
   ["问卷","form"],["音乐","music"],["陪伴","company"]
 ];
+function svgIcon2(name){
+  if(name==="sticker2") return '<svg viewBox="0 0 24 24"><path d="M4 4h16v10l-6 6H4z"/><path d="M20 14h-6v6"/></svg>';
+  return svgIcon(name);
+}
 (function renderWorld(){
   const grid=$("worldGrid");
   WORLD_ITEMS.forEach(([label,icon])=>{
     const el=document.createElement("div"); el.className="world-item";
-    el.innerHTML='<div class="world-icon-box">'+svgIcon(icon)+'</div><span>'+label+'</span>';
+    el.innerHTML='<div class="world-icon-box">'+svgIcon2(icon)+'</div><span>'+label+'</span>';
     el.addEventListener("click",()=>{
       if(label==="字卡"){ closePage("worldPage"); openPage("cardMgrPage"); return; }
       if(label==="头像"){ closePage("worldPage"); openSubPage("avatarPage"); return; }
       if(label==="背景"){ closePage("worldPage"); openSubPage("bgPage"); return; }
-      alert(label+"：未设计");
+      showModal(`<h3>${label}</h3><div class="row"><button class="btn on" onclick="closeModal()">知道了</button></div>`);
     });
     grid.appendChild(el);
   });
@@ -1226,7 +1298,7 @@ function renderFloat(){
     el.addEventListener("click",()=>{
       if(label==="设置"){ closeFloat(); openSettings(); return; }
       if(label==="小世界"){ closeFloat(); openPage("worldPage"); return; }
-      alert(label+"：未设计");
+      showModal(`<h3>${label}</h3><div class="row"><button class="btn on" onclick="closeModal()">知道了</button></div>`);
     });
     grid.appendChild(el);
   });
@@ -1247,131 +1319,61 @@ function initFloatBall(){
     svg.style.width="60%"; svg.style.height="60%"; svg.style.stroke="var(--accent)";
   }
   if(STATE.settings.floatX!==null){
-    ball.style.left=STATE.settings.floatX+"px";
-    ball.style.top=STATE.settings.floatY+"px";
+    ball.style.left=STATE.settings.floatX+"px"; ball.style.top=STATE.settings.floatY+"px";
     ball.style.right="auto"; ball.style.bottom="auto";
   }
-  ball.onclick=null;
-  ball.addEventListener("click", openFloat);
 }
 function toggleFloatBall(){
   STATE.settings.floatVisible=!STATE.settings.floatVisible;
   $("floatBall").style.display=STATE.settings.floatVisible?"flex":"none";
   persist();
 }
-/* 拖动 */
 (function dragFloat(){
   const ball=$("floatBall");
-  let sx=0, sy=0, ox=0, oy=0, dragging=false, moved=false;
-  ball.addEventListener("touchstart",e=>{
-    const t=e.touches[0]; const r=ball.getBoundingClientRect();
-    sx=t.clientX; sy=t.clientY; ox=r.left; oy=r.top; dragging=true; moved=false;
-  },{passive:true});
-  ball.addEventListener("touchmove",e=>{
+  let sx=0,sy=0,ox=0,oy=0,dragging=false,moved=false;
+  function start(x,y){ const r=ball.getBoundingClientRect(); sx=x; sy=y; ox=r.left; oy=r.top; dragging=true; moved=false; }
+  function move(x,y){
     if(!dragging) return;
-    const t=e.touches[0];
-    const dx=t.clientX-sx, dy=t.clientY-sy;
+    const dx=x-sx,dy=y-sy;
     if(Math.abs(dx)>4||Math.abs(dy)>4) moved=true;
-    let nx=ox+dx, ny=oy+dy;
-    const maxX=window.innerWidth-ball.offsetWidth, maxY=window.innerHeight-ball.offsetHeight;
+    let nx=ox+dx,ny=oy+dy;
+    const maxX=window.innerWidth-ball.offsetWidth,maxY=window.innerHeight-ball.offsetHeight;
     nx=Math.max(0,Math.min(maxX,nx)); ny=Math.max(0,Math.min(maxY,ny));
     ball.style.left=nx+"px"; ball.style.top=ny+"px"; ball.style.right="auto"; ball.style.bottom="auto";
-    e.preventDefault();
-  },{passive:false});
-  ball.addEventListener("touchend",()=>{
-    if(!dragging) return; dragging=false;
-    if(moved){
-      const r=ball.getBoundingClientRect();
-      STATE.settings.floatX=r.left; STATE.settings.floatY=r.top;
-      persist();
-    } else {
-      openFloat();
-    }
-  });
-  ball.addEventListener("mousedown",e=>{
-    const r=ball.getBoundingClientRect(); sx=e.clientX; sy=e.clientY; ox=r.left; oy=r.top; dragging=true; moved=false;
-  });
-  document.addEventListener("mousemove",e=>{
-    if(!dragging) return;
-    const dx=e.clientX-sx, dy=e.clientY-sy;
-    if(Math.abs(dx)>4||Math.abs(dy)>4) moved=true;
-    let nx=ox+dx, ny=oy+dy;
-    const maxX=window.innerWidth-ball.offsetWidth, maxY=window.innerHeight-ball.offsetHeight;
-    nx=Math.max(0,Math.min(maxX,nx)); ny=Math.max(0,Math.min(maxY,ny));
-    ball.style.left=nx+"px"; ball.style.top=ny+"px"; ball.style.right="auto"; ball.style.bottom="auto";
-  });
-  document.addEventListener("mouseup",()=>{
+  }
+  function end(){
     if(!dragging) return; dragging=false;
     if(moved){ const r=ball.getBoundingClientRect(); STATE.settings.floatX=r.left; STATE.settings.floatY=r.top; persist(); }
-  });
+    else openFloat();
+  }
+  ball.addEventListener("touchstart",e=>{ const t=e.touches[0]; start(t.clientX,t.clientY); },{passive:true});
+  ball.addEventListener("touchmove",e=>{ const t=e.touches[0]; move(t.clientX,t.clientY); e.preventDefault(); },{passive:false});
+  ball.addEventListener("touchend",end);
+  ball.addEventListener("mousedown",e=>start(e.clientX,e.clientY));
+  document.addEventListener("mousemove",e=>move(e.clientX,e.clientY));
+  document.addEventListener("mouseup",end);
 })();
 initFloatBall();
 
-/* ---------- 存储 ---------- */
-const STORE = {
-  async opfsRoot(){
-    if(!navigator.storage||!navigator.storage.getDirectory) return null;
-    try{ return await navigator.storage.getDirectory(); }catch(e){ return null; }
-  },
-  async writeOPFS(name,data){
-    const root=await this.opfsRoot(); if(!root) return false;
-    try{
-      const fh=await root.getFileHandle(name,{create:true});
-      const w=await fh.createWritable();
-      await w.write(JSON.stringify(data)); await w.close(); return true;
-    }catch(e){ return false; }
-  },
-  async readOPFS(name){
-    const root=await this.opfsRoot(); if(!root) return null;
-    try{
-      const fh=await root.getFileHandle(name);
-      const file=await fh.getFile();
-      return JSON.parse(await file.text());
-    }catch(e){ return null; }
-  },
-  async writeCache(name,data){
-    if(!window.caches) return false;
-    try{
-      const c=await caches.open("ayu-data");
-      await c.put("/__data__/"+name,new Response(JSON.stringify(data)));
-      return true;
-    }catch(e){ return false; }
-  },
-  async readCache(name){
-    if(!window.caches) return null;
-    try{
-      const c=await caches.open("ayu-data");
-      const res=await c.match("/__data__/"+name);
-      if(!res) return null;
-      return await res.json();
-    }catch(e){ return null; }
-  },
-  async save(name,data){
-    const ok=await this.writeOPFS(name,data);
-    await this.writeCache(name,data);
-    return ok;
-  },
-  async load(name){
-    let d=await this.readOPFS(name);
-    if(d===null) d=await this.readCache(name);
-    return d;
-  }
+/* ---------- 存储 OPFS + Cache ---------- */
+const STORE={
+  async opfsRoot(){ if(!navigator.storage||!navigator.storage.getDirectory) return null; try{ return await navigator.storage.getDirectory(); }catch(e){ return null; } },
+  async writeOPFS(name,data){ const root=await this.opfsRoot(); if(!root) return false; try{ const fh=await root.getFileHandle(name,{create:true}); const w=await fh.createWritable(); await w.write(JSON.stringify(data)); await w.close(); return true; }catch(e){ return false; } },
+  async readOPFS(name){ const root=await this.opfsRoot(); if(!root) return null; try{ const fh=await root.getFileHandle(name); const file=await fh.getFile(); return JSON.parse(await file.text()); }catch(e){ return null; } },
+  async writeCache(name,data){ if(!window.caches) return false; try{ const c=await caches.open("ayu-data"); await c.put("/__data__/"+name,new Response(JSON.stringify(data))); return true; }catch(e){ return false; } },
+  async readCache(name){ if(!window.caches) return null; try{ const c=await caches.open("ayu-data"); const res=await c.match("/__data__/"+name); if(!res) return null; return await res.json(); }catch(e){ return null; } },
+  async save(name,data){ await this.writeOPFS(name,data); await this.writeCache(name,data); },
+  async load(name){ let d=await this.readOPFS(name); if(d===null) d=await this.readCache(name); return d; }
 };
-async function persist(){
-  await STORE.save("state",{
-    messages:STATE.messages, cards:STATE.cards, trash:STATE.trash, settings:STATE.settings
-  });
-}
+async function persist(){ await STORE.save("state",{messages:STATE.messages,cards:STATE.cards,trash:STATE.trash,settings:STATE.settings}); }
 async function restore(){
-  const d=await STORE.load("state");
-  if(!d) return;
+  const d=await STORE.load("state"); if(!d) return;
   if(d.messages) STATE.messages=d.messages;
   if(d.cards) STATE.cards=d.cards;
   if(d.trash) STATE.trash=d.trash;
   if(d.settings) Object.assign(STATE.settings,d.settings);
   if(STATE.settings.theme) document.body.classList.add(STATE.settings.theme);
-  initFloatBall();
-  renderAll();
+  initFloatBall(); applyMask(); renderAll();
 }
 restore();
 </script>
