@@ -5,13 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>阿遇♥阿凉</title>
 <style>
-/* ============================================================
-   阿遇♥阿凉 v1.0.0.0
-   开发者：夏雾凉
-   爱人：易遇
-   ============================================================ */
-
-/* ---------- 基础重置 ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -47,39 +40,34 @@ button {
 
 ul, li { list-style: none; }
 
-/* ---------- 主题变量（默认：玫瑰玻璃） ---------- */
-:root {
+/* ---------- 主题变量 ---------- */
+:root,
+[data-theme="rose-glass"] {
   --bg-base: #f6eef1;
   --bg-grad-1: #f8e8ee;
   --bg-grad-2: #f1e3ec;
   --bg-grad-3: #e9e0ee;
-
   --glass-bg: rgba(255, 255, 255, 0.42);
   --glass-bg-strong: rgba(255, 255, 255, 0.62);
   --glass-border: rgba(255, 255, 255, 0.65);
   --glass-highlight: rgba(255, 255, 255, 0.85);
   --glass-shadow: rgba(120, 80, 100, 0.12);
-
   --bubble-me: rgba(214, 138, 160, 0.55);
   --bubble-me-border: rgba(255, 255, 255, 0.7);
   --bubble-other: rgba(255, 255, 255, 0.5);
   --bubble-other-border: rgba(255, 255, 255, 0.72);
-
   --text: #4a3a42;
   --text-soft: #8a7480;
   --text-invert: #ffffff;
-
   --accent: #d68aa0;
   --accent-soft: rgba(214, 138, 160, 0.25);
   --heart-red: #e8536f;
   --check-green: #6fbf8f;
   --danger: #d9536a;
-
   --time-text: rgba(120, 95, 110, 0.7);
   --mask: rgba(60, 40, 55, 0.28);
 }
 
-/* ---------- 主题：冷玻璃 ---------- */
 [data-theme="cold-glass"] {
   --bg-base: #eef1f5;
   --bg-grad-1: #edf1f7;
@@ -93,13 +81,10 @@ ul, li { list-style: none; }
   --text-soft: #7d8896;
   --accent: #8aa0be;
   --accent-soft: rgba(138, 160, 190, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(90, 100, 115, 0.7);
   --mask: rgba(40, 50, 65, 0.26);
 }
 
-/* ---------- 主题：暖玻璃 ---------- */
 [data-theme="warm-glass"] {
   --bg-base: #f7f1e9;
   --bg-grad-1: #faf3ea;
@@ -113,33 +98,10 @@ ul, li { list-style: none; }
   --text-soft: #8d7d6d;
   --accent: #d6aa82;
   --accent-soft: rgba(214, 170, 130, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(120, 105, 88, 0.7);
   --mask: rgba(65, 55, 45, 0.26);
 }
 
-/* ---------- 主题：玫瑰玻璃（默认） ---------- */
-[data-theme="rose-glass"] {
-  --bg-base: #f6eef1;
-  --bg-grad-1: #f8e8ee;
-  --bg-grad-2: #f1e3ec;
-  --bg-grad-3: #e9e0ee;
-  --glass-bg: rgba(255, 255, 255, 0.42);
-  --glass-bg-strong: rgba(255, 255, 255, 0.62);
-  --bubble-me: rgba(214, 138, 160, 0.55);
-  --bubble-other: rgba(255, 255, 255, 0.5);
-  --text: #4a3a42;
-  --text-soft: #8a7480;
-  --accent: #d68aa0;
-  --accent-soft: rgba(214, 138, 160, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
-  --time-text: rgba(120, 95, 110, 0.7);
-  --mask: rgba(60, 40, 55, 0.28);
-}
-
-/* ---------- 主题：夜玻璃 ---------- */
 [data-theme="night-glass"] {
   --bg-base: #17141c;
   --bg-grad-1: #1c1822;
@@ -159,12 +121,10 @@ ul, li { list-style: none; }
   --accent: #b06a86;
   --accent-soft: rgba(176, 106, 134, 0.28);
   --heart-red: #ff5f7e;
-  --check-green: #5aa87c;
   --time-text: rgba(200, 190, 210, 0.55);
   --mask: rgba(0, 0, 0, 0.5);
 }
 
-/* ---------- 主题：紫玻璃 ---------- */
 [data-theme="purple-glass"] {
   --bg-base: #f1edf7;
   --bg-grad-1: #f4eefb;
@@ -178,13 +138,10 @@ ul, li { list-style: none; }
   --text-soft: #837890;
   --accent: #a082c8;
   --accent-soft: rgba(160, 130, 200, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(105, 95, 120, 0.7);
   --mask: rgba(55, 45, 70, 0.26);
 }
 
-/* ---------- 主题：青玻璃 ---------- */
 [data-theme="cyan-glass"] {
   --bg-base: #eaf3f2;
   --bg-grad-1: #eaf5f3;
@@ -198,13 +155,10 @@ ul, li { list-style: none; }
   --text-soft: #728884;
   --accent: #78b4af;
   --accent-soft: rgba(120, 180, 175, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(85, 105, 100, 0.7);
   --mask: rgba(40, 60, 58, 0.26);
 }
 
-/* ---------- 主题：樱粉玻璃 ---------- */
 [data-theme="sakura-glass"] {
   --bg-base: #fbeff3;
   --bg-grad-1: #fdf1f5;
@@ -218,13 +172,10 @@ ul, li { list-style: none; }
   --text-soft: #967a88;
   --accent: #eca0b9;
   --accent-soft: rgba(236, 160, 185, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(125, 95, 112, 0.7);
   --mask: rgba(65, 42, 54, 0.26);
 }
 
-/* ---------- 主题：薄荷冰 ---------- */
 [data-theme="mint-ice"] {
   --bg-base: #eaf6f1;
   --bg-grad-1: #ecf8f4;
@@ -238,13 +189,10 @@ ul, li { list-style: none; }
   --text-soft: #6f8a82;
   --accent: #78c8af;
   --accent-soft: rgba(120, 200, 175, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #5fb88a;
   --time-text: rgba(80, 110, 100, 0.7);
   --mask: rgba(38, 60, 54, 0.26);
 }
 
-/* ---------- 主题：奶油暖光 ---------- */
 [data-theme="cream-light"] {
   --bg-base: #faf4e8;
   --bg-grad-1: #fcf6ec;
@@ -258,13 +206,10 @@ ul, li { list-style: none; }
   --text-soft: #90846e;
   --accent: #e2be82;
   --accent-soft: rgba(226, 190, 130, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(125, 110, 88, 0.7);
   --mask: rgba(68, 58, 44, 0.26);
 }
 
-/* ---------- 主题：蓝调水晶 ---------- */
 [data-theme="blue-crystal"] {
   --bg-base: #eaf0f8;
   --bg-grad-1: #ecf2fa;
@@ -278,13 +223,10 @@ ul, li { list-style: none; }
   --text-soft: #778294;
   --accent: #789bd2;
   --accent-soft: rgba(120, 155, 210, 0.25);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(88, 100, 118, 0.7);
   --mask: rgba(42, 52, 68, 0.26);
 }
 
-/* ---------- 主题：紫雾梦境 ---------- */
 [data-theme="purple-mist"] {
   --bg-base: #f2eef8;
   --bg-grad-1: #f5f0fb;
@@ -298,24 +240,20 @@ ul, li { list-style: none; }
   --text-soft: #847d96;
   --accent: #aa91d2;
   --accent-soft: rgba(170, 145, 210, 0.22);
-  --heart-red: #e8536f;
-  --check-green: #6fbf8f;
   --time-text: rgba(108, 100, 128, 0.7);
   --mask: rgba(56, 48, 72, 0.28);
 }
 
-/* ---------- 通用玻璃样式 ---------- */
+/* ---------- 通用玻璃 ---------- */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   border: 1px solid var(--glass-border);
-  box-shadow:
-    0 6px 22px var(--glass-shadow),
-    inset 0 1px 0 var(--glass-highlight);
+  box-shadow: 0 6px 22px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
 }
 
-/* ---------- 页面容器 ---------- */
+/* ---------- 容器 ---------- */
 #app {
   position: relative;
   width: 100%;
@@ -323,19 +261,16 @@ ul, li { list-style: none; }
   overflow: hidden;
 }
 
-/* 背景层：铺最底，主题渐变 + 自定义背景 */
 #bg-layer {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    linear-gradient(160deg, var(--bg-grad-1), var(--bg-grad-2) 55%, var(--bg-grad-3));
+  background: linear-gradient(160deg, var(--bg-grad-1), var(--bg-grad-2) 55%, var(--bg-grad-3));
   background-size: cover;
   background-position: center;
-  transition: background-image .3s ease, opacity .3s ease;
+  transition: background-image .3s ease;
 }
 
-/* 页面层 */
 .page {
   position: absolute;
   inset: 0;
@@ -346,18 +281,15 @@ ul, li { list-style: none; }
 }
 .page.active { display: flex; }
 
-/* 滚动容器 */
 .scroll-y {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
-
-/* 隐藏滚动条 */
 .scroll-y::-webkit-scrollbar { width: 0; height: 0; }
 .scroll-y { scrollbar-width: none; }
 
-/* ---------- 通用按钮 ---------- */
+/* ---------- 按钮 ---------- */
 .icon-btn {
   display: inline-flex;
   align-items: center;
@@ -368,10 +300,7 @@ ul, li { list-style: none; }
   color: var(--text);
   transition: transform .15s ease, background .2s ease;
 }
-.icon-btn:active {
-  transform: scale(.9);
-  background: var(--accent-soft);
-}
+.icon-btn:active { transform: scale(.9); background: var(--accent-soft); }
 .icon-btn svg { width: 22px; height: 22px; display: block; }
 
 /* ---------- 弹窗 ---------- */
@@ -437,7 +366,7 @@ ul, li { list-style: none; }
   background: var(--glass-bg-strong);
   border: 1px solid var(--glass-border);
   box-shadow: inset 0 1px 0 var(--glass-highlight);
-  transition: transform .12s ease, background .2s ease;
+  transition: transform .12s ease;
 }
 .modal-btn:active { transform: scale(.96); }
 .modal-btn.danger {
@@ -446,7 +375,7 @@ ul, li { list-style: none; }
   border-color: rgba(217, 83, 106, 0.3);
 }
 
-/* ---------- 输入框通用 ---------- */
+/* ---------- 输入框 ---------- */
 .field {
   width: 100%;
   padding: 12px 14px;
@@ -467,7 +396,7 @@ ul, li { list-style: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 120px;
   gap: 10px;
   color: var(--text-soft);
   font-size: 15px;
@@ -475,7 +404,7 @@ ul, li { list-style: none; }
 }
 .todo svg { width: 48px; height: 48px; opacity: .5; }
 
-/* ---------- 心跳线动画 ---------- */
+/* ---------- 动画 ---------- */
 @keyframes heartbeat-line {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -489,14 +418,18 @@ ul, li { list-style: none; }
   0%, 60%, 100% { transform: translateY(0); opacity: .5; }
   30%           { transform: translateY(-4px); opacity: 1; }
 }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateY(6px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-</style>
-</head>
-<body data-theme="rose-glass">
-<div id="app">
-  <div id="bg-layer"></div>
-  <!-- 页面结构由后续脚本动态渲染 -->
-</div>
 /* ---------- 锁屏页 ---------- */
 .lock-wrap {
   position: relative;
@@ -551,7 +484,6 @@ ul, li { list-style: none; }
   filter: drop-shadow(0 0 6px rgba(232, 83, 111, .45));
 }
 
-/* 心跳线 */
 .heartbeat-line {
   width: 54px;
   height: 20px;
@@ -599,21 +531,25 @@ ul, li { list-style: none; }
 }
 .lock-enter:active { transform: scale(.94); }
 
-/* 锁屏密码 */
+/* ---------- 锁屏密码 ---------- */
 .lock-pass {
   display: none;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   margin-top: 4px;
+  position: relative;
 }
 .lock-pass.active { display: flex; }
 
 .lock-pass-dots {
   display: flex;
   gap: 8px;
-  height: 14px;
+  min-height: 14px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 260px;
 }
 .lock-pass-dots i {
   width: 9px;
@@ -623,28 +559,24 @@ ul, li { list-style: none; }
   display: block;
 }
 
-/* 真实输入框隐藏但可聚焦，用原生数字键盘 */
+/* 真实输入框：透明但可交互，能粘贴，调数字键盘 */
 .lock-pass-input {
   position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  width: 1px;
-  height: 1px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.01;
+  color: transparent;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  caret-color: transparent;
 }
 
-/* 锁屏错误抖动 */
-@keyframes shake {
-  0%,100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(8px); }
-  60% { transform: translateX(-5px); }
-  80% { transform: translateX(5px); }
-}
 .lock-pass.shake { animation: shake .4s ease; }
 
 /* ---------- 聊天页 ---------- */
-#page-chat { justify-content: space-between; }
-
 .chat-header {
   position: relative;
   z-index: 5;
@@ -699,13 +631,8 @@ ul, li { list-style: none; }
   font-size: 13px;
   color: var(--text-soft);
 }
-.love-heart {
-  width: 14px;
-  height: 14px;
-  color: var(--heart-red);
-}
+.love-heart { width: 14px; height: 14px; color: var(--heart-red); }
 
-/* 消息区 */
 .chat-body {
   flex: 1;
   padding: 14px 12px 8px;
@@ -714,14 +641,13 @@ ul, li { list-style: none; }
   gap: 10px;
 }
 
-/* 消息行 */
 .msg-row {
   display: flex;
   align-items: flex-start;
   gap: 8px;
   max-width: 100%;
 }
-.msg-row.me { flex-direction: row; justify-content: flex-end; }
+.msg-row.me { justify-content: flex-end; }
 
 .msg-avatar {
   width: 36px;
@@ -741,7 +667,6 @@ ul, li { list-style: none; }
 .msg-row.me .msg-col { align-items: flex-end; }
 .msg-row.other .msg-col { align-items: flex-start; }
 
-/* 气泡 */
 .bubble {
   padding: 10px 14px;
   border-radius: 18px;
@@ -754,10 +679,6 @@ ul, li { list-style: none; }
   box-shadow: 0 4px 14px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
   animation: bubble-in .22s ease;
 }
-@keyframes bubble-in {
-  from { opacity: 0; transform: translateY(6px) scale(.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
 
 .msg-row.other .bubble {
   background: var(--bubble-other);
@@ -768,7 +689,6 @@ ul, li { list-style: none; }
   border: 1px solid var(--bubble-me-border);
 }
 
-/* 图片消息 */
 .bubble.media {
   padding: 4px;
   border-radius: 16px;
@@ -784,7 +704,6 @@ ul, li { list-style: none; }
   display: block;
 }
 
-/* 气泡下时间戳 */
 .msg-meta {
   margin-top: 4px;
   font-size: 11px;
@@ -793,15 +712,8 @@ ul, li { list-style: none; }
   align-items: center;
   gap: 6px;
 }
-.msg-row.me .msg-meta { flex-direction: row; }
+.read-flag { font-size: 11px; color: var(--time-text); }
 
-/* 已读 */
-.read-flag {
-  font-size: 11px;
-  color: var(--time-text);
-}
-
-/* 底部区 */
 .chat-footer {
   position: relative;
   z-index: 5;
@@ -870,7 +782,7 @@ ul, li { list-style: none; }
 .circle-btn:active { transform: scale(.9); }
 .circle-btn svg { width: 24px; height: 24px; }
 
-/* ---------- 子页面（设置 / 字卡 / 头像 / 背景） ---------- */
+/* ---------- 子页面 ---------- */
 .sub-header {
   display: flex;
   align-items: center;
@@ -882,11 +794,7 @@ ul, li { list-style: none; }
   border-right: none;
   flex-shrink: 0;
 }
-.sub-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-}
+.sub-title { font-size: 16px; font-weight: 600; color: var(--text); }
 
 .sub-body {
   flex: 1;
@@ -896,7 +804,6 @@ ul, li { list-style: none; }
   gap: 10px;
 }
 
-/* 设置入口块 */
 .setting-block {
   display: flex;
   align-items: center;
@@ -905,14 +812,10 @@ ul, li { list-style: none; }
   border-radius: 16px;
   font-size: 15.5px;
   color: var(--text);
-  transition: transform .14s ease, background .2s ease;
+  transition: transform .14s ease;
 }
-.setting-block:active { transform: scale(.98); background: var(--glass-bg-strong); }
-.block-icon {
-  width: 22px;
-  height: 22px;
-  color: var(--accent);
-}
+.setting-block:active { transform: scale(.98); }
+.block-icon { width: 22px; height: 22px; color: var(--accent); }
 
 /* ---------- 悬浮球 ---------- */
 .float-ball {
@@ -932,9 +835,7 @@ ul, li { list-style: none; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   touch-action: none;
-  transition: box-shadow .2s ease;
 }
-.float-ball:active { box-shadow: 0 3px 12px var(--glass-shadow); }
 .float-ball img {
   width: 100%;
   height: 100%;
@@ -944,7 +845,7 @@ ul, li { list-style: none; }
 }
 .float-ball.hidden { display: none; }
 
-/* ---------- 字卡管理页专用 ---------- */
+/* ---------- 字卡 / 回收站 ---------- */
 .card-toolbar {
   flex-shrink: 0;
   display: flex;
@@ -952,10 +853,8 @@ ul, li { list-style: none; }
   gap: 8px;
   padding: 10px 12px;
 }
-.toolbar-row {
-  display: flex;
-  gap: 8px;
-}
+.toolbar-row { display: flex; gap: 8px; }
+
 .tool-btn {
   flex: 1;
   display: flex;
@@ -970,12 +869,11 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   box-shadow: inset 0 1px 0 var(--glass-highlight);
-  transition: transform .12s ease, background .2s ease;
+  transition: transform .12s ease;
 }
-.tool-btn:active { transform: scale(.95); background: var(--glass-bg-strong); }
+.tool-btn:active { transform: scale(.95); }
 .tool-btn svg { width: 20px; height: 20px; color: var(--accent); }
 
-/* 搜索态输入框 */
 .search-field {
   flex: 1;
   display: flex;
@@ -1006,7 +904,6 @@ ul, li { list-style: none; }
 }
 .search-field .clear-x svg { width: 16px; height: 16px; }
 
-/* 字卡列表 */
 .card-list {
   flex: 1;
   padding: 4px 12px 20px;
@@ -1024,7 +921,6 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   box-shadow: inset 0 1px 0 var(--glass-highlight);
-  transition: background .2s ease;
 }
 .card-item.selected { background: var(--accent-soft); }
 
@@ -1061,16 +957,6 @@ ul, li { list-style: none; }
   word-break: break-word;
 }
 
-/* 选择模式底部条 */
-.select-bar {
-  flex-shrink: 0;
-  display: flex;
-  gap: 8px;
-  padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
-}
-.select-bar .tool-btn { padding: 10px 4px; font-size: 12px; }
-
-/* 空状态 */
 .empty-tip {
   flex: 1;
   display: flex;
@@ -1082,7 +968,7 @@ ul, li { list-style: none; }
   padding: 40px 20px;
 }
 
-/* ---------- 头像 / 背景 / 设置子页通用 ---------- */
+/* ---------- 头像 / 背景 ---------- */
 .section-title {
   font-size: 13.5px;
   font-weight: 600;
@@ -1133,7 +1019,6 @@ ul, li { list-style: none; }
   background: var(--accent-soft);
 }
 
-/* 头像配对区 */
 .upload-btn {
   display: flex;
   align-items: center;
@@ -1164,10 +1049,7 @@ ul, li { list-style: none; }
   align-items: center;
   gap: 6px;
 }
-.pair-imgs {
-  display: flex;
-  gap: 4px;
-}
+.pair-imgs { display: flex; gap: 4px; }
 .pair-imgs img {
   width: 34px;
   height: 34px;
@@ -1178,7 +1060,6 @@ ul, li { list-style: none; }
 .pair-imgs img.blue { border-color: #9cc4e8; box-shadow: 0 0 6px rgba(156,196,232,.5); }
 .pair-imgs img.pink { border-color: #f0a8c0; box-shadow: 0 0 6px rgba(240,168,192,.5); }
 
-/* 未配对头像 */
 .unpair-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1203,7 +1084,6 @@ ul, li { list-style: none; }
 .unpair-cell.blue { border-color: #9cc4e8; box-shadow: 0 0 8px rgba(156,196,232,.55); }
 .unpair-cell.pink { border-color: #f0a8c0; box-shadow: 0 0 8px rgba(240,168,192,.55); }
 
-/* 背景网格 */
 .bg-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1220,7 +1100,6 @@ ul, li { list-style: none; }
 .bg-cell img { width: 100%; height: 100%; object-fit: cover; }
 .bg-cell.active { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-soft); }
 
-/* 主题选择 */
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1250,7 +1129,6 @@ ul, li { list-style: none; }
   border: 1px solid var(--glass-border);
 }
 
-/* 设置项行 */
 .set-row {
   display: flex;
   align-items: center;
@@ -1267,12 +1145,7 @@ ul, li { list-style: none; }
 .set-row .label { color: var(--text); }
 .set-row .value { color: var(--text-soft); font-size: 13.5px; }
 
-/* 档位选择 */
-.seg {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
+.seg { display: flex; gap: 6px; flex-wrap: wrap; }
 .seg-btn {
   padding: 7px 14px;
   border-radius: 11px;
@@ -1288,7 +1161,6 @@ ul, li { list-style: none; }
   border-color: var(--accent);
 }
 
-/* 悬浮球预览 */
 .float-preview {
   width: 72px;
   height: 72px;
@@ -1303,7 +1175,6 @@ ul, li { list-style: none; }
 }
 .float-preview img { width: 100%; height: 100%; object-fit: cover; }
 
-/* 关于页 */
 .about-wrap {
   flex: 1;
   display: flex;
@@ -1325,7 +1196,6 @@ ul, li { list-style: none; }
 }
 .about-desc p { margin-bottom: 12px; }
 
-/* 导入去重列表 / 去重列表 */
 .dup-list { display: flex; flex-direction: column; gap: 8px; }
 .dup-item {
   display: flex;
@@ -1339,608 +1209,324 @@ ul, li { list-style: none; }
 }
 .dup-count { color: var(--accent); font-weight: 600; }
 </style>
-<!-- ========== SVG 图标库（一次性全画） ========== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <!-- 实心 ♡ -->
-    <symbol id="i-heart-fill" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 21s-7.5-4.6-9.7-9.2C.7 8.4 2.4 5 5.8 5c1.9 0 3.2 1 4.2 2.3C11 6 12.3 5 14.2 5c3.4 0 5.1 3.4 3.5 6.8C19.5 16.4 12 21 12 21z"/>
-    </symbol>
-    <!-- 空心 ♡ -->
-    <symbol id="i-heart-line" viewBox="0 0 24 24">
-      <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"
-        d="M12 20.2s-6.9-4.3-8.9-8.5C1.5 8.5 3 5.6 6 5.6c1.7 0 2.9.9 3.9 2.1 1-1.2 2.2-2.1 3.9-2.1 3 0 4.5 2.9 2.9 6.1-2 4.2-8.7 8.5-8.7 8.5z"/>
-    </symbol>
-    <!-- ⊕ -->
-    <symbol id="i-plus-circle" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-    </symbol>
-    <!-- 纸飞机 -->
-    <symbol id="i-send" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M3.2 11.3 20.4 3.6c.6-.3 1.2.3.9.9L13.9 20.8c-.3.6-1.2.5-1.3-.2l-1-5.2-5.2-1c-.7-.1-.8-1-.2-1.3z"/>
-      <path fill="rgba(255,255,255,.45)" d="M11.6 15.4 20 4.4l-8.4 11z"/>
-    </symbol>
+</head>
+<body data-theme="rose-glass">
+<div id="app">
+  <div id="bg-layer"></div>
 
-    <!-- 拍照 -->
-    <symbol id="i-camera" viewBox="0 0 24 24">
-      <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
-        d="M4 8.5h2.6l1.3-2h8.2l1.3 2H20a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z"/>
-      <circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    </symbol>
-    <!-- 相册 -->
-    <symbol id="i-album" viewBox="0 0 24 24">
-      <rect x="3.2" y="4.5" width="17.6" height="15" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="8.4" cy="9.4" r="1.5" fill="currentColor"/>
-      <path d="M5 17.2 9.6 12l3 3.4 2.4-2.2 4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 视频 -->
-    <symbol id="i-video" viewBox="0 0 24 24">
-      <rect x="3" y="6" width="12.5" height="12" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M15.5 10.2 21 7.5v9l-5.5-2.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 贴纸 -->
-    <symbol id="i-sticker" viewBox="0 0 24 24">
-      <path d="M12 3.4a8.6 8.6 0 0 0-8.6 8.6c0 4.7 3.9 8.6 8.6 8.6 3.4 0 5.4-1.4 8.6-4.3V12A8.6 8.6 0 0 0 12 3.4z"
-        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M12 20.6c0-4.7 3.9-8.6 8.6-8.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="9" cy="11" r="1" fill="currentColor"/>
-      <circle cx="15" cy="11" r="1" fill="currentColor"/>
-    </symbol>
-    <!-- 礼物 -->
-    <symbol id="i-gift" viewBox="0 0 24 24">
-      <rect x="3.4" y="9" width="17.2" height="11" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M3.4 13h17.2M12 9v11" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M12 9C10.5 5.6 8.4 4.2 6.8 5.2 5.4 6 6 8 8 9m4 0c1.5-3.4 3.6-4.8 5.2-3.8 1.4.8.8 2.8-1.2 3.8"
-        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-    </symbol>
-    <!-- 礼包 -->
-    <symbol id="i-package" viewBox="0 0 24 24">
-      <path d="M4 8.6 12 4l8 4.6v9.2L12 20l-8-4.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M4 8.6 12 13l8-4.4M12 13v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 盲盒 -->
-    <symbol id="i-blindbox" viewBox="0 0 24 24">
-      <rect x="4" y="6" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M4 11h16" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M9.6 6c-1.2-1.6-.4-3 1-3 .9 0 1.4.8 1.4 1.6C12 3.8 12.5 3 13.4 3c1.4 0 2.2 1.4 1 3"
-        fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 互动 -->
-    <symbol id="i-interact" viewBox="0 0 24 24">
-      <path d="M8.5 4.5 6 12l6.5 7.5L19 12l-2.5-7.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <circle cx="12" cy="11" r="2.4" fill="currentColor"/>
-    </symbol>
-    <!-- 问答 -->
-    <symbol id="i-qa" viewBox="0 0 24 24">
-      <path d="M4.5 5.5h15v10h-7.5L8 19v-3.5H4.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M9.5 9.2c.2-1 1.1-1.6 2.1-1.5 1 .1 1.8.8 1.8 1.8 0 1.2-1.4 1.5-1.9 2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <circle cx="11.6" cy="13.8" r=".9" fill="currentColor"/>
-    </symbol>
-    <!-- 问卷 -->
-    <symbol id="i-survey" viewBox="0 0 24 24">
-      <rect x="5" y="3.5" width="14" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 音乐 -->
-    <symbol id="i-music" viewBox="0 0 24 24">
-      <path d="M9 18V6.5l9-2v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <circle cx="7" cy="18" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="16" cy="15.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    </symbol>
-    <!-- 陪伴 -->
-    <symbol id="i-companion" viewBox="0 0 24 24">
-      <circle cx="9.5" cy="9" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="16" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M4 19c.6-3 2.8-4.6 5.5-4.6S14.4 16 15 19M14 19c.4-1.8 1.6-2.9 3.2-2.9 1.5 0 2.6 1 3 2.9"
-        fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 悬浮球 -->
-    <symbol id="i-floatball" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="12" cy="12" r="3.4" fill="currentColor" opacity=".5"/>
-      <circle cx="12" cy="12" r="1.4" fill="currentColor"/>
-    </symbol>
-    <!-- 关锁 -->
-    <symbol id="i-lock" viewBox="0 0 24 24">
-      <rect x="5.5" y="10" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M8.5 10V8a3.5 3.5 0 0 1 7 0v2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="12" cy="14.6" r="1.2" fill="currentColor"/>
-    </symbol>
-    <!-- 小世界 -->
-    <symbol id="i-world" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <ellipse cx="12" cy="12" rx="3.6" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M3.8 12h16.4M5 8h14M5 16h14" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    </symbol>
-    <!-- 信箱 -->
-    <symbol id="i-mailbox" viewBox="0 0 24 24">
-      <path d="M4 9.5 12 4l8 5.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M4 10.5 12 16l8-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 留言笺 -->
-    <symbol id="i-note" viewBox="0 0 24 24">
-      <path d="M6 3.6h9.5L19.5 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.6a1 1 0 0 1 1-1z"
-        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M15 3.8V8h4.2M8.5 12.5h7M8.5 15.8h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 抉择 -->
-    <symbol id="i-choice" viewBox="0 0 24 24">
-      <path d="M8 5 5 12l3 7M16 5l3 7-3 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M12 4.5v15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-dasharray="2.4 2.4"/>
-    </symbol>
-    <!-- 恋人空间 -->
-    <symbol id="i-couple" viewBox="0 0 24 24">
-      <circle cx="8.6" cy="9.4" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="15.4" cy="9.4" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M3.6 19c.5-2.8 2.5-4.3 5-4.3M20.4 19c-.5-2.8-2.5-4.3-5-4.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M12 15.6c-.8-1-2.4-.6-2.4.8 0 1.3 2.4 2.6 2.4 2.6s2.4-1.3 2.4-2.6c0-1.4-1.6-1.8-2.4-.8z" fill="currentColor" opacity=".6"/>
-    </symbol>
-    <!-- 心动时刻 -->
-    <symbol id="i-moment" viewBox="0 0 24 24">
-      <path d="M12 20.4S4.8 15.9 2.9 11.5C1.5 8.2 3.3 5 6.6 5c1.9 0 3.2 1 4.1 2.2C11.6 6 12.9 5 14.8 5c3.3 0 5.1 3.2 3.7 6.5-1.9 4.4-6.5 8.9-6.5 8.9z"
-        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M12 3v2.4M9 3.6l.7 2.2M15 3.6l-.7 2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    </symbol>
-    <!-- 心情手帐 -->
-    <symbol id="i-diary" viewBox="0 0 24 24">
-      <path d="M5 4.6h11a2 2 0 0 1 2 2v12.8H7a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M5 17.4a2 2 0 0 0 2 2h11" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M8.6 8.6h6M8.6 11.6h4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    </symbol>
-    <!-- 旧梦温存 -->
-    <symbol id="i-olddream" viewBox="0 0 24 24">
-      <path d="M12 4.2a7.8 7.8 0 1 0 7.4 10.1A6.4 6.4 0 0 1 12 4.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M17.6 4.4l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z" fill="currentColor" opacity=".7"/>
-    </symbol>
-    <!-- 备忘录 -->
-    <symbol id="i-memo" viewBox="0 0 24 24">
-      <rect x="4.6" y="3.8" width="14.8" height="16.4" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M8.4 8h7.2M8.4 11.4h7.2M8.4 14.8h4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M15.6 15.2 19 11.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 心愿单 -->
-    <symbol id="i-wishlist" viewBox="0 0 24 24">
-      <path d="M6 3.8h12v16.4l-6-3.4-6 3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M12 9.2c-.7-.9-2.1-.5-2.1.7 0 1.1 2.1 2.3 2.1 2.3s2.1-1.2 2.1-2.3c0-1.2-1.4-1.6-2.1-.7z" fill="currentColor" opacity=".75"/>
-    </symbol>
-    <!-- 重要日 -->
-    <symbol id="i-anniv" viewBox="0 0 24 24">
-      <rect x="4" y="5.4" width="16" height="14.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M4 9.6h16M8.4 3.6v3.4M15.6 3.6v3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M12 12.6c-.8-1-2.4-.6-2.4.8 0 1.2 2.4 2.5 2.4 2.5s2.4-1.3 2.4-2.5c0-1.4-1.6-1.8-2.4-.8z" fill="currentColor" opacity=".65"/>
-    </symbol>
-    <!-- 设置 -->
-    <symbol id="i-settings" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M12 3.4v2.2M12 18.4v2.2M20.6 12h-2.2M5.6 12H3.4M18.1 5.9l-1.6 1.6M7.5 16.5l-1.6 1.6M18.1 18.1l-1.6-1.6M7.5 7.5 5.9 5.9"
-        stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-    </symbol>
-    <!-- 字卡 -->
-    <symbol id="i-card" viewBox="0 0 24 24">
-      <rect x="3.6" y="5" width="16.8" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M7.4 9.6h9.2M7.4 13h9.2M7.4 16.4h5.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 头像 -->
-    <symbol id="i-avatar" viewBox="0 0 24 24">
-      <circle cx="12" cy="9" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M4.8 19.2c.8-3.4 3.6-5.2 7.2-5.2s6.4 1.8 7.2 5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-    </symbol>
-    <!-- 背景 -->
-    <symbol id="i-bg" viewBox="0 0 24 24">
-      <rect x="3.4" y="4.6" width="17.2" height="14.8" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="M3.8 16 9 10.6l3.2 3.6 2.6-2.4 5.4 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <circle cx="8.2" cy="8.6" r="1.4" fill="currentColor" opacity=".7"/>
-    </symbol>
-    <!-- 表情 -->
-    <symbol id="i-emoji" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <circle cx="9.2" cy="10.2" r="1.1" fill="currentColor"/>
-      <circle cx="14.8" cy="10.2" r="1.1" fill="currentColor"/>
-      <path d="M8.4 14.2c1 1.4 2.2 2 3.6 2s2.6-.6 3.6-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <!-- 搜索 -->
-    <symbol id="i-search" viewBox="0 0 24 24">
-      <circle cx="10.8" cy="10.8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-      <path d="m15.4 15.4 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    </symbol>
-    <!-- 添加 -->
-    <symbol id="i-plus" viewBox="0 0 24 24">
-      <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-    </symbol>
-    <!-- 回收站 -->
-    <symbol id="i-trash" viewBox="0 0 24 24">
-      <path d="M5.5 7h13M9.5 7V5.2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M7.2 7l.9 12a1.4 1.4 0 0 0 1.4 1.3h5a1.4 1.4 0 0 0 1.4-1.3l.9-12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M10.4 10.6v6M13.6 10.6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    </symbol>
-    <!-- 导入 -->
-    <symbol id="i-import" viewBox="0 0 24 24">
-      <path d="M12 4v10M8.4 10.6 12 14.2l3.6-3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 17.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    </symbol>
-    <!-- 导出 -->
-    <symbol id="i-export" viewBox="0 0 24 24">
-      <path d="M12 14.2V4M8.4 7.6 12 4l3.6 3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 17.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    </symbol>
-    <!-- 批量删除（多选删） -->
-    <symbol id="i-batch-del" viewBox="0 0 24 24">
-      <rect x="3.6" y="4.4" width="9.6" height="9.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="m5.4 9.2 1.8 1.8 3.2-3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M15 14.6l4.6 4.6M19.6 14.6 15 19.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    </symbol>
-    <!-- 去重 -->
-    <symbol id="i-dedup" viewBox="0 0 24 24">
-      <rect x="7.6" y="3.6" width="12.8" height="12.8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <rect x="3.6" y="7.6" width="12.8" height="12.8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
-    </symbol>
-    <!-- 恢复 -->
-    <symbol id="i-restore" viewBox="0 0 24 24">
-      <path d="M5 12a7 7 0 1 1 2.1 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M4.6 8.4V13h4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 全选 -->
-    <symbol id="i-select-all" viewBox="0 0 24 24">
-      <rect x="4" y="4" width="16" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      <path d="m8 12.2 2.8 2.8L16.4 9.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 取消 -->
-    <symbol id="i-cancel" viewBox="0 0 24 24">
-      <path d="M6.4 6.4l11.2 11.2M17.6 6.4 6.4 17.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-    </symbol>
-    <!-- 返回 -->
-    <symbol id="i-back" viewBox="0 0 24 24">
-      <path d="M14.6 5.4 8 12l6.6 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 关闭 × -->
-    <symbol id="i-close" viewBox="0 0 24 24">
-      <path d="M6.6 6.6l10.8 10.8M17.4 6.6 6.6 17.4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-    </symbol>
-    <!-- 编辑 -->
-    <symbol id="i-edit" viewBox="0 0 24 24">
-      <path d="M15.4 4.6 19.4 8.6 8.6 19.4l-4.8 1 1-4.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="m13.8 6.2 4 4" stroke="currentColor" stroke-width="1.7"/>
-    </symbol>
-    <!-- 删除 -->
-    <symbol id="i-delete" viewBox="0 0 24 24">
-      <path d="M5.5 7h13M9.5 7V5.2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M7.2 7l.9 12a1.4 1.4 0 0 0 1.4 1.3h5a1.4 1.4 0 0 0 1.4-1.3l.9-12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-    </symbol>
-    <!-- 待开发（锤子） -->
-    <symbol id="i-todo" viewBox="0 0 24 24">
-      <path d="M14.6 4.6 19.4 9.4 9.8 19H5v-4.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-      <path d="M13 6.2l4.8 4.8" stroke="currentColor" stroke-width="1.7"/>
-    </symbol>
-  </defs>
-</svg>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-heart-fill" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 21s-7.5-4.6-9.7-9.2C.7 8.4 2.4 5 5.8 5c1.9 0 3.2 1 4.2 2.3C11 6 12.3 5 14.2 5c3.4 0 5.1 3.4 3.5 6.8C19.5 16.4 12 21 12 21z"/>
+      </symbol>
+      <symbol id="i-heart-line" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 20.2s-6.9-4.3-8.9-8.5C1.5 8.5 3 5.6 6 5.6c1.7 0 2.9.9 3.9 2.1 1-1.2 2.2-2.1 3.9-2.1 3 0 4.5 2.9 2.9 6.1-2 4.2-8.7 8.5-8.7 8.5z"/>
+      </symbol>
+      <symbol id="i-plus-circle" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-send" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M3.2 11.3 20.4 3.6c.6-.3 1.2.3.9.9L13.9 20.8c-.3.6-1.2.5-1.3-.2l-1-5.2-5.2-1c-.7-.1-.8-1-.2-1.3z"/>
+        <path fill="rgba(255,255,255,.45)" d="M11.6 15.4 20 4.4l-8.4 11z"/>
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M4 8.5h2.6l1.3-2h8.2l1.3 2H20a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z"/>
+        <circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      </symbol>
+      <symbol id="i-album" viewBox="0 0 24 24">
+        <rect x="3.2" y="4.5" width="17.6" height="15" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="8.4" cy="9.4" r="1.5" fill="currentColor"/>
+        <path d="M5 17.2 9.6 12l3 3.4 2.4-2.2 4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-video" viewBox="0 0 24 24">
+        <rect x="3" y="6" width="12.5" height="12" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M15.5 10.2 21 7.5v9l-5.5-2.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-sticker" viewBox="0 0 24 24">
+        <path d="M12 3.4a8.6 8.6 0 0 0-8.6 8.6c0 4.7 3.9 8.6 8.6 8.6 3.4 0 5.4-1.4 8.6-4.3V12A8.6 8.6 0 0 0 12 3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M12 20.6c0-4.7 3.9-8.6 8.6-8.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="9" cy="11" r="1" fill="currentColor"/>
+        <circle cx="15" cy="11" r="1" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-gift" viewBox="0 0 24 24">
+        <rect x="3.4" y="9" width="17.2" height="11" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.4 13h17.2M12 9v11" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M12 9C10.5 5.6 8.4 4.2 6.8 5.2 5.4 6 6 8 8 9m4 0c1.5-3.4 3.6-4.8 5.2-3.8 1.4.8.8 2.8-1.2 3.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-package" viewBox="0 0 24 24">
+        <path d="M4 8.6 12 4l8 4.6v9.2L12 20l-8-4.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M4 8.6 12 13l8-4.4M12 13v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-blindbox" viewBox="0 0 24 24">
+        <rect x="4" y="6" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M4 11h16" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M9.6 6c-1.2-1.6-.4-3 1-3 .9 0 1.4.8 1.4 1.6C12 3.8 12.5 3 13.4 3c1.4 0 2.2 1.4 1 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-interact" viewBox="0 0 24 24">
+        <path d="M8.5 4.5 6 12l6.5 7.5L19 12l-2.5-7.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="12" cy="11" r="2.4" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-qa" viewBox="0 0 24 24">
+        <path d="M4.5 5.5h15v10h-7.5L8 19v-3.5H4.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M9.5 9.2c.2-1 1.1-1.6 2.1-1.5 1 .1 1.8.8 1.8 1.8 0 1.2-1.4 1.5-1.9 2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="11.6" cy="13.8" r=".9" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-survey" viewBox="0 0 24 24">
+        <rect x="5" y="3.5" width="14" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-music" viewBox="0 0 24 24">
+        <path d="M9 18V6.5l9-2v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="7" cy="18" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="16" cy="15.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      </symbol>
+      <symbol id="i-companion" viewBox="0 0 24 24">
+        <circle cx="9.5" cy="9" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="16" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M4 19c.6-3 2.8-4.6 5.5-4.6S14.4 16 15 19M14 19c.4-1.8 1.6-2.9 3.2-2.9 1.5 0 2.6 1 3 2.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-floatball" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="12" cy="12" r="3.4" fill="currentColor" opacity=".5"/>
+        <circle cx="12" cy="12" r="1.4" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="5.5" y="10" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M8.5 10V8a3.5 3.5 0 0 1 7 0v2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="12" cy="14.6" r="1.2" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-world" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <ellipse cx="12" cy="12" rx="3.6" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M3.8 12h16.4M5 8h14M5 16h14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </symbol>
+      <symbol id="i-mailbox" viewBox="0 0 24 24">
+        <path d="M4 9.5 12 4l8 5.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M4 10.5 12 16l8-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-note" viewBox="0 0 24 24">
+        <path d="M6 3.6h9.5L19.5 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M15 3.8V8h4.2M8.5 12.5h7M8.5 15.8h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-choice" viewBox="0 0 24 24">
+        <path d="M8 5 5 12l3 7M16 5l3 7-3 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M12 4.5v15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-dasharray="2.4 2.4"/>
+      </symbol>
+      <symbol id="i-couple" viewBox="0 0 24 24">
+        <circle cx="8.6" cy="9.4" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="15.4" cy="9.4" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.6 19c.5-2.8 2.5-4.3 5-4.3M20.4 19c-.5-2.8-2.5-4.3-5-4.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M12 15.6c-.8-1-2.4-.6-2.4.8 0 1.3 2.4 2.6 2.4 2.6s2.4-1.3 2.4-2.6c0-1.4-1.6-1.8-2.4-.8z" fill="currentColor" opacity=".6"/>
+      </symbol>
+      <symbol id="i-moment" viewBox="0 0 24 24">
+        <path d="M12 20.4S4.8 15.9 2.9 11.5C1.5 8.2 3.3 5 6.6 5c1.9 0 3.2 1 4.1 2.2C11.6 6 12.9 5 14.8 5c3.3 0 5.1 3.2 3.7 6.5-1.9 4.4-6.5 8.9-6.5 8.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M12 3v2.4M9 3.6l.7 2.2M15 3.6l-.7 2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-diary" viewBox="0 0 24 24">
+        <path d="M5 4.6h11a2 2 0 0 1 2 2v12.8H7a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M5 17.4a2 2 0 0 0 2 2h11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M8.6 8.6h6M8.6 11.6h4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-olddream" viewBox="0 0 24 24">
+        <path d="M12 4.2a7.8 7.8 0 1 0 7.4 10.1A6.4 6.4 0 0 1 12 4.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M17.6 4.4l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z" fill="currentColor" opacity=".7"/>
+      </symbol>
+      <symbol id="i-memo" viewBox="0 0 24 24">
+        <rect x="4.6" y="3.8" width="14.8" height="16.4" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M8.4 8h7.2M8.4 11.4h7.2M8.4 14.8h4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M15.6 15.2 19 11.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-wishlist" viewBox="0 0 24 24">
+        <path d="M6 3.8h12v16.4l-6-3.4-6 3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M12 9.2c-.7-.9-2.1-.5-2.1.7 0 1.1 2.1 2.3 2.1 2.3s2.1-1.2 2.1-2.3c0-1.2-1.4-1.6-2.1-.7z" fill="currentColor" opacity=".75"/>
+      </symbol>
+      <symbol id="i-anniv" viewBox="0 0 24 24">
+        <rect x="4" y="5.4" width="16" height="14.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M4 9.6h16M8.4 3.6v3.4M15.6 3.6v3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M12 12.6c-.8-1-2.4-.6-2.4.8 0 1.2 2.4 2.5 2.4 2.5s2.4-1.3 2.4-2.5c0-1.4-1.6-1.8-2.4-.8z" fill="currentColor" opacity=".65"/>
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M12 3.4v2.2M12 18.4v2.2M20.6 12h-2.2M5.6 12H3.4M18.1 5.9l-1.6 1.6M7.5 16.5l-1.6 1.6M18.1 18.1l-1.6-1.6M7.5 7.5 5.9 5.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-card" viewBox="0 0 24 24">
+        <rect x="3.6" y="5" width="16.8" height="14" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M7.4 9.6h9.2M7.4 13h9.2M7.4 16.4h5.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-avatar" viewBox="0 0 24 24">
+        <circle cx="12" cy="9" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M4.8 19.2c.8-3.4 3.6-5.2 7.2-5.2s6.4 1.8 7.2 5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-bg" viewBox="0 0 24 24">
+        <rect x="3.4" y="4.6" width="17.2" height="14.8" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.8 16 9 10.6l3.2 3.6 2.6-2.4 5.4 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="8.2" cy="8.6" r="1.4" fill="currentColor" opacity=".7"/>
+      </symbol>
+      <symbol id="i-emoji" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="9.2" cy="10.2" r="1.1" fill="currentColor"/>
+        <circle cx="14.8" cy="10.2" r="1.1" fill="currentColor"/>
+        <path d="M8.4 14.2c1 1.4 2.2 2 3.6 2s2.6-.6 3.6-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="10.8" cy="10.8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="m15.4 15.4 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24">
+        <path d="M5.5 7h13M9.5 7V5.2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M7.2 7l.9 12a1.4 1.4 0 0 0 1.4 1.3h5a1.4 1.4 0 0 0 1.4-1.3l.9-12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M10.4 10.6v6M13.6 10.6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-import" viewBox="0 0 24 24">
+        <path d="M12 4v10M8.4 10.6 12 14.2l3.6-3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 17.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-export" viewBox="0 0 24 24">
+        <path d="M12 14.2V4M8.4 7.6 12 4l3.6 3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 17.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-batch-del" viewBox="0 0 24 24">
+        <rect x="3.6" y="4.4" width="9.6" height="9.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="m5.4 9.2 1.8 1.8 3.2-3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 14.6l4.6 4.6M19.6 14.6 15 19.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-dedup" viewBox="0 0 24 24">
+        <rect x="7.6" y="3.6" width="12.8" height="12.8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="3.6" y="7.6" width="12.8" height="12.8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </symbol>
+      <symbol id="i-restore" viewBox="0 0 24 24">
+        <path d="M5 12a7 7 0 1 1 2.1 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M4.6 8.4V13h4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-select-all" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="m8 12.2 2.8 2.8L16.4 9.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-cancel" viewBox="0 0 24 24">
+        <path d="M6.4 6.4l11.2 11.2M17.6 6.4 6.4 17.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-back" viewBox="0 0 24 24">
+        <path d="M14.6 5.4 8 12l6.6 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="M6.6 6.6l10.8 10.8M17.4 6.6 6.6 17.4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24">
+        <path d="M15.4 4.6 19.4 8.6 8.6 19.4l-4.8 1 1-4.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="m13.8 6.2 4 4" stroke="currentColor" stroke-width="1.7"/>
+      </symbol>
+      <symbol id="i-delete" viewBox="0 0 24 24">
+        <path d="M5.5 7h13M9.5 7V5.2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M7.2 7l.9 12a1.4 1.4 0 0 0 1.4 1.3h5a1.4 1.4 0 0 0 1.4-1.3l.9-12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-todo" viewBox="0 0 24 24">
+        <path d="M14.6 4.6 19.4 9.4 9.8 19H5v-4.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M13 6.2l4.8 4.8" stroke="currentColor" stroke-width="1.7"/>
+      </symbol>
+    </defs>
+  </svg>
 
-<!-- ========== 锁屏页 ========== -->
-<div class="page" id="page-lock">
-  <div class="lock-wrap">
-    <div class="lock-title">阿遇♥阿凉</div>
-    <div class="lock-time" id="lock-time">----年--月--日 星期- --:--:--</div>
+  <div class="page active" id="page-lock">
+    <div class="lock-wrap">
+      <div class="lock-title">阿遇♥阿凉</div>
+      <div class="lock-time" id="lock-time">----年--月--日 星期- --:--:--</div>
 
-    <div class="lock-heart-row">
-      <img class="lock-avatar" id="lock-avatar-other" alt="">
-      <div class="heartbeat-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path id="hb-path-1" d="" /></svg></div>
-      <svg class="lock-heart" id="lock-heart"><use href="#i-heart-fill"/></svg>
-      <div class="heartbeat-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path id="hb-path-2" d="" /></svg></div>
-      <img class="lock-avatar" id="lock-avatar-me" alt="">
+      <div class="lock-heart-row">
+        <img class="lock-avatar" id="lock-avatar-other" alt="">
+        <div class="heartbeat-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
+        <svg class="lock-heart"><use href="#i-heart-fill"/></svg>
+        <div class="heartbeat-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
+        <img class="lock-avatar" id="lock-avatar-me" alt="">
+      </div>
+
+      <div class="lock-love" id="lock-love"></div>
+
+      <button class="lock-enter" id="btn-enter">进入传讯♥</button>
+
+      <div class="lock-pass" id="lock-pass">
+        <div class="lock-pass-dots" id="lock-pass-dots"></div>
+        <input class="lock-pass-input" id="lock-pass-input" type="text" inputmode="numeric" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      </div>
     </div>
+  </div>
 
-    <div class="lock-love" id="lock-love">你是我睁开眼就想见的人。</div>
+  <div class="page" id="page-chat">
+    <header class="chat-header glass">
+      <div class="header-row-1">
+        <img class="header-avatar" id="hdr-avatar-other" alt="">
+        <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
+        <svg class="header-heart"><use href="#i-heart-fill"/></svg>
+        <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
+        <img class="header-avatar" id="hdr-avatar-me" alt="">
+      </div>
+      <div class="header-row-2" id="hdr-name">阿凉</div>
+      <div class="header-row-3">
+        <svg class="love-heart"><use href="#i-heart-line"/></svg>
+        <span id="hdr-love">0</span>
+      </div>
+    </header>
 
-    <button class="lock-enter" id="btn-enter">进入传讯♥</button>
+    <main class="chat-body scroll-y" id="chat-body"></main>
 
-    <div class="lock-pass" id="lock-pass">
-      <div class="lock-pass-dots" id="lock-pass-dots"></div>
-      <input class="lock-pass-input" id="lock-pass-input" type="tel" inputmode="numeric" autocomplete="off">
+    <footer class="chat-footer glass">
+      <div class="typing-bar" id="typing-bar">
+        <span>祂正在输入中</span>
+        <i class="dot"></i><i class="dot"></i><i class="dot"></i>
+      </div>
+      <div class="footer-row">
+        <input class="chat-input" id="chat-input" type="text" placeholder="输入想对祂说的话...">
+        <button class="circle-btn" id="btn-plus-send">
+          <svg id="plus-send-icon"><use href="#i-plus-circle"/></svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="page" id="page-sub">
+    <header class="sub-header glass">
+      <button class="icon-btn" id="sub-back"><svg><use href="#i-back"/></svg></button>
+      <span class="sub-title" id="sub-title">标题</span>
+      <span class="icon-btn" style="visibility:hidden"></span>
+    </header>
+    <main class="scroll-y sub-body" id="sub-body"></main>
+  </div>
+
+  <div id="float-ball" class="float-ball">
+    <img id="float-ball-img" alt="">
+  </div>
+
+  <div class="modal-mask" id="modal-mask">
+    <div class="modal glass" id="modal">
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-actions" id="modal-actions"></div>
     </div>
   </div>
 </div>
-
-<!-- ========== 聊天页 ========== -->
-<div class="page" id="page-chat">
-  <!-- 顶部区 -->
-  <header class="chat-header glass">
-    <div class="header-row-1">
-      <img class="header-avatar" id="hdr-avatar-other" alt="">
-      <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path class="hb-move" d="" /></svg></div>
-      <svg class="header-heart"><use href="#i-heart-fill"/></svg>
-      <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path class="hb-move" d="" /></svg></div>
-      <img class="header-avatar" id="hdr-avatar-me" alt="">
-    </div>
-    <div class="header-row-2" id="hdr-name">阿凉</div>
-    <div class="header-row-3">
-      <svg class="love-heart"><use href="#i-heart-line"/></svg>
-      <span id="hdr-love">0</span>
-    </div>
-  </header>
-
-  <!-- 消息区 -->
-  <main class="chat-body scroll-y" id="chat-body"></main>
-
-  <!-- 底部区 -->
-  <footer class="chat-footer glass">
-    <div class="typing-bar" id="typing-bar">
-      <span>祂正在输入中</span>
-      <i class="dot"></i><i class="dot"></i><i class="dot"></i>
-    </div>
-    <div class="footer-row">
-      <input class="chat-input" id="chat-input" type="text" placeholder="输入想对祂说的话...">
-      <button class="circle-btn" id="btn-plus-send">
-        <svg id="plus-send-icon"><use href="#i-plus-circle"/></svg>
-      </button>
-    </div>
-  </footer>
-</div>
-
-<!-- ========== 设置页 ========== -->
-<div class="page" id="page-settings">
-  <header class="sub-header glass">
-    <button class="icon-btn" data-back><svg><use href="#i-back"/></svg></button>
-    <span class="sub-title">设置</span>
-    <span class="icon-btn" style="visibility:hidden"></span>
-  </header>
-  <main class="scroll-y sub-body">
-    <div class="setting-block glass" data-goto="set-chat">
-      <svg class="block-icon"><use href="#i-card"/></svg><span>聊天</span>
-    </div>
-    <div class="setting-block glass" data-goto="set-appearance">
-      <svg class="block-icon"><use href="#i-bg"/></svg><span>外观</span>
-    </div>
-    <div class="setting-block glass" data-goto="set-feature">
-      <svg class="block-icon"><use href="#i-settings"/></svg><span>功能</span>
-    </div>
-    <div class="setting-block glass" data-goto="set-system">
-      <svg class="block-icon"><use href="#i-todo"/></svg><span>系统</span>
-    </div>
-    <div class="setting-block glass" data-goto="set-about">
-      <svg class="block-icon"><use href="#i-heart-line"/></svg><span>关于</span>
-    </div>
-  </main>
-</div>
-
-<!-- ========== 子页面容器（设置各板块 / 字卡 / 头像 / 背景） ========== -->
-<div class="page" id="page-sub">
-  <header class="sub-header glass">
-    <button class="icon-btn" data-back><svg><use href="#i-back"/></svg></button>
-    <span class="sub-title" id="sub-title">标题</span>
-    <span class="icon-btn" style="visibility:hidden"></span>
-  </header>
-  <main class="scroll-y sub-body" id="sub-body"></main>
-</div>
-
-<!-- ========== 悬浮球 ========== -->
-<div id="float-ball" class="float-ball">
-  <img id="float-ball-img" alt="">
-</div>
-
-<!-- ========== 通用弹窗 ========== -->
-<div class="modal-mask" id="modal-mask">
-  <div class="modal glass" id="modal">
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-body" id="modal-body"></div>
-    <div class="modal-actions" id="modal-actions"></div>
-  </div>
-</div>
- <script>
-/* ============================================================
-   阿遇♥阿凉 v1.0.0.0
-   JS 核心逻辑
-   ============================================================ */
-
-/* ---------------- 工具 ---------------- */
+<script>
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const pad = n => String(n).padStart(2, '0');
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
-function pad(n) { return String(n).padStart(2, '0'); }
-
-/* 当前时间字符串 14:23 */
 function nowHM() {
   const d = new Date();
   return pad(d.getHours()) + ':' + pad(d.getMinutes());
 }
 
-/* 文件名用日期 20260922 */
 function dateStamp() {
   const d = new Date();
   return '' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
 }
 
-/* 简单唯一 id */
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-/* ---------------- 全局状态 ---------------- */
-const State = {
-  settings: {
-    theme: 'rose-glass',
-    /* 聊天 */
-    replySpeed: 'daily',        // fast | daily | slow | long | custom
-    replySpeedCustom: 45,       // 秒
-    multiGap: 'daily',          // fast | daily | slow | custom
-    multiGapCustom: 4,          // 秒
-    /* 功能 */
-    lockMode: 'first',          // first | daily | refresh
-    /* 外观 */
-    floatSize: 52,
-    floatImg: '',               // dataURL 或 cache 引用
-    /* 头像（成对） */
-    avatars: { other: '', me: '' },
-    /* 名字与称呼 */
-    otherName: '阿凉',
-    otherCall: '阿凉',
-    otherCalls: ['阿凉'],
-    myName: '阿遇',
-    myCall: '阿遇',
-    myCalls: ['阿遇'],
-    /* 背景 */
-    chatBg: '',                 // 空 = 不设置
-    lockBg: '',
-    /* 锁屏 */
-    lockPassed: false,          // 首次访问标记
-    lastLockDay: ''             // 当天第一次标记
-  },
-  cards: [],        // 字卡 [{id, text, t}]
-  trash: [],        // 回收站
-  messages: [],     // 聊天记录 [{id, who:'me'|'other', type:'text'|'img', text, src, t, read}]
-  love: 0
-};
-
-/* ---------------- OPFS 存储 ---------------- */
-const Store = {
-  root: null,
-  async init() {
-    try {
-      this.root = await navigator.storage.getDirectory();
-    } catch (e) {
-      console.warn('OPFS 不可用，降级 localStorage', e);
-      this.root = null;
-    }
-  },
-  async _fileHandle(name, create = true) {
-    if (!this.root) return null;
-    return await this.root.getFileHandle(name, { create });
-  },
-  async read(name) {
-    try {
-      if (this.root) {
-        const fh = await this._fileHandle(name, false);
-        const file = await fh.getFile();
-        const txt = await file.text();
-        return txt ? JSON.parse(txt) : null;
-      }
-      const raw = localStorage.getItem('ay_' + name);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) { return null; }
-  },
-  async write(name, data) {
-    const txt = JSON.stringify(data);
-    try {
-      if (this.root) {
-        const fh = await this._fileHandle(name, true);
-        const w = await fh.createWritable();
-        await w.write(txt);
-        await w.close();
-        return;
-      }
-      localStorage.setItem('ay_' + name, txt);
-    } catch (e) { console.warn('写入失败', name, e); }
-  }
-};
-
-/* ---------------- Cache Storage（图片 / 本地音频） ---------------- */
-const CacheStore = {
-  name: 'ay-media-v1',
-  async put(key, blob) {
-    const c = await caches.open(this.name);
-    await c.put('/media/' + key, new Response(blob));
-  },
-  async get(key) {
-    const c = await caches.open(this.name);
-    const r = await c.match('/media/' + key);
-    if (!r) return null;
-    return await r.blob();
-  },
-  async del(key) {
-    const c = await caches.open(this.name);
-    await c.delete('/media/' + key);
-  }
-};
-
-/* blob -> dataURL（用于显示） */
-function blobToDataURL(blob) {
-  return new Promise(res => {
-    const fr = new FileReader();
-    fr.onload = () => res(fr.result);
-    fr.readAsDataURL(blob);
-  });
-}
-
-/* ---------------- 初始化 ---------------- */
-async function boot() {
-  await Store.init();
-
-  const savedSettings = await Store.read('settings.json');
-  if (savedSettings) Object.assign(State.settings, savedSettings);
-
-  const savedCards = await Store.read('cards.json');
-  if (savedCards) State.cards = savedCards;
-
-  const savedTrash = await Store.read('trash.json');
-  if (savedTrash) State.trash = savedTrash;
-
-  const savedMsgs = await Store.read('messages.json');
-  if (savedMsgs) State.messages = savedMsgs;
-
-  const savedLove = await Store.read('love.json');
-  if (savedLove != null) State.love = savedLove;
-
-  applyTheme(State.settings.theme);
-  applyFloatBall();
-  applyBackgrounds();
-  applyAvatars();
-
-  initLockPage();
-  initChatPage();
-  initFloatBallDrag();
-  initModalMask();
-
-  decideEntry();
-}
-
-/* ---------------- 保存 ---------------- */
-const save = {
-  settings: () => Store.write('settings.json', State.settings),
-  cards:    () => Store.write('cards.json', State.cards),
-  trash:    () => Store.write('trash.json', State.trash),
-  messages: () => Store.write('messages.json', State.messages),
-  love:     () => Store.write('love.json', State.love)
-};
-
-/* ---------------- 主题 ---------------- */
-function applyTheme(name) {
-  document.body.dataset.theme = name;
-  State.settings.theme = name;
-  save.settings();
-}
-
-/* ---------------- 页面切换 ---------------- */
-function showPage(id) {
-  $$('.page').forEach(p => p.classList.toggle('active', p.id === id));
-}
-
-/* 锁屏 / 聊天入口判断 */
-function decideEntry() {
-  const mode = State.settings.lockMode;
-
-  let needPass = false;
-  const today = new Date().toDateString();
-
-  if (mode === 'first') {
-    needPass = !State.settings.lockPassed;
-  } else if (mode === 'daily') {
-    needPass = State.settings.lastLockDay !== today;
-  } else if (mode === 'refresh') {
-    needPass = true;
-  }
-
-  if (needPass) {
-    showPage('page-lock');
-    $('#btn-enter').style.display = 'none';
-    $('#lock-pass').classList.add('active');
-    setTimeout(() => $('#lock-pass-input').focus(), 300);
-  } else {
-    showPage('page-lock');
-    $('#btn-enter').style.display = '';
-    $('#lock-pass').classList.remove('active');
-  }
-}
-
-/* ---------------- 锁屏页 ---------------- */
 const LOVE_QUOTES = [
   '今天也想你了。',
   '你不在的时候，时间过得很慢。',
@@ -1979,8 +1565,178 @@ const LOCK_PASSWORDS = [
   '用大把时间仿徨，用几个瞬间成长'
 ];
 
+const State = {
+  settings: {
+    theme: 'rose-glass',
+    replySpeed: 'daily',
+    replySpeedCustom: 45,
+    multiGap: 'daily',
+    multiGapCustom: 4,
+    lockMode: 'first',
+    floatSize: 52,
+    floatImg: '',
+    floatHidden: false,
+    floatPos: null,
+    avatars: { other: '', me: '' },
+    otherName: '阿凉',
+    otherCall: '阿凉',
+    otherCalls: ['阿凉'],
+    myName: '阿遇',
+    myCall: '阿遇',
+    myCalls: ['阿遇'],
+    avatarPool: [],
+    avatarPairs: [],
+    chatBg: '',
+    chatBgPool: [],
+    lockBg: '',
+    lockBgPool: [],
+    lockPassed: false,
+    lastLockDay: ''
+  },
+  cards: [],
+  trash: [],
+  messages: [],
+  love: 0
+};
+
+const Store = {
+  root: null,
+  async init() {
+    try { this.root = await navigator.storage.getDirectory(); }
+    catch (e) { this.root = null; }
+  },
+  async _fh(name, create) {
+    if (!this.root) return null;
+    return await this.root.getFileHandle(name, { create });
+  },
+  async read(name) {
+    try {
+      if (this.root) {
+        const fh = await this._fh(name, false);
+        if (!fh) return null;
+        const file = await fh.getFile();
+        const txt = await file.text();
+        return txt ? JSON.parse(txt) : null;
+      }
+      const raw = localStorage.getItem('ay_' + name);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  },
+  async write(name, data) {
+    const txt = JSON.stringify(data);
+    try {
+      if (this.root) {
+        const fh = await this._fh(name, true);
+        const w = await fh.createWritable();
+        await w.write(txt);
+        await w.close();
+        return;
+      }
+      localStorage.setItem('ay_' + name, txt);
+    } catch (e) {
+      try { localStorage.setItem('ay_' + name, txt); } catch (e2) {}
+    }
+  }
+};
+
+const CacheStore = {
+  name: 'ay-media-v1',
+  async put(key, blob) {
+    try {
+      const c = await caches.open(this.name);
+      await c.put('/media/' + key, new Response(blob));
+    } catch (e) {}
+  },
+  async get(key) {
+    try {
+      const c = await caches.open(this.name);
+      const r = await c.match('/media/' + key);
+      return r ? await r.blob() : null;
+    } catch (e) { return null; }
+  },
+  async del(key) {
+    try {
+      const c = await caches.open(this.name);
+      await c.delete('/media/' + key);
+    } catch (e) {}
+  }
+};
+
+const save = {
+  settings: () => Store.write('settings.json', State.settings),
+  cards:    () => Store.write('cards.json', State.cards),
+  trash:    () => Store.write('trash.json', State.trash),
+  messages: () => Store.write('messages.json', State.messages),
+  love:     () => Store.write('love.json', State.love)
+};
+
+function defaultAvatar(color) {
+  const c = color === 'pink' ? '#f0a8c0' : '#9cc4e8';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="${c}"/><circle cx="40" cy="32" r="14" fill="#fff" opacity=".85"/><ellipse cx="40" cy="66" rx="24" ry="16" fill="#fff" opacity=".85"/></svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+function applyTheme(name) {
+  document.body.dataset.theme = name;
+  State.settings.theme = name;
+  save.settings();
+}
+
+function showPage(id) {
+  $$('.page').forEach(p => p.classList.toggle('active', p.id === id));
+}
+
+function openModal({ title, bodyHTML, actions }) {
+  $('#modal-title').textContent = title || '';
+  $('#modal-body').innerHTML = bodyHTML || '';
+  const acts = $('#modal-actions');
+  acts.innerHTML = '';
+  (actions || []).forEach(a => {
+    const b = document.createElement('button');
+    b.className = 'modal-btn' + (a.danger ? ' danger' : '');
+    b.textContent = a.label;
+    b.onclick = () => {
+      if (a.onClick) a.onClick();
+      if (a.keepOpen !== true) closeModal();
+    };
+    acts.appendChild(b);
+  });
+  $('#modal-mask').classList.add('active');
+}
+
+function closeModal() {
+  $('#modal-mask').classList.remove('active');
+}
+
+function pickImage(cb, multiple = false) {
+  const inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = 'image/*';
+  if (multiple) inp.multiple = true;
+  inp.onchange = () => {
+    [...inp.files].forEach(f => {
+      const fr = new FileReader();
+      fr.onload = () => cb(fr.result, f);
+      fr.readAsDataURL(f);
+    });
+  };
+  inp.click();
+}
+
+function bindLongPress(el, cb) {
+  let timer = null;
+  const start = () => { timer = setTimeout(() => { timer = null; cb(); }, 500); };
+  const cancel = () => { if (timer) { clearTimeout(timer); timer = null; } };
+  el.addEventListener('touchstart', start, { passive: true });
+  el.addEventListener('touchend', cancel);
+  el.addEventListener('touchmove', cancel);
+  el.addEventListener('mousedown', start);
+  el.addEventListener('mouseup', cancel);
+  el.addEventListener('mouseleave', cancel);
+}
+
+/* ---------- 锁屏 ---------- */
 function initLockPage() {
-  /* 时间 */
   function tick() {
     const d = new Date();
     const week = ['日','一','二','三','四','五','六'][d.getDay()];
@@ -1990,48 +1746,29 @@ function initLockPage() {
   tick();
   setInterval(tick, 1000);
 
-  /* 情话随机 */
   $('#lock-love').textContent = LOVE_QUOTES[Math.floor(Math.random() * LOVE_QUOTES.length)];
 
-  /* 进入传讯 */
-  $('#btn-enter').onclick = () => showPage('page-chat');
+  $('#btn-enter').onclick = () => {
+    const mode = State.settings.lockMode;
+    const today = new Date().toDateString();
+    let needPass = false;
+    if (mode === 'first') needPass = !State.settings.lockPassed;
+    else if (mode === 'daily') needPass = State.settings.lastLockDay !== today;
+    else if (mode === 'refresh') needPass = true;
 
-  /* 密码输入：用隐藏 input 捕获原生数字键盘输入 */
+    if (!needPass) { showPage('page-chat'); return; }
+
+    $('#btn-enter').style.display = 'none';
+    $('#lock-pass').classList.add('active');
+    setTimeout(() => $('#lock-pass-input').focus(), 200);
+  };
+
   const input = $('#lock-pass-input');
   const dots = $('#lock-pass-dots');
-
-  /* 用数字键盘输入，但映射到文字密码 —— 这里用输入序列匹配 */
-  let buf = '';
-  input.addEventListener('input', () => {
-    const v = input.value;
-    if (v.length > buf.length) {
-      const ch = v[v.length - 1];
-      buf += ch;
-      renderDots(buf.length);
-      checkPass(buf);
-    } else {
-      buf = buf.slice(0, v.length);
-      renderDots(buf.length);
-    }
-    input.value = '';
-  });
 
   function renderDots(n) {
     dots.innerHTML = '';
     for (let i = 0; i < n; i++) dots.appendChild(document.createElement('i'));
-  }
-
-  function checkPass(val) {
-    /* 简化：暗号本质是文字，但这里用数字序列长度+固定映射校验
-       实际实现里，用固定的数字映射表把暗号转成一串数字来比对 */
-    const target = encodePass(LOCK_PASSWORDS[0]);
-    if (val.length >= target.length) {
-      if (val === target) {
-        passOK();
-      } else {
-        failPass();
-      }
-    }
   }
 
   function passOK() {
@@ -2039,36 +1776,56 @@ function initLockPage() {
     State.settings.lastLockDay = new Date().toDateString();
     save.settings();
     input.blur();
+    input.value = '';
+    renderDots(0);
+    $('#lock-pass').classList.remove('active');
+    $('#btn-enter').style.display = '';
     showPage('page-chat');
   }
 
   function failPass() {
-    buf = '';
+    input.value = '';
     renderDots(0);
     const box = $('#lock-pass');
     box.classList.add('shake');
     setTimeout(() => box.classList.remove('shake'), 400);
   }
+
+  function check(val) {
+    if (LOCK_PASSWORDS.includes(val)) passOK();
+    else failPass();
+  }
+
+  input.addEventListener('input', () => {
+    const v = input.value;
+    renderDots(v.length);
+    if (v.length >= 1) {
+      const matched = LOCK_PASSWORDS.some(p => p === v);
+      if (matched) { check(v); return; }
+      const isPrefix = LOCK_PASSWORDS.some(p => p.startsWith(v));
+      if (!isPrefix) failPass();
+    }
+  });
+
+  input.addEventListener('paste', () => {
+    setTimeout(() => {
+      const v = input.value;
+      renderDots(v.length);
+      check(v);
+    }, 30);
+  });
+
+  renderDots(0);
 }
 
-/* 把文字暗号映射成数字序列（用于隐藏式数字键盘输入）
-   规则：取每个字 Unicode 码 % 10，拼成数字串 */
-function encodePass(text) {
-  return [...text].map(c => String(c.codePointAt(0) % 10)).join('');
-}
-
-/* ---------------- 聊天页 ---------------- */
+/* ---------- 聊天 ---------- */
 function initChatPage() {
   const input = $('#chat-input');
   const btn = $('#btn-plus-send');
   const icon = $('#plus-send-icon use');
 
   input.addEventListener('input', () => {
-    if (input.value.trim()) {
-      icon.setAttribute('href', '#i-send');
-    } else {
-      icon.setAttribute('href', '#i-plus-circle');
-    }
+    icon.setAttribute('href', input.value.trim() ? '#i-send' : '#i-plus-circle');
   });
 
   btn.onclick = () => {
@@ -2085,20 +1842,25 @@ function initChatPage() {
   updateLove();
 }
 
-/* 我发文字 */
 function sendMyText(text) {
-  State.messages.push({
-    id: uid(), who: 'me', type: 'text', text, t: nowHM(), read: false
-  });
+  State.messages.push({ id: uid(), who: 'me', type: 'text', text, t: nowHM(), read: false });
   save.messages();
   renderMessages();
   scrollBottom();
   triggerReply();
 }
 
-/* 渲染消息 */
+function sendMyImage(dataUrl) {
+  State.messages.push({ id: uid(), who: 'me', type: 'img', src: dataUrl, t: nowHM(), read: false });
+  save.messages();
+  renderMessages();
+  scrollBottom();
+  triggerReply();
+}
+
 function renderMessages() {
   const body = $('#chat-body');
+  if (!body) return;
   body.innerHTML = '';
   State.messages.forEach(m => {
     const row = document.createElement('div');
@@ -2137,72 +1899,57 @@ function renderMessages() {
     col.appendChild(b);
     col.appendChild(meta);
 
-    if (m.who === 'me') {
-      row.appendChild(col);
-      row.appendChild(av);
-    } else {
-      row.appendChild(av);
-      row.appendChild(col);
-    }
+    if (m.who === 'me') { row.appendChild(col); row.appendChild(av); }
+    else { row.appendChild(av); row.appendChild(col); }
+
     body.appendChild(row);
   });
 }
 
-/* 默认头像（SVG dataURL） */
-function defaultAvatar(color) {
-  const c = color === 'pink' ? '#f0a8c0' : '#9cc4e8';
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="${c}"/><circle cx="40" cy="32" r="14" fill="#fff" opacity=".85"/><ellipse cx="40" cy="66" rx="24" ry="16" fill="#fff" opacity=".85"/></svg>`;
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-}
-
 function scrollBottom() {
   const body = $('#chat-body');
-  body.scrollTop = body.scrollHeight;
+  if (body) body.scrollTop = body.scrollHeight;
 }
 
-/* 爱意值 */
 function updateLove() {
-  $('#hdr-love').textContent = State.love;
+  const el = $('#hdr-love');
+  if (el) el.textContent = State.love;
 }
 
-/* ---------------- 祂的回复（字卡抽取） ---------------- */
 function triggerReply() {
-  /* 把我最后一条消息标已读 */
   const lastMe = [...State.messages].reverse().find(m => m.who === 'me');
   if (lastMe) lastMe.read = true;
   save.messages();
   renderMessages();
   scrollBottom();
 
-  /* 显示正在输入 */
   const bar = $('#typing-bar');
   bar.classList.add('active');
 
-  const wait = getReplyWait();
   setTimeout(() => {
     bar.classList.remove('active');
     doReply();
-  }, wait * 1000);
+  }, getReplyWait() * 1000);
 }
 
 function getReplyWait() {
   const s = State.settings;
   switch (s.replySpeed) {
-    case 'fast':  return 15 + Math.random() * 15;   // 15~30
-    case 'slow':  return 60 + Math.random() * 60;   // 60~120
-    case 'long':  return 120 + Math.random() * 180; // 120~300
-    case 'custom':return s.replySpeedCustom;
-    default:      return 30 + Math.random() * 30;   // 30~60
+    case 'fast':  return 15 + Math.random() * 15;
+    case 'slow':  return 60 + Math.random() * 60;
+    case 'long':  return 120 + Math.random() * 180;
+    case 'custom':return Math.max(5, s.replySpeedCustom);
+    default:      return 30 + Math.random() * 30;
   }
 }
 
 function getMultiGap() {
   const s = State.settings;
   switch (s.multiGap) {
-    case 'fast':  return 1 + Math.random() * 2;   // 1~3
-    case 'slow':  return 5 + Math.random() * 3;   // 5~8
-    case 'custom':return s.multiGapCustom;
-    default:      return 3 + Math.random() * 2;   // 3~5
+    case 'fast':  return 1 + Math.random() * 2;
+    case 'slow':  return 5 + Math.random() * 3;
+    case 'custom':return Math.max(1, s.multiGapCustom);
+    default:      return 3 + Math.random() * 2;
   }
 }
 
@@ -2211,7 +1958,7 @@ function doReply() {
     pushOther('没有字卡，祂只好安静地看着你。');
     return;
   }
-  const n = 1 + Math.floor(Math.random() * 3); // 1~3 张
+  const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
   for (let i = 0; i < n; i++) {
     picked.push(State.cards[Math.floor(Math.random() * State.cards.length)].text);
@@ -2221,41 +1968,41 @@ function doReply() {
     if (idx >= picked.length) return;
     pushOther(picked[idx]);
     idx++;
-    if (idx < picked.length) {
-      setTimeout(sendNext, getMultiGap() * 1000);
-    }
+    if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
   };
   sendNext();
 }
 
 function pushOther(text) {
-  State.messages.push({
-    id: uid(), who: 'other', type: 'text', text, t: nowHM()
-  });
+  State.messages.push({ id: uid(), who: 'other', type: 'text', text, t: nowHM() });
   save.messages();
   renderMessages();
   scrollBottom();
 }
 
-/* ---------------- 主题应用 / 悬浮球 ---------------- */
+/* ---------- 悬浮球 ---------- */
 function applyFloatBall() {
   const ball = $('#float-ball');
+  if (!ball) return;
   ball.style.width = State.settings.floatSize + 'px';
   ball.style.height = State.settings.floatSize + 'px';
   const img = $('#float-ball-img');
-  if (State.settings.floatImg) {
-    img.src = State.settings.floatImg;
-  } else {
-    img.src = defaultAvatar('blue');
-  }
+  img.src = State.settings.floatImg || defaultAvatar('blue');
   ball.classList.toggle('hidden', State.settings.floatHidden === true);
+  if (State.settings.floatPos) {
+    ball.style.left = State.settings.floatPos.left;
+    ball.style.top = State.settings.floatPos.top;
+    ball.style.right = 'auto';
+    ball.style.bottom = 'auto';
+  }
 }
 
 function applyBackgrounds() {
   const layer = $('#bg-layer');
+  if (!layer) return;
   const bg = State.settings.chatBg || State.settings.lockBg;
-  if (State.settings.chatBg) {
-    layer.style.backgroundImage = `url(${State.settings.chatBg})`;
+  if (bg) {
+    layer.style.backgroundImage = `url(${bg})`;
     layer.style.backgroundSize = 'cover';
     layer.style.backgroundPosition = 'center';
   } else {
@@ -2266,119 +2013,69 @@ function applyBackgrounds() {
 function applyAvatars() {
   const o = State.settings.avatars.other || defaultAvatar('blue');
   const m = State.settings.avatars.me || defaultAvatar('pink');
-  $('#lock-avatar-other').src = o;
-  $('#lock-avatar-me').src = m;
-  $('#hdr-avatar-other').src = o;
-  $('#hdr-avatar-me').src = m;
-  $('#hdr-name').textContent = State.settings.otherCall || State.settings.otherName;
+  if ($('#lock-avatar-other')) $('#lock-avatar-other').src = o;
+  if ($('#lock-avatar-me')) $('#lock-avatar-me').src = m;
+  if ($('#hdr-avatar-other')) $('#hdr-avatar-other').src = o;
+  if ($('#hdr-avatar-me')) $('#hdr-avatar-me').src = m;
+  if ($('#hdr-name')) $('#hdr-name').textContent = State.settings.otherCall || State.settings.otherName;
   renderMessages();
 }
 
-/* ---------------- 悬浮球拖动 / 点击分离 ---------------- */
 function initFloatBallDrag() {
   const ball = $('#float-ball');
+  if (!ball) return;
   let startX = 0, startY = 0, startL = 0, startT = 0;
   let dragging = false, moved = false;
 
-  ball.addEventListener('touchstart', e => {
-    const t = e.touches[0];
-    startX = t.clientX; startY = t.clientY;
+  function begin(x, y) {
+    startX = x; startY = y;
     const r = ball.getBoundingClientRect();
     startL = r.left; startT = r.top;
     dragging = true; moved = false;
-    ball.style.transition = 'none';
-  }, { passive: true });
+  }
 
-  ball.addEventListener('touchmove', e => {
+  function move(x, y) {
     if (!dragging) return;
-    const t = e.touches[0];
-    const dx = t.clientX - startX;
-    const dy = t.clientY - startY;
+    const dx = x - startX, dy = y - startY;
     if (Math.abs(dx) > 10 || Math.abs(dy) > 10) moved = true;
     if (!moved) return;
-    let nl = startL + dx;
-    let nt = startT + dy;
+    let nl = startL + dx, nt = startT + dy;
     nl = Math.max(0, Math.min(window.innerWidth - ball.offsetWidth, nl));
     nt = Math.max(0, Math.min(window.innerHeight - ball.offsetHeight, nt));
     ball.style.left = nl + 'px';
     ball.style.top = nt + 'px';
     ball.style.right = 'auto';
     ball.style.bottom = 'auto';
-  }, { passive: true });
+  }
 
-  ball.addEventListener('touchend', () => {
+  function end() {
+    if (!dragging) return;
     dragging = false;
-    ball.style.transition = '';
-    if (!moved) {
-      openBigMenu();
-    } else {
+    if (!moved) openBigMenu();
+    else {
       State.settings.floatPos = { left: ball.style.left, top: ball.style.top };
       save.settings();
     }
-  });
+  }
 
-  /* 桌面端鼠标兼容 */
+  ball.addEventListener('touchstart', e => { const t = e.touches[0]; begin(t.clientX, t.clientY); }, { passive: true });
+  ball.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
+  ball.addEventListener('touchend', end);
+
   ball.addEventListener('mousedown', e => {
-    startX = e.clientX; startY = e.clientY;
-    const r = ball.getBoundingClientRect();
-    startL = r.left; startT = r.top;
-    dragging = true; moved = false;
-    const mm = ev => {
-      if (!dragging) return;
-      const dx = ev.clientX - startX;
-      const dy = ev.clientY - startY;
-      if (Math.abs(dx) > 10 || Math.abs(dy) > 10) moved = true;
-      if (!moved) return;
-      let nl = startL + dx, nt = startT + dy;
-      nl = Math.max(0, Math.min(window.innerWidth - ball.offsetWidth, nl));
-      nt = Math.max(0, Math.min(window.innerHeight - ball.offsetHeight, nt));
-      ball.style.left = nl + 'px';
-      ball.style.top = nt + 'px';
-      ball.style.right = 'auto';
-      ball.style.bottom = 'auto';
-    };
+    begin(e.clientX, e.clientY);
+    const mm = ev => move(ev.clientX, ev.clientY);
     const mu = () => {
-      dragging = false;
       document.removeEventListener('mousemove', mm);
       document.removeEventListener('mouseup', mu);
-      if (!moved) openBigMenu();
-      else {
-        State.settings.floatPos = { left: ball.style.left, top: ball.style.top };
-        save.settings();
-      }
+      end();
     };
     document.addEventListener('mousemove', mm);
     document.addEventListener('mouseup', mu);
   });
 }
 
-/* ---------------- 弹窗 ---------------- */
-function initModalMask() {
-  $('#modal-mask').addEventListener('click', e => {
-    if (e.target.id === 'modal-mask') closeModal();
-  });
-}
-
-function openModal({ title, bodyHTML, actions }) {
-  $('#modal-title').textContent = title || '';
-  $('#modal-body').innerHTML = bodyHTML || '';
-  const acts = $('#modal-actions');
-  acts.innerHTML = '';
-  (actions || []).forEach(a => {
-    const b = document.createElement('button');
-    b.className = 'modal-btn' + (a.danger ? ' danger' : '');
-    b.textContent = a.label;
-    b.onclick = () => { if (a.onClick) a.onClick(); if (a.keepOpen !== true) closeModal(); };
-    acts.appendChild(b);
-  });
-  $('#modal-mask').classList.add('active');
-}
-
-function closeModal() {
-  $('#modal-mask').classList.remove('active');
-}
-
-/* ---------------- ⊕ 小功能菜单 ---------------- */
+/* ---------- ⊕ 小功能 ---------- */
 function openPlusMenu() {
   const items = [
     ['拍照','i-camera'], ['相册','i-album'], ['视频','i-video'], ['贴纸','i-sticker'],
@@ -2387,7 +2084,7 @@ function openPlusMenu() {
     ['悬浮球','i-floatball'], ['关锁','i-lock']
   ];
   const html = `<div class="unpair-grid">` + items.map((it, i) =>
-    `<div class="unpair-cell" data-plus="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text)">
+    `<div class="unpair-cell" data-plus="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px">
       <svg style="width:22px;height:22px;color:var(--accent)"><use href="#${it[1]}"/></svg>
       <span>${it[0]}</span>
     </div>`).join('') + `</div>`;
@@ -2395,12 +2092,7 @@ function openPlusMenu() {
   openModal({ title: '小功能', bodyHTML: html, actions: [] });
 
   $$('#modal-body [data-plus]').forEach(el => {
-    el.onclick = () => {
-      const idx = +el.dataset.plus;
-      const name = items[idx][0];
-      closeModal();
-      handlePlusItem(name);
-    };
+    el.onclick = () => { const name = items[+el.dataset.plus][0]; closeModal(); handlePlusItem(name); };
   });
 }
 
@@ -2412,18 +2104,35 @@ function handlePlusItem(name) {
     return;
   }
   if (name === '关锁') {
-    /* 快捷切换锁屏开关：轮换三档 */
     const order = ['first','daily','refresh'];
     const cur = order.indexOf(State.settings.lockMode);
     State.settings.lockMode = order[(cur + 1) % order.length];
     save.settings();
     return;
   }
-  /* 其余：待开发设计 */
+  if (name === '拍照' || name === '相册') {
+    const multiple = name === '相册';
+    const inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = 'image/*';
+    if (multiple) inp.multiple = true;
+    inp.onchange = async () => {
+      const files = [...inp.files];
+      for (const f of files) {
+        const id = uid();
+        await CacheStore.put('img_' + id, f);
+        const fr = new FileReader();
+        fr.onload = () => sendMyImage(fr.result);
+        fr.readAsDataURL(f);
+      }
+    };
+    inp.click();
+    return;
+  }
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* ---------------- 悬浮球大功能菜单 ---------------- */
+/* ---------- 大功能 ---------- */
 function openBigMenu() {
   const items = [
     ['小世界','i-world'], ['信箱','i-mailbox'], ['留言笺','i-note'], ['抉择','i-choice'],
@@ -2431,7 +2140,7 @@ function openBigMenu() {
     ['备忘录','i-memo'], ['心愿单','i-wishlist'], ['重要日','i-anniv'], ['设置','i-settings']
   ];
   const html = `<div class="unpair-grid">` + items.map((it, i) =>
-    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text)">
+    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px">
       <svg style="width:22px;height:22px;color:var(--accent)"><use href="#${it[1]}"/></svg>
       <span>${it[0]}</span>
     </div>`).join('') + `</div>`;
@@ -2439,73 +2148,48 @@ function openBigMenu() {
   openModal({ title: '功能', bodyHTML: html, actions: [] });
 
   $$('#modal-body [data-big]').forEach(el => {
-    el.onclick = () => {
-      const idx = +el.dataset.big;
-      const name = items[idx][0];
-      closeModal();
-      handleBigItem(name);
-    };
+    el.onclick = () => { const name = items[+el.dataset.big][0]; closeModal(); handleBigItem(name); };
   });
 }
 
 function handleBigItem(name) {
-  if (name === '设置') { openSettings(); return; }
-  if (name === '小世界') { openSub('小世界', buildWorldHTML()); return; }
+  if (name === '设置') return openSettings();
+  if (name === '小世界') return openWorld();
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* 小世界内部 */
-function buildWorldHTML() {
+function openWorld() {
   const items = [
     ['字卡','i-card'], ['头像','i-avatar'], ['背景','i-bg'], ['表情','i-emoji'],
     ['贴纸','i-sticker'], ['礼物','i-gift'], ['礼包','i-package'], ['互动','i-interact'],
     ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion']
   ];
-  let html = `<div class="unpair-grid">` + items.map((it, i) =>
-    `<div class="unpair-cell" data-world="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text)">
+  openSub('小世界', `<div class="unpair-grid" id="world-grid">` + items.map((it, i) =>
+    `<div class="unpair-cell" data-world="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:14px 4px">
       <svg style="width:22px;height:22px;color:var(--accent)"><use href="#${it[1]}"/></svg>
       <span>${it[0]}</span>
-    </div>`).join('') + `</div>`;
-  return html;
-}
-
-/* 绑定小世界内部点击（在 openSub 之后调用） */
-function bindWorldItems() {
-  $$('#sub-body [data-world]').forEach(el => {
-    el.onclick = () => {
-      const names = ['字卡','头像','背景','表情','贴纸','礼物','礼包','互动','问卷','音乐','陪伴'];
-      const name = names[+el.dataset.world];
-      if (name === '字卡') { openCardManager(); return; }
-      if (name === '头像') { openAvatarManager(); return; }
-      if (name === '背景') { openBgManager(); return; }
-      openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
-    };
+    </div>`).join('') + `</div>`, () => {
+    $$('#world-grid [data-world]').forEach(el => {
+      el.onclick = () => {
+        const name = items[+el.dataset.world][0];
+        if (name === '字卡') return openCardManager();
+        if (name === '头像') return openAvatarManager();
+        if (name === '背景') return openBgManager();
+        openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
+      };
+    });
   });
 }
 
-/* ---------------- 子页面通用 ---------------- */
 function openSub(title, bodyHTML, afterRender) {
   $('#sub-title').textContent = title;
   $('#sub-body').innerHTML = bodyHTML;
+  $('#sub-body').style.padding = '';
   showPage('page-sub');
   if (afterRender) afterRender();
 }
 
-/* 返回按钮 */
-document.addEventListener('click', e => {
-  const back = e.target.closest('[data-back]');
-  if (back) {
-    /* 简单返回：回聊天页 */
-    showPage('page-chat');
-  }
-  const goto = e.target.closest('[data-goto]');
-  if (goto) {
-    const key = goto.dataset.goto;
-    handleSettingsGoto(key);
-  }
-});
-
-/* ---------------- 设置 ---------------- */
+/* ---------- 设置 ---------- */
 function openSettings() {
   openSub('设置', `
     <div class="setting-block glass" data-goto="set-chat"><svg class="block-icon"><use href="#i-card"/></svg><span>聊天</span></div>
@@ -2513,7 +2197,11 @@ function openSettings() {
     <div class="setting-block glass" data-goto="set-feature"><svg class="block-icon"><use href="#i-settings"/></svg><span>功能</span></div>
     <div class="setting-block glass" data-goto="set-system"><svg class="block-icon"><use href="#i-todo"/></svg><span>系统</span></div>
     <div class="setting-block glass" data-goto="set-about"><svg class="block-icon"><use href="#i-heart-line"/></svg><span>关于</span></div>
-  `);
+  `, () => {
+    $$('#sub-body [data-goto]').forEach(el => {
+      el.onclick = () => handleSettingsGoto(el.dataset.goto);
+    });
+  });
 }
 
 function handleSettingsGoto(key) {
@@ -2524,12 +2212,19 @@ function handleSettingsGoto(key) {
   if (key === 'set-about') return openSetAbout();
 }
 
-/* 设置 → 聊天 */
+function markSeg(sel, val) {
+  $$(sel + ' .seg-btn').forEach(b => b.classList.toggle('active', b.dataset.v === val));
+}
+function bindSeg(sel, cb) {
+  $$(sel + ' .seg-btn').forEach(b => {
+    b.onclick = () => { cb(b.dataset.v); markSeg(sel, b.dataset.v); };
+  });
+}
+
 function openSetChat() {
   const s = State.settings;
   openSub('聊天', `
     <div class="section-title">祂的回复速度</div>
-    <div class="set-row"><span class="label">档位</span></div>
     <div class="seg" id="seg-reply">
       <button class="seg-btn" data-v="fast">快</button>
       <button class="seg-btn" data-v="daily">日常</button>
@@ -2552,7 +2247,6 @@ function openSetChat() {
   `, () => {
     markSeg('#seg-reply', s.replySpeed);
     markSeg('#seg-gap', s.multiGap);
-
     bindSeg('#seg-reply', v => { s.replySpeed = v; save.settings(); });
     bindSeg('#seg-gap', v => { s.multiGap = v; save.settings(); });
 
@@ -2566,20 +2260,11 @@ function openSetChat() {
       s.multiGapCustom = Math.max(1, Math.min(30, +e.target.value || 4));
       s.multiGap = 'custom';
       save.settings();
+      markSeg('#seg-gap', 'custom');
     };
   });
 }
 
-function markSeg(sel, val) {
-  $$(sel + ' .seg-btn').forEach(b => b.classList.toggle('active', b.dataset.v === val));
-}
-function bindSeg(sel, cb) {
-  $$(sel + ' .seg-btn').forEach(b => {
-    b.onclick = () => { cb(b.dataset.v); markSeg(sel, b.dataset.v); };
-  });
-}
-
-/* 设置 → 外观 */
 function openSetAppearance() {
   const s = State.settings;
   const themes = [
@@ -2593,17 +2278,14 @@ function openSetAppearance() {
     <div class="theme-grid" id="theme-grid">
       ${themes.map(t => `
         <div class="theme-cell ${s.theme===t[0]?'active':''}" data-theme="${t[0]}">
-          <div class="theme-swatch" style="background:linear-gradient(160deg,#f8e8ee,#e9e0ee)"></div>
+          <div class="theme-swatch"></div>
           <span>${t[1]}</span>
         </div>`).join('')}
     </div>
 
     <div class="section-title">悬浮球图片</div>
     <div class="float-preview"><img id="float-preview-img" src="${s.floatImg || defaultAvatar('blue')}"></div>
-    <div class="set-row">
-      <span class="label">当前悬浮球</span>
-      <span class="value" id="float-size-label">${s.floatSize}px</span>
-    </div>
+    <div class="set-row"><span class="label">当前悬浮球</span><span class="value" id="float-size-label">${s.floatSize}px</span></div>
     <button class="upload-btn" id="btn-upload-float"><svg><use href="#i-plus"/></svg>上传悬浮球图片</button>
     <button class="upload-btn" id="btn-reset-float"><svg><use href="#i-restore"/></svg>恢复默认悬浮球</button>
 
@@ -2617,16 +2299,29 @@ function openSetAppearance() {
       <input class="field" id="in-size" type="number" style="width:110px" value="${s.floatSize}">
     </div>
   `, () => {
-    /* 主题 */
+    /* 主题色块 */
+    const swatchMap = {
+      'rose-glass':'linear-gradient(160deg,#f8e8ee,#e9e0ee)',
+      'sakura-glass':'linear-gradient(160deg,#fdf1f5,#f4e2eb)',
+      'mint-ice':'linear-gradient(160deg,#ecf8f4,#dbedea)',
+      'cream-light':'linear-gradient(160deg,#fcf6ec,#f3e9d9)',
+      'blue-crystal':'linear-gradient(160deg,#ecf2fa,#dbe6f4)',
+      'purple-mist':'linear-gradient(160deg,#f5f0fb,#e7dff3)',
+      'cold-glass':'linear-gradient(160deg,#edf1f7,#dfe6ef)',
+      'warm-glass':'linear-gradient(160deg,#faf3ea,#f0e6da)',
+      'night-glass':'linear-gradient(160deg,#1c1822,#100e16)',
+      'purple-glass':'linear-gradient(160deg,#f4eefb,#e5ddf2)',
+      'cyan-glass':'linear-gradient(160deg,#eaf5f3,#dbe9e8)'
+    };
     $$('#theme-grid .theme-cell').forEach(cell => {
+      const sw = cell.querySelector('.theme-swatch');
+      sw.style.background = swatchMap[cell.dataset.theme] || '';
       cell.onclick = () => {
-        const t = cell.dataset.theme;
-        applyTheme(t);
+        applyTheme(cell.dataset.theme);
         $$('#theme-grid .theme-cell').forEach(c => c.classList.toggle('active', c === cell));
       };
     });
 
-    /* 上传悬浮球图片 */
     $('#btn-upload-float').onclick = () => pickImage(async (dataUrl, blob) => {
       s.floatImg = dataUrl;
       await CacheStore.put('floatball', blob);
@@ -2635,7 +2330,6 @@ function openSetAppearance() {
       applyFloatBall();
     });
 
-    /* 恢复默认 */
     $('#btn-reset-float').onclick = () => {
       s.floatImg = '';
       save.settings();
@@ -2643,7 +2337,6 @@ function openSetAppearance() {
       applyFloatBall();
     };
 
-    /* 大小档位 */
     markSeg('#seg-size', String(s.floatSize));
     bindSeg('#seg-size', v => {
       s.floatSize = +v;
@@ -2654,8 +2347,7 @@ function openSetAppearance() {
     });
 
     $('#in-size').onchange = e => {
-      let v = +e.target.value;
-      v = Math.max(36, Math.min(70, v || 52));
+      let v = Math.max(36, Math.min(70, +e.target.value || 52));
       s.floatSize = v;
       save.settings();
       applyFloatBall();
@@ -2666,7 +2358,6 @@ function openSetAppearance() {
   });
 }
 
-/* 设置 → 功能 */
 function openSetFeature() {
   const s = State.settings;
   openSub('功能', `
@@ -2686,7 +2377,6 @@ function openSetFeature() {
   });
 }
 
-/* 设置 → 关于 */
 function openSetAbout() {
   openSub('关于', `
     <div class="about-wrap">
@@ -2702,53 +2392,30 @@ function openSetAbout() {
   `);
 }
 
-/* ---------------- 选图片通用 ---------------- */
-function pickImage(cb, multiple = false) {
-  const inp = document.createElement('input');
-  inp.type = 'file';
-  inp.accept = 'image/*';
-  if (multiple) inp.multiple = true;
-  inp.onchange = () => {
-    const files = [...inp.files];
-    files.forEach(f => {
-      const fr = new FileReader();
-      fr.onload = () => cb(fr.result, f);
-      fr.readAsDataURL(f);
-    });
-  };
-  inp.click();
-}
- /* ================= 第5段：字卡 / 头像 / 背景 / 启动 ================= */
-
-/* ---------------- 字卡管理页 ---------------- */
+/* ---------- 字卡管理 ---------- */
 let cardSelectMode = false;
 let cardSelected = new Set();
+let searchKeyword = '';
 
 function openCardManager() {
   cardSelectMode = false;
   cardSelected.clear();
-  renderCardManager();
+  searchKeyword = '';
   showPage('page-sub');
-}
-
-function renderCardManager() {
-  const title = $('#sub-title');
-  title.textContent = '字卡';
-
-  /* 顶部工具条 + 列表 */
+  $('#sub-title').textContent = '字卡';
   const body = $('#sub-body');
   body.style.padding = '0';
   body.innerHTML = `
     <div class="card-toolbar" id="card-toolbar"></div>
     <div class="card-list" id="card-list"></div>
   `;
-
   renderCardToolbar();
   renderCardList();
 }
 
 function renderCardToolbar() {
   const bar = $('#card-toolbar');
+  if (!bar) return;
 
   if (cardSelectMode) {
     bar.innerHTML = `
@@ -2757,7 +2424,7 @@ function renderCardToolbar() {
         <button class="tool-btn" id="tb-del"><svg><use href="#i-delete"/></svg>删除</button>
         <button class="tool-btn" id="tb-cancel"><svg><use href="#i-cancel"/></svg>取消</button>
       </div>
-      <div class="empty-tip" style="padding:4px;font-size:12.5px">已选 <b id="sel-count">${cardSelected.size}</b> 张</div>
+      <div class="empty-tip" style="padding:4px;font-size:12.5px;flex:none">已选 <b id="sel-count">${cardSelected.size}</b> 张</div>
     `;
     $('#tb-all').onclick = () => {
       getDisplayedCards().forEach(c => cardSelected.add(c.id));
@@ -2793,23 +2460,15 @@ function renderCardToolbar() {
       <button class="tool-btn" id="tb-dedup"><svg><use href="#i-dedup"/></svg>去重</button>
     </div>
   `;
-
   $('#tb-search').onclick = expandSearch;
   $('#tb-add').onclick = openAddCard;
   $('#tb-trash').onclick = openTrash;
   $('#tb-import').onclick = importCards;
   $('#tb-export').onclick = openExportDialog;
-  $('#tb-batch').onclick = () => {
-    cardSelectMode = true;
-    cardSelected.clear();
-    renderCardToolbar();
-    renderCardList();
-  };
+  $('#tb-batch').onclick = () => { cardSelectMode = true; cardSelected.clear(); renderCardToolbar(); renderCardList(); };
   $('#tb-dedup').onclick = doDedup;
 }
 
-/* 搜索展开 */
-let searchKeyword = '';
 function expandSearch() {
   const bar = $('#card-toolbar');
   bar.innerHTML = `
@@ -2822,10 +2481,7 @@ function expandSearch() {
   `;
   const inp = $('#search-input');
   inp.focus();
-  inp.oninput = () => {
-    searchKeyword = inp.value.trim();
-    renderCardList();
-  };
+  inp.oninput = () => { searchKeyword = inp.value.trim(); renderCardList(); };
   $('#search-clear').onclick = () => {
     searchKeyword = '';
     renderCardToolbar();
@@ -2833,7 +2489,6 @@ function expandSearch() {
   };
 }
 
-/* 当前显示的列表（搜索筛选后） */
 function getDisplayedCards() {
   if (!searchKeyword) return State.cards;
   return State.cards.filter(c => c.text.includes(searchKeyword));
@@ -2846,9 +2501,7 @@ function renderCardList() {
 
   if (data.length === 0) {
     list.innerHTML = `<div class="empty-tip">${
-      State.cards.length === 0
-        ? '没有字卡，祂只好安静地看着你。'
-        : '没有找到相关字卡。'
+      State.cards.length === 0 ? '没有字卡，祂只好安静地看着你。' : '没有找到相关字卡。'
     }</div>`;
     return;
   }
@@ -2857,10 +2510,7 @@ function renderCardList() {
   data.forEach(c => {
     const el = document.createElement('div');
     el.className = 'card-item' + (cardSelected.has(c.id) ? ' selected' : '');
-    el.innerHTML = `
-      ${cardSelectMode ? '<div class="card-check"></div>' : ''}
-      <div class="card-text"></div>
-    `;
+    el.innerHTML = `${cardSelectMode ? '<div class="card-check"></div>' : ''}<div class="card-text"></div>`;
     el.querySelector('.card-text').textContent = c.text;
 
     if (cardSelectMode) {
@@ -2872,62 +2522,44 @@ function renderCardList() {
         if (sc) sc.textContent = cardSelected.size;
       };
     } else {
-      /* 长按 → 编辑 / 删除 */
       bindLongPress(el, () => openCardItemMenu(c));
     }
     list.appendChild(el);
   });
 }
 
-/* 长按 */
-function bindLongPress(el, cb) {
-  let timer = null;
-  const start = () => { timer = setTimeout(() => { cb(); timer = null; }, 500); };
-  const cancel = () => { if (timer) { clearTimeout(timer); timer = null; } };
-  el.addEventListener('touchstart', start, { passive: true });
-  el.addEventListener('touchend', cancel);
-  el.addEventListener('touchmove', cancel);
-  el.addEventListener('mousedown', start);
-  el.addEventListener('mouseup', cancel);
-  el.addEventListener('mouseleave', cancel);
-}
-
-/* 单条菜单：编辑 / 删除 */
 function openCardItemMenu(card) {
   openModal({
     title: '字卡',
     bodyHTML: '',
     actions: [
       { label: '编辑', onClick: () => editCardInline(card) },
-      { label: '删除', danger: true, onClick: () => {
-        moveCardsToTrash([card.id]);
-        renderCardList();
-      }}
+      { label: '删除', danger: true, onClick: () => { moveCardsToTrash([card.id]); renderCardList(); } }
     ]
   });
 }
 
-/* 就地编辑 */
 function editCardInline(card) {
   const list = $('#card-list');
   const items = $$('.card-item', list);
-  /* 找到对应元素 */
   const idx = getDisplayedCards().findIndex(c => c.id === card.id);
   if (idx < 0) return;
   const el = items[idx];
   if (!el) return;
 
   const textEl = el.querySelector('.card-text');
-  const old = card.text;
   textEl.innerHTML = '';
   const input = document.createElement('input');
   input.className = 'field';
-  input.value = old;
+  input.value = card.text;
   input.style.padding = '6px 10px';
   textEl.appendChild(input);
   input.focus();
 
+  let done = false;
   const finish = (saveIt) => {
+    if (done) return;
+    done = true;
     if (saveIt && input.value.trim()) {
       card.text = input.value.trim();
       save.cards();
@@ -2938,7 +2570,6 @@ function editCardInline(card) {
   input.onkeydown = e => { if (e.key === 'Enter') finish(true); };
 }
 
-/* 移入回收站 */
 function moveCardsToTrash(ids) {
   const set = new Set(ids);
   const moving = State.cards.filter(c => set.has(c.id));
@@ -2948,24 +2579,18 @@ function moveCardsToTrash(ids) {
   save.trash();
 }
 
-/* 添加字卡 */
 function openAddCard() {
   openModal({
     title: '添加新字卡',
     bodyHTML: `
-      <textarea class="field" id="add-card-input" rows="8"
-        placeholder="祂会用这些字卡回复你哦"></textarea>
-      <div style="font-size:12px;color:var(--text-soft);margin-top:8px;text-align:center">
-        一行一张字卡，可换行分隔
-      </div>
+      <textarea class="field" id="add-card-input" rows="8" placeholder="祂会用这些字卡回复你哦"></textarea>
+      <div style="font-size:12px;color:var(--text-soft);margin-top:8px;text-align:center">一行一张字卡，可换行分隔</div>
     `,
     actions: [
       { label: '保存字卡', onClick: () => {
         const val = $('#add-card-input').value;
         const lines = val.split('\n').map(s => s.trim()).filter(Boolean);
-        lines.forEach(text => {
-          State.cards.unshift({ id: uid(), text, t: Date.now() });
-        });
+        lines.forEach(text => State.cards.unshift({ id: uid(), text, t: Date.now() }));
         save.cards();
         renderCardList();
       }}
@@ -2973,7 +2598,6 @@ function openAddCard() {
   });
 }
 
-/* 文件导入 */
 function importCards() {
   const inp = document.createElement('input');
   inp.type = 'file';
@@ -2998,7 +2622,6 @@ function importCards() {
       incoming = text.split('\n').map(s => s.trim()).filter(Boolean);
     }
 
-    /* 自动去重：重复的进回收站 */
     const existing = new Set(State.cards.map(c => c.text));
     const dups = [];
     incoming.forEach(t => {
@@ -3015,14 +2638,8 @@ function importCards() {
     renderCardList();
 
     if (dups.length) {
-      const html = `<div class="dup-list">` +
-        dups.map(d => `<div class="dup-item">${escapeHTML(d)}</div>`).join('') +
-        `</div>`;
-      openModal({
-        title: '以下字卡重复，已移入回收站',
-        bodyHTML: html,
-        actions: [{ label: '去回收站', onClick: () => openTrash() }]
-      });
+      const html = `<div class="dup-list">` + dups.map(d => `<div class="dup-item">${escapeHTML(d)}</div>`).join('') + `</div>`;
+      openModal({ title: '以下字卡重复，已移入回收站', bodyHTML: html, actions: [{ label: '去回收站', onClick: () => openTrash() }] });
     } else {
       openModal({ title: '导入完成', bodyHTML: '没有重复内容', actions: [] });
       setTimeout(closeModal, 5000);
@@ -3031,11 +2648,6 @@ function importCards() {
   inp.click();
 }
 
-function escapeHTML(s) {
-  return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-}
-
-/* 文件导出 */
 function openExportDialog() {
   openModal({
     title: '选择导出格式',
@@ -3050,15 +2662,8 @@ function openExportDialog() {
 function exportCards(fmt) {
   const data = State.cards.map(c => c.text);
   let content, mime, ext;
-  if (fmt === 'json') {
-    content = JSON.stringify(data, null, 2);
-    mime = 'application/json';
-    ext = 'json';
-  } else {
-    content = data.join('\n');
-    mime = 'text/plain';
-    ext = 'txt';
-  }
+  if (fmt === 'json') { content = JSON.stringify(data, null, 2); mime = 'application/json'; ext = 'json'; }
+  else { content = data.join('\n'); mime = 'text/plain'; ext = 'txt'; }
   const blob = new Blob([content], { type: mime });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -3068,7 +2673,6 @@ function exportCards(fmt) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/* 去重 */
 function doDedup() {
   const map = new Map();
   State.cards.forEach(c => {
@@ -3076,49 +2680,39 @@ function doDedup() {
     map.get(c.text).push(c);
   });
 
-  const dupGroups = [...map.entries()].filter(([, arr]) => arr.length > 1);
+  const groups = [...map.entries()].filter(([, arr]) => arr.length > 1);
 
-  if (dupGroups.length === 0) {
+  if (groups.length === 0) {
     openModal({ title: '去重', bodyHTML: '没有重复内容', actions: [] });
     setTimeout(closeModal, 5000);
     return;
   }
 
-  /* 每组留最早的，其余进回收站 */
-  dupGroups.forEach(([, arr]) => {
+  groups.forEach(([, arr]) => {
     arr.sort((a, b) => a.t - b.t);
     const rest = arr.slice(1);
-    rest.forEach(c => {
-      State.trash.push({ ...c, deletedAt: Date.now() });
-    });
+    rest.forEach(c => State.trash.push({ ...c, deletedAt: Date.now() }));
     const set = new Set(rest.map(c => c.id));
     State.cards = State.cards.filter(c => !set.has(c.id));
   });
   save.cards();
   save.trash();
 
-  const html = `<div class="dup-list">` +
-    dupGroups.map(([text, arr]) =>
-      `<div class="dup-item"><span>${escapeHTML(text)}</span> <span class="dup-count" style="margin-left:auto">${arr.length}</span></div>`
-    ).join('') + `</div>`;
+  const html = `<div class="dup-list">` + groups.map(([text, arr]) =>
+    `<div class="dup-item"><span>${escapeHTML(text)}</span><span class="dup-count" style="margin-left:auto">${arr.length}</span></div>`
+  ).join('') + `</div>`;
 
-  openModal({
-    title: '重复内容',
-    bodyHTML: html,
-    actions: [{ label: '去回收站', onClick: () => openTrash() }]
-  });
+  openModal({ title: '重复内容', bodyHTML: html, actions: [{ label: '去回收站', onClick: () => openTrash() }] });
 }
 
-/* 回收站 */
-function openTrash() {
-  renderTrash();
-  showPage('page-sub');
-}
-
+/* ---------- 回收站 ---------- */
 let trashSelectMode = false;
 let trashSelected = new Set();
 
-function renderTrash() {
+function openTrash() {
+  trashSelectMode = false;
+  trashSelected.clear();
+  showPage('page-sub');
   $('#sub-title').textContent = '回收站';
   const body = $('#sub-body');
   body.style.padding = '0';
@@ -3132,6 +2726,8 @@ function renderTrash() {
 
 function renderTrashToolbar() {
   const bar = $('#trash-toolbar');
+  if (!bar) return;
+
   if (trashSelectMode) {
     bar.innerHTML = `
       <div class="toolbar-row">
@@ -3140,10 +2736,7 @@ function renderTrashToolbar() {
         <button class="tool-btn" id="tr-restore"><svg><use href="#i-restore"/></svg>恢复</button>
       </div>
     `;
-    $('#tr-all').onclick = () => {
-      State.trash.forEach(c => trashSelected.add(c.id));
-      renderTrashList();
-    };
+    $('#tr-all').onclick = () => { State.trash.forEach(c => trashSelected.add(c.id)); renderTrashList(); };
     $('#tr-del').onclick = () => {
       if (trashSelected.size === 0) return;
       openModal({
@@ -3161,13 +2754,9 @@ function renderTrashToolbar() {
       });
     };
     $('#tr-restore').onclick = () => {
-      const set = trashSelected;
-      const back = State.trash.filter(c => set.has(c.id));
-      State.trash = State.trash.filter(c => !set.has(c.id));
-      back.forEach(c => {
-        delete c.deletedAt;
-        State.cards.unshift(c);
-      });
+      const back = State.trash.filter(c => trashSelected.has(c.id));
+      State.trash = State.trash.filter(c => !trashSelected.has(c.id));
+      back.forEach(c => { delete c.deletedAt; State.cards.unshift(c); });
       save.trash();
       save.cards();
       trashSelected.clear();
@@ -3176,34 +2765,22 @@ function renderTrashToolbar() {
     return;
   }
 
-  bar.innerHTML = `
-    <div class="toolbar-row">
-      <button class="tool-btn" id="tr-batch"><svg><use href="#i-batch-del"/></svg>批量</button>
-    </div>
-  `;
-  $('#tr-batch').onclick = () => {
-    trashSelectMode = true;
-    trashSelected.clear();
-    renderTrashToolbar();
-    renderTrashList();
-  };
+  bar.innerHTML = `<div class="toolbar-row"><button class="tool-btn" id="tr-batch"><svg><use href="#i-batch-del"/></svg>批量</button></div>`;
+  $('#tr-batch').onclick = () => { trashSelectMode = true; trashSelected.clear(); renderTrashToolbar(); renderTrashList(); };
 }
 
 function renderTrashList() {
   const list = $('#trash-list');
-  const data = State.trash;
-  if (data.length === 0) {
+  if (!list) return;
+  if (State.trash.length === 0) {
     list.innerHTML = `<div class="empty-tip">回收站是空的。</div>`;
     return;
   }
   list.innerHTML = '';
-  data.forEach(c => {
+  State.trash.forEach(c => {
     const el = document.createElement('div');
     el.className = 'card-item' + (trashSelected.has(c.id) ? ' selected' : '');
-    el.innerHTML = `
-      ${trashSelectMode ? '<div class="card-check"></div>' : ''}
-      <div class="card-text"></div>
-    `;
+    el.innerHTML = `${trashSelectMode ? '<div class="card-check"></div>' : ''}<div class="card-text"></div>`;
     el.querySelector('.card-text').textContent = c.text;
     if (trashSelectMode) {
       el.onclick = () => {
@@ -3216,7 +2793,7 @@ function renderTrashList() {
   });
 }
 
-/* ---------------- 头像管理页 ---------------- */
+/* ---------- 头像管理 ---------- */
 function openAvatarManager() {
   const s = State.settings;
   openSub('头像', `
@@ -3226,8 +2803,7 @@ function openAvatarManager() {
       <div class="info">
         <div class="info-line"><span class="k">名字</span><span class="v">${escapeHTML(s.otherName)}</span></div>
         <div class="info-line"><span class="k">称呼</span><span class="v">${escapeHTML(s.otherCall)}</span></div>
-        <div class="info-line"><span class="k">称呼管理</span><span class="v"></span>
-          <button class="mini-btn" id="other-call-mgr">管理</button></div>
+        <div class="info-line"><span class="k">称呼管理</span><span class="v"></span><button class="mini-btn" id="other-call-mgr">管理</button></div>
       </div>
     </div>
 
@@ -3237,8 +2813,7 @@ function openAvatarManager() {
       <div class="info">
         <div class="info-line"><span class="k">名字</span><span class="v">${escapeHTML(s.myName)}</span></div>
         <div class="info-line"><span class="k">称呼</span><span class="v">${escapeHTML(s.myCall)}</span></div>
-        <div class="info-line"><span class="k">称呼管理</span><span class="v"></span>
-          <button class="mini-btn" id="my-call-mgr">管理</button></div>
+        <div class="info-line"><span class="k">称呼管理</span><span class="v"></span><button class="mini-btn" id="my-call-mgr">管理</button></div>
       </div>
     </div>
 
@@ -3256,13 +2831,11 @@ function openAvatarManager() {
       pickImage(async (dataUrl, blob) => {
         const id = uid();
         await CacheStore.put('avatar_' + id, blob);
-        State.settings.avatarPool = State.settings.avatarPool || [];
-        State.settings.avatarPool.push({ id, src: dataUrl, color: '' });
+        s.avatarPool.push({ id, src: dataUrl, color: '' });
         save.settings();
         renderAvatarArea();
       }, true);
     };
-
     $('#other-call-mgr').onclick = () => openCallManager('other');
     $('#my-call-mgr').onclick = () => openCallManager('me');
   });
@@ -3270,10 +2843,6 @@ function openAvatarManager() {
 
 function renderAvatarArea() {
   const s = State.settings;
-  s.avatarPool = s.avatarPool || [];
-  s.avatarPairs = s.avatarPairs || [];
-
-  /* 未配对 */
   const unpair = s.avatarPool.filter(a => !a.paired);
   const ug = $('#unpair-grid');
   if (ug) {
@@ -3292,21 +2861,18 @@ function renderAvatarArea() {
     });
   }
 
-  /* 配对区 */
   const pg = $('#pair-grid');
   if (pg) {
     pg.innerHTML = '';
     s.avatarPairs.forEach((pair, i) => {
-      const cell = document.createElement('div');
-      cell.className = 'pair-cell';
       const o = s.avatarPool.find(a => a.id === pair.other);
       const m = s.avatarPool.find(a => a.id === pair.me);
-      cell.innerHTML = `
-        <div class="pair-imgs">
-          <img class="blue" src="${o ? o.src : defaultAvatar('blue')}">
-          <img class="pink" src="${m ? m.src : defaultAvatar('pink')}">
-        </div>
-      `;
+      const cell = document.createElement('div');
+      cell.className = 'pair-cell';
+      cell.innerHTML = `<div class="pair-imgs">
+        <img class="blue" src="${o ? o.src : defaultAvatar('blue')}">
+        <img class="pink" src="${m ? m.src : defaultAvatar('pink')}">
+      </div>`;
       cell.onclick = () => {
         openModal({
           title: '这一对头像',
@@ -3314,7 +2880,6 @@ function renderAvatarArea() {
           actions: [
             { label: '用这一对', onClick: () => usePair(i) },
             { label: '删除配对', danger: true, onClick: () => {
-              const pair = s.avatarPairs[i];
               const ids = [pair.other, pair.me];
               s.avatarPool = s.avatarPool.filter(a => !ids.includes(a.id));
               s.avatarPairs.splice(i, 1);
@@ -3329,7 +2894,6 @@ function renderAvatarArea() {
   }
 }
 
-/* 自动成对：左蓝右粉 */
 function tryAutoPair() {
   const s = State.settings;
   const blue = s.avatarPool.find(a => a.color === 'blue' && !a.paired);
@@ -3354,20 +2918,18 @@ function usePair(i) {
   save.settings();
   applyAvatars();
   openModal({ title: '已应用', bodyHTML: '头像已更新。', actions: [] });
-  setTimeout(closeModal, 1500);
+  setTimeout(closeModal, 1200);
 }
 
-/* 称呼管理 */
 function openCallManager(who) {
   const s = State.settings;
   const key = who === 'other' ? 'otherCalls' : 'myCalls';
   const curKey = who === 'other' ? 'otherCall' : 'myCall';
   const list = s[key];
 
-  const html = `<div class="dup-list">` +
-    list.map((c, i) => `<div class="dup-item"><span>${escapeHTML(c)}</span>
-      <button class="mini-btn" style="margin-left:auto" data-pick="${i}">使用</button></div>`).join('') +
-    `</div>`;
+  const html = `<div class="dup-list">` + list.map((c, i) =>
+    `<div class="dup-item"><span>${escapeHTML(c)}</span><button class="mini-btn" style="margin-left:auto" data-pick="${i}">使用</button></div>`
+  ).join('') + `</div>`;
 
   openModal({
     title: '称呼管理',
@@ -3391,15 +2953,15 @@ function addCall(who) {
   openModal({
     title: '添加称呼',
     bodyHTML: `<input class="field" id="new-call" placeholder="输入称呼">`,
-    actions: [{ label: '保存', onClick: () => {
+    actions: [{ label: '保存', keepOpen: true, onClick: () => {
       const v = $('#new-call').value.trim();
       if (v) { s[key].push(v); save.settings(); }
       openCallManager(who);
-    }, keepOpen: true }]
+    }}]
   });
 }
 
-/* ---------------- 背景管理页 ---------------- */
+/* ---------- 背景管理 ---------- */
 function openBgManager() {
   const s = State.settings;
   openSub('背景', `
@@ -3415,25 +2977,19 @@ function openBgManager() {
     <div class="bg-grid" id="lock-bg-grid"></div>
   `, () => {
     renderBgGrids();
-    $('#up-chat-bg').onclick = () => {
-      pickImage(async (dataUrl, blob) => {
-        s.chatBgPool = s.chatBgPool || [];
-        s.chatBgPool.push(dataUrl);
-        s.chatBg = dataUrl;
-        save.settings();
-        applyBackgrounds();
-        renderBgGrids();
-      }, true);
-    };
-    $('#up-lock-bg').onclick = () => {
-      pickImage(async (dataUrl, blob) => {
-        s.lockBgPool = s.lockBgPool || [];
-        s.lockBgPool.push(dataUrl);
-        s.lockBg = dataUrl;
-        save.settings();
-        renderBgGrids();
-      }, true);
-    };
+    $('#up-chat-bg').onclick = () => pickImage((dataUrl) => {
+      s.chatBgPool.push(dataUrl);
+      s.chatBg = dataUrl;
+      save.settings();
+      applyBackgrounds();
+      renderBgGrids();
+    }, true);
+    $('#up-lock-bg').onclick = () => pickImage((dataUrl) => {
+      s.lockBgPool.push(dataUrl);
+      s.lockBg = dataUrl;
+      save.settings();
+      renderBgGrids();
+    }, true);
   });
 }
 
@@ -3443,36 +2999,63 @@ function renderBgGrids() {
   const lg = $('#lock-bg-grid');
   if (cg) {
     cg.innerHTML = '';
-    (s.chatBgPool || []).forEach(src => {
+    s.chatBgPool.forEach(src => {
       const cell = document.createElement('div');
       cell.className = 'bg-cell' + (s.chatBg === src ? ' active' : '');
       cell.innerHTML = `<img src="${src}">`;
-      cell.onclick = () => {
-        s.chatBg = src;
-        save.settings();
-        applyBackgrounds();
-        renderBgGrids();
-      };
+      cell.onclick = () => { s.chatBg = src; save.settings(); applyBackgrounds(); renderBgGrids(); };
       cg.appendChild(cell);
     });
   }
   if (lg) {
     lg.innerHTML = '';
-    (s.lockBgPool || []).forEach(src => {
+    s.lockBgPool.forEach(src => {
       const cell = document.createElement('div');
       cell.className = 'bg-cell' + (s.lockBg === src ? ' active' : '');
       cell.innerHTML = `<img src="${src}">`;
-      cell.onclick = () => {
-        s.lockBg = src;
-        save.settings();
-        renderBgGrids();
-      };
+      cell.onclick = () => { s.lockBg = src; save.settings(); renderBgGrids(); };
       lg.appendChild(cell);
     });
   }
 }
 
-/* ---------------- 启动 ---------------- */
+/* ---------- 启动 ---------- */
+async function boot() {
+  await Store.init();
+
+  const st = await Store.read('settings.json');
+  if (st) Object.assign(State.settings, st);
+
+  const c = await Store.read('cards.json');
+  if (c) State.cards = c;
+
+  const t = await Store.read('trash.json');
+  if (t) State.trash = t;
+
+  const m = await Store.read('messages.json');
+  if (m) State.messages = m;
+
+  const l = await Store.read('love.json');
+  if (l != null) State.love = l;
+
+  applyTheme(State.settings.theme);
+  applyFloatBall();
+  applyBackgrounds();
+  applyAvatars();
+
+  initLockPage();
+  initChatPage();
+  initFloatBallDrag();
+
+  $('#modal-mask').addEventListener('click', e => {
+    if (e.target.id === 'modal-mask') closeModal();
+  });
+
+  $('#sub-back').onclick = () => {
+    showPage('page-chat');
+  };
+}
+
 window.addEventListener('DOMContentLoaded', boot);
 </script>
 </body>
