@@ -217,6 +217,36 @@ ul, li { list-style: none; }
 .choice-btn svg { width: 26px; height: 26px; color: var(--accent-deep); }
 .choice-btn:active { transform: scale(.96); }
 
+/* 消息长按菜单 */
+.msg-menu-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: 14px;
+  font-size: 15px; color: var(--text);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 8px;
+}
+.msg-menu-item:last-child { margin-bottom: 0; }
+.msg-menu-item svg { width: 20px; height: 20px; color: var(--accent-deep); }
+
+/* 下拉小弹窗（重复选择等） */
+.dropdown {
+  position: absolute; z-index: 1100;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 6px;
+  display: none; flex-direction: column; gap: 2px;
+  box-shadow: 0 6px 22px var(--glass-shadow);
+}
+.dropdown.active { display: flex; }
+.dropdown-item {
+  padding: 10px 18px; border-radius: 9px;
+  font-size: 14px; color: var(--text); white-space: nowrap;
+}
+.dropdown-item.active { background: var(--accent); }
+
 /* ============ 动画 ============ */
 @keyframes heartbeat-line { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @keyframes heart-beat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.15); } 24% { transform: scale(1); } }
@@ -229,6 +259,10 @@ ul, li { list-style: none; }
 @keyframes num-pop { 0% { transform: scale(1); opacity:1; } 50% { transform: scale(1.25); opacity:.6; } 100% { transform: scale(1); opacity:1; } }
 @keyframes sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @keyframes pop-up { from { opacity:0; transform: translateY(8px) scale(.95); } to { opacity:1; transform: translateY(0) scale(1); } }
+@keyframes highlight-flash {
+  0%, 100% { box-shadow: 0 4px 14px var(--glass-shadow); }
+  50% { box-shadow: 0 0 0 3px var(--accent-deep); }
+}
 
 /* ============ 锁屏 ============ */
 .lock-wrap {
@@ -307,7 +341,9 @@ ul, li { list-style: none; }
 .msg-col { display: flex; flex-direction: column; max-width: 78%; }
 .msg-row.me .msg-col { align-items: flex-end; }
 .msg-row.other .msg-col { align-items: flex-start; }
+
 .bubble {
+  position: relative;
   padding: 10px 14px; border-radius: 18px;
   font-size: 15px; line-height: 1.5; word-break: break-word; color: var(--text);
   backdrop-filter: blur(14px) saturate(150%);
@@ -317,6 +353,39 @@ ul, li { list-style: none; }
 }
 .msg-row.other .bubble { background: var(--bubble-other); border: 1px solid var(--glass-border); }
 .msg-row.me .bubble { background: var(--bubble-me); border: 1px solid var(--glass-border); }
+
+/* 引用块 */
+.quote-block {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 10px; border-radius: 10px;
+  background: rgba(0,0,0,0.05);
+  border-left: 3px solid var(--accent-deep);
+  font-size: 12.5px; color: var(--text-soft);
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+.quote-block .quote-text { flex: 1; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+/* 引用输入条 */
+.quote-bar {
+  display: none; align-items: center; gap: 8px;
+  padding: 8px 12px; margin-bottom: 6px;
+  border-radius: 12px;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  font-size: 13px; color: var(--text-soft);
+}
+.quote-bar.active { display: flex; }
+.quote-bar .qtext { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quote-bar .qx { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+
+/* 心动标记 */
+.heart-mark {
+  position: absolute; font-size: 14px; line-height: 1;
+}
+.msg-row.other .heart-mark { top: -6px; right: -6px; }
+.msg-row.me .heart-mark { top: -6px; left: -6px; }
+
 .bubble.media { padding: 4px; border-radius: 16px; overflow: hidden; line-height: 0; }
 .bubble.media img { width: 120px; height: auto; max-height: 160px; border-radius: 13px; object-fit: cover; display: block; }
 .msg-avatar {
@@ -327,7 +396,7 @@ ul, li { list-style: none; }
 .msg-meta { margin-top: 4px; font-size: 11px; color: var(--time-text); display: flex; align-items: center; gap: 6px; }
 .read-flag { font-size: 11px; color: var(--heart-red); }
 
-/* 归档模式：勾选框 */
+/* 归档模式 */
 .msg-row.archive-mode { padding-left: 30px; position: relative; }
 .msg-check {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
@@ -353,8 +422,7 @@ ul, li { list-style: none; }
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   padding: 14px;
-  min-width: 220px;
-  max-width: 100%;
+  min-width: 220px; max-width: 100%;
 }
 .card-msg-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px; text-align: center; }
 .card-opt {
@@ -390,22 +458,11 @@ ul, li { list-style: none; }
   text-align: center; padding-bottom: 10px; flex-shrink: 0;
   border-bottom: 1px solid var(--glass-border);
 }
-.quiz-card-body {
-  flex: 1; overflow-y: auto; padding: 10px 0; max-height: 50vh;
-}
+.quiz-card-body { flex: 1; overflow-y: auto; padding: 10px 0; max-height: 50vh; }
 .quiz-card-body::-webkit-scrollbar { width: 0; }
 .quiz-q { margin-bottom: 14px; }
 .quiz-q-text { font-size: 14px; color: var(--text); margin-bottom: 8px; }
-.quiz-card-footer { flex-shrink: 0; padding-top: 10px; border-top: 1px solid var(--glass-border); }
-.quiz-submit {
-  width: 100%; padding: 11px; border-radius: 13px;
-  font-size: 14.5px; color: var(--text); background: var(--accent);
-  border: 1px solid var(--glass-border);
-}
-.quiz-submit.done { background: var(--glass-bg-strong); color: var(--text-soft); }
-.quiz-submit.hidden { display: none; }
 
-/* 归档模式底部操作栏 */
 .archive-bar {
   flex-shrink: 0; display: flex; gap: 8px;
   padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
@@ -498,7 +555,7 @@ ul, li { list-style: none; }
 .float-ball img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
 .float-ball.hidden { display: none; }
 
-/* ============ 字卡 / 回收站 ============ */
+/* ============ 通用列表 ============ */
 .card-toolbar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
 .toolbar-row { display: flex; gap: 8px; }
 .tool-btn {
@@ -808,7 +865,7 @@ ul, li { list-style: none; }
   padding: 12px; border-radius: 14px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
 }
-.q-head { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 8px; }
+.q-head { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
 .q-head textarea.field { flex: 1; min-height: 40px; }
 .q-head .q-del {
   width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
@@ -816,7 +873,7 @@ ul, li { list-style: none; }
   color: var(--danger); background: rgba(217,83,106,0.1); font-size: 16px;
 }
 .q-opt-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-.q-opt-row .field { flex: 1; }
+.q-opt-row textarea.field { flex: 1; min-height: 38px; }
 .q-opt-del {
   width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
@@ -829,10 +886,7 @@ ul, li { list-style: none; }
 }
 
 /* ============ 备忘录 ============ */
-.memo-body {
-  flex: 1; padding: 0 12px 12px;
-  display: flex; flex-direction: column;
-}
+.memo-body { flex: 1; padding: 0 12px 12px; display: flex; flex-direction: column; }
 .memo-textarea {
   flex: 1; width: 100%;
   padding: 14px; border-radius: 16px;
@@ -843,6 +897,58 @@ ul, li { list-style: none; }
   outline: none; resize: none;
 }
 .memo-textarea::placeholder { color: var(--text-soft); }
+
+/* ============ 心愿单 ============ */
+.wish-top { flex-shrink: 0; padding: 10px 12px; }
+.wish-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
+.wish-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 15px; color: var(--text);
+}
+.wish-circle {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--accent-deep);
+  background: transparent;
+}
+.wish-item.done .wish-circle { background: var(--accent-deep); border-color: var(--accent-deep); }
+.wish-item.done .wish-text { text-decoration: line-through; color: var(--text-soft); }
+.wish-text { flex: 1; word-break: break-word; }
+
+/* ============ 重要日 ============ */
+.day-top { flex-shrink: 0; padding: 10px 12px; }
+.day-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
+.day-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px 16px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.day-info { flex: 1; }
+.day-name { font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.day-sub { font-size: 12.5px; color: var(--text-soft); }
+.day-repeat {
+  display: inline-block; font-size: 11px; color: var(--accent-deep);
+  background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; margin-left: 6px;
+}
+.day-count {
+  font-size: 13px; font-weight: 600; color: var(--accent-deep);
+  flex-shrink: 0; text-align: right;
+}
+
+/* ============ 心动时刻 ============ */
+.heart-tabs { display: flex; gap: 8px; flex-shrink: 0; }
+.heart-list { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.heart-item {
+  padding: 14px 16px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 15px; color: var(--text);
+  position: relative;
+}
+.heart-item .h-mark { font-size: 14px; margin-right: 6px; }
+.heart-item .h-time { font-size: 11px; color: var(--time-text); margin-top: 6px; }
+.heart-item img { max-width: 100%; border-radius: 10px; }
+.heart-item .card-msg, .heart-item .quiz-card { margin-top: 6px; }
 </style>
 </head>
 <body data-theme="rose-glass">
@@ -1076,6 +1182,12 @@ ul, li { list-style: none; }
         <path d="M5 9v9.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
         <path d="M10 13h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       </symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24">
+        <path d="M6 7h4v6a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2H6zM14 7h4v6a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2h-2z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-heart-mark" viewBox="0 0 24 24">
+        <path d="M12 20.5S4 15 4 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15 12 20.5 12 20.5z" fill="currentColor"/>
+      </symbol>
     </defs>
   </svg>
 
@@ -1121,6 +1233,10 @@ ul, li { list-style: none; }
       <div class="typing-bar" id="typing-bar">
         <span>祂正在输入中</span>
         <i class="dot"></i><i class="dot"></i><i class="dot"></i>
+      </div>
+      <div class="quote-bar" id="quote-bar">
+        <span class="qtext" id="quote-bar-text"></span>
+        <span class="qx" id="quote-bar-x"><svg><use href="#i-close"/></svg></span>
       </div>
       <div class="footer-row">
         <div class="dual-btn">
@@ -1193,6 +1309,8 @@ ul, li { list-style: none; }
       <div class="sheet-grid" id="sheet-grid"></div>
     </div>
   </div>
+
+  <div class="dropdown" id="dropdown"></div>
 </div>
 <script>
 const $  = (s, r = document) => r.querySelector(s);
@@ -1206,6 +1324,7 @@ function dayKey(ts) { const d = new Date(ts); return '' + d.getFullYear() + '-' 
 function dayLabel(key) { const [y, m, d] = key.split('-'); return `${y}年${Number(m)}月${Number(d)}日`; }
 function todayKey() { return dayKey(Date.now()); }
 function escapeHTML(s) { return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function fullDate(d) { return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`; }
 
 const LOVE_QUOTES = [
   '今天也想你了。','你不在的时候，时间过得很慢。','我数着日子，等你。','想你的这件事，我一天都没落下。',
@@ -1226,7 +1345,7 @@ const LOCK_PASSWORDS = [
 const DING_PRESETS = ['可以的','去吧','别去了','我支持你','跟着心走','再想想','等等看','随你'];
 const ASK_PRESETS = ['是的','不是','应该是吧','我觉得是','我也在想','你说呢','让我想想','我也说不准','再说吧','看情况'];
 
-const VERSION = '1.0.0.6';
+const VERSION = '1.0.0.7';
 
 const State = {
   settings: {
@@ -1242,11 +1361,16 @@ const State = {
     avatarPool: [], avatarPairs: [],
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
     lockPassed: false, lastLockDay: '',
-    notify: false, fullscreen: false
+    notify: false, fullscreen: false,
+    quoteEnabled: false, quoteProb: 10,
+    heartEnabled: false, heartProb: 10
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
-  memo: '',
+  memos: '',
+  wishes: [],
+  days: [],
+  hearts: [],   /* 心动收藏：[{id, content:{type,text/src/card}, who:'me'|'other', by:'me'|'other', t}] */
   love: 0
 };
 
@@ -1289,7 +1413,10 @@ const save = {
   messages: () => Store.write('messages.json', State.messages),
   archive:  () => Store.write('archive.json', State.archive),
   quizzes:  () => Store.write('quizzes.json', State.quizzes),
-  memo:     () => Store.write('memo.json', State.memo),
+  memos:    () => Store.write('memos.json', State.memos),
+  wishes:   () => Store.write('wishes.json', State.wishes),
+  days:     () => Store.write('days.json', State.days),
+  hearts:   () => Store.write('hearts.json', State.hearts),
   love:     () => Store.write('love.json', State.love)
 };
 
@@ -1350,6 +1477,23 @@ function modalBack() {
     $('#modal').classList.toggle('wide', p.wide);
   } else closeModal();
 }
+
+/* ---------- 下拉小弹窗 ---------- */
+function openDropdown(anchorEl, items, onPick, current) {
+  const dd = $('#dropdown'); dd.innerHTML = '';
+  items.forEach(it => {
+    const el = document.createElement('div');
+    el.className = 'dropdown-item' + (it.value === current ? ' active' : '');
+    el.textContent = it.label;
+    el.onclick = () => { closeDropdown(); onPick(it.value); };
+    dd.appendChild(el);
+  });
+  const r = anchorEl.getBoundingClientRect();
+  dd.style.left = Math.min(r.left, window.innerWidth - 140) + 'px';
+  dd.style.top = (r.bottom + 6) + 'px';
+  dd.classList.add('active');
+}
+function closeDropdown() { $('#dropdown').classList.remove('active'); }
 
 /* ---------- 底部升起 ---------- */
 function openSheet(items, onPick) {
@@ -1438,6 +1582,7 @@ const MSG_PAGE = 20;
 let renderedCount = MSG_PAGE;
 let archiveMode = false;
 let archiveSelected = new Set();
+let quoteTarget = null;
 
 function initChatPage() {
   const input = $('#chat-input'); const btn = $('#btn-plus-send'); const icon = $('#plus-send-icon use');
@@ -1452,6 +1597,7 @@ function initChatPage() {
     $('#btn-lightning').classList.toggle('on', multiSendMode);
     if (!multiSendMode) triggerReply();
   };
+  $('#quote-bar-x').onclick = () => { quoteTarget = null; $('#quote-bar').classList.remove('active'); };
   const body = $('#chat-body');
   body.addEventListener('scroll', () => {
     if (body.scrollTop < 30 && renderedCount < State.messages.length && !archiveMode) {
@@ -1461,7 +1607,6 @@ function initChatPage() {
       body.scrollTop = body.scrollHeight - prevH + body.scrollTop;
     }
   });
-  /* 归档模式底部按钮 */
   $('#arc-all').onclick = () => { State.messages.forEach(m => archiveSelected.add(m.id)); renderMessages(); };
   $('#arc-exit').onclick = () => exitArchiveMode();
   $('#arc-go').onclick = doArchive;
@@ -1475,12 +1620,15 @@ function addLove(n) {
   if (el) { el.textContent = State.love; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
 }
 function sendMyText(text, noReply) {
-  State.messages.push({ id: uid(), who: 'me', type: 'text', text, t: nowHM(), ts: Date.now(), read: false });
+  const msg = { id: uid(), who: 'me', type: 'text', text, t: nowHM(), ts: Date.now(), read: false };
+  if (quoteTarget) { msg.quote = quoteTarget; quoteTarget = null; $('#quote-bar').classList.remove('active'); }
+  State.messages.push(msg);
   save.messages(); addLove(1); renderMessages(); scrollBottom();
   if (!multiSendMode && !noReply) triggerReply();
 }
 function sendMyImage(dataUrl, noReply) {
-  State.messages.push({ id: uid(), who: 'me', type: 'img', src: dataUrl, t: nowHM(), ts: Date.now(), read: false });
+  const msg = { id: uid(), who: 'me', type: 'img', src: dataUrl, t: nowHM(), ts: Date.now(), read: false };
+  State.messages.push(msg);
   save.messages(); addLove(1); renderMessages(); scrollBottom();
   if (!multiSendMode && !noReply) triggerReply();
 }
@@ -1502,6 +1650,8 @@ function renderMessages() {
         else archiveSelected.add(m.id);
         row.classList.toggle('checked', archiveSelected.has(m.id));
       };
+    } else {
+      bindLongPress(row, () => openMsgMenu(m));
     }
     body.appendChild(row);
   });
@@ -1509,16 +1659,29 @@ function renderMessages() {
 function buildMsgRow(m) {
   const row = document.createElement('div');
   row.className = 'msg-row ' + (m.who === 'me' ? 'me' : 'other');
+  if (m.id) row.dataset.mid = m.id;
   const av = document.createElement('img');
   av.className = 'msg-avatar';
   av.src = m.who === 'me' ? (State.settings.avatars.me || defaultAvatar('pink')) : (State.settings.avatars.other || defaultAvatar('blue'));
   const col = document.createElement('div'); col.className = 'msg-col';
+
+  /* 引用块 */
+  if (m.quote) {
+    const qb = document.createElement('div'); qb.className = 'quote-block';
+    qb.innerHTML = `<span class="quote-text">${escapeHTML(m.quote.text || '')}</span>`;
+    qb.onclick = () => jumpToMsg(m.quote.id);
+    col.appendChild(qb);
+  }
+
   if (m.type === 'card') col.appendChild(buildCard(m));
   else if (m.type === 'quiz') col.appendChild(buildQuizCard(m));
   else {
     const b = document.createElement('div'); b.className = 'bubble';
     if (m.type === 'img') { b.classList.add('media'); const im = document.createElement('img'); im.src = m.src; b.appendChild(im); }
     else b.textContent = m.text;
+    /* 心动标记 */
+    const hm = heartMarkOf(m.id);
+    if (hm) { const s = document.createElement('span'); s.className = 'heart-mark'; s.textContent = hm; b.appendChild(s); }
     col.appendChild(b);
   }
   const meta = document.createElement('div'); meta.className = 'msg-meta'; meta.textContent = m.t;
@@ -1527,6 +1690,15 @@ function buildMsgRow(m) {
   if (m.who === 'me') { row.appendChild(col); row.appendChild(av); }
   else { row.appendChild(av); row.appendChild(col); }
   return row;
+}
+function heartMarkOf(mid) {
+  const hs = State.hearts.filter(h => h.mid === mid);
+  if (!hs.length) return '';
+  const byMe = hs.some(h => h.by === 'me');
+  const byOther = hs.some(h => h.by === 'other');
+  if (byMe && byOther) return '💕';
+  if (byMe) return '🩷';
+  return '🥰';
 }
 
 /* 卡片（抉择/问答） */
@@ -1550,8 +1722,6 @@ function buildCard(m) {
   if (m.result) { const r = document.createElement('div'); r.className = 'card-msg-result'; r.textContent = m.result; card.appendChild(r); }
   return card;
 }
-
-/* 问卷卡片（我出卷，祂答） */
 function buildQuizCard(m) {
   const card = document.createElement('div');
   card.className = 'quiz-card';
@@ -1580,6 +1750,41 @@ function buildQuizCard(m) {
 
 function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop = body.scrollHeight; }
 function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = State.love; }
+
+/* 长按消息菜单 */
+function openMsgMenu(m) {
+  const html = `
+    <div class="msg-menu-item" id="mm-quote"><svg><use href="#i-quote"/></svg>引用</div>
+    <div class="msg-menu-item" id="mm-heart"><svg><use href="#i-heart-mark"/></svg>心动</div>
+  `;
+  openModal({ title: '', bodyHTML: html, actions: [] });
+  $('#mm-quote').onclick = () => { closeModal(); doQuote(m); };
+  $('#mm-heart').onclick = () => { closeModal(); doHeart(m, 'me'); };
+}
+function doQuote(m) {
+  quoteTarget = { id: m.id, text: m.text || (m.type === 'img' ? '[图片]' : (m.type === 'card' || m.type === 'quiz' ? '[卡片]' : '')) };
+  $('#quote-bar-text').textContent = '引用：' + quoteTarget.text;
+  $('#quote-bar').classList.add('active');
+  $('#chat-input').focus();
+}
+function doHeart(m, by) {
+  if (State.hearts.some(h => h.mid === m.id && h.by === by)) return;
+  State.hearts.push({ id: uid(), mid: m.id, by, who: m.who, content: extractContent(m), t: m.ts || Date.now() });
+  save.hearts(); renderMessages();
+}
+function extractContent(m) {
+  if (m.type === 'img') return { type: 'img', src: m.src };
+  if (m.type === 'card') return { type: 'card', title: m.title, options: m.options, myPick: m.myPick, otherPick: m.otherPick, result: m.result };
+  if (m.type === 'quiz') return { type: 'quiz', title: m.title, questions: m.questions, otherPicks: m.otherPicks };
+  return { type: 'text', text: m.text };
+}
+function jumpToMsg(mid) {
+  const row = $(`.msg-row[data-mid="${mid}"]`);
+  if (!row) return;
+  row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const bubble = row.querySelector('.bubble, .card-msg, .quiz-card');
+  if (bubble) { bubble.style.animation = 'highlight-flash 1s ease'; setTimeout(() => bubble.style.animation = '', 1100); }
+}
 
 function triggerReply() {
   const lastMe = [...State.messages].reverse().find(m => m.who === 'me');
@@ -1612,17 +1817,47 @@ function getThinkTime() {
   if (s.thinkTimeCustom != null) return s.thinkTimeCustom;
   switch (s.thinkTime) { case 'fast': return 5; case 'slow': return 15; default: return 8; }
 }
+
 function doReply() {
   if (State.cards.length === 0) { pushOther('没有字卡，祂只好安静地看着你。'); return; }
+  /* 祂引用 / 收藏 判定 */
+  const quote = maybeOtherQuote();
+  const heartMsg = maybeOtherHeart();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
   for (let i = 0; i < n; i++) picked.push(State.cards[Math.floor(Math.random() * State.cards.length)].text);
   let idx = 0;
-  const sendNext = () => { if (idx >= picked.length) return; pushOther(picked[idx]); idx++; if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000); };
+  const sendNext = () => {
+    if (idx >= picked.length) return;
+    const opt = { text: picked[idx] };
+    if (idx === 0 && quote) opt.quote = quote;
+    pushOther(opt.text, opt.quote);
+    if (idx === 0 && heartMsg) doHeart(heartMsg, 'other');
+    idx++;
+    if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
+  };
   sendNext();
 }
-function pushOther(text) {
-  State.messages.push({ id: uid(), who: 'other', type: 'text', text, t: nowHM(), ts: Date.now() });
+function maybeOtherQuote() {
+  const s = State.settings;
+  if (!s.quoteEnabled) return null;
+  if (Math.random() * 100 >= (s.quoteProb || 0)) return null;
+  const recent = State.messages.slice(-10);
+  if (!recent.length) return null;
+  const pick = recent[Math.floor(Math.random() * recent.length)];
+  return { id: pick.id, text: pick.text || (pick.type === 'img' ? '[图片]' : '[卡片]') };
+}
+function maybeOtherHeart() {
+  const s = State.settings;
+  if (!s.heartEnabled) return null;
+  if (Math.random() * 100 >= (s.heartProb || 0)) return null;
+  if (!State.messages.length) return null;
+  return State.messages[Math.floor(Math.random() * State.messages.length)];
+}
+function pushOther(text, quote) {
+  const msg = { id: uid(), who: 'other', type: 'text', text, t: nowHM(), ts: Date.now() };
+  if (quote) msg.quote = quote;
+  State.messages.push(msg);
   save.messages(); addLove(1); renderMessages(); scrollBottom();
   maybeNotify(text);
 }
@@ -1635,19 +1870,16 @@ function maybeNotify(text) {
 
 /* ---------- 归档模式 ---------- */
 function enterArchiveMode() {
-  archiveMode = true;
-  archiveSelected.clear();
+  archiveMode = true; archiveSelected.clear();
   $('#chat-footer').style.display = 'none';
   $('#archive-bar').style.display = 'flex';
   renderMessages();
 }
 function exitArchiveMode() {
-  archiveMode = false;
-  archiveSelected.clear();
+  archiveMode = false; archiveSelected.clear();
   $('#chat-footer').style.display = '';
   $('#archive-bar').style.display = 'none';
-  renderMessages();
-  scrollBottom();
+  renderMessages(); scrollBottom();
 }
 function doArchive() {
   if (!archiveSelected.size) { openModal({ title:'', bodyHTML:'先选几条吧', actions: [] }); setTimeout(closeModal, 1500); return; }
@@ -1657,9 +1889,7 @@ function doArchive() {
   let i = 0;
   const step = () => {
     if (i >= ids.length) {
-      /* 归档完成 */
       const moving = State.messages.filter(m => archiveSelected.has(m.id));
-      const today = todayKey();
       moving.forEach(m => {
         const k = dayKey(m.ts || Date.now());
         let entry = State.archive.find(a => a.day === k);
@@ -1796,6 +2026,9 @@ function handleBigItem(name) {
   if (name === '旧梦温存') return openArchive();
   if (name === '抉择') return openChoice();
   if (name === '备忘录') return openMemo();
+  if (name === '心愿单') return openWishlist();
+  if (name === '重要日') return openDays();
+  if (name === '心动时刻') return openHearts();
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
@@ -1832,29 +2065,176 @@ function openSub(title, bodyHTML, afterRender) {
 /* ---------- 备忘录 ---------- */
 let memoTimer = null;
 function openMemo() {
-  openSub('备忘录', `<div class="memo-body"><textarea class="memo-textarea" id="memo-input" placeholder="写点什么…">${escapeHTML(State.memo || '')}</textarea></div>`, () => {
+  openSub('备忘录', `<div class="memo-body"><textarea class="memo-textarea" id="memo-input" placeholder="写点什么…">${escapeHTML(State.memos || '')}</textarea></div>`, () => {
     const ta = $('#memo-input');
-    ta.oninput = () => {
-      State.memo = ta.value;
-      clearTimeout(memoTimer);
-      memoTimer = setTimeout(() => save.memo(), 500);
+    ta.oninput = () => { State.memos = ta.value; clearTimeout(memoTimer); memoTimer = setTimeout(() => save.memos(), 500); };
+  });
+}
+
+/* ---------- 心愿单 ---------- */
+function openWishlist() {
+  openSub('心愿单', `<div class="wish-top"><button class="upload-btn" id="btn-add-wish" style="border-style:solid"><svg><use href="#i-plus"/></svg>添加心愿</button></div><div class="wish-list" id="wish-list"></div>`, () => {
+    renderWishlist();
+    $('#btn-add-wish').onclick = () => {
+      openModal({ title: '添加心愿', bodyHTML: `<input class="field" id="wish-input" placeholder="想和祂一起做的事…">`, actions: [{ label: '保存', keepOpen: true, onClick: () => {
+        const v = $('#wish-input').value.trim(); if (!v) return;
+        State.wishes.push({ id: uid(), text: v, done: false, t: Date.now() });
+        save.wishes(); closeModal(); renderWishlist();
+      }}]});
+      setTimeout(() => $('#wish-input') && $('#wish-input').focus(), 100);
     };
+  });
+}
+function renderWishlist() {
+  const list = $('#wish-list'); if (!list) return;
+  if (!State.wishes.length) { list.innerHTML = `<div class="empty-tip">还没有心愿。</div>`; return; }
+  const sorted = [...State.wishes].sort((a, b) => (a.done ? 1 : 0) - (b.done ? 1 : 0));
+  list.innerHTML = '';
+  sorted.forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'wish-item' + (w.done ? ' done' : '');
+    el.innerHTML = `<div class="wish-circle"></div><div class="wish-text"></div>`;
+    el.querySelector('.wish-text').textContent = w.text;
+    el.querySelector('.wish-circle').onclick = (e) => { e.stopPropagation(); w.done = !w.done; save.wishes(); renderWishlist(); };
+    bindLongPress(el, () => {
+      openModal({ title: w.text, bodyHTML: '', actions: [{ label: '删除', danger: true, keepOpen: true, onClick: () => { State.wishes = State.wishes.filter(x => x.id !== w.id); save.wishes(); closeModal(); renderWishlist(); } }] });
+    });
+    list.appendChild(el);
+  });
+}
+
+/* ---------- 重要日 ---------- */
+function openDays() {
+  openSub('重要日', `<div class="day-top"><button class="upload-btn" id="btn-add-day" style="border-style:solid"><svg><use href="#i-plus"/></svg>添加重要日</button></div><div class="day-list" id="day-list"></div>`, () => {
+    renderDays();
+    $('#btn-add-day').onclick = () => openDayEditor(null);
+  });
+}
+function openDayEditor(d) {
+  const editing = d ? { ...d } : { id: uid(), name: '', date: '', repeat: 'none' };
+  const repeatLabel = { none: '不重复', weekly: '每周', monthly: '每月', yearly: '每年' };
+  openModal({
+    title: d ? '编辑重要日' : '添加重要日',
+    bodyHTML: `
+      <input class="field" id="day-name" placeholder="名称" value="${escapeHTML(editing.name)}" style="margin-bottom:10px">
+      <input class="field" id="day-date" type="date" value="${editing.date}" style="margin-bottom:10px">
+      <div class="set-row" id="day-repeat-row" style="cursor:pointer"><span class="label">重复</span><span class="value" id="day-repeat-val">${repeatLabel[editing.repeat]}</span></div>
+    `,
+    actions: [{ label: '保存', keepOpen: true, onClick: () => {
+      const name = $('#day-name').value.trim();
+      const date = $('#day-date').value;
+      if (!name || !date) { openModal({ title:'', bodyHTML:'名称和日期都要填', actions: [] }); setTimeout(closeModal, 1500); return; }
+      editing.name = name; editing.date = date;
+      if (d) { const i = State.days.findIndex(x => x.id === d.id); State.days[i] = editing; }
+      else State.days.push(editing);
+      save.days(); closeModal(); renderDays();
+    }}]
+  });
+  setTimeout(() => {
+    $('#day-repeat-row').onclick = () => {
+      openDropdown($('#day-repeat-row'),
+        Object.keys(repeatLabel).map(k => ({ value: k, label: repeatLabel[k] })),
+        (v) => { editing.repeat = v; $('#day-repeat-val').textContent = repeatLabel[v]; },
+        editing.repeat);
+    };
+  }, 50);
+}
+function renderDays() {
+  const list = $('#day-list'); if (!list) return;
+  if (!State.days.length) { list.innerHTML = `<div class="empty-tip">还没有重要日。</div>`; return; }
+  const sorted = [...State.days].sort((a, b) => nextDate(a).getTime() - nextDate(b).getTime());
+  list.innerHTML = '';
+  sorted.forEach(d => {
+    const nd = nextDate(d);
+    const days = Math.round((nd - startOfDay(new Date())) / 86400000);
+    let countText;
+    if (days === 0) countText = '就是今天';
+    else if (days > 0) countText = '还有 ' + days + ' 天';
+    else countText = '已过 ' + (-days) + ' 天';
+    const repeatLabel = { none: '', weekly: '每周', monthly: '每月', yearly: '每年' }[d.repeat];
+    const el = document.createElement('div');
+    el.className = 'day-item';
+    el.innerHTML = `
+      <div class="day-info">
+        <div class="day-name">${escapeHTML(d.name)}${repeatLabel ? `<span class="day-repeat">${repeatLabel}</span>` : ''}</div>
+        <div class="day-sub">${d.date}</div>
+      </div>
+      <div class="day-count">${countText}</div>
+    `;
+    el.onclick = () => openDayEditorMenu(d);
+    list.appendChild(el);
+  });
+}
+function startOfDay(d) { const x = new Date(d); x.setHours(0,0,0,0); return x; }
+function nextDate(d) {
+  const base = new Date(d.date + 'T00:00:00');
+  const today = startOfDay(new Date());
+  if (d.repeat === 'none') return base;
+  let next = new Date(base);
+  if (d.repeat === 'weekly') {
+    while (next < today) next.setDate(next.getDate() + 7);
+  } else if (d.repeat === 'monthly') {
+    while (next < today) next.setMonth(next.getMonth() + 1);
+  } else if (d.repeat === 'yearly') {
+    while (next < today) next.setFullYear(next.getFullYear() + 1);
+  }
+  return next;
+}
+function openDayEditorMenu(d) {
+  openModal({ title: escapeHTML(d.name), bodyHTML: '', actions: [
+    { label: '编辑', onClick: () => openDayEditor(d) },
+    { label: '删除', danger: true, onClick: () => { State.days = State.days.filter(x => x.id !== d.id); save.days(); renderDays(); } }
+  ]});
+}
+
+/* ---------- 心动时刻 ---------- */
+let heartTab = 'other';
+function openHearts() {
+  openSub('心动时刻', `
+    <div class="bg-tabs" style="padding:0 14px">
+      <div class="bg-tab ${heartTab==='other'?'active':''}" id="ht-other">🥰 祂的心动时刻</div>
+      <div class="bg-tab ${heartTab==='me'?'active':''}" id="ht-me">🩷 我的心动时刻</div>
+    </div>
+    <div class="heart-list" id="heart-list"></div>
+  `, () => {
+    renderHearts();
+    $('#ht-other').onclick = () => { heartTab = 'other'; openHearts(); };
+    $('#ht-me').onclick = () => { heartTab = 'me'; openHearts(); };
+  });
+}
+function renderHearts() {
+  const list = $('#heart-list'); if (!list) return;
+  const items = State.hearts.filter(h => h.by === heartTab);
+  if (!items.length) { list.innerHTML = `<div class="empty-tip">还没有心动。</div>`; return; }
+  list.innerHTML = '';
+  items.slice().reverse().forEach(h => {
+    const el = document.createElement('div'); el.className = 'heart-item';
+    const mark = h.by === 'me' ? '🩷' : '🥰';
+    let inner = `<span class="h-mark">${mark}</span>`;
+    if (h.content.type === 'text') inner += escapeHTML(h.content.text);
+    else if (h.content.type === 'img') inner += `<img src="${h.content.src}">`;
+    else if (h.content.type === 'card') inner += `<div class="card-msg"><div class="card-msg-title">${escapeHTML(h.content.title)}</div>${h.content.options.map((o,i)=>`<div class="card-opt"><span class="opt-label">${String.fromCharCode(65+i)}. ${escapeHTML(o)}</span></div>`).join('')}</div>`;
+    else if (h.content.type === 'quiz') inner += `<div class="quiz-card"><div class="quiz-card-title">${escapeHTML(h.content.title)}</div></div>`;
+    inner += `<div class="h-time">${fullDate(new Date(h.t))}</div>`;
+    el.innerHTML = inner;
+    el.onclick = () => {
+      openModal({ title: '', bodyHTML: '', actions: [{ label: '取消心动', danger: true, keepOpen: true, onClick: () => {
+        State.hearts = State.hearts.filter(x => x.id !== h.id);
+        save.hearts(); closeModal(); renderHearts(); renderMessages();
+      }}]});
+    };
+    list.appendChild(el);
   });
 }
 
 /* ---------- 抉择（弹窗） ---------- */
 function openChoice() {
-  const items = [
-    ['帮我选','i-select-all'], ['帮我定','i-choice'], ['问问祂','i-qa'], ['让祂选','i-album']
-  ];
-  const html = `<div class="choice-grid">` + items.map((it, i) =>
-    `<div class="choice-btn" data-choice="${i}"><svg><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
-  ).join('') + `</div>`;
+  const items = [['帮我选','i-select-all'], ['帮我定','i-choice'], ['问问祂','i-qa'], ['让祂选','i-album']];
+  const html = `<div class="choice-grid">` + items.map((it, i) => `<div class="choice-btn" data-choice="${i}"><svg><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`).join('') + `</div>`;
   openModal({ title: '抉择', bodyHTML: html, actions: [] });
   $$('#modal-body [data-choice]').forEach(el => {
     el.onclick = () => {
-      const name = items[+el.dataset.choice][0];
-      closeModal();
+      const name = items[+el.dataset.choice][0]; closeModal();
       if (name === '帮我选') return choicePick();
       if (name === '帮我定') return choiceDing();
       if (name === '问问祂') return choiceAsk();
@@ -1862,17 +2242,13 @@ function openChoice() {
     };
   });
 }
-
 function choicePick() {
-  openModal({
-    title: '帮我选',
-    bodyHTML: `<input class="field" id="cp-q" placeholder="问题" style="margin-bottom:10px"><input class="field" id="cp-a" placeholder="A" style="margin-bottom:8px"><input class="field" id="cp-b" placeholder="B" style="margin-bottom:8px"><input class="field" id="cp-c" placeholder="C" style="margin-bottom:8px"><input class="field" id="cp-d" placeholder="D" style="margin-bottom:8px">`,
+  openModal({ title: '帮我选', bodyHTML: `<input class="field" id="cp-q" placeholder="问题" style="margin-bottom:10px"><input class="field" id="cp-a" placeholder="A" style="margin-bottom:8px"><input class="field" id="cp-b" placeholder="B" style="margin-bottom:8px"><input class="field" id="cp-c" placeholder="C" style="margin-bottom:8px"><input class="field" id="cp-d" placeholder="D" style="margin-bottom:8px">`,
     actions: [{ label: '祂的选择', keepOpen: true, onClick: () => {
       const q = $('#cp-q').value.trim();
       const opts = ['cp-a','cp-b','cp-c','cp-d'].map(id => $('#'+id).value.trim()).filter(Boolean);
       if (!opts.length) { openModal({ title:'', bodyHTML:'再想想吧', actions: [] }); setTimeout(closeModal, 1500); return; }
-      const pick = Math.floor(Math.random() * opts.length);
-      closeModal();
+      const pick = Math.floor(Math.random() * opts.length); closeModal();
       State.messages.push({ id: uid(), who: 'me', type: 'card', title: q || '帮我选', options: opts, otherPick: pick, t: nowHM(), ts: Date.now(), read: false });
       save.messages(); renderMessages(); scrollBottom();
     }}]
@@ -1881,51 +2257,35 @@ function choicePick() {
 function choiceDing() {
   openModal({ title: '帮我定', bodyHTML: `<input class="field" id="cd-q" placeholder="问题">`,
     actions: [{ label: '祂的决定', keepOpen: true, onClick: () => {
-      const q = $('#cd-q').value.trim(); closeModal();
-      sendMyText(q || '帮我定', true);
-      const ans = DING_PRESETS[Math.floor(Math.random() * DING_PRESETS.length)];
-      waitThink(() => pushOther(ans));
+      const q = $('#cd-q').value.trim(); closeModal(); sendMyText(q || '帮我定', true);
+      waitThink(() => pushOther(DING_PRESETS[Math.floor(Math.random() * DING_PRESETS.length)]));
     }}]
   });
 }
 function choiceAsk() {
   openModal({ title: '问问祂', bodyHTML: `<input class="field" id="ca-q" placeholder="问题">`,
     actions: [{ label: '问问祂', keepOpen: true, onClick: () => {
-      const q = $('#ca-q').value.trim(); closeModal();
-      sendMyText(q || '问问祂', true);
-      const ans = ASK_PRESETS[Math.floor(Math.random() * ASK_PRESETS.length)];
-      waitThink(() => pushOther(ans));
+      const q = $('#ca-q').value.trim(); closeModal(); sendMyText(q || '问问祂', true);
+      waitThink(() => pushOther(ASK_PRESETS[Math.floor(Math.random() * ASK_PRESETS.length)]));
     }}]
   });
 }
 function choiceImage() {
   let imgs = [];
-  openModal({
-    title: '让祂选',
-    bodyHTML: `<input class="field" id="ci-text" placeholder="想对祂说的话..." style="margin-bottom:10px"><button class="upload-btn" id="ci-upload"><svg><use href="#i-plus"/></svg>上传图片（可多选）</button><div class="unpair-grid" id="ci-preview" style="margin-top:10px"></div>`,
+  openModal({ title: '让祂选', bodyHTML: `<input class="field" id="ci-text" placeholder="想对祂说的话..." style="margin-bottom:10px"><button class="upload-btn" id="ci-upload"><svg><use href="#i-plus"/></svg>上传图片（可多选）</button><div class="unpair-grid" id="ci-preview" style="margin-top:10px"></div>`,
     actions: [{ label: '祂的喜欢', keepOpen: true, onClick: () => {
       if (imgs.length < 2) { openModal({ title:'', bodyHTML:'至少两张哦', actions: [] }); setTimeout(closeModal, 1500); return; }
-      const txt = $('#ci-text').value.trim();
-      const pick = Math.floor(Math.random() * imgs.length);
-      closeModal();
+      const txt = $('#ci-text').value.trim(); const pick = Math.floor(Math.random() * imgs.length); closeModal();
       if (txt) sendMyText(txt, true);
       imgs.forEach(src => sendMyImage(src, true));
-      waitThink(() => {
-        State.messages.push({ id: uid(), who: 'other', type: 'img', src: imgs[pick], t: nowHM(), ts: Date.now() });
-        save.messages(); renderMessages(); scrollBottom();
-      });
+      waitThink(() => { State.messages.push({ id: uid(), who: 'other', type: 'img', src: imgs[pick], t: nowHM(), ts: Date.now() }); save.messages(); renderMessages(); scrollBottom(); });
     }}]
   });
   setTimeout(() => {
     $('#ci-upload').onclick = () => pickImage((dataUrl) => {
       imgs.push(dataUrl);
       const g = $('#ci-preview'); g.innerHTML = '';
-      imgs.forEach((src, i) => {
-        const c = document.createElement('div');
-        c.className = 'unpair-cell'; c.innerHTML = `<img src="${src}">`;
-        c.onclick = () => { imgs.splice(i, 1); $('#ci-upload').click(); };
-        g.appendChild(c);
-      });
+      imgs.forEach((src, i) => { const c = document.createElement('div'); c.className = 'unpair-cell'; c.innerHTML = `<img src="${src}">`; c.onclick = () => { imgs.splice(i, 1); $('#ci-upload').click(); }; g.appendChild(c); });
     }, true);
   }, 50);
 }
@@ -1941,17 +2301,14 @@ function openQuiz() {
   State.messages.push(card); save.messages(); renderMessages(); scrollBottom();
   setTimeout(() => {
     const rows = $$('#chat-body .msg-row.me .card-msg');
-    const last = rows[rows.length - 1];
-    if (!last) return;
+    const last = rows[rows.length - 1]; if (!last) return;
     $$('.card-opt', last).forEach((o, i) => {
       o.onclick = () => {
         if (card.myPick !== null) return;
         card.myPick = i; save.messages(); renderMessages(); scrollBottom();
         waitThink(() => {
-          const otherPick = Math.floor(Math.random() * four.length);
-          card.otherPick = otherPick;
-          if (card.myPick === otherPick) { card.result = '默契 +10'; addLove(10); }
-          else { card.result = '默契 -5'; addLove(-5); }
+          const otherPick = Math.floor(Math.random() * four.length); card.otherPick = otherPick;
+          if (card.myPick === otherPick) { card.result = '默契 +10'; addLove(10); } else { card.result = '默契 -5'; addLove(-5); }
           save.messages(); renderMessages(); scrollBottom();
         });
       };
@@ -1980,23 +2337,17 @@ function renderQuizList() {
   });
 }
 function openQuizItemMenu(q) {
-  openModal({
-    title: escapeHTML(q.title), bodyHTML: '',
-    actions: [
-      { label: '查看', onClick: () => openQuizCreate(q, true) },
-      { label: '编辑', onClick: () => openQuizCreate(q, false) },
-      { label: q.locked ? '解锁' : '上锁', onClick: () => { q.locked = !q.locked; save.quizzes(); renderQuizList(); } },
-      { label: '删除', danger: true, onClick: () => {
-        openModal({ title: '确定删除？', bodyHTML: '', actions: [
-          { label: '删除', danger: true, keepOpen: true, onClick: () => { State.quizzes = State.quizzes.filter(x => x.id !== q.id); save.quizzes(); closeModal(); renderQuizList(); } }
-        ]});
-      }}
-    ]
-  });
+  openModal({ title: escapeHTML(q.title), bodyHTML: '', actions: [
+    { label: '查看', onClick: () => openQuizCreate(q, true) },
+    { label: '编辑', onClick: () => openQuizCreate(q, false) },
+    { label: q.locked ? '解锁' : '上锁', onClick: () => { q.locked = !q.locked; save.quizzes(); renderQuizList(); } },
+    { label: '删除', danger: true, onClick: () => { openModal({ title: '确定删除？', bodyHTML: '', actions: [{ label: '删除', danger: true, keepOpen: true, onClick: () => { State.quizzes = State.quizzes.filter(x => x.id !== q.id); save.quizzes(); closeModal(); renderQuizList(); } }] }); } }
+  ]});
 }
-let quizEditing = null;
+let quizEditing = null, quizOriginal = null;
 function openQuizCreate(q, readonly) {
   quizEditing = q ? { ...q, questions: q.questions.map(x => ({ ...x, options: [...x.options] })) } : { id: uid(), title: '', questions: [{ text: '', options: ['','','',''] }], locked: false };
+  quizOriginal = q ? { questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })) } : null;
   showPage('page-sub'); $('#sub-title').textContent = readonly ? '查看问卷' : (q ? '编辑问卷' : '创建问卷');
   const body = $('#sub-body'); body.style.padding = '0';
   body.innerHTML = `
@@ -2015,8 +2366,25 @@ function openQuizCreate(q, readonly) {
     if (!quizEditing.questions.length) { openModal({ title:'', bodyHTML:'至少加一道题', actions: [] }); setTimeout(closeModal, 1500); return; }
     const exist = State.quizzes.findIndex(x => x.id === quizEditing.id);
     if (exist >= 0) State.quizzes[exist] = quizEditing; else State.quizzes.unshift(quizEditing);
-    save.quizzes(); openQuizManager();
+    save.quizzes();
+    /* 同步聊天里旧卡片 */
+    syncQuizCards(quizEditing.id);
+    openQuizManager();
   };
+}
+function syncQuizCards(quizId) {
+  const quiz = State.quizzes.find(x => x.id === quizId);
+  if (!quiz) return;
+  let changed = false;
+  State.messages.forEach(m => {
+    if (m.type !== 'quiz' || m.quizId !== quizId) return;
+    const optionsChanged = JSON.stringify(m.questions.map(q=>q.options)) !== JSON.stringify(quiz.questions.map(q=>q.options));
+    m.title = quiz.title;
+    m.questions = quiz.questions.map(x => ({ text: x.text, options: [...x.options] }));
+    if (optionsChanged) { m.otherPicks = null; }
+    changed = true;
+  });
+  if (changed) { save.messages(); renderMessages(); scrollBottom(); }
 }
 function renderQuizQuestions(readonly) {
   const wrap = $('#quiz-questions'); if (!wrap) return;
@@ -2027,9 +2395,7 @@ function renderQuizQuestions(readonly) {
     const ta = document.createElement('textarea');
     ta.className = 'field'; ta.rows = 1;
     ta.placeholder = '问题' + (qi + 1);
-    ta.value = q.text;
-    ta.disabled = readonly;
-    ta.dataset.qt = qi;
+    ta.value = q.text; ta.disabled = readonly; ta.dataset.qt = qi;
     head.appendChild(ta);
     if (!readonly) {
       const del = document.createElement('div'); del.className = 'q-del'; del.textContent = '×';
@@ -2039,7 +2405,10 @@ function renderQuizQuestions(readonly) {
     el.appendChild(head);
     q.options.forEach((opt, oi) => {
       const row = document.createElement('div'); row.className = 'q-opt-row';
-      const inp = document.createElement('input'); inp.className = 'field'; inp.placeholder = String.fromCharCode(65+oi); inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
+      const inp = document.createElement('textarea');
+      inp.className = 'field'; inp.rows = 1;
+      inp.placeholder = String.fromCharCode(65+oi);
+      inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
       row.appendChild(inp);
       if (!readonly) {
         const del = document.createElement('div'); del.className = 'q-opt-del'; del.textContent = '×';
@@ -2052,6 +2421,8 @@ function renderQuizQuestions(readonly) {
       const addOpt = document.createElement('button'); addOpt.className = 'q-add-opt'; addOpt.textContent = '+ 添加选项';
       addOpt.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
       el.appendChild(addOpt);
+    } else {
+      const qt = document.createElement('div'); qt.style.cssText = 'font-size:14px;color:var(--text);margin-bottom:8px';
     }
     wrap.appendChild(el);
   });
@@ -2067,15 +2438,12 @@ function syncQuizInputs() {
 function sendQuizPick() {
   const list = State.quizzes.filter(q => !q.locked && q.questions.length);
   if (!list.length) { openModal({ title:'', bodyHTML:'还没有可用的问卷', actions: [] }); setTimeout(closeModal, 1500); return; }
-  const html = `<div class="dup-list">` + list.map((q, i) =>
-    `<div class="dup-item" data-sq="${i}" style="cursor:pointer"><span style="flex:1">${escapeHTML(q.title)}（${q.questions.length}题）</span></div>`
-  ).join('') + `</div>`;
+  const html = `<div class="dup-list">` + list.map((q, i) => `<div class="dup-item" data-sq="${i}" style="cursor:pointer"><span style="flex:1">${escapeHTML(q.title)}（${q.questions.length}题）</span></div>`).join('') + `</div>`;
   openModal({ title: '选择问卷', bodyHTML: html, actions: [] });
   $$('#modal-body [data-sq]').forEach(el => {
     el.onclick = () => {
-      const q = list[+el.dataset.sq];
-      closeModal();
-      const msg = { id: uid(), who: 'me', type: 'quiz', title: q.title, questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })), otherPicks: null, t: nowHM(), ts: Date.now(), read: false };
+      const q = list[+el.dataset.sq]; closeModal();
+      const msg = { id: uid(), who: 'me', type: 'quiz', quizId: q.id, title: q.title, questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })), otherPicks: null, t: nowHM(), ts: Date.now(), read: false };
       State.messages.push(msg); save.messages(); renderMessages(); scrollBottom();
       waitThink(() => {
         const picks = {};
@@ -2139,6 +2507,16 @@ function openSetChat() {
     <div class="set-row"><span class="label">自定义（秒）</span>
       <input class="field" id="in-think" type="number" style="width:90px" value="${s.thinkTimeCustom ?? ''}">
     </div>
+
+    <div class="section-title">引用</div>
+    <div class="set-row"><span class="label">祂可以使用引用回复</span><div class="switch ${s.quoteEnabled?'on':''}" id="sw-quote"></div></div>
+    <div class="set-row"><span class="label">引用概率（%）</span>
+      <input class="field" id="in-quote-prob" type="number" style="width:80px" value="${s.quoteProb}"></div>
+
+    <div class="section-title">心动</div>
+    <div class="set-row"><span class="label">祂可以收藏（心动）</span><div class="switch ${s.heartEnabled?'on':''}" id="sw-heart"></div></div>
+    <div class="set-row"><span class="label">收藏概率（%）</span>
+      <input class="field" id="in-heart-prob" type="number" style="width:80px" value="${s.heartProb}"></div>
   `, () => {
     markSeg('#seg-reply', s.replySpeedMin != null ? '' : s.replySpeed);
     markSeg('#seg-gap', s.multiGapMin != null ? '' : s.multiGap);
@@ -2164,6 +2542,10 @@ function openSetChat() {
       const v = Math.max(1, Math.min(60, +e.target.value || 8));
       s.thinkTimeCustom = v; save.settings(); e.target.value = v; markSeg('#seg-think', '');
     };
+    $('#sw-quote').onclick = function() { s.quoteEnabled = !s.quoteEnabled; this.classList.toggle('on', s.quoteEnabled); save.settings(); };
+    $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
+    $('#in-quote-prob').onchange = e => { s.quoteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.quoteProb; save.settings(); };
+    $('#in-heart-prob').onchange = e => { s.heartProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.heartProb; save.settings(); };
   });
 }
 
@@ -2262,7 +2644,7 @@ function openSetSystem() {
   });
 }
 function doBackup() {
-  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, memo: State.memo, love: State.love };
+  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, love: State.love };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `阿遇♥阿凉_${dateStamp()}.json`; a.click();
@@ -2285,7 +2667,10 @@ function doRestore() {
       ['消息', () => { State.messages = data.messages || []; }],
       ['归档', () => { State.archive = data.archive || []; }],
       ['问卷', () => { State.quizzes = data.quizzes || []; }],
-      ['备忘录', () => { State.memo = data.memo || ''; }],
+      ['备忘录', () => { State.memos = data.memos || ''; }],
+      ['心愿单', () => { State.wishes = data.wishes || []; }],
+      ['重要日', () => { State.days = data.days || []; }],
+      ['心动时刻', () => { State.hearts = data.hearts || []; }],
       ['爱意值', () => { State.love = data.love || 0; }]
     ];
     for (let i = 0; i < stages.length; i++) {
@@ -2293,9 +2678,10 @@ function doRestore() {
       stages[i][1]();
       const pct = Math.round((i + 1) / stages.length * 100);
       $('#restore-bar').style.width = pct + '%'; $('#restore-pct').textContent = pct + '%';
-      await new Promise(r => setTimeout(r, 250));
+      await new Promise(r => setTimeout(r, 200));
     }
-    await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.memo(); await save.love();
+    await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive();
+    await save.quizzes(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.love();
     $('#restore-stage').textContent = '完成';
     setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1200); }, 600);
   };
@@ -2304,9 +2690,11 @@ function doRestore() {
 function doClear() {
   openModal({ title: '清空所有数据', bodyHTML: '确定清空全部数据吗？<br>清空后无法恢复，建议先备份。', actions: [
     { label: '确认清空', danger: true, keepOpen: true, onClick: async () => {
-      State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.memo = ''; State.love = 0;
+      State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = [];
+      State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
-      await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.memo(); await save.love(); await save.settings();
+      await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes();
+      await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.love(); await save.settings();
       location.reload();
     }}
   ]});
@@ -2793,7 +3181,10 @@ async function boot() {
   const m = await Store.read('messages.json'); if (m) State.messages = m;
   const a = await Store.read('archive.json'); if (a) State.archive = a;
   const q = await Store.read('quizzes.json'); if (q) State.quizzes = q;
-  const mm = await Store.read('memo.json'); if (mm != null) State.memo = mm;
+  const mm = await Store.read('memos.json'); if (mm != null) State.memos = mm;
+  const w = await Store.read('wishes.json'); if (w) State.wishes = w;
+  const d = await Store.read('days.json'); if (d) State.days = d;
+  const h = await Store.read('hearts.json'); if (h) State.hearts = h;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
 
   applyTheme(State.settings.theme);
@@ -2804,6 +3195,7 @@ async function boot() {
   $('#modal-mask').addEventListener('click', e => { if (e.target.id === 'modal-mask') closeModal(); });
   $('#sheet-mask').addEventListener('click', e => { if (e.target.id === 'sheet-mask') closeSheet(); });
   $('#sub-back').onclick = () => goBack();
+  document.addEventListener('click', e => { if (!e.target.closest('.dropdown') && !e.target.closest('#day-repeat-row')) closeDropdown(); });
 }
 window.addEventListener('DOMContentLoaded', boot);
 </script>
