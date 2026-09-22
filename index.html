@@ -362,10 +362,9 @@ ul, li { list-style: none; }
   border-radius: 14px;
   font-size: 14.5px;
   font-weight: 500;
-  color: var(--text);
-  background: var(--glass-bg-strong);
+  color: var(--text-invert);
+  background: var(--accent);
   border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
   transition: transform .12s ease;
 }
 .modal-btn:active { transform: scale(.96); }
@@ -429,6 +428,11 @@ ul, li { list-style: none; }
   from { opacity: 0; transform: translateY(6px) scale(.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes num-pop {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.25); opacity: .6; }
+  100% { transform: scale(1); opacity: 1; }
+}
 
 /* ---------- 锁屏页 ---------- */
 .lock-wrap {
@@ -476,13 +480,17 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
 }
 
-.lock-heart {
-  width: 26px;
-  height: 26px;
+.heart-char {
   color: var(--heart-red);
+  font-size: 22px;
+  line-height: 1;
+  display: inline-block;
+}
+.heart-char.beat {
   animation: heart-beat 1.6s ease-in-out infinite;
   filter: drop-shadow(0 0 6px rgba(232, 83, 111, .45));
 }
+.lock-heart { font-size: 26px; }
 
 .heartbeat-line {
   width: 54px;
@@ -531,7 +539,6 @@ ul, li { list-style: none; }
 }
 .lock-enter:active { transform: scale(.94); }
 
-/* ---------- 锁屏密码 ---------- */
 .lock-pass {
   display: none;
   flex-direction: column;
@@ -559,7 +566,6 @@ ul, li { list-style: none; }
   display: block;
 }
 
-/* 真实输入框：透明但可交互，能粘贴，调数字键盘 */
 .lock-pass-input {
   position: absolute;
   inset: 0;
@@ -581,10 +587,8 @@ ul, li { list-style: none; }
   position: relative;
   z-index: 5;
   padding: 10px 14px 12px;
-  border-radius: 0 0 20px 20px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: none;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -609,13 +613,7 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
 }
 
-.header-heart {
-  width: 20px;
-  height: 20px;
-  color: var(--heart-red);
-  animation: heart-beat 1.6s ease-in-out infinite;
-  filter: drop-shadow(0 0 5px rgba(232, 83, 111, .4));
-}
+.header-heart { font-size: 20px; }
 
 .header-row-2 {
   font-size: 15px;
@@ -631,7 +629,12 @@ ul, li { list-style: none; }
   font-size: 13px;
   color: var(--text-soft);
 }
-.love-heart { width: 14px; height: 14px; color: var(--heart-red); }
+.love-heart {
+  color: var(--heart-red);
+  font-size: 13px;
+  line-height: 1;
+}
+#hdr-love.pop { animation: num-pop .35s ease; }
 
 .chat-body {
   flex: 1;
@@ -649,6 +652,7 @@ ul, li { list-style: none; }
 }
 .msg-row.me { justify-content: flex-end; }
 
+/* 头像比气泡顶部低 10px */
 .msg-avatar {
   width: 36px;
   height: 36px;
@@ -657,6 +661,7 @@ ul, li { list-style: none; }
   border: 1.5px solid var(--glass-border);
   background: var(--glass-bg);
   flex-shrink: 0;
+  margin-top: 10px;
 }
 
 .msg-col {
@@ -718,10 +723,8 @@ ul, li { list-style: none; }
   position: relative;
   z-index: 5;
   padding: 8px 12px calc(10px + env(safe-area-inset-bottom));
-  border-radius: 20px 20px 0 0;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
+  border: none;
+  background: transparent;
   flex-shrink: 0;
 }
 
@@ -829,11 +832,7 @@ ul, li { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 6px 20px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
   touch-action: none;
 }
 .float-ball img {
@@ -1100,6 +1099,29 @@ ul, li { list-style: none; }
 .bg-cell img { width: 100%; height: 100%; object-fit: cover; }
 .bg-cell.active { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-soft); }
 
+/* 背景 tab */
+.bg-tabs {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.bg-tab {
+  flex: 1;
+  padding: 11px;
+  border-radius: 13px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--text);
+  background: var(--glass-bg);
+  border: 1.5px solid var(--glass-border);
+  transition: all .16s ease;
+}
+.bg-tab.active {
+  background: var(--accent);
+  color: var(--text-invert);
+  border-color: var(--accent);
+}
+
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1140,16 +1162,29 @@ ul, li { list-style: none; }
   color: var(--text);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+.set-row.no-top-light {
+  box-shadow: none;
 }
 .set-row .label { color: var(--text); }
 .set-row .value { color: var(--text-soft); font-size: 13.5px; }
 
-.seg { display: flex; gap: 6px; flex-wrap: wrap; }
+/* 档位：排满一行，自适应 */
+.seg {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
 .seg-btn {
-  padding: 7px 14px;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 4px;
   border-radius: 11px;
-  font-size: 13px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
   color: var(--text);
   background: var(--glass-bg);
   border: 1.5px solid var(--glass-border);
@@ -1160,6 +1195,18 @@ ul, li { list-style: none; }
   color: var(--text-invert);
   border-color: var(--accent);
 }
+
+/* 自定义范围输入：两个框 */
+.range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.range-row .field {
+  width: 70px;
+  text-align: center;
+}
+.range-row .tilde { color: var(--text-soft); }
 
 .float-preview {
   width: 72px;
@@ -1208,6 +1255,69 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
 }
 .dup-count { color: var(--accent); font-weight: 600; }
+
+/* ---------- 底部弹出面板（⊕） ---------- */
+.sheet-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--mask);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.sheet-mask.active { display: flex; }
+
+.sheet {
+  width: 100%;
+  border-radius: 24px 24px 0 0;
+  padding: 12px 16px calc(20px + env(safe-area-inset-bottom));
+  animation: sheet-up .26s cubic-bezier(.2,.9,.3,1.1);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--text-soft);
+  opacity: .5;
+  margin: 0 auto 12px;
+}
+
+.sheet-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 8px;
+}
+.sheet-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text);
+}
+.sheet-item svg {
+  width: 26px;
+  height: 26px;
+  color: var(--accent);
+}
 </style>
 </head>
 <body data-theme="rose-glass">
@@ -1216,12 +1326,6 @@ ul, li { list-style: none; }
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
-      <symbol id="i-heart-fill" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 21s-7.5-4.6-9.7-9.2C.7 8.4 2.4 5 5.8 5c1.9 0 3.2 1 4.2 2.3C11 6 12.3 5 14.2 5c3.4 0 5.1 3.4 3.5 6.8C19.5 16.4 12 21 12 21z"/>
-      </symbol>
-      <symbol id="i-heart-line" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 20.2s-6.9-4.3-8.9-8.5C1.5 8.5 3 5.6 6 5.6c1.7 0 2.9.9 3.9 2.1 1-1.2 2.2-2.1 3.9-2.1 3 0 4.5 2.9 2.9 6.1-2 4.2-8.7 8.5-8.7 8.5z"/>
-      </symbol>
       <symbol id="i-plus-circle" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
         <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -1243,29 +1347,37 @@ ul, li { list-style: none; }
         <rect x="3" y="6" width="12.5" height="12" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
         <path d="M15.5 10.2 21 7.5v9l-5.5-2.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
       </symbol>
+      <!-- 贴纸：调色板 + 颜料点 -->
       <symbol id="i-sticker" viewBox="0 0 24 24">
-        <path d="M12 3.4a8.6 8.6 0 0 0-8.6 8.6c0 4.7 3.9 8.6 8.6 8.6 3.4 0 5.4-1.4 8.6-4.3V12A8.6 8.6 0 0 0 12 3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M12 20.6c0-4.7 3.9-8.6 8.6-8.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
-        <circle cx="9" cy="11" r="1" fill="currentColor"/>
-        <circle cx="15" cy="11" r="1" fill="currentColor"/>
+        <path d="M12 3.6c-4.6 0-8.4 3.8-8.4 8.4s3.8 8.4 8.4 8.4c1.3 0 2.2-.9 2.2-2.1 0-.6-.2-1-.5-1.4-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2.1-2h1.9c2.3 0 4.2-1.9 4.2-4.2C21.4 6.2 17.3 3.6 12 3.6z"
+          fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="7.8" cy="11" r="1.15" fill="currentColor"/>
+        <circle cx="10.4" cy="7.4" r="1.15" fill="currentColor"/>
+        <circle cx="14.6" cy="7.2" r="1.15" fill="currentColor"/>
+        <circle cx="16.6" cy="10.4" r="1.15" fill="currentColor"/>
       </symbol>
       <symbol id="i-gift" viewBox="0 0 24 24">
         <rect x="3.4" y="9" width="17.2" height="11" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
         <path d="M3.4 13h17.2M12 9v11" stroke="currentColor" stroke-width="1.7"/>
         <path d="M12 9C10.5 5.6 8.4 4.2 6.8 5.2 5.4 6 6 8 8 9m4 0c1.5-3.4 3.6-4.8 5.2-3.8 1.4.8.8 2.8-1.2 3.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       </symbol>
-      <symbol id="i-package" viewBox="0 0 24 24">
-        <path d="M4 8.6 12 4l8 4.6v9.2L12 20l-8-4.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M4 8.6 12 13l8-4.4M12 13v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <!-- 手提包（备用） -->
+      <symbol id="i-handbag" viewBox="0 0 24 24">
+        <path d="M5 9.4h14l-1 10.2a1.6 1.6 0 0 1-1.6 1.4H7.6A1.6 1.6 0 0 1 6 19.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M8.6 9.4V8a3.4 3.4 0 0 1 6.8 0v1.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       </symbol>
       <symbol id="i-blindbox" viewBox="0 0 24 24">
         <rect x="4" y="6" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
         <path d="M4 11h16" stroke="currentColor" stroke-width="1.7"/>
         <path d="M9.6 6c-1.2-1.6-.4-3 1-3 .9 0 1.4.8 1.4 1.6C12 3.8 12.5 3 13.4 3c1.4 0 2.2 1.4 1 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </symbol>
+      <!-- 互动：两个小人夹红心 -->
       <symbol id="i-interact" viewBox="0 0 24 24">
-        <path d="M8.5 4.5 6 12l6.5 7.5L19 12l-2.5-7.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <circle cx="12" cy="11" r="2.4" fill="currentColor"/>
+        <circle cx="6.4" cy="8.4" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M2.8 17c.4-2.2 1.8-3.4 3.6-3.4S9.6 14.8 10 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="17.6" cy="8.4" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M14 17c.4-2.2 1.8-3.4 3.6-3.4S20.8 14.8 21.2 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 12.6c-.9-1.1-2.7-.7-2.7.9 0 1.4 2.7 2.9 2.7 2.9s2.7-1.5 2.7-2.9c0-1.6-1.8-2-2.7-.9z" fill="var(--heart-red)"/>
       </symbol>
       <symbol id="i-qa" viewBox="0 0 24 24">
         <path d="M4.5 5.5h15v10h-7.5L8 19v-3.5H4.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
@@ -1301,17 +1413,23 @@ ul, li { list-style: none; }
         <ellipse cx="12" cy="12" rx="3.6" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.5"/>
         <path d="M3.8 12h16.4M5 8h14M5 16h14" fill="none" stroke="currentColor" stroke-width="1.5"/>
       </symbol>
+      <!-- 信箱：标准信封 -->
       <symbol id="i-mailbox" viewBox="0 0 24 24">
-        <path d="M4 9.5 12 4l8 5.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M4 10.5 12 16l8-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.4 6.6 12 12.6l8.6-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
       </symbol>
       <symbol id="i-note" viewBox="0 0 24 24">
         <path d="M6 3.6h9.5L19.5 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
         <path d="M15 3.8V8h4.2M8.5 12.5h7M8.5 15.8h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </symbol>
+      <!-- 抉择：骰子 -->
       <symbol id="i-choice" viewBox="0 0 24 24">
-        <path d="M8 5 5 12l3 7M16 5l3 7-3 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M12 4.5v15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-dasharray="2.4 2.4"/>
+        <rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="8.6" cy="8.6" r="1.15" fill="currentColor"/>
+        <circle cx="15.4" cy="8.6" r="1.15" fill="currentColor"/>
+        <circle cx="12" cy="12" r="1.15" fill="currentColor"/>
+        <circle cx="8.6" cy="15.4" r="1.15" fill="currentColor"/>
+        <circle cx="15.4" cy="15.4" r="1.15" fill="currentColor"/>
       </symbol>
       <symbol id="i-couple" viewBox="0 0 24 24">
         <circle cx="8.6" cy="9.4" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
@@ -1319,9 +1437,10 @@ ul, li { list-style: none; }
         <path d="M3.6 19c.5-2.8 2.5-4.3 5-4.3M20.4 19c-.5-2.8-2.5-4.3-5-4.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         <path d="M12 15.6c-.8-1-2.4-.6-2.4.8 0 1.3 2.4 2.6 2.4 2.6s2.4-1.3 2.4-2.6c0-1.4-1.6-1.8-2.4-.8z" fill="currentColor" opacity=".6"/>
       </symbol>
+      <!-- 心动时刻：心跳曲线 -->
       <symbol id="i-moment" viewBox="0 0 24 24">
-        <path d="M12 20.4S4.8 15.9 2.9 11.5C1.5 8.2 3.3 5 6.6 5c1.9 0 3.2 1 4.1 2.2C11.6 6 12.9 5 14.8 5c3.3 0 5.1 3.2 3.7 6.5-1.9 4.4-6.5 8.9-6.5 8.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M12 3v2.4M9 3.6l.7 2.2M15 3.6l-.7 2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M2.5 12h4.2l1.8-5 3 10 2-7 1.6 4h6.4"
+          fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       </symbol>
       <symbol id="i-diary" viewBox="0 0 24 24">
         <path d="M5 4.6h11a2 2 0 0 1 2 2v12.8H7a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
@@ -1337,9 +1456,11 @@ ul, li { list-style: none; }
         <path d="M8.4 8h7.2M8.4 11.4h7.2M8.4 14.8h4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         <path d="M15.6 15.2 19 11.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </symbol>
+      <!-- 心愿单：三颗小星 -->
       <symbol id="i-wishlist" viewBox="0 0 24 24">
-        <path d="M6 3.8h12v16.4l-6-3.4-6 3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M12 9.2c-.7-.9-2.1-.5-2.1.7 0 1.1 2.1 2.3 2.1 2.3s2.1-1.2 2.1-2.3c0-1.2-1.4-1.6-2.1-.7z" fill="currentColor" opacity=".75"/>
+        <path d="M14 3.6l1 2.6 2.8.2-2.2 1.8.7 2.7-2.3-1.6-2.3 1.6.7-2.7-2.2-1.8 2.8-.2z" fill="currentColor"/>
+        <path d="M7 12.4l.7 1.7 1.8.1-1.4 1.2.4 1.8-1.5-1-1.5 1 .4-1.8-1.4-1.2 1.8-.1z" fill="currentColor" opacity=".8"/>
+        <path d="M16.4 15.6l.6 1.5 1.6.1-1.2 1 .3 1.5-1.3-.9-1.3.9.3-1.5-1.2-1 1.6-.1z" fill="currentColor" opacity=".6"/>
       </symbol>
       <symbol id="i-anniv" viewBox="0 0 24 24">
         <rect x="4" y="5.4" width="16" height="14.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
@@ -1438,7 +1559,7 @@ ul, li { list-style: none; }
       <div class="lock-heart-row">
         <img class="lock-avatar" id="lock-avatar-other" alt="">
         <div class="heartbeat-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
-        <svg class="lock-heart"><use href="#i-heart-fill"/></svg>
+        <span class="heart-char beat lock-heart">♥</span>
         <div class="heartbeat-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
         <img class="lock-avatar" id="lock-avatar-me" alt="">
       </div>
@@ -1455,24 +1576,24 @@ ul, li { list-style: none; }
   </div>
 
   <div class="page" id="page-chat">
-    <header class="chat-header glass">
+    <header class="chat-header" id="chat-header">
       <div class="header-row-1">
         <img class="header-avatar" id="hdr-avatar-other" alt="">
         <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
-        <svg class="header-heart"><use href="#i-heart-fill"/></svg>
+        <span class="heart-char beat header-heart">♥</span>
         <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
         <img class="header-avatar" id="hdr-avatar-me" alt="">
       </div>
-      <div class="header-row-2" id="hdr-name">阿凉</div>
+      <div class="header-row-2" id="hdr-name"></div>
       <div class="header-row-3">
-        <svg class="love-heart"><use href="#i-heart-line"/></svg>
+        <span class="love-heart">♡</span>
         <span id="hdr-love">0</span>
       </div>
     </header>
 
     <main class="chat-body scroll-y" id="chat-body"></main>
 
-    <footer class="chat-footer glass">
+    <footer class="chat-footer" id="chat-footer">
       <div class="typing-bar" id="typing-bar">
         <span>祂正在输入中</span>
         <i class="dot"></i><i class="dot"></i><i class="dot"></i>
@@ -1504,6 +1625,14 @@ ul, li { list-style: none; }
       <div class="modal-title" id="modal-title"></div>
       <div class="modal-body" id="modal-body"></div>
       <div class="modal-actions" id="modal-actions"></div>
+    </div>
+  </div>
+
+  <div class="sheet-mask" id="sheet-mask">
+    <div class="sheet glass" id="sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title" id="sheet-title"></div>
+      <div class="sheet-grid" id="sheet-grid"></div>
     </div>
   </div>
 </div>
@@ -1565,25 +1694,29 @@ const LOCK_PASSWORDS = [
   '用大把时间仿徨，用几个瞬间成长'
 ];
 
+const VERSION = '1.0.0.1';
+
 const State = {
   settings: {
     theme: 'rose-glass',
     replySpeed: 'daily',
-    replySpeedCustom: 45,
+    replySpeedMin: null,
+    replySpeedMax: null,
     multiGap: 'daily',
-    multiGapCustom: 4,
+    multiGapMin: null,
+    multiGapMax: null,
     lockMode: 'first',
     floatSize: 52,
     floatImg: '',
     floatHidden: false,
     floatPos: null,
     avatars: { other: '', me: '' },
-    otherName: '阿凉',
-    otherCall: '阿凉',
-    otherCalls: ['阿凉'],
-    myName: '阿遇',
-    myCall: '阿遇',
-    myCalls: ['阿遇'],
+    otherName: '',
+    otherCall: '',
+    otherCalls: [],
+    myName: '',
+    myCall: '',
+    myCalls: [],
     avatarPool: [],
     avatarPairs: [],
     chatBg: '',
@@ -1682,10 +1815,38 @@ function applyTheme(name) {
   save.settings();
 }
 
-function showPage(id) {
+/* ---------- 页面栈（一层层返回） ---------- */
+let pageStack = [];
+
+function showPage(id, pushHistory = true) {
+  const current = $$('.page').find(p => p.classList.contains('active'));
+  if (current && pushHistory && current.id !== id) {
+    pageStack.push(current.id);
+  }
   $$('.page').forEach(p => p.classList.toggle('active', p.id === id));
+  updateFloatBallVisible();
 }
 
+function goBack() {
+  const prev = pageStack.pop();
+  if (prev) {
+    $$('.page').forEach(p => p.classList.toggle('active', p.id === prev));
+    updateFloatBallVisible();
+  } else {
+    $$('.page').forEach(p => p.classList.toggle('active', p.id === 'page-chat'));
+    updateFloatBallVisible();
+  }
+}
+
+function updateFloatBallVisible() {
+  const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
+  const ball = $('#float-ball');
+  if (!ball) return;
+  if (lockActive || State.settings.floatHidden) ball.classList.add('hidden');
+  else ball.classList.remove('hidden');
+}
+
+/* ---------- 弹窗 ---------- */
 function openModal({ title, bodyHTML, actions }) {
   $('#modal-title').textContent = title || '';
   $('#modal-body').innerHTML = bodyHTML || '';
@@ -1708,6 +1869,26 @@ function closeModal() {
   $('#modal-mask').classList.remove('active');
 }
 
+/* ---------- 底部面板（⊕ 用） ---------- */
+function openSheet(title, items, onPick) {
+  $('#sheet-title').textContent = title || '';
+  const grid = $('#sheet-grid');
+  grid.innerHTML = '';
+  items.forEach((it, i) => {
+    const el = document.createElement('div');
+    el.className = 'sheet-item';
+    el.innerHTML = `<svg><use href="#${it[1]}"/></svg><span>${it[0]}</span>`;
+    el.onclick = () => { closeSheet(); onPick(it[0]); };
+    grid.appendChild(el);
+  });
+  $('#sheet-mask').classList.add('active');
+}
+
+function closeSheet() {
+  $('#sheet-mask').classList.remove('active');
+}
+
+/* ---------- 选图片 ---------- */
 function pickImage(cb, multiple = false) {
   const inp = document.createElement('input');
   inp.type = 'file';
@@ -1756,7 +1937,7 @@ function initLockPage() {
     else if (mode === 'daily') needPass = State.settings.lastLockDay !== today;
     else if (mode === 'refresh') needPass = true;
 
-    if (!needPass) { showPage('page-chat'); return; }
+    if (!needPass) { enterChat(); return; }
 
     $('#btn-enter').style.display = 'none';
     $('#lock-pass').classList.add('active');
@@ -1780,7 +1961,7 @@ function initLockPage() {
     renderDots(0);
     $('#lock-pass').classList.remove('active');
     $('#btn-enter').style.display = '';
-    showPage('page-chat');
+    enterChat();
   }
 
   function failPass() {
@@ -1799,12 +1980,10 @@ function initLockPage() {
   input.addEventListener('input', () => {
     const v = input.value;
     renderDots(v.length);
-    if (v.length >= 1) {
-      const matched = LOCK_PASSWORDS.some(p => p === v);
-      if (matched) { check(v); return; }
-      const isPrefix = LOCK_PASSWORDS.some(p => p.startsWith(v));
-      if (!isPrefix) failPass();
-    }
+    const matched = LOCK_PASSWORDS.some(p => p === v);
+    if (matched) { check(v); return; }
+    const isPrefix = LOCK_PASSWORDS.some(p => p.startsWith(v));
+    if (!isPrefix && v.length > 0) failPass();
   });
 
   input.addEventListener('paste', () => {
@@ -1816,6 +1995,11 @@ function initLockPage() {
   });
 
   renderDots(0);
+}
+
+function enterChat() {
+  pageStack = [];
+  showPage('page-chat', false);
 }
 
 /* ---------- 聊天 ---------- */
@@ -1842,9 +2026,22 @@ function initChatPage() {
   updateLove();
 }
 
+function addLove(n) {
+  State.love += n;
+  save.love();
+  const el = $('#hdr-love');
+  if (el) {
+    el.textContent = State.love;
+    el.classList.remove('pop');
+    void el.offsetWidth;
+    el.classList.add('pop');
+  }
+}
+
 function sendMyText(text) {
   State.messages.push({ id: uid(), who: 'me', type: 'text', text, t: nowHM(), read: false });
   save.messages();
+  addLove(1);
   renderMessages();
   scrollBottom();
   triggerReply();
@@ -1853,6 +2050,7 @@ function sendMyText(text) {
 function sendMyImage(dataUrl) {
   State.messages.push({ id: uid(), who: 'me', type: 'img', src: dataUrl, t: nowHM(), read: false });
   save.messages();
+  addLove(1);
   renderMessages();
   scrollBottom();
   triggerReply();
@@ -1934,21 +2132,25 @@ function triggerReply() {
 
 function getReplyWait() {
   const s = State.settings;
+  if (s.replySpeedMin != null && s.replySpeedMax != null) {
+    return s.replySpeedMin + Math.random() * (s.replySpeedMax - s.replySpeedMin);
+  }
   switch (s.replySpeed) {
     case 'fast':  return 15 + Math.random() * 15;
     case 'slow':  return 60 + Math.random() * 60;
     case 'long':  return 120 + Math.random() * 180;
-    case 'custom':return Math.max(5, s.replySpeedCustom);
     default:      return 30 + Math.random() * 30;
   }
 }
 
 function getMultiGap() {
   const s = State.settings;
+  if (s.multiGapMin != null && s.multiGapMax != null) {
+    return s.multiGapMin + Math.random() * (s.multiGapMax - s.multiGapMin);
+  }
   switch (s.multiGap) {
     case 'fast':  return 1 + Math.random() * 2;
     case 'slow':  return 5 + Math.random() * 3;
-    case 'custom':return Math.max(1, s.multiGapCustom);
     default:      return 3 + Math.random() * 2;
   }
 }
@@ -1976,6 +2178,7 @@ function doReply() {
 function pushOther(text) {
   State.messages.push({ id: uid(), who: 'other', type: 'text', text, t: nowHM() });
   save.messages();
+  addLove(1);
   renderMessages();
   scrollBottom();
 }
@@ -1988,19 +2191,20 @@ function applyFloatBall() {
   ball.style.height = State.settings.floatSize + 'px';
   const img = $('#float-ball-img');
   img.src = State.settings.floatImg || defaultAvatar('blue');
-  ball.classList.toggle('hidden', State.settings.floatHidden === true);
   if (State.settings.floatPos) {
     ball.style.left = State.settings.floatPos.left;
     ball.style.top = State.settings.floatPos.top;
     ball.style.right = 'auto';
     ball.style.bottom = 'auto';
   }
+  updateFloatBallVisible();
 }
 
 function applyBackgrounds() {
+  const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
   const layer = $('#bg-layer');
   if (!layer) return;
-  const bg = State.settings.chatBg || State.settings.lockBg;
+  const bg = lockActive ? State.settings.lockBg : State.settings.chatBg;
   if (bg) {
     layer.style.backgroundImage = `url(${bg})`;
     layer.style.backgroundSize = 'cover';
@@ -2017,8 +2221,11 @@ function applyAvatars() {
   if ($('#lock-avatar-me')) $('#lock-avatar-me').src = m;
   if ($('#hdr-avatar-other')) $('#hdr-avatar-other').src = o;
   if ($('#hdr-avatar-me')) $('#hdr-avatar-me').src = m;
-  if ($('#hdr-name')) $('#hdr-name').textContent = State.settings.otherCall || State.settings.otherName;
+  if ($('#hdr-name')) $('#hdr-name').textContent = State.settings.otherCall || '祂的称呼';
   renderMessages();
+  /* 头像管理页开着时，实时刷新大图 */
+  if ($('#av-other-big')) $('#av-other-big').src = o;
+  if ($('#av-me-big')) $('#av-me-big').src = m;
 }
 
 function initFloatBallDrag() {
@@ -2079,21 +2286,11 @@ function initFloatBallDrag() {
 function openPlusMenu() {
   const items = [
     ['拍照','i-camera'], ['相册','i-album'], ['视频','i-video'], ['贴纸','i-sticker'],
-    ['礼物','i-gift'], ['礼包','i-package'], ['盲盒','i-blindbox'], ['互动','i-interact'],
-    ['问答','i-qa'], ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion'],
+    ['礼物','i-gift'], ['盲盒','i-blindbox'], ['互动','i-interact'], ['问答','i-qa'],
+    ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion'],
     ['悬浮球','i-floatball'], ['关锁','i-lock']
   ];
-  const html = `<div class="unpair-grid">` + items.map((it, i) =>
-    `<div class="unpair-cell" data-plus="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px">
-      <svg style="width:22px;height:22px;color:var(--accent)"><use href="#${it[1]}"/></svg>
-      <span>${it[0]}</span>
-    </div>`).join('') + `</div>`;
-
-  openModal({ title: '小功能', bodyHTML: html, actions: [] });
-
-  $$('#modal-body [data-plus]').forEach(el => {
-    el.onclick = () => { const name = items[+el.dataset.plus][0]; closeModal(); handlePlusItem(name); };
-  });
+  openSheet('小功能', items, handlePlusItem);
 }
 
 function handlePlusItem(name) {
@@ -2104,10 +2301,12 @@ function handlePlusItem(name) {
     return;
   }
   if (name === '关锁') {
-    const order = ['first','daily','refresh'];
-    const cur = order.indexOf(State.settings.lockMode);
-    State.settings.lockMode = order[(cur + 1) % order.length];
-    save.settings();
+    /* 立刻锁屏回锁屏页 */
+    pageStack = [];
+    showPage('page-lock', false);
+    $('#btn-enter').style.display = '';
+    $('#lock-pass').classList.remove('active');
+    applyBackgrounds();
     return;
   }
   if (name === '拍照' || name === '相册') {
@@ -2132,7 +2331,7 @@ function handlePlusItem(name) {
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* ---------- 大功能 ---------- */
+/* ---------- 悬浮球大功能 ---------- */
 function openBigMenu() {
   const items = [
     ['小世界','i-world'], ['信箱','i-mailbox'], ['留言笺','i-note'], ['抉择','i-choice'],
@@ -2144,9 +2343,7 @@ function openBigMenu() {
       <svg style="width:22px;height:22px;color:var(--accent)"><use href="#${it[1]}"/></svg>
       <span>${it[0]}</span>
     </div>`).join('') + `</div>`;
-
   openModal({ title: '功能', bodyHTML: html, actions: [] });
-
   $$('#modal-body [data-big]').forEach(el => {
     el.onclick = () => { const name = items[+el.dataset.big][0]; closeModal(); handleBigItem(name); };
   });
@@ -2161,7 +2358,7 @@ function handleBigItem(name) {
 function openWorld() {
   const items = [
     ['字卡','i-card'], ['头像','i-avatar'], ['背景','i-bg'], ['表情','i-emoji'],
-    ['贴纸','i-sticker'], ['礼物','i-gift'], ['礼包','i-package'], ['互动','i-interact'],
+    ['贴纸','i-sticker'], ['礼物','i-gift'], ['互动','i-interact'],
     ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion']
   ];
   openSub('小世界', `<div class="unpair-grid" id="world-grid">` + items.map((it, i) =>
@@ -2226,42 +2423,70 @@ function openSetChat() {
   openSub('聊天', `
     <div class="section-title">祂的回复速度</div>
     <div class="seg" id="seg-reply">
-      <button class="seg-btn" data-v="fast">快</button>
-      <button class="seg-btn" data-v="daily">日常</button>
-      <button class="seg-btn" data-v="slow">慢</button>
-      <button class="seg-btn" data-v="long">很长</button>
+      <button class="seg-btn" data-v="fast">快（15～30）</button>
+      <button class="seg-btn" data-v="daily">日常（30～60）</button>
+      <button class="seg-btn" data-v="slow">慢（60～120）</button>
+      <button class="seg-btn" data-v="long">很长（120～300）</button>
     </div>
     <div class="set-row"><span class="label">自定义（秒）</span>
-      <input class="field" id="in-reply-custom" type="number" style="width:110px" value="${s.replySpeedCustom}">
+      <div class="range-row">
+        <input class="field" id="in-reply-min" type="number" value="${s.replySpeedMin ?? ''}">
+        <span class="tilde">～</span>
+        <input class="field" id="in-reply-max" type="number" value="${s.replySpeedMax ?? ''}">
+      </div>
     </div>
 
     <div class="section-title">多条字卡间隔</div>
     <div class="seg" id="seg-gap">
-      <button class="seg-btn" data-v="fast">快</button>
-      <button class="seg-btn" data-v="daily">日常</button>
-      <button class="seg-btn" data-v="slow">慢</button>
+      <button class="seg-btn" data-v="fast">快（1～3）</button>
+      <button class="seg-btn" data-v="daily">日常（3～5）</button>
+      <button class="seg-btn" data-v="slow">慢（5～8）</button>
     </div>
     <div class="set-row"><span class="label">自定义（秒）</span>
-      <input class="field" id="in-gap-custom" type="number" style="width:110px" value="${s.multiGapCustom}">
+      <div class="range-row">
+        <input class="field" id="in-gap-min" type="number" value="${s.multiGapMin ?? ''}">
+        <span class="tilde">～</span>
+        <input class="field" id="in-gap-max" type="number" value="${s.multiGapMax ?? ''}">
+      </div>
     </div>
   `, () => {
-    markSeg('#seg-reply', s.replySpeed);
-    markSeg('#seg-gap', s.multiGap);
-    bindSeg('#seg-reply', v => { s.replySpeed = v; save.settings(); });
-    bindSeg('#seg-gap', v => { s.multiGap = v; save.settings(); });
+    markSeg('#seg-reply', s.replySpeedMin != null ? '' : s.replySpeed);
+    markSeg('#seg-gap', s.multiGapMin != null ? '' : s.multiGap);
 
-    $('#in-reply-custom').onchange = e => {
-      s.replySpeedCustom = Math.max(5, Math.min(600, +e.target.value || 45));
-      s.replySpeed = 'custom';
+    bindSeg('#seg-reply', v => {
+      s.replySpeed = v;
+      s.replySpeedMin = null; s.replySpeedMax = null;
       save.settings();
-      markSeg('#seg-reply', 'custom');
-    };
-    $('#in-gap-custom').onchange = e => {
-      s.multiGapCustom = Math.max(1, Math.min(30, +e.target.value || 4));
-      s.multiGap = 'custom';
+    });
+    bindSeg('#seg-gap', v => {
+      s.multiGap = v;
+      s.multiGapMin = null; s.multiGapMax = null;
       save.settings();
-      markSeg('#seg-gap', 'custom');
-    };
+    });
+
+    function readRange(minEl, maxEl, lo, hi, minKey, maxKey, segSel, segValKey) {
+      const a = minEl.value === '' ? null : +minEl.value;
+      const b = maxEl.value === '' ? null : +maxEl.value;
+      if (a == null && b == null) {
+        State.settings[minKey] = null;
+        State.settings[maxKey] = null;
+        save.settings();
+        markSeg(segSel, State.settings[segValKey]);
+        return;
+      }
+      let mn = a == null ? lo : Math.max(lo, a);
+      let mx = b == null ? hi : Math.min(hi, b);
+      if (mn > mx) { const t = mn; mn = mx; mx = t; }
+      State.settings[minKey] = mn;
+      State.settings[maxKey] = mx;
+      save.settings();
+      minEl.value = mn; maxEl.value = mx;
+    }
+
+    $('#in-reply-min').onchange = () => readRange($('#in-reply-min'), $('#in-reply-max'), 5, 600, 'replySpeedMin', 'replySpeedMax', '#seg-reply', 'replySpeed');
+    $('#in-reply-max').onchange = () => readRange($('#in-reply-min'), $('#in-reply-max'), 5, 600, 'replySpeedMin', 'replySpeedMax', '#seg-reply', 'replySpeed');
+    $('#in-gap-min').onchange = () => readRange($('#in-gap-min'), $('#in-gap-max'), 1, 30, 'multiGapMin', 'multiGapMax', '#seg-gap', 'multiGap');
+    $('#in-gap-max').onchange = () => readRange($('#in-gap-min'), $('#in-gap-max'), 1, 30, 'multiGapMin', 'multiGapMax', '#seg-gap', 'multiGap');
   });
 }
 
@@ -2285,7 +2510,7 @@ function openSetAppearance() {
 
     <div class="section-title">悬浮球图片</div>
     <div class="float-preview"><img id="float-preview-img" src="${s.floatImg || defaultAvatar('blue')}"></div>
-    <div class="set-row"><span class="label">当前悬浮球</span><span class="value" id="float-size-label">${s.floatSize}px</span></div>
+    <div class="set-row no-top-light"><span class="label">当前悬浮球</span><span class="value" id="float-size-label">${s.floatSize}px</span></div>
     <button class="upload-btn" id="btn-upload-float"><svg><use href="#i-plus"/></svg>上传悬浮球图片</button>
     <button class="upload-btn" id="btn-reset-float"><svg><use href="#i-restore"/></svg>恢复默认悬浮球</button>
 
@@ -2296,10 +2521,9 @@ function openSetAppearance() {
       <button class="seg-btn" data-v="64">大 64</button>
     </div>
     <div class="set-row"><span class="label">自定义（36~70）</span>
-      <input class="field" id="in-size" type="number" style="width:110px" value="${s.floatSize}">
+      <input class="field" id="in-size" type="number" style="width:90px" value="${s.floatSize}">
     </div>
   `, () => {
-    /* 主题色块 */
     const swatchMap = {
       'rose-glass':'linear-gradient(160deg,#f8e8ee,#e9e0ee)',
       'sakura-glass':'linear-gradient(160deg,#fdf1f5,#f4e2eb)',
@@ -2314,8 +2538,7 @@ function openSetAppearance() {
       'cyan-glass':'linear-gradient(160deg,#eaf5f3,#dbe9e8)'
     };
     $$('#theme-grid .theme-cell').forEach(cell => {
-      const sw = cell.querySelector('.theme-swatch');
-      sw.style.background = swatchMap[cell.dataset.theme] || '';
+      cell.querySelector('.theme-swatch').style.background = swatchMap[cell.dataset.theme] || '';
       cell.onclick = () => {
         applyTheme(cell.dataset.theme);
         $$('#theme-grid .theme-cell').forEach(c => c.classList.toggle('active', c === cell));
@@ -2380,7 +2603,7 @@ function openSetFeature() {
 function openSetAbout() {
   openSub('关于', `
     <div class="about-wrap">
-      <div class="about-ver">阿遇♥阿凉 v1.0.0.0</div>
+      <div class="about-ver">阿遇♥阿凉 v${VERSION}</div>
       <div class="about-line">开发者：夏雾凉</div>
       <div class="about-line">爱人：易遇</div>
       <div class="about-desc">
@@ -2611,9 +2834,7 @@ function importCards() {
     if (f.name.endsWith('.json')) {
       try {
         const data = JSON.parse(text);
-        if (Array.isArray(data)) {
-          incoming = data.map(d => typeof d === 'string' ? d : (d.text || '')).filter(Boolean);
-        }
+        if (Array.isArray(data)) incoming = data.map(d => typeof d === 'string' ? d : (d.text || '')).filter(Boolean);
       } catch (e) {
         openModal({ title: '导入失败', bodyHTML: '文件格式不正确', actions: [] });
         return;
@@ -2679,7 +2900,6 @@ function doDedup() {
     if (!map.has(c.text)) map.set(c.text, []);
     map.get(c.text).push(c);
   });
-
   const groups = [...map.entries()].filter(([, arr]) => arr.length > 1);
 
   if (groups.length === 0) {
@@ -2799,20 +3019,20 @@ function openAvatarManager() {
   openSub('头像', `
     <div class="section-title">关于祂</div>
     <div class="avatar-block">
-      <img class="big-avatar" src="${s.avatars.other || defaultAvatar('blue')}">
+      <img class="big-avatar" id="av-other-big" src="${s.avatars.other || defaultAvatar('blue')}">
       <div class="info">
-        <div class="info-line"><span class="k">名字</span><span class="v">${escapeHTML(s.otherName)}</span></div>
-        <div class="info-line"><span class="k">称呼</span><span class="v">${escapeHTML(s.otherCall)}</span></div>
+        <div class="info-line" id="edit-other-name"><span class="k">名字</span><span class="v">${escapeHTML(s.otherName || '祂的名字')}</span></div>
+        <div class="info-line" id="edit-other-call"><span class="k">称呼</span><span class="v">${escapeHTML(s.otherCall || '祂的称呼')}</span></div>
         <div class="info-line"><span class="k">称呼管理</span><span class="v"></span><button class="mini-btn" id="other-call-mgr">管理</button></div>
       </div>
     </div>
 
     <div class="section-title">关于我</div>
     <div class="avatar-block">
-      <img class="big-avatar" src="${s.avatars.me || defaultAvatar('pink')}">
+      <img class="big-avatar" id="av-me-big" src="${s.avatars.me || defaultAvatar('pink')}">
       <div class="info">
-        <div class="info-line"><span class="k">名字</span><span class="v">${escapeHTML(s.myName)}</span></div>
-        <div class="info-line"><span class="k">称呼</span><span class="v">${escapeHTML(s.myCall)}</span></div>
+        <div class="info-line" id="edit-my-name"><span class="k">名字</span><span class="v">${escapeHTML(s.myName || '我的名字')}</span></div>
+        <div class="info-line" id="edit-my-call"><span class="k">称呼</span><span class="v">${escapeHTML(s.myCall || '我的称呼')}</span></div>
         <div class="info-line"><span class="k">称呼管理</span><span class="v"></span><button class="mini-btn" id="my-call-mgr">管理</button></div>
       </div>
     </div>
@@ -2838,7 +3058,29 @@ function openAvatarManager() {
     };
     $('#other-call-mgr').onclick = () => openCallManager('other');
     $('#my-call-mgr').onclick = () => openCallManager('me');
+
+    $('#edit-other-name').onclick = () => editField('otherName', '祂的名字', () => openAvatarManager());
+    $('#edit-other-call').onclick = () => editField('otherCall', '祂的称呼', () => openAvatarManager());
+    $('#edit-my-name').onclick = () => editField('myName', '我的名字', () => openAvatarManager());
+    $('#edit-my-call').onclick = () => editField('myCall', '我的称呼', () => openAvatarManager());
   });
+}
+
+function editField(key, placeholder, after) {
+  openModal({
+    title: placeholder,
+    bodyHTML: `<input class="field" id="edit-field-input" value="${escapeHTML(State.settings[key] || '')}" placeholder="${placeholder}">`,
+    actions: [
+      { label: '保存', keepOpen: true, onClick: () => {
+        State.settings[key] = $('#edit-field-input').value.trim();
+        save.settings();
+        applyAvatars();
+        closeModal();
+        if (after) after();
+      }}
+    ]
+  });
+  setTimeout(() => $('#edit-field-input') && $('#edit-field-input').focus(), 100);
 }
 
 function renderAvatarArea() {
@@ -2927,9 +3169,11 @@ function openCallManager(who) {
   const curKey = who === 'other' ? 'otherCall' : 'myCall';
   const list = s[key];
 
-  const html = `<div class="dup-list">` + list.map((c, i) =>
-    `<div class="dup-item"><span>${escapeHTML(c)}</span><button class="mini-btn" style="margin-left:auto" data-pick="${i}">使用</button></div>`
-  ).join('') + `</div>`;
+  const html = list.length
+    ? `<div class="dup-list">` + list.map((c, i) =>
+        `<div class="dup-item"><span>${escapeHTML(c)}</span><button class="mini-btn" style="margin-left:auto" data-pick="${i}">使用</button></div>`
+      ).join('') + `</div>`
+    : `<div class="empty-tip" style="padding:10px">还没有称呼</div>`;
 
   openModal({
     title: '称呼管理',
@@ -2959,62 +3203,70 @@ function addCall(who) {
       openCallManager(who);
     }}]
   });
+  setTimeout(() => $('#new-call') && $('#new-call').focus(), 100);
 }
 
 /* ---------- 背景管理 ---------- */
+let bgTab = 'chat';
+
 function openBgManager() {
   const s = State.settings;
   openSub('背景', `
-    <div class="toolbar-row" style="padding:0 0 10px">
-      <button class="tool-btn" id="up-chat-bg"><svg><use href="#i-plus"/></svg>上传聊天背景</button>
-      <button class="tool-btn" id="up-lock-bg"><svg><use href="#i-plus"/></svg>上传锁屏背景</button>
+    <div class="bg-tabs">
+      <div class="bg-tab ${bgTab==='chat'?'active':''}" id="tab-chat">聊天背景</div>
+      <div class="bg-tab ${bgTab==='lock'?'active':''}" id="tab-lock">锁屏背景</div>
     </div>
-
-    <div class="section-title">聊天背景</div>
-    <div class="bg-grid" id="chat-bg-grid"></div>
-
-    <div class="section-title">锁屏背景</div>
-    <div class="bg-grid" id="lock-bg-grid"></div>
+    <div id="bg-content"></div>
   `, () => {
-    renderBgGrids();
+    renderBgTab();
+    $('#tab-chat').onclick = () => { bgTab = 'chat'; openBgManager(); };
+    $('#tab-lock').onclick = () => { bgTab = 'lock'; openBgManager(); };
+  });
+}
+
+function renderBgTab() {
+  const s = State.settings;
+  const content = $('#bg-content');
+  if (!content) return;
+
+  if (bgTab === 'chat') {
+    content.innerHTML = `
+      <button class="upload-btn" id="up-chat-bg" style="margin:12px 0"><svg><use href="#i-plus"/></svg>上传聊天背景</button>
+      <div class="bg-grid" id="chat-bg-grid"></div>
+    `;
     $('#up-chat-bg').onclick = () => pickImage((dataUrl) => {
       s.chatBgPool.push(dataUrl);
       s.chatBg = dataUrl;
       save.settings();
       applyBackgrounds();
-      renderBgGrids();
+      renderBgTab();
     }, true);
-    $('#up-lock-bg').onclick = () => pickImage((dataUrl) => {
-      s.lockBgPool.push(dataUrl);
-      s.lockBg = dataUrl;
-      save.settings();
-      renderBgGrids();
-    }, true);
-  });
-}
-
-function renderBgGrids() {
-  const s = State.settings;
-  const cg = $('#chat-bg-grid');
-  const lg = $('#lock-bg-grid');
-  if (cg) {
-    cg.innerHTML = '';
+    const grid = $('#chat-bg-grid');
     s.chatBgPool.forEach(src => {
       const cell = document.createElement('div');
       cell.className = 'bg-cell' + (s.chatBg === src ? ' active' : '');
       cell.innerHTML = `<img src="${src}">`;
-      cell.onclick = () => { s.chatBg = src; save.settings(); applyBackgrounds(); renderBgGrids(); };
-      cg.appendChild(cell);
+      cell.onclick = () => { s.chatBg = src; save.settings(); applyBackgrounds(); renderBgTab(); };
+      grid.appendChild(cell);
     });
-  }
-  if (lg) {
-    lg.innerHTML = '';
+  } else {
+    content.innerHTML = `
+      <button class="upload-btn" id="up-lock-bg" style="margin:12px 0"><svg><use href="#i-plus"/></svg>上传锁屏背景</button>
+      <div class="bg-grid" id="lock-bg-grid"></div>
+    `;
+    $('#up-lock-bg').onclick = () => pickImage((dataUrl) => {
+      s.lockBgPool.push(dataUrl);
+      s.lockBg = dataUrl;
+      save.settings();
+      renderBgTab();
+    }, true);
+    const grid = $('#lock-bg-grid');
     s.lockBgPool.forEach(src => {
       const cell = document.createElement('div');
       cell.className = 'bg-cell' + (s.lockBg === src ? ' active' : '');
       cell.innerHTML = `<img src="${src}">`;
-      cell.onclick = () => { s.lockBg = src; save.settings(); renderBgGrids(); };
-      lg.appendChild(cell);
+      cell.onclick = () => { s.lockBg = src; save.settings(); renderBgTab(); };
+      grid.appendChild(cell);
     });
   }
 }
@@ -3024,17 +3276,22 @@ async function boot() {
   await Store.init();
 
   const st = await Store.read('settings.json');
-  if (st) Object.assign(State.settings, st);
-
+  if (st) {
+    Object.assign(State.settings, st);
+    State.settings.avatars = Object.assign({ other: '', me: '' }, st.avatars || {});
+    State.settings.otherCalls = st.otherCalls || [];
+    State.settings.myCalls = st.myCalls || [];
+    State.settings.avatarPool = st.avatarPool || [];
+    State.settings.avatarPairs = st.avatarPairs || [];
+    State.settings.chatBgPool = st.chatBgPool || [];
+    State.settings.lockBgPool = st.lockBgPool || [];
+  }
   const c = await Store.read('cards.json');
   if (c) State.cards = c;
-
   const t = await Store.read('trash.json');
   if (t) State.trash = t;
-
   const m = await Store.read('messages.json');
   if (m) State.messages = m;
-
   const l = await Store.read('love.json');
   if (l != null) State.love = l;
 
@@ -3051,9 +3308,18 @@ async function boot() {
     if (e.target.id === 'modal-mask') closeModal();
   });
 
-  $('#sub-back').onclick = () => {
-    showPage('page-chat');
-  };
+  $('#sheet-mask').addEventListener('click', e => {
+    if (e.target.id === 'sheet-mask') closeSheet();
+  });
+
+  $('#sub-back').onclick = () => goBack();
+
+  /* 锁屏页时背景用锁屏背景 */
+  const lockPage = $('#page-lock');
+  if (lockPage) {
+    const obs = new MutationObserver(() => applyBackgrounds());
+    obs.observe(lockPage, { attributes: true, attributeFilter: ['class'] });
+  }
 }
 
 window.addEventListener('DOMContentLoaded', boot);
