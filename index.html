@@ -152,7 +152,6 @@ ul, li { list-style: none; }
 .scroll-y { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 .scroll-y::-webkit-scrollbar { width: 0; height: 0; }
 .scroll-y { scrollbar-width: none; }
-
 .icon-btn {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; border-radius: 50%; color: var(--text);
@@ -207,8 +206,6 @@ ul, li { list-style: none; }
   min-height: 120px; gap: 10px; color: var(--text-soft); font-size: 15px; letter-spacing: 1px;
 }
 .todo svg { width: 48px; height: 48px; opacity: .5; }
-
-/* 抉择弹窗：2x2 按钮 */
 .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .choice-btn {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -330,6 +327,24 @@ ul, li { list-style: none; }
 .msg-meta { margin-top: 4px; font-size: 11px; color: var(--time-text); display: flex; align-items: center; gap: 6px; }
 .read-flag { font-size: 11px; color: var(--heart-red); }
 
+/* 归档模式：勾选框 */
+.msg-row.archive-mode { padding-left: 30px; position: relative; }
+.msg-check {
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border-radius: 6px;
+  border: 1.6px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  display: flex; align-items: center; justify-content: center;
+}
+.msg-row.archive-mode.checked .msg-check {
+  background: var(--accent-deep); border-color: var(--accent-deep);
+}
+.msg-row.archive-mode.checked .msg-check::after {
+  content: ""; width: 11px; height: 6px;
+  border-left: 2px solid var(--check-green); border-bottom: 2px solid var(--check-green);
+  transform: rotate(-45deg) translateY(-1px);
+}
+
 /* 卡片消息 */
 .card-msg {
   border: 2px solid var(--accent-deep);
@@ -367,8 +382,7 @@ ul, li { list-style: none; }
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   padding: 14px;
-  width: 78vw;
-  max-width: 100%;
+  width: 78vw; max-width: 100%;
   display: flex; flex-direction: column;
 }
 .quiz-card-title {
@@ -377,8 +391,7 @@ ul, li { list-style: none; }
   border-bottom: 1px solid var(--glass-border);
 }
 .quiz-card-body {
-  flex: 1; overflow-y: auto; padding: 10px 0;
-  max-height: 50vh;
+  flex: 1; overflow-y: auto; padding: 10px 0; max-height: 50vh;
 }
 .quiz-card-body::-webkit-scrollbar { width: 0; }
 .quiz-q { margin-bottom: 14px; }
@@ -392,8 +405,12 @@ ul, li { list-style: none; }
 .quiz-submit.done { background: var(--glass-bg-strong); color: var(--text-soft); }
 .quiz-submit.hidden { display: none; }
 
-/* 选择状态的题目（只读） */
-.quiz-card.locked .card-opt { pointer-events: none; }
+/* 归档模式底部操作栏 */
+.archive-bar {
+  flex-shrink: 0; display: flex; gap: 8px;
+  padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
+}
+.archive-bar .tool-btn { padding: 12px 4px; font-size: 12.5px; }
 
 .chat-footer {
   position: relative; z-index: 5;
@@ -777,10 +794,7 @@ ul, li { list-style: none; }
 }
 .quiz-item.locked { opacity: .5; }
 .quiz-item .qcount { font-size: 13px; color: var(--text-soft); }
-
-.quiz-create-head {
-  flex-shrink: 0; padding: 10px 12px;
-}
+.quiz-create-head { flex-shrink: 0; padding: 10px 12px; }
 .quiz-create-body {
   flex: 1; overflow-y: auto; padding: 0 12px 12px;
   display: flex; flex-direction: column; gap: 14px;
@@ -793,27 +807,42 @@ ul, li { list-style: none; }
 .q-edit {
   padding: 12px; border-radius: 14px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
-  position: relative;
 }
-.q-edit-remove {
-  position: absolute; top: 8px; right: 8px;
-  width: 24px; height: 24px; border-radius: 50%;
+.q-head { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 8px; }
+.q-head textarea.field { flex: 1; min-height: 40px; }
+.q-head .q-del {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  color: var(--danger); background: rgba(217,83,106,0.12);
-  font-size: 16px;
+  color: var(--danger); background: rgba(217,83,106,0.1); font-size: 16px;
 }
 .q-opt-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
 .q-opt-row .field { flex: 1; }
 .q-opt-del {
-  width: 28px; height: 28px; border-radius: 8px;
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  color: var(--danger); background: rgba(217,83,106,0.1); flex-shrink: 0;
+  color: var(--danger); background: rgba(217,83,106,0.1); font-size: 16px;
 }
 .q-add-opt {
   margin-top: 8px; width: 100%; padding: 8px; border-radius: 10px;
   font-size: 13px; color: var(--accent-deep);
   background: var(--glass-bg); border: 1px dashed var(--accent-deep);
 }
+
+/* ============ 备忘录 ============ */
+.memo-body {
+  flex: 1; padding: 0 12px 12px;
+  display: flex; flex-direction: column;
+}
+.memo-textarea {
+  flex: 1; width: 100%;
+  padding: 14px; border-radius: 16px;
+  font-size: 15px; line-height: 1.7; color: var(--text);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  outline: none; resize: none;
+}
+.memo-textarea::placeholder { color: var(--text-soft); }
 </style>
 </head>
 <body data-theme="rose-glass">
@@ -1042,6 +1071,11 @@ ul, li { list-style: none; }
         <circle cx="12" cy="8.4" r="1.1" fill="currentColor"/>
         <path d="M12 11.4v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
       </symbol>
+      <symbol id="i-archive" viewBox="0 0 24 24">
+        <rect x="3.5" y="4.5" width="17" height="4.5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M5 9v9.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M10 13h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
     </defs>
   </svg>
 
@@ -1083,7 +1117,7 @@ ul, li { list-style: none; }
       </div>
     </header>
     <main class="chat-body scroll-y" id="chat-body"></main>
-    <footer class="chat-footer">
+    <footer class="chat-footer" id="chat-footer">
       <div class="typing-bar" id="typing-bar">
         <span>祂正在输入中</span>
         <i class="dot"></i><i class="dot"></i><i class="dot"></i>
@@ -1099,6 +1133,11 @@ ul, li { list-style: none; }
         </button>
       </div>
     </footer>
+    <div class="archive-bar" id="archive-bar" style="display:none">
+      <button class="tool-btn" id="arc-all"><svg><use href="#i-select-all"/></svg>全选</button>
+      <button class="tool-btn" id="arc-go"><svg><use href="#i-archive"/></svg>自动归档</button>
+      <button class="tool-btn" id="arc-exit"><svg><use href="#i-cancel"/></svg>退出</button>
+    </div>
   </div>
 
   <!-- 子页面 -->
@@ -1187,7 +1226,7 @@ const LOCK_PASSWORDS = [
 const DING_PRESETS = ['可以的','去吧','别去了','我支持你','跟着心走','再想想','等等看','随你'];
 const ASK_PRESETS = ['是的','不是','应该是吧','我觉得是','我也在想','你说呢','让我想想','我也说不准','再说吧','看情况'];
 
-const VERSION = '1.0.0.5';
+const VERSION = '1.0.0.6';
 
 const State = {
   settings: {
@@ -1202,11 +1241,12 @@ const State = {
     myName: '', myCall: '', myCalls: [],
     avatarPool: [], avatarPairs: [],
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
-    lockPassed: false, lastLockDay: '', lastArchiveDay: '',
+    lockPassed: false, lastLockDay: '',
     notify: false, fullscreen: false
   },
   cards: [], trash: [], messages: [], archive: [],
-  quizzes: [],   /* 问卷：[{id, title, questions:[{text, options:[]}], locked}] */
+  quizzes: [],
+  memo: '',
   love: 0
 };
 
@@ -1249,6 +1289,7 @@ const save = {
   messages: () => Store.write('messages.json', State.messages),
   archive:  () => Store.write('archive.json', State.archive),
   quizzes:  () => Store.write('quizzes.json', State.quizzes),
+  memo:     () => Store.write('memo.json', State.memo),
   love:     () => Store.write('love.json', State.love)
 };
 
@@ -1385,39 +1426,18 @@ function initLockPage() {
 
 function enterChat() {
   pageStack = [];
-  runArchive();
   showPage('page-chat', false);
   renderedCount = MSG_PAGE;
   renderMessages();
   setTimeout(scrollBottom, 50);
 }
 
-/* ---------- 归档 ---------- */
-function runArchive() {
-  const today = todayKey();
-  const last = State.settings.lastArchiveDay || '';
-  if (!last) { State.settings.lastArchiveDay = today; save.settings(); return; }
-  const byDay = {}; const remain = [];
-  State.messages.forEach(m => {
-    const k = dayKey(m.ts || Date.now());
-    if (k === today) remain.push(m); else (byDay[k] = byDay[k] || []).push(m);
-  });
-  Object.keys(byDay).forEach(k => {
-    let entry = State.archive.find(a => a.day === k);
-    if (!entry) { entry = { day: k, messages: [] }; State.archive.push(entry); }
-    entry.messages = entry.messages.concat(byDay[k]);
-  });
-  State.archive.sort((a, b) => b.day.localeCompare(a.day));
-  if (Object.keys(byDay).length) { State.messages = remain; save.messages(); save.archive(); }
-  State.settings.lastArchiveDay = today; save.settings();
-  renderMessages();          /* ← 关键：归档后清空聊天页 */
-  setTimeout(scrollBottom, 30);
-}
-
 /* ---------- 聊天 ---------- */
 let multiSendMode = false;
 const MSG_PAGE = 20;
 let renderedCount = MSG_PAGE;
+let archiveMode = false;
+let archiveSelected = new Set();
 
 function initChatPage() {
   const input = $('#chat-input'); const btn = $('#btn-plus-send'); const icon = $('#plus-send-icon use');
@@ -1434,13 +1454,17 @@ function initChatPage() {
   };
   const body = $('#chat-body');
   body.addEventListener('scroll', () => {
-    if (body.scrollTop < 30 && renderedCount < State.messages.length) {
+    if (body.scrollTop < 30 && renderedCount < State.messages.length && !archiveMode) {
       const prevH = body.scrollHeight;
       renderedCount += MSG_PAGE;
       renderMessages();
       body.scrollTop = body.scrollHeight - prevH + body.scrollTop;
     }
   });
+  /* 归档模式底部按钮 */
+  $('#arc-all').onclick = () => { State.messages.forEach(m => archiveSelected.add(m.id)); renderMessages(); };
+  $('#arc-exit').onclick = () => exitArchiveMode();
+  $('#arc-go').onclick = doArchive;
   renderMessages(); updateLove();
 }
 
@@ -1466,7 +1490,21 @@ function renderMessages() {
   body.innerHTML = '';
   const total = State.messages.length;
   const start = Math.max(0, total - renderedCount);
-  State.messages.slice(start).forEach(m => body.appendChild(buildMsgRow(m)));
+  State.messages.slice(start).forEach(m => {
+    const row = buildMsgRow(m);
+    if (archiveMode) {
+      row.classList.add('archive-mode');
+      if (archiveSelected.has(m.id)) row.classList.add('checked');
+      const chk = document.createElement('div'); chk.className = 'msg-check';
+      row.insertBefore(chk, row.firstChild);
+      row.onclick = () => {
+        if (archiveSelected.has(m.id)) archiveSelected.delete(m.id);
+        else archiveSelected.add(m.id);
+        row.classList.toggle('checked', archiveSelected.has(m.id));
+      };
+    }
+    body.appendChild(row);
+  });
 }
 function buildMsgRow(m) {
   const row = document.createElement('div');
@@ -1475,11 +1513,9 @@ function buildMsgRow(m) {
   av.className = 'msg-avatar';
   av.src = m.who === 'me' ? (State.settings.avatars.me || defaultAvatar('pink')) : (State.settings.avatars.other || defaultAvatar('blue'));
   const col = document.createElement('div'); col.className = 'msg-col';
-  if (m.type === 'card') {
-    col.appendChild(buildCard(m));
-  } else if (m.type === 'quiz') {
-    col.appendChild(buildQuizCard(m));
-  } else {
+  if (m.type === 'card') col.appendChild(buildCard(m));
+  else if (m.type === 'quiz') col.appendChild(buildQuizCard(m));
+  else {
     const b = document.createElement('div'); b.className = 'bubble';
     if (m.type === 'img') { b.classList.add('media'); const im = document.createElement('img'); im.src = m.src; b.appendChild(im); }
     else b.textContent = m.text;
@@ -1495,8 +1531,7 @@ function buildMsgRow(m) {
 
 /* 卡片（抉择/问答） */
 function buildCard(m) {
-  const card = document.createElement('div');
-  card.className = 'card-msg';
+  const card = document.createElement('div'); card.className = 'card-msg';
   const title = document.createElement('div'); title.className = 'card-msg-title'; title.textContent = m.title;
   card.appendChild(title);
   m.options.forEach((opt, i) => {
@@ -1516,11 +1551,10 @@ function buildCard(m) {
   return card;
 }
 
-/* 问卷卡片 */
+/* 问卷卡片（我出卷，祂答） */
 function buildQuizCard(m) {
   const card = document.createElement('div');
   card.className = 'quiz-card';
-  if (m.done) card.classList.add('locked');
   const title = document.createElement('div'); title.className = 'quiz-card-title'; title.textContent = m.title;
   card.appendChild(title);
   const body = document.createElement('div'); body.className = 'quiz-card-body';
@@ -1532,48 +1566,15 @@ function buildQuizCard(m) {
       const o = document.createElement('div'); o.className = 'card-opt';
       const lbl = document.createElement('span'); lbl.className = 'opt-label'; lbl.textContent = String.fromCharCode(65 + oi) + '. ' + opt;
       o.appendChild(lbl);
-      const myPick = m.myPicks && m.myPicks[qi];
-      const otherPick = m.otherPicks && m.otherPicks[qi];
-      if (myPick === oi) { o.classList.add('sel-me'); const s = document.createElement('span'); s.className = 'opt-mark mark-me'; s.textContent = '我'; o.appendChild(s); }
-      if (otherPick === oi) { o.classList.add('sel-other'); const s = document.createElement('span'); s.className = 'opt-mark mark-other'; s.textContent = '祂'; o.appendChild(s); }
-      o.onclick = () => {
-        if (m.done || m.myPicks) return;
-        m.tmpPick = m.tmpPick || {};
-        m.tmpPick[qi] = oi;
-        $$('.card-opt', qEl).forEach((x, xi) => {
-          x.classList.toggle('sel-me', xi === oi);
-          let mk = x.querySelector('.mark-me');
-          if (xi === oi) { if (!mk) { mk = document.createElement('span'); mk.className = 'opt-mark mark-me'; mk.textContent = '我'; x.appendChild(mk); } }
-          else if (mk) mk.remove();
-        });
-      };
+      if (m.otherPicks && m.otherPicks[qi] === oi) {
+        o.classList.add('sel-other');
+        const s = document.createElement('span'); s.className = 'opt-mark mark-other'; s.textContent = '祂'; o.appendChild(s);
+      }
       qEl.appendChild(o);
     });
     body.appendChild(qEl);
   });
   card.appendChild(body);
-  const footer = document.createElement('div'); footer.className = 'quiz-card-footer';
-  const sub = document.createElement('button'); sub.className = 'quiz-submit'; sub.textContent = '提交问卷';
-  if (m.submitted && !m.done) { sub.textContent = '已提交问卷'; sub.classList.add('done'); }
-  if (m.done) sub.classList.add('hidden');
-  sub.onclick = () => {
-    if (m.submitted || m.done) return;
-    if (!m.tmpPick || Object.keys(m.tmpPick).length < m.questions.length) { openModal({ title:'', bodyHTML:'每道题都选一个吧', actions: [] }); setTimeout(closeModal, 1500); return; }
-    m.myPicks = { ...m.tmpPick };
-    m.submitted = true;
-    sub.textContent = '已提交问卷'; sub.classList.add('done');
-    save.messages(); renderMessages(); scrollBottom();
-    waitThink(() => {
-      const otherPicks = {};
-      m.questions.forEach((q, qi) => { otherPicks[qi] = Math.floor(Math.random() * q.options.length); });
-      m.otherPicks = otherPicks;
-      m.done = true;
-      addLove(m.questions.length);
-      save.messages(); renderMessages(); scrollBottom();
-    });
-  };
-  footer.appendChild(sub);
-  card.appendChild(footer);
   return card;
 }
 
@@ -1630,6 +1631,59 @@ function maybeNotify(text) {
   if (document.visibilityState === 'visible') return;
   if (!('Notification' in window) || Notification.permission !== 'granted') return;
   try { new Notification('阿遇♥阿凉', { body: text }); } catch (e) {}
+}
+
+/* ---------- 归档模式 ---------- */
+function enterArchiveMode() {
+  archiveMode = true;
+  archiveSelected.clear();
+  $('#chat-footer').style.display = 'none';
+  $('#archive-bar').style.display = 'flex';
+  renderMessages();
+}
+function exitArchiveMode() {
+  archiveMode = false;
+  archiveSelected.clear();
+  $('#chat-footer').style.display = '';
+  $('#archive-bar').style.display = 'none';
+  renderMessages();
+  scrollBottom();
+}
+function doArchive() {
+  if (!archiveSelected.size) { openModal({ title:'', bodyHTML:'先选几条吧', actions: [] }); setTimeout(closeModal, 1500); return; }
+  const ids = [...archiveSelected];
+  openModal({ title: '归档中', bodyHTML: `<div style="text-align:center"><div id="arc-stage" style="margin-bottom:12px;font-size:13px;color:var(--text-soft)">准备中…</div><div style="height:6px;border-radius:3px;background:var(--glass-bg-strong);overflow:hidden"><div id="arc-bar" style="height:100%;width:0;background:var(--accent-deep);transition:width .2s"></div></div><div id="arc-pct" style="margin-top:8px;font-size:13px">0%</div></div>`, actions: [] });
+  $('#modal-mask').style.pointerEvents = 'none';
+  let i = 0;
+  const step = () => {
+    if (i >= ids.length) {
+      /* 归档完成 */
+      const moving = State.messages.filter(m => archiveSelected.has(m.id));
+      const today = todayKey();
+      moving.forEach(m => {
+        const k = dayKey(m.ts || Date.now());
+        let entry = State.archive.find(a => a.day === k);
+        if (!entry) { entry = { day: k, messages: [] }; State.archive.push(entry); }
+        entry.messages.push(m);
+      });
+      State.archive.sort((a, b) => b.day.localeCompare(a.day));
+      State.messages = State.messages.filter(m => !archiveSelected.has(m.id));
+      save.messages(); save.archive();
+      archiveMode = false; archiveSelected.clear();
+      $('#chat-footer').style.display = '';
+      $('#archive-bar').style.display = 'none';
+      renderMessages();
+      $('#modal-mask').style.pointerEvents = '';
+      closeModal();
+      return;
+    }
+    $('#arc-stage').textContent = '正在归档：第 ' + (i+1) + ' 条…';
+    const pct = Math.round((i+1) / ids.length * 100);
+    $('#arc-bar').style.width = pct + '%'; $('#arc-pct').textContent = pct + '%';
+    i++;
+    setTimeout(step, 80);
+  };
+  setTimeout(step, 200);
 }
 
 /* ---------- 悬浮球 ---------- */
@@ -1698,7 +1752,7 @@ function openPlusMenu() {
     ['拍照','i-camera'], ['相册','i-album'], ['视频','i-video'], ['贴纸','i-sticker'],
     ['礼物','i-gift'], ['盲盒','i-blindbox'], ['互动','i-interact'], ['问答','i-qa'],
     ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion'],
-    ['悬浮球','i-floatball'], ['关锁','i-lock']
+    ['快捷归档','i-archive'], ['悬浮球','i-floatball'], ['关锁','i-lock']
   ];
   openSheet(items, handlePlusItem);
 }
@@ -1707,6 +1761,7 @@ function handlePlusItem(name) {
   if (name === '关锁') { pageStack = []; showPage('page-lock', false); $('#btn-enter').style.display = ''; $('#lock-pass').classList.remove('active'); return; }
   if (name === '问答') { return openQuiz(); }
   if (name === '问卷') { return sendQuizPick(); }
+  if (name === '快捷归档') { return enterArchiveMode(); }
   if (name === '拍照' || name === '相册') {
     const inp = document.createElement('input');
     inp.type = 'file'; inp.accept = 'image/*';
@@ -1740,6 +1795,7 @@ function handleBigItem(name) {
   if (name === '小世界') return openWorld();
   if (name === '旧梦温存') return openArchive();
   if (name === '抉择') return openChoice();
+  if (name === '备忘录') return openMemo();
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
@@ -1773,6 +1829,19 @@ function openSub(title, bodyHTML, afterRender) {
   if (afterRender) afterRender();
 }
 
+/* ---------- 备忘录 ---------- */
+let memoTimer = null;
+function openMemo() {
+  openSub('备忘录', `<div class="memo-body"><textarea class="memo-textarea" id="memo-input" placeholder="写点什么…">${escapeHTML(State.memo || '')}</textarea></div>`, () => {
+    const ta = $('#memo-input');
+    ta.oninput = () => {
+      State.memo = ta.value;
+      clearTimeout(memoTimer);
+      memoTimer = setTimeout(() => save.memo(), 500);
+    };
+  });
+}
+
 /* ---------- 抉择（弹窗） ---------- */
 function openChoice() {
   const items = [
@@ -1781,7 +1850,7 @@ function openChoice() {
   const html = `<div class="choice-grid">` + items.map((it, i) =>
     `<div class="choice-btn" data-choice="${i}"><svg><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
   ).join('') + `</div>`;
-  openModal({ title: '抉择', bodyHTML: html, actions: [], wide: false });
+  openModal({ title: '抉择', bodyHTML: html, actions: [] });
   $$('#modal-body [data-choice]').forEach(el => {
     el.onclick = () => {
       const name = items[+el.dataset.choice][0];
@@ -1797,13 +1866,7 @@ function openChoice() {
 function choicePick() {
   openModal({
     title: '帮我选',
-    bodyHTML: `
-      <input class="field" id="cp-q" placeholder="问题" style="margin-bottom:10px">
-      <input class="field" id="cp-a" placeholder="A" style="margin-bottom:8px">
-      <input class="field" id="cp-b" placeholder="B" style="margin-bottom:8px">
-      <input class="field" id="cp-c" placeholder="C" style="margin-bottom:8px">
-      <input class="field" id="cp-d" placeholder="D" style="margin-bottom:8px">
-    `,
+    bodyHTML: `<input class="field" id="cp-q" placeholder="问题" style="margin-bottom:10px"><input class="field" id="cp-a" placeholder="A" style="margin-bottom:8px"><input class="field" id="cp-b" placeholder="B" style="margin-bottom:8px"><input class="field" id="cp-c" placeholder="C" style="margin-bottom:8px"><input class="field" id="cp-d" placeholder="D" style="margin-bottom:8px">`,
     actions: [{ label: '祂的选择', keepOpen: true, onClick: () => {
       const q = $('#cp-q').value.trim();
       const opts = ['cp-a','cp-b','cp-c','cp-d'].map(id => $('#'+id).value.trim()).filter(Boolean);
@@ -1816,9 +1879,7 @@ function choicePick() {
   });
 }
 function choiceDing() {
-  openModal({
-    title: '帮我定',
-    bodyHTML: `<input class="field" id="cd-q" placeholder="问题">`,
+  openModal({ title: '帮我定', bodyHTML: `<input class="field" id="cd-q" placeholder="问题">`,
     actions: [{ label: '祂的决定', keepOpen: true, onClick: () => {
       const q = $('#cd-q').value.trim(); closeModal();
       sendMyText(q || '帮我定', true);
@@ -1828,9 +1889,7 @@ function choiceDing() {
   });
 }
 function choiceAsk() {
-  openModal({
-    title: '问问祂',
-    bodyHTML: `<input class="field" id="ca-q" placeholder="问题">`,
+  openModal({ title: '问问祂', bodyHTML: `<input class="field" id="ca-q" placeholder="问题">`,
     actions: [{ label: '问问祂', keepOpen: true, onClick: () => {
       const q = $('#ca-q').value.trim(); closeModal();
       sendMyText(q || '问问祂', true);
@@ -1843,11 +1902,7 @@ function choiceImage() {
   let imgs = [];
   openModal({
     title: '让祂选',
-    bodyHTML: `
-      <input class="field" id="ci-text" placeholder="想对祂说的话..." style="margin-bottom:10px">
-      <button class="upload-btn" id="ci-upload"><svg><use href="#i-plus"/></svg>上传图片（可多选）</button>
-      <div class="unpair-grid" id="ci-preview" style="margin-top:10px"></div>
-    `,
+    bodyHTML: `<input class="field" id="ci-text" placeholder="想对祂说的话..." style="margin-bottom:10px"><button class="upload-btn" id="ci-upload"><svg><use href="#i-plus"/></svg>上传图片（可多选）</button><div class="unpair-grid" id="ci-preview" style="margin-top:10px"></div>`,
     actions: [{ label: '祂的喜欢', keepOpen: true, onClick: () => {
       if (imgs.length < 2) { openModal({ title:'', bodyHTML:'至少两张哦', actions: [] }); setTimeout(closeModal, 1500); return; }
       const txt = $('#ci-text').value.trim();
@@ -1905,14 +1960,10 @@ function openQuiz() {
 }
 
 /* ---------- 问卷 ---------- */
-/* 小世界 → 问卷（管理） */
 function openQuizManager() {
   showPage('page-sub'); $('#sub-title').textContent = '问卷';
   const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `
-    <div class="quiz-mgr-top"><button class="upload-btn" id="btn-create-quiz" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div>
-    <div class="quiz-mgr-list" id="quiz-mgr-list"></div>
-  `;
+  body.innerHTML = `<div class="quiz-mgr-top"><button class="upload-btn" id="btn-create-quiz" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>`;
   renderQuizList();
   $('#btn-create-quiz').onclick = () => openQuizCreate(null);
 }
@@ -1937,17 +1988,12 @@ function openQuizItemMenu(q) {
       { label: q.locked ? '解锁' : '上锁', onClick: () => { q.locked = !q.locked; save.quizzes(); renderQuizList(); } },
       { label: '删除', danger: true, onClick: () => {
         openModal({ title: '确定删除？', bodyHTML: '', actions: [
-          { label: '删除', danger: true, keepOpen: true, onClick: () => {
-            State.quizzes = State.quizzes.filter(x => x.id !== q.id);
-            save.quizzes(); closeModal(); renderQuizList();
-          }}
+          { label: '删除', danger: true, keepOpen: true, onClick: () => { State.quizzes = State.quizzes.filter(x => x.id !== q.id); save.quizzes(); closeModal(); renderQuizList(); } }
         ]});
       }}
     ]
   });
 }
-
-/* 创建 / 编辑 / 查看问卷 */
 let quizEditing = null;
 function openQuizCreate(q, readonly) {
   quizEditing = q ? { ...q, questions: q.questions.map(x => ({ ...x, options: [...x.options] })) } : { id: uid(), title: '', questions: [{ text: '', options: ['','','',''] }], locked: false };
@@ -1960,17 +2006,16 @@ function openQuizCreate(q, readonly) {
   `;
   renderQuizQuestions(readonly);
   if (readonly) return;
-  $('#btn-add-q').onclick = () => { quizEditing.title = $('#quiz-title').value; quizEditing.questions.push({ text: '', options: ['','','',''] }); renderQuizQuestions(false); };
+  $('#btn-add-q').onclick = () => { syncQuizInputs(); quizEditing.questions.push({ text: '', options: ['','','',''] }); renderQuizQuestions(false); };
   $('#btn-save-quiz').onclick = () => {
-    quizEditing.title = $('#quiz-title').value.trim() || '未命名问卷';
+    syncQuizInputs();
+    quizEditing.title = quizEditing.title.trim() || '未命名问卷';
     quizEditing.questions = quizEditing.questions.filter(q => q.text.trim() || q.options.some(o => o.trim()));
     quizEditing.questions.forEach(q => { q.options = q.options.filter(o => o.trim()); });
     if (!quizEditing.questions.length) { openModal({ title:'', bodyHTML:'至少加一道题', actions: [] }); setTimeout(closeModal, 1500); return; }
     const exist = State.quizzes.findIndex(x => x.id === quizEditing.id);
-    if (exist >= 0) State.quizzes[exist] = quizEditing;
-    else State.quizzes.unshift(quizEditing);
-    save.quizzes();
-    openQuizManager();
+    if (exist >= 0) State.quizzes[exist] = quizEditing; else State.quizzes.unshift(quizEditing);
+    save.quizzes(); openQuizManager();
   };
 }
 function renderQuizQuestions(readonly) {
@@ -1978,46 +2023,47 @@ function renderQuizQuestions(readonly) {
   wrap.innerHTML = '';
   quizEditing.questions.forEach((q, qi) => {
     const el = document.createElement('div'); el.className = 'q-edit';
-    el.innerHTML = `
-      ${readonly ? '' : `<div class="q-edit-remove" data-rmq="${qi}">×</div>`}
-      <input class="field" placeholder="问题" value="${escapeHTML(q.text)}" data-qt="${qi}" ${readonly?'disabled':''} style="margin-bottom:8px">
-    `;
+    const head = document.createElement('div'); head.className = 'q-head';
+    const ta = document.createElement('textarea');
+    ta.className = 'field'; ta.rows = 1;
+    ta.placeholder = '问题' + (qi + 1);
+    ta.value = q.text;
+    ta.disabled = readonly;
+    ta.dataset.qt = qi;
+    head.appendChild(ta);
+    if (!readonly) {
+      const del = document.createElement('div'); del.className = 'q-del'; del.textContent = '×';
+      del.onclick = () => { syncQuizInputs(); quizEditing.questions.splice(qi, 1); if (!quizEditing.questions.length) quizEditing.questions.push({ text:'', options:['','','',''] }); renderQuizQuestions(false); };
+      head.appendChild(del);
+    }
+    el.appendChild(head);
     q.options.forEach((opt, oi) => {
       const row = document.createElement('div'); row.className = 'q-opt-row';
-      row.innerHTML = `
-        <input class="field" placeholder="${String.fromCharCode(65+oi)}" value="${escapeHTML(opt)}" data-qo="${qi}-${oi}" ${readonly?'disabled':''}>
-        ${readonly ? '' : `<div class="q-opt-del" data-rmo="${qi}-${oi}">×</div>`}
-      `;
+      const inp = document.createElement('input'); inp.className = 'field'; inp.placeholder = String.fromCharCode(65+oi); inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
+      row.appendChild(inp);
+      if (!readonly) {
+        const del = document.createElement('div'); del.className = 'q-opt-del'; del.textContent = '×';
+        del.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.splice(oi, 1); if (!quizEditing.questions[qi].options.length) quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
+        row.appendChild(del);
+      }
       el.appendChild(row);
     });
     if (!readonly) {
       const addOpt = document.createElement('button'); addOpt.className = 'q-add-opt'; addOpt.textContent = '+ 添加选项';
-      addOpt.onclick = () => { syncQuizInputs(); q.options.push(''); renderQuizQuestions(false); };
+      addOpt.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
       el.appendChild(addOpt);
     }
     wrap.appendChild(el);
   });
-  if (readonly) return;
-  $$('[data-qt]').forEach(inp => inp.oninput = () => { quizEditing.title = $('#quiz-title').value; });
-  $$('[data-rmq]').forEach(el => el.onclick = () => { syncQuizInputs(); quizEditing.questions.splice(+el.dataset.rmq, 1); if (!quizEditing.questions.length) quizEditing.questions.push({ text:'', options:['','','',''] }); renderQuizQuestions(false); });
-  $$('[data-rmo]').forEach(el => el.onclick = () => {
-    syncQuizInputs();
-    const [qi, oi] = el.dataset.rmo.split('-').map(Number);
-    quizEditing.questions[qi].options.splice(oi, 1);
-    if (!quizEditing.questions[qi].options.length) quizEditing.questions[qi].options.push('');
-    renderQuizQuestions(false);
-  });
-  /* 输入同步 */
   $$('[data-qt]').forEach(inp => inp.oninput = () => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
   $$('[data-qo]').forEach(inp => inp.oninput = () => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
+  const tt = $('#quiz-title'); if (tt) tt.oninput = () => { quizEditing.title = tt.value; };
 }
 function syncQuizInputs() {
   const t = $('#quiz-title'); if (t) quizEditing.title = t.value;
   $$('[data-qt]').forEach(inp => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
   $$('[data-qo]').forEach(inp => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
 }
-
-/* ⊕ → 问卷（发送） */
 function sendQuizPick() {
   const list = State.quizzes.filter(q => !q.locked && q.questions.length);
   if (!list.length) { openModal({ title:'', bodyHTML:'还没有可用的问卷', actions: [] }); setTimeout(closeModal, 1500); return; }
@@ -2029,13 +2075,15 @@ function sendQuizPick() {
     el.onclick = () => {
       const q = list[+el.dataset.sq];
       closeModal();
-      State.messages.push({
-        id: uid(), who: 'me', type: 'quiz', title: q.title,
-        questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })),
-        myPicks: null, otherPicks: null, tmpPick: null, submitted: false, done: false,
-        t: nowHM(), ts: Date.now(), read: false
+      const msg = { id: uid(), who: 'me', type: 'quiz', title: q.title, questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })), otherPicks: null, t: nowHM(), ts: Date.now(), read: false };
+      State.messages.push(msg); save.messages(); renderMessages(); scrollBottom();
+      waitThink(() => {
+        const picks = {};
+        msg.questions.forEach((qq, qi) => { picks[qi] = Math.floor(Math.random() * qq.options.length); });
+        msg.otherPicks = picks;
+        addLove(msg.questions.length + 5);
+        save.messages(); renderMessages(); scrollBottom();
       });
-      save.messages(); renderMessages(); scrollBottom();
     };
   });
 }
@@ -2214,7 +2262,7 @@ function openSetSystem() {
   });
 }
 function doBackup() {
-  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, love: State.love };
+  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, memo: State.memo, love: State.love };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `阿遇♥阿凉_${dateStamp()}.json`; a.click();
@@ -2237,6 +2285,7 @@ function doRestore() {
       ['消息', () => { State.messages = data.messages || []; }],
       ['归档', () => { State.archive = data.archive || []; }],
       ['问卷', () => { State.quizzes = data.quizzes || []; }],
+      ['备忘录', () => { State.memo = data.memo || ''; }],
       ['爱意值', () => { State.love = data.love || 0; }]
     ];
     for (let i = 0; i < stages.length; i++) {
@@ -2246,7 +2295,7 @@ function doRestore() {
       $('#restore-bar').style.width = pct + '%'; $('#restore-pct').textContent = pct + '%';
       await new Promise(r => setTimeout(r, 250));
     }
-    await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.love();
+    await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.memo(); await save.love();
     $('#restore-stage').textContent = '完成';
     setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1200); }, 600);
   };
@@ -2255,9 +2304,9 @@ function doRestore() {
 function doClear() {
   openModal({ title: '清空所有数据', bodyHTML: '确定清空全部数据吗？<br>清空后无法恢复，建议先备份。', actions: [
     { label: '确认清空', danger: true, keepOpen: true, onClick: async () => {
-      State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.love = 0;
-      State.settings.lockPassed = false; State.settings.lastLockDay = ''; State.settings.lastArchiveDay = '';
-      await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.love(); await save.settings();
+      State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.memo = ''; State.love = 0;
+      State.settings.lockPassed = false; State.settings.lastLockDay = '';
+      await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.memo(); await save.love(); await save.settings();
       location.reload();
     }}
   ]});
@@ -2744,6 +2793,7 @@ async function boot() {
   const m = await Store.read('messages.json'); if (m) State.messages = m;
   const a = await Store.read('archive.json'); if (a) State.archive = a;
   const q = await Store.read('quizzes.json'); if (q) State.quizzes = q;
+  const mm = await Store.read('memo.json'); if (mm != null) State.memo = mm;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
 
   applyTheme(State.settings.theme);
