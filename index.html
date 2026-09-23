@@ -225,7 +225,6 @@ ul, li { list-style: none; }
 .choice-btn svg { width: 26px; height: 26px; color: var(--accent-deep); }
 .choice-btn:active { transform: scale(.96); }
 
-/* 陪伴弹窗：大类（竖排一行一个） */
 .companion-cat {
   display: flex; align-items: center; gap: 12px;
   padding: 14px 16px; border-radius: 14px;
@@ -237,7 +236,6 @@ ul, li { list-style: none; }
 }
 .companion-cat:active { transform: scale(.97); }
 .companion-cat svg { width: 20px; height: 20px; color: var(--accent-deep); }
-/* 陪伴弹窗：子项（一排 3 个） */
 .companion-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
 }
@@ -249,7 +247,6 @@ ul, li { list-style: none; }
 }
 .companion-item.active { background: var(--accent); border-color: var(--accent-deep); }
 
-/* 陪伴统计 */
 .companion-stat {
   padding: 10px 12px; border-radius: 12px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
@@ -257,7 +254,6 @@ ul, li { list-style: none; }
   margin-top: 6px;
 }
 
-/* 陪伴悬浮窗 */
 .companion-float {
   position: fixed; z-index: 951;
   left: 50%; transform: translateX(-50%); bottom: 200px;
@@ -284,7 +280,6 @@ ul, li { list-style: none; }
   border: 1px solid var(--glass-border);
 }
 
-/* 邀请卡（陪伴/歌卡共用样式感） */
 .invite-card {
   border: 2px solid var(--accent-deep);
   border-radius: 18px;
@@ -1003,6 +998,9 @@ ul, li { list-style: none; }
   background: var(--glass-bg); border: 1px dashed var(--accent-deep);
 }
 
+/* ==================== 改动：问卷查看加序号 ==================== */
+.q-view-num { color: var(--text-soft); margin-right: 4px; font-weight: 600; }
+
 .memo-body { flex: 1; padding: 0 12px 8px; display: flex; flex-direction: column; }
 .memo-textarea {
   flex: 1; width: 100%;
@@ -1061,6 +1059,7 @@ ul, li { list-style: none; }
 .heart-item .h-time { font-size: 11px; color: var(--time-text); margin-top: 6px; }
 .heart-item img { max-width: 100%; border-radius: 10px; }
 
+/* ==================== 改动：心情手帐格子 70px + emoji 间距 3px ==================== */
 .mood-cal-head {
   flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
   padding: 8px 16px;
@@ -1072,13 +1071,13 @@ ul, li { list-style: none; }
 }
 .mood-cal-weekday { font-size: 11px; color: var(--text-soft); text-align: center; padding: 4px 0; }
 .mood-cal-cell {
-  min-height: 54px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center;
   font-size: 12px; color: var(--text); border-radius: 8px; position: relative; padding: 2px 0;
 }
 .mood-cal-cell.empty { visibility: hidden; }
 .mood-cal-cell.today { background: var(--accent-soft); }
 .mood-cal-cell .d { font-size: 12px; line-height: 1; }
-.mood-emojis { display: flex; flex-direction: column; align-items: center; gap: 1px; margin-top: 2px; }
+.mood-emojis { display: flex; flex-direction: column; align-items: center; gap: 3px; margin-top: 2px; }
 .mood-emojis .me, .mood-emojis .his { font-size: 12px; line-height: 1; border-radius: 4px; padding: 0 2px; }
 .mood-emojis .his { background: var(--his-bg); }
 .mood-emojis .me { background: var(--my-bg); }
@@ -1138,7 +1137,7 @@ ul, li { list-style: none; }
 }
 .music-btn svg { width: 24px; height: 24px; }
 
-/* ==================== 新增：互动气泡 ==================== */
+/* ==================== 新增：互动气泡（1.0.1.2 版） ==================== */
 .itf-bubble {
   position: relative;
   padding: 12px 14px 14px;
@@ -1266,6 +1265,65 @@ ul, li { list-style: none; }
 
 /* ==================== 新增：居中按钮（切换弹窗） ==================== */
 .modal-btn.center-btn { flex: 0 0 auto; min-width: 120px; margin: 0 auto; display: block; }
+
+/* ==================== 改动：互动气泡美化（渐变外框 + 板块色文字 + 四角 emoji + 去倾斜） ==================== */
+.itf-bubble {
+  position: relative;
+  padding: 14px 18px 16px;
+  border-radius: 16px;
+  font-size: 15px; line-height: 1.5; word-break: break-word;
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 4px 14px var(--glass-shadow);
+  animation: bubble-in .22s ease;
+  margin-bottom: 14px;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+.itf-bubble .itf-content { font-size: 15.5px; font-weight: 600; line-height: 1.4; word-break: break-word; }
+.itf-bubble .itf-desc { font-size: 13px; margin-top: 4px; line-height: 1.5; word-break: break-word; }
+.itf-bubble .itf-tag {
+  position: absolute; left: 50%; bottom: 0;
+  transform: translate(-50%, 50%);
+  padding: 2px 10px; border-radius: 999px;
+  font-size: 11px; line-height: 1.5; color: #fff; white-space: nowrap;
+  animation: itf-stamp .32s cubic-bezier(.2,.9,.3,1.4);
+  box-shadow: 0 2px 6px var(--glass-shadow);
+}
+.itf-bubble .itf-c1, .itf-bubble .itf-c2, .itf-bubble .itf-c3, .itf-bubble .itf-c4 {
+  position: absolute; font-size: 13px; line-height: 1; pointer-events: none;
+}
+.itf-bubble .itf-c1 { top: 4px; left: 6px; }
+.itf-bubble .itf-c2 { top: 4px; right: 6px; }
+.itf-bubble .itf-c3 { bottom: 4px; left: 6px; }
+.itf-bubble .itf-c4 { bottom: 4px; right: 6px; }
+.itf-bubble[data-board="me"] {
+  background: linear-gradient(#fde8ef, #fde8ef) padding-box,
+              linear-gradient(135deg, #fbc4d6, #f094b4) border-box;
+}
+.itf-bubble[data-board="me"] .itf-content { color: #c85a7e; }
+.itf-bubble[data-board="me"] .itf-desc { color: #d98ba5; }
+.itf-bubble[data-board="me"] .itf-tag { background: #f0a8c0; }
+.itf-bubble[data-board="other"] {
+  background: linear-gradient(#fdeee0, #fdeee0) padding-box,
+              linear-gradient(135deg, #fbdcb8, #f0b070) border-box;
+}
+.itf-bubble[data-board="other"] .itf-content { color: #c08040; }
+.itf-bubble[data-board="other"] .itf-desc { color: #d4a06a; }
+.itf-bubble[data-board="other"] .itf-tag { background: #f0b888; }
+.itf-bubble[data-board="together"] {
+  background: linear-gradient(#f0e8fa, #f0e8fa) padding-box,
+              linear-gradient(135deg, #dcc8f0, #b090d8) border-box;
+}
+.itf-bubble[data-board="together"] .itf-content { color: #8f70c0; }
+.itf-bubble[data-board="together"] .itf-desc { color: #ab90d4; }
+.itf-bubble[data-board="together"] .itf-tag { background: #c0a0e0; }
+@keyframes itf-stamp {
+  0% { transform: translate(-50%, 50%) scale(.6); opacity: 0; }
+  60% { transform: translate(-50%, 50%) scale(1.15); opacity: 1; }
+  100% { transform: translate(-50%, 50%) scale(1); opacity: 1; }
+}
 </style>
 </head>
 <body data-theme="rose-glass">
@@ -1777,7 +1835,55 @@ const ITF_BOARDS = [
   { key: 'together', name: '共朝夕' }
 ];
 
-const VERSION = '1.0.1.2';
+/* ==================== 改动：互动气泡四角 emoji（按板块） ==================== */
+const ITF_CORNERS = {
+  me: ['🌸', '🌹', '🩷', '🍀'],
+  other: ['🌼', '⭐', '🧡', '🌷'],
+  together: ['🪻', '💋', '💜', '🌺']
+};
+
+/* ==================== 新增：陪伴邀请拒绝文案（我拒绝祂，10 条） ==================== */
+const COMPANION_REFUSE_LINES = [
+  '祂说好，等你。',
+  '祂说，那下次吧。',
+  '祂笑了笑，说没关系。',
+  '祂说，我在这等你。',
+  '祂有点小失落，但还是点头了。',
+  '祂说，好，不打扰你。',
+  '祂说，那你先忙。',
+  '祂说，我随时都在。',
+  '祂说，好，记得叫我。',
+  '祂安静地退到一边，说：好。'
+];
+
+/* ==================== 新增：我邀请祂陪伴，祂拒绝的文案（10 条） ==================== */
+const MY_INVITE_REFUSE_LINES = [
+  '祂说现在有点忙，等下陪你。',
+  '祂说好，等一会儿就来。',
+  '祂轻轻摇头，说晚点吧。',
+  '祂说现在不方便，让你等等。',
+  '祂说，先忙完手上这点事。',
+  '祂说，等我一下下。',
+  '祂说，现在不行呢，乖。',
+  '祂说，换个时间好不好。',
+  '祂说，再等我一小会儿。',
+  '祂说，马上就来，别急。'
+];
+
+/* ==================== 新增：表情库（9 类） ==================== */
+const EMOJI_LIB = {
+  '表情': ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🫢','🫣','🤫','🤔','🫡','🤐','🤨','😐','😑','😶','🫥','😏','😒','🙄','😬','😮‍💨','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤧','🥵','🥶','🥴','😵','😵‍💫','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','🫤','😟','🙁','☹️','😮','😯','😲','😳','🥺','🥹','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💩','🤡','👻','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🌚','🌝'],
+  '食物': ['🍎','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍒','🍑','🥭','🍍','🥥','🍅','🥑','🥦','🥕','🌽','🍞','🥐','🍰','🎂','🧁','🍦','🍧','🍫','🍬','🍭','🍯','☕','🧋','🍵','🥤','🍜','🍚','🍙','🍣','🍕','🍔','🍟','🍏','🌶','🫑','🍐','🥒','🥔','🍠','🍖','🍳','🥩','🧀','🍗','🥪','🍡','🍢','🍻','🍸','🍹','🍷','🥃','🍽'],
+  '植物': ['🌸','🌹','🌷','🌻','🌼','🪻','🏵️','💐','🥀','🌺','🪷','🍀','🌿','🍃','🌱','🌲','🌳','🌴','🌵','🌾','🍁','🍂','🎋','🎍','🪴','🍄','🌰'],
+  '手势': ['👍','👎','👏','🙌','🤝','✌️','🤞','🤟','👌','🫶','🤙','👋','🖐️','✋','🤚','🫰','🫵','💪','🙏','🫂','🤲','👊','✊','🤛','🤜','👈','👉','👆','👇','☝️','✍️','🤳','💅','🖖','🫱','🫲','🫳','🫴','🤌'],
+  '心形': ['❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💗','💓','💕','💞','💘','💝','💖','💔','🩷','🩵','🩶','❣️','💟','♥️','💌','💋','💍','💎','🎀','🎁','💒','🏩','🎶','💫','✨','🌟','🎵','❤️‍🔥','❤️‍🩹'],
+  '节日': ['🎄','🎃','🎉','🎊','🎁','🎂','🎈','🎇','🎆','🧧','🏮','🎐','🎏','🪅','🎀','🎗️','🕯️','🎅','🤶','🦌','⛄','🎿','🛷','🧦','🧤','🧣','🔔','🌟','⭐','🍬','🍭','🥂','🍾'],
+  '动物': ['🐱','🐶','🐰','🐼','🐨','🦊','🐻','🐷','🦄','🐧','🐇','🐿️','🐬','🐠','🐳','🐋','🦭','🐟'],
+  '符号': ['💰','🔮','✉️','📜','❌','‼️','❗️','⁉️','❓','✅','❎','💬'],
+  '天气': ['🌞','🌖','🌗','🌘','🌑','🌒','🌓','🌔','⚡️','💥','🔥','🌪','🌈','☀️','🌤','⛅️','🌥','☁️','🌦','🌧','⛈','🌩','🌨','❄️','☃️','⛄️','💧','💦','🫧','☔️','☂️','🌊','🌫']
+};
+
+const VERSION = '1.0.1.3';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
 const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
@@ -1797,14 +1903,18 @@ const State = {
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
     lockPassed: false, lastLockDay: '',
     notify: false, fullscreen: false,
-    quoteEnabled: false, quoteProb: 10,
-    heartEnabled: false, heartProb: 10,
+    quoteEnabled: false, quoteProb: 7,
+    heartEnabled: false, heartProb: 5,
     moodHour: 20, moodMinute: 0,
-    inviteEnabled: false, inviteProb: 10,
-    companionInviteEnabled: false, companionInviteProb: 10,
-    /* ==================== 新增：互动回应概率 ==================== */
+    inviteEnabled: false, inviteProb: 6,
+    companionInviteEnabled: false, companionInviteProb: 5,
     itfProbOther: 50, itfProbTogether: 30, itfProbNormal: 20,
-    itfProbCompanion: 70
+    itfProbCompanion: 70,
+    /* ==================== 新增：祂主动发互动概率 + 表情 ==================== */
+    itfActiveProb: 3,
+    emojiEnabled: false, emojiProb: 6,
+    /* ==================== 新增：祂接受陪伴邀请的概率 ==================== */
+    companionAcceptProb: 80
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
@@ -1815,7 +1925,6 @@ const State = {
   moods: {},
   songs: [],
   companionStats: [],
-  /* ==================== 新增：陪伴进行中 + 互动数据 ==================== */
   companionActive: null,
   interactions: { me: [], other: [], together: [] },
   itfStats: {},
@@ -1869,7 +1978,6 @@ const save = {
   moods:    () => Store.write('moods.json', State.moods),
   songs:    () => Store.write('songs.json', State.songs),
   companionStats: () => Store.write('companion_stats.json', State.companionStats),
-  /* ==================== 新增 ==================== */
   companionActive: () => Store.write('companion_active.json', State.companionActive),
   interactions: () => Store.write('interactions.json', State.interactions),
   itfStats: () => Store.write('itf_stats.json', State.itfStats),
@@ -1915,7 +2023,6 @@ function setModal({ title, bodyHTML, actions, wide }) {
   const acts = $('#modal-actions'); acts.innerHTML = '';
   (actions || []).forEach(a => {
     const b = document.createElement('button');
-    /* ==================== 新增：center 参数（切换弹窗按钮居中） ==================== */
     b.className = 'modal-btn' + (a.danger ? ' danger' : '') + (a.center ? ' center-btn' : '');
     b.textContent = a.label;
     b.onclick = () => { if (a.onClick) a.onClick(); if (a.keepOpen !== true) closeModal(); };
@@ -2060,14 +2167,12 @@ const Player = {
 /* ==================== 陪伴 ==================== */
 const Companion = {
   active: false, type: '', startTime: 0, timer: null, lastLoveMin: 0,
-  /* ==================== 新增：互动计数 + 心跳时间 ==================== */
   itfCount: 0, lastSeen: 0,
   start(type) {
     this.active = true;
     this.type = type;
     this.startTime = Date.now();
     this.lastLoveMin = 0;
-    /* ==================== 新增：重置互动计数 + 心跳时间 + 持久化进行中陪伴 ==================== */
     this.itfCount = 0;
     this.lastSeen = Date.now();
     State.companionActive = { id: uid(), type, start: this.startTime, lastSeen: this.lastSeen, itfCount: 0 };
@@ -2081,14 +2186,12 @@ const Companion = {
     const now = Date.now();
     const sec = Math.floor((now - this.startTime) / 1000);
     $('#cf-time').textContent = hms(sec);
-    /* 每满 10 分钟 +1 */
     const min = Math.floor(sec / 60);
     const should = Math.floor(min / 10);
     if (should > this.lastLoveMin) {
       addLove(should - this.lastLoveMin);
       this.lastLoveMin = should;
     }
-    /* ==================== 新增：每 5 秒持久化心跳 ==================== */
     if (now - this.lastSeen >= 5000) {
       this.lastSeen = now;
       if (State.companionActive) {
@@ -2110,10 +2213,8 @@ const Companion = {
     if (!this.active) return;
     const endTime = Date.now();
     const dur = Math.floor((endTime - this.startTime) / 1000);
-    /* ==================== 改动：push 时带上互动数、interrupted 标记 ==================== */
     State.companionStats.push({ id: uid(), type: this.type, start: this.startTime, end: endTime, dur, itfCount: this.itfCount, interrupted: false });
     save.companionStats();
-    /* ==================== 新增：清掉进行中记录 ==================== */
     State.companionActive = null;
     save.companionActive();
     this.active = false;
@@ -2123,7 +2224,7 @@ const Companion = {
   }
 };
 
-/* ==================== 新增：启动自检，补录被中断的陪伴 ==================== */
+/* ==================== 启动自检，补录被中断的陪伴 ==================== */
 function checkInterruptedCompanion() {
   const ca = State.companionActive;
   if (!ca) return;
@@ -2136,8 +2237,7 @@ function checkInterruptedCompanion() {
   State.companionActive = null;
   save.companionActive();
 }
-
-/* ==================== 锁屏 ==================== */
+  /* ==================== 锁屏 ==================== */
 function initLockPage() {
   function tick() {
     const d = new Date();
@@ -2176,13 +2276,10 @@ function initLockPage() {
   renderDots(0);
 }
 
-/* ==================== 新增：心情手帐定时检查 ==================== */
 let moodCheckTimer = null;
-
 function enterChat() {
   pageStack = [];
   runMoodHis();
-  /* ==================== 新增：启动心情手帐定时检查（每分钟） ==================== */
   if (!moodCheckTimer) moodCheckTimer = setInterval(runMoodHis, 60 * 1000);
   showPage('page-chat', false);
   renderedCount = MSG_PAGE;
@@ -2224,7 +2321,6 @@ function initChatPage() {
   $('#arc-all').onclick = () => { State.messages.forEach(m => archiveSelected.add(m.id)); renderMessages(); };
   $('#arc-exit').onclick = () => exitArchiveMode();
   $('#arc-go').onclick = doArchive;
-  /* 音乐悬浮窗 */
   $('#mf-close').onclick = () => { $('#music-float').classList.remove('active'); if (Player.audio) Player.audio.pause(); Player.updateIcon(); };
   $('#mf-pause').onclick = () => Player.toggle();
   $('#mf-prev').onclick = () => Player.prev();
@@ -2236,12 +2332,9 @@ function initChatPage() {
     toast(MODE_NAMES[Player.mode]);
   };
   initMusicFloatDrag();
-  /* 陪伴悬浮窗 */
   $('#cf-end').onclick = () => {
     Companion.end();
     toast('陪伴结束');
-    /* ==================== 新增：互动小总结 ==================== */
-    if (Companion._lastItfCount > 0) { /* 兜底，实际逻辑见 end 后 */ }
   };
   initCompanionFloatDrag();
   renderMessages(); updateLove();
@@ -2266,13 +2359,31 @@ function sendMyImage(dataUrl, noReply) {
   save.messages(); addLove(1); renderMessages(); scrollBottom();
   if (!multiSendMode && !noReply) triggerReply();
 }
-/* ==================== 新增：发送互动 ==================== */
+/* ==================== 改动：互动 +2 爱意 ==================== */
 function sendMyInteraction(content, desc, board) {
-  const msg = { id: uid(), who: 'me', type: 'itf', content, desc, board, tilt: (Math.random() * 6 - 3), t: nowHM(), ts: Date.now(), read: false };
+  const msg = { id: uid(), who: 'me', type: 'itf', content, desc, board, t: nowHM(), ts: Date.now(), read: false };
   State.messages.push(msg);
-  save.messages(); addLove(1); renderMessages(); scrollBottom();
+  save.messages(); addLove(2); renderMessages(); scrollBottom();
   if (Companion.active) { Companion.itfCount++; }
   return msg;
+}
+/* ==================== 新增：我发陪伴邀请（等待祂回应） ==================== */
+function sendMyCompanionInvite(type) {
+  const msg = { id: uid(), who: 'me', type: 'companion', text: '我想陪你 ' + type, companionType: type, accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false };
+  State.messages.push(msg);
+  save.messages(); addLove(2); renderMessages(); scrollBottom();
+  setTimeout(() => {
+    const prob = (State.settings.companionAcceptProb != null ? State.settings.companionAcceptProb : 80);
+    if (Math.random() * 100 < prob) {
+      msg.accepted = true;
+      addLove(3);
+      Companion.start(type);
+    } else {
+      msg.refused = true;
+      msg.refuseText = MY_INVITE_REFUSE_LINES[Math.floor(Math.random() * MY_INVITE_REFUSE_LINES.length)];
+    }
+    save.messages(); renderMessages(); scrollBottom();
+  }, getThinkTime() * 1000);
 }
 
 function renderMessages() {
@@ -2319,7 +2430,6 @@ function buildMsgRow(m) {
   else if (m.type === 'quiz') col.appendChild(buildQuizCard(m));
   else if (m.type === 'song') col.appendChild(buildSongCard(m));
   else if (m.type === 'companion') col.appendChild(buildCompanionCard(m));
-  /* ==================== 新增：互动气泡 ==================== */
   else if (m.type === 'itf') col.appendChild(buildItfBubble(m));
   else {
     const b = document.createElement('div'); b.className = 'bubble';
@@ -2346,15 +2456,14 @@ function heartMarkOf(mid) {
   return '🥰';
 }
 
-/* ==================== 新增：互动气泡渲染 ==================== */
+/* ==================== 改动：互动气泡渲染（渐变外框 + 四角 emoji + 去倾斜） ==================== */
 function buildItfBubble(m) {
   const b = document.createElement('div');
   b.className = 'itf-bubble';
-  const tilt = (typeof m.tilt === 'number') ? m.tilt : 0;
-  b.style.transform = `rotate(${tilt}deg)`;
   b.setAttribute('data-board', m.board);
   const boardName = { me: '我对祂', other: '祂对我', together: '共朝夕' }[m.board] || '';
-  b.innerHTML = `<div class="itf-content"></div><div class="itf-desc"></div><div class="itf-tag">${boardName}</div>`;
+  const corners = ITF_CORNERS[m.board] || ['', '', '', ''];
+  b.innerHTML = `<span class="itf-c1">${corners[0]}</span><span class="itf-c2">${corners[1]}</span><span class="itf-c3">${corners[2]}</span><span class="itf-c4">${corners[3]}</span><div class="itf-content"></div><div class="itf-desc"></div><div class="itf-tag">${boardName}</div>`;
   b.querySelector('.itf-content').textContent = m.content || '';
   const dEl = b.querySelector('.itf-desc');
   if (m.desc) dEl.textContent = m.desc; else dEl.style.display = 'none';
@@ -2362,7 +2471,8 @@ function buildItfBubble(m) {
   if (hm) { const s = document.createElement('span'); s.className = 'heart-mark'; s.textContent = hm; b.appendChild(s); }
   return b;
 }
-  function buildCard(m) {
+
+function buildCard(m) {
   const card = document.createElement('div'); card.className = 'card-msg';
   const title = document.createElement('div'); title.className = 'card-msg-title'; title.textContent = m.title;
   card.appendChild(title);
@@ -2465,7 +2575,7 @@ function playSongCard(m) {
   setTimeout(() => { renderMessages(); scrollBottom(); }, 100);
 }
 
-/* 陪伴邀请卡 */
+/* ==================== 改动：陪伴卡（加拒绝 + 我发的等待回应） ==================== */
 function buildCompanionCard(m) {
   const card = document.createElement('div');
   card.className = 'invite-card';
@@ -2485,26 +2595,32 @@ function buildCompanionCard(m) {
     hint.className = 'ic-hint';
     hint.textContent = m.refuseText || '祂想待会儿再陪你。';
     card.appendChild(hint);
+  } else if (m.who === 'me') {
+    const hint = document.createElement('div');
+    hint.className = 'ic-hint';
+    hint.textContent = '等待祂的回应…';
+    card.appendChild(hint);
   } else {
-    const btn = document.createElement('button');
-    btn.className = 'ic-btn';
-    btn.textContent = '接受';
-    btn.onclick = () => { acceptCompanionCard(m); };
-    card.appendChild(btn);
-    if (m.who === 'me') {
-      const hint = document.createElement('div');
-      hint.className = 'ic-hint';
-      hint.textContent = '等待祂的回应…';
-      card.appendChild(hint);
-    }
+    /* 祂发的：接受 + 拒绝（一排一个，拒绝红色） */
+    const btnAccept = document.createElement('button');
+    btnAccept.className = 'ic-btn';
+    btnAccept.textContent = '接受';
+    btnAccept.onclick = () => { acceptCompanionCard(m); };
+    card.appendChild(btnAccept);
+    const btnRefuse = document.createElement('button');
+    btnRefuse.className = 'ic-btn';
+    btnRefuse.style.background = 'var(--danger)';
+    btnRefuse.style.color = '#fff';
+    btnRefuse.textContent = '拒绝';
+    btnRefuse.onclick = () => { refuseCompanionCard(m); };
+    card.appendChild(btnRefuse);
   }
   return card;
 }
-/* ==================== 改动：acceptCompanionCard（原有逻辑保留，前面追加"已在陪伴则弹窗询问切换"） ==================== */
+/* ==================== 改动：acceptCompanionCard（保留原有 + 切换询问） ==================== */
 function acceptCompanionCard(m) {
   if (m.accepted) return;
   if (m.who === 'me') return;
-  /* ==================== 新增：若正在陪伴中 ==================== */
   const newType = m.companionType || '静静陪着';
   if (Companion.active) {
     if (Companion.type === newType) { toast('已经在陪着了'); return; }
@@ -2526,7 +2642,6 @@ function acceptCompanionCard(m) {
     });
     return;
   }
-  /* ==================== 原有逻辑原样保留 ==================== */
   m.accepted = true;
   save.messages(); renderMessages();
   toast('祂在准备…');
@@ -2534,6 +2649,14 @@ function acceptCompanionCard(m) {
     Companion.start(newType);
     toast('开始陪伴');
   }, getThinkTime() * 1000);
+}
+/* ==================== 新增：拒绝陪伴（我拒绝祂） ==================== */
+function refuseCompanionCard(m) {
+  if (m.accepted || m.refused) return;
+  if (m.who === 'me') return;
+  m.refused = true;
+  m.refuseText = COMPANION_REFUSE_LINES[Math.floor(Math.random() * COMPANION_REFUSE_LINES.length)];
+  save.messages(); renderMessages(); scrollBottom();
 }
 
 function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop = body.scrollHeight; }
@@ -2559,7 +2682,6 @@ function openMsgMenu(m) {
   };
 }
 function doQuote(m) {
-  /* ==================== 改动：互动气泡引用时取内容+描述 ==================== */
   let text = '';
   if (m.type === 'itf') text = m.content + (m.desc ? '｜' + m.desc : '');
   else text = m.text || '';
@@ -2571,17 +2693,17 @@ function doQuote(m) {
   $('#quote-bar').classList.add('active');
   $('#chat-input').focus();
 }
+/* ==================== 改动：心动 +2 爱意 ==================== */
 function doHeart(m, by) {
   if (State.hearts.some(h => h.mid === m.id && h.by === by)) return;
   const rec = { id: uid(), mid: m.id, by, who: m.who, content: extractContent(m), t: m.ts || Date.now() };
-  /* ==================== 新增：互动心动时带上板块 ==================== */
   if (m.type === 'itf') { rec.board = m.board; rec.itfWho = m.who; }
   State.hearts.push(rec);
   save.hearts(); renderMessages();
+  addLove(2);
 }
 function extractContent(m) {
   if (m.type === 'img') return { type: 'img', src: m.src };
-  /* ==================== 新增：互动 ==================== */
   if (m.type === 'itf') return { type: 'itf', content: m.content, desc: m.desc, board: m.board };
   if (m.type === 'card') return { type: 'card', title: m.title, options: m.options, myPick: m.myPick, otherPick: m.otherPick, result: m.result };
   if (m.type === 'quiz') return { type: 'quiz', title: m.title, questions: m.questions, otherPicks: m.otherPicks };
@@ -2629,25 +2751,29 @@ function getThinkTime() {
   switch (s.thinkTime) { case 'fast': return 5; case 'slow': return 15; default: return 8; }
 }
 
+/* ==================== 改动：doReply（表情 + 主动互动 + 没字卡 toast + 上锁过滤） ==================== */
 function doReply() {
-  /* ==================== 改动：字卡为空判断，改为"字卡为空且互动也为空" ==================== */
-  if (State.cards.length === 0 && !hasAnyInteraction()) { pushOther('没有字卡，祂只好安静地看着你。'); return; }
+  const usable = State.cards.filter(c => !c.locked);
+  if (State.cards.length === 0) { toast('还没有字卡，祂暂时说不了话'); return; }
+  if (usable.length === 0) { toast('字卡都被锁上了，祂说不了话'); return; }
   const quote = maybeOtherQuote();
   const heartMsg = maybeOtherHeart();
   const invite = maybeOtherInvite();
   const compInvite = maybeOtherCompanionInvite();
+  const activeItf = maybeActiveInteraction();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
-  /* ==================== 改动：从"未上锁"的字卡里抽 ==================== */
-  const usable = State.cards.filter(c => !c.locked);
-  for (let i = 0; i < n; i++) {
-    if (usable.length) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
-    else picked.push('……');
-  }
+  for (let i = 0; i < n; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
   let idx = 0;
   const sendNext = () => {
     if (idx >= picked.length) return;
-    pushOther(picked[idx], idx === 0 ? quote : null);
+    let txt = picked[idx];
+    /* 表情：句首/句尾 */
+    if (State.settings.emojiEnabled && Math.random() * 100 < (State.settings.emojiProb || 0)) {
+      const e = randomEmoji();
+      if (e) txt = (Math.random() < 0.5) ? (e + txt) : (txt + e);
+    }
+    pushOther(txt, idx === 0 ? quote : null);
     if (idx === 0 && heartMsg) doHeart(heartMsg, 'other');
     idx++;
     if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
@@ -2655,10 +2781,30 @@ function doReply() {
   sendNext();
   if (invite) setTimeout(() => pushOtherSongInvite(invite), 1500);
   if (compInvite) setTimeout(() => pushOtherCompanionInvite(compInvite), 2500);
+  if (activeItf) setTimeout(() => pushOtherInteraction(activeItf.content, activeItf.desc, activeItf.board), 2000);
 }
-/* ==================== 新增：是否有任何互动 ==================== */
 function hasAnyInteraction() {
   return (State.interactions.me.length + State.interactions.other.length + State.interactions.together.length) > 0;
+}
+/* ==================== 新增：随机取一个表情 ==================== */
+function randomEmoji() {
+  const all = [];
+  for (const k in EMOJI_LIB) { EMOJI_LIB[k].forEach(e => all.push(e)); }
+  if (!all.length) return '';
+  return all[Math.floor(Math.random() * all.length)];
+}
+/* ==================== 新增：祂主动发互动 ==================== */
+function maybeActiveInteraction() {
+  const s = State.settings;
+  if (Math.random() * 100 >= (s.itfActiveProb || 0)) return null;
+  const boards = [];
+  if ((State.interactions.other || []).filter(x => !x.locked).length) boards.push('other');
+  if ((State.interactions.together || []).filter(x => !x.locked).length) boards.push('together');
+  if (!boards.length) return null;
+  const b = boards[Math.floor(Math.random() * boards.length)];
+  const pool = State.interactions[b].filter(x => !x.locked);
+  const item = pool[Math.floor(Math.random() * pool.length)];
+  return { content: item.content, desc: item.desc, board: b };
 }
 function maybeOtherQuote() {
   const s = State.settings;
@@ -2668,7 +2814,6 @@ function maybeOtherQuote() {
   if (!recent.length) return null;
   const pick = recent[Math.floor(Math.random() * recent.length)];
   if (pick.type === 'img') return { id: pick.id, text: '[图片]', thumb: pick.src };
-  /* ==================== 新增：互动引用 ==================== */
   if (pick.type === 'itf') return { id: pick.id, text: pick.content + (pick.desc ? '｜' + pick.desc : '') };
   return { id: pick.id, text: pick.text || '' };
 }
@@ -2687,14 +2832,12 @@ function maybeOtherInvite() {
   if (!State.songs.length) return null;
   return State.songs[Math.floor(Math.random() * State.songs.length)];
 }
-/* ==================== 改动：陪伴邀请排除当前陪伴类型 ==================== */
 function maybeOtherCompanionInvite() {
   const s = State.settings;
   if (!s.companionInviteEnabled) return null;
   if (Math.random() * 100 >= (s.companionInviteProb || 0)) return null;
   const all = [];
   COMPANION_CATS.forEach(c => c.items.forEach(it => all.push(it)));
-  /* ==================== 新增：排除当前正在陪伴的类型 ==================== */
   let pool = all;
   if (Companion.active) pool = all.filter(it => it !== Companion.type);
   if (!pool.length) return null;
@@ -2722,11 +2865,11 @@ function pushOther(text, quote) {
   save.messages(); addLove(1); renderMessages(); scrollBottom();
   maybeNotify(text);
 }
-/* ==================== 新增：祂发互动 ==================== */
+/* ==================== 改动：互动 +2 爱意 ==================== */
 function pushOtherInteraction(content, desc, board) {
-  const msg = { id: uid(), who: 'other', type: 'itf', content, desc, board, tilt: (Math.random() * 6 - 3), t: nowHM(), ts: Date.now() };
+  const msg = { id: uid(), who: 'other', type: 'itf', content, desc, board, t: nowHM(), ts: Date.now() };
   State.messages.push(msg);
-  save.messages(); addLove(1); renderMessages(); scrollBottom();
+  save.messages(); addLove(2); renderMessages(); scrollBottom();
 }
 function maybeNotify(text) {
   if (!State.settings.notify) return;
@@ -2748,8 +2891,24 @@ function exitArchiveMode() {
   $('#archive-bar').style.display = 'none';
   renderMessages(); scrollBottom();
 }
+/* ==================== 改动：归档先选日期 ==================== */
 function doArchive() {
   if (!archiveSelected.size) { openModal({ title:'', bodyHTML:'先选几条吧', actions: [] }); setTimeout(closeModal, 1500); return; }
+  const today = todayKey();
+  openModal({
+    title: '选择归档日期',
+    bodyHTML: `<input class="field" id="arc-date" type="date" value="${today}">`,
+    actions: [
+      { label: '确认归档', keepOpen: true, onClick: () => {
+        const d = $('#arc-date').value || today;
+        closeModal();
+        runArchive(d);
+      }}
+    ]
+  });
+  setTimeout(() => { const el = $('#arc-date'); if (el) el.focus(); }, 100);
+}
+function runArchive(dayStr) {
   const ids = [...archiveSelected];
   openModal({ title: '归档中', bodyHTML: `<div style="text-align:center"><div id="arc-stage" style="margin-bottom:12px;font-size:13px;color:var(--text-soft)">准备中…</div><div style="height:6px;border-radius:3px;background:var(--glass-bg-strong);overflow:hidden"><div id="arc-bar" style="height:100%;width:0;background:var(--accent-deep);transition:width .2s"></div></div><div id="arc-pct" style="margin-top:8px;font-size:13px">0%</div></div>`, actions: [] });
   $('#modal-mask').style.pointerEvents = 'none';
@@ -2757,12 +2916,9 @@ function doArchive() {
   const step = () => {
     if (i >= ids.length) {
       const moving = State.messages.filter(m => archiveSelected.has(m.id));
-      moving.forEach(m => {
-        const k = dayKey(m.ts || Date.now());
-        let entry = State.archive.find(a => a.day === k);
-        if (!entry) { entry = { day: k, messages: [] }; State.archive.push(entry); }
-        entry.messages.push(m);
-      });
+      let entry = State.archive.find(a => a.day === dayStr);
+      if (!entry) { entry = { day: dayStr, messages: [] }; State.archive.push(entry); }
+      moving.forEach(m => entry.messages.push(m));
       State.archive.sort((a, b) => b.day.localeCompare(a.day));
       State.messages = State.messages.filter(m => !archiveSelected.has(m.id));
       save.messages(); save.archive();
@@ -2782,8 +2938,7 @@ function doArchive() {
   };
   setTimeout(step, 200);
 }
-
-/* ==================== 悬浮球 ==================== */
+  /* ==================== 悬浮球 ==================== */
 function applyFloatBall() {
   const ball = $('#float-ball'); if (!ball) return;
   ball.style.width = State.settings.floatSize + 'px';
@@ -2901,7 +3056,7 @@ function initCompanionFloatDrag() {
   });
 }
 
-/* ==================== 新增：sheet 下滑关闭（跟手） ==================== */
+/* ==================== sheet 下滑关闭（跟手） ==================== */
 function initSheetDrag() {
   const sheet = $('#sheet'); const mask = $('#sheet-mask');
   if (!sheet || !mask) return;
@@ -2954,10 +3109,8 @@ function handlePlusItem(name) {
   if (name === '问答') { return openQuiz(); }
   if (name === '问卷') { return sendQuizPick(); }
   if (name === '音乐') { return openMusicPicker(); }
-  /* ==================== 改动：陪伴改为弹窗 ==================== */
   if (name === '陪伴') { return openCompanionModal(); }
   if (name === '快捷归档') { return enterArchiveMode(); }
-  /* ==================== 新增：互动 ==================== */
   if (name === '互动') { return openInteractionPicker(); }
   if (name === '拍照' || name === '相册') {
     const inp = document.createElement('input');
@@ -3000,10 +3153,10 @@ function handleBigItem(name) {
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* ==================== 改动：小世界改竖排（setting-block） ==================== */
+/* ==================== 改动：小世界竖排 + 删「表情」入口 ==================== */
 function openWorld() {
   const items = [
-    ['字卡','i-card'], ['互动','i-interact'], ['头像','i-avatar'], ['背景','i-bg'], ['表情','i-emoji'],
+    ['字卡','i-card'], ['互动','i-interact'], ['头像','i-avatar'], ['背景','i-bg'],
     ['贴纸','i-sticker'], ['礼物','i-gift'],
     ['问卷','i-survey'], ['音乐','i-music']
   ];
@@ -3015,7 +3168,6 @@ function openWorld() {
       el.onclick = () => {
         const name = items[+el.dataset.world][0];
         if (name === '字卡') return openCardManager();
-        /* ==================== 新增：互动管理 ==================== */
         if (name === '互动') return openInteractionManager();
         if (name === '头像') return openAvatarManager();
         if (name === '背景') return openBgManager();
@@ -3035,7 +3187,7 @@ function openSub(title, bodyHTML, afterRender) {
   if (afterRender) afterRender();
 }
 
-/* ==================== 改动：陪伴改为弹窗 ==================== */
+/* ==================== 改动：陪伴弹窗（我发起 → 发邀请卡） ==================== */
 function openCompanionModal() {
   let html = '';
   if (Companion.active) {
@@ -3044,13 +3196,11 @@ function openCompanionModal() {
   } else {
     html += COMPANION_CATS.map(c => `<div class="companion-cat" data-cat="${c.key}"><svg><use href="#${c.icon}"/></svg>${c.name}</div>`).join('');
   }
-  /* 陪伴统计 */
   if (State.companionStats.length) {
     html += `<div class="section-title" style="margin-top:16px">陪伴统计</div>`;
     html += [...State.companionStats].reverse().map(s => {
       const d = new Date(s.start);
       const t = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-      /* ==================== 改动：统计显示互动数 + 中断标记 ==================== */
       const itfPart = s.itfCount ? `　互动 ${s.itfCount} 次` : '';
       const intPart = s.interrupted ? `　（中断）` : '';
       return `<div class="companion-stat">${escapeHTML(s.type)}　${t}　${hms(s.dur)}${itfPart}${intPart}</div>`;
@@ -3066,12 +3216,12 @@ function openCompanionModal() {
     });
   }
 }
-/* ==================== 新增：陪伴子项弹窗 ==================== */
+/* ==================== 改动：陪伴子项弹窗（我发起 → 发邀请卡，等待祂回应） ==================== */
 function openCompanionItems(catKey) {
   const cat = COMPANION_CATS.find(c => c.key === catKey);
   if (!cat) return;
   const html = `<div class="companion-grid">` + cat.items.map(it => `<div class="companion-item" data-item="${escapeHTML(it)}">${escapeHTML(it)}</div>`).join('') + `</div>` +
-    `<button class="upload-btn" id="comp-start" style="border-style:solid;margin-top:12px;opacity:.5;pointer-events:none"><svg><use href="#i-companion"/></svg>开始陪伴</button>`;
+    `<button class="upload-btn" id="comp-start" style="border-style:solid;margin-top:12px;opacity:.5;pointer-events:none"><svg><use href="#i-companion"/></svg>发出邀请</button>`;
   openModal({ title: cat.name, bodyHTML: html, actions: [] });
   let picked = null;
   $$('#modal-body [data-item]').forEach(el => {
@@ -3083,25 +3233,8 @@ function openCompanionItems(catKey) {
   });
   $('#comp-start').onclick = () => {
     if (!picked) { toast('先选一个'); return; }
-    if (Companion.active) {
-      if (Companion.type === picked) { toast('已经在陪着了'); return; }
-      openModal({
-        title: '',
-        bodyHTML: `<div style="text-align:center;line-height:1.9;padding:4px 0">当前正在「${escapeHTML(Companion.type)}」<br>切换到「${escapeHTML(picked)}」吗？</div>`,
-        actions: [{ label: '切换', center: true, keepOpen: true, onClick: () => {
-          Companion.end();
-          Companion.start(picked);
-          toast('已切换陪伴');
-          closeModal();
-          openCompanionModal();
-        }}]
-      });
-      return;
-    }
-    Companion.start(picked);
-    toast('开始陪伴');
     closeModal();
-    openCompanionModal();
+    sendMyCompanionInvite(picked);
   };
 }
 
@@ -3220,17 +3353,16 @@ function nextDate(d) {
   else if (d.repeat === 'yearly') { while (next < today) next.setFullYear(next.getFullYear() + 1); }
   return next;
 }
+/* ==================== 改动：重要日菜单只留删除 ==================== */
 function openDayEditorMenu(d) {
   openModal({ title: escapeHTML(d.name), bodyHTML: '', actions: [
-    { label: '编辑', onClick: () => openDayEditor(d) },
     { label: '删除', danger: true, onClick: () => { State.days = State.days.filter(x => x.id !== d.id); save.days(); renderDays(); } }
   ]});
 }
 
-/* ==================== 心动时刻（改动：数量 + 互动标签） ==================== */
+/* ==================== 心动时刻 ==================== */
 let heartTab = 'other';
 function openHearts() {
-  /* ==================== 改动：新增数量条 ==================== */
   openSub('心动时刻', `
     <div class="heart-tabs">
       <div class="bg-tab ${heartTab==='other'?'active':''}" id="ht-other">🥰 祂的心动时刻</div>
@@ -3247,7 +3379,6 @@ function openHearts() {
 function renderHearts() {
   const list = $('#heart-list'); if (!list) return;
   const items = State.hearts.filter(h => h.by === heartTab);
-  /* ==================== 新增：数量显示 ==================== */
   const countEl = $('#heart-count');
   if (countEl) countEl.textContent = '共 ' + items.length + ' 条';
   if (!items.length) { list.innerHTML = `<div class="empty-tip">还没有心动。</div>`; return; }
@@ -3257,7 +3388,6 @@ function renderHearts() {
     const mark = h.by === 'me' ? '🩷' : '🥰';
     const whoText = h.who === 'me' ? '我发的' : '祂发的';
     let inner = '';
-    /* ==================== 新增：互动心动渲染 ==================== */
     if (h.content.type === 'itf') {
       const boardName = { me: '我对祂', other: '祂对我', together: '共朝夕' }[h.content.board] || '';
       inner += `<span class="h-mark">🙌🏻</span>`;
@@ -3284,7 +3414,8 @@ function renderHearts() {
     list.appendChild(el);
   });
 }
-  /* ==================== 心情手帐 ==================== */
+
+/* ==================== 心情手帐 ==================== */
 let moodYear, moodMonth;
 let moodSelectedDate = todayKey();
 function openMoodBook() {
@@ -3360,7 +3491,6 @@ function renderMoodBody() {
   html += `<textarea class="field mood-field" id="mood-note" rows="3" placeholder="记录今天发生的小事...">${escapeHTML(me.note || '')}</textarea>`;
   html += `<button class="upload-btn" id="btn-save-mood" style="margin-top:8px;border-style:solid"><svg><use href="#i-card"/></svg>保存手帐</button>`;
   html += `</div>`;
-  /* ==================== 新增：当天互动统计 ==================== */
   const itf = State.itfStats[key];
   if (itf) {
     html += `<div class="summary-block"><div class="sb-title">今天的互动</div>`;
@@ -3402,7 +3532,6 @@ function pickMood(key) {
     };
   });
 }
-/* ==================== 改动：runMoodHis（原有逻辑保留，追加随机时刻 + 互动影响） ==================== */
 function runMoodHis() {
   const now = new Date();
   const s = State.settings;
@@ -3422,7 +3551,6 @@ function runMoodHis() {
   for (let d = new Date(startDate); d <= today0; d.setDate(d.getDate() + 1)) {
     const k = dayKey(d.getTime());
     const isToday = k === todayK;
-    /* ==================== 新增：当天随机目标时刻（设定时间 ～ +3 小时，不跨天） ==================== */
     if (isToday) {
       let rec = State.moods[k];
       if (!rec) { State.moods[k] = {}; rec = State.moods[k]; }
@@ -3433,12 +3561,10 @@ function runMoodHis() {
       }
       if (nowMin < rec._targetMin) continue;
     }
-    /* ==================== 原逻辑保留 ==================== */
     if (State.moods[k] && State.moods[k].his) continue;
     if (!State.moods[k]) State.moods[k] = {};
     const moodIdx = Math.floor(Math.random() * MOODS.length);
     const moodT = MOODS[moodIdx].t;
-    /* ==================== 改动：互动多则偏向正面情绪 ==================== */
     let line;
     const itfStat = State.itfStats[k];
     if (itfStat && itfStat.total >= 5 && Math.random() < 0.6) {
@@ -3464,7 +3590,6 @@ function runMoodHis() {
 function openMusicManager() {
   showPage('page-sub'); $('#sub-title').textContent = '音乐';
   const body = $('#sub-body'); body.style.padding = '0';
-  /* ==================== 新增：数量条 ==================== */
   body.innerHTML = `
     <div class="music-top">
       <div class="toolbar-row">
@@ -3483,7 +3608,6 @@ function openMusicManager() {
 }
 function renderMusicList() {
   const list = $('#music-list'); if (!list) return;
-  /* ==================== 新增：数量显示 ==================== */
   const countEl = $('#music-count');
   if (countEl) countEl.textContent = '共 ' + State.songs.length + ' 首歌';
   if (!State.songs.length) { list.innerHTML = `<div class="empty-tip">还没有歌。</div>`; return; }
@@ -3675,9 +3799,8 @@ function choiceImage() {
 }
 function waitThink(cb) { setTimeout(cb, getThinkTime() * 1000); }
 
-/* ==================== 问答（改动：字卡过滤 locked） ==================== */
+/* ==================== 问答 ==================== */
 function openQuiz() {
-  /* ==================== 改动：从"未上锁"字卡里抽 ==================== */
   const usable = State.cards.filter(c => !c.locked);
   if (usable.length < 4) { openModal({ title:'', bodyHTML:'字卡不够，先加几张吧', actions: [] }); setTimeout(closeModal, 1800); return; }
   if (State.love < 5) { openModal({ title:'', bodyHTML:'还差一点，多聊几句再来。', actions: [] }); setTimeout(closeModal, 1800); return; }
@@ -3768,17 +3891,23 @@ function syncQuizCards(quizId) {
   });
   if (changed) { save.messages(); renderMessages(); scrollBottom(); }
 }
+/* ==================== 改动：问卷查看加序号 ==================== */
 function renderQuizQuestions(readonly) {
   const wrap = $('#quiz-questions'); if (!wrap) return;
   wrap.innerHTML = '';
   quizEditing.questions.forEach((q, qi) => {
     const el = document.createElement('div'); el.className = 'q-edit';
     const head = document.createElement('div'); head.className = 'q-head';
-    const ta = document.createElement('textarea');
-    ta.className = 'field'; ta.rows = 1; ta.placeholder = '问题' + (qi + 1);
-    ta.value = q.text; ta.disabled = readonly; ta.dataset.qt = qi;
-    head.appendChild(ta);
-    if (!readonly) {
+    if (readonly) {
+      const qt = document.createElement('div');
+      qt.style.flex = '1';
+      qt.innerHTML = `<span class="q-view-num">${qi + 1}.</span>${escapeHTML(q.text)}`;
+      head.appendChild(qt);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.className = 'field'; ta.rows = 1; ta.placeholder = '问题' + (qi + 1);
+      ta.value = q.text; ta.disabled = readonly; ta.dataset.qt = qi;
+      head.appendChild(ta);
       const del = document.createElement('div'); del.className = 'q-del'; del.textContent = '×';
       del.onclick = () => { syncQuizInputs(); quizEditing.questions.splice(qi, 1); if (!quizEditing.questions.length) quizEditing.questions.push({ text:'', options:['','','',''] }); renderQuizQuestions(false); };
       head.appendChild(del);
@@ -3786,11 +3915,16 @@ function renderQuizQuestions(readonly) {
     el.appendChild(head);
     q.options.forEach((opt, oi) => {
       const row = document.createElement('div'); row.className = 'q-opt-row';
-      const inp = document.createElement('textarea');
-      inp.className = 'field'; inp.rows = 1; inp.placeholder = String.fromCharCode(65+oi);
-      inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
-      row.appendChild(inp);
-      if (!readonly) {
+      if (readonly) {
+        const lbl = document.createElement('div');
+        lbl.style.flex = '1';
+        lbl.innerHTML = `<span class="q-view-num">${String.fromCharCode(65+oi)}.</span>${escapeHTML(opt)}`;
+        row.appendChild(lbl);
+      } else {
+        const inp = document.createElement('textarea');
+        inp.className = 'field'; inp.rows = 1; inp.placeholder = String.fromCharCode(65+oi);
+        inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
+        row.appendChild(inp);
         const del = document.createElement('div'); del.className = 'q-opt-del'; del.textContent = '×';
         del.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.splice(oi, 1); if (!quizEditing.questions[qi].options.length) quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
         row.appendChild(del);
@@ -3854,7 +3988,7 @@ function handleSettingsGoto(key) {
 function markSeg(sel, val) { $$(sel + ' .seg-btn').forEach(b => b.classList.toggle('active', b.dataset.v === val)); }
 function bindSeg(sel, cb) { $$(sel + ' .seg-btn').forEach(b => b.onclick = () => { cb(b.dataset.v); markSeg(sel, b.dataset.v); }); }
 
-/* ==================== 改动：openSetChat（原有内容全部保留，末尾追加"互动回应"区块） ==================== */
+/* ==================== 改动：设置-聊天（加表情、互动回应、陪伴概率） ==================== */
 function openSetChat() {
   const s = State.settings;
   openSub('聊天', `
@@ -3906,11 +4040,13 @@ function openSetChat() {
     <div class="set-row"><span class="label">祂可以邀请陪伴</span><div class="switch ${s.companionInviteEnabled?'on':''}" id="sw-comp"></div></div>
     <div class="set-row"><span class="label">邀请概率（%）</span>
       <input class="field" id="in-comp-prob" type="number" style="width:80px" value="${s.companionInviteProb}"></div>
+    <div class="set-row"><span class="label">祂接受陪伴邀请的概率（%）</span>
+      <input class="field" id="in-comp-accept" type="number" style="width:80px" value="${s.companionAcceptProb}"></div>
 
     <div class="section-title">心情手帐</div>
     <div class="set-row"><span class="label">祂记录心情的时间</span>
       <input class="field" id="in-mood-time" type="time" style="width:120px" value="${pad(s.moodHour??20)}:${pad(s.moodMinute??0)}"></div>
-    <!-- ==================== 新增：互动回应区块 ==================== -->
+
     <div class="section-title">互动回应</div>
     <div class="set-row"><span class="label">祂对我（%）</span>
       <input class="field" id="in-itf-other" type="number" style="width:80px" value="${s.itfProbOther ?? 50}"></div>
@@ -3920,6 +4056,13 @@ function openSetChat() {
       <input class="field" id="in-itf-normal" type="number" style="width:80px" value="${s.itfProbNormal ?? 20}"></div>
     <div class="set-row"><span class="label">陪伴中（%）</span>
       <input class="field" id="in-itf-comp" type="number" style="width:80px" value="${s.itfProbCompanion ?? 70}"></div>
+    <div class="set-row"><span class="label">祂主动发互动（%）</span>
+      <input class="field" id="in-itf-active" type="number" style="width:80px" value="${s.itfActiveProb ?? 3}"></div>
+
+    <div class="section-title">表情</div>
+    <div class="set-row"><span class="label">祂可以使用表情</span><div class="switch ${s.emojiEnabled?'on':''}" id="sw-emoji"></div></div>
+    <div class="set-row"><span class="label">表情概率（%）</span>
+      <input class="field" id="in-emoji-prob" type="number" style="width:80px" value="${s.emojiProb ?? 6}"></div>
   `, () => {
     markSeg('#seg-reply', s.replySpeedMin != null ? '' : s.replySpeed);
     markSeg('#seg-gap', s.multiGapMin != null ? '' : s.multiGap);
@@ -3949,21 +4092,24 @@ function openSetChat() {
     $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
     $('#sw-invite').onclick = function() { s.inviteEnabled = !s.inviteEnabled; this.classList.toggle('on', s.inviteEnabled); save.settings(); };
     $('#sw-comp').onclick = function() { s.companionInviteEnabled = !s.companionInviteEnabled; this.classList.toggle('on', s.companionInviteEnabled); save.settings(); };
+    $('#sw-emoji').onclick = function() { s.emojiEnabled = !s.emojiEnabled; this.classList.toggle('on', s.emojiEnabled); save.settings(); };
     $('#in-quote-prob').onchange = e => { s.quoteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.quoteProb; save.settings(); };
     $('#in-heart-prob').onchange = e => { s.heartProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.heartProb; save.settings(); };
     $('#in-invite-prob').onchange = e => { s.inviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.inviteProb; save.settings(); };
     $('#in-comp-prob').onchange = e => { s.companionInviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.companionInviteProb; save.settings(); };
+    $('#in-comp-accept').onchange = e => { s.companionAcceptProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.companionAcceptProb; save.settings(); };
     $('#in-mood-time').onchange = e => {
       const v = e.target.value || '20:00';
       const [hh, mm] = v.split(':').map(Number);
       s.moodHour = hh; s.moodMinute = mm; save.settings();
       runMoodHis();
     };
-    /* ==================== 新增：互动回应概率 ==================== */
     $('#in-itf-other').onchange = e => { s.itfProbOther = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbOther; save.settings(); };
     $('#in-itf-together').onchange = e => { s.itfProbTogether = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbTogether; save.settings(); };
     $('#in-itf-normal').onchange = e => { s.itfProbNormal = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbNormal; save.settings(); };
     $('#in-itf-comp').onchange = e => { s.itfProbCompanion = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbCompanion; save.settings(); };
+    $('#in-itf-active').onchange = e => { s.itfActiveProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfActiveProb; save.settings(); };
+    $('#in-emoji-prob').onchange = e => { s.emojiProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.emojiProb; save.settings(); };
   });
 }
 
@@ -4062,7 +4208,6 @@ function openSetSystem() {
   });
 }
 function doBackup() {
-  /* ==================== 改动：备份数据追加 interactions / itfStats ==================== */
   const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, moods: State.moods, companionStats: State.companionStats, interactions: State.interactions, itfStats: State.itfStats, love: State.love };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -4079,7 +4224,6 @@ function doRestore() {
     openModal({ title: '覆盖中', bodyHTML: `<div style="text-align:center"><div id="restore-stage" style="margin-bottom:12px;font-size:13px;color:var(--text-soft)">准备中…</div><div style="height:6px;border-radius:3px;background:var(--glass-bg-strong);overflow:hidden"><div id="restore-bar" style="height:100%;width:0;background:var(--accent-deep);transition:width .2s"></div></div><div id="restore-pct" style="margin-top:8px;font-size:13px">0%</div></div>`, actions: [] });
     $('#modal-mask').style.pointerEvents = 'none';
     await new Promise(r => setTimeout(r, 200));
-    /* ==================== 改动：恢复阶段追加"互动""互动统计" ==================== */
     const stages = [
       ['设置', () => { if (data.settings) State.settings = Object.assign(State.settings, data.settings); }],
       ['字卡', () => { State.cards = data.cards || []; }],
@@ -4117,7 +4261,6 @@ function doClear() {
     { label: '确认清空', danger: true, keepOpen: true, onClick: async () => {
       State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = [];
       State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
-      /* ==================== 改动：清空时一并重置互动数据 ==================== */
       State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
       State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
@@ -4146,7 +4289,7 @@ function openSetAbout() {
     </div>
   `);
 }
-  /* ==================== 新增：互动管理 ==================== */
+  /* ==================== 互动管理 ==================== */
 let itfBoard = 'me';
 let itfZone = 'normal';
 let itfSelectMode = false;
@@ -4444,7 +4587,7 @@ function exportItfFmt(fmt) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/* ==================== 新增：互动发送（⊕） ==================== */
+/* ==================== 互动发送（⊕） ==================== */
 function openInteractionPicker() {
   const html = `<div class="board-tabs" id="itf-pick-tabs">` +
     ITF_BOARDS.map(b => {
@@ -4495,7 +4638,7 @@ function recordItfStat(content) {
   save.itfStats();
 }
 
-/* ==================== 新增：互动回应逻辑 ==================== */
+/* ==================== 互动回应逻辑 ==================== */
 function doReplyInteraction() {
   const s = State.settings;
   const inComp = Companion.active;
@@ -4527,7 +4670,7 @@ function doReplyInteraction() {
   else pushOther('……');
 }
 
-/* ==================== 字卡管理（改动：加上锁区） ==================== */
+/* ==================== 字卡管理（含上锁） ==================== */
 let cardSelectMode = false, cardSelected = new Set(), searchKeyword = '';
 let cardZone = 'normal';
 function openCardManager() {
@@ -4921,7 +5064,7 @@ function renderBgTab() {
   }
 }
 
-/* ==================== 旧梦重温 ==================== */
+/* ==================== 旧梦重温（含恢复回聊天） ==================== */
 function openArchive() {
   openSub('旧梦重温', `<div class="archive-list" id="archive-list"></div>`, () => { renderArchiveList(); });
 }
@@ -4935,12 +5078,24 @@ function renderArchiveList() {
     el.innerHTML = `<span>${dayLabel(a.day)}</span><span class="archive-count">${a.messages.length}条</span>`;
     el.onclick = () => openPlayPage(a.day);
     bindLongPress(el, () => {
-      openModal({ title: dayLabel(a.day), bodyHTML: '删除这一天的归档？', actions: [
+      openModal({ title: dayLabel(a.day), bodyHTML: '', actions: [
+        { label: '恢复回聊天', keepOpen: true, onClick: () => { restoreArchiveToChat(a.day); closeModal(); renderArchiveList(); } },
         { label: '删除', danger: true, keepOpen: true, onClick: () => { State.archive = State.archive.filter(x => x.day !== a.day); save.archive(); closeModal(); renderArchiveList(); } }
       ]});
     });
     list.appendChild(el);
   });
+}
+/* ==================== 新增：恢复回聊天 ==================== */
+function restoreArchiveToChat(day) {
+  const entry = State.archive.find(a => a.day === day);
+  if (!entry) return;
+  entry.messages.forEach(m => State.messages.push(m));
+  State.archive = State.archive.filter(a => a.day !== day);
+  State.messages.sort((a, b) => (a.ts || 0) - (b.ts || 0));
+  save.messages(); save.archive();
+  renderMessages(); scrollBottom();
+  toast('已恢复到聊天');
 }
 
 /* ==================== 播放页 ==================== */
@@ -5034,11 +5189,19 @@ async function boot() {
     State.settings.avatarPairs = st.avatarPairs || [];
     State.settings.chatBgPool = st.chatBgPool || [];
     State.settings.lockBgPool = st.lockBgPool || [];
-    /* ==================== 新增：旧数据补齐互动概率默认值 ==================== */
+    /* 旧数据补齐 */
+    if (State.settings.quoteProb == null) State.settings.quoteProb = 7;
+    if (State.settings.heartProb == null) State.settings.heartProb = 5;
+    if (State.settings.inviteProb == null) State.settings.inviteProb = 6;
+    if (State.settings.companionInviteProb == null) State.settings.companionInviteProb = 5;
     if (State.settings.itfProbOther == null) State.settings.itfProbOther = 50;
     if (State.settings.itfProbTogether == null) State.settings.itfProbTogether = 30;
     if (State.settings.itfProbNormal == null) State.settings.itfProbNormal = 20;
     if (State.settings.itfProbCompanion == null) State.settings.itfProbCompanion = 70;
+    if (State.settings.itfActiveProb == null) State.settings.itfActiveProb = 3;
+    if (State.settings.emojiEnabled == null) State.settings.emojiEnabled = false;
+    if (State.settings.emojiProb == null) State.settings.emojiProb = 6;
+    if (State.settings.companionAcceptProb == null) State.settings.companionAcceptProb = 80;
   }
   const c = await Store.read('cards.json'); if (c) State.cards = c;
   const t = await Store.read('trash.json'); if (t) State.trash = t;
@@ -5052,20 +5215,17 @@ async function boot() {
   const mo = await Store.read('moods.json'); if (mo) State.moods = mo;
   const so = await Store.read('songs.json'); if (so) State.songs = so;
   const cs = await Store.read('companion_stats.json'); if (cs) State.companionStats = cs;
-  /* ==================== 新增：读取陪伴进行中 + 互动数据 ==================== */
   const ca = await Store.read('companion_active.json'); if (ca) State.companionActive = ca;
   const itf = await Store.read('interactions.json'); if (itf) State.interactions = Object.assign({ me: [], other: [], together: [] }, itf);
   const is = await Store.read('itf_stats.json'); if (is) State.itfStats = is;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
 
-  /* ==================== 新增：补录被中断的陪伴 ==================== */
   checkInterruptedCompanion();
 
   applyTheme(State.settings.theme);
   applyFloatBall(); applyBackgrounds(); applyAvatars();
 
   initLockPage(); initChatPage(); initFloatBallDrag(); initPlayPage();
-  /* ==================== 新增：sheet 下滑关闭 ==================== */
   initSheetDrag();
 
   $('#modal-mask').addEventListener('click', e => { if (e.target.id === 'modal-mask') closeModal(); });
