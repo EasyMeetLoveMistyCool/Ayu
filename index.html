@@ -17,7 +17,6 @@ input, textarea { user-select: text; -webkit-user-select: text; font-family: inh
 button { border: none; background: none; color: inherit; font-family: inherit; cursor: pointer; }
 ul, li { list-style: none; }
 
-/* ============ 主题 ============ */
 :root, [data-theme="rose-glass"] {
   --bg-base: #fdf2f5; --bg-grad-1: #fef6f8; --bg-grad-2: #fdf2f5; --bg-grad-3: #fbeef2;
   --glass-bg: rgba(255,255,255,0.45); --glass-bg-strong: rgba(255,255,255,0.65);
@@ -143,7 +142,6 @@ ul, li { list-style: none; }
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
 }
 
-/* ============ 通用 ============ */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(18px) saturate(160%);
@@ -171,7 +169,6 @@ ul, li { list-style: none; }
 .icon-btn:active { transform: scale(.9); background: var(--accent-soft); }
 .icon-btn svg { width: 22px; height: 22px; display: block; }
 
-/* ============ 弹窗 ============ */
 .modal-mask {
   position: fixed; inset: 0; z-index: 1000;
   display: none; align-items: center; justify-content: center;
@@ -228,7 +225,6 @@ ul, li { list-style: none; }
 .choice-btn svg { width: 26px; height: 26px; color: var(--accent-deep); }
 .choice-btn:active { transform: scale(.96); }
 
-/* 消息长按菜单 */
 .msg-menu-item {
   display: flex; align-items: center; gap: 12px;
   padding: 14px 16px; border-radius: 14px;
@@ -242,7 +238,6 @@ ul, li { list-style: none; }
 .msg-menu-item svg { width: 20px; height: 20px; color: var(--accent-deep); }
 .msg-menu-item.danger svg { color: var(--danger); }
 
-/* 下拉小弹窗 */
 .dropdown {
   position: absolute; z-index: 1100;
   background: var(--glass-bg-strong);
@@ -260,7 +255,6 @@ ul, li { list-style: none; }
 }
 .dropdown-item.active { background: var(--accent); }
 
-/* 轻提示 */
 .toast {
   position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%);
   background: var(--glass-bg-strong);
@@ -275,7 +269,6 @@ ul, li { list-style: none; }
 }
 .toast.active { opacity: 1; }
 
-/* ============ 动画 ============ */
 @keyframes heartbeat-line { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @keyframes heart-beat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.15); } 24% { transform: scale(1); } }
 @keyframes dot-jump { 0%,60%,100% { transform: translateY(0); opacity:.5; } 30% { transform: translateY(-4px); opacity:1; } }
@@ -292,7 +285,6 @@ ul, li { list-style: none; }
   50% { box-shadow: 0 0 0 3px var(--accent-deep); }
 }
 
-/* ============ 锁屏 ============ */
 .lock-wrap {
   position: relative; z-index: 2; height: 100%;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -344,7 +336,6 @@ ul, li { list-style: none; }
 }
 .lock-pass.shake { animation: shake .4s ease; }
 
-/* ============ 聊天 ============ */
 .chat-header {
   position: relative; z-index: 5;
   padding: calc(10px + env(safe-area-inset-top)) 14px 12px;
@@ -382,7 +373,6 @@ ul, li { list-style: none; }
 .msg-row.other .bubble { background: var(--bubble-other); border: 1px solid var(--glass-border); }
 .msg-row.me .bubble { background: var(--bubble-me); border: 1px solid var(--glass-border); }
 
-/* 引用块 */
 .quote-block {
   display: flex; align-items: center; gap: 6px;
   padding: 6px 10px; border-radius: 10px;
@@ -395,7 +385,6 @@ ul, li { list-style: none; }
 .quote-block .quote-text { flex: 1; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .quote-block .quote-thumb { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
 
-/* 引用输入条 */
 .quote-bar {
   display: none; align-items: center; gap: 8px;
   padding: 8px 12px; margin-bottom: 6px;
@@ -409,7 +398,6 @@ ul, li { list-style: none; }
 .quote-bar .qthumb { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; }
 .quote-bar .qx { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-/* 心动标记 */
 .heart-mark {
   position: absolute; font-size: 14px; line-height: 1;
 }
@@ -426,7 +414,6 @@ ul, li { list-style: none; }
 .msg-meta { margin-top: 4px; font-size: 11px; color: var(--time-text); display: flex; align-items: center; gap: 6px; }
 .read-flag { font-size: 11px; color: var(--heart-red); }
 
-/* 归档模式 */
 .msg-row.archive-mode { padding-left: 30px; position: relative; }
 .msg-check {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
@@ -444,7 +431,6 @@ ul, li { list-style: none; }
   transform: rotate(-45deg) translateY(-1px);
 }
 
-/* 卡片消息 */
 .card-msg {
   border: 2px solid var(--accent-deep);
   border-radius: 18px;
@@ -472,7 +458,6 @@ ul, li { list-style: none; }
 .card-opt .opt-mark.mark-other { color: var(--accent); }
 .card-msg-result { margin-top: 10px; text-align: center; font-size: 13px; color: var(--text-soft); }
 
-/* 问卷卡片 */
 .quiz-card {
   border: 2px solid var(--accent-deep);
   border-radius: 18px;
@@ -493,7 +478,6 @@ ul, li { list-style: none; }
 .quiz-q { margin-bottom: 14px; }
 .quiz-q-text { font-size: 14px; color: var(--text); margin-bottom: 8px; }
 
-/* 歌卡 */
 .song-card {
   border: 2px solid var(--accent-deep);
   border-radius: 18px;
@@ -508,20 +492,20 @@ ul, li { list-style: none; }
 .song-info { flex: 1; min-width: 0; }
 .song-name { font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .song-artist { font-size: 12.5px; color: var(--text-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.song-play {
-  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text); background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-}
-.song-play svg { width: 18px; height: 18px; }
-.song-listen {
+.song-btn {
   display: block; width: 100%; margin-top: 10px;
   padding: 9px; border-radius: 12px;
   font-size: 13.5px; color: var(--text); background: var(--accent);
   border: 1px solid var(--glass-border); text-align: center;
 }
-.song-listen.done { background: var(--glass-bg-strong); color: var(--text-soft); }
+.song-btn.done { background: var(--glass-bg-strong); color: var(--text-soft); }
+.song-play-btn {
+  display: flex; width: 100%; margin-top: 10px;
+  padding: 9px; border-radius: 12px;
+  font-size: 13.5px; color: var(--text); background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border); align-items: center; justify-content: center; gap: 6px;
+}
+.song-play-btn svg { width: 18px; height: 18px; }
 .song-hint { margin-top: 8px; font-size: 12.5px; color: var(--text-soft); text-align: center; }
 
 .archive-bar {
@@ -587,7 +571,6 @@ ul, li { list-style: none; }
 .circle-btn:active { transform: scale(.9); }
 .circle-btn svg { width: 24px; height: 24px; }
 
-/* ============ 子页面 ============ */
 .sub-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: calc(10px + env(safe-area-inset-top)) 8px 10px;
@@ -606,7 +589,6 @@ ul, li { list-style: none; }
 .setting-block:active { transform: scale(.98); }
 .block-icon { width: 22px; height: 22px; color: var(--accent-deep); }
 
-/* ============ 悬浮球 ============ */
 .float-ball {
   position: fixed; z-index: 900;
   width: 52px; height: 52px; right: 16px; bottom: 120px;
@@ -616,7 +598,6 @@ ul, li { list-style: none; }
 .float-ball img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
 .float-ball.hidden { display: none; }
 
-/* ============ 通用列表 ============ */
 .card-toolbar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
 .toolbar-row { display: flex; gap: 8px; }
 .tool-btn {
@@ -664,7 +645,6 @@ ul, li { list-style: none; }
   color: var(--text-soft); font-size: 14.5px; text-align: center; padding: 40px 20px;
 }
 
-/* ============ 头像 / 背景 ============ */
 .section-title { font-size: 13.5px; font-weight: 600; color: var(--text-soft); margin: 6px 4px 2px; letter-spacing: .5px; }
 .avatar-block {
   display: flex; align-items: center; gap: 14px;
@@ -798,7 +778,6 @@ ul, li { list-style: none; }
 }
 .call-cell.active { background: var(--accent); border-color: var(--accent-deep); }
 
-/* ============ 底部升起面板 ============ */
 .sheet-mask {
   position: fixed; inset: 0; z-index: 1000;
   display: none; align-items: flex-end; justify-content: center;
@@ -820,7 +799,6 @@ ul, li { list-style: none; }
 .sheet-grid .unpair-cell { aspect-ratio: auto; padding: 14px 4px; border-radius: 14px; }
 .sheet-item-name { font-size: 11px; color: var(--text); }
 
-/* ============ 旧梦重温 ============ */
 .archive-list { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 0; }
 .archive-item {
   display: flex; align-items: center; justify-content: space-between;
@@ -830,7 +808,6 @@ ul, li { list-style: none; }
 }
 .archive-count { font-size: 13px; color: var(--text-soft); }
 
-/* ============ 播放页 ============ */
 .play-header {
   position: relative; z-index: 5;
   display: flex; align-items: center; justify-content: space-between;
@@ -902,7 +879,6 @@ ul, li { list-style: none; }
 }
 .speed-opt.active { background: var(--accent); }
 
-/* ============ 问卷管理 / 创建 ============ */
 .quiz-mgr-top { flex-shrink: 0; padding: 10px 12px; }
 .quiz-mgr-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
 .quiz-item {
@@ -947,7 +923,6 @@ ul, li { list-style: none; }
   background: var(--glass-bg); border: 1px dashed var(--accent-deep);
 }
 
-/* ============ 备忘录 ============ */
 .memo-body { flex: 1; padding: 0 12px 8px; display: flex; flex-direction: column; }
 .memo-textarea {
   flex: 1; width: 100%;
@@ -961,7 +936,6 @@ ul, li { list-style: none; }
 .memo-textarea::placeholder { color: var(--text-soft); }
 .memo-foot { flex-shrink: 0; padding: 10px 12px calc(12px + env(safe-area-inset-bottom)); }
 
-/* ============ 心愿单 ============ */
 .wish-top { flex-shrink: 0; padding: 10px 12px; }
 .wish-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
 .wish-item {
@@ -978,7 +952,6 @@ ul, li { list-style: none; }
 .wish-item.done .wish-text { text-decoration: line-through; color: var(--text-soft); }
 .wish-text { flex: 1; word-break: break-word; }
 
-/* ============ 重要日 ============ */
 .day-top { flex-shrink: 0; padding: 10px 12px; }
 .day-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
 .day-item {
@@ -995,7 +968,6 @@ ul, li { list-style: none; }
 }
 .day-count { font-size: 13px; font-weight: 600; color: var(--accent-deep); flex-shrink: 0; text-align: right; }
 
-/* ============ 心动时刻 ============ */
 .heart-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 14px; }
 .heart-list { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
 .heart-list::-webkit-scrollbar { width: 0; }
@@ -1008,9 +980,7 @@ ul, li { list-style: none; }
 .heart-item .h-who { font-size: 11px; color: var(--text-soft); margin-left: 8px; }
 .heart-item .h-time { font-size: 11px; color: var(--time-text); margin-top: 6px; }
 .heart-item img { max-width: 100%; border-radius: 10px; }
-.heart-item .card-msg, .heart-item .quiz-card { margin-top: 6px; }
 
-/* ============ 心情手帐 ============ */
 .mood-cal-head {
   flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
   padding: 8px 16px;
@@ -1032,7 +1002,6 @@ ul, li { list-style: none; }
 .mood-emojis .me, .mood-emojis .his { font-size: 12px; line-height: 1; border-radius: 4px; padding: 0 2px; }
 .mood-emojis .his { background: var(--his-bg); }
 .mood-emojis .me { background: var(--my-bg); }
-
 .mood-body { flex: 1; overflow-y: auto; padding: 8px 14px 20px; display: flex; flex-direction: column; gap: 10px; }
 .mood-body::-webkit-scrollbar { width: 0; }
 .mood-block { padding: 12px 14px; border-radius: 14px; background: var(--glass-bg); border: 1px solid var(--glass-border); }
@@ -1051,7 +1020,6 @@ ul, li { list-style: none; }
 .mood-pick .e { font-size: 20px; }
 .mood-pick.active { border-color: var(--accent-deep); background: var(--accent-soft); }
 
-/* ============ 音乐管理 / 悬浮窗 ============ */
 .music-top { flex-shrink: 0; padding: 10px 12px; }
 .music-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
 .music-item {
@@ -1064,7 +1032,6 @@ ul, li { list-style: none; }
 .music-item .mname { flex-shrink: 0; }
 .music-item .martist { color: var(--text-soft); font-size: 13px; }
 
-/* 音乐悬浮窗 */
 .music-float {
   position: fixed; z-index: 950;
   left: 50%; transform: translateX(-50%); bottom: 160px;
@@ -1564,8 +1531,9 @@ const HIS_WEATHER = [
   '忽晴忽阴','一会晴一会雨','天气多变'
 ];
 
-const VERSION = '1.0.0.9';
+const VERSION = '1.0.1.0';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
+const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
 
 const State = {
@@ -1595,7 +1563,7 @@ const State = {
   days: [],
   hearts: [],
   moods: {},
-  songs: [],   /* [{id, name, artist, cacheKey}] */
+  songs: [],
   love: 0
 };
 
@@ -1759,75 +1727,76 @@ function bindLongPress(el, cb) {
   el.addEventListener('mouseleave', cancel);
 }
 
-/* ---------- 音乐播放器 ---------- */
+/* ==================== 音乐播放器（重写，保守） ==================== */
 const Player = {
-  audio: null,
-  list: [], idx: 0, mode: 'order',
-  url: null,
+  audio: null, list: [], idx: 0, mode: 'order', url: null, curSongId: null,
   init() {
     if (this.audio) return;
     this.audio = new Audio();
     this.audio.addEventListener('ended', () => this.onEnded());
+    this.audio.addEventListener('play', () => this.updateIcon());
+    this.audio.addEventListener('pause', () => this.updateIcon());
   },
   async playSong(song, list) {
     this.init();
-    if (list) { this.list = list; this.idx = list.findIndex(s => s.id === song.id); }
-    await this.load(song);
-    try { await this.audio.play(); } catch (e) {}
-  },
-  async load(song) {
-    this.init();
+    this.list = (list && list.length) ? list : [song];
+    this.idx = this.list.findIndex(s => s.id === song.id);
+    if (this.idx < 0) this.idx = 0;
+    this.curSongId = song.id;
     const blob = await CacheStore.get('song_' + song.id);
     if (!blob) { toast('音频找不到了'); return; }
-    if (this.url) URL.revokeObjectURL(this.url);
+    if (this.url) { URL.revokeObjectURL(this.url); this.url = null; }
     this.url = URL.createObjectURL(blob);
     this.audio.src = this.url;
+    try { await this.audio.play(); } catch (e) {}
     this.showFloat(song);
   },
   onEnded() {
     if (this.mode === 'loop-one') { this.audio.play(); return; }
     if (!this.list.length) return;
     let next;
-    if (this.mode === 'shuffle') next = Math.floor(Math.random() * this.list.length);
-    else {
+    if (this.mode === 'shuffle') {
+      next = Math.floor(Math.random() * this.list.length);
+    } else {
       next = this.idx + 1;
       if (next >= this.list.length) {
         if (this.mode === 'loop') next = 0;
-        else return; /* order：到头停 */
+        else { this.updateIcon(); return; }
       }
     }
     this.idx = next;
-    this.load(this.list[next]).then(() => this.audio.play());
+    this.playSong(this.list[next], this.list);
   },
   toggle() {
-    if (!this.audio) return;
+    if (!this.audio || !this.audio.src) return;
     if (this.audio.paused) this.audio.play(); else this.audio.pause();
     this.updateIcon();
   },
   prev() {
     if (!this.list.length) return;
     this.idx = (this.idx - 1 + this.list.length) % this.list.length;
-    this.load(this.list[this.idx]).then(() => this.audio.play());
+    this.playSong(this.list[this.idx], this.list);
   },
   next() {
     if (!this.list.length) return;
     this.idx = (this.idx + 1) % this.list.length;
-    this.load(this.list[this.idx]).then(() => this.audio.play());
+    this.playSong(this.list[this.idx], this.list);
   },
   showFloat(song) {
-    $('#mf-name').textContent = song.name;
+    $('#mf-name').textContent = song.name || '';
     $('#mf-artist').textContent = song.artist || '';
     $('#music-float').classList.add('active');
-    this.updateIcon();
     $('#mf-mode-icon use').setAttribute('href', MODE_ICONS[this.mode]);
+    this.updateIcon();
   },
   updateIcon() {
     if (!this.audio) return;
-    $('#mf-pause-icon use').setAttribute('href', this.audio.paused ? '#i-play' : '#i-pause');
+    const icon = $('#mf-pause-icon use');
+    if (icon) icon.setAttribute('href', this.audio.paused ? '#i-play' : '#i-pause');
   }
 };
 
-/* ---------- 锁屏 ---------- */
+/* ==================== 锁屏 ==================== */
 function initLockPage() {
   function tick() {
     const d = new Date();
@@ -1875,7 +1844,7 @@ function enterChat() {
   setTimeout(scrollBottom, 50);
 }
 
-/* ---------- 聊天 ---------- */
+/* ==================== 聊天 ==================== */
 let multiSendMode = false;
 const MSG_PAGE = 20;
 let renderedCount = MSG_PAGE;
@@ -1909,7 +1878,7 @@ function initChatPage() {
   $('#arc-all').onclick = () => { State.messages.forEach(m => archiveSelected.add(m.id)); renderMessages(); };
   $('#arc-exit').onclick = () => exitArchiveMode();
   $('#arc-go').onclick = doArchive;
-  /* 音乐悬浮窗 */
+  /* 音乐悬浮窗控制 */
   $('#mf-close').onclick = () => { $('#music-float').classList.remove('active'); if (Player.audio) Player.audio.pause(); Player.updateIcon(); };
   $('#mf-pause').onclick = () => Player.toggle();
   $('#mf-prev').onclick = () => Player.prev();
@@ -1918,6 +1887,7 @@ function initChatPage() {
     const i = MODES.indexOf(Player.mode);
     Player.mode = MODES[(i + 1) % MODES.length];
     $('#mf-mode-icon use').setAttribute('href', MODE_ICONS[Player.mode]);
+    toast(MODE_NAMES[Player.mode]);
   };
   initMusicFloatDrag();
   renderMessages(); updateLove();
@@ -2055,60 +2025,73 @@ function buildQuizCard(m) {
   card.appendChild(body);
   return card;
 }
+
+/* 歌卡（重写，稳定不崩） */
 function buildSongCard(m) {
-  const card = document.createElement('div'); card.className = 'song-card';
-  const row = document.createElement('div'); row.className = 'song-row';
+  const card = document.createElement('div');
+  card.className = 'song-card';
+  const row = document.createElement('div');
+  row.className = 'song-row';
   row.innerHTML = `<svg class="song-icon"><use href="#i-music-note"/></svg>
-    <div class="song-info"><div class="song-name">${escapeHTML(m.songName)}</div><div class="song-artist">${escapeHTML(m.artist || '')}</div></div>`;
+    <div class="song-info">
+      <div class="song-name">${escapeHTML(m.songName || '')}</div>
+      <div class="song-artist">${escapeHTML(m.artist || '')}</div>
+    </div>`;
   card.appendChild(row);
-  const hint = document.createElement('div'); hint.className = 'song-hint';
-  if (m.who === 'other') {
-    /* 祂发的邀请：我要点"一起听" */
-    if (m.accepted) {
-      hint.textContent = '正在和祂一起听';
-      const pb = document.createElement('button'); pb.className = 'song-play'; pb.style.margin = '0 auto';
-      pb.innerHTML = `<svg id="sc-icon-${m.id}"><use href="#i-play"/></svg>`;
-      pb.onclick = async () => {
-        const song = State.songs.find(s => s.id === m.songId);
-        if (!song) return;
-        if (Player.audio && Player.audio.src && Player._curSong === m.songId) { Player.toggle(); }
-        else { Player._curSong = m.songId; await Player.playSong(song, State.songs); }
-        const paused = Player.audio.paused;
-        $(`#sc-icon-${m.id} use`).setAttribute('href', paused ? '#i-play' : '#i-pause');
-      };
-      hint.parentNode.insertBefore(pb, hint.nextSibling);
-    } else {
-      const btn = document.createElement('button'); btn.className = 'song-listen'; btn.textContent = '一起听';
-      btn.onclick = () => { m.accepted = true; save.messages(); renderMessages(); };
-      card.appendChild(btn);
-    }
+
+  /* 状态：waiting(待回应) / accepted(接受，有播放) / refused(拒绝) */
+  if (m.accepted) {
+    const hint = document.createElement('div');
+    hint.className = 'song-hint';
+    hint.textContent = '正在和祂一起听';
+    card.appendChild(hint);
+    const pb = document.createElement('button');
+    pb.className = 'song-play-btn';
+    pb.innerHTML = `<svg><use href="#${(Player.audio && !Player.audio.paused && Player.curSongId === m.songId) ? 'i-pause' : 'i-play'}"/></svg><span>播放</span>`;
+    pb.onclick = () => { playSongCard(m); };
+    card.appendChild(pb);
+  } else if (m.refused) {
+    const hint = document.createElement('div');
+    hint.className = 'song-hint';
+    hint.textContent = m.refuseText || '祂想待会儿再听。';
+    card.appendChild(hint);
   } else {
-    /* 我发的邀请：等祂同意 */
-    if (m.accepted) {
-      hint.textContent = '正在和祂一起听';
-      const pb = document.createElement('button'); pb.className = 'song-play'; pb.style.margin = '0 auto';
-      pb.innerHTML = `<svg id="sc-icon-${m.id}"><use href="#i-play"/></svg>`;
-      pb.onclick = async () => {
-        const song = State.songs.find(s => s.id === m.songId);
-        if (!song) return;
-        if (Player.audio && Player.audio.src && Player._curSong === m.songId) { Player.toggle(); }
-        else { Player._curSong = m.songId; await Player.playSong(song, State.songs); }
-        const paused = Player.audio.paused;
-        $(`#sc-icon-${m.id} use`).setAttribute('href', paused ? '#i-play' : '#i-pause');
-      };
-      hint.parentNode.insertBefore(pb, hint.nextSibling);
-    } else if (m.refused) {
-      hint.textContent = m.refuseText || '祂想待会儿再听。';
-    } else {
-      const btn = document.createElement('button'); btn.className = 'song-listen'; btn.textContent = '一起听';
-      btn.onclick = () => { /* 已发出，等祂同意 */ };
-      btn.style.opacity = .6;
-      card.appendChild(btn);
+    const btn = document.createElement('button');
+    btn.className = 'song-btn';
+    btn.textContent = '一起听';
+    btn.onclick = () => { acceptSongCard(m); };
+    card.appendChild(btn);
+    if (m.who === 'me') {
+      const hint = document.createElement('div');
+      hint.className = 'song-hint';
       hint.textContent = '等待祂的回应…';
+      card.appendChild(hint);
     }
   }
-  if (hint.textContent) card.appendChild(hint);
   return card;
+}
+/* 点击"一起听" */
+function acceptSongCard(m) {
+  if (m.accepted) return;
+  /* 我发的：不能自己点接受，等祂回应（正常不该出现，防御） */
+  if (m.who === 'me') return;
+  /* 祂发的：我点接受 */
+  m.accepted = true;
+  save.messages();
+  renderMessages();
+  scrollBottom();
+}
+/* 点播放 */
+function playSongCard(m) {
+  const song = State.songs.find(s => s.id === m.songId);
+  if (!song) { toast('歌不在了'); return; }
+  if (Player.audio && Player.curSongId === m.songId) {
+    Player.toggle();
+  } else {
+    Player.playSong(song, State.songs);
+  }
+  /* 重渲染，让歌卡的播放图标更新 */
+  setTimeout(() => { renderMessages(); scrollBottom(); }, 100);
 }
 
 function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop = body.scrollHeight; }
@@ -2134,10 +2117,10 @@ function openMsgMenu(m) {
   };
 }
 function doQuote(m) {
-  const text = m.text || (m.type === 'img' ? '' : '');
+  const text = m.text || '';
   const thumb = m.type === 'img' ? m.src : '';
   quoteTarget = { id: m.id, text, thumb };
-  $('#quote-bar-text').textContent = text || (thumb ? '' : '');
+  $('#quote-bar-text').textContent = text || (thumb ? '[图片]' : '');
   const th = $('#quote-bar-thumb');
   if (thumb) { th.src = thumb; th.style.display = ''; } else th.style.display = 'none';
   $('#quote-bar').classList.add('active');
@@ -2152,7 +2135,7 @@ function extractContent(m) {
   if (m.type === 'img') return { type: 'img', src: m.src };
   if (m.type === 'card') return { type: 'card', title: m.title, options: m.options, myPick: m.myPick, otherPick: m.otherPick, result: m.result };
   if (m.type === 'quiz') return { type: 'quiz', title: m.title, questions: m.questions, otherPicks: m.otherPicks };
-  if (m.type === 'song') return { type: 'text', text: '🎵 ' + m.songName + ' ' + (m.artist || '') };
+  if (m.type === 'song') return { type: 'text', text: '🎵 ' + (m.songName || '') + ' ' + (m.artist || '') };
   return { type: 'text', text: m.text };
 }
 function jumpToMsg(mid) {
@@ -2212,7 +2195,7 @@ function doReply() {
     if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
   };
   sendNext();
-  if (invite) setTimeout(() => pushSongInvite(invite), 1500);
+  if (invite) setTimeout(() => pushOtherSongInvite(invite), 1500);
 }
 function maybeOtherQuote() {
   const s = State.settings;
@@ -2221,7 +2204,7 @@ function maybeOtherQuote() {
   const recent = State.messages.slice(-10).filter(m => m.type !== 'card' && m.type !== 'quiz' && m.type !== 'song');
   if (!recent.length) return null;
   const pick = recent[Math.floor(Math.random() * recent.length)];
-  if (pick.type === 'img') return { id: pick.id, text: '', thumb: pick.src };
+  if (pick.type === 'img') return { id: pick.id, text: '[图片]', thumb: pick.src };
   return { id: pick.id, text: pick.text || '' };
 }
 function maybeOtherHeart() {
@@ -2239,8 +2222,12 @@ function maybeOtherInvite() {
   if (!State.songs.length) return null;
   return State.songs[Math.floor(Math.random() * State.songs.length)];
 }
-function pushSongInvite(song) {
-  State.messages.push({ id: uid(), who: 'other', type: 'song', songId: song.id, songName: song.name, artist: song.artist || '', accepted: false, t: nowHM(), ts: Date.now() });
+function pushOtherSongInvite(song) {
+  State.messages.push({
+    id: uid(), who: 'other', type: 'song', songId: song.id,
+    songName: song.name, artist: song.artist || '',
+    accepted: false, refused: false, t: nowHM(), ts: Date.now()
+  });
   save.messages(); renderMessages(); scrollBottom();
 }
 function pushOther(text, quote) {
@@ -2257,7 +2244,7 @@ function maybeNotify(text) {
   try { new Notification('阿遇♥阿凉', { body: text }); } catch (e) {}
 }
 
-/* ---------- 归档模式 ---------- */
+/* ==================== 归档模式 ==================== */
 function enterArchiveMode() {
   archiveMode = true; archiveSelected.clear();
   $('#chat-footer').style.display = 'none';
@@ -2305,7 +2292,7 @@ function doArchive() {
   setTimeout(step, 200);
 }
 
-/* ---------- 悬浮球 ---------- */
+/* ==================== 悬浮球 ==================== */
 function applyFloatBall() {
   const ball = $('#float-ball'); if (!ball) return;
   ball.style.width = State.settings.floatSize + 'px';
@@ -2392,7 +2379,7 @@ function initMusicFloatDrag() {
   });
 }
 
-/* ---------- ⊕ 小功能 ---------- */
+/* ==================== ⊕ 小功能 ==================== */
 function openPlusMenu() {
   const items = [
     ['拍照','i-camera'], ['相册','i-album'], ['视频','i-video'], ['贴纸','i-sticker'],
@@ -2424,7 +2411,7 @@ function handlePlusItem(name) {
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* ---------- 悬浮球大功能 ---------- */
+/* ==================== 悬浮球大功能 ==================== */
 function openBigMenu() {
   const items = [
     ['小世界','i-world'], ['信箱','i-mailbox'], ['留言笺','i-note'], ['抉择','i-choice'],
@@ -2481,7 +2468,7 @@ function openSub(title, bodyHTML, afterRender) {
   if (afterRender) afterRender();
 }
 
-/* ---------- 备忘录 ---------- */
+/* ==================== 备忘录 ==================== */
 let memoTimer = null;
 function openMemo() {
   openSub('备忘录', `<div class="memo-body"><textarea class="memo-textarea" id="memo-input" placeholder="写点什么…">${escapeHTML(State.memos || '')}</textarea></div><div class="memo-foot"><button class="upload-btn" id="btn-save-memo" style="border-style:solid"><svg><use href="#i-card"/></svg>保存</button></div>`, () => {
@@ -2491,7 +2478,7 @@ function openMemo() {
   });
 }
 
-/* ---------- 心愿单 ---------- */
+/* ==================== 心愿单 ==================== */
 function openWishlist() {
   openSub('心愿单', `<div class="wish-top"><button class="upload-btn" id="btn-add-wish" style="border-style:solid"><svg><use href="#i-plus"/></svg>添加心愿</button></div><div class="wish-list" id="wish-list"></div>`, () => {
     renderWishlist();
@@ -2523,7 +2510,7 @@ function renderWishlist() {
   });
 }
 
-/* ---------- 重要日 ---------- */
+/* ==================== 重要日 ==================== */
 function openDays() {
   openSub('重要日', `<div class="day-top"><button class="upload-btn" id="btn-add-day" style="border-style:solid"><svg><use href="#i-plus"/></svg>添加重要日</button></div><div class="day-list" id="day-list"></div>`, () => {
     renderDays();
@@ -2603,7 +2590,7 @@ function openDayEditorMenu(d) {
   ]});
 }
 
-/* ---------- 心动时刻 ---------- */
+/* ==================== 心动时刻 ==================== */
 let heartTab = 'other';
 function openHearts() {
   openSub('心动时刻', `
@@ -2645,7 +2632,7 @@ function renderHearts() {
   });
 }
 
-/* ---------- 心情手帐 ---------- */
+/* ==================== 心情手帐 ==================== */
 let moodYear, moodMonth;
 let moodSelectedDate = todayKey();
 function openMoodBook() {
@@ -2730,11 +2717,9 @@ function renderMoodBody() {
     const wasRecorded = State.moods[key].me._recorded === true;
     State.moods[key].me.weather = $('#mood-weather').value;
     State.moods[key].me.note = $('#mood-note').value;
-    /* 我保存 → +3（一天一次） */
     if (!wasRecorded) {
       State.moods[key].me._recorded = true;
       addLove(3);
-      /* 若当天祂已记 → 再 +3 */
       if (State.moods[key].his && State.moods[key].his.mood != null) addLove(3);
     }
     save.moods(); renderMoodCalendar(); toast('已保存');
@@ -2786,7 +2771,6 @@ function runMoodHis() {
     const line = lines[Math.floor(Math.random() * lines.length)];
     const weather = HIS_WEATHER[Math.floor(Math.random() * HIS_WEATHER.length)];
     State.moods[k].his = { mood: moodIdx, weather, line };
-    /* 祂记了 → +3（一天一次，记在 his 上） */
     if (!State.moods[k].his._recorded) {
       State.moods[k].his._recorded = true;
       addLove(3);
@@ -2795,7 +2779,7 @@ function runMoodHis() {
   save.moods();
 }
 
-/* ---------- 音乐：管理 ---------- */
+/* ==================== 音乐：管理 ==================== */
 function openMusicManager() {
   showPage('page-sub'); $('#sub-title').textContent = '音乐';
   const body = $('#sub-body'); body.style.padding = '0';
@@ -2851,7 +2835,8 @@ function openAddSong() {
       const id = uid();
       await CacheStore.put('song_' + id, songTempBlob);
       State.songs.push({ id, name, artist: $('#song-artist').value.trim() });
-      save.songs(); closeModal(); renderMusicList();
+      await save.songs();
+      closeModal(); renderMusicList(); toast('已保存');
     }}]
   });
   setTimeout(() => {
@@ -2875,12 +2860,14 @@ function importSongs() {
       if (!item.name) continue;
       const id = uid();
       if (item.data) {
-        const blob = await (await fetch(item.data)).blob();
-        await CacheStore.put('song_' + id, blob);
+        try {
+          const blob = await (await fetch(item.data)).blob();
+          await CacheStore.put('song_' + id, blob);
+        } catch (e) {}
       }
       State.songs.push({ id, name: item.name, artist: item.artist || '' });
     }
-    save.songs(); renderMusicList(); toast('已导入');
+    await save.songs(); renderMusicList(); toast('已导入');
   };
   inp.click();
 }
@@ -2900,7 +2887,7 @@ async function exportSongs() {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/* ---------- 音乐：发送 ---------- */
+/* ==================== 音乐：发送 ==================== */
 function openMusicPicker() {
   if (!State.songs.length) { openModal({ title:'', bodyHTML:'还没有歌', actions: [] }); setTimeout(closeModal, 1500); return; }
   const html = `<div class="dup-list">` + State.songs.map((s, i) =>
@@ -2911,7 +2898,6 @@ function openMusicPicker() {
     el.onclick = () => {
       const song = State.songs[+el.dataset.song];
       closeModal();
-      /* 弹出选择：播放 / 邀请他听歌 */
       openModal({ title: song.name, bodyHTML: '', actions: [
         { label: '播放', keepOpen: true, onClick: () => { Player.playSong(song, State.songs); closeModal(); } },
         { label: '邀请他听歌', keepOpen: true, onClick: () => { closeModal(); inviteSong(song); } }
@@ -2920,18 +2906,26 @@ function openMusicPicker() {
   });
 }
 function inviteSong(song) {
-  const msg = { id: uid(), who: 'me', type: 'song', songId: song.id, songName: song.name, artist: song.artist || '', accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false };
+  const msg = {
+    id: uid(), who: 'me', type: 'song', songId: song.id,
+    songName: song.name, artist: song.artist || '',
+    accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false
+  };
   State.messages.push(msg);
   save.messages(); renderMessages(); scrollBottom();
-  /* 祂思考 */
+  /* 祂思考后回应 */
   setTimeout(() => {
-    if (Math.random() < 0.8) { msg.accepted = true; }
-    else { msg.refused = true; msg.refuseText = Math.random() < 0.5 ? '祂想待会儿再听。' : '祂这会有点忙。'; }
+    if (Math.random() < 0.8) {
+      msg.accepted = true;
+    } else {
+      msg.refused = true;
+      msg.refuseText = Math.random() < 0.5 ? '祂想待会儿再听。' : '祂这会有点忙。';
+    }
     save.messages(); renderMessages(); scrollBottom();
   }, getThinkTime() * 1000);
 }
 
-/* ---------- 抉择（弹窗） ---------- */
+/* ==================== 抉择 ==================== */
 function openChoice() {
   const items = [['帮我选','i-select-all'], ['帮我定','i-choice'], ['问问祂','i-qa'], ['让祂选','i-album']];
   const html = `<div class="choice-grid">` + items.map((it, i) => `<div class="choice-btn" data-choice="${i}"><svg><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`).join('') + `</div>`;
@@ -2995,7 +2989,7 @@ function choiceImage() {
 }
 function waitThink(cb) { setTimeout(cb, getThinkTime() * 1000); }
 
-/* ---------- 问答 ---------- */
+/* ==================== 问答 ==================== */
 function openQuiz() {
   if (State.cards.length < 4) { openModal({ title:'', bodyHTML:'字卡不够，先加几张吧', actions: [] }); setTimeout(closeModal, 1800); return; }
   if (State.love < 5) { openModal({ title:'', bodyHTML:'还差一点，多聊几句再来。', actions: [] }); setTimeout(closeModal, 1800); return; }
@@ -3020,7 +3014,7 @@ function openQuiz() {
   }, 100);
 }
 
-/* ---------- 问卷 ---------- */
+/* ==================== 问卷 ==================== */
 function openQuizManager() {
   showPage('page-sub'); $('#sub-title').textContent = '问卷';
   const body = $('#sub-body'); body.style.padding = '0';
@@ -3152,7 +3146,7 @@ function sendQuizPick() {
   });
 }
 
-/* ---------- 设置 ---------- */
+/* ==================== 设置 ==================== */
 function openSettings() {
   openSub('设置', `
     <div class="setting-block glass" data-goto="set-chat"><svg class="block-icon"><use href="#i-card"/></svg><span>聊天</span></div>
@@ -3432,7 +3426,7 @@ function openSetAbout() {
   `);
 }
 
-/* ---------- 字卡管理 ---------- */
+/* ==================== 字卡管理 ==================== */
 let cardSelectMode = false, cardSelected = new Set(), searchKeyword = '';
 function openCardManager() {
   cardSelectMode = false; cardSelected.clear(); searchKeyword = '';
@@ -3570,7 +3564,7 @@ function doDedup() {
   openModal({ title:'重复内容', bodyHTML: html, actions: [{ label:'去回收站', onClick: () => openTrash() }] });
 }
 
-/* ---------- 回收站 ---------- */
+/* ==================== 回收站 ==================== */
 let trashSelectMode = false, trashSelected = new Set();
 function openTrash() {
   trashSelectMode = false; trashSelected.clear();
@@ -3616,7 +3610,7 @@ function renderTrashList() {
   });
 }
 
-/* ---------- 头像管理 ---------- */
+/* ==================== 头像管理 ==================== */
 function openAvatarManager() {
   const s = State.settings;
   openSub('头像', `
@@ -3736,7 +3730,7 @@ function addCall(who) {
   setTimeout(() => $('#new-call') && $('#new-call').focus(), 100);
 }
 
-/* ---------- 背景管理 ---------- */
+/* ==================== 背景管理 ==================== */
 let bgTab = 'chat';
 function openBgManager() {
   openSub('背景', `
@@ -3779,7 +3773,7 @@ function renderBgTab() {
   }
 }
 
-/* ---------- 旧梦重温 ---------- */
+/* ==================== 旧梦重温 ==================== */
 function openArchive() {
   openSub('旧梦重温', `<div class="archive-list" id="archive-list"></div>`, () => { renderArchiveList(); });
 }
@@ -3801,7 +3795,7 @@ function renderArchiveList() {
   });
 }
 
-/* ---------- 播放页 ---------- */
+/* ==================== 播放页 ==================== */
 let playState = { day: null, messages: [], idx: 0, timer: null, speed: 1, playing: true, baseDelay: 3000 };
 function openPlayPage(day) {
   const entry = State.archive.find(a => a.day === day);
@@ -3879,7 +3873,7 @@ function initPlayPage() {
   });
 }
 
-/* ---------- 启动 ---------- */
+/* ==================== 启动 ==================== */
 async function boot() {
   await Store.init();
   const st = await Store.read('settings.json');
