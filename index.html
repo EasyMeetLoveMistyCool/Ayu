@@ -493,6 +493,37 @@ ul, li { list-style: none; }
 .quiz-q { margin-bottom: 14px; }
 .quiz-q-text { font-size: 14px; color: var(--text); margin-bottom: 8px; }
 
+/* 歌卡 */
+.song-card {
+  border: 2px solid var(--accent-deep);
+  border-radius: 18px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  padding: 12px 14px;
+  min-width: 200px; max-width: 100%;
+}
+.song-row { display: flex; align-items: center; gap: 10px; }
+.song-icon { width: 28px; height: 28px; flex-shrink: 0; color: var(--accent-deep); }
+.song-info { flex: 1; min-width: 0; }
+.song-name { font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song-artist { font-size: 12.5px; color: var(--text-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song-play {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+}
+.song-play svg { width: 18px; height: 18px; }
+.song-listen {
+  display: block; width: 100%; margin-top: 10px;
+  padding: 9px; border-radius: 12px;
+  font-size: 13.5px; color: var(--text); background: var(--accent);
+  border: 1px solid var(--glass-border); text-align: center;
+}
+.song-listen.done { background: var(--glass-bg-strong); color: var(--text-soft); }
+.song-hint { margin-top: 8px; font-size: 12.5px; color: var(--text-soft); text-align: center; }
+
 .archive-bar {
   flex-shrink: 0; display: flex; gap: 8px;
   padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
@@ -744,11 +775,12 @@ ul, li { list-style: none; }
 .float-preview img { width: 100%; height: 100%; object-fit: cover; }
 .about-wrap {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 16px; text-align: center; padding: 30px 22px;
+  gap: 14px; text-align: center; padding: 30px 22px;
 }
 .about-ver { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: 1px; }
 .about-ver .heart-char { color: var(--heart-red); }
 .about-line { font-size: 13.5px; color: var(--text-soft); }
+.about-line .heart-char { color: var(--heart-red); }
 .about-desc { font-size: 13.5px; line-height: 1.9; color: var(--text); max-width: 320px; text-align: left; }
 .about-desc p { margin-bottom: 12px; }
 .dup-list { display: flex; flex-direction: column; gap: 8px; }
@@ -990,14 +1022,14 @@ ul, li { list-style: none; }
 }
 .mood-cal-weekday { font-size: 11px; color: var(--text-soft); text-align: center; padding: 4px 0; }
 .mood-cal-cell {
-  aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  font-size: 12px; color: var(--text); border-radius: 8px; position: relative;
+  min-height: 54px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--text); border-radius: 8px; position: relative; padding: 2px 0;
 }
 .mood-cal-cell.empty { visibility: hidden; }
 .mood-cal-cell.today { background: var(--accent-soft); }
-.mood-cal-cell .d { font-size: 12px; }
-.mood-emojis { display: flex; gap: 1px; margin-top: 1px; }
-.mood-emojis .me, .mood-emojis .his { font-size: 11px; line-height: 1; border-radius: 4px; padding: 0 1px; }
+.mood-cal-cell .d { font-size: 12px; line-height: 1; }
+.mood-emojis { display: flex; flex-direction: column; align-items: center; gap: 1px; margin-top: 2px; }
+.mood-emojis .me, .mood-emojis .his { font-size: 12px; line-height: 1; border-radius: 4px; padding: 0 2px; }
 .mood-emojis .his { background: var(--his-bg); }
 .mood-emojis .me { background: var(--my-bg); }
 
@@ -1009,7 +1041,6 @@ ul, li { list-style: none; }
 .mood-his { border-left: 3px solid rgba(150,200,240,0.8); }
 .mood-me { border-left: 3px solid rgba(240,170,195,0.8); }
 .mood-field { margin-top: 8px; }
-
 .mood-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .mood-pick {
   display: flex; flex-direction: column; align-items: center; gap: 3px;
@@ -1019,6 +1050,46 @@ ul, li { list-style: none; }
 }
 .mood-pick .e { font-size: 20px; }
 .mood-pick.active { border-color: var(--accent-deep); background: var(--accent-soft); }
+
+/* ============ 音乐管理 / 悬浮窗 ============ */
+.music-top { flex-shrink: 0; padding: 10px 12px; }
+.music-list { flex: 1; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 8px; }
+.music-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 15px; color: var(--text);
+}
+.music-item svg { width: 20px; height: 20px; color: var(--accent-deep); flex-shrink: 0; }
+.music-item .mname { flex-shrink: 0; }
+.music-item .martist { color: var(--text-soft); font-size: 13px; }
+
+/* 音乐悬浮窗 */
+.music-float {
+  position: fixed; z-index: 950;
+  left: 50%; transform: translateX(-50%); bottom: 160px;
+  width: 78vw; max-width: 360px;
+  border-radius: 18px; padding: 12px 16px;
+  display: none; flex-direction: column; gap: 8px;
+  touch-action: none;
+}
+.music-float.active { display: flex; }
+.music-float-row1 { display: flex; align-items: center; gap: 8px; }
+.music-float-row1 .mfname { font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.music-float-row1 .mfartist { font-size: 12.5px; color: var(--text-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.music-float-close {
+  margin-left: auto; width: 24px; height: 24px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; color: var(--text-soft);
+}
+.music-float-mid {
+  display: flex; align-items: center; justify-content: center; gap: 26px;
+  padding: 4px 0;
+}
+.music-btn {
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  color: var(--text);
+}
+.music-btn svg { width: 24px; height: 24px; }
 </style>
 </head>
 <body data-theme="rose-glass">
@@ -1045,6 +1116,32 @@ ul, li { list-style: none; }
       <symbol id="i-pause" viewBox="0 0 24 24">
         <rect x="7" y="5" width="3.6" height="14" rx="1.4" fill="currentColor"/>
         <rect x="13.4" y="5" width="3.6" height="14" rx="1.4" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-prev" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M7 6v12a1 1 0 0 0 2 0v-4.2l7.3 4.6A1 1 0 0 0 18 17.5v-11a1 1 0 0 0-1.7-.9L9 10.2V6a1 1 0 0 0-2 0z"/>
+      </symbol>
+      <symbol id="i-next" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M17 6v12a1 1 0 0 1-2 0v-4.2l-7.3 4.6A1 1 0 0 1 6 17.5v-11a1 1 0 0 1 1.7-.9L15 10.2V6a1 1 0 0 1 2 0z"/>
+      </symbol>
+      <symbol id="i-loop" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 9a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5H9a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h2"/>
+        <path fill="currentColor" d="M19 9l-2.4-2.4L19 4.2l2.4 2.4z"/>
+      </symbol>
+      <symbol id="i-loop-one" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 9a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5H9a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h2"/>
+        <path fill="currentColor" d="M19 9l-2.4-2.4L19 4.2l2.4 2.4z"/>
+        <text x="12" y="15.5" font-size="9" font-weight="700" text-anchor="middle" fill="currentColor">1</text>
+      </symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 7h4l8 10h4M4 17h4l2-2.4M16 7h4"/>
+        <path fill="currentColor" d="M18 5l3 2-3 2zM18 15l3 2-3 2z"/>
+      </symbol>
+      <symbol id="i-order" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 7h12M4 12h12M4 17h12"/>
+        <path fill="currentColor" d="M18 5l3 2-3 2zM18 15l3 2-3 2z"/>
+      </symbol>
+      <symbol id="i-music-note" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M9 17.5V6.8l9-2v9.7a3 3 0 1 1-1.4-2.5V7.6l-6.2 1.4v9.9a3 3 0 1 1-1.4-2.5z"/>
       </symbol>
       <symbol id="i-camera" viewBox="0 0 24 24">
         <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M4 8.5h2.6l1.3-2h8.2l1.3 2H20a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z"/>
@@ -1366,6 +1463,21 @@ ul, li { list-style: none; }
 
   <div id="float-ball" class="float-ball"><img id="float-ball-img" alt=""></div>
 
+  <!-- 音乐悬浮窗 -->
+  <div class="music-float glass" id="music-float">
+    <div class="music-float-row1">
+      <span class="mfname" id="mf-name"></span>
+      <span class="mfartist" id="mf-artist"></span>
+      <span class="music-float-close" id="mf-close"><svg><use href="#i-close"/></svg></span>
+    </div>
+    <div class="music-float-mid">
+      <div class="music-btn" id="mf-prev"><svg><use href="#i-prev"/></svg></div>
+      <div class="music-btn" id="mf-pause"><svg id="mf-pause-icon"><use href="#i-play"/></svg></div>
+      <div class="music-btn" id="mf-next"><svg><use href="#i-next"/></svg></div>
+      <div class="music-btn" id="mf-mode"><svg id="mf-mode-icon"><use href="#i-order"/></svg></div>
+    </div>
+  </div>
+
   <div class="modal-mask" id="modal-mask">
     <div class="modal glass" id="modal">
       <div class="modal-title" id="modal-title"></div>
@@ -1421,14 +1533,12 @@ const LOCK_PASSWORDS = [
 const DING_PRESETS = ['可以的','去吧','别去了','我支持你','跟着心走','再想想','等等看','随你'];
 const ASK_PRESETS = ['是的','不是','应该是吧','我觉得是','我也在想','你说呢','让我想想','我也说不准','再说吧','看情况'];
 
-/* 心情手帐 · 心情 */
 const MOODS = [
   { e: '😆', t: '开心' }, { e: '🤩', t: '兴奋' }, { e: '☺️', t: '平淡' }, { e: '😕', t: '难过' },
   { e: '😞', t: '疲惫' }, { e: '😠', t: '生气' }, { e: '🥰', t: '想你' }, { e: '😵‍💫', t: '忙碌' },
   { e: '😴', t: '困困' }, { e: '🥹', t: '孤单' }, { e: '😎', t: '潇洒' }, { e: '🥺', t: '撒娇' }
 ];
 
-/* 心情手帐 · 祂的话（每个心情 20 句） */
 const HIS_LINES = {
   '开心': ['今天心情特别好！','想到你就想笑。','今天发生了件好事，想跟你说。','你在的话，我会更开心。','嘿嘿，今天很满足。','有好消息想第一个告诉你。','今天太阳很好，心情也好。','跟你聊天，心情就亮了。','今天一整天都乐呵呵的。','想和你分享今天的开心。','今天笑得停不下来。','好事一件接一件。','今天遇到的都是开心的事。','心里美滋滋的。','今天值得记下来。','跟你在一起，天天都开心。','今天笑得脸都酸了。','好事想跟你分享。','今天特别顺。','想到你，嘴角就压不住。'],
   '兴奋': ['有件事我超激动！','今天遇到特别有意思的事。','等不及想告诉你了。','我现在的状态，你肯定猜不到。','有点坐不住，太兴奋了。','今天发生了不得了的事。','想拉你一起疯。','心跳好快，想到就激动。','今天必须跟你分享这个。','兴奋到睡不着。','有惊喜想给你。','今天心跳得飞快。','忍不住一直笑。','今天遇到神仙好事了。','想马上见到你。','激动得睡不着。','今天像过节一样。','想拉你一起庆祝。','有个大计划想跟你说。','今天太带劲了。'],
@@ -1444,7 +1554,6 @@ const HIS_LINES = {
   '撒娇': ['想要你哄。','今天有点粘人。','陪陪我嘛。','想你了，要抱抱。','今天想撒娇。','你不理我我会难过的。','想要你的注意力。','今天想赖着你。','哄哄我好不好。','就想黏着你。','想你了，想要你哄。','今天有点小委屈。','陪陪人家嘛。','想黏着你。','你不许不理我。','今天想当小孩。','要抱抱。','想要你多看看我。','撒娇给你看。','就想要你疼。']
 };
 
-/* 心情手帐 · 祂的天气 */
 const HIS_WEATHER = [
   '晴朗','大晴天','阳光很好','万里无云','晴空万里','天气不错','风和日丽','天很蓝','阳光明媚','晴好',
   '多云','阴天','灰蒙蒙','天有点阴','晴转多云','云有点多','天阴沉沉','灰云压顶','阴转多云',
@@ -1455,7 +1564,9 @@ const HIS_WEATHER = [
   '忽晴忽阴','一会晴一会雨','天气多变'
 ];
 
-const VERSION = '1.0.0.8';
+const VERSION = '1.0.0.9';
+const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
+const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
 
 const State = {
   settings: {
@@ -1474,7 +1585,8 @@ const State = {
     notify: false, fullscreen: false,
     quoteEnabled: false, quoteProb: 10,
     heartEnabled: false, heartProb: 10,
-    moodHour: 20, moodMinute: 0
+    moodHour: 20, moodMinute: 0,
+    inviteEnabled: false, inviteProb: 10
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
@@ -1482,7 +1594,8 @@ const State = {
   wishes: [],
   days: [],
   hearts: [],
-  moods: {},   /* { '2026-09-22': { me: {mood:0, weather:'', note:''}, his: {mood:0, weather:'', line:''} } } */
+  moods: {},
+  songs: [],   /* [{id, name, artist, cacheKey}] */
   love: 0
 };
 
@@ -1515,7 +1628,8 @@ const Store = {
 
 const CacheStore = {
   name: 'ay-media-v1',
-  async put(key, blob) { try { const c = await caches.open(this.name); await c.put('/media/' + key, new Response(blob)); } catch (e) {} }
+  async put(key, blob) { try { const c = await caches.open(this.name); await c.put('/media/' + key, new Response(blob)); } catch (e) {} },
+  async get(key) { try { const c = await caches.open(this.name); const r = await c.match('/media/' + key); return r ? await r.blob() : null; } catch (e) { return null; } }
 };
 
 const save = {
@@ -1530,6 +1644,7 @@ const save = {
   days:     () => Store.write('days.json', State.days),
   hearts:   () => Store.write('hearts.json', State.hearts),
   moods:    () => Store.write('moods.json', State.moods),
+  songs:    () => Store.write('songs.json', State.songs),
   love:     () => Store.write('love.json', State.love)
 };
 
@@ -1540,7 +1655,6 @@ function defaultAvatar(color) {
 }
 function applyTheme(name) { document.body.dataset.theme = name; State.settings.theme = name; save.settings(); }
 
-/* ---------- 页面栈 ---------- */
 let pageStack = [];
 function showPage(id, push = true) {
   const cur = $$('.page').find(p => p.classList.contains('active'));
@@ -1560,7 +1674,6 @@ function updateFloatBallVisible() {
   else ball.classList.remove('hidden');
 }
 
-/* ---------- 弹窗 ---------- */
 let modalStack = [];
 function openModal({ title, bodyHTML, actions, wide }) {
   modalStack.push({ title: $('#modal-title').textContent, body: $('#modal-body').innerHTML, actions: $('#modal-actions').innerHTML, wide: $('#modal').classList.contains('wide') });
@@ -1591,7 +1704,6 @@ function modalBack() {
   } else closeModal();
 }
 
-/* ---------- 下拉 ---------- */
 function openDropdown(anchorEl, items, onPick, current) {
   const dd = $('#dropdown'); dd.innerHTML = '';
   items.forEach(it => {
@@ -1608,7 +1720,6 @@ function openDropdown(anchorEl, items, onPick, current) {
 }
 function closeDropdown() { $('#dropdown').classList.remove('active'); }
 
-/* ---------- 底部升起 ---------- */
 function openSheet(items, onPick) {
   const grid = $('#sheet-grid'); grid.innerHTML = '';
   items.forEach(it => {
@@ -1630,6 +1741,12 @@ function pickImage(cb, multiple = false) {
   inp.onchange = () => { [...inp.files].forEach(f => { const fr = new FileReader(); fr.onload = () => cb(fr.result, f); fr.readAsDataURL(f); }); };
   inp.click();
 }
+function pickAudio(cb) {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'audio/*';
+  inp.onchange = () => { const f = inp.files[0]; if (f) cb(f); };
+  inp.click();
+}
 function bindLongPress(el, cb) {
   let timer = null;
   const start = () => { timer = setTimeout(() => { timer = null; cb(); }, 500); };
@@ -1641,6 +1758,74 @@ function bindLongPress(el, cb) {
   el.addEventListener('mouseup', cancel);
   el.addEventListener('mouseleave', cancel);
 }
+
+/* ---------- 音乐播放器 ---------- */
+const Player = {
+  audio: null,
+  list: [], idx: 0, mode: 'order',
+  url: null,
+  init() {
+    if (this.audio) return;
+    this.audio = new Audio();
+    this.audio.addEventListener('ended', () => this.onEnded());
+  },
+  async playSong(song, list) {
+    this.init();
+    if (list) { this.list = list; this.idx = list.findIndex(s => s.id === song.id); }
+    await this.load(song);
+    try { await this.audio.play(); } catch (e) {}
+  },
+  async load(song) {
+    this.init();
+    const blob = await CacheStore.get('song_' + song.id);
+    if (!blob) { toast('音频找不到了'); return; }
+    if (this.url) URL.revokeObjectURL(this.url);
+    this.url = URL.createObjectURL(blob);
+    this.audio.src = this.url;
+    this.showFloat(song);
+  },
+  onEnded() {
+    if (this.mode === 'loop-one') { this.audio.play(); return; }
+    if (!this.list.length) return;
+    let next;
+    if (this.mode === 'shuffle') next = Math.floor(Math.random() * this.list.length);
+    else {
+      next = this.idx + 1;
+      if (next >= this.list.length) {
+        if (this.mode === 'loop') next = 0;
+        else return; /* order：到头停 */
+      }
+    }
+    this.idx = next;
+    this.load(this.list[next]).then(() => this.audio.play());
+  },
+  toggle() {
+    if (!this.audio) return;
+    if (this.audio.paused) this.audio.play(); else this.audio.pause();
+    this.updateIcon();
+  },
+  prev() {
+    if (!this.list.length) return;
+    this.idx = (this.idx - 1 + this.list.length) % this.list.length;
+    this.load(this.list[this.idx]).then(() => this.audio.play());
+  },
+  next() {
+    if (!this.list.length) return;
+    this.idx = (this.idx + 1) % this.list.length;
+    this.load(this.list[this.idx]).then(() => this.audio.play());
+  },
+  showFloat(song) {
+    $('#mf-name').textContent = song.name;
+    $('#mf-artist').textContent = song.artist || '';
+    $('#music-float').classList.add('active');
+    this.updateIcon();
+    $('#mf-mode-icon use').setAttribute('href', MODE_ICONS[this.mode]);
+  },
+  updateIcon() {
+    if (!this.audio) return;
+    $('#mf-pause-icon use').setAttribute('href', this.audio.paused ? '#i-play' : '#i-pause');
+  }
+};
 
 /* ---------- 锁屏 ---------- */
 function initLockPage() {
@@ -1724,6 +1909,17 @@ function initChatPage() {
   $('#arc-all').onclick = () => { State.messages.forEach(m => archiveSelected.add(m.id)); renderMessages(); };
   $('#arc-exit').onclick = () => exitArchiveMode();
   $('#arc-go').onclick = doArchive;
+  /* 音乐悬浮窗 */
+  $('#mf-close').onclick = () => { $('#music-float').classList.remove('active'); if (Player.audio) Player.audio.pause(); Player.updateIcon(); };
+  $('#mf-pause').onclick = () => Player.toggle();
+  $('#mf-prev').onclick = () => Player.prev();
+  $('#mf-next').onclick = () => Player.next();
+  $('#mf-mode').onclick = () => {
+    const i = MODES.indexOf(Player.mode);
+    Player.mode = MODES[(i + 1) % MODES.length];
+    $('#mf-mode-icon use').setAttribute('href', MODE_ICONS[Player.mode]);
+  };
+  initMusicFloatDrag();
   renderMessages(); updateLove();
 }
 
@@ -1781,17 +1977,15 @@ function buildMsgRow(m) {
 
   if (m.quote) {
     const qb = document.createElement('div'); qb.className = 'quote-block';
-    if (m.quote.thumb) {
-      qb.innerHTML = `<img class="quote-thumb" src="${m.quote.thumb}"><span class="quote-text">${escapeHTML(m.quote.text || '')}</span>`;
-    } else {
-      qb.innerHTML = `<span class="quote-text">${escapeHTML(m.quote.text || '')}</span>`;
-    }
+    if (m.quote.thumb) qb.innerHTML = `<img class="quote-thumb" src="${m.quote.thumb}"><span class="quote-text">${escapeHTML(m.quote.text || '')}</span>`;
+    else qb.innerHTML = `<span class="quote-text">${escapeHTML(m.quote.text || '')}</span>`;
     qb.onclick = () => jumpToMsg(m.quote.id);
     col.appendChild(qb);
   }
 
   if (m.type === 'card') col.appendChild(buildCard(m));
   else if (m.type === 'quiz') col.appendChild(buildQuizCard(m));
+  else if (m.type === 'song') col.appendChild(buildSongCard(m));
   else {
     const b = document.createElement('div'); b.className = 'bubble';
     if (m.type === 'img') { b.classList.add('media'); const im = document.createElement('img'); im.src = m.src; b.appendChild(im); }
@@ -1838,8 +2032,7 @@ function buildCard(m) {
   return card;
 }
 function buildQuizCard(m) {
-  const card = document.createElement('div');
-  card.className = 'quiz-card';
+  const card = document.createElement('div'); card.className = 'quiz-card';
   const title = document.createElement('div'); title.className = 'quiz-card-title'; title.textContent = m.title;
   card.appendChild(title);
   const body = document.createElement('div'); body.className = 'quiz-card-body';
@@ -1862,13 +2055,67 @@ function buildQuizCard(m) {
   card.appendChild(body);
   return card;
 }
+function buildSongCard(m) {
+  const card = document.createElement('div'); card.className = 'song-card';
+  const row = document.createElement('div'); row.className = 'song-row';
+  row.innerHTML = `<svg class="song-icon"><use href="#i-music-note"/></svg>
+    <div class="song-info"><div class="song-name">${escapeHTML(m.songName)}</div><div class="song-artist">${escapeHTML(m.artist || '')}</div></div>`;
+  card.appendChild(row);
+  const hint = document.createElement('div'); hint.className = 'song-hint';
+  if (m.who === 'other') {
+    /* 祂发的邀请：我要点"一起听" */
+    if (m.accepted) {
+      hint.textContent = '正在和祂一起听';
+      const pb = document.createElement('button'); pb.className = 'song-play'; pb.style.margin = '0 auto';
+      pb.innerHTML = `<svg id="sc-icon-${m.id}"><use href="#i-play"/></svg>`;
+      pb.onclick = async () => {
+        const song = State.songs.find(s => s.id === m.songId);
+        if (!song) return;
+        if (Player.audio && Player.audio.src && Player._curSong === m.songId) { Player.toggle(); }
+        else { Player._curSong = m.songId; await Player.playSong(song, State.songs); }
+        const paused = Player.audio.paused;
+        $(`#sc-icon-${m.id} use`).setAttribute('href', paused ? '#i-play' : '#i-pause');
+      };
+      hint.parentNode.insertBefore(pb, hint.nextSibling);
+    } else {
+      const btn = document.createElement('button'); btn.className = 'song-listen'; btn.textContent = '一起听';
+      btn.onclick = () => { m.accepted = true; save.messages(); renderMessages(); };
+      card.appendChild(btn);
+    }
+  } else {
+    /* 我发的邀请：等祂同意 */
+    if (m.accepted) {
+      hint.textContent = '正在和祂一起听';
+      const pb = document.createElement('button'); pb.className = 'song-play'; pb.style.margin = '0 auto';
+      pb.innerHTML = `<svg id="sc-icon-${m.id}"><use href="#i-play"/></svg>`;
+      pb.onclick = async () => {
+        const song = State.songs.find(s => s.id === m.songId);
+        if (!song) return;
+        if (Player.audio && Player.audio.src && Player._curSong === m.songId) { Player.toggle(); }
+        else { Player._curSong = m.songId; await Player.playSong(song, State.songs); }
+        const paused = Player.audio.paused;
+        $(`#sc-icon-${m.id} use`).setAttribute('href', paused ? '#i-play' : '#i-pause');
+      };
+      hint.parentNode.insertBefore(pb, hint.nextSibling);
+    } else if (m.refused) {
+      hint.textContent = m.refuseText || '祂想待会儿再听。';
+    } else {
+      const btn = document.createElement('button'); btn.className = 'song-listen'; btn.textContent = '一起听';
+      btn.onclick = () => { /* 已发出，等祂同意 */ };
+      btn.style.opacity = .6;
+      card.appendChild(btn);
+      hint.textContent = '等待祂的回应…';
+    }
+  }
+  if (hint.textContent) card.appendChild(hint);
+  return card;
+}
 
 function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop = body.scrollHeight; }
 function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = State.love; }
 
-/* 长按消息菜单 */
 function openMsgMenu(m) {
-  const isCard = (m.type === 'card' || m.type === 'quiz');
+  const isCard = (m.type === 'card' || m.type === 'quiz' || m.type === 'song');
   let html = '';
   if (!isCard) {
     html += `<div class="msg-menu-item" id="mm-quote"><svg><use href="#i-quote"/></svg>引用</div>`;
@@ -1905,13 +2152,14 @@ function extractContent(m) {
   if (m.type === 'img') return { type: 'img', src: m.src };
   if (m.type === 'card') return { type: 'card', title: m.title, options: m.options, myPick: m.myPick, otherPick: m.otherPick, result: m.result };
   if (m.type === 'quiz') return { type: 'quiz', title: m.title, questions: m.questions, otherPicks: m.otherPicks };
+  if (m.type === 'song') return { type: 'text', text: '🎵 ' + m.songName + ' ' + (m.artist || '') };
   return { type: 'text', text: m.text };
 }
 function jumpToMsg(mid) {
   const row = $(`.msg-row[data-mid="${mid}"]`);
   if (!row) return;
   row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  const bubble = row.querySelector('.bubble, .card-msg, .quiz-card');
+  const bubble = row.querySelector('.bubble, .card-msg, .quiz-card, .song-card');
   if (bubble) { bubble.style.animation = 'highlight-flash 1s ease'; setTimeout(() => bubble.style.animation = '', 1100); }
 }
 
@@ -1951,6 +2199,7 @@ function doReply() {
   if (State.cards.length === 0) { pushOther('没有字卡，祂只好安静地看着你。'); return; }
   const quote = maybeOtherQuote();
   const heartMsg = maybeOtherHeart();
+  const invite = maybeOtherInvite();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
   for (let i = 0; i < n; i++) picked.push(State.cards[Math.floor(Math.random() * State.cards.length)].text);
@@ -1963,12 +2212,13 @@ function doReply() {
     if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
   };
   sendNext();
+  if (invite) setTimeout(() => pushSongInvite(invite), 1500);
 }
 function maybeOtherQuote() {
   const s = State.settings;
   if (!s.quoteEnabled) return null;
   if (Math.random() * 100 >= (s.quoteProb || 0)) return null;
-  const recent = State.messages.slice(-10).filter(m => m.type !== 'card' && m.type !== 'quiz');
+  const recent = State.messages.slice(-10).filter(m => m.type !== 'card' && m.type !== 'quiz' && m.type !== 'song');
   if (!recent.length) return null;
   const pick = recent[Math.floor(Math.random() * recent.length)];
   if (pick.type === 'img') return { id: pick.id, text: '', thumb: pick.src };
@@ -1978,9 +2228,20 @@ function maybeOtherHeart() {
   const s = State.settings;
   if (!s.heartEnabled) return null;
   if (Math.random() * 100 >= (s.heartProb || 0)) return null;
-  const pool = State.messages.filter(m => m.type !== 'card' && m.type !== 'quiz');
+  const pool = State.messages.filter(m => m.type !== 'card' && m.type !== 'quiz' && m.type !== 'song');
   if (!pool.length) return null;
   return pool[Math.floor(Math.random() * pool.length)];
+}
+function maybeOtherInvite() {
+  const s = State.settings;
+  if (!s.inviteEnabled) return null;
+  if (Math.random() * 100 >= (s.inviteProb || 0)) return null;
+  if (!State.songs.length) return null;
+  return State.songs[Math.floor(Math.random() * State.songs.length)];
+}
+function pushSongInvite(song) {
+  State.messages.push({ id: uid(), who: 'other', type: 'song', songId: song.id, songName: song.name, artist: song.artist || '', accepted: false, t: nowHM(), ts: Date.now() });
+  save.messages(); renderMessages(); scrollBottom();
 }
 function pushOther(text, quote) {
   const msg = { id: uid(), who: 'other', type: 'text', text, t: nowHM(), ts: Date.now() };
@@ -2103,6 +2364,33 @@ function initFloatBallDrag() {
     document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
   });
 }
+function initMusicFloatDrag() {
+  const el = $('#music-float'); if (!el) return;
+  let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false;
+  function begin(x, y) {
+    startX = x; startY = y; const r = el.getBoundingClientRect();
+    startL = r.left; startT = r.top; dragging = true;
+    el.style.left = startL + 'px'; el.style.top = startT + 'px';
+    el.style.transform = 'none'; el.style.bottom = 'auto';
+  }
+  function move(x, y) {
+    if (!dragging) return;
+    let nl = startL + (x - startX), nt = startT + (y - startY);
+    nl = Math.max(0, Math.min(window.innerWidth - el.offsetWidth, nl));
+    nt = Math.max(0, Math.min(window.innerHeight - el.offsetHeight, nt));
+    el.style.left = nl + 'px'; el.style.top = nt + 'px';
+  }
+  function end() { dragging = false; }
+  el.addEventListener('touchstart', e => { const t = e.touches[0]; begin(t.clientX, t.clientY); }, { passive: true });
+  el.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
+  el.addEventListener('touchend', end);
+  el.addEventListener('mousedown', e => {
+    begin(e.clientX, e.clientY);
+    const mm = ev => move(ev.clientX, ev.clientY);
+    const mu = () => { document.removeEventListener('mousemove', mm); document.removeEventListener('mouseup', mu); end(); };
+    document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
+  });
+}
 
 /* ---------- ⊕ 小功能 ---------- */
 function openPlusMenu() {
@@ -2119,6 +2407,7 @@ function handlePlusItem(name) {
   if (name === '关锁') { pageStack = []; showPage('page-lock', false); $('#btn-enter').style.display = ''; $('#lock-pass').classList.remove('active'); return; }
   if (name === '问答') { return openQuiz(); }
   if (name === '问卷') { return sendQuizPick(); }
+  if (name === '音乐') { return openMusicPicker(); }
   if (name === '快捷归档') { return enterArchiveMode(); }
   if (name === '拍照' || name === '相册') {
     const inp = document.createElement('input');
@@ -2177,6 +2466,7 @@ function openWorld() {
         if (name === '头像') return openAvatarManager();
         if (name === '背景') return openBgManager();
         if (name === '问卷') return openQuizManager();
+        if (name === '音乐') return openMusicManager();
         openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
       };
     });
@@ -2356,20 +2646,18 @@ function renderHearts() {
 }
 
 /* ---------- 心情手帐 ---------- */
-let moodYear, moodMonth;   /* 当前显示的月份 */
+let moodYear, moodMonth;
+let moodSelectedDate = todayKey();
 function openMoodBook() {
   const now = new Date();
   if (moodYear == null) { moodYear = now.getFullYear(); moodMonth = now.getMonth(); }
   openSub('心情手帐', `
-    <div class="mood-cal-head">
-      <span class="mood-cal-title" id="mood-cal-title"></span>
-    </div>
+    <div class="mood-cal-head"><span class="mood-cal-title" id="mood-cal-title"></span></div>
     <div class="mood-cal-grid" id="mood-cal-grid"></div>
     <div class="mood-body" id="mood-body"></div>
   `, () => {
     renderMoodCalendar();
     renderMoodBody();
-    /* 左右滑动切月 */
     let sx = 0;
     const cal = $('#mood-cal-grid');
     cal.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
@@ -2413,7 +2701,6 @@ function renderMoodCalendar() {
     grid.appendChild(el);
   }
 }
-let moodSelectedDate = todayKey();
 function renderMoodBody() {
   const body = $('#mood-body'); if (!body) return;
   const key = moodSelectedDate;
@@ -2421,17 +2708,13 @@ function renderMoodBody() {
   const me = rec.me || {};
   const his = rec.his || {};
   let html = '';
-  /* 祂 */
-  html += `<div class="mood-block mood-his">
-    <div class="mood-block-title">祂</div>`;
+  html += `<div class="mood-block mood-his"><div class="mood-block-title">祂</div>`;
   if (his.mood != null) html += `<div class="mood-line">${MOODS[his.mood].e} ${MOODS[his.mood].t}</div>`;
   if (his.weather) html += `<div class="mood-line">☁ ${escapeHTML(his.weather)}</div>`;
   if (his.line) html += `<div class="mood-line">「${escapeHTML(his.line)}」</div>`;
   if (his.mood == null && !his.line) html += `<div class="mood-line" style="color:var(--text-soft)">祂还没记</div>`;
   html += `</div>`;
-  /* 我 */
-  html += `<div class="mood-block mood-me">
-    <div class="mood-block-title">我</div>`;
+  html += `<div class="mood-block mood-me"><div class="mood-block-title">我</div>`;
   if (me.mood != null) html += `<div class="mood-line">${MOODS[me.mood].e} ${MOODS[me.mood].t}</div>`;
   html += `<button class="upload-btn" id="btn-pick-mood" style="margin-top:6px;border-style:solid"><svg><use href="#i-emoji"/></svg>${me.mood != null ? '换心情' : '选心情'}</button>`;
   html += `<input class="field mood-field" id="mood-weather" placeholder="晴朗/阴天/小雨…" value="${escapeHTML(me.weather || '')}">`;
@@ -2444,8 +2727,16 @@ function renderMoodBody() {
   $('#btn-save-mood').onclick = () => {
     if (!State.moods[key]) State.moods[key] = {};
     if (!State.moods[key].me) State.moods[key].me = {};
+    const wasRecorded = State.moods[key].me._recorded === true;
     State.moods[key].me.weather = $('#mood-weather').value;
     State.moods[key].me.note = $('#mood-note').value;
+    /* 我保存 → +3（一天一次） */
+    if (!wasRecorded) {
+      State.moods[key].me._recorded = true;
+      addLove(3);
+      /* 若当天祂已记 → 再 +3 */
+      if (State.moods[key].his && State.moods[key].his.mood != null) addLove(3);
+    }
     save.moods(); renderMoodCalendar(); toast('已保存');
   };
 }
@@ -2455,9 +2746,7 @@ function pickMood(key) {
   const html = `<div class="mood-picker">` + MOODS.map((m, i) =>
     `<div class="mood-pick ${cur===i?'active':''}" data-m="${i}"><span class="e">${m.e}</span>${m.t}</div>`
   ).join('') + `</div>`;
-  openModal({ title: '选一个心情', bodyHTML: html, actions: [
-    { label: '取消', onClick: () => {} }
-  ]});
+  openModal({ title: '选一个心情', bodyHTML: html, actions: [{ label: '取消', onClick: () => {} }] });
   $$('#modal-body [data-m]').forEach(el => {
     el.onclick = () => {
       const i = +el.dataset.m;
@@ -2468,7 +2757,6 @@ function pickMood(key) {
     };
   });
 }
-/* 祂自动记 */
 function runMoodHis() {
   const now = new Date();
   const s = State.settings;
@@ -2476,7 +2764,6 @@ function runMoodHis() {
   const nowMin = now.getHours() * 60 + now.getMinutes();
   const targetMin = targetH * 60 + targetM;
   const todayK = todayKey();
-  /* 补：从上次记录的日期到今天，中间缺的天 */
   const allKeys = Object.keys(State.moods);
   let startDate;
   if (allKeys.length) {
@@ -2490,7 +2777,7 @@ function runMoodHis() {
   for (let d = new Date(startDate); d <= today0; d.setDate(d.getDate() + 1)) {
     const k = dayKey(d.getTime());
     const isToday = k === todayK;
-    if (isToday && nowMin < targetMin) continue; /* 今天还没到点 */
+    if (isToday && nowMin < targetMin) continue;
     if (State.moods[k] && State.moods[k].his) continue;
     if (!State.moods[k]) State.moods[k] = {};
     const moodIdx = Math.floor(Math.random() * MOODS.length);
@@ -2499,8 +2786,149 @@ function runMoodHis() {
     const line = lines[Math.floor(Math.random() * lines.length)];
     const weather = HIS_WEATHER[Math.floor(Math.random() * HIS_WEATHER.length)];
     State.moods[k].his = { mood: moodIdx, weather, line };
+    /* 祂记了 → +3（一天一次，记在 his 上） */
+    if (!State.moods[k].his._recorded) {
+      State.moods[k].his._recorded = true;
+      addLove(3);
+    }
   }
   save.moods();
+}
+
+/* ---------- 音乐：管理 ---------- */
+function openMusicManager() {
+  showPage('page-sub'); $('#sub-title').textContent = '音乐';
+  const body = $('#sub-body'); body.style.padding = '0';
+  body.innerHTML = `
+    <div class="music-top">
+      <div class="toolbar-row">
+        <button class="tool-btn" id="mu-add"><svg><use href="#i-plus"/></svg>添加歌曲</button>
+        <button class="tool-btn" id="mu-import"><svg><use href="#i-import"/></svg>导入</button>
+        <button class="tool-btn" id="mu-export"><svg><use href="#i-export"/></svg>导出</button>
+      </div>
+    </div>
+    <div class="music-list" id="music-list"></div>
+  `;
+  renderMusicList();
+  $('#mu-add').onclick = openAddSong;
+  $('#mu-import').onclick = importSongs;
+  $('#mu-export').onclick = exportSongs;
+}
+function renderMusicList() {
+  const list = $('#music-list'); if (!list) return;
+  if (!State.songs.length) { list.innerHTML = `<div class="empty-tip">还没有歌。</div>`; return; }
+  list.innerHTML = '';
+  State.songs.forEach(song => {
+    const el = document.createElement('div');
+    el.className = 'music-item';
+    el.innerHTML = `<svg><use href="#i-music-note"/></svg><span class="mname">${escapeHTML(song.name)}</span><span class="martist">${escapeHTML(song.artist || '')}</span>`;
+    bindLongPress(el, () => {
+      openModal({ title: escapeHTML(song.name), bodyHTML: '', actions: [
+        { label: '试听', keepOpen: true, onClick: () => { Player.playSong(song, State.songs); closeModal(); } },
+        { label: '删除', danger: true, keepOpen: true, onClick: () => {
+          State.songs = State.songs.filter(x => x.id !== song.id);
+          save.songs(); closeModal(); renderMusicList();
+        }}
+      ]});
+    });
+    list.appendChild(el);
+  });
+}
+let songTempBlob = null;
+function openAddSong() {
+  songTempBlob = null;
+  openModal({
+    title: '添加歌曲',
+    bodyHTML: `
+      <button class="upload-btn" id="song-upload" style="border-style:solid;margin-bottom:10px"><svg><use href="#i-music-note"/></svg><span id="song-file-label">上传音频文件</span></button>
+      <input class="field" id="song-name" placeholder="歌曲名" style="margin-bottom:10px">
+      <input class="field" id="song-artist" placeholder="歌手（可选）">
+    `,
+    actions: [{ label: '保存歌曲', keepOpen: true, onClick: async () => {
+      const name = $('#song-name').value.trim();
+      if (!songTempBlob) { openModal({ title:'', bodyHTML:'先上传音频', actions: [] }); setTimeout(closeModal, 1500); return; }
+      if (!name) { openModal({ title:'', bodyHTML:'填一下歌曲名', actions: [] }); setTimeout(closeModal, 1500); return; }
+      const id = uid();
+      await CacheStore.put('song_' + id, songTempBlob);
+      State.songs.push({ id, name, artist: $('#song-artist').value.trim() });
+      save.songs(); closeModal(); renderMusicList();
+    }}]
+  });
+  setTimeout(() => {
+    $('#song-upload').onclick = () => pickAudio((f) => {
+      songTempBlob = f;
+      $('#song-file-label').textContent = '已选择：' + f.name;
+      if (!$('#song-name').value) $('#song-name').value = f.name.replace(/\.[^.]+$/, '');
+    });
+  }, 50);
+}
+function importSongs() {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = async () => {
+    const f = inp.files[0]; if (!f) return;
+    const txt = await f.text();
+    let data;
+    try { data = JSON.parse(txt); } catch(e) { openModal({ title:'失败', bodyHTML:'文件格式不正确', actions: [] }); return; }
+    if (!Array.isArray(data)) { openModal({ title:'失败', bodyHTML:'格式不对', actions: [] }); return; }
+    for (const item of data) {
+      if (!item.name) continue;
+      const id = uid();
+      if (item.data) {
+        const blob = await (await fetch(item.data)).blob();
+        await CacheStore.put('song_' + id, blob);
+      }
+      State.songs.push({ id, name: item.name, artist: item.artist || '' });
+    }
+    save.songs(); renderMusicList(); toast('已导入');
+  };
+  inp.click();
+}
+async function exportSongs() {
+  const out = [];
+  for (const s of State.songs) {
+    const blob = await CacheStore.get('song_' + s.id);
+    let data = '';
+    if (blob) {
+      data = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(blob); });
+    }
+    out.push({ name: s.name, artist: s.artist || '', data });
+  }
+  const blob = new Blob([JSON.stringify(out)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `音乐_${dateStamp()}.json`; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- 音乐：发送 ---------- */
+function openMusicPicker() {
+  if (!State.songs.length) { openModal({ title:'', bodyHTML:'还没有歌', actions: [] }); setTimeout(closeModal, 1500); return; }
+  const html = `<div class="dup-list">` + State.songs.map((s, i) =>
+    `<div class="dup-item" data-song="${i}" style="cursor:pointer"><svg style="width:18px;height:18px;color:var(--accent-deep)"><use href="#i-music-note"/></svg><span style="flex:1">${escapeHTML(s.name)}</span><span class="dup-count">${escapeHTML(s.artist || '')}</span></div>`
+  ).join('') + `</div>`;
+  openModal({ title: '选一首歌', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-song]').forEach(el => {
+    el.onclick = () => {
+      const song = State.songs[+el.dataset.song];
+      closeModal();
+      /* 弹出选择：播放 / 邀请他听歌 */
+      openModal({ title: song.name, bodyHTML: '', actions: [
+        { label: '播放', keepOpen: true, onClick: () => { Player.playSong(song, State.songs); closeModal(); } },
+        { label: '邀请他听歌', keepOpen: true, onClick: () => { closeModal(); inviteSong(song); } }
+      ]});
+    };
+  });
+}
+function inviteSong(song) {
+  const msg = { id: uid(), who: 'me', type: 'song', songId: song.id, songName: song.name, artist: song.artist || '', accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false };
+  State.messages.push(msg);
+  save.messages(); renderMessages(); scrollBottom();
+  /* 祂思考 */
+  setTimeout(() => {
+    if (Math.random() < 0.8) { msg.accepted = true; }
+    else { msg.refused = true; msg.refuseText = Math.random() < 0.5 ? '祂想待会儿再听。' : '祂这会有点忙。'; }
+    save.messages(); renderMessages(); scrollBottom();
+  }, getThinkTime() * 1000);
 }
 
 /* ---------- 抉择（弹窗） ---------- */
@@ -2665,8 +3093,7 @@ function renderQuizQuestions(readonly) {
     const el = document.createElement('div'); el.className = 'q-edit';
     const head = document.createElement('div'); head.className = 'q-head';
     const ta = document.createElement('textarea');
-    ta.className = 'field'; ta.rows = 1;
-    ta.placeholder = '问题' + (qi + 1);
+    ta.className = 'field'; ta.rows = 1; ta.placeholder = '问题' + (qi + 1);
     ta.value = q.text; ta.disabled = readonly; ta.dataset.qt = qi;
     head.appendChild(ta);
     if (!readonly) {
@@ -2678,8 +3105,7 @@ function renderQuizQuestions(readonly) {
     q.options.forEach((opt, oi) => {
       const row = document.createElement('div'); row.className = 'q-opt-row';
       const inp = document.createElement('textarea');
-      inp.className = 'field'; inp.rows = 1;
-      inp.placeholder = String.fromCharCode(65+oi);
+      inp.className = 'field'; inp.rows = 1; inp.placeholder = String.fromCharCode(65+oi);
       inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
       row.appendChild(inp);
       if (!readonly) {
@@ -2788,6 +3214,11 @@ function openSetChat() {
     <div class="set-row"><span class="label">收藏概率（%）</span>
       <input class="field" id="in-heart-prob" type="number" style="width:80px" value="${s.heartProb}"></div>
 
+    <div class="section-title">一起听歌</div>
+    <div class="set-row"><span class="label">祂可以邀请一起听歌</span><div class="switch ${s.inviteEnabled?'on':''}" id="sw-invite"></div></div>
+    <div class="set-row"><span class="label">邀请概率（%）</span>
+      <input class="field" id="in-invite-prob" type="number" style="width:80px" value="${s.inviteProb}"></div>
+
     <div class="section-title">心情手帐</div>
     <div class="set-row"><span class="label">祂记录心情的时间</span>
       <input class="field" id="in-mood-time" type="time" style="width:120px" value="${pad(s.moodHour??20)}:${pad(s.moodMinute??0)}"></div>
@@ -2818,8 +3249,10 @@ function openSetChat() {
     };
     $('#sw-quote').onclick = function() { s.quoteEnabled = !s.quoteEnabled; this.classList.toggle('on', s.quoteEnabled); save.settings(); };
     $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
+    $('#sw-invite').onclick = function() { s.inviteEnabled = !s.inviteEnabled; this.classList.toggle('on', s.inviteEnabled); save.settings(); };
     $('#in-quote-prob').onchange = e => { s.quoteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.quoteProb; save.settings(); };
     $('#in-heart-prob').onchange = e => { s.heartProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.heartProb; save.settings(); };
+    $('#in-invite-prob').onchange = e => { s.inviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.inviteProb; save.settings(); };
     $('#in-mood-time').onchange = e => {
       const v = e.target.value || '20:00';
       const [hh, mm] = v.split(':').map(Number);
@@ -2972,10 +3405,10 @@ function doClear() {
   openModal({ title: '清空所有数据', bodyHTML: '确定清空全部数据吗？<br>清空后无法恢复，建议先备份。', actions: [
     { label: '确认清空', danger: true, keepOpen: true, onClick: async () => {
       State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = [];
-      State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.love = 0;
+      State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes();
-      await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.love(); await save.settings();
+      await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.love(); await save.settings();
       location.reload();
     }}
   ]});
@@ -2985,8 +3418,11 @@ function openSetAbout() {
   openSub('关于', `
     <div class="about-wrap">
       <div class="about-ver">阿遇<span class="heart-char">♥</span>阿凉 v${VERSION}</div>
+      <div class="about-line">应用名称：阿遇<span class="heart-char">♥</span>阿凉</div>
       <div class="about-line">开发者：夏雾凉</div>
       <div class="about-line">爱人：易遇</div>
+      <div class="about-line">小红书号：94113563985</div>
+      <div class="about-line">开发时间：2026年6月20日至今</div>
       <div class="about-desc">
         <p>这个网站，是专为我的爱人而做的。</p>
         <p>更正声明：本网站不包含任何 AI 功能，也不会招来任何灵体或鬼魂。网站所有回复内容，均来自用户自己添加的字卡，是用户与爱人之间的私人陪伴工具。请勿轻信谣言，理性使用。</p>
@@ -3467,6 +3903,7 @@ async function boot() {
   const d = await Store.read('days.json'); if (d) State.days = d;
   const h = await Store.read('hearts.json'); if (h) State.hearts = h;
   const mo = await Store.read('moods.json'); if (mo) State.moods = mo;
+  const so = await Store.read('songs.json'); if (so) State.songs = so;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
 
   applyTheme(State.settings.theme);
