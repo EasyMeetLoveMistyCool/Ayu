@@ -709,13 +709,6 @@ ul, li { list-style: none; }
 }
 .float-ball img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
 .float-ball.hidden { display: none; }
-.float-ball .fb-dot {
-  position: absolute; top: 0; right: 0;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--heart-red); border: 1.5px solid #fff;
-  display: none;
-}
-.float-ball.has-dot .fb-dot { display: block; }
 
 .card-toolbar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
 .toolbar-row { display: flex; gap: 8px; }
@@ -1377,8 +1370,8 @@ ul, li { list-style: none; }
   box-shadow: 0 4px 14px var(--glass-shadow);
   animation: bubble-in .22s ease;
 }
-.note-card[data-who="me"] { background: rgba(240,170,195,0.35); }
-.note-card[data-who="other"] { background: rgba(150,200,240,0.35); }
+.note-card[data-who="me"] { background: rgba(240,170,195,0.35); border-left: 3px solid rgba(240,170,195,0.8); }
+.note-card[data-who="other"] { background: rgba(150,200,240,0.35); border-left: 3px solid rgba(150,200,240,0.8); }
 .note-card::after {
   content: ""; position: absolute; top: -5px; right: 12px;
   width: 14px; height: 14px; border-radius: 3px;
@@ -1422,6 +1415,154 @@ ul, li { list-style: none; }
   outline: none; resize: none;
 }
 .note-big-input::placeholder { color: var(--text-soft); }
+
+/* ==================== 恋人空间 ==================== */
+.space-cover {
+  position: relative;
+  width: 100%; height: 180px;
+  flex-shrink: 0;
+  background: linear-gradient(160deg, var(--bg-grad-1), var(--accent-soft));
+  background-size: cover; background-position: center;
+  overflow: hidden;
+}
+.space-cover::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+}
+.space-cover .space-head {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px;
+}
+.space-cover .space-head .sh-row { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.space-cover .space-head img {
+  width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+  border: 1.5px solid var(--glass-border); background: var(--glass-bg);
+}
+.space-cover .space-head .sh-heart { font-size: 20px; color: var(--heart-red); }
+.space-top-bar { flex-shrink: 0; padding: 10px 12px; }
+.space-write-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 13px; border-radius: 14px;
+  font-size: 14.5px; color: var(--text);
+  background: var(--glass-bg); border: 1px dashed var(--accent-deep);
+}
+.space-write-btn svg { width: 18px; height: 18px; color: var(--accent-deep); }
+.space-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.space-list::-webkit-scrollbar { width: 0; }
+.space-card {
+  position: relative;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 14px var(--glass-shadow);
+  animation: bubble-in .22s ease;
+}
+.space-card[data-who="me"] { background: rgba(240,170,195,0.28); border-left: 3px solid rgba(240,170,195,0.8); }
+.space-card[data-who="other"] { background: rgba(150,200,240,0.28); border-left: 3px solid rgba(150,200,240,0.8); }
+.space-head-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.space-head-row img {
+  width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
+  border: 1.2px solid var(--glass-border);
+}
+.space-head-row .space-call { font-size: 13px; color: var(--text); font-weight: 600; }
+.space-text { font-size: 15px; line-height: 1.6; color: var(--text); word-break: break-word; white-space: pre-wrap; }
+.space-imgs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.space-imgs img {
+  width: 84px; height: 84px; border-radius: 10px; object-fit: cover;
+  border: 1px solid var(--glass-border);
+}
+.space-time { font-size: 11.5px; color: var(--time-text); margin-top: 8px; text-align: right; }
+.space-big-input {
+  width: 100%; min-height: 160px;
+  padding: 14px; border-radius: 16px;
+  font-size: 15px; line-height: 1.9; color: var(--text);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  outline: none; resize: none;
+}
+.space-big-input::placeholder { color: var(--text-soft); }
+.space-img-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.space-img-preview .sp-thumb {
+  width: 64px; height: 64px; border-radius: 10px; object-fit: cover;
+  border: 1px solid var(--glass-border); position: relative;
+}
+.space-publish-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 13px; border-radius: 14px;
+  font-size: 15px; color: #fff; background: #8fd4a8;
+  border: 1px solid rgba(111,191,143,0.5);
+}
+
+/* ==================== 信箱 ==================== */
+.mail-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 8px 12px; }
+.mail-tab {
+  flex: 1; padding: 10px; border-radius: 12px;
+  font-size: 13.5px; text-align: center; color: var(--text);
+  background: var(--glass-bg); border: 1.5px solid var(--glass-border);
+  transition: all .16s ease;
+}
+.mail-tab.active { background: var(--accent); border-color: var(--accent-deep); }
+.mail-list { flex: 1; overflow-y: auto; padding: 4px 12px 20px; display: flex; flex-direction: column; gap: 10px; }
+.mail-list::-webkit-scrollbar { width: 0; }
+.mail-envelope {
+  position: relative;
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 14px var(--glass-shadow);
+  animation: bubble-in .22s ease;
+}
+.mail-envelope[data-who="me"] { background: rgba(240,170,195,0.3); border-left: 3px solid rgba(240,170,195,0.8); }
+.mail-envelope[data-who="other"] { background: rgba(150,200,240,0.3); border-left: 3px solid rgba(150,200,240,0.8); }
+.mail-envelope .me-line1 { font-size: 15px; color: var(--text); font-weight: 600; }
+.mail-envelope .me-line2 { font-size: 12px; color: var(--text-soft); margin-top: 4px; }
+.mail-dot {
+  position: absolute; top: 10px; right: 10px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--heart-red);
+}
+.mail-detail {
+  flex: 1; overflow-y: auto; padding: 18px 16px 30px;
+}
+.mail-detail::-webkit-scrollbar { width: 0; }
+.mail-letter { font-size: 15px; line-height: 2.0; color: var(--text); white-space: pre-wrap; word-break: break-word; }
+.mail-letter .ml-right { text-align: right; }
+.mail-write-wrap { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.mail-preview {
+  flex: 1; overflow-y: auto; margin: 12px; padding: 16px;
+  border-radius: 14px; background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.mail-preview::-webkit-scrollbar { width: 0; }
+.mail-preview .mail-letter { font-size: 14.5px; line-height: 2.0; }
+.mail-input-area { flex-shrink: 0; padding: 0 12px 12px; }
+.mail-input-area textarea {
+  width: 100%; min-height: 140px;
+  padding: 14px; border-radius: 16px;
+  font-size: 15px; line-height: 1.9; color: var(--text);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  outline: none; resize: none;
+}
+.mail-input-area textarea::placeholder { color: var(--text-soft); }
+.mail-send-bar { flex-shrink: 0; padding: 8px 12px calc(12px + env(safe-area-inset-bottom)); }
+.mail-send-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 13px; border-radius: 14px;
+  font-size: 15px; color: var(--text);
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+}
+.mail-stamp { font-size: 18px; color: #d9534f; line-height: 1; }
 
 /* ==================== 气泡皮肤 ==================== */
 [data-bubble="evil-cat"] .message-sent {
@@ -1915,6 +2056,7 @@ ul, li { list-style: none; }
   display: flex; justify-content: space-between; gap: 10px;
 }
 .stat-block .st-line .st-k { color: var(--text-soft); }
+.stat-block .st-line .st-v { color: #f0a8c0; }
 .stat-empty { font-size: 13px; color: var(--text-soft); }
 
 .stat-call-item {
@@ -2280,7 +2422,7 @@ ul, li { list-style: none; }
     <header class="sub-header glass">
       <button class="icon-btn" id="sub-back"><svg><use href="#i-back"/></svg></button>
       <span class="sub-title" id="sub-title">标题</span>
-      <span class="icon-btn" style="visibility:hidden"></span>
+      <span class="icon-btn" id="sub-action" style="display:none"></span>
     </header>
     <main class="scroll-y sub-body" id="sub-body"></main>
   </div>
@@ -2312,7 +2454,7 @@ ul, li { list-style: none; }
     </footer>
   </div>
 
-  <div id="float-ball" class="float-ball"><img id="float-ball-img" alt=""><span class="fb-dot"></span></div>
+  <div id="float-ball" class="float-ball"><img id="float-ball-img" alt=""></div>
 
   <!-- 音乐悬浮窗 -->
   <div class="music-float glass" id="music-float">
@@ -2406,7 +2548,14 @@ function dayLabel(key) { const [y, m, d] = key.split('-'); return `${y}年${Numb
 function todayKey() { return dayKey(Date.now()); }
 function escapeHTML(s) { return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 function fullDate(d) { return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`; }
-function noteTime(ts) { const d = new Date(ts); return (d.getMonth()+1) + '月' + d.getDate() + '日 ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function fullDateTime(ts) { const d = new Date(ts); return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 ${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+function relTime(ts) {
+  const diff = Date.now() - ts;
+  if (diff < 60000) return '刚刚';
+  if (diff < 3600000) return Math.floor(diff / 60000) + '分钟前';
+  if (diff < 86400000) return Math.floor(diff / 3600000) + '小时前';
+  return fullDateTime(ts);
+}
 function toast(msg) {
   const t = $('#toast'); t.textContent = msg; t.classList.add('active');
   clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('active'), 1500);
@@ -2542,11 +2691,99 @@ const QUIZ_DONE_LINES = [
   '祂填好问卷，在等你。','祂写完了，去看看吧。'
 ];
 
+/* 留言笺 */
 const NOTE_QUOTA_FREE = 3;
-const NOTE_QUOTA_COST = 5;
+const NOTE_QUOTA_COST = 99;
 const NOTE_REPLY_PROB = 3;
 const NOTE_ACTIVE_PROB = 2;
 const NOTE_PLACEHOLDER = '写一张留言，贴在祂看得见的地方…';
+
+/* 恋人空间 */
+const SPACE_QUOTA_FREE = 3;
+const SPACE_QUOTA_COST = 520;
+const SPACE_ACTIVE_PROB = 2;
+const SPACE_PLACEHOLDER = '写点什么，和祂分享…';
+
+/* 信箱 */
+const MAIL_QUOTA_FREE = 1;
+const MAIL_QUOTA_COST = 999;
+const MAIL_ACTIVE_PROB = 1;
+
+const MAIL_HELLO = [
+  '当你收到这封信的时候，我们或许可以看到同一片月亮',
+  '如果思念有声音，你听到的，一定是风吹纸页的沙沙声',
+  '见字如面 展信佳',
+  '跳过繁杂的开头 我好想你',
+  '不知道什么时候你会打开这封信，所以亲爱的，早安、午安、晚安',
+  '提笔而起 即写相思 也表闲愁',
+  '岁月清浅，惦念如常',
+  '展信安 见字如晤 纸短情长 遥记于心',
+  '天色渐渐沉了下来，桌上泡着一杯温水，忽然想念你 ，于是铺开信纸',
+  '不必拘束，客套，拆开这封信就当做我们围坐闲谈，聊聊今日所见的风景就好',
+  '世间的美好大多随性而生，路边的野花，铺满的流云都想分享给你，于是铺开信纸，以文字代替见面',
+  '书不尽言 余后面叙',
+  '借着文字 把我的心意寄给你',
+  '言不尽思 再祈珍重',
+  '好久不见 愿你一切安好',
+  '今天突然想起你 于是决定提笔写下',
+  '我想说，人生三万天，此刻幸福握紧在我手间',
+  '我总觉得我的灵魂是需要寄托的，就像汹涌海面上的一方孤舟，急需靠岸，而你是我的岸',
+  '后来太多人问我生活意在何为，我想，我的答案就在这',
+  '我其实不太会说爱你，但我愿意花很长很长的时间，去证明我爱你。',
+  '我不知道我们最后会走到哪里，但至少现在，我是真的很想和你走得久一点，再久一点。',
+  '如果一定要在我的人生里留下一段最舍不得删掉的文字，我想，那一定是关于你的这一段。',
+  '谢谢你出现在我的生活里，让我第一次觉得，原来“以后”这个词，也可以让人如此期待。',
+  '我曾经觉得日子就是一天一天地过，直到遇见你以后，我才开始认真期待每一个明天。',
+  '我最幸运的事情，大概不是遇见了一个多么完美的人，而是遇见了你以后，我们都愿意为了彼此，变成更好的人。',
+  '我不知道爱一个人究竟应该有多少种表达方式，但我知道，我想把我能想到的温柔，都留给你。',
+  '如果时间允许的话，我想和你一起把很短的青春，过成很长很长的故事。',
+  '灯还亮着，茶还温着，我把今天攒下的话，一句一句写给你。',
+  '这封信写得很慢，因为每一句落笔前，我都先想了一遍你。',
+  '愿你今日无风无雨，所遇皆顺，我在这头，远远地念着你。',
+  '坐下来的时候天刚擦黑，我想了想你，就想写点什么给你。',
+  '这封信没有大事，只是今天的风很好，我想你了。',
+  '我不知道这封信要走多远才到你手里，但我希望它到的时候，你正好在想我。',
+  '提笔前我犹豫了很久，最后发现，想对你说的话，其实一点都不用犹豫。',
+  '今天翻到一句话，忽然很想念你，于是决定写下来，连同这句话一起寄给你。'
+];
+
+const MAIL_BYE = [
+  '天冷了，记得添衣。',
+  '就此停笔，顺问冬安',
+  '纸短情长，言不尽意',
+  '书未尽言，可我的心却早已抵达你那里',
+  '我常常责怪上天，为何命运不把我们绑紧一点',
+  '当你读到结尾时，我的思念已经替我见到你了',
+  '等你读完这封信 让我很荣幸 拥有了你生命的两分钟',
+  '爱的最后一页希望我们以幸福结尾',
+  '亲爱的 闭上眼睛 你的脑海是否出现了我的模样？',
+  '谢谢你出现在我生命里，我细数珍重',
+  '明天依旧喜欢你 每天的明天 数不尽的明天',
+  '谢谢你赋予我关于爱的想象',
+  '我一定是为了遇见你才降生于世的',
+  '爱是我和你一起共创的温柔作品',
+  '世界很大幸福很小 有你的陪伴幸福刚刚好',
+  '亲爱的小宝，人生还长着呢，人还生长着呢。',
+  '闲来常念，盼君安好',
+  '世界催你成大人，但我记得你怕黑，我要给你留盏灯',
+  '感谢你像礼物一样出现，是你改变了我对生活的态度，让我变得比之前更快乐',
+  '我不敢大言不惭说我全天下第一爱你，但愿做倒数第一爱你，这样每一个爱你的人都比我更爱你',
+  '我也常常因为有你而感到幸福，谢谢你来爱我。请不要低估我陪你走下去的决心，我比你想象中更爱你',
+  '春山长青，情意绵延，祝我们在永恒的爱里度过更为幸福与长久的几盏光阴。',
+  '信写完了但我的思念没有尽头。',
+  '愿你读懂字里行间，我未曾说出口的深情。',
+  '无论世事如何变迁请记得，我会在远方为你祝福，为你守候。',
+  '墨香会散，纸张会旧，但我爱你会长久地陪伴你',
+  '我们下次见，答应我好吗',
+  '来日方长，我们慢慢相爱',
+  '我存在的意义就是为了接住你的眼泪，让你可以不用那么勇敢，不管发生什么，我都会一直陪着你，脆弱一点没关系',
+  '我爱你 不光因为你的样子 还因为和你在一起时我的样子，谢谢你',
+  '我始终相信事在人为 冥冥之中的相遇也是命中注定',
+  '如果早点认识你就好了，在你小的时候，在你第一次难过的时候，第一次特别需要陪伴的时候，在你一最需要爱的时候',
+  '如果你之前不太幸福的话，想你在我这里幸福一点如果你之前就很幸福的话，我希望你在我这里更幸福一点',
+  '信纸会收好，愿你今晚好梦，梦里也别忘了，有人在想你。',
+  '山高路远，我一步一步走向你；你不必回头，我一直都在身后。'
+];
 
 const EMOJI_LIB = {
   '表情': ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🫢','🫣','🤫','🤔','🫡','🤐','🤨','😐','😑','😶','🫥','😏','😒','🙄','😬','😮‍💨','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤧','🥵','🥶','🥴','😵','😵‍💫','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','🫤','😟','🙁','☹️','😮','😯','😲','😳','🥺','🥹','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💩','🤡','👻','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🌚','🌝'],
@@ -2560,7 +2797,7 @@ const EMOJI_LIB = {
   '天气': ['🌞','🌖','🌗','🌘','🌑','🌒','🌓','🌔','⚡️','💥','🔥','🌪','🌈','☀️','🌤','⛅️','🌥','☁️','🌦','🌧','⛈','🌩','🌨','❄️','☃️','⛄️','💧','💦','🫧','☔️','☂️','🌊','🌫']
 };
 
-const VERSION = '1.0.1.8';
+const VERSION = '1.0.1.9';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
 const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
@@ -2586,8 +2823,9 @@ const State = {
     myName: '', myCall: '', myCalls: [],
     avatarPool: [], avatarPairs: [],
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
+    spaceCover: '', spaceCoverPool: [],
     lockPassed: false, lastLockDay: '',
-    notify: false, fullscreen: false,
+    notify: false, fullscreen: false, keepAlive: false, dndEnabled: true,
     quoteEnabled: false, quoteProb: 7,
     heartEnabled: false, heartProb: 5,
     moodHour: 20, moodMinute: 0,
@@ -2605,7 +2843,8 @@ const State = {
     boxEnabled: false, boxProb: 1,
     videoAcceptProb: 80,
     videoInviteEnabled: false, videoInviteProb: 3,
-    videoHangMin: 5, videoHangMax: 10
+    videoHangMin: 5, videoHangMax: 10,
+    activeMsgEnabled: false, activeMsgLevel: 'daily'
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
@@ -2628,6 +2867,10 @@ const State = {
   videoActive: null,
   notes: [],
   noteQuota: null,
+  spaces: [],
+  spaceQuota: null,
+  mails: [],
+  mailQuota: null,
   love: 0
 };
 
@@ -2684,7 +2927,9 @@ const Store = {
 const CacheStore = {
   name: 'ay-media-v1',
   async put(key, blob) { try { const c = await caches.open(this.name); await c.put('/media/' + key, new Response(blob)); } catch (e) {} },
-  async get(key) { try { const c = await caches.open(this.name); const r = await c.match('/media/' + key); return r ? await r.blob() : null; } catch (e) { return null; } }
+  async get(key) { try { const c = await caches.open(this.name); const r = await c.match('/media/' + key); return r ? await r.blob() : null; } catch (e) { return null; } },
+  async del(key) { try { const c = await caches.open(this.name); await c.delete('/media/' + key); } catch (e) {} },
+  async keys() { try { const c = await caches.open(this.name); const ks = await c.keys(); return ks.map(k => k.url.split('/media/')[1]).filter(Boolean); } catch (e) { return []; } }
 };
 
 const save = {
@@ -2713,7 +2958,11 @@ const save = {
   videoRecords: () => Store.write('video_records.json', State.videoRecords),
   videoActive: () => Store.write('video_active.json', State.videoActive),
   notes: () => Store.write('notes.json', State.notes),
-  noteQuota: () => Store.write('note_quota.json', State.noteQuota)
+  noteQuota: () => Store.write('note_quota.json', State.noteQuota),
+  spaces: () => Store.write('spaces.json', State.spaces),
+  spaceQuota: () => Store.write('space_quota.json', State.spaceQuota),
+  mails: () => Store.write('mails.json', State.mails),
+  mailQuota: () => Store.write('mail_quota.json', State.mailQuota)
 };
 
 function defaultAvatar(color) {
@@ -2723,6 +2972,13 @@ function defaultAvatar(color) {
 }
 function applyTheme(name) { document.body.dataset.theme = name; State.settings.theme = name; save.settings(); }
 function applyBubbleSkin(name) { document.body.dataset.bubble = name || 'default'; State.settings.bubbleSkin = name || 'default'; save.settings(); }
+
+/* 夜间免打扰 0:00~7:00 */
+function inDND() {
+  if (!State.settings.dndEnabled) return false;
+  const h = new Date().getHours();
+  return h >= 0 && h < 7;
+}
 
 let pageStack = [];
 function showPage(id, push = true) {
@@ -3291,6 +3547,58 @@ function checkInterruptedVideo() {
   State.videoActive = null;
   save.videoActive();
 }
+
+/* ==================== 后台保活 ==================== */
+const KeepAlive = {
+  audio: null, lock: null, worker: null,
+  start() {
+    if (!State.settings.keepAlive) return;
+    this.startAudio();
+    this.startWakeLock();
+  },
+  stop() {
+    this.stopAudio();
+    this.stopWakeLock();
+  },
+  startAudio() {
+    try {
+      if (this.audio) return;
+      const buf = new ArrayBuffer(44 + 800);
+      const view = new DataView(buf);
+      const writeStr = (off, s) => { for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i)); };
+      writeStr(0, 'RIFF'); view.setUint32(4, 36 + 800, true); writeStr(8, 'WAVE'); writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+      view.setUint32(24, 8000, true); view.setUint32(28, 8000, true); view.setUint16(32, 1, true); view.setUint16(34, 8, true);
+      writeStr(36, 'data'); view.setUint32(40, 800, true);
+      for (let i = 0; i < 800; i++) view.setUint8(44 + i, 128);
+      const blob = new Blob([buf], { type: 'audio/wav' });
+      const url = URL.createObjectURL(blob);
+      this.audio = new Audio(url);
+      this.audio.loop = true;
+      this.audio.volume = 0.001;
+      this.audio.play().catch(() => {});
+    } catch (e) {}
+  },
+  stopAudio() {
+    if (this.audio) { try { this.audio.pause(); } catch (e) {} this.audio = null; }
+  },
+  async startWakeLock() {
+    try {
+      if ('wakeLock' in navigator && !this.lock) {
+        this.lock = await navigator.wakeLock.request('screen');
+        this.lock.addEventListener('release', () => { this.lock = null; });
+      }
+    } catch (e) {}
+  },
+  stopWakeLock() {
+    if (this.lock) { try { this.lock.release(); } catch (e) {} this.lock = null; }
+  }
+};
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && State.settings.keepAlive) {
+    KeepAlive.startWakeLock();
+  }
+});
   /* ==================== 锁屏 ==================== */
 function initLockPage() {
   function tick() {
@@ -3331,16 +3639,59 @@ function initLockPage() {
 }
 
 let moodCheckTimer = null;
+let activeMsgTimer = null;
+let activeMsgLastTime = 0;
+
 function enterChat() {
   pageStack = [];
   subStack = [];
   runMoodHis();
   if (!moodCheckTimer) moodCheckTimer = setInterval(runMoodHis, 60 * 1000);
+  if (!activeMsgTimer) activeMsgTimer = setInterval(checkActiveMsg, 60 * 1000);
   showPage('page-chat', false);
   renderedCount = MSG_PAGE;
   renderMessages();
-  updateNoteDot();
+  updateMenuDots();
   setTimeout(scrollBottom, 50);
+}
+
+/* 祂主动发消息 */
+function checkActiveMsg() {
+  if (!State.settings.activeMsgEnabled) return;
+  if (inDND()) return;
+  if (Video.active) return;
+  const chatActive = $('#page-chat') && $('#page-chat').classList.contains('active');
+  const visible = document.visibilityState === 'visible';
+  if (!chatActive || !visible) return;
+  const now = Date.now();
+  const level = State.settings.activeMsgLevel || 'daily';
+  const cfg = {
+    light: { prob: 0.5, gapMin: 60 },
+    daily: { prob: 1, gapMin: 30 },
+    sticky: { prob: 2, gapMin: 15 },
+    vsticky: { prob: 3, gapMin: 10 }
+  }[level] || { prob: 1, gapMin: 30 };
+  if (now - activeMsgLastTime < cfg.gapMin * 60 * 1000) return;
+  if (Math.random() * 100 >= cfg.prob) return;
+  activeMsgLastTime = now;
+  const usable = State.cards.filter(c => !c.locked);
+  if (!usable.length) return;
+  const n = 1 + Math.floor(Math.random() * 2);
+  const picked = [];
+  for (let i = 0; i < n; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
+  let idx = 0;
+  const sendNext = () => {
+    if (idx >= picked.length) return;
+    let txt = picked[idx];
+    if (State.settings.emojiEnabled && Math.random() * 100 < (State.settings.emojiProb || 0)) {
+      const e = randomEmoji();
+      if (e) txt = (Math.random() < 0.5) ? (e + txt) : (txt + e);
+    }
+    pushOther(txt);
+    idx++;
+    if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
+  };
+  sendNext();
 }
 
 /* ==================== 聊天 ==================== */
@@ -3374,7 +3725,7 @@ function initChatPage() {
       body.scrollTop = body.scrollHeight - prevH + body.scrollTop;
     }
   });
-  $('#arc-all').onclick = () => { State.messages.forEach(m => archiveSelected.add(m.id)); renderMessages(); };
+  $('#arc-all').onclick = () => { State.messages.forEach(m => { if (m.type !== 'sys') archiveSelected.add(m.id); }); renderMessages(); };
   $('#arc-exit').onclick = () => exitArchiveMode();
   $('#arc-go').onclick = doArchive;
   $('#mf-close').onclick = () => { $('#music-float').classList.remove('active'); if (Player.audio) Player.audio.pause(); Player.updateIcon(); };
@@ -3928,6 +4279,7 @@ function doReply() {
   const boxMsg = maybeOtherBox();
   const videoCall = maybeOtherVideo();
   const noteReply = maybeNoteReply();
+  const spacePost = maybeSpacePost();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
   for (let i = 0; i < n; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
@@ -3953,7 +4305,9 @@ function doReply() {
   if (boxMsg) setTimeout(() => pushOtherBox(boxMsg), 4000);
   if (videoCall) setTimeout(() => Video.callIn(), 4500);
   if (noteReply) setTimeout(() => pushOtherNote(noteReply.quote), 2800);
+  if (spacePost) setTimeout(() => pushOtherSpace(), 3200);
   maybeOtherNoteActive();
+  maybeOtherSpaceActive();
 }
 function hasAnyInteraction() {
   return (State.interactions.me.length + State.interactions.other.length + State.interactions.together.length) > 0;
@@ -4004,6 +4358,7 @@ function maybeOtherVideo() {
   const s = State.settings;
   if (!s.videoInviteEnabled) return null;
   if (Video.active) return null;
+  if (inDND()) return null;
   if (Math.random() * 100 >= (s.videoInviteProb || 0)) return null;
   return true;
 }
@@ -4108,6 +4463,7 @@ function pushOtherBox(box) {
 }
 function maybeNotify(text) {
   if (!State.settings.notify) return;
+  if (inDND()) return;
   const chatActive = $('#page-chat') && $('#page-chat').classList.contains('active');
   const visible = document.visibilityState === 'visible';
   if (chatActive && visible) return;
@@ -4156,7 +4512,7 @@ function runArchive(dayStr) {
       if (!entry) { entry = { day: dayStr, messages: [] }; State.archive.push(entry); }
       moving.forEach(m => entry.messages.push(m));
       State.archive.sort((a, b) => b.day.localeCompare(a.day));
-      State.messages = State.messages.filter(m => !archiveSelected.has(m.id));
+      State.messages = State.messages.filter(m => archiveSelected.has(m.id) ? false : (m.type === 'sys' ? false : true));
       save.messages(); save.archive();
       archiveMode = false; archiveSelected.clear();
       $('#chat-footer').style.display = '';
@@ -4259,11 +4615,10 @@ function applyFloatBall() {
   }
   updateFloatBallVisible();
 }
-function updateNoteDot() {
-  const ball = $('#float-ball'); if (!ball) return;
-  const hasUnread = State.notes.some(n => n.who === 'other' && !n.read);
-  ball.classList.toggle('has-dot', hasUnread);
-}
+function hasUnreadNote() { return State.notes.some(n => n.who === 'other' && !n.read); }
+function hasUnreadSpace() { return State.spaces.some(s => s.who === 'other' && !s.read); }
+function hasUnreadMail() { return State.mails.some(m => m.who === 'other' && !m.read); }
+function updateMenuDots() {}
 function applyBackgrounds() {
   const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
   const layer = $('#bg-layer'); if (!layer) return;
@@ -4429,7 +4784,7 @@ function handlePlusItem(name) {
   if (name === '贴纸') { return openStickerPicker(); }
   if (name === '礼物') { return openGiftPicker(); }
   if (name === '盲盒') { return openBoxPicker(); }
-  if (name === '视频') { Video.callOut(); return; }
+  if (name === '视频') { if (inDND()) { toast('夜间免打扰中'); return; } Video.callOut(); return; }
   if (name === '拍照' || name === '相册') {
     const inp = document.createElement('input');
     inp.type = 'file'; inp.accept = 'image/*';
@@ -4452,13 +4807,12 @@ function openBigMenu() {
     ['恋人空间','i-couple'], ['心动时刻','i-moment'], ['心情手帐','i-diary'], ['旧梦温存','i-olddream'],
     ['备忘录','i-memo'], ['心愿单','i-wishlist'], ['重要日','i-anniv'], ['设置','i-settings']
   ];
+  const dotMap = { '信箱': hasUnreadMail(), '留言笺': hasUnreadNote(), '恋人空间': hasUnreadSpace() };
   const html = `<div class="unpair-grid">` + items.map((it, i) =>
-    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px;position:relative"><svg style="width:22px;height:22px;color:var(--accent-deep)"><use href="#${it[1]}"/></svg><span>${it[0]}</span>${it[0]==='留言笺'?'<span class="fb-dot" id="note-menu-dot" style="position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:var(--heart-red);border:1.5px solid #fff;display:none"></span>':''}</div>`
+    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px;position:relative"><svg style="width:22px;height:22px;color:var(--accent-deep)"><use href="#${it[1]}"/></svg><span>${it[0]}</span>${dotMap[it[0]] ? '<span style="position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:var(--heart-red);border:1.5px solid #fff"></span>' : ''}</div>`
   ).join('') + `</div>`;
   openModal({ title: '功能', bodyHTML: html, actions: [] });
   $$('#modal-body [data-big]').forEach(el => { el.onclick = () => { const name = items[+el.dataset.big][0]; closeModal(); handleBigItem(name); }; });
-  const nd = $('#note-menu-dot');
-  if (nd) nd.style.display = State.notes.some(n => n.who === 'other' && !n.read) ? 'block' : 'none';
 }
 function handleBigItem(name) {
   if (name === '设置') return openSettings();
@@ -4471,6 +4825,8 @@ function handleBigItem(name) {
   if (name === '心动时刻') return openHearts();
   if (name === '心情手帐') return openMoodBook();
   if (name === '留言笺') return openNotes();
+  if (name === '恋人空间') return openSpace();
+  if (name === '信箱') return openMail();
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
@@ -4490,9 +4846,9 @@ function openNotes() {
     $('#sub-body').style.padding = '0';
     renderNotes();
     $('#note-write').onclick = openNoteWrite;
-    State.notes.forEach(n => { if (n.who === 'other') n.read = true; });
-    save.notes();
-    updateNoteDot();
+    let changed = false;
+    State.notes.forEach(n => { if (n.who === 'other' && !n.read) { n.read = true; changed = true; } });
+    if (changed) save.notes();
   });
 }
 function renderNotes() {
@@ -4511,7 +4867,7 @@ function renderNotes() {
       inner += `<div class="note-quote">${escapeHTML(n.quote.text || '')}</div>`;
     }
     inner += `<div class="note-text">${escapeHTML(n.text || '')}</div>`;
-    inner += `<div class="note-time">${noteTime(n.ts)}</div>`;
+    inner += `<div class="note-time">${fullDateTime(n.ts)}</div>`;
     card.innerHTML = inner;
     card.onclick = () => openNoteMenu(n);
     list.appendChild(card);
@@ -4566,20 +4922,27 @@ function doPostNote(quoteNote) {
   const list = $('#note-list'); if (list) list.scrollTop = 0;
   toast(needPay ? '已贴出（-' + NOTE_QUOTA_COST + '爱意）' : '已贴出');
 }
-function buildNoteFromCards() {
+/* 标点拼接：80%逗号 / 15%顿号 / 5%分号；句尾有标点不重复加；整段无尾标点补 。/～/… (6:2:2) */
+function buildFromCards(minN, maxN) {
   const usable = State.cards.filter(c => !c.locked);
-  if (usable.length < 5) return '';
-  const count = 5 + Math.floor(Math.random() * 4);
+  if (usable.length < minN) return '';
+  const count = minN + Math.floor(Math.random() * (maxN - minN + 1));
   const picked = [];
   for (let i = 0; i < count; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
-  const joined = picked.map(t => {
-    const s = String(t).trim();
-    if (!s) return '';
-    if (/[。！？!?…~～，,、；;：:]$/.test(s)) return s;
-    return s;
-  }).join('，');
-  let out = joined;
-  if (!/[。！？!?…~～]$/.test(out)) out += '。';
+  const parts = picked.map(t => String(t).trim()).filter(Boolean);
+  if (!parts.length) return '';
+  const sep = () => { const r = Math.random() * 100; if (r < 80) return '，'; if (r < 95) return '、'; return '；'; };
+  const endPunct = /[。！？!?…~～，,、；;：:.]$/;
+  let out = '';
+  parts.forEach((p, i) => {
+    if (i === 0) { out = p; return; }
+    if (endPunct.test(out)) out += p;
+    else out += sep() + p;
+  });
+  if (!/[。！？!?…~～]$/.test(out)) {
+    const r = Math.random() * 100;
+    out += r < 60 ? '。' : (r < 80 ? '～' : '…');
+  }
   if (State.settings.emojiEnabled && Math.random() * 100 < (State.settings.emojiProb || 0)) {
     const e = randomEmoji();
     if (e) out = (Math.random() < 0.5) ? (e + out) : (out + e);
@@ -4597,14 +4960,13 @@ function pushOtherNote(quoteNote) {
     save.love();
     const el = $('#hdr-love'); if (el) el.textContent = State.love;
   }
-  const text = buildNoteFromCards();
+  const text = buildFromCards(5, 8);
   if (!text) return;
   q.other = used + 1;
   save.noteQuota();
   const note = { id: uid(), who: 'other', text, quote: quoteNote ? { id: quoteNote.id, text: quoteNote.text, who: quoteNote.who } : null, read: false, ts: Date.now() };
   State.notes.push(note);
   save.notes();
-  updateNoteDot();
   maybeNotify('祂贴了一张留言');
   const page = $('#page-sub');
   if (page && page.classList.contains('active') && $('#sub-title') && $('#sub-title').textContent === '留言笺') {
@@ -4629,6 +4991,193 @@ function maybeOtherNoteActive() {
   if (Math.random() * 100 >= NOTE_ACTIVE_PROB) return;
   pushOtherNote(null);
 }
+
+/* ==================== 恋人空间 ==================== */
+function ensureSpaceQuota() {
+  const k = todayKey();
+  if (!State.spaceQuota || State.spaceQuota.day !== k) {
+    State.spaceQuota = { day: k, me: 0, other: 0 };
+    save.spaceQuota();
+  }
+}
+function openSpace() {
+  ensureSpaceQuota();
+  const cover = State.settings.spaceCover;
+  const coverStyle = cover ? `background-image:url(${cover})` : '';
+  const html = `
+    <div class="space-cover" id="space-cover" style="${coverStyle}">
+      <div class="space-head">
+        <div class="sh-row">
+          <img id="sp-avatar-other" alt="">
+          <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
+          <span class="heart-char beat">♥</span>
+          <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
+          <img id="sp-avatar-me" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="space-top-bar"><button class="space-write-btn" id="space-write"><svg><use href="#i-plus"/></svg>发动态</button></div>
+    <div class="space-list" id="space-list"></div>
+  `;
+  openSub('恋人空间', html, () => {
+    $('#sub-body').style.padding = '0';
+    const spO = $('#sp-avatar-other'); if (spO) spO.src = State.settings.avatars.other || defaultAvatar('blue');
+    const spM = $('#sp-avatar-me'); if (spM) spM.src = State.settings.avatars.me || defaultAvatar('pink');
+    renderSpaceList();
+    $('#space-write').onclick = openSpaceWrite;
+    let changed = false;
+    State.spaces.forEach(s => { if (s.who === 'other' && !s.read) { s.read = true; changed = true; } });
+    if (changed) save.spaces();
+  });
+}
+function renderSpaceList() {
+  const list = $('#space-list'); if (!list) return;
+  if (!State.spaces.length) { list.innerHTML = `<div class="empty-tip">还没有动态。</div>`; return; }
+  list.innerHTML = '';
+  const sorted = [...State.spaces].sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  sorted.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'space-card';
+    card.setAttribute('data-who', s.who);
+    const av = s.who === 'me' ? (State.settings.avatars.me || defaultAvatar('pink')) : (State.settings.avatars.other || defaultAvatar('blue'));
+    const call = s.who === 'me' ? (State.settings.myCall || '我') : (State.settings.otherCall || '祂');
+    let inner = `<div class="space-head-row"><img src="${av}"><span class="space-call">${escapeHTML(call)}</span></div>`;
+    if (s.text) inner += `<div class="space-text">${escapeHTML(s.text)}</div>`;
+    if (s.imgs && s.imgs.length) {
+      inner += `<div class="space-imgs">` + s.imgs.map(src => `<img src="${src}">`).join('') + `</div>`;
+    }
+    inner += `<div class="space-time">${relTime(s.ts)}</div>`;
+    card.innerHTML = inner;
+    card.onclick = () => openSpaceMenu(s);
+    list.appendChild(card);
+  });
+}
+function openSpaceMenu(s) {
+  const isMine = s.who === 'me';
+  let html = '';
+  if (isMine) {
+    html += `<div class="msg-menu-item" id="sp-edit"><svg><use href="#i-card"/></svg>编辑</div>`;
+    html += `<div class="msg-menu-item danger" id="sp-del"><svg><use href="#i-trash"/></svg>删除</div>`;
+  }
+  if (!html) return;
+  openModal({ title: '', bodyHTML: html, actions: [] });
+  if (isMine) {
+    $('#sp-edit').onclick = () => { closeModal(); openSpaceWrite(s); };
+    $('#sp-del').onclick = () => {
+      closeModal();
+      State.spaces = State.spaces.filter(x => x.id !== s.id);
+      save.spaces(); renderSpaceList();
+      toast('已删除');
+    };
+  }
+}
+function openSpaceWrite(editItem) {
+  ensureSpaceQuota();
+  const q = State.spaceQuota;
+  const used = (q.me || 0);
+  const freeLeft = Math.max(0, SPACE_QUOTA_FREE - used);
+  const needPay = !editItem && used >= SPACE_QUOTA_FREE;
+  if (needPay && State.love < SPACE_QUOTA_COST) {
+    openModal({ title: '', bodyHTML: `免费额度用完了，发动态需要 ${SPACE_QUOTA_COST} 爱意值，当前爱意不足。`, actions: [] });
+    setTimeout(closeModal, 2000);
+    return;
+  }
+  const tip = editItem ? '编辑动态' : (needPay ? `本次将消耗 ${SPACE_QUOTA_COST} 爱意值` : `今日免费额度剩余 ${freeLeft} 条`);
+  let tempImgs = editItem ? (editItem.imgs || []).slice() : [];
+  const previewHTML = tempImgs.map((src, i) => `<img class="sp-thumb" data-spimg="${i}" src="${src}">`).join('');
+  openModal({
+    title: '发动态',
+    wide: true,
+    bodyHTML: `
+      <div style="display:flex;justify-content:flex-end;margin-bottom:8px">
+        <button id="sp-pick-img" style="display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:10px;background:var(--glass-bg-strong);border:1px solid var(--glass-border);font-size:13px"><span style="font-size:16px">📸</span>添加动态</button>
+      </div>
+      <textarea class="space-big-input" id="space-input" placeholder="${SPACE_PLACEHOLDER}">${editItem ? escapeHTML(editItem.text || '') : ''}</textarea>
+      <div class="space-img-preview" id="sp-img-preview">${previewHTML}</div>
+      <div style="font-size:12.5px;color:var(--text-soft);margin-top:8px;text-align:center">${tip}</div>
+    `,
+    actions: [{ label: '发布', green: true, keepOpen: true, onClick: () => doPostSpace(editItem, tempImgs) }]
+  });
+  const refreshPreview = () => {
+    const box = $('#sp-img-preview');
+    if (!box) return;
+    box.innerHTML = tempImgs.map((src, i) => `<img class="sp-thumb" data-spimg="${i}" src="${src}">`).join('');
+  };
+  $('#sp-pick-img').onclick = () => pickImage((dataUrl) => { tempImgs.push(dataUrl); refreshPreview(); }, true);
+  $('#sp-img-preview').onclick = (e) => {
+    const t = e.target.closest('[data-spimg]');
+    if (!t) return;
+    const i = +t.dataset.spimg;
+    tempImgs.splice(i, 1); refreshPreview();
+  };
+  setTimeout(() => { const el = $('#space-input'); if (el) el.focus(); }, 100);
+}
+function doPostSpace(editItem, imgs) {
+  const ta = $('#space-input');
+  const text = ta ? ta.value.trim() : '';
+  if (!text && (!imgs || !imgs.length)) { toast('写点什么吧'); return; }
+  if (editItem) {
+    editItem.text = text;
+    editItem.imgs = imgs.slice();
+    save.spaces();
+    closeModal(); renderSpaceList(); toast('已更新');
+    return;
+  }
+  ensureSpaceQuota();
+  const q = State.spaceQuota;
+  const used = (q.me || 0);
+  const needPay = used >= SPACE_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < SPACE_QUOTA_COST) { toast('爱意值不够'); return; }
+    State.love -= SPACE_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  q.me = used + 1; save.spaceQuota();
+  State.spaces.push({ id: uid(), who: 'me', text, imgs: imgs.slice(), read: true, ts: Date.now() });
+  save.spaces();
+  addLove(2);
+  closeModal(); renderSpaceList();
+  const list = $('#space-list'); if (list) list.scrollTop = 0;
+  toast(needPay ? '已发布（-' + SPACE_QUOTA_COST + '爱意）' : '已发布');
+}
+function pushOtherSpace() {
+  ensureSpaceQuota();
+  const q = State.spaceQuota;
+  const used = (q.other || 0);
+  const needPay = used >= SPACE_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < SPACE_QUOTA_COST) return;
+    State.love -= SPACE_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  const text = buildFromCards(8, 15);
+  if (!text) return;
+  const imgs = [];
+  if (State.stickers.length) {
+    const n = 1 + Math.floor(Math.random() * 3);
+    for (let i = 0; i < n; i++) imgs.push(State.stickers[Math.floor(Math.random() * State.stickers.length)].src);
+  }
+  q.other = used + 1; save.spaceQuota();
+  State.spaces.push({ id: uid(), who: 'other', text, imgs, read: false, ts: Date.now() });
+  save.spaces();
+  addLove(2);
+  maybeNotify('祂发了新动态');
+  const page = $('#page-sub');
+  if (page && page.classList.contains('active') && $('#sub-title') && $('#sub-title').textContent === '恋人空间') {
+    State.spaces[State.spaces.length - 1].read = true; save.spaces(); renderSpaceList();
+  }
+}
+function maybeSpacePost() {
+  const s = State.settings;
+  if (!s.activeMsgEnabled) return null;
+  if (Math.random() * 100 >= SPACE_ACTIVE_PROB) return null;
+  ensureSpaceQuota();
+  const used = (State.spaceQuota.other || 0);
+  const needPay = used >= SPACE_QUOTA_FREE;
+  if (needPay && State.love < SPACE_QUOTA_COST) return null;
+  return true;
+}
+function maybeOtherSpaceActive() {}
 
 /* ==================== 小世界 ==================== */
 function openWorld() {
@@ -4660,17 +5209,29 @@ function openWorld() {
 }
 
 /* ==================== openSub ==================== */
+function setSubAction(iconHTML, onClick) {
+  const el = $('#sub-action');
+  if (!el) return;
+  if (!iconHTML) { el.style.display = 'none'; el.innerHTML = ''; el.onclick = null; return; }
+  el.style.display = '';
+  el.innerHTML = iconHTML;
+  el.onclick = onClick || null;
+}
 function openSub(title, bodyHTML, afterRender) {
   const subPage = $('#page-sub');
   if (subPage.classList.contains('active')) {
     subStack.push({
       title: $('#sub-title').textContent,
       html: $('#sub-body').innerHTML,
-      after: subPage._afterRender || null
+      after: subPage._afterRender || null,
+      actionHTML: $('#sub-action') ? $('#sub-action').innerHTML : '',
+      actionShow: $('#sub-action') ? $('#sub-action').style.display : 'none',
+      actionClick: $('#sub-action') ? $('#sub-action').onclick : null
     });
   } else {
     subStack = [];
   }
+  setSubAction('');
   $('#sub-title').textContent = title;
   $('#sub-body').innerHTML = bodyHTML;
   $('#sub-body').style.padding = '';
@@ -5067,12 +5628,11 @@ function runMoodHis() {
   const targetH = s.moodHour ?? 20, targetM = s.moodMinute ?? 0;
   const nowMin = now.getHours() * 60 + now.getMinutes();
   const todayK = todayKey();
-  const allKeys = Object.keys(State.moods);
+  const allKeys = Object.keys(State.moods).sort();
   let startDate;
   if (allKeys.length) {
-    const latest = allKeys.sort().pop();
-    startDate = new Date(latest + 'T00:00:00');
-    startDate.setDate(startDate.getDate() + 1);
+    const earliest = allKeys[0];
+    startDate = new Date(earliest + 'T00:00:00');
   } else {
     startDate = new Date(now); startDate.setHours(0,0,0,0);
   }
@@ -5353,10 +5913,230 @@ function openQuiz() {
     });
   }, 100);
 }
-  /* ==================== 问卷 ==================== */
+  /* ==================== 信箱 ==================== */
+let mailTab = 'inbox';
+
+function ensureMailQuota() {
+  const k = todayKey();
+  if (!State.mailQuota || State.mailQuota.day !== k) {
+    State.mailQuota = { day: k, me: 0, other: 0 };
+    save.mailQuota();
+  }
+}
+function openMail() {
+  ensureMailQuota();
+  mailTab = 'inbox';
+  const html = `
+    <div class="mail-tabs" id="mail-tabs">
+      <div class="mail-tab active" data-tab="inbox">祂的来信</div>
+      <div class="mail-tab" data-tab="outbox">我的寄信</div>
+    </div>
+    <div class="mail-list" id="mail-list"></div>
+  `;
+  openSub('信箱', html, () => {
+    $('#sub-body').style.padding = '0';
+    setSubAction(`<svg style="width:22px;height:22px"><use href="#i-note"/></svg>`, openMailWrite);
+    renderMailList();
+    $$('#mail-tabs [data-tab]').forEach(t => {
+      t.onclick = () => { mailTab = t.dataset.tab; $$('#mail-tabs [data-tab]').forEach(x => x.classList.toggle('active', x === t)); renderMailList(); };
+    });
+  });
+}
+function renderMailList() {
+  const list = $('#mail-list'); if (!list) return;
+  const items = State.mails.filter(m => mailTab === 'inbox' ? (m.who === 'other') : (m.who === 'me'));
+  if (!items.length) { list.innerHTML = `<div class="empty-tip">${mailTab === 'inbox' ? '还没有收到信。' : '还没有寄出信。'}</div>`; return; }
+  list.innerHTML = '';
+  const sorted = [...items].sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  sorted.forEach(m => {
+    const el = document.createElement('div');
+    el.className = 'mail-envelope';
+    el.setAttribute('data-who', m.who);
+    const call = m.who === 'me' ? (State.settings.myCall || '我') : (State.settings.otherCall || '祂');
+    el.innerHTML = `<div class="me-line1">💌 ${escapeHTML(call)}</div><div class="me-line2">${fullDateTime(m.ts)}</div>${(m.who === 'other' && !m.read) ? '<span class="mail-dot"></span>' : ''}`;
+    el.onclick = () => openMailDetail(m);
+    list.appendChild(el);
+  });
+}
+function openMailDetail(m) {
+  if (m.who === 'other' && !m.read) { m.read = true; save.mails(); }
+  const hello = m.hello || '';
+  const bye = m.bye || '';
+  const letterHTML = `
+    <div class="mail-letter">致 ${escapeHTML(m.to || '')}
+
+${escapeHTML(hello)}
+
+${escapeHTML(m.body || '')}
+
+${escapeHTML(bye)}
+
+<span class="ml-right">${escapeHTML(m.from || '')}
+${fullDateTime(m.ts)}</span></div>
+  `;
+  openSub('信', `<div class="mail-detail">${letterHTML}</div>`, () => {
+    $('#sub-body').style.padding = '0';
+    setSubAction('');
+  });
+}
+function openMailWrite() {
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.me || 0);
+  const freeLeft = Math.max(0, MAIL_QUOTA_FREE - used);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay && State.love < MAIL_QUOTA_COST) {
+    openModal({ title: '', bodyHTML: `免费额度用完了，寄信需要 ${MAIL_QUOTA_COST} 爱意值，当前爱意不足。`, actions: [] });
+    setTimeout(closeModal, 2000);
+    return;
+  }
+  const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
+  const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
+  const toCall = State.settings.otherCall || '祂';
+  const fromCall = State.settings.myCall || '我';
+  const tip = needPay ? `本次将消耗 ${MAIL_QUOTA_COST} 爱意值` : `今日免费额度剩余 ${freeLeft} 封`;
+  const html = `
+    <div class="mail-write-wrap">
+      <div class="mail-preview" id="mail-preview">
+        <div class="mail-letter">致 ${escapeHTML(toCall)}
+
+${escapeHTML(hello)}
+
+<span id="mail-body-preview"></span>
+
+${escapeHTML(bye)}
+
+<span class="ml-right">${escapeHTML(fromCall)}
+${fullDateTime(Date.now())}</span></div>
+      </div>
+      <div class="mail-input-area">
+        <textarea id="mail-body-input" placeholder="把想说的，慢慢写下来…"></textarea>
+        <div style="font-size:12.5px;color:var(--text-soft);margin-top:8px;text-align:center">${tip}</div>
+      </div>
+      <div class="mail-send-bar">
+        <button class="mail-send-btn" id="mail-send"><span class="mail-stamp">✉</span>寄出</button>
+      </div>
+    </div>
+  `;
+  openSub('写信', html, () => {
+    $('#sub-body').style.padding = '0';
+    setSubAction('');
+    const ta = $('#mail-body-input');
+    const pv = $('#mail-body-preview');
+    ta.oninput = () => { pv.textContent = ta.value; };
+    ta.focus();
+    $('#mail-send').onclick = () => doSendMail(hello, bye, ta.value);
+  });
+}
+function doSendMail(hello, bye, body) {
+  const text = (body || '').trim();
+  if (!text) { toast('写点什么吧'); return; }
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.me || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < MAIL_QUOTA_COST) { toast('爱意值不够'); return; }
+    State.love -= MAIL_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  q.me = used + 1; save.mailQuota();
+  State.mails.push({
+    id: uid(), who: 'me',
+    to: State.settings.otherCall || '祂',
+    from: State.settings.myCall || '我',
+    hello, bye, body: text,
+    read: true, ts: Date.now()
+  });
+  save.mails();
+  toast(needPay ? '已寄出（-' + MAIL_QUOTA_COST + '爱意）' : '已寄出');
+  mailTab = 'outbox';
+  openMail();
+}
+function pushOtherMail() {
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.other || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < MAIL_QUOTA_COST) return;
+    State.love -= MAIL_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  const body = buildFromCards(15, 30);
+  if (!body) return;
+  const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
+  const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
+  q.other = used + 1; save.mailQuota();
+  State.mails.push({
+    id: uid(), who: 'other',
+    to: State.settings.myCall || '我',
+    from: State.settings.otherCall || '祂',
+    hello, bye, body,
+    read: false, ts: Date.now()
+  });
+  save.mails();
+  maybeNotify('祂给你寄了一封信');
+}
+function maybeOtherMailActive() {
+  ensureMailQuota();
+  const used = (State.mailQuota.other || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay && State.love < MAIL_QUOTA_COST) return;
+  if (Math.random() * 100 >= MAIL_ACTIVE_PROB) return;
+  pushOtherMail();
+}
+  /* ==================== 信箱（补：信分段） ==================== */
+function buildMailBody() {
+  const segCount = 1 + Math.floor(Math.random() * 3);
+  const total = 15 + Math.floor(Math.random() * 16);
+  let left = total;
+  const perSeg = [];
+  for (let i = 0; i < segCount; i++) {
+    const remain = segCount - i;
+    if (remain === 1) { perSeg.push(left); break; }
+    const minEach = 5;
+    const maxEach = left - (remain - 1) * minEach;
+    const n = minEach + Math.floor(Math.random() * Math.max(1, maxEach - minEach + 1));
+    perSeg.push(n);
+    left -= n;
+  }
+  const segs = [];
+  perSeg.forEach(n => { const t = buildFromCards(n, n); if (t) segs.push(t); });
+  return segs.join('\n\n');
+}
+function pushOtherMailFixed() {
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.other || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < MAIL_QUOTA_COST) return;
+    State.love -= MAIL_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  const body = buildMailBody();
+  if (!body) return;
+  const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
+  const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
+  q.other = used + 1; saveMailQuotaSafe();
+  State.mails.push({
+    id: uid(), who: 'other',
+    to: State.settings.myCall || '我',
+    from: State.settings.otherCall || '祂',
+    hello, bye, body,
+    read: false, ts: Date.now()
+  });
+  save.mails();
+  maybeNotify('祂给你寄了一封信');
+}
+function saveMailQuotaSafe() { save.mailQuota(); }
+
+/* ==================== 问卷 ==================== */
 function openQuizManager() {
   openSub('问卷', `<div class="quiz-mgr-top"><button class="upload-btn" id="btn-create-quiz" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>`, () => {
     $('#sub-body').style.padding = '0';
+    setSubAction('');
     renderQuizList();
     $('#btn-create-quiz').onclick = () => openQuizCreate(null);
   });
@@ -5400,6 +6180,7 @@ function openQuizCreate(q, readonly) {
   quizEditing = q ? { ...q, questions: q.questions.map(x => ({ ...x, options: [...x.options] })) } : { id: uid(), title: '', questions: [{ text: '', options: ['','','',''] }] };
   $('#sub-title').textContent = readonly ? '查看问卷' : (q ? '编辑问卷' : '创建问卷');
   const body = $('#sub-body'); body.style.padding = '0';
+  setSubAction('');
   const subPage = $('#page-sub');
   if (subPage.classList.contains('active')) {
     subStack.push({ title: '问卷', html: '<div class="quiz-mgr-top"><button class="upload-btn" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>', after: () => { renderQuizList(); } });
@@ -5533,6 +6314,7 @@ function openInteractionManager() {
     <div class="zone-body" id="itf-zone-body"></div>
   `, () => {
     $('#sub-body').style.padding = '0';
+    setSubAction('');
     renderItfBoardTabs();
     renderItfZoneTabs();
     renderItfBody();
@@ -5871,6 +6653,7 @@ function openStickerManager() {
     <div class="zone-body" id="st-list"></div>
   `, () => {
     $('#sub-body').style.padding = '0';
+    setSubAction('');
     renderStickerList();
     $('#st-add').onclick = openStickerAdd;
     $('#st-import').onclick = importStickers;
@@ -6038,6 +6821,7 @@ function openGiftManager() {
     <div class="zone-body" id="gf-list"></div>
   `, () => {
     $('#sub-body').style.padding = '0';
+    setSubAction('');
     renderGiftList(giftMgrTab);
     $('#gf-add').onclick = openGiftAdd;
     $('#gf-import').onclick = importGifts;
@@ -6296,6 +7080,7 @@ function openCardManager() {
   cardSelectMode = false; cardSelected.clear(); searchKeyword = ''; cardZone = 'normal';
   openSub('字卡', `<div class="card-toolbar" id="card-toolbar"></div><div class="zone-tabs" id="card-zone-tabs"></div><div class="zone-body" id="card-zone-body"></div>`, () => {
     $('#sub-body').style.padding = '0';
+    setSubAction('');
     renderCardToolbar(); renderCardZoneTabs(); renderCardList();
   });
 }
@@ -6480,6 +7265,7 @@ function openTrash() {
   trashSelectMode = false; trashSelected.clear();
   openSub('回收站', `<div class="card-toolbar" id="trash-toolbar"></div><div class="zone-body" id="trash-list"></div>`, () => {
     $('#sub-body').style.padding = '0';
+    setSubAction('');
     renderTrashToolbar(); renderTrashList();
   });
 }
@@ -6547,6 +7333,7 @@ function openAvatarManager() {
     <div class="section-title">配对区</div>
     <div class="pair-grid" id="pair-grid"></div>
   `, () => {
+    setSubAction('');
     renderAvatarArea();
     $('#btn-upload-avatar').onclick = () => pickImage(async (dataUrl, blob) => { const id = uid(); await CacheStore.put('avatar_' + id, blob); s.avatarPool.push({ id, src: dataUrl, color: '' }); save.settings(); renderAvatarArea(); }, true);
     $('#edit-other-name').onclick = () => editField('otherName', '祂的名字', openAvatarManager);
@@ -6647,12 +7434,15 @@ function openBgManager() {
     <div class="bg-tabs">
       <div class="bg-tab ${bgTab==='chat'?'active':''}" id="tab-chat">聊天背景</div>
       <div class="bg-tab ${bgTab==='lock'?'active':''}" id="tab-lock">锁屏背景</div>
+      <div class="bg-tab ${bgTab==='space'?'active':''}" id="tab-space">空间封面</div>
     </div>
     <div id="bg-content"></div>
   `, () => {
+    setSubAction('');
     renderBgTab();
     $('#tab-chat').onclick = () => { bgTab = 'chat'; openBgManager(); };
     $('#tab-lock').onclick = () => { bgTab = 'lock'; openBgManager(); };
+    $('#tab-space').onclick = () => { bgTab = 'space'; openBgManager(); };
   });
 }
 function renderBgTab() {
@@ -6669,7 +7459,7 @@ function renderBgTab() {
       cell.onclick = () => { s.chatBg = src; save.settings(); applyBackgrounds(); renderBgTab(); };
       grid.appendChild(cell);
     });
-  } else {
+  } else if (bgTab === 'lock') {
     content.innerHTML = `<button class="upload-btn" id="up-lock-bg" style="margin:12px 0"><svg><use href="#i-plus"/></svg>上传锁屏背景</button><div class="bg-grid" id="lock-bg-grid"></div>`;
     $('#up-lock-bg').onclick = () => pickImage((dataUrl) => { s.lockBgPool.push(dataUrl); s.lockBg = dataUrl; save.settings(); renderBgTab(); }, true);
     const grid = $('#lock-bg-grid');
@@ -6680,12 +7470,23 @@ function renderBgTab() {
       cell.onclick = () => { s.lockBg = src; save.settings(); renderBgTab(); };
       grid.appendChild(cell);
     });
+  } else {
+    content.innerHTML = `<button class="upload-btn" id="up-space-bg" style="margin:12px 0"><svg><use href="#i-plus"/></svg>上传空间封面</button><div class="bg-grid" id="space-bg-grid"></div>`;
+    $('#up-space-bg').onclick = () => pickImage((dataUrl) => { s.spaceCoverPool.push(dataUrl); s.spaceCover = dataUrl; save.settings(); renderBgTab(); }, true);
+    const grid = $('#space-bg-grid');
+    s.spaceCoverPool.forEach(src => {
+      const cell = document.createElement('div');
+      cell.className = 'bg-cell' + (s.spaceCover === src ? ' active' : '');
+      cell.innerHTML = `<img src="${src}">`;
+      cell.onclick = () => { s.spaceCover = src; save.settings(); renderBgTab(); };
+      grid.appendChild(cell);
+    });
   }
 }
 
 /* ==================== 旧梦重温 ==================== */
 function openArchive() {
-  openSub('旧梦重温', `<div class="archive-list" id="archive-list"></div>`, () => { renderArchiveList(); });
+  openSub('旧梦重温', `<div class="archive-list" id="archive-list"></div>`, () => { setSubAction(''); renderArchiveList(); });
 }
 function renderArchiveList() {
   const list = $('#archive-list'); if (!list) return;
@@ -6793,31 +7594,30 @@ function initPlayPage() {
     showBars();
   });
 }
-
-/* ==================== 统计 ==================== */
+  /* ==================== 统计 ==================== */
 function openStats() {
-  openSub('统计', `<div id="stats-wrap"></div>`, () => {
-    renderStats();
-  });
+  openSub('统计', `<div id="stats-wrap"></div>`, () => { setSubAction(''); renderStats(); });
 }
 function renderStats() {
   const wrap = $('#stats-wrap'); if (!wrap) return;
+  const PINK = '#f0a8c0';
+  const v = (n) => `<span class="st-v">${n}</span>`;
   let html = '';
 
   /* 1. 聊天 */
   const myMsgs = State.messages.filter(m => m.who === 'me' && m.type !== 'sys');
   const hisMsgs = State.messages.filter(m => m.who === 'other' && m.type !== 'sys');
   html += `<div class="stat-block"><div class="st-title">聊天</div>`;
-  html += `<div class="st-line"><span class="st-k">总消息</span><span>${myMsgs.length + hisMsgs.length}</span></div>`;
-  html += `<div class="st-line"><span class="st-k">我发的</span><span>${myMsgs.length}</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂发的</span><span>${hisMsgs.length}</span></div>`;
+  html += `<div class="st-line"><span class="st-k">总消息</span>${v(myMsgs.length + hisMsgs.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">我发的</span>${v(myMsgs.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂发的</span>${v(hisMsgs.length)}</div>`;
   html += `</div>`;
 
   const myTop = topTextList(myMsgs, 10);
   html += `<div class="stat-block"><div class="st-title">我的高频词 · 前10</div>`;
   if (!myTop.length) html += `<div class="stat-empty">还没有数据</div>`;
   else myTop.forEach((it, i) => {
-    html += `<div class="st-line"><span class="st-k">${i+1}. ${escapeHTML(it.text)}</span><span>${it.n} 次</span></div>`;
+    html += `<div class="st-line"><span class="st-k">${i+1}. ${escapeHTML(it.text)}</span>${v(it.n)}</div>`;
   });
   html += `</div>`;
 
@@ -6825,7 +7625,7 @@ function renderStats() {
   html += `<div class="stat-block"><div class="st-title">祂的高频词 · 前10</div>`;
   if (!hisTop.length) html += `<div class="stat-empty">还没有数据</div>`;
   else hisTop.forEach((it, i) => {
-    html += `<div class="st-line"><span class="st-k">${i+1}. ${escapeHTML(it.text)}</span><span>${it.n} 次</span></div>`;
+    html += `<div class="st-line"><span class="st-k">${i+1}. ${escapeHTML(it.text)}</span>${v(it.n)}</div>`;
   });
   html += `</div>`;
 
@@ -6835,13 +7635,13 @@ function renderStats() {
   const itfOther = itfMsgs.filter(m => m.who === 'other');
   const itfTogether = itfMsgs.filter(m => m.board === 'together');
   html += `<div class="stat-block"><div class="st-title">互动</div>`;
-  html += `<div class="st-line"><span class="st-k">我发送</span><span>${itfMe.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂发送</span><span>${itfOther.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">共朝夕</span><span>${itfTogether.length} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我发送</span>${v(itfMe.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂发送</span>${v(itfOther.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">共朝夕</span>${v(itfTogether.length)}</div>`;
   const myItfTop = topItfList(itfMe, 5);
   const hisItfTop = topItfList(itfOther, 5);
-  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${myItfTop.length ? myItfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}（${it.n}次）`).join('<br>') : '暂无'}</span></div>`;
-  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${hisItfTop.length ? hisItfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}（${it.n}次）`).join('<br>') : '暂无'}</span></div>`;
+  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${myItfTop.length ? myItfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}`).join('<br>') : '暂无'}</span></div>`;
+  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${hisItfTop.length ? hisItfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}`).join('<br>') : '暂无'}</span></div>`;
   html += `</div>`;
 
   /* 3. 通话 */
@@ -6853,15 +7653,15 @@ function renderStats() {
   const totalDur = normalV.reduce((a,b)=>a+(b.dur||0),0);
   const myOut = normalV.filter(r => r.mode === 'outgoing').length;
   const hisOut = normalV.filter(r => r.mode === 'incoming').length;
-  html += `<div class="st-line"><span class="st-k">通话次数</span><span>${normalV.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">总时长</span><span>${callTime(totalDur)}</span></div>`;
-  html += `<div class="st-line"><span class="st-k">我打给祂</span><span>${myOut} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂打给我</span><span>${hisOut} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">未接来电</span><span>${missedV.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">已拒绝</span><span>${rejectedV.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">中断</span><span>${interruptedV.length} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">通话次数</span>${v(normalV.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">总时长</span>${v(callTime(totalDur))}</div>`;
+  html += `<div class="st-line"><span class="st-k">我打给祂</span>${v(myOut)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂打给我</span>${v(hisOut)}</div>`;
+  html += `<div class="st-line"><span class="st-k">未接来电</span>${v(missedV.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">已拒绝</span>${v(rejectedV.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">中断</span>${v(interruptedV.length)}</div>`;
   if (State.videoRecords.length) {
-    html += `<button class="stat-link-btn" id="stat-call-detail">查看通话记录（${State.videoRecords.length}）</button>`;
+    html += `<button class="stat-link-btn" id="stat-call-detail">查看通话记录</button>`;
   } else {
     html += `<div class="stat-empty">还没有通话记录</div>`;
   }
@@ -6878,12 +7678,12 @@ function renderStats() {
     }
   });
   html += `<div class="stat-block"><div class="st-title">问答</div>`;
-  html += `<div class="st-line"><span class="st-k">我发起</span><span>${myQuizCount} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂参与</span><span>${hisQuizCount} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">默契</span><span>${match} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">不默契</span><span>${mismatch} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">默契加分</span><span>+${loveGain} 爱意</span></div>`;
-  html += `<div class="st-line"><span class="st-k">不默契扣分</span><span>-${loveLose} 爱意</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我发起</span>${v(myQuizCount)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂参与</span>${v(hisQuizCount)}</div>`;
+  html += `<div class="st-line"><span class="st-k">默契</span>${v(match)}</div>`;
+  html += `<div class="st-line"><span class="st-k">不默契</span>${v(mismatch)}</div>`;
+  html += `<div class="st-line"><span class="st-k">默契加分</span>${v('+' + loveGain)}</div>`;
+  html += `<div class="st-line"><span class="st-k">不默契扣分</span>${v('-' + loveLose)}</div>`;
   html += `</div>`;
 
   /* 5. 听歌 */
@@ -6894,25 +7694,28 @@ function renderStats() {
   const hisAccepted = hisInvites.filter(m => m.accepted).length;
   const myRefused = myInvites.filter(m => m.refused).length;
   const hisRefused = hisInvites.filter(m => m.refused).length;
+  const allTogether = songMsgs.filter(m => m.accepted);
   html += `<div class="stat-block"><div class="st-title">听歌</div>`;
-  html += `<div class="st-line"><span class="st-k">我邀请</span><span>${myInvites.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂答应</span><span>${myAccepted} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂拒绝</span><span>${myRefused} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂邀请</span><span>${hisInvites.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">我答应</span><span>${hisAccepted} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">我拒绝</span><span>${hisRefused} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我邀请</span>${v(myInvites.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂答应</span>${v(myAccepted)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂拒绝</span>${v(myRefused)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂邀请</span>${v(hisInvites.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">我答应</span>${v(hisAccepted)}</div>`;
+  html += `<div class="st-line"><span class="st-k">我拒绝</span>${v(hisRefused)}</div>`;
   const topSongMine = topSongName(myInvites);
   const topSongHis = topSongName(hisInvites);
-  if (topSongMine) html += `<div class="st-line"><span class="st-k">我常听</span><span>${escapeHTML(topSongMine)}</span></div>`;
-  if (topSongHis) html += `<div class="st-line"><span class="st-k">祂常听</span><span>${escapeHTML(topSongHis)}</span></div>`;
+  const topSongTogether = topSongName(allTogether);
+  if (topSongMine) html += `<div class="st-line"><span class="st-k">我常听</span><span class="st-v">${escapeHTML(topSongMine)}</span></div>`;
+  if (topSongHis) html += `<div class="st-line"><span class="st-k">祂常听</span><span class="st-v">${escapeHTML(topSongHis)}</span></div>`;
+  if (topSongTogether) html += `<div class="st-line"><span class="st-k">最常一起听</span><span class="st-v">${escapeHTML(topSongTogether)}</span></div>`;
   html += `</div>`;
 
   /* 6. 心动 */
   const hisHeart = State.hearts.filter(h => h.by === 'other');
   const myHeart = State.hearts.filter(h => h.by === 'me');
   html += `<div class="stat-block"><div class="st-title">心动</div>`;
-  html += `<div class="st-line"><span class="st-k">祂心动</span><span>${hisHeart.length} 条</span></div>`;
-  html += `<div class="st-line"><span class="st-k">我心动</span><span>${myHeart.length} 条</span></div>`;
+  html += `<div class="st-line"><span class="st-k">祂心动</span>${v(hisHeart.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">我心动</span>${v(myHeart.length)}</div>`;
   const heartText = (h) => {
     if (!h.content) return '';
     if (h.content.type === 'text') return h.content.text || '';
@@ -6928,14 +7731,6 @@ function renderStats() {
   const hisFavHeart = topHeartItem(hisHeart);
   if (myFavHeart) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最喜欢的心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(myFavHeart))}</span></div>`;
   if (hisFavHeart) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂最喜欢的心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(hisFavHeart))}</span></div>`;
-  if (myHeart.length) {
-    const latestMe = myHeart[myHeart.length - 1];
-    html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最近心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(latestMe))}</span></div>`;
-  }
-  if (hisHeart.length) {
-    const latestHis = hisHeart[hisHeart.length - 1];
-    html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂最近心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(latestHis))}</span></div>`;
-  }
   html += `</div>`;
 
   /* 7. 陪伴 */
@@ -6946,54 +7741,56 @@ function renderStats() {
   const hisCompTotal = hisComp.reduce((a, b) => a + (b.dur || 0), 0);
   const compRefused = State.messages.filter(m => m.type === 'companion' && m.who === 'me' && m.refused).length;
   html += `<div class="stat-block"><div class="st-title">陪伴</div>`;
-  html += `<div class="st-line"><span class="st-k">总次数</span><span>${State.companionStats.length} 次</span></div>`;
-  html += `<div class="st-line"><span class="st-k">总时长</span><span>${hms(allCompTotal)}</span></div>`;
-  html += `<div class="st-line"><span class="st-k">我发起</span><span>${myComp.length} 次 · ${hms(myCompTotal)}</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂发起</span><span>${hisComp.length} 次 · ${hms(hisCompTotal)}</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂拒绝陪伴</span><span>${compRefused} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">总次数</span>${v(State.companionStats.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">总时长</span>${v(hms(allCompTotal))}</div>`;
+  html += `<div class="st-line"><span class="st-k">我发起</span>${v(myComp.length)} · ${hms(myCompTotal)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂发起</span>${v(hisComp.length)} · ${hms(hisCompTotal)}</div>`;
+  html += `<div class="st-line"><span class="st-k">祂拒绝陪伴</span>${v(compRefused)}</div>`;
   if (State.companionStats.length) {
-    html += `<button class="stat-link-btn" id="stat-comp-detail">查看陪伴详情（${State.companionStats.length}）</button>`;
+    html += `<button class="stat-link-btn" id="stat-comp-detail">查看陪伴详情</button>`;
   }
   html += `</div>`;
 
   /* 8. 礼物 / 盲盒 */
   const sentGifts = State.giftRecords.filter(r => r.from === 'me');
   const recvGifts = State.giftRecords.filter(r => r.from === 'other');
-  const allRecv = State.giftRecords.concat(State.boxRecords || []).filter(r => r.from === 'other');
-  const topRecvGift = topGiftName(allRecv);
+  const hisSendTop = topGiftName(sentGifts.filter(r => r.from === 'other')); // 祂送我的
+  const iSendTop = topGiftName(sentGifts); // 我送祂的
   html += `<div class="stat-block"><div class="st-title">礼物 / 盲盒</div>`;
-  html += `<div class="st-line"><span class="st-k">我送</span><span>${sentGifts.length} 个</span></div>`;
-  html += `<div class="st-line"><span class="st-k">收礼</span><span>${recvGifts.length} 个</span></div>`;
-  html += `<div class="st-line"><span class="st-k">盲盒次数</span><span>${State.boxRecords.length} 次</span></div>`;
-  if (topRecvGift) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">收到最多：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(topRecvGift)}</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我送</span>${v(sentGifts.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">收礼</span>${v(recvGifts.length)}</div>`;
+  html += `<div class="st-line"><span class="st-k">盲盒次数</span>${v(State.boxRecords.length)}</div>`;
+  const hisGiveTop = topGiftName(recvGifts);
+  if (hisGiveTop) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂送我最多：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(hisGiveTop)}</span></div>`;
+  if (iSendTop) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我送祂最多：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(iSendTop)}</span></div>`;
   html += `</div>`;
 
   wrap.innerHTML = html;
-
-  const cd = $('#stat-call-detail');
-  if (cd) cd.onclick = openCallRecords;
-  const cp = $('#stat-comp-detail');
-  if (cp) cp.onclick = openCompanionDetail;
+  const cd = $('#stat-call-detail'); if (cd) cd.onclick = openCallRecords;
+  const cp = $('#stat-comp-detail'); if (cp) cp.onclick = openCompanionDetail;
 }
 function openCallRecords() {
   const records = [...State.videoRecords].reverse();
   openSub('通话记录', `<div class="zone-body" id="call-rec-list"></div>`, () => {
+    setSubAction('');
     $('#sub-body').style.padding = '0';
     const list = $('#call-rec-list');
     if (!records.length) { list.innerHTML = `<div class="zone-empty">还没有通话记录。</div>`; return; }
     list.innerHTML = '';
     records.forEach(r => {
-      const d = new Date(r.t || r.start);
-      const dateStr = `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-      let typeStr = '';
-      if (r.type === 'normal') typeStr = '通话 ' + callTime(r.dur);
-      else if (r.type === 'missed') typeStr = '未接来电';
-      else if (r.type === 'rejected') typeStr = '已拒绝';
-      else if (r.type === 'interrupted') typeStr = '通话中断' + (r.dur ? ' ' + callTime(r.dur) : '');
+      const d = new Date(r.start || r.t);
+      const dateStr = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+      let line2 = '';
+      if (r.type === 'normal') {
+        const s = new Date(r.start), e = new Date(r.end);
+        line2 = '开始 ' + pad(s.getHours()) + ':' + pad(s.getMinutes()) + ' 结束 ' + pad(e.getHours()) + ':' + pad(e.getMinutes()) + ' 通话时长 ' + callTime(r.dur);
+      } else if (r.type === 'missed') line2 = '未接来电';
+      else if (r.type === 'rejected') line2 = '已拒绝';
+      else if (r.type === 'interrupted') line2 = '通话中断' + (r.dur ? ' 通话时长 ' + callTime(r.dur) : '');
       const dir = r.mode === 'incoming' ? '祂打给我' : (r.mode === 'outgoing' ? '我打给祂' : '');
       const el = document.createElement('div');
       el.className = 'itf-pick-item';
-      el.innerHTML = `<div style="display:flex;justify-content:space-between;gap:10px"><span>${dateStr}</span><span>${dir} ${typeStr}</span></div>`;
+      el.innerHTML = `<div style="font-size:14px;color:var(--text)">${dateStr}</div><div style="font-size:13px;color:var(--text-soft);margin-top:4px">${dir} ${line2}</div>`;
       list.appendChild(el);
     });
   });
@@ -7001,15 +7798,17 @@ function openCallRecords() {
 function openCompanionDetail() {
   const stats = [...State.companionStats].reverse();
   openSub('陪伴详情', `<div class="zone-body" id="comp-rec-list"></div>`, () => {
+    setSubAction('');
     $('#sub-body').style.padding = '0';
     const list = $('#comp-rec-list');
     if (!stats.length) { list.innerHTML = `<div class="zone-empty">还没有陪伴记录。</div>`; return; }
     list.innerHTML = '';
     stats.forEach(c => {
       const d = new Date(c.start);
-      const dateStr = `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      const dateStr = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
       const who = c.by === 'other' ? '祂发起' : '我发起';
-      let inner = `<div style="display:flex;justify-content:space-between;gap:10px"><span>${dateStr}</span><span>${who} · ${escapeHTML(c.type)} · ${hms(c.dur)}</span></div>`;
+      let inner = `<div style="font-size:14px;color:var(--text)">${dateStr}</div>`;
+      inner += `<div style="font-size:13px;color:var(--text-soft);margin-top:4px">${who} · ${escapeHTML(c.type)} · ${hms(c.dur)}</div>`;
       if (c.switches && c.switches.length) {
         inner += `<div style="font-size:12px;color:var(--text-soft);margin-top:6px">`;
         c.switches.forEach(s => {
@@ -7046,7 +7845,7 @@ function topSongName(arr) {
   arr.forEach(m => { if (m.songName) map[m.songName] = (map[m.songName] || 0) + 1; });
   let top = '', n = 0;
   for (const k in map) { if (map[k] > n) { n = map[k]; top = k; } }
-  return top ? top + '（' + n + '次）' : '';
+  return top ? top : '';
 }
 function topHeartItem(arr) {
   const map = {};
@@ -7066,7 +7865,7 @@ function topGiftName(arr) {
   arr.forEach(r => { if (r.giftName) map[r.giftName] = (map[r.giftName] || 0) + 1; });
   let top = '', n = 0;
   for (const k in map) { if (map[k] > n) { n = map[k]; top = k; } }
-  return top ? top + '（' + n + '次）' : '';
+  return top ? top : '';
 }
 
 /* ==================== 设置 ==================== */
@@ -7078,7 +7877,7 @@ function openSettings() {
     <div class="setting-block glass" data-goto="set-stats"><svg class="block-icon"><use href="#i-chart"/></svg><span>统计</span></div>
     <div class="setting-block glass" data-goto="set-system"><svg class="block-icon"><use href="#i-todo"/></svg><span>系统</span></div>
     <div class="setting-block glass" data-goto="set-about"><svg class="block-icon"><use href="#i-info"/></svg><span>关于</span></div>
-  `, () => { $$('#sub-body [data-goto]').forEach(el => el.onclick = () => handleSettingsGoto(el.dataset.goto)); });
+  `, () => { setSubAction(''); $$('#sub-body [data-goto]').forEach(el => el.onclick = () => handleSettingsGoto(el.dataset.goto)); });
 }
 function handleSettingsGoto(key) {
   if (key === 'set-chat') return openSetChat();
@@ -7122,75 +7921,11 @@ function openSetChat() {
     <div class="set-row"><span class="label">自定义（秒）</span>
       <input class="field" id="in-think" type="number" style="width:90px" value="${s.thinkTimeCustom ?? ''}">
     </div>
-
-    <div class="section-title">引用</div>
-    <div class="set-row"><span class="label">祂可以使用引用回复</span><div class="switch ${s.quoteEnabled?'on':''}" id="sw-quote"></div></div>
-    <div class="set-row"><span class="label">引用概率（%）</span>
-      <input class="field" id="in-quote-prob" type="number" style="width:80px" value="${s.quoteProb}"></div>
-
-    <div class="section-title">心动</div>
-    <div class="set-row"><span class="label">祂可以收藏（心动）</span><div class="switch ${s.heartEnabled?'on':''}" id="sw-heart"></div></div>
-    <div class="set-row"><span class="label">收藏概率（%）</span>
-      <input class="field" id="in-heart-prob" type="number" style="width:80px" value="${s.heartProb}"></div>
-
-    <div class="section-title">一起听歌</div>
-    <div class="set-row"><span class="label">祂可以邀请一起听歌</span><div class="switch ${s.inviteEnabled?'on':''}" id="sw-invite"></div></div>
-    <div class="set-row"><span class="label">邀请概率（%）</span>
-      <input class="field" id="in-invite-prob" type="number" style="width:80px" value="${s.inviteProb}"></div>
-
-    <div class="section-title">陪伴</div>
-    <div class="set-row"><span class="label">祂可以邀请陪伴</span><div class="switch ${s.companionInviteEnabled?'on':''}" id="sw-comp"></div></div>
-    <div class="set-row"><span class="label">邀请概率（%）</span>
-      <input class="field" id="in-comp-prob" type="number" style="width:80px" value="${s.companionInviteProb}"></div>
-    <div class="set-row"><span class="label">祂接受陪伴邀请的概率（%）</span>
-      <input class="field" id="in-comp-accept" type="number" style="width:80px" value="${s.companionAcceptProb}"></div>
-
     <div class="section-title">心情手帐</div>
     <div class="set-row"><span class="label">祂记录心情的时间</span>
       <input class="field" id="in-mood-time" type="time" style="width:120px" value="${pad(s.moodHour??20)}:${pad(s.moodMinute??0)}"></div>
-
-    <div class="section-title">互动回应</div>
-    <div class="set-row"><span class="label">祂对我（%）</span>
-      <input class="field" id="in-itf-other" type="number" style="width:80px" value="${s.itfProbOther ?? 50}"></div>
-    <div class="set-row"><span class="label">共朝夕（%）</span>
-      <input class="field" id="in-itf-together" type="number" style="width:80px" value="${s.itfProbTogether ?? 30}"></div>
-    <div class="set-row"><span class="label">普通回复（%）</span>
-      <input class="field" id="in-itf-normal" type="number" style="width:80px" value="${s.itfProbNormal ?? 20}"></div>
-    <div class="set-row"><span class="label">陪伴中（%）</span>
-      <input class="field" id="in-itf-comp" type="number" style="width:80px" value="${s.itfProbCompanion ?? 70}"></div>
-    <div class="set-row"><span class="label">祂主动发互动（%）</span>
-      <input class="field" id="in-itf-active" type="number" style="width:80px" value="${s.itfActiveProb ?? 3}"></div>
-
-    <div class="section-title">表情</div>
-    <div class="set-row"><span class="label">祂可以使用表情</span><div class="switch ${s.emojiEnabled?'on':''}" id="sw-emoji"></div></div>
-    <div class="set-row"><span class="label">表情概率（%）</span>
-      <input class="field" id="in-emoji-prob" type="number" style="width:80px" value="${s.emojiProb ?? 6}"></div>
-
-    <div class="section-title">贴纸</div>
-    <div class="set-row"><span class="label">祂可以使用贴纸</span><div class="switch ${s.stickerEnabled?'on':''}" id="sw-sticker"></div></div>
-    <div class="set-row"><span class="label">贴纸概率（%）</span>
-      <input class="field" id="in-sticker-prob" type="number" style="width:80px" value="${s.stickerProb ?? 7}"></div>
-
-    <div class="section-title">礼物</div>
-    <div class="set-row"><span class="label">祂可以送礼物</span><div class="switch ${s.giftEnabled?'on':''}" id="sw-gift"></div></div>
-    <div class="set-row"><span class="label">礼物概率（%）</span>
-      <input class="field" id="in-gift-prob" type="number" style="width:80px" value="${s.giftProb ?? 1}"></div>
-
-    <div class="section-title">盲盒</div>
-    <div class="set-row"><span class="label">祂可以送盲盒</span><div class="switch ${s.boxEnabled?'on':''}" id="sw-box"></div></div>
-    <div class="set-row"><span class="label">盲盒概率（%）</span>
-      <input class="field" id="in-box-prob" type="number" style="width:80px" value="${s.boxProb ?? 1}"></div>
-
-    <div class="section-title">视频</div>
-    <div class="set-row"><span class="label">祂接听视频概率（%）</span>
-      <input class="field" id="in-video-accept" type="number" style="width:80px" value="${s.videoAcceptProb ?? 80}"></div>
-    <div class="set-row"><span class="label">祂主动打视频</span><div class="switch ${s.videoInviteEnabled?'on':''}" id="sw-video"></div></div>
-    <div class="set-row"><span class="label">主动概率（%）</span>
-      <input class="field" id="in-video-prob" type="number" style="width:80px" value="${s.videoInviteProb ?? 3}"></div>
-    <div class="set-row"><span class="label">祂多久挂断（小时）</span>
-      <div class="range-row"><input class="field" id="in-video-hang-min" type="number" value="${s.videoHangMin ?? 5}"><span class="tilde">～</span><input class="field" id="in-video-hang-max" type="number" value="${s.videoHangMax ?? 10}"></div>
-    </div>
   `, () => {
+    setSubAction('');
     markSeg('#seg-reply', s.replySpeedMin != null ? '' : s.replySpeed);
     markSeg('#seg-gap', s.multiGapMin != null ? '' : s.multiGap);
     markSeg('#seg-think', s.thinkTimeCustom != null ? '' : s.thinkTime);
@@ -7215,39 +7950,12 @@ function openSetChat() {
       const v = Math.max(1, Math.min(60, +e.target.value || 8));
       s.thinkTimeCustom = v; save.settings(); e.target.value = v; markSeg('#seg-think', '');
     };
-    $('#sw-quote').onclick = function() { s.quoteEnabled = !s.quoteEnabled; this.classList.toggle('on', s.quoteEnabled); save.settings(); };
-    $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
-    $('#sw-invite').onclick = function() { s.inviteEnabled = !s.inviteEnabled; this.classList.toggle('on', s.inviteEnabled); save.settings(); };
-    $('#sw-comp').onclick = function() { s.companionInviteEnabled = !s.companionInviteEnabled; this.classList.toggle('on', s.companionInviteEnabled); save.settings(); };
-    $('#sw-emoji').onclick = function() { s.emojiEnabled = !s.emojiEnabled; this.classList.toggle('on', s.emojiEnabled); save.settings(); };
-    $('#sw-sticker').onclick = function() { s.stickerEnabled = !s.stickerEnabled; this.classList.toggle('on', s.stickerEnabled); save.settings(); };
-    $('#sw-gift').onclick = function() { s.giftEnabled = !s.giftEnabled; this.classList.toggle('on', s.giftEnabled); save.settings(); };
-    $('#sw-box').onclick = function() { s.boxEnabled = !s.boxEnabled; this.classList.toggle('on', s.boxEnabled); save.settings(); };
-    $('#sw-video').onclick = function() { s.videoInviteEnabled = !s.videoInviteEnabled; this.classList.toggle('on', s.videoInviteEnabled); save.settings(); };
-    $('#in-quote-prob').onchange = e => { s.quoteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.quoteProb; save.settings(); };
-    $('#in-heart-prob').onchange = e => { s.heartProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.heartProb; save.settings(); };
-    $('#in-invite-prob').onchange = e => { s.inviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.inviteProb; save.settings(); };
-    $('#in-comp-prob').onchange = e => { s.companionInviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.companionInviteProb; save.settings(); };
-    $('#in-comp-accept').onchange = e => { s.companionAcceptProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.companionAcceptProb; save.settings(); };
     $('#in-mood-time').onchange = e => {
       const v = e.target.value || '20:00';
       const [hh, mm] = v.split(':').map(Number);
       s.moodHour = hh; s.moodMinute = mm; save.settings();
       runMoodHis();
     };
-    $('#in-itf-other').onchange = e => { s.itfProbOther = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbOther; save.settings(); };
-    $('#in-itf-together').onchange = e => { s.itfProbTogether = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbTogether; save.settings(); };
-    $('#in-itf-normal').onchange = e => { s.itfProbNormal = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbNormal; save.settings(); };
-    $('#in-itf-comp').onchange = e => { s.itfProbCompanion = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfProbCompanion; save.settings(); };
-    $('#in-itf-active').onchange = e => { s.itfActiveProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfActiveProb; save.settings(); };
-    $('#in-emoji-prob').onchange = e => { s.emojiProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.emojiProb; save.settings(); };
-    $('#in-sticker-prob').onchange = e => { s.stickerProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.stickerProb; save.settings(); };
-    $('#in-gift-prob').onchange = e => { s.giftProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.giftProb; save.settings(); };
-    $('#in-box-prob').onchange = e => { s.boxProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.boxProb; save.settings(); };
-    $('#in-video-accept').onchange = e => { s.videoAcceptProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.videoAcceptProb; save.settings(); };
-    $('#in-video-prob').onchange = e => { s.videoInviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.videoInviteProb; save.settings(); };
-    $('#in-video-hang-min').onchange = e => { s.videoHangMin = Math.max(0, +e.target.value || 5); e.target.value = s.videoHangMin; save.settings(); };
-    $('#in-video-hang-max').onchange = e => { s.videoHangMax = Math.max(1, +e.target.value || 10); e.target.value = s.videoHangMax; save.settings(); };
   });
 }
 
@@ -7284,6 +7992,7 @@ function openSetAppearance() {
     <div class="set-row"><span class="label">自定义（36~70）</span>
       <input class="field" id="in-size" type="number" style="width:90px" value="${s.floatSize}"></div>
   `, () => {
+    setSubAction('');
     const swatchMap = {
       'rose-glass':'linear-gradient(160deg,#fdf2f5,#f0b8c8)','sakura-glass':'linear-gradient(160deg,#fef4f7,#f2bccc)',
       'mint-ice':'linear-gradient(160deg,#effaf5,#a8dcc4)','cream-light':'linear-gradient(160deg,#fdf8ef,#ecd2a0)',
@@ -7328,7 +8037,21 @@ function openSetFeature() {
     <div class="section-title">暗号（固定，不可更改）</div>
     <div class="set-row"><span class="label">${LOCK_PASSWORDS[0]}</span></div>
     <div class="set-row"><span class="label">${LOCK_PASSWORDS[1]}</span></div>
-  `, () => { markSeg('#seg-lock', s.lockMode); bindSeg('#seg-lock', v => { s.lockMode = v; save.settings(); }); });
+    <div class="section-title">祂主动发消息</div>
+    <div class="set-row"><span class="label">开启</span><div class="switch ${s.activeMsgEnabled?'on':''}" id="sw-activemsg"></div></div>
+    <div class="seg" id="seg-activemsg">
+      <button class="seg-btn" data-v="light">淡</button>
+      <button class="seg-btn" data-v="daily">日常</button>
+      <button class="seg-btn" data-v="sticky">黏</button>
+      <button class="seg-btn" data-v="vsticky">很黏</button>
+    </div>
+  `, () => {
+    setSubAction('');
+    markSeg('#seg-lock', s.lockMode); bindSeg('#seg-lock', v => { s.lockMode = v; save.settings(); });
+    markSeg('#seg-activemsg', s.activeMsgLevel);
+    bindSeg('#seg-activemsg', v => { s.activeMsgLevel = v; save.settings(); });
+    $('#sw-activemsg').onclick = function() { s.activeMsgEnabled = !s.activeMsgEnabled; this.classList.toggle('on', s.activeMsgEnabled); save.settings(); };
+  });
 }
 
 function openSetSystem() {
@@ -7337,11 +8060,15 @@ function openSetSystem() {
     <div class="set-row"><span class="label">全屏模式</span><div class="switch ${s.fullscreen?'on':''}" id="sw-fullscreen"></div></div>
     <div class="set-row"><span class="label">桌面提醒</span><div class="switch ${s.notify?'on':''}" id="sw-notify"></div></div>
     <div class="setting-block glass" id="btn-test-notify"><svg class="block-icon"><use href="#i-mailbox"/></svg><span>测试消息通知</span></div>
-    <div class="setting-block glass" id="btn-clear-note" style="color:var(--danger)"><svg class="block-icon" style="color:var(--danger)"><use href="#i-trash"/></svg><span>清空留言笺</span></div>
+    <div class="set-row"><span class="label">后台保活</span><div class="switch ${s.keepAlive?'on':''}" id="sw-keepalive"></div></div>
+    <div class="setting-block glass" id="btn-test-keepalive"><svg class="block-icon"><use href="#i-floatball"/></svg><span>测试保活与通知</span></div>
+    <div class="set-row"><span class="label">夜间免打扰（0:00~7:00）</span><div class="switch ${s.dndEnabled?'on':''}" id="sw-dnd"></div></div>
     <div class="setting-block glass" id="btn-backup"><svg class="block-icon"><use href="#i-export"/></svg><span>立即备份数据</span></div>
     <div class="setting-block glass" id="btn-restore"><svg class="block-icon"><use href="#i-import"/></svg><span>覆盖备份数据</span></div>
+    <div class="setting-block glass" id="btn-clear-part"><svg class="block-icon"><use href="#i-trash"/></svg><span>清空部分数据</span></div>
     <div class="setting-block glass" id="btn-clear" style="color:var(--danger)"><svg class="block-icon" style="color:var(--danger)"><use href="#i-trash"/></svg><span>清空所有数据</span></div>
   `, () => {
+    setSubAction('');
     $('#sw-fullscreen').onclick = async function() {
       if (!document.fullscreenElement) { try { await document.documentElement.requestFullscreen(); s.fullscreen = true; this.classList.add('on'); } catch(e) { openModal({ title:'提示', bodyHTML:'当前浏览器不支持全屏', actions: [] }); } }
       else { try { await document.exitFullscreen(); } catch(e) {} s.fullscreen = false; this.classList.remove('on'); }
@@ -7361,24 +8088,76 @@ function openSetSystem() {
       if (perm === 'granted') { try { new Notification('祂', { body: '这是一条测试消息～' }); } catch(e) {} }
       else openModal({ title:'提示', bodyHTML:'通知被拒绝，请到浏览器设置里开启', actions: [] });
     };
-    $('#btn-clear-note').onclick = doClearNotes;
-    $('#btn-backup').onclick = doBackup; $('#btn-restore').onclick = doRestore; $('#btn-clear').onclick = doClear;
+    $('#sw-keepalive').onclick = function() {
+      s.keepAlive = !s.keepAlive;
+      this.classList.toggle('on', s.keepAlive);
+      save.settings();
+      if (s.keepAlive) { KeepAlive.start(); } else { KeepAlive.stop(); }
+    };
+    $('#btn-test-keepalive').onclick = async () => {
+      if (!('Notification' in window)) { openModal({ title:'提示', bodyHTML:'当前浏览器不支持通知', actions: [] }); return; }
+      let perm = Notification.permission;
+      if (perm !== 'granted') perm = await Notification.requestPermission();
+      if (perm !== 'granted') { openModal({ title:'提示', bodyHTML:'通知被拒绝，请到浏览器设置里开启', actions: [] }); return; }
+      openModal({ title: '测试保活', bodyHTML: '已开始测试，请切到后台，1 分钟内会发一条通知。', actions: [] });
+      setTimeout(closeModal, 2500);
+      KeepAlive.start();
+      setTimeout(() => { try { new Notification('祂', { body: '保活测试：如果你看到这条，说明后台能收到通知。' }); } catch (e) {} }, 60000);
+    };
+    $('#sw-dnd').onclick = function() { s.dndEnabled = !s.dndEnabled; this.classList.toggle('on', s.dndEnabled); save.settings(); };
+    $('#btn-backup').onclick = doBackup;
+    $('#btn-restore').onclick = doRestore;
+    $('#btn-clear-part').onclick = doClearPart;
+    $('#btn-clear').onclick = doClear;
   });
 }
-function doClearNotes() {
-  openModal({ title: '清空留言笺', bodyHTML: '确定清空全部留言吗？<br>清空后无法恢复。', actions: [
-    { label: '确认清空', danger: true, keepOpen: true, onClick: () => {
-      State.notes = [];
-      save.notes();
-      updateNoteDot();
-      closeModal();
-      toast('已清空留言笺');
+function doClearPart() {
+  openModal({ title: '清空部分数据', bodyHTML: '', actions: [
+    { label: '清空信箱', danger: true, keepOpen: true, onClick: () => { State.mails = []; save.mails(); toast('已清空信箱'); closeModal(); } },
+    { label: '清空留言笺', danger: true, keepOpen: true, onClick: () => { State.notes = []; save.notes(); toast('已清空留言笺'); closeModal(); } },
+    { label: '清空恋人空间', danger: true, keepOpen: true, onClick: () => { State.spaces = []; save.spaces(); toast('已清空恋人空间'); closeModal(); } },
+    { label: '清空全部', danger: true, keepOpen: true, onClick: () => {
+      openModal({ title: '确定清空？', bodyHTML: '将清空信箱、留言笺、恋人空间全部内容，清空后无法恢复。', actions: [
+        { label: '确认清空', danger: true, keepOpen: true, onClick: () => {
+          State.mails = []; State.notes = []; State.spaces = [];
+          save.mails(); save.notes(); save.spaces();
+          toast('已全部清空'); closeModal(); closeModal();
+        }}
+      ]});
     }}
   ]});
 }
 function doBackup() {
-  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, quizResults: State.quizResults, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, moods: State.moods, companionStats: State.companionStats, interactions: State.interactions, itfStats: State.itfStats, stickers: State.stickers, gifts: State.gifts, giftRecords: State.giftRecords, boxRecords: State.boxRecords, videoRecords: State.videoRecords, love: State.love, notes: State.notes, noteQuota: State.noteQuota };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  doBackupFull();
+}
+async function doBackupFull() {
+  toast('正在打包，请稍候…');
+  const media = {};
+  const keys = await CacheStore.keys();
+  let done = 0;
+  for (const k of keys) {
+    const blob = await CacheStore.get(k);
+    if (blob) {
+      media[k] = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(blob); });
+    }
+    done++;
+  }
+  const data = {
+    version: VERSION, exportedAt: Date.now(),
+    settings: State.settings, cards: State.cards, trash: State.trash,
+    messages: State.messages, archive: State.archive, quizzes: State.quizzes,
+    quizResults: State.quizResults, memos: State.memos, wishes: State.wishes,
+    days: State.days, hearts: State.hearts, moods: State.moods, songs: State.songs,
+    companionStats: State.companionStats, interactions: State.interactions,
+    itfStats: State.itfStats, stickers: State.stickers, gifts: State.gifts,
+    giftRecords: State.giftRecords, boxRecords: State.boxRecords,
+    videoRecords: State.videoRecords, love: State.love,
+    notes: State.notes, noteQuota: State.noteQuota,
+    spaces: State.spaces, spaceQuota: State.spaceQuota,
+    mails: State.mails, mailQuota: State.mailQuota,
+    media
+  };
+  const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `阿遇♥阿凉_${dateStamp()}.json`; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -7406,6 +8185,7 @@ function doRestore() {
       ['重要日', () => { State.days = data.days || []; }],
       ['心动时刻', () => { State.hearts = data.hearts || []; }],
       ['心情手帐', () => { State.moods = data.moods || {}; }],
+      ['音乐', () => { State.songs = data.songs || []; }],
       ['陪伴统计', () => { State.companionStats = data.companionStats || []; }],
       ['互动', () => { State.interactions = data.interactions || { me: [], other: [], together: [] }; }],
       ['互动统计', () => { State.itfStats = data.itfStats || {}; }],
@@ -7415,20 +8195,38 @@ function doRestore() {
       ['盲盒记录', () => { State.boxRecords = data.boxRecords || []; }],
       ['通话记录', () => { State.videoRecords = data.videoRecords || []; }],
       ['爱意值', () => { State.love = data.love || 0; }],
-      ['留言笺', () => { State.notes = data.notes || []; State.noteQuota = data.noteQuota || null; }]
+      ['留言笺', () => { State.notes = data.notes || []; State.noteQuota = data.noteQuota || null; }],
+      ['恋人空间', () => { State.spaces = data.spaces || []; State.spaceQuota = data.spaceQuota || null; }],
+      ['信箱', () => { State.mails = data.mails || []; State.mailQuota = data.mailQuota || null; }]
     ];
     for (let i = 0; i < stages.length; i++) {
       $('#restore-stage').textContent = '正在覆盖：' + stages[i][0] + '…';
       stages[i][1]();
       const pct = Math.round((i + 1) / stages.length * 100);
       $('#restore-bar').style.width = pct + '%'; $('#restore-pct').textContent = pct + '%';
-      await new Promise(r => setTimeout(r, 160));
+      await new Promise(r => setTimeout(r, 120));
+    }
+    if (data.media && typeof data.media === 'object') {
+      $('#restore-stage').textContent = '正在恢复媒体…';
+      const keys = Object.keys(data.media);
+      let i = 0;
+      for (const k of keys) {
+        try {
+          const blob = await (await fetch(data.media[k])).blob();
+          await CacheStore.put(k, blob);
+        } catch (e) {}
+        i++;
+        if (keys.length) {
+          const pct = Math.round(i / keys.length * 100);
+          $('#restore-bar').style.width = pct + '%'; $('#restore-pct').textContent = pct + '%';
+        }
+      }
     }
     await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive();
     await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
-    await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers();
+    await save.songs(); await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers();
     await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.love();
-    await save.notes(); await save.noteQuota();
+    await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
     $('#restore-stage').textContent = '完成';
     setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1500); }, 800);
   };
@@ -7443,13 +8241,15 @@ function doClear() {
       State.stickers = []; State.gifts = []; State.giftRecords = []; State.boxRecords = [];
       State.videoRecords = []; State.videoActive = null;
       State.notes = []; State.noteQuota = null;
+      State.spaces = []; State.spaceQuota = null;
+      State.mails = []; State.mailQuota = null;
       State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.quizResults();
       await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.companionStats();
       await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
       await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love(); await save.settings();
-      await save.notes(); await save.noteQuota();
+      await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
       location.reload();
     }}
   ]});
@@ -7470,7 +8270,7 @@ function openSetAbout() {
         <p>这里，是我为爱人阿遇留的一方小天地，因爱而生。它只属于我和他，谢绝他人使用，禁止二传二改，严禁未成年使用。若你无意间闯入这里，请温柔退出，不要使用。</p>
       </div>
     </div>
-  `);
+  `, () => { setSubAction(''); });
 }
 
 /* ==================== 启动 ==================== */
@@ -7486,6 +8286,7 @@ async function boot() {
     State.settings.avatarPairs = st.avatarPairs || [];
     State.settings.chatBgPool = st.chatBgPool || [];
     State.settings.lockBgPool = st.lockBgPool || [];
+    State.settings.spaceCoverPool = st.spaceCoverPool || [];
     if (State.settings.quoteProb == null) State.settings.quoteProb = 7;
     if (State.settings.heartProb == null) State.settings.heartProb = 5;
     if (State.settings.inviteProb == null) State.settings.inviteProb = 6;
@@ -7511,6 +8312,11 @@ async function boot() {
     if (State.settings.videoInviteProb == null) State.settings.videoInviteProb = 3;
     if (State.settings.videoHangMin == null) State.settings.videoHangMin = 5;
     if (State.settings.videoHangMax == null) State.settings.videoHangMax = 10;
+    if (State.settings.keepAlive == null) State.settings.keepAlive = false;
+    if (State.settings.dndEnabled == null) State.settings.dndEnabled = true;
+    if (State.settings.activeMsgEnabled == null) State.settings.activeMsgEnabled = false;
+    if (State.settings.activeMsgLevel == null) State.settings.activeMsgLevel = 'daily';
+    if (State.settings.spaceCoverPool == null) State.settings.spaceCoverPool = [];
   }
   const c = await Store.read('cards.json'); if (c) State.cards = c;
   const t = await Store.read('trash.json'); if (t) State.trash = t;
@@ -7537,7 +8343,13 @@ async function boot() {
   const l = await Store.read('love.json'); if (l != null) State.love = l;
   const nt = await Store.read('notes.json'); if (nt) State.notes = nt;
   const nq = await Store.read('note_quota.json'); if (nq) State.noteQuota = nq;
+  const sp = await Store.read('spaces.json'); if (sp) State.spaces = sp;
+  const sq = await Store.read('space_quota.json'); if (sq) State.spaceQuota = sq;
+  const ml = await Store.read('mails.json'); if (ml) State.mails = ml;
+  const mq = await Store.read('mail_quota.json'); if (mq) State.mailQuota = mq;
   ensureNoteQuota();
+  ensureSpaceQuota();
+  ensureMailQuota();
 
   checkInterruptedCompanion();
   checkInterruptedVideo();
@@ -7545,10 +8357,10 @@ async function boot() {
   applyTheme(State.settings.theme);
   applyBubbleSkin(State.settings.bubbleSkin);
   applyFloatBall(); applyBackgrounds(); applyAvatars();
-  updateNoteDot();
 
   initLockPage(); initChatPage(); initFloatBallDrag(); initPlayPage();
   initSheetDrag(); initVideoBoxDrag();
+  if (State.settings.keepAlive) KeepAlive.start();
 
   $('#modal-mask').addEventListener('click', e => { if (e.target.id === 'modal-mask') closeModal(); });
   $('#sheet-mask').addEventListener('click', e => { if (e.target.id === 'sheet-mask') closeSheet(); });
@@ -7559,6 +8371,16 @@ async function boot() {
       $('#sub-body').innerHTML = prev.html;
       const subPage = $('#page-sub');
       subPage._afterRender = prev.after;
+      const actEl = $('#sub-action');
+      if (prev.actionShow === '' || prev.actionShow === 'block') {
+        actEl.style.display = '';
+        actEl.innerHTML = prev.actionHTML || '';
+        actEl.onclick = prev.actionClick || null;
+      } else {
+        actEl.style.display = 'none';
+        actEl.innerHTML = '';
+        actEl.onclick = null;
+      }
       if (prev.after) prev.after();
     } else {
       goBack();
