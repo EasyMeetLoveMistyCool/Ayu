@@ -368,8 +368,8 @@ ul, li { list-style: none; }
   75% { transform: scale(1.06) rotate(2deg); }
 }
 @keyframes ripple-out {
-  0% { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(2.2); opacity: 0; }
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
 }
 @keyframes wave-bar {
   0%,100% { transform: scaleY(0.4); }
@@ -447,6 +447,7 @@ ul, li { list-style: none; }
 .header-row-2 { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: .5px; }
 .header-row-3 { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-soft); }
 .love-heart { color: var(--heart-red); font-size: 13px; line-height: 1; }
+#hdr-love { color: var(--heart-red); }
 #hdr-love.pop { animation: num-pop .35s ease; }
 
 .chat-body { flex: 1; padding: 14px 12px 8px; display: flex; flex-direction: column; gap: 14px; }
@@ -511,7 +512,6 @@ ul, li { list-style: none; }
 .msg-meta { margin-top: 4px; font-size: 11px; color: var(--time-text); display: flex; align-items: center; gap: 6px; }
 .read-flag { font-size: 11px; color: var(--heart-red); }
 
-/* ==================== 系统消息（通话记录等） ==================== */
 .sys-msg {
   text-align: center;
   font-size: 12.5px;
@@ -709,6 +709,13 @@ ul, li { list-style: none; }
 }
 .float-ball img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
 .float-ball.hidden { display: none; }
+.float-ball .fb-dot {
+  position: absolute; top: 0; right: 0;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--heart-red); border: 1.5px solid #fff;
+  display: none;
+}
+.float-ball.has-dot .fb-dot { display: block; }
 
 .card-toolbar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
 .toolbar-row { display: flex; gap: 8px; }
@@ -991,7 +998,6 @@ ul, li { list-style: none; }
 }
 .speed-opt.active { background: var(--accent); }
 
-/* ==================== 视频缩小选择窗（小方格） ==================== */
 .vm-cell {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 2px;
@@ -1191,7 +1197,6 @@ ul, li { list-style: none; }
 }
 .music-btn svg { width: 24px; height: 24px; }
 
-/* ==================== 互动气泡 ==================== */
 .itf-bubble {
   position: relative;
   padding: 14px 18px 16px;
@@ -1357,6 +1362,66 @@ ul, li { list-style: none; }
 .sticker-pick-scroll::-webkit-scrollbar { width: 0; }
 .bubble.sticker { padding: 4px; border-radius: 16px; overflow: hidden; line-height: 0; }
 .bubble.sticker img { width: 120px; height: auto; max-height: 160px; border-radius: 13px; object-fit: cover; display: block; }
+
+/* ==================== 留言笺 ==================== */
+.note-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.note-list::-webkit-scrollbar { width: 0; }
+.note-card {
+  position: relative;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 14px var(--glass-shadow);
+  animation: bubble-in .22s ease;
+}
+.note-card[data-who="me"] { background: rgba(240,170,195,0.35); }
+.note-card[data-who="other"] { background: rgba(150,200,240,0.35); }
+.note-card::after {
+  content: ""; position: absolute; top: -5px; right: 12px;
+  width: 14px; height: 14px; border-radius: 3px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.8);
+  transform: rotate(45deg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.note-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.note-head img {
+  width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
+  border: 1.2px solid var(--glass-border);
+}
+.note-head .note-call { font-size: 13px; color: var(--text); font-weight: 600; }
+.note-quote {
+  display: flex; gap: 6px;
+  padding: 6px 10px; border-radius: 8px;
+  background: rgba(0,0,0,0.05);
+  border-left: 3px solid #d4b878;
+  font-size: 12.5px; color: var(--text-soft);
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+.note-text { font-size: 15px; line-height: 1.6; color: var(--text); word-break: break-word; white-space: pre-wrap; }
+.note-time { font-size: 11.5px; color: var(--time-text); margin-top: 8px; text-align: right; }
+.note-top-bar { flex-shrink: 0; padding: 10px 12px; }
+.note-write-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 13px; border-radius: 14px;
+  font-size: 14.5px; color: var(--text);
+  background: var(--glass-bg); border: 1px dashed var(--accent-deep);
+}
+.note-write-btn svg { width: 18px; height: 18px; color: var(--accent-deep); }
+.note-big-input {
+  width: 100%; min-height: 200px;
+  padding: 14px; border-radius: 16px;
+  font-size: 15px; line-height: 1.9; color: var(--text);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  outline: none; resize: none;
+}
+.note-big-input::placeholder { color: var(--text-soft); }
 
 /* ==================== 气泡皮肤 ==================== */
 [data-bubble="evil-cat"] .message-sent {
@@ -1684,12 +1749,14 @@ ul, li { list-style: none; }
   width: 80px; height: 80px; border-radius: 12px; object-fit: cover;
   border: 1.5px solid var(--glass-border); background: var(--glass-bg);
   display: block; margin: 0 auto 10px;
+  cursor: pointer;
 }
 .gift-preview-empty {
   width: 80px; height: 80px; border-radius: 12px;
   border: 1.5px dashed var(--accent-deep); background: var(--glass-bg);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 10px; font-size: 36px;
+  cursor: pointer;
 }
 
 .record-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 12px 8px; }
@@ -1700,7 +1767,6 @@ ul, li { list-style: none; }
 }
 .record-tab.active { background: var(--accent); border-color: var(--accent-deep); }
 
-/* ==================== 礼物列表（一行2个） ==================== */
 .gift-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .gift-cell {
   border-radius: 14px; overflow: hidden;
@@ -1712,11 +1778,9 @@ ul, li { list-style: none; }
 .gift-cell .gc-name { font-size: 14px; font-weight: 600; color: #f0a8c0; word-break: break-word; white-space: pre-wrap; }
 .gift-cell .gc-price { font-size: 13px; color: var(--heart-red); margin-top: 4px; font-weight: 600; }
 
-/* ⊕ 礼物弹窗：礼物名浅粉 + 价格红 */
 .gift-pick-name { font-size: 15px; font-weight: 600; color: #f0a8c0; }
 .gift-pick-price { font-size: 12px; color: var(--heart-red); }
 
-/* ⊕ 盲盒弹窗：标题/档位名浅紫 */
 .box-pick-title { color: #c0a0e0; }
 .gift-pick-title { color: #f0a8c0; }
 
@@ -1737,13 +1801,13 @@ ul, li { list-style: none; }
   position: relative;
   overflow: hidden;
   touch-action: none;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(22px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
   box-shadow:
     0 8px 32px rgba(120, 120, 130, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
 }
 .video-avatar-wrap {
   position: relative;
@@ -1770,9 +1834,9 @@ ul, li { list-style: none; }
 }
 .video-ripple.r2 { animation-delay: 0.8s; }
 .video-ripple.r3 { animation-delay: 1.6s; }
-.video-name { font-size: 18px; font-weight: 700; color: var(--text); margin-top: 14px; }
-.video-status { font-size: 13px; color: var(--text-soft); margin-top: 6px; }
-.video-timer { font-size: 15px; color: var(--text); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.video-name { font-size: 18px; font-weight: 700; color: #4a4a4a; margin-top: 14px; }
+.video-status { font-size: 13px; color: #7a7a7a; margin-top: 6px; }
+.video-timer { font-size: 15px; color: #4a4a4a; margin-top: 6px; font-variant-numeric: tabular-nums; }
 .video-wave {
   display: flex; align-items: center; gap: 3px; height: 24px;
   margin-top: 12px;
@@ -1806,7 +1870,6 @@ ul, li { list-style: none; }
 .video-btn.reject { background: var(--danger); }
 .video-btn.mini { background: var(--accent-deep); font-size: 22px; }
 
-/* 视频悬浮窗 */
 .video-float {
   position: fixed; z-index: 1450;
   left: 50%; transform: translateX(-50%); bottom: 180px;
@@ -1823,6 +1886,7 @@ ul, li { list-style: none; }
   width: 24px; height: 24px; border-radius: 50%; object-fit: cover;
   border: 1.2px solid var(--glass-border);
 }
+.video-float .cf-heart { color: var(--heart-red); font-size: 14px; }
 .video-float .vf-name { font-size: 12px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 .video-float .vf-row { display: flex; align-items: center; gap: 4px; }
 .video-float .vf-dot {
@@ -1830,13 +1894,6 @@ ul, li { list-style: none; }
   animation: green-dot 1.4s ease-in-out infinite;
 }
 .video-float .vf-time { font-size: 12px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
-.video-float .vf-close {
-  position: absolute; top: -8px; right: -8px;
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--danger); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
-}
 .video-float .vf-expand {
   width: 100%; padding: 6px; border-radius: 9px;
   font-size: 11px; color: var(--text); background: var(--accent);
@@ -1862,6 +1919,12 @@ ul, li { list-style: none; }
 
 .stat-call-item {
   font-size: 13px; color: var(--text); line-height: 1.8;
+}
+.stat-link-btn {
+  display: block; width: 100%; margin-top: 8px;
+  padding: 10px; border-radius: 12px;
+  font-size: 13.5px; color: var(--text); text-align: center;
+  background: var(--accent); border: 1px solid var(--glass-border);
 }
 </style>
 </head>
@@ -2249,7 +2312,7 @@ ul, li { list-style: none; }
     </footer>
   </div>
 
-  <div id="float-ball" class="float-ball"><img id="float-ball-img" alt=""></div>
+  <div id="float-ball" class="float-ball"><img id="float-ball-img" alt=""><span class="fb-dot"></span></div>
 
   <!-- 音乐悬浮窗 -->
   <div class="music-float glass" id="music-float">
@@ -2297,9 +2360,8 @@ ul, li { list-style: none; }
     </div>
   </div>
 
-  <!-- 视频悬浮窗 -->
+  <!-- 视频悬浮窗（无关闭叉） -->
   <div class="video-float glass" id="video-float">
-    <span class="vf-close" id="vf-close"><svg><use href="#i-close"/></svg></span>
     <div class="vf-avatars">
       <img id="vf-avatar-other" alt="">
       <span class="cf-heart">♥</span>
@@ -2331,7 +2393,6 @@ ul, li { list-style: none; }
   <div class="dropdown" id="dropdown"></div>
   <div class="toast" id="toast"></div>
 </div>
-
 <script>
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -2345,6 +2406,7 @@ function dayLabel(key) { const [y, m, d] = key.split('-'); return `${y}年${Numb
 function todayKey() { return dayKey(Date.now()); }
 function escapeHTML(s) { return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 function fullDate(d) { return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`; }
+function noteTime(ts) { const d = new Date(ts); return (d.getMonth()+1) + '月' + d.getDate() + '日 ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
 function toast(msg) {
   const t = $('#toast'); t.textContent = msg; t.classList.add('active');
   clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('active'), 1500);
@@ -2354,7 +2416,6 @@ function hms(sec) {
   const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
   return pad(h) + ':' + pad(m) + ':' + pad(s);
 }
-/* 通话计时：不足1小时 分:秒，超过1小时 时:分:秒 */
 function callTime(sec) {
   sec = Math.max(0, Math.floor(sec));
   const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
@@ -2481,6 +2542,12 @@ const QUIZ_DONE_LINES = [
   '祂填好问卷，在等你。','祂写完了，去看看吧。'
 ];
 
+const NOTE_QUOTA_FREE = 3;
+const NOTE_QUOTA_COST = 5;
+const NOTE_REPLY_PROB = 3;
+const NOTE_ACTIVE_PROB = 2;
+const NOTE_PLACEHOLDER = '写一张留言，贴在祂看得见的地方…';
+
 const EMOJI_LIB = {
   '表情': ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🫢','🫣','🤫','🤔','🫡','🤐','🤨','😐','😑','😶','🫥','😏','😒','🙄','😬','😮‍💨','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤧','🥵','🥶','🥴','😵','😵‍💫','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','🫤','😟','🙁','☹️','😮','😯','😲','😳','🥺','🥹','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💩','🤡','👻','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🌚','🌝'],
   '食物': ['🍎','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍒','🍑','🥭','🍍','🥥','🍅','🥑','🥦','🥕','🌽','🍞','🥐','🍰','🎂','🧁','🍦','🍧','🍫','🍬','🍭','🍯','☕','🧋','🍵','🥤','🍜','🍚','🍙','🍣','🍕','🍔','🍟','🍏','🌶','🫑','🍐','🥒','🥔','🍠','🍖','🍳','🥩','🧀','🍗','🥪','🍡','🍢','🍻','🍸','🍹','🍷','🥃','🍽'],
@@ -2493,7 +2560,7 @@ const EMOJI_LIB = {
   '天气': ['🌞','🌖','🌗','🌘','🌑','🌒','🌓','🌔','⚡️','💥','🔥','🌪','🌈','☀️','🌤','⛅️','🌥','☁️','🌦','🌧','⛈','🌩','🌨','❄️','☃️','⛄️','💧','💦','🫧','☔️','☂️','🌊','🌫']
 };
 
-const VERSION = '1.0.1.7';
+const VERSION = '1.0.1.8';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
 const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
@@ -2559,6 +2626,8 @@ const State = {
   boxRecords: [],
   videoRecords: [],
   videoActive: null,
+  notes: [],
+  noteQuota: null,
   love: 0
 };
 
@@ -2642,7 +2711,9 @@ const save = {
   giftRecords: () => Store.write('gift_records.json', State.giftRecords),
   boxRecords: () => Store.write('box_records.json', State.boxRecords),
   videoRecords: () => Store.write('video_records.json', State.videoRecords),
-  videoActive: () => Store.write('video_active.json', State.videoActive)
+  videoActive: () => Store.write('video_active.json', State.videoActive),
+  notes: () => Store.write('notes.json', State.notes),
+  noteQuota: () => Store.write('note_quota.json', State.noteQuota)
 };
 
 function defaultAvatar(color) {
@@ -2831,7 +2902,7 @@ const Player = {
 /* ==================== 陪伴 ==================== */
 const Companion = {
   active: false, type: '', startTime: 0, timer: null, lastLoveMin: 0,
-  itfCount: 0, lastSeen: 0, by: 'me',
+  itfCount: 0, lastSeen: 0, by: 'me', switches: [],
   start(type, by) {
     this.active = true;
     this.type = type;
@@ -2840,11 +2911,25 @@ const Companion = {
     this.lastLoveMin = 0;
     this.itfCount = 0;
     this.lastSeen = Date.now();
-    State.companionActive = { id: uid(), type, by: this.by, start: this.startTime, lastSeen: this.lastSeen, itfCount: 0 };
+    this.switches = [];
+    State.companionActive = { id: uid(), type, by: this.by, start: this.startTime, lastSeen: this.lastSeen, itfCount: 0, switches: [] };
     save.companionActive();
     this.showFloat();
     this.tick();
     save.settings();
+  },
+  switchTo(newType) {
+    if (!this.active || this.type === newType) return;
+    const t = Date.now();
+    const from = this.type;
+    this.type = newType;
+    this.switches.push({ from, to: newType, t });
+    if (State.companionActive) {
+      State.companionActive.type = newType;
+      State.companionActive.switches = this.switches.slice();
+      save.companionActive();
+    }
+    $('#cf-text').textContent = '祂在陪你 ' + this.type;
   },
   tick() {
     if (!this.active) return;
@@ -2878,12 +2963,13 @@ const Companion = {
     if (!this.active) return;
     const endTime = Date.now();
     const dur = Math.floor((endTime - this.startTime) / 1000);
-    State.companionStats.push({ id: uid(), type: this.type, by: this.by || 'me', start: this.startTime, end: endTime, dur, itfCount: this.itfCount, interrupted: false });
+    State.companionStats.push({ id: uid(), type: this.type, by: this.by || 'me', start: this.startTime, end: endTime, dur, itfCount: this.itfCount, switches: this.switches.slice(), interrupted: false });
     save.companionStats();
     State.companionActive = null;
     save.companionActive();
     this.active = false;
     this.type = '';
+    this.switches = [];
     clearTimeout(this.timer);
     $('#companion-float').classList.remove('active');
   }
@@ -2894,7 +2980,7 @@ function checkInterruptedCompanion() {
   if (!ca) return;
   const dur = Math.floor((ca.lastSeen - ca.start) / 1000);
   if (dur >= 10) {
-    State.companionStats.push({ id: ca.id || uid(), type: ca.type, by: ca.by || 'me', start: ca.start, end: ca.lastSeen, dur, itfCount: ca.itfCount || 0, interrupted: true });
+    State.companionStats.push({ id: ca.id || uid(), type: ca.type, by: ca.by || 'me', start: ca.start, end: ca.lastSeen, dur, itfCount: ca.itfCount || 0, switches: ca.switches || [], interrupted: true });
     save.companionStats();
     setTimeout(() => toast('上次陪伴被中断，已记录'), 1200);
   }
@@ -2916,7 +3002,6 @@ const Video = {
   miniMode: '',
   recordId: null,
 
-  /* 我拨给祂 */
   callOut() {
     if (this.active) { toast('正在通话中'); return; }
     this.active = true;
@@ -2942,7 +3027,6 @@ const Video = {
     }, delay * 1000);
   },
 
-  /* 祂拨给我 */
   callIn() {
     if (this.active) return;
     this.active = true;
@@ -2960,7 +3044,6 @@ const Video = {
     }, 15000);
   },
 
-  /* 接通 */
   startTalking() {
     if (!this.active) return;
     clearTimeout(this.ringTimeout);
@@ -2977,7 +3060,6 @@ const Video = {
     toast('已接通');
   },
 
-  /* 计时 + 心跳 */
   tick() {
     if (!this.active || this.status !== 'talking') return;
     const now = Date.now();
@@ -2999,7 +3081,6 @@ const Video = {
     this.timer = setTimeout(() => this.tick(), 1000);
   },
 
-  /* 祂主动挂断 */
   scheduleHang() {
     const minH = State.settings.videoHangMin != null ? State.settings.videoHangMin : 5;
     const maxH = State.settings.videoHangMax != null ? State.settings.videoHangMax : 10;
@@ -3013,7 +3094,6 @@ const Video = {
     }, hours * 3600 * 1000);
   },
 
-  /* 我挂断 */
   hangupMe() {
     if (!this.active) return;
     if (this.status === 'talking') {
@@ -3025,7 +3105,6 @@ const Video = {
     this.endCall('me');
   },
 
-  /* 结束通话（清状态） */
   endCall(reason) {
     clearTimeout(this.ringTimeout);
     clearTimeout(this.hangTimer);
@@ -3043,7 +3122,6 @@ const Video = {
     this.renderActions();
   },
 
-  /* 层显示 */
   showLayer(statusText, isIncoming) {
     const box = $('#video-box');
     if (box) { box.style.position = ''; box.style.left = ''; box.style.top = ''; box.style.margin = ''; box.style.transform = ''; box.style.width = ''; box.style.height = ''; box.style.maxWidth = ''; box.style.minHeight = ''; box.style.borderRadius = ''; }
@@ -3078,7 +3156,7 @@ const Video = {
     } else if (this.status === 'talking') {
       const m = document.createElement('button');
       m.className = 'video-btn mini';
-      m.innerHTML = '▽';
+      m.innerHTML = '□';
       m.onclick = () => { this.pickMiniMode(); };
       const r = document.createElement('button');
       r.className = 'video-btn reject';
@@ -3088,24 +3166,22 @@ const Video = {
     }
   },
 
-  /* 缩小弹窗：小方格，浮在视频上方 */
   pickMiniMode() {
     const old = $('#video-mini-pop');
     if (old) { old.remove(); return; }
     const box = $('#video-box');
     const br = box ? box.getBoundingClientRect() : { left: window.innerWidth/2, top: window.innerHeight/2, width: 0, height: 0 };
-    const popW = 176;
+    const popW = 150;
     let left = br.left + br.width / 2 - popW / 2;
     left = Math.max(8, Math.min(window.innerWidth - popW - 8, left));
 
     const pop = document.createElement('div');
     pop.id = 'video-mini-pop';
-    pop.style.cssText = 'position:fixed;z-index:1600;width:' + popW + 'px;border-radius:16px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:rgba(255,255,255,0.5);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,0.6);box-shadow:0 6px 22px rgba(120,120,130,0.22)';
+    pop.style.cssText = 'position:fixed;z-index:1600;width:' + popW + 'px;border-radius:16px;padding:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:rgba(255,255,255,0.5);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,0.6);box-shadow:0 6px 22px rgba(120,120,130,0.22)';
     pop.innerHTML = `
       <div class="vm-cell" data-vm="mini"><div class="vm-icon">▪</div><div class="vm-name">迷你</div></div>
       <div class="vm-cell" data-vm="small"><div class="vm-icon">▫</div><div class="vm-name">小</div></div>
       <div class="vm-cell" data-vm="standard"><div class="vm-icon">□</div><div class="vm-name">标准</div></div>
-      <div class="vm-cell" data-vm="fullscreen"><div class="vm-icon">⛶</div><div class="vm-name">全屏</div></div>
     `;
     document.body.appendChild(pop);
 
@@ -3133,24 +3209,6 @@ const Video = {
       $('#video-layer').classList.add('active');
       $('#video-float').classList.remove('active');
       this.miniMode = '';
-      this.renderActions();
-      return;
-    }
-    if (mode === 'fullscreen') {
-      const box = $('#video-box');
-      if (box) {
-        box.style.position = 'fixed';
-        box.style.left = '0'; box.style.top = '0';
-        box.style.width = '100vw'; box.style.height = '100vh';
-        box.style.maxWidth = 'none';
-        box.style.minHeight = '0';
-        box.style.borderRadius = '0';
-        box.style.margin = '0';
-        box.style.transform = 'none';
-      }
-      $('#video-layer').classList.add('active');
-      $('#video-float').classList.remove('active');
-      this.miniMode = 'fullscreen';
       this.renderActions();
       return;
     }
@@ -3190,7 +3248,7 @@ const Video = {
     const m = { id: uid(), who: 'sys', type: 'sys', text: '', t: nowHM(), ts: Date.now() };
     if (type === 'normal') {
       const s = new Date(startTs), e = new Date(endTs);
-      m.text = pad(s.getHours()) + ':' + pad(s.getMinutes()) + '～' + pad(e.getHours()) + ':' + pad(e.getMinutes()) + '，通话 ' + callTime(dur);
+      m.text = '开始 ' + pad(s.getHours()) + ':' + pad(s.getMinutes()) + ' 结束 ' + pad(e.getHours()) + ':' + pad(e.getMinutes()) + ' 通话时长 ' + callTime(dur);
     } else if (type === 'missed') {
       m.text = nowHM() + ' 未接来电';
     } else if (type === 'rejected') {
@@ -3207,7 +3265,6 @@ const Video = {
   }
 };
 
-/* 视频中断补录 */
 function checkInterruptedVideo() {
   const va = State.videoActive;
   if (!va) return;
@@ -3234,8 +3291,7 @@ function checkInterruptedVideo() {
   State.videoActive = null;
   save.videoActive();
 }
-
-/* ==================== 锁屏 ==================== */
+  /* ==================== 锁屏 ==================== */
 function initLockPage() {
   function tick() {
     const d = new Date();
@@ -3283,6 +3339,7 @@ function enterChat() {
   showPage('page-chat', false);
   renderedCount = MSG_PAGE;
   renderMessages();
+  updateNoteDot();
   setTimeout(scrollBottom, 50);
 }
 
@@ -3337,7 +3394,6 @@ function initChatPage() {
   };
   initCompanionFloatDrag();
   $('#vf-expand').onclick = () => { Video.pickMiniMode(); };
-  $('#vf-close').onclick = () => { Video.hangupMe(); };
   initVideoFloatDrag();
   renderMessages(); updateLove();
 }
@@ -3383,7 +3439,11 @@ function sendMyCompanionInvite(type) {
     if (Math.random() * 100 < prob) {
       msg.accepted = true;
       addLove(3);
-      Companion.start(type);
+      if (Companion.active) {
+        Companion.switchTo(type);
+      } else {
+        Companion.start(type, 'me');
+      }
     } else {
       msg.refused = true;
       msg.refuseText = MY_INVITE_REFUSE_LINES[Math.floor(Math.random() * MY_INVITE_REFUSE_LINES.length)];
@@ -3733,22 +3793,10 @@ function acceptCompanionCard(m) {
   const newType = m.companionType || '静静陪着';
   if (Companion.active) {
     if (Companion.type === newType) { toast('已经在陪着了'); return; }
-    openModal({
-      title: '',
-      bodyHTML: `<div style="text-align:center;line-height:1.9;padding:4px 0">当前正在「${escapeHTML(Companion.type)}」<br>切换到「${escapeHTML(newType)}」吗？</div>`,
-      actions: [{ label: '切换', center: true, keepOpen: true, onClick: () => {
-        Companion.end();
-        m.accepted = true;
-        save.messages(); renderMessages();
-        toast('祂在准备…');
-        setTimeout(() => {
-          Companion.start(newType, 'other');
-          toast('已切换陪伴');
-          renderMessages(); scrollBottom();
-        }, getThinkTime() * 1000);
-        closeModal();
-      }}]
-    });
+    Companion.switchTo(newType);
+    m.accepted = true;
+    save.messages(); renderMessages(); scrollBottom();
+    toast('已切换陪伴');
     return;
   }
   m.accepted = true;
@@ -3879,6 +3927,7 @@ function doReply() {
   const giftMsg = maybeOtherGift();
   const boxMsg = maybeOtherBox();
   const videoCall = maybeOtherVideo();
+  const noteReply = maybeNoteReply();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
   for (let i = 0; i < n; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
@@ -3903,6 +3952,8 @@ function doReply() {
   if (giftMsg) setTimeout(() => pushOtherGift(giftMsg), 3500);
   if (boxMsg) setTimeout(() => pushOtherBox(boxMsg), 4000);
   if (videoCall) setTimeout(() => Video.callIn(), 4500);
+  if (noteReply) setTimeout(() => pushOtherNote(noteReply.quote), 2800);
+  maybeOtherNoteActive();
 }
 function hasAnyInteraction() {
   return (State.interactions.me.length + State.interactions.other.length + State.interactions.together.length) > 0;
@@ -4123,8 +4174,7 @@ function runArchive(dayStr) {
   };
   setTimeout(step, 200);
 }
-
-/* ==================== 子页面内容栈 ==================== */
+  /* ==================== 子页面内容栈 ==================== */
 let subStack = [];
 
 /* ==================== 视频大窗拖动 ==================== */
@@ -4183,13 +4233,13 @@ function initVideoFloatDrag() {
   }
   function end() { dragging = false; }
   el.addEventListener('touchstart', e => {
-    if (e.target.closest('#vf-close') || e.target.closest('#vf-expand')) return;
+    if (e.target.closest('#vf-expand')) return;
     const t = e.touches[0]; begin(t.clientX, t.clientY);
   }, { passive: true });
   el.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
   el.addEventListener('touchend', end);
   el.addEventListener('mousedown', e => {
-    if (e.target.closest('#vf-close') || e.target.closest('#vf-expand')) return;
+    if (e.target.closest('#vf-expand')) return;
     begin(e.clientX, e.clientY);
     const mm = ev => move(ev.clientX, ev.clientY);
     const mu = () => { document.removeEventListener('mousemove', mm); document.removeEventListener('mouseup', mu); end(); };
@@ -4208,6 +4258,11 @@ function applyFloatBall() {
     ball.style.right = 'auto'; ball.style.bottom = 'auto';
   }
   updateFloatBallVisible();
+}
+function updateNoteDot() {
+  const ball = $('#float-ball'); if (!ball) return;
+  const hasUnread = State.notes.some(n => n.who === 'other' && !n.read);
+  ball.classList.toggle('has-dot', hasUnread);
 }
 function applyBackgrounds() {
   const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
@@ -4398,10 +4453,12 @@ function openBigMenu() {
     ['备忘录','i-memo'], ['心愿单','i-wishlist'], ['重要日','i-anniv'], ['设置','i-settings']
   ];
   const html = `<div class="unpair-grid">` + items.map((it, i) =>
-    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px"><svg style="width:22px;height:22px;color:var(--accent-deep)"><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
+    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px;position:relative"><svg style="width:22px;height:22px;color:var(--accent-deep)"><use href="#${it[1]}"/></svg><span>${it[0]}</span>${it[0]==='留言笺'?'<span class="fb-dot" id="note-menu-dot" style="position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:var(--heart-red);border:1.5px solid #fff;display:none"></span>':''}</div>`
   ).join('') + `</div>`;
   openModal({ title: '功能', bodyHTML: html, actions: [] });
   $$('#modal-body [data-big]').forEach(el => { el.onclick = () => { const name = items[+el.dataset.big][0]; closeModal(); handleBigItem(name); }; });
+  const nd = $('#note-menu-dot');
+  if (nd) nd.style.display = State.notes.some(n => n.who === 'other' && !n.read) ? 'block' : 'none';
 }
 function handleBigItem(name) {
   if (name === '设置') return openSettings();
@@ -4413,7 +4470,164 @@ function handleBigItem(name) {
   if (name === '重要日') return openDays();
   if (name === '心动时刻') return openHearts();
   if (name === '心情手帐') return openMoodBook();
+  if (name === '留言笺') return openNotes();
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
+}
+
+/* ==================== 留言笺 ==================== */
+function noteQuotaKey() { return todayKey(); }
+function ensureNoteQuota() {
+  const k = noteQuotaKey();
+  if (!State.noteQuota || State.noteQuota.day !== k) {
+    State.noteQuota = { day: k, me: 0, other: 0 };
+    save.noteQuota();
+  }
+}
+function openNotes() {
+  ensureNoteQuota();
+  const listHTML = `<div class="note-top-bar"><button class="note-write-btn" id="note-write"><svg><use href="#i-plus"/></svg>贴一张留言</button></div><div class="note-list" id="note-list"></div>`;
+  openSub('留言笺', listHTML, () => {
+    $('#sub-body').style.padding = '0';
+    renderNotes();
+    $('#note-write').onclick = openNoteWrite;
+    State.notes.forEach(n => { if (n.who === 'other') n.read = true; });
+    save.notes();
+    updateNoteDot();
+  });
+}
+function renderNotes() {
+  const list = $('#note-list'); if (!list) return;
+  if (!State.notes.length) { list.innerHTML = `<div class="empty-tip">还没有留言。</div>`; return; }
+  list.innerHTML = '';
+  const sorted = [...State.notes].sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  sorted.forEach(n => {
+    const card = document.createElement('div');
+    card.className = 'note-card';
+    card.setAttribute('data-who', n.who);
+    const av = n.who === 'me' ? (State.settings.avatars.me || defaultAvatar('pink')) : (State.settings.avatars.other || defaultAvatar('blue'));
+    const call = n.who === 'me' ? (State.settings.myCall || '我') : (State.settings.otherCall || '祂');
+    let inner = `<div class="note-head"><img src="${av}"><span class="note-call">${escapeHTML(call)}</span></div>`;
+    if (n.quote) {
+      inner += `<div class="note-quote">${escapeHTML(n.quote.text || '')}</div>`;
+    }
+    inner += `<div class="note-text">${escapeHTML(n.text || '')}</div>`;
+    inner += `<div class="note-time">${noteTime(n.ts)}</div>`;
+    card.innerHTML = inner;
+    card.onclick = () => openNoteMenu(n);
+    list.appendChild(card);
+  });
+}
+function openNoteMenu(n) {
+  openModal({ title: '', bodyHTML: `<div class="msg-menu-item" id="note-quote"><svg><use href="#i-quote"/></svg>引用</div>`, actions: [] });
+  $('#note-quote').onclick = () => { closeModal(); openNoteWrite(n); };
+}
+function openNoteWrite(quoteNote) {
+  ensureNoteQuota();
+  const q = State.noteQuota;
+  const used = (q.me || 0);
+  const freeLeft = Math.max(0, NOTE_QUOTA_FREE - used);
+  const needPay = used >= NOTE_QUOTA_FREE;
+  if (needPay && State.love < NOTE_QUOTA_COST) {
+    openModal({ title: '', bodyHTML: `免费额度用完了，留言需要 ${NOTE_QUOTA_COST} 爱意值，当前爱意不足。`, actions: [] });
+    setTimeout(closeModal, 2000);
+    return;
+  }
+  const tip = needPay ? `本次将消耗 ${NOTE_QUOTA_COST} 爱意值` : `今日免费额度剩余 ${freeLeft} 条`;
+  const quoteHTML = quoteNote ? `<div class="note-quote" id="note-write-quote">${escapeHTML(quoteNote.text || '')}</div>` : '';
+  openModal({
+    title: '贴一张留言',
+    wide: true,
+    bodyHTML: `${quoteHTML}<textarea class="note-big-input" id="note-write-input" placeholder="${NOTE_PLACEHOLDER}"></textarea><div style="font-size:12.5px;color:var(--text-soft);margin-top:8px;text-align:center">${tip}</div>`,
+    actions: [{ label: '贴出去', green: true, keepOpen: true, onClick: () => doPostNote(quoteNote) }]
+  });
+  setTimeout(() => { const el = $('#note-write-input'); if (el) el.focus(); }, 100);
+}
+function doPostNote(quoteNote) {
+  const ta = $('#note-write-input');
+  const text = ta ? ta.value.trim() : '';
+  if (!text) { toast('写点什么吧'); return; }
+  ensureNoteQuota();
+  const q = State.noteQuota;
+  const used = (q.me || 0);
+  const needPay = used >= NOTE_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < NOTE_QUOTA_COST) { toast('爱意值不够'); return; }
+    State.love -= NOTE_QUOTA_COST;
+    save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  q.me = used + 1;
+  save.noteQuota();
+  const note = { id: uid(), who: 'me', text, quote: quoteNote ? { id: quoteNote.id, text: quoteNote.text, who: quoteNote.who } : null, read: true, ts: Date.now() };
+  State.notes.push(note);
+  save.notes();
+  closeModal();
+  renderNotes();
+  const list = $('#note-list'); if (list) list.scrollTop = 0;
+  toast(needPay ? '已贴出（-' + NOTE_QUOTA_COST + '爱意）' : '已贴出');
+}
+function buildNoteFromCards() {
+  const usable = State.cards.filter(c => !c.locked);
+  if (usable.length < 5) return '';
+  const count = 5 + Math.floor(Math.random() * 4);
+  const picked = [];
+  for (let i = 0; i < count; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
+  const joined = picked.map(t => {
+    const s = String(t).trim();
+    if (!s) return '';
+    if (/[。！？!?…~～，,、；;：:]$/.test(s)) return s;
+    return s;
+  }).join('，');
+  let out = joined;
+  if (!/[。！？!?…~～]$/.test(out)) out += '。';
+  if (State.settings.emojiEnabled && Math.random() * 100 < (State.settings.emojiProb || 0)) {
+    const e = randomEmoji();
+    if (e) out = (Math.random() < 0.5) ? (e + out) : (out + e);
+  }
+  return out;
+}
+function pushOtherNote(quoteNote) {
+  ensureNoteQuota();
+  const q = State.noteQuota;
+  const used = (q.other || 0);
+  const needPay = used >= NOTE_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < NOTE_QUOTA_COST) return;
+    State.love -= NOTE_QUOTA_COST;
+    save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  const text = buildNoteFromCards();
+  if (!text) return;
+  q.other = used + 1;
+  save.noteQuota();
+  const note = { id: uid(), who: 'other', text, quote: quoteNote ? { id: quoteNote.id, text: quoteNote.text, who: quoteNote.who } : null, read: false, ts: Date.now() };
+  State.notes.push(note);
+  save.notes();
+  updateNoteDot();
+  maybeNotify('祂贴了一张留言');
+  const page = $('#page-sub');
+  if (page && page.classList.contains('active') && $('#sub-title') && $('#sub-title').textContent === '留言笺') {
+    note.read = true; save.notes(); renderNotes();
+  }
+}
+function maybeNoteReply() {
+  ensureNoteQuota();
+  if (Math.random() * 100 >= NOTE_REPLY_PROB) return null;
+  const myLast = [...State.notes].reverse().find(n => n.who === 'me');
+  if (!myLast) return null;
+  const used = (State.noteQuota.other || 0);
+  const needPay = used >= NOTE_QUOTA_FREE;
+  if (needPay && State.love < NOTE_QUOTA_COST) return null;
+  return { quote: { id: myLast.id, text: myLast.text, who: myLast.who } };
+}
+function maybeOtherNoteActive() {
+  ensureNoteQuota();
+  const used = (State.noteQuota.other || 0);
+  const needPay = used >= NOTE_QUOTA_FREE;
+  if (needPay && State.love < NOTE_QUOTA_COST) return;
+  if (Math.random() * 100 >= NOTE_ACTIVE_PROB) return;
+  pushOtherNote(null);
 }
 
 /* ==================== 小世界 ==================== */
@@ -4465,7 +4679,7 @@ function openSub(title, bodyHTML, afterRender) {
   if (afterRender) afterRender();
 }
 
-/* ==================== 陪伴弹窗（去掉统计） ==================== */
+/* ==================== 陪伴弹窗 ==================== */
 function openCompanionModal() {
   let html = '';
   if (Companion.active) {
@@ -5139,8 +5353,7 @@ function openQuiz() {
     });
   }, 100);
 }
-
-/* ==================== 问卷 ==================== */
+  /* ==================== 问卷 ==================== */
 function openQuizManager() {
   openSub('问卷', `<div class="quiz-mgr-top"><button class="upload-btn" id="btn-create-quiz" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>`, () => {
     $('#sub-body').style.padding = '0';
@@ -5644,38 +5857,6 @@ function recordItfStat(content) {
   save.itfStats();
 }
 
-/* ==================== 互动回应 ==================== */
-function doReplyInteraction() {
-  const s = State.settings;
-  const inComp = Companion.active;
-  let pOther = s.itfProbOther, pTogether = s.itfProbTogether, pNormal = s.itfProbNormal;
-  if (inComp) {
-    const compWeight = (s.itfProbCompanion != null ? s.itfProbCompanion : 70) / 100;
-    pOther = Math.round(pOther + (100 - pOther) * compWeight * 0.6);
-    const rest = 100 - pOther;
-    const otherRest = pTogether + pNormal || 1;
-    pTogether = Math.round(rest * (pTogether / otherRest));
-    pNormal = 100 - pOther - pTogether;
-  }
-  const r = Math.random() * 100;
-  const hasOther = (State.interactions.other || []).filter(x => !x.locked).length > 0;
-  const hasTogether = (State.interactions.together || []).filter(x => !x.locked).length > 0;
-  let pickBoard = null;
-  if (r < pOther && hasOther) pickBoard = 'other';
-  else if (r < pOther + pTogether && hasTogether) pickBoard = 'together';
-  else if (hasOther) pickBoard = 'other';
-  else if (hasTogether) pickBoard = 'together';
-  if (pickBoard) {
-    const pool = State.interactions[pickBoard].filter(x => !x.locked);
-    const item = pool[Math.floor(Math.random() * pool.length)];
-    pushOtherInteraction(item.content, pickBoard);
-    return;
-  }
-  const usable = State.cards.filter(c => !c.locked);
-  if (usable.length) pushOther(usable[Math.floor(Math.random() * usable.length)].text);
-  else pushOther('……');
-}
-
 /* ==================== 贴纸管理 ==================== */
 function openStickerManager() {
   openSub('贴纸', `
@@ -5924,7 +6105,6 @@ function openGiftEdit(g) {
     wide: true,
     bodyHTML: `
       <img class="gift-preview" id="gf-edit-preview" src="${g.img}">
-      <button class="upload-btn" id="gf-edit-upload" style="border-style:solid;margin-bottom:10px"><svg><use href="#i-plus"/></svg>更换图片</button>
       <input class="field" id="gf-edit-name" placeholder="礼物名" value="${escapeHTML(g.name)}" style="margin-bottom:10px">
       <textarea class="field" id="gf-edit-desc" rows="3" placeholder="礼物描述（可选）" style="margin-bottom:10px">${escapeHTML(g.desc||'')}</textarea>
       <input class="field" id="gf-edit-price" type="number" placeholder="爱意值" value="${g.price||0}" style="margin-bottom:10px">
@@ -5942,7 +6122,7 @@ function openGiftEdit(g) {
       save.gifts(); closeModal(); renderGiftList('gift'); toast('已保存');
     }}]
   });
-  $('#gf-edit-upload').onclick = () => pickImage((dataUrl) => {
+  $('#gf-edit-preview').onclick = () => pickImage((dataUrl) => {
     g.img = dataUrl;
     const p = $('#gf-edit-preview'); if (p) p.src = dataUrl;
   });
@@ -5954,14 +6134,13 @@ function openGiftAdd() {
 }
 function renderGiftAddModal() {
   const previewHTML = giftTempImg
-    ? `<img class="gift-preview" src="${giftTempImg}">`
-    : `<div class="gift-preview-empty">🎁</div>`;
+    ? `<img class="gift-preview" id="gf-add-preview" src="${giftTempImg}">`
+    : `<div class="gift-preview-empty" id="gf-add-preview">🎁</div>`;
   openModal({
     title: '添加礼物',
     wide: true,
     bodyHTML: `
       ${previewHTML}
-      <button class="upload-btn" id="gf-upload" style="border-style:solid;margin-bottom:10px"><svg><use href="#i-plus"/></svg>添加图片</button>
       <input class="field" id="gf-name" placeholder="礼物名" style="margin-bottom:10px">
       <textarea class="field" id="gf-desc" rows="3" placeholder="礼物描述（可选）" style="margin-bottom:10px"></textarea>
       <input class="field" id="gf-price" type="number" placeholder="爱意值（送这个花多少）" style="margin-bottom:10px">
@@ -5972,9 +6151,13 @@ function renderGiftAddModal() {
       { label: '保存礼物', green: true, keepOpen: true, onClick: () => saveGiftOne(false) }
     ]
   });
-  $('#gf-upload').onclick = () => pickImage((dataUrl) => {
+  $('#gf-add-preview').onclick = () => pickImage((dataUrl) => {
     giftTempImg = dataUrl;
-    renderGiftAddModal();
+    const p = $('#gf-add-preview');
+    if (p) {
+      if (p.tagName === 'IMG') p.src = dataUrl;
+      else { const img = document.createElement('img'); img.className = 'gift-preview'; img.id = 'gf-add-preview'; img.src = dataUrl; img.onclick = p.onclick; p.replaceWith(img); }
+    }
   });
 }
 function saveGiftOne(continueAdd) {
@@ -6106,7 +6289,7 @@ function sendMyBox(tier) {
   }, getThinkTime() * 1000);
 }
 
-/* ==================== 字卡管理（含上锁） ==================== */
+/* ==================== 字卡管理 ==================== */
 let cardSelectMode = false, cardSelected = new Set(), searchKeyword = '';
 let cardZone = 'normal';
 function openCardManager() {
@@ -6646,14 +6829,19 @@ function renderStats() {
   });
   html += `</div>`;
 
-  /* 2. 互动 */
+  /* 2. 互动（发送次数） */
+  const itfMsgs = State.messages.filter(m => m.type === 'itf');
+  const itfMe = itfMsgs.filter(m => m.who === 'me');
+  const itfOther = itfMsgs.filter(m => m.who === 'other');
+  const itfTogether = itfMsgs.filter(m => m.board === 'together');
   html += `<div class="stat-block"><div class="st-title">互动</div>`;
-  html += `<div class="st-line"><span class="st-k">我对祂</span><span>${(State.interactions.me||[]).length} 条</span></div>`;
-  html += `<div class="st-line"><span class="st-k">祂对我</span><span>${(State.interactions.other||[]).length} 条</span></div>`;
-  html += `<div class="st-line"><span class="st-k">共朝夕</span><span>${(State.interactions.together||[]).length} 条</span></div>`;
-  const itfMsgs = State.messages.filter(m => m.type === 'itf' && m.content);
-  const itfTop = topItfList(itfMsgs, 5);
-  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${itfTop.length ? itfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}（${it.n}次）`).join('<br>') : '暂无'}</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我发送</span><span>${itfMe.length} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">祂发送</span><span>${itfOther.length} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">共朝夕</span><span>${itfTogether.length} 次</span></div>`;
+  const myItfTop = topItfList(itfMe, 5);
+  const hisItfTop = topItfList(itfOther, 5);
+  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${myItfTop.length ? myItfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}（${it.n}次）`).join('<br>') : '暂无'}</span></div>`;
+  html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂最常发：</span><span style="flex:1;text-align:right;word-break:break-word">${hisItfTop.length ? hisItfTop.map((it,i)=>`${i+1}. ${escapeHTML(it.text)}（${it.n}次）`).join('<br>') : '暂无'}</span></div>`;
   html += `</div>`;
 
   /* 3. 通话 */
@@ -6663,49 +6851,30 @@ function renderStats() {
   const rejectedV = State.videoRecords.filter(r => r.type === 'rejected');
   const interruptedV = State.videoRecords.filter(r => r.type === 'interrupted');
   const totalDur = normalV.reduce((a,b)=>a+(b.dur||0),0);
+  const myOut = normalV.filter(r => r.mode === 'outgoing').length;
+  const hisOut = normalV.filter(r => r.mode === 'incoming').length;
   html += `<div class="st-line"><span class="st-k">通话次数</span><span>${normalV.length} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">总时长</span><span>${callTime(totalDur)}</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我打给祂</span><span>${myOut} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">祂打给我</span><span>${hisOut} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">未接来电</span><span>${missedV.length} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">已拒绝</span><span>${rejectedV.length} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">中断</span><span>${interruptedV.length} 次</span></div>`;
-  if (!State.videoRecords.length) html += `<div class="stat-empty">还没有通话记录</div>`;
-  else {
-    const recent = [...State.videoRecords].reverse().slice(0, 20);
-    recent.forEach(r => {
-      const d = new Date(r.t || r.start);
-      const dateStr = `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-      let typeStr = '', durStr = '';
-      if (r.type === 'normal') { typeStr = '通话'; durStr = ' ' + callTime(r.dur); }
-      else if (r.type === 'missed') { typeStr = '未接来电'; }
-      else if (r.type === 'rejected') { typeStr = '已拒绝'; }
-      else if (r.type === 'interrupted') { typeStr = '通话中断'; durStr = r.dur ? ' ' + callTime(r.dur) : ''; }
-      html += `<div class="stat-call-item" style="display:flex;justify-content:space-between;gap:10px"><span>${dateStr}</span><span>${typeStr}${durStr}</span></div>`;
-    });
+  if (State.videoRecords.length) {
+    html += `<button class="stat-link-btn" id="stat-call-detail">查看通话记录（${State.videoRecords.length}）</button>`;
+  } else {
+    html += `<div class="stat-empty">还没有通话记录</div>`;
   }
   html += `</div>`;
 
-  /* 4. 问卷 */
-  html += `<div class="stat-block"><div class="st-title">问卷</div>`;
-  html += `<div class="st-line"><span class="st-k">问卷总数</span><span>${State.quizzes.length} 份</span></div>`;
-  html += `<div class="st-line"><span class="st-k">已填答卷</span><span>${State.quizResults.length} 份</span></div>`;
-  if (State.quizResults.length) {
-    const recent = [...State.quizResults].reverse().slice(0, 10);
-    recent.forEach(r => {
-      const d = new Date(r.t);
-      const dateStr = `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-      html += `<div class="stat-call-item" style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHTML(r.title || '未命名')}</span><span style="color:var(--text-soft)">${dateStr}</span></div>`;
-    });
-  }
-  html += `</div>`;
-
-  /* 5. 问答 */
+  /* 4. 问答 */
   const quizCards = State.messages.filter(m => m.type === 'card' && m.quiz);
   const myQuizCount = quizCards.length;
   const hisQuizCount = quizCards.filter(c => c.otherPick != null).length;
-  let match = 0, mismatch = 0;
+  let match = 0, mismatch = 0, loveGain = 0, loveLose = 0;
   quizCards.forEach(c => {
     if (c.myPick != null && c.otherPick != null) {
-      if (c.myPick === c.otherPick) match++; else mismatch++;
+      if (c.myPick === c.otherPick) { match++; loveGain += 10; } else { mismatch++; loveLose += 5; }
     }
   });
   html += `<div class="stat-block"><div class="st-title">问答</div>`;
@@ -6713,26 +6882,32 @@ function renderStats() {
   html += `<div class="st-line"><span class="st-k">祂参与</span><span>${hisQuizCount} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">默契</span><span>${match} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">不默契</span><span>${mismatch} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">默契加分</span><span>+${loveGain} 爱意</span></div>`;
+  html += `<div class="st-line"><span class="st-k">不默契扣分</span><span>-${loveLose} 爱意</span></div>`;
   html += `</div>`;
 
-  /* 6. 听歌 */
+  /* 5. 听歌 */
   const songMsgs = State.messages.filter(m => m.type === 'song');
   const myInvites = songMsgs.filter(m => m.who === 'me');
   const hisInvites = songMsgs.filter(m => m.who === 'other');
   const myAccepted = myInvites.filter(m => m.accepted).length;
   const hisAccepted = hisInvites.filter(m => m.accepted).length;
+  const myRefused = myInvites.filter(m => m.refused).length;
+  const hisRefused = hisInvites.filter(m => m.refused).length;
   html += `<div class="stat-block"><div class="st-title">听歌</div>`;
   html += `<div class="st-line"><span class="st-k">我邀请</span><span>${myInvites.length} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">祂答应</span><span>${myAccepted} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">祂拒绝</span><span>${myRefused} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">祂邀请</span><span>${hisInvites.length} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">我答应</span><span>${hisAccepted} 次</span></div>`;
+  html += `<div class="st-line"><span class="st-k">我拒绝</span><span>${hisRefused} 次</span></div>`;
   const topSongMine = topSongName(myInvites);
   const topSongHis = topSongName(hisInvites);
   if (topSongMine) html += `<div class="st-line"><span class="st-k">我常听</span><span>${escapeHTML(topSongMine)}</span></div>`;
   if (topSongHis) html += `<div class="st-line"><span class="st-k">祂常听</span><span>${escapeHTML(topSongHis)}</span></div>`;
   html += `</div>`;
 
-  /* 7. 心动 */
+  /* 6. 心动 */
   const hisHeart = State.hearts.filter(h => h.by === 'other');
   const myHeart = State.hearts.filter(h => h.by === 'me');
   html += `<div class="stat-block"><div class="st-title">心动</div>`;
@@ -6749,6 +6924,10 @@ function renderStats() {
     if (h.content.type === 'quiz') return h.content.title || '';
     return '';
   };
+  const myFavHeart = topHeartItem(myHeart);
+  const hisFavHeart = topHeartItem(hisHeart);
+  if (myFavHeart) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最喜欢的心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(myFavHeart))}</span></div>`;
+  if (hisFavHeart) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">祂最喜欢的心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(hisFavHeart))}</span></div>`;
   if (myHeart.length) {
     const latestMe = myHeart[myHeart.length - 1];
     html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">我最近心动：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(heartText(latestMe))}</span></div>`;
@@ -6759,48 +6938,93 @@ function renderStats() {
   }
   html += `</div>`;
 
-  /* 8. 陪伴 */
+  /* 7. 陪伴 */
   const myComp = State.companionStats.filter(c => c.by === 'me' || !c.by);
   const hisComp = State.companionStats.filter(c => c.by === 'other');
   const allCompTotal = State.companionStats.reduce((a, b) => a + (b.dur || 0), 0);
   const myCompTotal = myComp.reduce((a, b) => a + (b.dur || 0), 0);
   const hisCompTotal = hisComp.reduce((a, b) => a + (b.dur || 0), 0);
+  const compRefused = State.messages.filter(m => m.type === 'companion' && m.who === 'me' && m.refused).length;
   html += `<div class="stat-block"><div class="st-title">陪伴</div>`;
   html += `<div class="st-line"><span class="st-k">总次数</span><span>${State.companionStats.length} 次</span></div>`;
   html += `<div class="st-line"><span class="st-k">总时长</span><span>${hms(allCompTotal)}</span></div>`;
   html += `<div class="st-line"><span class="st-k">我发起</span><span>${myComp.length} 次 · ${hms(myCompTotal)}</span></div>`;
   html += `<div class="st-line"><span class="st-k">祂发起</span><span>${hisComp.length} 次 · ${hms(hisCompTotal)}</span></div>`;
+  html += `<div class="st-line"><span class="st-k">祂拒绝陪伴</span><span>${compRefused} 次</span></div>`;
   if (State.companionStats.length) {
-    const byType = {};
-    State.companionStats.forEach(c => {
-      if (!byType[c.type]) byType[c.type] = { n: 0, dur: 0 };
-      byType[c.type].n++;
-      byType[c.type].dur += c.dur || 0;
-    });
-    Object.keys(byType).forEach(t => {
-      html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">${escapeHTML(t)}：</span><span style="flex:1;text-align:right">${byType[t].n} 次 · ${hms(byType[t].dur)}</span></div>`;
-    });
+    html += `<button class="stat-link-btn" id="stat-comp-detail">查看陪伴详情（${State.companionStats.length}）</button>`;
   }
   html += `</div>`;
 
-  /* 9. 礼物 / 盲盒 */
+  /* 8. 礼物 / 盲盒 */
   const sentGifts = State.giftRecords.filter(r => r.from === 'me');
   const recvGifts = State.giftRecords.filter(r => r.from === 'other');
-  const allRecords = State.giftRecords.concat(State.boxRecords || []);
-  let mostExpensive = null;
-  allRecords.forEach(r => {
-    if (!mostExpensive || (r.giftPrice || 0) > (mostExpensive.giftPrice || 0)) mostExpensive = r;
-  });
+  const allRecv = State.giftRecords.concat(State.boxRecords || []).filter(r => r.from === 'other');
+  const topRecvGift = topGiftName(allRecv);
   html += `<div class="stat-block"><div class="st-title">礼物 / 盲盒</div>`;
   html += `<div class="st-line"><span class="st-k">我送</span><span>${sentGifts.length} 个</span></div>`;
   html += `<div class="st-line"><span class="st-k">收礼</span><span>${recvGifts.length} 个</span></div>`;
   html += `<div class="st-line"><span class="st-k">盲盒次数</span><span>${State.boxRecords.length} 次</span></div>`;
-  if (mostExpensive) {
-    html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">最贵的礼：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(mostExpensive.giftName || '礼物')}（♡${mostExpensive.giftPrice || 0}）</span></div>`;
-  }
+  if (topRecvGift) html += `<div class="st-line" style="flex-wrap:wrap"><span class="st-k" style="flex-shrink:0">收到最多：</span><span style="flex:1;text-align:right;word-break:break-word">${escapeHTML(topRecvGift)}</span></div>`;
   html += `</div>`;
 
   wrap.innerHTML = html;
+
+  const cd = $('#stat-call-detail');
+  if (cd) cd.onclick = openCallRecords;
+  const cp = $('#stat-comp-detail');
+  if (cp) cp.onclick = openCompanionDetail;
+}
+function openCallRecords() {
+  const records = [...State.videoRecords].reverse();
+  openSub('通话记录', `<div class="zone-body" id="call-rec-list"></div>`, () => {
+    $('#sub-body').style.padding = '0';
+    const list = $('#call-rec-list');
+    if (!records.length) { list.innerHTML = `<div class="zone-empty">还没有通话记录。</div>`; return; }
+    list.innerHTML = '';
+    records.forEach(r => {
+      const d = new Date(r.t || r.start);
+      const dateStr = `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      let typeStr = '';
+      if (r.type === 'normal') typeStr = '通话 ' + callTime(r.dur);
+      else if (r.type === 'missed') typeStr = '未接来电';
+      else if (r.type === 'rejected') typeStr = '已拒绝';
+      else if (r.type === 'interrupted') typeStr = '通话中断' + (r.dur ? ' ' + callTime(r.dur) : '');
+      const dir = r.mode === 'incoming' ? '祂打给我' : (r.mode === 'outgoing' ? '我打给祂' : '');
+      const el = document.createElement('div');
+      el.className = 'itf-pick-item';
+      el.innerHTML = `<div style="display:flex;justify-content:space-between;gap:10px"><span>${dateStr}</span><span>${dir} ${typeStr}</span></div>`;
+      list.appendChild(el);
+    });
+  });
+}
+function openCompanionDetail() {
+  const stats = [...State.companionStats].reverse();
+  openSub('陪伴详情', `<div class="zone-body" id="comp-rec-list"></div>`, () => {
+    $('#sub-body').style.padding = '0';
+    const list = $('#comp-rec-list');
+    if (!stats.length) { list.innerHTML = `<div class="zone-empty">还没有陪伴记录。</div>`; return; }
+    list.innerHTML = '';
+    stats.forEach(c => {
+      const d = new Date(c.start);
+      const dateStr = `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      const who = c.by === 'other' ? '祂发起' : '我发起';
+      let inner = `<div style="display:flex;justify-content:space-between;gap:10px"><span>${dateStr}</span><span>${who} · ${escapeHTML(c.type)} · ${hms(c.dur)}</span></div>`;
+      if (c.switches && c.switches.length) {
+        inner += `<div style="font-size:12px;color:var(--text-soft);margin-top:6px">`;
+        c.switches.forEach(s => {
+          const sd = new Date(s.t);
+          inner += `${pad(sd.getHours())}:${pad(sd.getMinutes())} ${escapeHTML(s.from)} → ${escapeHTML(s.to)}<br>`;
+        });
+        inner += `</div>`;
+      }
+      if (c.interrupted) inner += `<div style="font-size:12px;color:var(--danger);margin-top:4px">（被中断）</div>`;
+      const el = document.createElement('div');
+      el.className = 'itf-pick-item';
+      el.innerHTML = inner;
+      list.appendChild(el);
+    });
+  });
 }
 function topTextList(arr, limit) {
   const map = {};
@@ -6820,6 +7044,26 @@ function topItfList(arr, limit) {
 function topSongName(arr) {
   const map = {};
   arr.forEach(m => { if (m.songName) map[m.songName] = (map[m.songName] || 0) + 1; });
+  let top = '', n = 0;
+  for (const k in map) { if (map[k] > n) { n = map[k]; top = k; } }
+  return top ? top + '（' + n + '次）' : '';
+}
+function topHeartItem(arr) {
+  const map = {};
+  const byId = {};
+  arr.forEach(h => {
+    const t = (h.content && h.content.type === 'text') ? (h.content.text || '') : '';
+    if (!t) return;
+    map[t] = (map[t] || 0) + 1;
+    byId[t] = h;
+  });
+  let top = '', n = 0;
+  for (const k in map) { if (map[k] > n) { n = map[k]; top = k; } }
+  return top ? byId[top] : null;
+}
+function topGiftName(arr) {
+  const map = {};
+  arr.forEach(r => { if (r.giftName) map[r.giftName] = (map[r.giftName] || 0) + 1; });
   let top = '', n = 0;
   for (const k in map) { if (map[k] > n) { n = map[k]; top = k; } }
   return top ? top + '（' + n + '次）' : '';
@@ -7093,6 +7337,7 @@ function openSetSystem() {
     <div class="set-row"><span class="label">全屏模式</span><div class="switch ${s.fullscreen?'on':''}" id="sw-fullscreen"></div></div>
     <div class="set-row"><span class="label">桌面提醒</span><div class="switch ${s.notify?'on':''}" id="sw-notify"></div></div>
     <div class="setting-block glass" id="btn-test-notify"><svg class="block-icon"><use href="#i-mailbox"/></svg><span>测试消息通知</span></div>
+    <div class="setting-block glass" id="btn-clear-note" style="color:var(--danger)"><svg class="block-icon" style="color:var(--danger)"><use href="#i-trash"/></svg><span>清空留言笺</span></div>
     <div class="setting-block glass" id="btn-backup"><svg class="block-icon"><use href="#i-export"/></svg><span>立即备份数据</span></div>
     <div class="setting-block glass" id="btn-restore"><svg class="block-icon"><use href="#i-import"/></svg><span>覆盖备份数据</span></div>
     <div class="setting-block glass" id="btn-clear" style="color:var(--danger)"><svg class="block-icon" style="color:var(--danger)"><use href="#i-trash"/></svg><span>清空所有数据</span></div>
@@ -7116,11 +7361,23 @@ function openSetSystem() {
       if (perm === 'granted') { try { new Notification('祂', { body: '这是一条测试消息～' }); } catch(e) {} }
       else openModal({ title:'提示', bodyHTML:'通知被拒绝，请到浏览器设置里开启', actions: [] });
     };
+    $('#btn-clear-note').onclick = doClearNotes;
     $('#btn-backup').onclick = doBackup; $('#btn-restore').onclick = doRestore; $('#btn-clear').onclick = doClear;
   });
 }
+function doClearNotes() {
+  openModal({ title: '清空留言笺', bodyHTML: '确定清空全部留言吗？<br>清空后无法恢复。', actions: [
+    { label: '确认清空', danger: true, keepOpen: true, onClick: () => {
+      State.notes = [];
+      save.notes();
+      updateNoteDot();
+      closeModal();
+      toast('已清空留言笺');
+    }}
+  ]});
+}
 function doBackup() {
-  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, quizResults: State.quizResults, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, moods: State.moods, companionStats: State.companionStats, interactions: State.interactions, itfStats: State.itfStats, stickers: State.stickers, gifts: State.gifts, giftRecords: State.giftRecords, boxRecords: State.boxRecords, videoRecords: State.videoRecords, love: State.love };
+  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, quizResults: State.quizResults, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, moods: State.moods, companionStats: State.companionStats, interactions: State.interactions, itfStats: State.itfStats, stickers: State.stickers, gifts: State.gifts, giftRecords: State.giftRecords, boxRecords: State.boxRecords, videoRecords: State.videoRecords, love: State.love, notes: State.notes, noteQuota: State.noteQuota };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `阿遇♥阿凉_${dateStamp()}.json`; a.click();
@@ -7157,7 +7414,8 @@ function doRestore() {
       ['礼物记录', () => { State.giftRecords = data.giftRecords || []; }],
       ['盲盒记录', () => { State.boxRecords = data.boxRecords || []; }],
       ['通话记录', () => { State.videoRecords = data.videoRecords || []; }],
-      ['爱意值', () => { State.love = data.love || 0; }]
+      ['爱意值', () => { State.love = data.love || 0; }],
+      ['留言笺', () => { State.notes = data.notes || []; State.noteQuota = data.noteQuota || null; }]
     ];
     for (let i = 0; i < stages.length; i++) {
       $('#restore-stage').textContent = '正在覆盖：' + stages[i][0] + '…';
@@ -7170,6 +7428,7 @@ function doRestore() {
     await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
     await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers();
     await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.love();
+    await save.notes(); await save.noteQuota();
     $('#restore-stage').textContent = '完成';
     setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1500); }, 800);
   };
@@ -7183,12 +7442,14 @@ function doClear() {
       State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
       State.stickers = []; State.gifts = []; State.giftRecords = []; State.boxRecords = [];
       State.videoRecords = []; State.videoActive = null;
+      State.notes = []; State.noteQuota = null;
       State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.quizResults();
       await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.companionStats();
       await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
       await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love(); await save.settings();
+      await save.notes(); await save.noteQuota();
       location.reload();
     }}
   ]});
@@ -7274,6 +7535,9 @@ async function boot() {
   const vr = await Store.read('video_records.json'); if (vr) State.videoRecords = vr;
   const va = await Store.read('video_active.json'); if (va) State.videoActive = va;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
+  const nt = await Store.read('notes.json'); if (nt) State.notes = nt;
+  const nq = await Store.read('note_quota.json'); if (nq) State.noteQuota = nq;
+  ensureNoteQuota();
 
   checkInterruptedCompanion();
   checkInterruptedVideo();
@@ -7281,6 +7545,7 @@ async function boot() {
   applyTheme(State.settings.theme);
   applyBubbleSkin(State.settings.bubbleSkin);
   applyFloatBall(); applyBackgrounds(); applyAvatars();
+  updateNoteDot();
 
   initLockPage(); initChatPage(); initFloatBallDrag(); initPlayPage();
   initSheetDrag(); initVideoBoxDrag();
