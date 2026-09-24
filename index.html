@@ -2323,7 +2323,6 @@ function hms(sec) {
   const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
   return pad(h) + ':' + pad(m) + ':' + pad(s);
 }
-/* ==================== 新增：视频计时格式（分:秒 / 时:分:秒） ==================== */
 function vcTime(sec) {
   sec = Math.max(0, Math.floor(sec));
   const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
@@ -2435,7 +2434,6 @@ const MY_INVITE_REFUSE_LINES = [
   '祂说，等我一下下。','祂说，现在不行呢，乖。','祂说，换个时间好不好。','祂说，再等我一小会儿。','祂说，马上就来，别急。'
 ];
 
-/* ==================== 新增：视频拒绝文案 ==================== */
 const VIDEO_REFUSE_LINES = [
   '祂正在忙，不方便接听。',
   '祂现在接不了，等会儿吧。',
@@ -2504,7 +2502,6 @@ const State = {
     stickerEnabled: false, stickerProb: 7,
     giftEnabled: false, giftProb: 1,
     boxEnabled: false, boxProb: 1,
-    /* ==================== 新增（1.0.1.6）：视频 ==================== */
     videoEnabled: false, videoProb: 3,
     videoAcceptProb: 80,
     videoHangMin: 5, videoHangMax: 10,
@@ -2527,7 +2524,6 @@ const State = {
   gifts: [],
   giftRecords: [],
   boxRecords: [],
-  /* ==================== 新增：视频通话记录 + 问答记录 ==================== */
   videoRecords: [],
   videoActive: null,
   quizGameRecords: [],
@@ -2613,7 +2609,6 @@ const save = {
   gifts: () => Store.write('gifts.json', State.gifts),
   giftRecords: () => Store.write('gift_records.json', State.giftRecords),
   boxRecords: () => Store.write('box_records.json', State.boxRecords),
-  /* ==================== 新增：视频 + 问答记录 ==================== */
   videoRecords: () => Store.write('video_records.json', State.videoRecords),
   videoActive: () => Store.write('video_active.json', State.videoActive),
   quizGameRecords: () => Store.write('quiz_game_records.json', State.quizGameRecords)
@@ -2628,6 +2623,42 @@ function applyTheme(name) { document.body.dataset.theme = name; State.settings.t
 function applyBubbleSkin(name) { document.body.dataset.bubble = name || 'default'; State.settings.bubbleSkin = name || 'default'; save.settings(); }
 
 let pageStack = [];
+let subStack = [];
+let modalStack = [];
+let multiSendMode = false;
+const MSG_PAGE = 20;
+let renderedCount = MSG_PAGE;
+let archiveMode = false;
+let archiveSelected = new Set();
+let quoteTarget = null;
+let memoTimer = null;
+let heartTab = 'other';
+let moodYear, moodMonth;
+let moodSelectedDate = todayKey();
+let songTempBlob = null;
+let quizEditing = null;
+let itfBoard = 'me';
+let itfZone = 'normal';
+let itfSelectMode = false;
+let itfSelected = new Set();
+let itfAddRows = [];
+let stickerTempList = [];
+let cardSelectMode = false, cardSelected = new Set(), searchKeyword = '';
+let cardZone = 'normal';
+let trashSelectMode = false, trashSelected = new Set();
+let bgTab = 'chat';
+let playState = { day: null, messages: [], idx: 0, timer: null, speed: 1, playing: true, baseDelay: 3000 };
+let playHideTimer = null;
+let moodCheckTimer = null;
+let giftTempImg = '';
+let giftEditId = null;
+let companionCat = null;
+let vcState = {
+  active: false, dir: '', phase: '', startTime: 0, connectTime: 0,
+  timer: null, loveMin: 0, target: 0,
+  ringTimeout: null, connectTimeout: null, hangTimeout: null, vcLastSeen: 0
+};
+
 function showPage(id, push = true) {
   const cur = $$('.page').find(p => p.classList.contains('active'));
   if (cur && push && cur.id !== id) pageStack.push(cur.id);
@@ -2646,7 +2677,6 @@ function updateFloatBallVisible() {
   else ball.classList.remove('hidden');
 }
 
-let modalStack = [];
 function openModal({ title, bodyHTML, actions, wide }) {
   modalStack.push({ title: $('#modal-title').textContent, body: $('#modal-body').innerHTML, actions: $('#modal-actions').innerHTML, wide: $('#modal').classList.contains('wide') });
   setModal({ title, bodyHTML, actions, wide });
@@ -2911,7 +2941,6 @@ function initLockPage() {
   renderDots(0);
 }
 
-let moodCheckTimer = null;
 function enterChat() {
   pageStack = [];
   subStack = [];
@@ -2924,13 +2953,6 @@ function enterChat() {
 }
 
 /* ==================== 聊天 ==================== */
-let multiSendMode = false;
-const MSG_PAGE = 20;
-let renderedCount = MSG_PAGE;
-let archiveMode = false;
-let archiveSelected = new Set();
-let quoteTarget = null;
-
 function initChatPage() {
   const input = $('#chat-input'); const btn = $('#btn-plus-send'); const icon = $('#plus-send-icon use');
   input.addEventListener('input', () => { icon.setAttribute('href', input.value.trim() ? '#i-send' : '#i-plus-circle'); });
@@ -2973,9 +2995,8 @@ function initChatPage() {
     toast('陪伴结束');
   };
   initCompanionFloatDrag();
-  /* ==================== 新增：视频悬浮窗 ==================== */
   initVideoFloatDrag();
-  $('#vf-close').onclick = () => { endVideo(); };
+  const vfc = $('#vf-close'); if (vfc) vfc.onclick = () => { endVideo(); };
   renderMessages(); updateLove();
 }
 
@@ -3054,7 +3075,6 @@ function renderMessages() {
         row.classList.toggle('checked', archiveSelected.has(m.id));
       };
     } else if (m.type === 'sys') {
-      /* 系统消息（通话记录）：不绑长按 */
     } else {
       bindLongPress(row, () => openMsgMenu(m));
     }
@@ -3065,7 +3085,6 @@ function buildMsgRow(m, prevSame) {
   const row = document.createElement('div');
   row.className = 'msg-row ' + (m.who === 'me' ? 'me' : 'other');
   if (m.id) row.dataset.mid = m.id;
-  /* ==================== 新增：系统消息（通话记录） ==================== */
   if (m.type === 'sys') {
     row.className = 'msg-row sys';
     const s = document.createElement('div'); s.className = 'sys-msg';
@@ -3412,9 +3431,7 @@ function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = Stat
 
 function openMsgMenu(m) {
   const isCard = (m.type === 'card' || m.type === 'quiz' || m.type === 'song' || m.type === 'companion');
-  /* ==================== 礼物/盲盒：拆开后算「可心动」 ==================== */
   const isGiftBox = (m.type === 'gift' || m.type === 'box');
-  const giftOpened = isGiftBox && m.opened;
   let html = '';
   if (!isCard) {
     if (!isGiftBox) {
@@ -3521,7 +3538,6 @@ function doReply() {
   const stickerMsg = maybeOtherSticker();
   const giftMsg = maybeOtherGift();
   const boxMsg = maybeOtherBox();
-  /* ==================== 新增：祂主动打视频 ==================== */
   const videoCall = maybeOtherVideo();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
@@ -3590,7 +3606,6 @@ function maybeOtherBox() {
   if (State.love < tier.price) return null;
   return { tier: tier.key, price: tier.price };
 }
-/* ==================== 新增：祂主动打视频 ==================== */
 function maybeOtherVideo() {
   const s = State.settings;
   if (!s.videoEnabled) return null;
@@ -3696,20 +3711,17 @@ function pushOtherBox(box) {
   const el = $('#hdr-love'); if (el) el.textContent = State.love;
   notifyLater('送你一个盲盒');
 }
-/* ==================== 新增：系统消息 ==================== */
 function pushSysMsg(text) {
   const msg = { id: uid(), who: 'sys', type: 'sys', text, t: nowHM(), ts: Date.now() };
   State.messages.push(msg);
   save.messages(); renderMessages(); scrollBottom();
 }
-/* ==================== 改动：通知（标题「祂」+ 全类型 + 后台/不在聊天页都通知） ==================== */
 function maybeNotify(text) { notifyLater(text); }
 function notifyLater(text) {
   if (!State.settings.notify) return;
   if (!('Notification' in window) || Notification.permission !== 'granted') return;
   const chatActive = $('#page-chat') && $('#page-chat').classList.contains('active');
   const pageHidden = document.visibilityState !== 'visible';
-  /* 在聊天页且页面可见 → 不通知；否则通知 */
   if (chatActive && !pageHidden) return;
   try { new Notification('祂', { body: text || '' }); } catch (e) {}
 }
@@ -3773,9 +3785,6 @@ function runArchive(dayStr) {
   };
   setTimeout(step, 200);
 }
-
-/* ==================== 子页面内容栈 ==================== */
-let subStack = [];
 
 /* ==================== 悬浮球 ==================== */
 function applyFloatBall() {
@@ -3894,7 +3903,6 @@ function initCompanionFloatDrag() {
     document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
   });
 }
-/* ==================== 新增：视频悬浮窗拖动 ==================== */
 function initVideoFloatDrag() {
   const el = $('#video-float'); if (!el) return;
   let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false;
@@ -3925,10 +3933,9 @@ function initVideoFloatDrag() {
     const mu = () => { document.removeEventListener('mousemove', mm); document.removeEventListener('mouseup', mu); end(); };
     document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
   });
-  /* 点悬浮窗 → 弹窗选档位 */
   el.addEventListener('click', (e) => {
     if (e.target.closest('#vf-close')) return;
-    openVideoSizeMenu();
+    if (vcState.active && vcState.phase === 'connected') openVideoSizeMenu();
   });
 }
 
@@ -3968,41 +3975,24 @@ function initSheetDrag() {
     document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
   });
 }
-  /* ==================== 新增：视频功能全套 ==================== */
-let vcState = {
-  active: false,        /* 是否在通话（含呼叫/接通） */
-  dir: '',              /* 'out'（我拨） / 'in'（祂拨） */
-  phase: '',            /* 'calling'（呼叫中） / 'connected'（已接通） */
-  startTime: 0,
-  connectTime: 0,
-  timer: null,
-  loveMin: 0,
-  target: 0,            /* 15秒超时时间戳 */
-  ringTimeout: null,
-  connectTimeout: null,
-  hangTimeout: null
-};
+  /* ==================== 视频功能全套 ==================== */
 
-/* 打开视频界面（来电或拨出） */
 function openVideoPanel(dir) {
   vcState.dir = dir;
   vcState.active = true;
   const mask = $('#video-mask'); if (!mask) return;
   const avatar = $('#vc-avatar');
   if (avatar) avatar.src = State.settings.avatars.other || defaultAvatar('blue');
-  $('#vc-name').textContent = State.settings.otherCall || '祂';
-  $('#vc-timer').style.display = 'none';
-  $('#vc-timer').textContent = '00:00';
-  $('#vc-status').textContent = (dir === 'in') ? '祂正在呼叫你...' : '正在呼叫祂...';
+  const nameEl = $('#vc-name'); if (nameEl) nameEl.textContent = State.settings.otherCall || '祂';
+  const timerEl = $('#vc-timer'); if (timerEl) { timerEl.style.display = 'none'; timerEl.textContent = '00:00'; }
+  const statusEl = $('#vc-status'); if (statusEl) statusEl.textContent = (dir === 'in') ? '祂正在呼叫你...' : '正在呼叫祂...';
   mask.classList.add('active');
   renderVideoBtns();
 }
-/* 渲染按钮（来电：接听+拒绝 / 拨出：挂断 / 通话中：缩小+挂断） */
 function renderVideoBtns() {
   const box = $('#vc-btns'); if (!box) return;
   box.innerHTML = '';
   if (vcState.phase === 'connected') {
-    /* 通话中：缩小 + 挂断 */
     const shrink = document.createElement('button');
     shrink.className = 'vc-btn shrink';
     shrink.innerHTML = '<svg viewBox="0 0 24 24"><path fill="#fff" d="M4 4h7v2H6v5H4V4zm9 0h7v7h-2V6h-5V4zM4 13h2v5h5v2H4v-7zm14 0h2v7h-7v-2h5v-5z"/></svg>';
@@ -4014,7 +4004,6 @@ function renderVideoBtns() {
     hang.onclick = () => { endVideo(); };
     box.appendChild(hang);
   } else if (vcState.dir === 'in') {
-    /* 来电：接听 + 拒绝 */
     const accept = document.createElement('button');
     accept.className = 'vc-btn accept';
     accept.innerHTML = '<svg viewBox="0 0 24 24"><use href="#i-phone-up"/></svg>';
@@ -4026,7 +4015,6 @@ function renderVideoBtns() {
     refuse.onclick = () => { refuseIncomingVideo(); };
     box.appendChild(refuse);
   } else {
-    /* 我拨出：挂断 */
     const hang = document.createElement('button');
     hang.className = 'vc-btn hangup';
     hang.innerHTML = '<svg viewBox="0 0 24 24"><use href="#i-phone-down"/></svg>';
@@ -4034,7 +4022,6 @@ function renderVideoBtns() {
     box.appendChild(hang);
   }
 }
-/* 我拨给祂 */
 function callHimVideo() {
   if (vcState.active) { toast('正在通话中'); return; }
   openVideoPanel('out');
@@ -4042,30 +4029,26 @@ function callHimVideo() {
   renderVideoBtns();
   const s = State.settings;
   const acceptProb = (s.videoAcceptProb != null ? s.videoAcceptProb : 80);
-  /* 15 秒内随机时刻决定 */
-  const delay = Math.random() * 15;   /* 秒 */
+  const delay = Math.random() * 15;
   vcState.connectTimeout = setTimeout(() => {
-    if (!vcState.active) return;
+    if (!vcState.active || vcState.phase !== 'calling') return;
     if (Math.random() * 100 < acceptProb) {
       connectVideo();
     } else {
-      /* 祂拒绝 */
       const line = VIDEO_REFUSE_LINES[Math.floor(Math.random() * VIDEO_REFUSE_LINES.length)];
       toast(line);
-      recordVideoCall('refused', 'out', line);
+      recordVideoCall('refused', 'out');
       closeVideoPanel();
     }
   }, delay * 1000);
 }
-/* 祂来电 */
 function incomingVideoCall() {
-  if (vcState.active) return;   /* 已在通话中，不打断 */
+  if (vcState.active) return;
   if (!State.settings.videoEnabled) return;
   openVideoPanel('in');
   vcState.phase = 'calling';
   renderVideoBtns();
   vcState.target = Date.now() + 15000;
-  /* 15 秒没人接 → 未接来电 */
   vcState.ringTimeout = setTimeout(() => {
     if (!vcState.active) return;
     if (vcState.phase !== 'connected') {
@@ -4074,55 +4057,63 @@ function incomingVideoCall() {
     }
   }, 15000);
 }
-/* 我接听来电 */
 function acceptIncomingVideo() {
   if (!vcState.active) return;
   clearTimeout(vcState.ringTimeout);
   connectVideo();
 }
-/* 我拒绝来电 */
 function refuseIncomingVideo() {
   if (!vcState.active) return;
   clearTimeout(vcState.ringTimeout);
   recordVideoCall('refused', 'in');
   closeVideoPanel();
 }
-/* 接通 */
 function connectVideo() {
   vcState.phase = 'connected';
   vcState.connectTime = Date.now();
+  vcState.vcLastSeen = Date.now();
   vcState.loveMin = 0;
-  $('#vc-timer').style.display = '';
-  $('#vc-status').textContent = '祂正在与你通话中';
+  const timerEl = $('#vc-timer'); if (timerEl) timerEl.style.display = '';
+  const statusEl = $('#vc-status'); if (statusEl) statusEl.textContent = '祂正在与你通话中';
   renderVideoBtns();
-  /* 接通 +5 爱意 */
   addLove(5);
-  /* 计时 + 每5分钟+1 + 祂挂断 */
+  saveVideoActiveState();
   tickVideo();
   scheduleHangup();
 }
-/* 计时器 */
 function tickVideo() {
   if (!vcState.active || vcState.phase !== 'connected') return;
   const now = Date.now();
   const sec = Math.floor((now - vcState.connectTime) / 1000);
-  $('#vc-timer').textContent = vcTime(sec);
-  const vfTime = $('#vf-time');
-  if (vfTime) vfTime.textContent = vcTime(sec);
+  const timerEl = $('#vc-timer'); if (timerEl) timerEl.textContent = vcTime(sec);
+  const vfTime = $('#vf-time'); if (vfTime) vfTime.textContent = vcTime(sec);
   const min = Math.floor(sec / 60);
   const should = Math.floor(min / 5);
   if (should > vcState.loveMin) {
     addLove(should - vcState.loveMin);
     vcState.loveMin = should;
   }
+  if (now - vcState.vcLastSeen >= 5000) {
+    vcState.vcLastSeen = now;
+    saveVideoActiveState();
+  }
   vcState.timer = setTimeout(tickVideo, 1000);
 }
-/* 祂挂断（5~10 小时随机） */
+function saveVideoActiveState() {
+  if (!vcState.active || vcState.phase !== 'connected') { State.videoActive = null; save.videoActive(); return; }
+  if (!State.videoActive || State.videoActive.connectTime !== vcState.connectTime) {
+    State.videoActive = { id: uid(), dir: vcState.dir, phase: vcState.phase, connectTime: vcState.connectTime, lastSeen: Date.now() };
+  }
+  State.videoActive.lastSeen = Date.now();
+  save.videoActive();
+}
 function scheduleHangup() {
   const s = State.settings;
   const hMin = (s.videoHangMin != null ? s.videoHangMin : 5);
   const hMax = (s.videoHangMax != null ? s.videoHangMax : 10);
-  const hours = hMin + Math.random() * Math.max(0, hMax - hMin);
+  const lo = Math.min(hMin, hMax);
+  const hi = Math.max(hMin, hMax);
+  const hours = lo + Math.random() * Math.max(0, hi - lo);
   const ms = hours * 3600 * 1000;
   vcState.hangTimeout = setTimeout(() => {
     if (vcState.active && vcState.phase === 'connected') {
@@ -4131,7 +4122,6 @@ function scheduleHangup() {
     }
   }, ms);
 }
-/* 关闭视频面板（不改记录） */
 function closeVideoPanel() {
   vcState.active = false;
   vcState.phase = '';
@@ -4139,24 +4129,22 @@ function closeVideoPanel() {
   clearTimeout(vcState.ringTimeout);
   clearTimeout(vcState.connectTimeout);
   clearTimeout(vcState.hangTimeout);
-  $('#video-mask').classList.remove('active');
-  $('#video-float').classList.remove('active');
+  const mask = $('#video-mask'); if (mask) mask.classList.remove('active');
+  const fl = $('#video-float'); if (fl) fl.classList.remove('active');
 }
-/* 结束通话（正常挂断/祂挂断） */
 function endVideo() {
   if (vcState.active && vcState.phase === 'connected') {
     const endTime = Date.now();
     const dur = Math.floor((endTime - vcState.connectTime) / 1000);
     recordVideoCall('normal', vcState.dir, '', dur);
   } else if (vcState.active) {
-    /* 呼叫中挂断 */
     recordVideoCall('canceled', vcState.dir);
   }
+  State.videoActive = null;
+  save.videoActive();
   closeVideoPanel();
-  /* 刷新统计 */
   if ($('#sub-title') && $('#sub-title').textContent === '统计') openStats();
 }
-/* 记录通话 */
 function recordVideoCall(type, dir, refuseText, dur) {
   const rec = {
     id: uid(), type, dir,
@@ -4167,7 +4155,6 @@ function recordVideoCall(type, dir, refuseText, dur) {
   };
   State.videoRecords.push(rec);
   save.videoRecords();
-  /* 聊天里留记录 */
   let text = '';
   if (type === 'normal') {
     const st = new Date(rec.start);
@@ -4184,11 +4171,9 @@ function recordVideoCall(type, dir, refuseText, dur) {
   }
   if (text) pushSysMsg(text);
 }
-/* 视频中断（浏览器切断） */
 function checkInterruptedVideo() {
   const va = State.videoActive;
   if (!va) return;
-  /* 有进行中的通话，说明上次被切断 */
   if (va.phase === 'connected') {
     const dur = Math.floor((va.lastSeen - va.connectTime) / 1000);
     if (dur >= 10) {
@@ -4203,7 +4188,6 @@ function checkInterruptedVideo() {
   State.videoActive = null;
   save.videoActive();
 }
-/* 打开视频档位选择 */
 function openVideoSizeMenu() {
   if (!vcState.active || vcState.phase !== 'connected') { toast('请先接通'); return; }
   const html = `
@@ -4220,51 +4204,29 @@ function openVideoSizeMenu() {
     };
   });
 }
-/* 应用视频档位 */
 function applyVideoSize(size) {
   State.settings.videoFloatSize = size;
   save.settings();
   if (size === 'standard') {
-    /* 回到通话界面 */
-    $('#video-float').classList.remove('active');
-    $('#video-mask').classList.add('active');
-    tickVideoRefreshFloat();
+    const fl = $('#video-float'); if (fl) fl.classList.remove('active');
+    const mask = $('#video-mask'); if (mask) mask.classList.add('active');
     return;
   }
-  /* 缩成悬浮窗 */
-  $('#video-mask').classList.remove('active');
+  const mask = $('#video-mask'); if (mask) mask.classList.remove('active');
   const fl = $('#video-float');
+  if (!fl) return;
   fl.classList.remove('size-mini', 'size-small');
   fl.classList.add(size === 'small' ? 'size-small' : 'size-mini');
   const o = State.settings.avatars.other || defaultAvatar('blue');
   const m = State.settings.avatars.me || defaultAvatar('pink');
-  if ($('#vf-avatar-other')) $('#vf-avatar-other').src = o;
-  if ($('#vf-avatar-me')) $('#vf-avatar-me').src = m;
-  $('#vf-text').textContent = '祂正在与你通话中';
+  const vfo = $('#vf-avatar-other'); if (vfo) vfo.src = o;
+  const vfm = $('#vf-avatar-me'); if (vfm) vfm.src = m;
+  const vft = $('#vf-text'); if (vft) vft.textContent = '祂正在与你通话中';
   const sec = Math.floor((Date.now() - vcState.connectTime) / 1000);
-  if ($('#vf-time')) $('#vf-time').textContent = vcTime(sec);
+  const vftime = $('#vf-time'); if (vftime) vftime.textContent = vcTime(sec);
   fl.classList.add('active');
 }
-/* 刷新视频悬浮窗计时 */
-function tickVideoRefreshFloat() {
-  /* 若在悬浮窗模式，tickVideo 已更新 vf-time */
-}
-
-/* ==================== 视频中断持久化（配合通话中） ==================== */
-function saveVideoActive() {
-  if (!vcState.active || vcState.phase !== 'connected') { State.videoActive = null; save.videoActive(); return; }
-  if (!State.videoActive || State.videoActive.id !== (State.videoActive.id)) {
-    State.videoActive = { id: uid(), dir: vcState.dir, phase: vcState.phase, connectTime: vcState.connectTime, lastSeen: Date.now() };
-  }
-  State.videoActive.lastSeen = Date.now();
-  save.videoActive();
-}
   /* ==================== 互动管理 ==================== */
-let itfBoard = 'me';
-let itfZone = 'normal';
-let itfSelectMode = false;
-let itfSelected = new Set();
-
 function openInteractionManager() {
   itfBoard = 'me'; itfZone = 'normal'; itfSelectMode = false; itfSelected.clear();
   openSub('互动', `
@@ -4387,7 +4349,6 @@ function openItfItemMenu(item) {
     toast(item.locked ? '已上锁' : '已解锁');
   };
 }
-let itfAddRows = [];
 function openItfAdd() {
   const ph = ITF_ADD_PLACEHOLDER[itfBoard] || '一行一条…';
   openModal({
@@ -4604,36 +4565,6 @@ function recordItfStat(content) {
   State.itfStats[k].top = top;
   save.itfStats();
 }
-function doReplyInteraction() {
-  const s = State.settings;
-  const inComp = Companion.active;
-  let pOther = s.itfProbOther, pTogether = s.itfProbTogether, pNormal = s.itfProbNormal;
-  if (inComp) {
-    const compWeight = (s.itfProbCompanion != null ? s.itfProbCompanion : 70) / 100;
-    pOther = Math.round(pOther + (100 - pOther) * compWeight * 0.6);
-    const rest = 100 - pOther;
-    const otherRest = pTogether + pNormal || 1;
-    pTogether = Math.round(rest * (pTogether / otherRest));
-    pNormal = 100 - pOther - pTogether;
-  }
-  const r = Math.random() * 100;
-  const hasOther = (State.interactions.other || []).filter(x => !x.locked).length > 0;
-  const hasTogether = (State.interactions.together || []).filter(x => !x.locked).length > 0;
-  let pickBoard = null;
-  if (r < pOther && hasOther) pickBoard = 'other';
-  else if (r < pOther + pTogether && hasTogether) pickBoard = 'together';
-  else if (hasOther) pickBoard = 'other';
-  else if (hasTogether) pickBoard = 'together';
-  if (pickBoard) {
-    const pool = State.interactions[pickBoard].filter(x => !x.locked);
-    const item = pool[Math.floor(Math.random() * pool.length)];
-    pushOtherInteraction(item.content, pickBoard);
-    return;
-  }
-  const usable = State.cards.filter(c => !c.locked);
-  if (usable.length) pushOther(usable[Math.floor(Math.random() * usable.length)].text);
-  else pushOther('……');
-}
 
 /* ==================== 贴纸管理 ==================== */
 function openStickerManager() {
@@ -4680,7 +4611,6 @@ function openStickerItemMenu(st) {
     }}
   ]});
 }
-let stickerTempList = [];
 function openStickerAdd() {
   stickerTempList = [];
   renderStickerAddModal();
@@ -4794,7 +4724,7 @@ function openStickerPicker() {
   });
 }
 
-/* ==================== 礼物管理（含「礼物」tab） ==================== */
+/* ==================== 礼物管理 ==================== */
 function openGiftManager() {
   openSub('礼物', `
     <div class="card-toolbar" style="padding-top:8px">
@@ -4865,7 +4795,6 @@ function renderGiftList(tab) {
     });
   }
 }
-/* 礼物本体点击 → 编辑/删除 */
 function openGiftItemMenu(g) {
   openModal({ title: escapeHTML(g.name), bodyHTML: `<img class="gift-preview" src="${g.img}">`, actions: [
     { label: '编辑', onClick: () => openGiftEdit(g) },
@@ -4875,9 +4804,6 @@ function openGiftItemMenu(g) {
     }}
   ]});
 }
-/* 添加/编辑礼物 */
-let giftTempImg = '';
-let giftEditId = null;
 function openGiftAdd() {
   giftTempImg = '';
   giftEditId = null;
@@ -5113,7 +5039,6 @@ function showQuizResult(quizId) {
   openModal({ title: '答卷结果', bodyHTML: '<div id="quiz-result-wrap"></div>', actions: [], wide: true });
   $('#quiz-result-wrap').appendChild(card);
 }
-let quizEditing = null;
 function openQuizCreate(q, readonly) {
   quizEditing = q ? { ...q, questions: q.questions.map(x => ({ ...x, options: [...x.options] })) } : { id: uid(), title: '', questions: [{ text: '', options: ['','','',''] }] };
   $('#sub-title').textContent = readonly ? '查看问卷' : (q ? '编辑问卷' : '创建问卷');
@@ -5197,7 +5122,6 @@ function syncQuizInputs() {
   $$('[data-qt]').forEach(inp => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
   $$('[data-qo]').forEach(inp => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
 }
-/* ==================== 改动：⊕ 问卷（未填→发送，已填→查看） ==================== */
 function openQuizSendMenu() {
   if (!State.quizzes.length) { openModal({ title:'', bodyHTML:'还没有问卷', actions: [] }); setTimeout(closeModal, 1800); return; }
   const html = `<div class="dup-list">` + State.quizzes.map((q, i) => {
@@ -5231,9 +5155,7 @@ function sendQuizToHim(q) {
     toast(line);
   }, getThinkTime() * 1000);
 }
-  /* ==================== 字卡管理（含上锁） ==================== */
-let cardSelectMode = false, cardSelected = new Set(), searchKeyword = '';
-let cardZone = 'normal';
+  /* ==================== 字卡管理 ==================== */
 function openCardManager() {
   cardSelectMode = false; cardSelected.clear(); searchKeyword = ''; cardZone = 'normal';
   openSub('字卡', `<div class="card-toolbar" id="card-toolbar"></div><div class="zone-tabs" id="card-zone-tabs"></div><div class="zone-body" id="card-zone-body"></div>`, () => {
@@ -5417,7 +5339,6 @@ function doDedup() {
 }
 
 /* ==================== 回收站 ==================== */
-let trashSelectMode = false, trashSelected = new Set();
 function openTrash() {
   trashSelectMode = false; trashSelected.clear();
   openSub('回收站', `<div class="card-toolbar" id="trash-toolbar"></div><div class="zone-body" id="trash-list"></div>`, () => {
@@ -5583,7 +5504,6 @@ function addCall(who) {
 }
 
 /* ==================== 背景管理 ==================== */
-let bgTab = 'chat';
 function openBgManager() {
   openSub('背景', `
     <div class="bg-tabs">
@@ -5659,7 +5579,6 @@ function restoreArchiveToChat(day) {
 }
 
 /* ==================== 播放页 ==================== */
-let playState = { day: null, messages: [], idx: 0, timer: null, speed: 1, playing: true, baseDelay: 3000 };
 function openPlayPage(day) {
   const entry = State.archive.find(a => a.day === day);
   if (!entry) return;
@@ -5690,7 +5609,6 @@ function updateProgress() {
   $('#progress-fill').style.width = pct + '%';
   $('#progress-knob').style.left = pct + '%';
 }
-let playHideTimer = null;
 function showBars() {
   $('#play-header').classList.remove('hidden');
   $('#play-footer').classList.remove('hidden');
@@ -5737,8 +5655,6 @@ function initPlayPage() {
 }
 
 /* ==================== 心情手帐 ==================== */
-let moodYear, moodMonth;
-let moodSelectedDate = todayKey();
 function openMoodBook() {
   const now = new Date();
   if (moodYear == null) { moodYear = now.getFullYear(); moodMonth = now.getMonth(); }
@@ -5947,6 +5863,244 @@ function runMoodHis() {
   }
   save.moods();
 }
+
+/* ==================== 音乐管理 ==================== */
+function openMusicManager() {
+  openSub('音乐', `
+    <div class="music-top">
+      <div class="toolbar-row">
+        <button class="tool-btn" id="mu-add"><svg><use href="#i-plus"/></svg>添加歌曲</button>
+        <button class="tool-btn" id="mu-import"><svg><use href="#i-import"/></svg>导入</button>
+        <button class="tool-btn" id="mu-export"><svg><use href="#i-export"/></svg>导出</button>
+      </div>
+    </div>
+    <div class="list-count-bar" id="music-count"></div>
+    <div class="music-list" id="music-list"></div>
+  `, () => {
+    $('#sub-body').style.padding = '0';
+    renderMusicList();
+    $('#mu-add').onclick = openAddSong;
+    $('#mu-import').onclick = importSongs;
+    $('#mu-export').onclick = exportSongs;
+  });
+}
+function renderMusicList() {
+  const list = $('#music-list'); if (!list) return;
+  const countEl = $('#music-count');
+  if (countEl) countEl.textContent = '共 ' + State.songs.length + ' 首歌';
+  if (!State.songs.length) { list.innerHTML = `<div class="empty-tip">还没有歌。</div>`; return; }
+  list.innerHTML = '';
+  State.songs.forEach(song => {
+    const el = document.createElement('div');
+    el.className = 'music-item';
+    el.innerHTML = `<svg><use href="#i-music-note"/></svg><span class="mname">${escapeHTML(song.name)}</span><span class="martist">${escapeHTML(song.artist || '')}</span>`;
+    bindLongPress(el, () => {
+      openModal({ title: escapeHTML(song.name), bodyHTML: '', actions: [
+        { label: '试听', keepOpen: true, onClick: () => { Player.playSong(song, State.songs); closeModal(); } },
+        { label: '删除', danger: true, keepOpen: true, onClick: () => {
+          State.songs = State.songs.filter(x => x.id !== song.id);
+          save.songs(); closeModal(); renderMusicList();
+        }}
+      ]});
+    });
+    list.appendChild(el);
+  });
+}
+function openAddSong() {
+  songTempBlob = null;
+  openModal({
+    title: '添加歌曲',
+    bodyHTML: `
+      <button class="upload-btn" id="song-upload" style="border-style:solid;margin-bottom:10px"><svg><use href="#i-music-note"/></svg><span id="song-file-label">上传音频文件</span></button>
+      <input class="field" id="song-name" placeholder="歌曲名" style="margin-bottom:10px">
+      <input class="field" id="song-artist" placeholder="歌手（可选）">
+    `,
+    actions: [{ label: '保存歌曲', keepOpen: true, onClick: async () => {
+      const name = $('#song-name').value.trim();
+      if (!songTempBlob) { openModal({ title:'', bodyHTML:'先上传音频', actions: [] }); setTimeout(closeModal, 1500); return; }
+      if (!name) { openModal({ title:'', bodyHTML:'填一下歌曲名', actions: [] }); setTimeout(closeModal, 1500); return; }
+      const id = uid();
+      await CacheStore.put('song_' + id, songTempBlob);
+      State.songs.push({ id, name, artist: $('#song-artist').value.trim() });
+      await save.songs();
+      closeModal(); renderMusicList(); toast('已保存');
+    }}]
+  });
+  setTimeout(() => {
+    $('#song-upload').onclick = () => pickAudio((f) => {
+      songTempBlob = f;
+      $('#song-file-label').textContent = '已选择：' + f.name;
+      if (!$('#song-name').value) $('#song-name').value = f.name.replace(/\.[^.]+$/, '');
+    });
+  }, 50);
+}
+function importSongs() {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = async () => {
+    const f = inp.files[0]; if (!f) return;
+    const txt = await f.text();
+    let data;
+    try { data = JSON.parse(txt); } catch(e) { openModal({ title:'失败', bodyHTML:'文件格式不正确', actions: [] }); return; }
+    if (!Array.isArray(data)) { openModal({ title:'失败', bodyHTML:'格式不对', actions: [] }); return; }
+    for (const item of data) {
+      if (!item.name) continue;
+      const id = uid();
+      if (item.data) {
+        try {
+          const blob = await (await fetch(item.data)).blob();
+          await CacheStore.put('song_' + id, blob);
+        } catch (e) {}
+      }
+      State.songs.push({ id, name: item.name, artist: item.artist || '' });
+    }
+    await save.songs(); renderMusicList(); toast('已导入');
+  };
+  inp.click();
+}
+async function exportSongs() {
+  const out = [];
+  for (const s of State.songs) {
+    const blob = await CacheStore.get('song_' + s.id);
+    let data = '';
+    if (blob) {
+      data = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(blob); });
+    }
+    out.push({ name: s.name, artist: s.artist || '', data });
+  }
+  const blob = new Blob([JSON.stringify(out)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `音乐_${dateStamp()}.json`; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function openMusicPicker() {
+  if (!State.songs.length) { openModal({ title:'', bodyHTML:'还没有歌', actions: [] }); setTimeout(closeModal, 1500); return; }
+  const html = `<div class="dup-list">` + State.songs.map((s, i) =>
+    `<div class="dup-item" data-song="${i}" style="cursor:pointer"><svg style="width:18px;height:18px;color:var(--accent-deep)"><use href="#i-music-note"/></svg><span style="flex:1">${escapeHTML(s.name)}</span><span class="dup-count">${escapeHTML(s.artist || '')}</span></div>`
+  ).join('') + `</div>`;
+  openModal({ title: '选一首歌', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-song]').forEach(el => {
+    el.onclick = () => {
+      const song = State.songs[+el.dataset.song];
+      closeModal();
+      openModal({ title: song.name, bodyHTML: '', actions: [
+        { label: '播放', keepOpen: true, onClick: () => { Player.playSong(song, State.songs); closeModal(); } },
+        { label: '邀请他听歌', keepOpen: true, onClick: () => { closeModal(); inviteSong(song); } }
+      ]});
+    };
+  });
+}
+function inviteSong(song) {
+  const msg = {
+    id: uid(), who: 'me', type: 'song', songId: song.id,
+    songName: song.name, artist: song.artist || '',
+    accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false
+  };
+  State.messages.push(msg);
+  save.messages(); addLove(2); renderMessages(); scrollBottom();
+  setTimeout(() => {
+    if (Math.random() < 0.8) {
+      msg.accepted = true;
+      addLove(3);
+    } else {
+      msg.refused = true;
+      msg.refuseText = Math.random() < 0.5 ? '祂想待会儿再听。' : '祂这会有点忙。';
+    }
+    save.messages(); renderMessages(); scrollBottom();
+  }, getThinkTime() * 1000);
+}
+
+/* ==================== 抉择 ==================== */
+function openChoice() {
+  const items = [['帮我选','i-select-all'], ['帮我定','i-choice'], ['问问祂','i-qa'], ['让祂选','i-album']];
+  const html = `<div class="choice-grid">` + items.map((it, i) => `<div class="choice-btn" data-choice="${i}"><svg><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`).join('') + `</div>`;
+  openModal({ title: '抉择', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-choice]').forEach(el => {
+    el.onclick = () => {
+      const name = items[+el.dataset.choice][0]; closeModal();
+      if (name === '帮我选') return choicePick();
+      if (name === '帮我定') return choiceDing();
+      if (name === '问问祂') return choiceAsk();
+      if (name === '让祂选') return choiceImage();
+    };
+  });
+}
+function choicePick() {
+  openModal({ title: '帮我选', bodyHTML: `<input class="field" id="cp-q" placeholder="问题" style="margin-bottom:10px"><input class="field" id="cp-a" placeholder="A" style="margin-bottom:8px"><input class="field" id="cp-b" placeholder="B" style="margin-bottom:8px"><input class="field" id="cp-c" placeholder="C" style="margin-bottom:8px"><input class="field" id="cp-d" placeholder="D" style="margin-bottom:8px">`,
+    actions: [{ label: '祂的选择', keepOpen: true, onClick: () => {
+      const q = $('#cp-q').value.trim();
+      const opts = ['cp-a','cp-b','cp-c','cp-d'].map(id => $('#'+id).value.trim()).filter(Boolean);
+      if (!opts.length) { openModal({ title:'', bodyHTML:'再想想吧', actions: [] }); setTimeout(closeModal, 1500); return; }
+      const pick = Math.floor(Math.random() * opts.length); closeModal();
+      State.messages.push({ id: uid(), who: 'me', type: 'card', title: q || '帮我选', options: opts, otherPick: pick, t: nowHM(), ts: Date.now(), read: false });
+      save.messages(); renderMessages(); scrollBottom();
+    }}]
+  });
+}
+function choiceDing() {
+  openModal({ title: '帮我定', bodyHTML: `<input class="field" id="cd-q" placeholder="问题">`,
+    actions: [{ label: '祂的决定', keepOpen: true, onClick: () => {
+      const q = $('#cd-q').value.trim(); closeModal(); sendMyText(q || '帮我定', true);
+      waitThink(() => pushOther(DING_PRESETS[Math.floor(Math.random() * DING_PRESETS.length)]));
+    }}]
+  });
+}
+function choiceAsk() {
+  openModal({ title: '问问祂', bodyHTML: `<input class="field" id="ca-q" placeholder="问题">`,
+    actions: [{ label: '问问祂', keepOpen: true, onClick: () => {
+      const q = $('#ca-q').value.trim(); closeModal(); sendMyText(q || '问问祂', true);
+      waitThink(() => pushOther(ASK_PRESETS[Math.floor(Math.random() * ASK_PRESETS.length)]));
+    }}]
+  });
+}
+function choiceImage() {
+  let imgs = [];
+  openModal({ title: '让祂选', bodyHTML: `<input class="field" id="ci-text" placeholder="想对祂说的话..." style="margin-bottom:10px"><button class="upload-btn" id="ci-upload"><svg><use href="#i-plus"/></svg>上传图片（可多选）</button><div class="unpair-grid" id="ci-preview" style="margin-top:10px"></div>`,
+    actions: [{ label: '祂的喜欢', keepOpen: true, onClick: () => {
+      if (imgs.length < 2) { openModal({ title:'', bodyHTML:'至少两张哦', actions: [] }); setTimeout(closeModal, 1500); return; }
+      const txt = $('#ci-text').value.trim(); const pick = Math.floor(Math.random() * imgs.length); closeModal();
+      if (txt) sendMyText(txt, true);
+      imgs.forEach(src => sendMyImage(src, true));
+      waitThink(() => { State.messages.push({ id: uid(), who: 'other', type: 'img', src: imgs[pick], t: nowHM(), ts: Date.now() }); save.messages(); renderMessages(); scrollBottom(); });
+    }}]
+  });
+  setTimeout(() => {
+    $('#ci-upload').onclick = () => pickImage((dataUrl) => {
+      imgs.push(dataUrl);
+      const g = $('#ci-preview'); g.innerHTML = '';
+      imgs.forEach((src, i) => { const c = document.createElement('div'); c.className = 'unpair-cell'; c.innerHTML = `<img src="${src}">`; c.onclick = () => { imgs.splice(i, 1); $('#ci-upload').click(); }; g.appendChild(c); });
+    }, true);
+  }, 50);
+}
+function waitThink(cb) { setTimeout(cb, getThinkTime() * 1000); }
+
+/* ==================== 问答 ==================== */
+function openQuiz() {
+  const usable = State.cards.filter(c => !c.locked);
+  if (usable.length < 4) { openModal({ title:'', bodyHTML:'字卡不够，先加几张吧', actions: [] }); setTimeout(closeModal, 1800); return; }
+  if (State.love < 5) { openModal({ title:'', bodyHTML:'还差一点，多聊几句再来。', actions: [] }); setTimeout(closeModal, 1800); return; }
+  const pool = usable.slice(); const four = [];
+  for (let i = 0; i < 4 && pool.length; i++) { const idx = Math.floor(Math.random() * pool.length); four.push(pool[idx].text); pool.splice(idx, 1); }
+  const card = { id: uid(), who: 'me', type: 'card', title: '祂此刻想对你说什么？', options: four, myPick: null, otherPick: null, result: '', t: nowHM(), ts: Date.now(), read: false, quiz: true };
+  State.messages.push(card); save.messages(); renderMessages(); scrollBottom();
+  setTimeout(() => {
+    const rows = $$('#chat-body .msg-row.me .card-msg');
+    const last = rows[rows.length - 1]; if (!last) return;
+    $$('.card-opt', last).forEach((o, i) => {
+      o.onclick = () => {
+        if (card.myPick !== null) return;
+        card.myPick = i; save.messages(); renderMessages(); scrollBottom();
+        waitThink(() => {
+          const otherPick = Math.floor(Math.random() * four.length); card.otherPick = otherPick;
+          if (card.myPick === otherPick) { card.result = '默契 +10'; addLove(10); State.quizGameRecords.push({ id: uid(), tacit: true, t: Date.now() }); }
+          else { card.result = '默契 -5'; addLove(-5); State.quizGameRecords.push({ id: uid(), tacit: false, t: Date.now() }); }
+          save.quizGameRecords();
+          save.messages(); renderMessages(); scrollBottom();
+        });
+      };
+    });
+  }, 100);
+}
   /* ==================== 设置 ==================== */
 function openSettings() {
   openSub('设置', `
@@ -6059,7 +6213,6 @@ function openSetChat() {
     <div class="set-row"><span class="label">盲盒概率（%）</span>
       <input class="field" id="in-box-prob" type="number" style="width:80px" value="${s.boxProb ?? 1}"></div>
 
-    <!-- ==================== 新增：视频 ==================== -->
     <div class="section-title">视频</div>
     <div class="set-row"><span class="label">祂可以打视频</span><div class="switch ${s.videoEnabled?'on':''}" id="sw-video"></div></div>
     <div class="set-row"><span class="label">主动概率（%）</span>
@@ -6210,7 +6363,7 @@ function openSetFeature() {
   `, () => { markSeg('#seg-lock', s.lockMode); bindSeg('#seg-lock', v => { s.lockMode = v; save.settings(); }); });
 }
 
-/* ==================== 新增：统计页 ==================== */
+/* ==================== 统计页 ==================== */
 function openStats() {
   openSub('统计', `<div id="stats-body"></div>`, () => {
     renderStats();
@@ -6224,12 +6377,11 @@ function renderStats() {
   const total = State.messages.length;
   const mine = State.messages.filter(m => m.who === 'me').length;
   const his = State.messages.filter(m => m.who === 'other').length;
-  /* 高频句 */
   const myFreq = {}, hisFreq = {};
   State.messages.forEach(m => {
     if (m.type === 'text' && m.text) {
       if (m.who === 'me') myFreq[m.text] = (myFreq[m.text] || 0) + 1;
-      else hisFreq[m.text] = (hisFreq[m.text] || 0) + 1;
+      else if (m.who === 'other') hisFreq[m.text] = (hisFreq[m.text] || 0) + 1;
     }
   });
   const myTop = topKey(myFreq), hisTop = topKey(hisFreq);
@@ -6244,7 +6396,6 @@ function renderStats() {
   const itfMe = (State.interactions.me || []).length;
   const itfOther = (State.interactions.other || []).length;
   const itfTog = (State.interactions.together || []).length;
-  /* 最喜欢（按发送统计） */
   let favItf = '—';
   let favN = 0;
   for (const k in State.itfStats) {
@@ -6292,9 +6443,8 @@ function renderStats() {
   </div>`;
 
   /* 6. 听歌 */
-  const songCount = State.songs.length;
   html += `<div class="stat-block"><div class="stat-title">听歌</div>
-    <div class="stat-line"><span class="sk">歌单：</span><span class="sv">${songCount}</span> 首</div>
+    <div class="stat-line"><span class="sk">歌单：</span><span class="sv">${State.songs.length}</span> 首</div>
   </div>`;
 
   /* 7. 心动 */
@@ -6460,6 +6610,324 @@ function openSetAbout() {
   `);
 }
 
+/* ==================== ⊕ 小功能（核心） ==================== */
+function openPlusMenu() {
+  const items = [
+    ['拍照','i-camera'], ['相册','i-album'], ['视频','i-video'], ['贴纸','i-sticker'],
+    ['礼物','i-gift'], ['盲盒','i-blindbox'], ['互动','i-interact'], ['问答','i-qa'],
+    ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion'],
+    ['快捷归档','i-archive'], ['悬浮球','i-floatball'], ['关锁','i-lock']
+  ];
+  openSheet(items, handlePlusItem);
+}
+function handlePlusItem(name) {
+  if (name === '悬浮球') { State.settings.floatHidden = !State.settings.floatHidden; save.settings(); applyFloatBall(); return; }
+  if (name === '关锁') { pageStack = []; subStack = []; showPage('page-lock', false); $('#btn-enter').style.display = ''; $('#lock-pass').classList.remove('active'); return; }
+  if (name === '问答') { return openQuiz(); }
+  if (name === '问卷') { return openQuizSendMenu(); }
+  if (name === '音乐') { return openMusicPicker(); }
+  if (name === '陪伴') { return openCompanionModal(); }
+  if (name === '快捷归档') { return enterArchiveMode(); }
+  if (name === '互动') { return openInteractionPicker(); }
+  if (name === '贴纸') { return openStickerPicker(); }
+  if (name === '礼物') { return openGiftPicker(); }
+  if (name === '盲盒') { return openBoxPicker(); }
+  if (name === '视频') { return callHimVideo(); }
+  if (name === '拍照' || name === '相册') {
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = 'image/*';
+    if (name === '相册') inp.multiple = true;
+    inp.onchange = async () => {
+      for (const f of [...inp.files]) {
+        const id = uid(); await CacheStore.put('img_' + id, f);
+        const fr = new FileReader(); fr.onload = () => sendMyImage(fr.result); fr.readAsDataURL(f);
+      }
+    };
+    inp.click(); return;
+  }
+  openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
+}
+
+/* ==================== 悬浮球大菜单（核心） ==================== */
+function openBigMenu() {
+  const items = [
+    ['小世界','i-world'], ['信箱','i-mailbox'], ['留言笺','i-note'], ['抉择','i-choice'],
+    ['恋人空间','i-couple'], ['心动时刻','i-moment'], ['心情手帐','i-diary'], ['旧梦温存','i-olddream'],
+    ['备忘录','i-memo'], ['心愿单','i-wishlist'], ['重要日','i-anniv'], ['设置','i-settings']
+  ];
+  const html = `<div class="unpair-grid">` + items.map((it, i) =>
+    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px"><svg style="width:22px;height:22px;color:var(--accent-deep)"><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
+  ).join('') + `</div>`;
+  openModal({ title: '功能', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-big]').forEach(el => { el.onclick = () => { const name = items[+el.dataset.big][0]; closeModal(); handleBigItem(name); }; });
+}
+function handleBigItem(name) {
+  if (name === '设置') return openSettings();
+  if (name === '小世界') return openWorld();
+  if (name === '旧梦温存') return openArchive();
+  if (name === '抉择') return openChoice();
+  if (name === '备忘录') return openMemo();
+  if (name === '心愿单') return openWishlist();
+  if (name === '重要日') return openDays();
+  if (name === '心动时刻') return openHearts();
+  if (name === '心情手帐') return openMoodBook();
+  openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
+}
+
+/* ==================== 小世界 ==================== */
+function openWorld() {
+  const items = [
+    ['字卡','i-card'], ['互动','i-interact'], ['贴纸','i-sticker'], ['礼物','i-gift'],
+    ['头像','i-avatar'], ['背景','i-bg'],
+    ['问卷','i-survey'], ['音乐','i-music']
+  ];
+  const html = items.map((it, i) =>
+    `<div class="setting-block glass" data-world="${i}"><svg class="block-icon"><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
+  ).join('');
+  openSub('小世界', html, () => {
+    $$('#sub-body [data-world]').forEach(el => {
+      el.onclick = () => {
+        const name = items[+el.dataset.world][0];
+        if (name === '字卡') return openCardManager();
+        if (name === '互动') return openInteractionManager();
+        if (name === '贴纸') return openStickerManager();
+        if (name === '礼物') return openGiftManager();
+        if (name === '头像') return openAvatarManager();
+        if (name === '背景') return openBgManager();
+        if (name === '问卷') return openQuizManager();
+        if (name === '音乐') return openMusicManager();
+        openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
+      };
+    });
+  });
+}
+function openSub(title, bodyHTML, afterRender) {
+  const subPage = $('#page-sub');
+  if (subPage.classList.contains('active')) {
+    subStack.push({
+      title: $('#sub-title').textContent,
+      html: $('#sub-body').innerHTML,
+      after: subPage._afterRender || null
+    });
+  } else {
+    subStack = [];
+  }
+  $('#sub-title').textContent = title;
+  $('#sub-body').innerHTML = bodyHTML;
+  $('#sub-body').style.padding = '';
+  showPage('page-sub');
+  subPage._afterRender = afterRender || null;
+  if (afterRender) afterRender();
+}
+
+/* ==================== 陪伴弹窗 ==================== */
+function openCompanionModal() {
+  let html = '';
+  if (Companion.active) {
+    html += `<div class="companion-stat">正在陪伴：${escapeHTML(Companion.type)}</div>`;
+    html += `<button class="upload-btn" id="comp-end" style="border-style:solid;margin-top:10px"><svg><use href="#i-companion"/></svg>结束陪伴</button>`;
+  } else {
+    html += COMPANION_CATS.map(c => `<div class="companion-cat" data-cat="${c.key}"><svg><use href="#${c.icon}"/></svg>${c.name}</div>`).join('');
+  }
+  openModal({ title: '陪伴', bodyHTML: html, actions: [] });
+  if (Companion.active) {
+    $('#comp-end').onclick = () => { Companion.end(); toast('陪伴结束'); closeModal(); openCompanionModal(); };
+  } else {
+    $$('#modal-body [data-cat]').forEach(el => {
+      const cat = el.dataset.cat;
+      el.onclick = () => { closeModal(); openCompanionItems(cat); };
+    });
+  }
+}
+function openCompanionItems(catKey) {
+  const cat = COMPANION_CATS.find(c => c.key === catKey);
+  if (!cat) return;
+  const html = `<div class="companion-grid">` + cat.items.map(it => `<div class="companion-item" data-item="${escapeHTML(it)}">${escapeHTML(it)}</div>`).join('') + `</div>` +
+    `<button class="upload-btn" id="comp-start" style="border-style:solid;margin-top:12px;opacity:.5;pointer-events:none"><svg><use href="#i-companion"/></svg>发出邀请</button>`;
+  openModal({ title: cat.name, bodyHTML: html, actions: [] });
+  let picked = null;
+  $$('#modal-body [data-item]').forEach(el => {
+    el.onclick = () => {
+      picked = el.dataset.item;
+      $$('#modal-body [data-item]').forEach(x => x.classList.toggle('active', x === el));
+      const sb = $('#comp-start'); sb.style.opacity = '1'; sb.style.pointerEvents = '';
+    };
+  });
+  $('#comp-start').onclick = () => {
+    if (!picked) { toast('先选一个'); return; }
+    closeModal();
+    sendMyCompanionInvite(picked);
+  };
+}
+
+/* ==================== 备忘录 / 心愿单 / 重要日 / 心动时刻 ==================== */
+function openMemo() {
+  openSub('备忘录', `<div class="memo-body"><textarea class="memo-textarea" id="memo-input" placeholder="写点什么…">${escapeHTML(State.memos || '')}</textarea></div><div class="memo-foot"><button class="upload-btn" id="btn-save-memo" style="border-style:solid"><svg><use href="#i-card"/></svg>保存</button></div>`, () => {
+    const ta = $('#memo-input');
+    ta.oninput = () => { State.memos = ta.value; clearTimeout(memoTimer); memoTimer = setTimeout(() => save.memos(), 500); };
+    $('#btn-save-memo').onclick = () => { State.memos = ta.value; save.memos(); toast('已保存'); };
+  });
+}
+function openWishlist() {
+  openSub('心愿单', `<div class="wish-top"><button class="upload-btn" id="btn-add-wish" style="border-style:solid"><svg><use href="#i-plus"/></svg>添加心愿</button></div><div class="wish-list" id="wish-list"></div>`, () => {
+    renderWishlist();
+    $('#btn-add-wish').onclick = () => {
+      openModal({ title: '添加心愿', bodyHTML: `<input class="field" id="wish-input" placeholder="想和祂一起做的事…">`, actions: [{ label: '保存', keepOpen: true, onClick: () => {
+        const v = $('#wish-input').value.trim(); if (!v) return;
+        State.wishes.push({ id: uid(), text: v, done: false, t: Date.now() });
+        save.wishes(); closeModal(); renderWishlist();
+      }}]});
+      setTimeout(() => $('#wish-input') && $('#wish-input').focus(), 100);
+    };
+  });
+}
+function renderWishlist() {
+  const list = $('#wish-list'); if (!list) return;
+  if (!State.wishes.length) { list.innerHTML = `<div class="empty-tip">还没有心愿。</div>`; return; }
+  const sorted = [...State.wishes].sort((a, b) => (a.done ? 1 : 0) - (b.done ? 1 : 0));
+  list.innerHTML = '';
+  sorted.forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'wish-item' + (w.done ? ' done' : '');
+    el.innerHTML = `<div class="wish-circle"></div><div class="wish-text"></div>`;
+    el.querySelector('.wish-text').textContent = w.text;
+    el.querySelector('.wish-circle').onclick = (e) => { e.stopPropagation(); w.done = !w.done; save.wishes(); renderWishlist(); };
+    bindLongPress(el, () => {
+      openModal({ title: w.text, bodyHTML: '', actions: [{ label: '删除', danger: true, keepOpen: true, onClick: () => { State.wishes = State.wishes.filter(x => x.id !== w.id); save.wishes(); closeModal(); renderWishlist(); } }] });
+    });
+    list.appendChild(el);
+  });
+}
+function openDays() {
+  openSub('重要日', `<div class="day-top"><button class="upload-btn" id="btn-add-day" style="border-style:solid"><svg><use href="#i-plus"/></svg>添加重要日</button></div><div class="day-list" id="day-list"></div>`, () => {
+    renderDays();
+    $('#btn-add-day').onclick = () => openDayEditor(null);
+  });
+}
+function openDayEditor(d) {
+  const editing = d ? { ...d } : { id: uid(), name: '', date: '', repeat: 'none' };
+  const repeatLabel = { none: '不重复', weekly: '每周', monthly: '每月', yearly: '每年' };
+  openModal({
+    title: d ? '编辑重要日' : '添加重要日',
+    bodyHTML: `
+      <input class="field" id="day-name" placeholder="名称" value="${escapeHTML(editing.name)}" style="margin-bottom:10px">
+      <input class="field" id="day-date" type="date" value="${editing.date}" style="margin-bottom:10px">
+      <div class="set-row" id="day-repeat-row" style="cursor:pointer"><span class="label">重复</span><span class="value" id="day-repeat-val">${repeatLabel[editing.repeat]}</span></div>
+    `,
+    actions: [{ label: '保存', keepOpen: true, onClick: () => {
+      const name = $('#day-name').value.trim();
+      const date = $('#day-date').value;
+      if (!name || !date) { openModal({ title:'', bodyHTML:'名称和日期都要填', actions: [] }); setTimeout(closeModal, 1500); return; }
+      editing.name = name; editing.date = date;
+      if (d) { const i = State.days.findIndex(x => x.id === d.id); State.days[i] = editing; }
+      else State.days.push(editing);
+      save.days(); closeModal(); renderDays();
+    }}]
+  });
+  setTimeout(() => {
+    $('#day-repeat-row').onclick = () => {
+      openDropdown($('#day-repeat-row'),
+        Object.keys(repeatLabel).map(k => ({ value: k, label: repeatLabel[k] })),
+        (v) => { editing.repeat = v; $('#day-repeat-val').textContent = repeatLabel[v]; },
+        editing.repeat);
+    };
+  }, 50);
+}
+function renderDays() {
+  const list = $('#day-list'); if (!list) return;
+  if (!State.days.length) { list.innerHTML = `<div class="empty-tip">还没有重要日。</div>`; return; }
+  const sorted = [...State.days].sort((a, b) => nextDate(a).getTime() - nextDate(b).getTime());
+  list.innerHTML = '';
+  sorted.forEach(d => {
+    const nd = nextDate(d);
+    const days = Math.round((nd - startOfDay(new Date())) / 86400000);
+    let countText;
+    if (days === 0) countText = '就是今天';
+    else if (days > 0) countText = '还有 ' + days + ' 天';
+    else countText = '已过 ' + (-days) + ' 天';
+    const repeatLabel = { none: '', weekly: '每周', monthly: '每月', yearly: '每年' }[d.repeat];
+    const el = document.createElement('div');
+    el.className = 'day-item';
+    el.innerHTML = `
+      <div class="day-info">
+        <div class="day-name">${escapeHTML(d.name)}${repeatLabel ? `<span class="day-repeat">${repeatLabel}</span>` : ''}</div>
+        <div class="day-sub">${d.date}</div>
+      </div>
+      <div class="day-count">${countText}</div>
+    `;
+    el.onclick = () => openDayEditorMenu(d);
+    list.appendChild(el);
+  });
+}
+function startOfDay(d) { const x = new Date(d); x.setHours(0,0,0,0); return x; }
+function nextDate(d) {
+  const base = new Date(d.date + 'T00:00:00');
+  const today = startOfDay(new Date());
+  if (d.repeat === 'none') return base;
+  let next = new Date(base);
+  if (d.repeat === 'weekly') { while (next < today) next.setDate(next.getDate() + 7); }
+  else if (d.repeat === 'monthly') { while (next < today) next.setMonth(next.getMonth() + 1); }
+  else if (d.repeat === 'yearly') { while (next < today) next.setFullYear(next.getFullYear() + 1); }
+  return next;
+}
+function openDayEditorMenu(d) {
+  openModal({ title: escapeHTML(d.name), bodyHTML: '', actions: [
+    { label: '删除', danger: true, onClick: () => { State.days = State.days.filter(x => x.id !== d.id); save.days(); renderDays(); } }
+  ]});
+}
+function openHearts() {
+  openSub('心动时刻', `
+    <div class="heart-tabs">
+      <div class="bg-tab ${heartTab==='other'?'active':''}" id="ht-other">🥰 祂的心动时刻</div>
+      <div class="bg-tab ${heartTab==='me'?'active':''}" id="ht-me">🩷 我的心动时刻</div>
+    </div>
+    <div class="list-count-bar" id="heart-count"></div>
+    <div class="heart-list" id="heart-list"></div>
+  `, () => {
+    renderHearts();
+    $('#ht-other').onclick = () => { heartTab = 'other'; openHearts(); };
+    $('#ht-me').onclick = () => { heartTab = 'me'; openHearts(); };
+  });
+}
+function renderHearts() {
+  const list = $('#heart-list'); if (!list) return;
+  const items = State.hearts.filter(h => h.by === heartTab);
+  const countEl = $('#heart-count');
+  if (countEl) countEl.textContent = '共 ' + items.length + ' 条';
+  if (!items.length) { list.innerHTML = `<div class="empty-tip">还没有心动。</div>`; return; }
+  list.innerHTML = '';
+  items.slice().reverse().forEach(h => {
+    const el = document.createElement('div'); el.className = 'heart-item';
+    const mark = h.by === 'me' ? '🩷' : '🥰';
+    const whoText = h.who === 'me' ? '我发的' : '祂发的';
+    let inner = '';
+    if (h.content.type === 'itf') {
+      const boardName = { me: '我对祂', other: '祂对我', together: '共朝夕' }[h.content.board] || '';
+      inner += `<span class="h-mark">🙌🏻</span>`;
+      inner += escapeHTML(h.content.content || '');
+      inner += `<div class="heart-tag-row"><span class="heart-tag-board" data-b="${h.content.board}">${boardName}</span><span class="heart-tag-who">${whoText}</span><span style="font-size:13px">${mark}</span></div>`;
+      inner += `<div class="h-time">${fullDate(new Date(h.t))}</div>`;
+    } else {
+      inner += `<span class="h-mark">${mark}</span>`;
+      if (h.content.type === 'text') inner += escapeHTML(h.content.text);
+      else if (h.content.type === 'img') inner += `<img src="${h.content.src}">`;
+      else if (h.content.type === 'sticker') inner += `<img src="${h.content.src}">`;
+      else if (h.content.type === 'card') inner += `<div class="card-msg"><div class="card-msg-title">${escapeHTML(h.content.title)}</div>${h.content.options.map((o,i)=>`<div class="card-opt"><span class="opt-label">${String.fromCharCode(65+i)}. ${escapeHTML(o)}</span></div>`).join('')}</div>`;
+      else if (h.content.type === 'quiz') inner += `<div class="quiz-card"><div class="quiz-card-title">${escapeHTML(h.content.title)}</div></div>`;
+      inner += `<span class="h-who">${whoText}</span>`;
+      inner += `<div class="h-time">${fullDate(new Date(h.t))}</div>`;
+    }
+    el.innerHTML = inner;
+    el.onclick = () => {
+      openModal({ title: '', bodyHTML: '', actions: [{ label: '取消心动', danger: true, keepOpen: true, onClick: () => {
+        State.hearts = State.hearts.filter(x => x.id !== h.id);
+        save.hearts(); closeModal(); renderHearts(); renderMessages();
+      }}]});
+    };
+    list.appendChild(el);
+  });
+}
+
 /* ==================== 启动 ==================== */
 async function boot() {
   await Store.init();
@@ -6526,7 +6994,6 @@ async function boot() {
   const l = await Store.read('love.json'); if (l != null) State.love = l;
 
   checkInterruptedCompanion();
-  /* ==================== 新增：视频中断补录 ==================== */
   checkInterruptedVideo();
 
   applyTheme(State.settings.theme);
