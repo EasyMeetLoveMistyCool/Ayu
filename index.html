@@ -311,8 +311,10 @@ ul, li { list-style: none; }
 }
 .msg-menu-item:last-child { margin-bottom: 0; }
 .msg-menu-item.danger { color: var(--danger); }
+.msg-menu-item.green { color: #3d8f60; }
 .msg-menu-item svg { width: 20px; height: 20px; color: var(--accent-deep); }
 .msg-menu-item.danger svg { color: var(--danger); }
+.msg-menu-item.green svg { color: #3d8f60; }
 
 .dropdown {
   position: absolute; z-index: 1100;
@@ -359,6 +361,11 @@ ul, li { list-style: none; }
 @keyframes highlight-flash {
   0%, 100% { box-shadow: 0 4px 14px var(--glass-shadow); }
   50% { box-shadow: 0 0 0 3px var(--accent-deep); }
+}
+@keyframes gift-shake {
+  0%,100% { transform: scale(1) rotate(0); }
+  25% { transform: scale(1.06) rotate(-2deg); }
+  75% { transform: scale(1.06) rotate(2deg); }
 }
 
 .lock-wrap {
@@ -478,7 +485,8 @@ ul, li { list-style: none; }
   position: absolute; font-size: 14px; line-height: 1;
 }
 .msg-row.other .heart-mark { top: -6px; right: -6px; }
-.msg-row.me .heart-mark { top: -6px; left: -6px; }
+.msg-row.me .heart-mark { top: -6px; right: -6px; }
+.msg-row.me .msg-col .heart-mark { left: auto; right: -6px; }
 
 .bubble.media { padding: 4px; border-radius: 16px; overflow: hidden; line-height: 0; }
 .bubble.media img { width: 120px; height: auto; max-height: 160px; border-radius: 13px; object-fit: cover; display: block; }
@@ -999,7 +1007,6 @@ ul, li { list-style: none; }
   font-size: 13px; color: var(--accent-deep);
   background: var(--glass-bg); border: 1px dashed var(--accent-deep);
 }
-
 .q-view-num { color: var(--text-soft); margin-right: 4px; font-weight: 600; }
 
 .memo-body { flex: 1; padding: 0 12px 8px; display: flex; flex-direction: column; }
@@ -1058,8 +1065,9 @@ ul, li { list-style: none; }
 .heart-item .h-mark { font-size: 14px; margin-right: 6px; }
 .heart-item .h-who { font-size: 11px; color: var(--text-soft); margin-left: 8px; }
 .heart-item .h-time { font-size: 11px; color: var(--time-text); margin-top: 6px; }
-.heart-item img { max-width: 100%; border-radius: 10px; }
+.heart-item img { max-width: 120px; max-height: 160px; border-radius: 13px; object-fit: cover; }
 
+/* ==================== 改动：心情手帐格子（贴合内容） + 选中高亮 ==================== */
 .mood-cal-head {
   flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
   padding: 8px 16px;
@@ -1071,11 +1079,14 @@ ul, li { list-style: none; }
 }
 .mood-cal-weekday { font-size: 11px; color: var(--text-soft); text-align: center; padding: 4px 0; }
 .mood-cal-cell {
-  min-height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
   font-size: 12px; color: var(--text); border-radius: 8px; position: relative; padding: 3px 0;
+  border: 1px solid transparent;
+  transition: background .15s ease;
 }
 .mood-cal-cell.empty { visibility: hidden; }
 .mood-cal-cell.today { background: var(--accent-soft); }
+.mood-cal-cell.selected { background: var(--accent-soft); border-color: var(--accent-deep); }
 .mood-cal-cell .d { font-size: 12px; line-height: 1; }
 .mood-emojis { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 3px; margin-top: 4px; }
 .mood-emojis .me, .mood-emojis .his { font-size: 13px; line-height: 1.4; border-radius: 6px; padding: 1px 3px; }
@@ -1089,14 +1100,16 @@ ul, li { list-style: none; }
 .mood-his { border-left: 3px solid rgba(150,200,240,0.8); }
 .mood-me { border-left: 3px solid rgba(240,170,195,0.8); }
 .mood-field { margin-top: 8px; }
-.mood-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.mood-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-height: 50vh; overflow-y: auto; }
+.mood-picker::-webkit-scrollbar { width: 0; }
 .mood-pick {
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   padding: 8px 2px; border-radius: 12px;
   background: var(--glass-bg-strong); border: 1.5px solid var(--glass-border);
   font-size: 11px; color: var(--text);
 }
-.mood-pick .e { font-size: 20px; }
+.mood-pick .e { font-size: 20px; line-height: 1.2; }
+.mood-pick .e.txt { font-size: 14px; color: #f06fa0; font-weight: 700; }
 .mood-pick.active { border-color: var(--accent-deep); background: var(--accent-soft); }
 
 .music-top { flex-shrink: 0; padding: 10px 12px; }
@@ -1194,7 +1207,7 @@ ul, li { list-style: none; }
 
 /* ==================== 列表数量条 ==================== */
 .list-count-bar {
-  flex-shrink: 0; padding: 2px 4px 8px;
+  flex-shrink: 0; padding: 2px 12px 8px;
   font-size: 12.5px; color: var(--text-soft); letter-spacing: .3px;
 }
 
@@ -1285,7 +1298,7 @@ ul, li { list-style: none; }
 
 .modal-btn.center-btn { flex: 0 0 auto; min-width: 120px; margin: 0 auto; display: block; }
 
-/* ==================== 新增：互动批量粘贴大输入框 ==================== */
+/* ==================== 互动批量粘贴大输入框 ==================== */
 .itf-big-textarea {
   width: 100%; min-height: 220px;
   padding: 14px; border-radius: 16px;
@@ -1297,7 +1310,7 @@ ul, li { list-style: none; }
 }
 .itf-big-textarea::placeholder { color: var(--text-soft); }
 
-/* ==================== 新增：贴纸网格 ==================== */
+/* ==================== 贴纸网格 ==================== */
 .sticker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .sticker-cell {
   aspect-ratio: 1; border-radius: 12px; overflow: hidden;
@@ -1306,22 +1319,14 @@ ul, li { list-style: none; }
   position: relative;
 }
 .sticker-cell img { width: 100%; height: 100%; object-fit: cover; }
-
-/* 贴纸大预览区（添加时） */
 .sticker-preview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
 .sticker-preview-grid .sticker-cell { aspect-ratio: 1; }
-
-/* ⊕贴纸弹窗：可滚动 */
 .sticker-pick-scroll { max-height: 50vh; overflow-y: auto; }
 .sticker-pick-scroll::-webkit-scrollbar { width: 0; }
-
-/* 贴纸气泡里（跟图片一样的尺寸） */
 .bubble.sticker { padding: 4px; border-radius: 16px; overflow: hidden; line-height: 0; }
 .bubble.sticker img { width: 120px; height: auto; max-height: 160px; border-radius: 13px; object-fit: cover; display: block; }
 
-/* ==================== 新增：气泡皮肤（4 套 + 默认） ==================== */
-/* 只有纯文字气泡才加 .message-sent / .message-received */
-/* 1. 邪恶猫猫 */
+/* ==================== 气泡皮肤 ==================== */
 [data-bubble="evil-cat"] .message-sent {
   background: rgba(255,255,255,0.75) !important;
   border-radius: 18px 18px 4px 18px !important;
@@ -1396,8 +1401,6 @@ ul, li { list-style: none; }
   transform: scaleX(-1) !important;
   z-index: 9999 !important; pointer-events: none !important;
 }
-
-/* 2. 黑色猫猫 */
 [data-bubble="black-cat"] .message-sent {
   background: rgba(255,255,255,1) !important;
   border-radius: 20px 20px 20px 20px !important;
@@ -1454,8 +1457,6 @@ ul, li { list-style: none; }
   background-size: contain !important; background-repeat: no-repeat !important; background-position: center !important;
   z-index: 999 !important; pointer-events: none !important;
 }
-
-/* 3. 冷脸萌热脸萌 */
 [data-bubble="cold-hot"] .message-sent,
 [data-bubble="cold-hot"] .message-received {
   border: none !important;
@@ -1504,8 +1505,6 @@ ul, li { list-style: none; }
 [data-bubble="cold-hot"] .message-received::before {
   display: none !important;
 }
-
-/* 4. 白月光 */
 [data-bubble="moonlight"] .message-sent {
   background: rgba(255,255,255,0.75) !important;
   border-radius: 18px 18px 4px 18px !important;
@@ -1542,6 +1541,135 @@ ul, li { list-style: none; }
   -webkit-backdrop-filter: blur(17px) !important;
   overflow: visible !important;
 }
+
+/* ==================== 礼物卡片 ==================== */
+.gift-card {
+  position: relative;
+  border-radius: 16px;
+  padding: 16px 14px 14px;
+  min-width: 200px; max-width: 100%;
+  animation: bubble-in .22s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+.gift-card .gift-c1, .gift-card .gift-c2, .gift-card .gift-c3, .gift-card .gift-c4 {
+  position: absolute; font-size: 13px; line-height: 1; pointer-events: none;
+}
+.gift-card .gift-c1 { top: 4px; left: 6px; }
+.gift-card .gift-c2 { top: 4px; right: 6px; }
+.gift-card .gift-c3 { bottom: 4px; left: 6px; }
+.gift-card .gift-c4 { bottom: 4px; right: 6px; }
+.gift-card.gift-closed {
+  background: linear-gradient(#fff8e8, #fff8e8) padding-box,
+              linear-gradient(135deg, #ffe6a8, #f0c060) border-box;
+  cursor: pointer;
+  animation: gift-shake 1.6s ease-in-out infinite;
+}
+.gift-card.gift-closed .gift-box {
+  text-align: center;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.gift-card.gift-closed .gift-hint {
+  text-align: center;
+  font-size: 12.5px;
+  color: #b08030;
+  margin-top: 6px;
+}
+.gift-card.gift-opened {
+  background: linear-gradient(#fde8ef, #fde8ef) padding-box,
+              linear-gradient(135deg, #fbc4d6, #f094b4) border-box;
+}
+.gift-card.gift-opened .gift-body { display: flex; gap: 10px; }
+.gift-card.gift-opened .gift-img {
+  width: 80px; height: 80px; border-radius: 12px; object-fit: cover; flex-shrink: 0;
+}
+.gift-card.gift-opened .gift-info { flex: 1; min-width: 0; }
+.gift-card.gift-opened .gift-name { font-size: 15px; font-weight: 600; color: #c85a7e; }
+.gift-card.gift-opened .gift-desc { font-size: 12.5px; color: #d98ba5; margin-top: 4px; word-break: break-word; }
+.gift-card.gift-opened .gift-price { font-size: 13px; color: #e8536f; margin-top: 6px; font-weight: 600; }
+
+/* ==================== 盲盒卡片 ==================== */
+.box-card {
+  position: relative;
+  border-radius: 16px;
+  padding: 16px 14px 14px;
+  min-width: 200px; max-width: 100%;
+  animation: bubble-in .22s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+.box-card .box-c1, .box-card .box-c2, .box-card .box-c3, .box-card .box-c4 {
+  position: absolute; font-size: 13px; line-height: 1; pointer-events: none;
+}
+.box-card .box-c1 { top: 4px; left: 6px; }
+.box-card .box-c2 { top: 4px; right: 6px; }
+.box-card .box-c3 { bottom: 4px; left: 6px; }
+.box-card .box-c4 { bottom: 4px; right: 6px; }
+.box-card.box-closed {
+  background: linear-gradient(#f0e8fa, #f0e8fa) padding-box,
+              linear-gradient(135deg, #dcc8f0, #b090d8) border-box;
+  cursor: pointer;
+  animation: gift-shake 1.6s ease-in-out infinite;
+}
+.box-card.box-closed .box-q {
+  text-align: center;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.box-card.box-closed .box-hint {
+  text-align: center;
+  font-size: 12.5px;
+  color: #8f70c0;
+  margin-top: 6px;
+}
+.box-card.box-opened {
+  background: linear-gradient(#f0e8fa, #f0e8fa) padding-box,
+              linear-gradient(135deg, #dcc8f0, #b090d8) border-box;
+}
+.box-card.box-opened .box-body { display: flex; gap: 10px; }
+.box-card.box-opened .box-img {
+  width: 80px; height: 80px; border-radius: 12px; object-fit: cover; flex-shrink: 0;
+}
+.box-card.box-opened .box-info { flex: 1; min-width: 0; }
+.box-card.box-opened .box-name { font-size: 15px; font-weight: 600; color: #8f70c0; }
+.box-card.box-opened .box-desc { font-size: 12.5px; color: #ab90d4; margin-top: 4px; word-break: break-word; }
+.box-card.box-opened .box-price { font-size: 13px; color: #e8536f; margin-top: 6px; font-weight: 600; }
+
+/* 盲盒档位选择 */
+.box-tier {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 16px 10px; border-radius: 14px;
+  background: var(--glass-bg-strong); border: 1.5px solid var(--glass-border);
+  margin-bottom: 10px;
+}
+.box-tier:active { transform: scale(.97); }
+.box-tier .bt-name { font-size: 15px; color: var(--text); font-weight: 600; }
+.box-tier .bt-price { font-size: 13px; color: #e8536f; }
+
+/* 礼物添加图片预览 */
+.gift-preview {
+  width: 80px; height: 80px; border-radius: 12px; object-fit: cover;
+  border: 1.5px solid var(--glass-border); background: var(--glass-bg);
+  display: block; margin: 0 auto 10px;
+}
+.gift-preview-empty {
+  width: 80px; height: 80px; border-radius: 12px;
+  border: 1.5px dashed var(--accent-deep); background: var(--glass-bg);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 10px; color: var(--text-soft); font-size: 24px;
+}
+
+/* 礼物/盲盒记录 tab */
+.record-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 12px 8px; }
+.record-tab {
+  flex: 1; padding: 10px; border-radius: 12px;
+  font-size: 13.5px; text-align: center; color: var(--text);
+  background: var(--glass-bg); border: 1.5px solid var(--glass-border);
+}
+.record-tab.active { background: var(--accent); border-color: var(--accent-deep); }
 </style>
 </head>
 <body data-theme="rose-glass" data-bubble="default">
@@ -2007,10 +2135,20 @@ const LOCK_PASSWORDS = [
 const DING_PRESETS = ['可以的','去吧','别去了','我支持你','跟着心走','再想想','等等看','随你'];
 const ASK_PRESETS = ['是的','不是','应该是吧','我觉得是','我也在想','你说呢','让我想想','我也说不准','再说吧','看情况'];
 
+/* ==================== 改动：心情 45 个 ==================== */
 const MOODS = [
   { e: '😆', t: '开心' }, { e: '🤩', t: '兴奋' }, { e: '☺️', t: '平淡' }, { e: '😕', t: '难过' },
   { e: '😞', t: '疲惫' }, { e: '😠', t: '生气' }, { e: '🥰', t: '想你' }, { e: '😵‍💫', t: '忙碌' },
-  { e: '😴', t: '困困' }, { e: '🥹', t: '孤单' }, { e: '😎', t: '潇洒' }, { e: '🥺', t: '撒娇' }
+  { e: '😴', t: '困困' }, { e: '🥹', t: '孤单' }, { e: '😎', t: '潇洒' }, { e: '🥺', t: '撒娇' },
+  { e: '☀️', t: '元气满满' }, { e: '🫰', t: '比心' }, { e: '😭', t: '流泪' }, { e: '👍', t: '赞' },
+  { e: '🌹', t: '玫瑰' }, { e: '❤️', t: '爱心' }, { e: '🫶', t: '比心' }, { e: '😄', t: '憨笑' },
+  { e: '🌚', t: '黑脸' }, { e: '🙏', t: '双手合十' }, { e: '👏', t: '鼓掌' }, { e: '😂', t: '笑哭' },
+  { e: '666', t: '666', txt: true }, { e: '🐶', t: '狗头' }, { e: '🫂', t: '抱抱你' }, { e: '🤦‍♂️', t: '捂脸' },
+  { e: '😀', t: '微笑' }, { e: '😳', t: '懵' }, { e: '😅', t: '尬笑' }, { e: '😍', t: '舔屏' },
+  { e: '😓', t: '无语凝视' }, { e: '🤧', t: '泪奔' }, { e: '🤭', t: '偷笑' }, { e: '🤥', t: '抠鼻' },
+  { e: '😜', t: '调皮' }, { e: '☕️', t: '咖啡' }, { e: '👉👈', t: '戳手手' }, { e: '🤜🤛', t: '抱拳' },
+  { e: '🧧', t: '福' }, { e: '🤯', t: 'OMG' }, { e: '🛌', t: '躺平' }, { e: '🤑', t: '爱钱' },
+  { e: '🍎', t: '苹果' }
 ];
 
 const HIS_LINES = {
@@ -2063,6 +2201,17 @@ const ITF_ADD_PLACEHOLDER = {
   together: '一行一条，写下你们想一起做的事…'
 };
 
+/* ==================== 新增：礼物/盲盒四角 ==================== */
+const GIFT_CORNERS_CLOSED = ['🎀', '💋', '🩷', '🌹'];
+const GIFT_CORNERS_OPENED = ['🌸', '🍎', '🌷', '💕'];
+const BOX_CORNERS_CLOSED = ['🥳', '🍬', '💜', '🍏'];
+const BOX_CORNERS_OPENED = ['💖', '🌺', '🥰', '🎈'];
+const BOX_TIERS = [
+  { key: 'small', name: '小盲盒', price: 9 },
+  { key: 'medium', name: '中盲盒', price: 99 },
+  { key: 'large', name: '大盲盒', price: 999 }
+];
+
 const COMPANION_REFUSE_LINES = [
   '祂说好，等你。',
   '祂说，那下次吧。',
@@ -2114,7 +2263,7 @@ const EMOJI_LIB = {
   '天气': ['🌞','🌖','🌗','🌘','🌑','🌒','🌓','🌔','⚡️','💥','🔥','🌪','🌈','☀️','🌤','⛅️','🌥','☁️','🌦','🌧','⛈','🌩','🌨','❄️','☃️','⛄️','💧','💦','🫧','☔️','☂️','🌊','🌫']
 };
 
-const VERSION = '1.0.1.4';
+const VERSION = '1.0.1.5';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
 const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
@@ -2152,10 +2301,12 @@ const State = {
     itfActiveProb: 3,
     emojiEnabled: false, emojiProb: 6,
     companionAcceptProb: 80,
-    /* ==================== 新增（1.0.1.4） ==================== */
     showEveryAvatar: false,
     bubbleSkin: 'default',
-    stickerEnabled: false, stickerProb: 7
+    stickerEnabled: false, stickerProb: 7,
+    /* ==================== 新增（1.0.1.5） ==================== */
+    giftEnabled: false, giftProb: 1,
+    boxEnabled: false, boxProb: 1
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
@@ -2170,8 +2321,11 @@ const State = {
   interactions: { me: [], other: [], together: [] },
   itfStats: {},
   stickers: [],
-  /* ==================== 新增：问卷答卷 ==================== */
   quizResults: [],
+  /* ==================== 新增：礼物 + 盲盒 ==================== */
+  gifts: [],
+  giftRecords: [],
+  boxRecords: [],
   love: 0
 };
 
@@ -2190,12 +2344,38 @@ const Store = {
       return raw ? JSON.parse(raw) : null;
     } catch (e) { return null; }
   },
+  /* ==================== 改动：写入用临时文件保护 ==================== */
   async write(name, data) {
     const txt = JSON.stringify(data);
     try {
       if (this.root) {
-        const fh = await this._fh(name, true);
-        const w = await fh.createWritable(); await w.write(txt); await w.close(); return;
+        const tmpName = name + '.tmp';
+        try {
+          const fh = await this._fh(tmpName, true);
+          const w = await fh.createWritable();
+          await w.write(txt);
+          await w.close();
+        } catch (e) {
+          /* 写临时文件失败，原文件不动 */
+          try { localStorage.setItem('ay_' + name, txt); } catch (e2) {}
+          return;
+        }
+        /* 临时文件写成功 → 用它的内容写正式文件 */
+        let tmpTxt = null;
+        try {
+          const tfh = await this._fh(tmpName, false);
+          if (tfh) { const tf = await tfh.getFile(); tmpTxt = await tf.text(); }
+        } catch (e) {}
+        try {
+          const fh2 = await this._fh(name, true);
+          const w2 = await fh2.createWritable();
+          await w2.write(tmpTxt != null ? tmpTxt : txt);
+          await w2.close();
+        } catch (e) {
+          try { localStorage.setItem('ay_' + name, txt); } catch (e2) {}
+        }
+        try { await this.root.removeEntry(tmpName); } catch (e) {}
+        return;
       }
       localStorage.setItem('ay_' + name, txt);
     } catch (e) { try { localStorage.setItem('ay_' + name, txt); } catch (e2) {} }
@@ -2226,9 +2406,12 @@ const save = {
   interactions: () => Store.write('interactions.json', State.interactions),
   itfStats: () => Store.write('itf_stats.json', State.itfStats),
   love:     () => Store.write('love.json', State.love),
-  /* ==================== 新增（1.0.1.4） ==================== */
   stickers: () => Store.write('stickers.json', State.stickers),
-  quizResults: () => Store.write('quiz_results.json', State.quizResults)
+  quizResults: () => Store.write('quiz_results.json', State.quizResults),
+  /* ==================== 新增：礼物 + 盲盒记录 ==================== */
+  gifts: () => Store.write('gifts.json', State.gifts),
+  giftRecords: () => Store.write('gift_records.json', State.giftRecords),
+  boxRecords: () => Store.write('box_records.json', State.boxRecords)
 };
 
 function defaultAvatar(color) {
@@ -2237,7 +2420,6 @@ function defaultAvatar(color) {
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
 function applyTheme(name) { document.body.dataset.theme = name; State.settings.theme = name; save.settings(); }
-/* ==================== 新增：气泡皮肤 ==================== */
 function applyBubbleSkin(name) { document.body.dataset.bubble = name || 'default'; State.settings.bubbleSkin = name || 'default'; save.settings(); }
 
 let pageStack = [];
@@ -2608,7 +2790,6 @@ function sendMyImage(dataUrl, noReply) {
   save.messages(); addLove(1); renderMessages(); scrollBottom();
   if (!multiSendMode && !noReply) triggerReply();
 }
-/* ==================== 新增：发送贴纸 ==================== */
 function sendMySticker(dataUrl, noReply) {
   const msg = { id: uid(), who: 'me', type: 'sticker', src: dataUrl, t: nowHM(), ts: Date.now(), read: false };
   State.messages.push(msg);
@@ -2647,7 +2828,6 @@ function renderMessages() {
   const start = Math.max(0, total - renderedCount);
   const slice = State.messages.slice(start);
   slice.forEach((m, i) => {
-    /* 判断"上一条是不是同一个人"（用于头像开关） */
     let prevSame = false;
     if (i > 0) prevSame = (slice[i - 1].who === m.who);
     else {
@@ -2671,7 +2851,6 @@ function renderMessages() {
     body.appendChild(row);
   });
 }
-/* ==================== 改动：头像开关 + 贴纸气泡 ==================== */
 function buildMsgRow(m, prevSame) {
   const row = document.createElement('div');
   row.className = 'msg-row ' + (m.who === 'me' ? 'me' : 'other');
@@ -2679,7 +2858,6 @@ function buildMsgRow(m, prevSame) {
   const av = document.createElement('img');
   av.className = 'msg-avatar';
   av.src = m.who === 'me' ? (State.settings.avatars.me || defaultAvatar('pink')) : (State.settings.avatars.other || defaultAvatar('blue'));
-  /* 头像开关：关 → 连续同人只首条显示（其余留空） */
   if (!State.settings.showEveryAvatar && prevSame) av.classList.add('avatar-hidden');
   const col = document.createElement('div'); col.className = 'msg-col';
 
@@ -2697,9 +2875,10 @@ function buildMsgRow(m, prevSame) {
   else if (m.type === 'companion') col.appendChild(buildCompanionCard(m));
   else if (m.type === 'itf') col.appendChild(buildItfBubble(m));
   else if (m.type === 'sticker') col.appendChild(buildStickerBubble(m));
+  else if (m.type === 'gift') col.appendChild(buildGiftCard(m));
+  else if (m.type === 'box') col.appendChild(buildBoxCard(m));
   else {
     const b = document.createElement('div'); b.className = 'bubble';
-    /* 纯文字气泡：加 message-sent / message-received（供气泡皮肤用） */
     if (m.type === 'img') { b.classList.add('media'); const im = document.createElement('img'); im.src = m.src; b.appendChild(im); }
     else {
       b.classList.add(m.who === 'me' ? 'message-sent' : 'message-received');
@@ -2716,7 +2895,6 @@ function buildMsgRow(m, prevSame) {
   else { row.appendChild(av); row.appendChild(col); }
   return row;
 }
-/* ==================== 新增：贴纸气泡（套气泡，尺寸跟图片一样） ==================== */
 function buildStickerBubble(m) {
   const b = document.createElement('div');
   b.className = 'bubble sticker';
@@ -2748,6 +2926,87 @@ function buildItfBubble(m) {
   const hm = heartMarkOf(m.id);
   if (hm) { const s = document.createElement('span'); s.className = 'heart-mark'; s.textContent = hm; b.appendChild(s); }
   return b;
+}
+
+/* ==================== 新增：礼物卡片 ==================== */
+function buildGiftCard(m) {
+  const card = document.createElement('div');
+  card.className = 'gift-card ' + (m.opened ? 'gift-opened' : 'gift-closed');
+  const corners = m.opened ? GIFT_CORNERS_OPENED : GIFT_CORNERS_CLOSED;
+  card.innerHTML = `<span class="gift-c1">${corners[0]}</span><span class="gift-c2">${corners[1]}</span><span class="gift-c3">${corners[2]}</span><span class="gift-c4">${corners[3]}</span>`;
+  if (!m.opened) {
+    const box = document.createElement('div'); box.className = 'gift-box'; box.textContent = '🎁';
+    const hint = document.createElement('div'); hint.className = 'gift-hint';
+    hint.textContent = m.who === 'me' ? '等待祂拆开…' : '点我拆开';
+    card.appendChild(box); card.appendChild(hint);
+    if (m.who !== 'me') {
+      card.onclick = () => openGiftCard(m);
+    }
+  } else {
+    const body = document.createElement('div'); body.className = 'gift-body';
+    const img = document.createElement('img'); img.className = 'gift-img'; img.src = m.giftImg;
+    const info = document.createElement('div'); info.className = 'gift-info';
+    info.innerHTML = `<div class="gift-name"></div><div class="gift-desc"></div><div class="gift-price"></div>`;
+    info.querySelector('.gift-name').textContent = m.giftName || '';
+    info.querySelector('.gift-desc').textContent = m.giftDesc || '';
+    info.querySelector('.gift-price').textContent = '♡ ' + (m.giftPrice || 0);
+    body.appendChild(img); body.appendChild(info);
+    card.appendChild(body);
+    const hm = heartMarkOf(m.id);
+    if (hm) { const s = document.createElement('span'); s.className = 'heart-mark'; s.textContent = hm; card.appendChild(s); }
+  }
+  return card;
+}
+/* 我拆开祂送的礼物 */
+function openGiftCard(m) {
+  if (m.opened) return;
+  m.opened = true;
+  m.openedAt = Date.now();
+  save.messages();
+  /* 进记录 */
+  State.giftRecords.push({ id: uid(), giftId: m.giftId, giftImg: m.giftImg, giftName: m.giftName, giftDesc: m.giftDesc, giftPrice: m.giftPrice, from: m.who === 'me' ? 'me' : 'other', t: Date.now() });
+  save.giftRecords();
+  renderMessages(); scrollBottom();
+}
+
+/* ==================== 新增：盲盒卡片 ==================== */
+function buildBoxCard(m) {
+  const card = document.createElement('div');
+  card.className = 'box-card ' + (m.opened ? 'box-opened' : 'box-closed');
+  const corners = m.opened ? BOX_CORNERS_OPENED : BOX_CORNERS_CLOSED;
+  card.innerHTML = `<span class="box-c1">${corners[0]}</span><span class="box-c2">${corners[1]}</span><span class="box-c3">${corners[2]}</span><span class="box-c4">${corners[3]}</span>`;
+  if (!m.opened) {
+    const q = document.createElement('div'); q.className = 'box-q'; q.textContent = '❓';
+    const hint = document.createElement('div'); hint.className = 'box-hint';
+    hint.textContent = m.who === 'me' ? '等待祂拆开…' : '点我拆开';
+    card.appendChild(q); card.appendChild(hint);
+    if (m.who !== 'me') {
+      card.onclick = () => openBoxCard(m);
+    }
+  } else {
+    const body = document.createElement('div'); body.className = 'box-body';
+    const img = document.createElement('img'); img.className = 'box-img'; img.src = m.giftImg;
+    const info = document.createElement('div'); info.className = 'box-info';
+    info.innerHTML = `<div class="box-name"></div><div class="box-desc"></div><div class="box-price"></div>`;
+    info.querySelector('.box-name').textContent = m.giftName || '';
+    info.querySelector('.box-desc').textContent = m.giftDesc || '';
+    info.querySelector('.box-price').textContent = '♡ ' + (m.giftPrice || 0);
+    body.appendChild(img); body.appendChild(info);
+    card.appendChild(body);
+    const hm = heartMarkOf(m.id);
+    if (hm) { const s = document.createElement('span'); s.className = 'heart-mark'; s.textContent = hm; card.appendChild(s); }
+  }
+  return card;
+}
+/* 我拆开祂送的盲盒 */
+function openBoxCard(m) {
+  if (m.opened) return;
+  m.opened = true;
+  m.openedAt = Date.now();
+  save.messages();
+  State.boxRecords.push({ id: uid(), tier: m.tier, giftImg: m.giftImg, giftName: m.giftName, giftDesc: m.giftDesc, giftPrice: m.giftPrice, from: m.who === 'me' ? 'me' : 'other', t: Date.now() });
+  save.boxRecords();
+  renderMessages(); scrollBottom();
 }
 
 function buildCard(m) {
@@ -2937,7 +3196,7 @@ function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop
 function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = State.love; }
 
 function openMsgMenu(m) {
-  const isCard = (m.type === 'card' || m.type === 'quiz' || m.type === 'song' || m.type === 'companion');
+  const isCard = (m.type === 'card' || m.type === 'quiz' || m.type === 'song' || m.type === 'companion' || m.type === 'gift' || m.type === 'box');
   let html = '';
   if (!isCard) {
     html += `<div class="msg-menu-item" id="mm-quote"><svg><use href="#i-quote"/></svg>引用</div>`;
@@ -2984,13 +3243,15 @@ function extractContent(m) {
   if (m.type === 'quiz') return { type: 'quiz', title: m.title, questions: m.questions, otherPicks: m.otherPicks };
   if (m.type === 'song') return { type: 'text', text: '🎵 ' + (m.songName || '') + ' ' + (m.artist || '') };
   if (m.type === 'companion') return { type: 'text', text: '🤝 ' + (m.text || '') };
+  if (m.type === 'gift') return { type: 'text', text: '🎁 ' + (m.giftName || '') };
+  if (m.type === 'box') return { type: 'text', text: '❓ 盲盒' };
   return { type: 'text', text: m.text };
 }
 function jumpToMsg(mid) {
   const row = $(`.msg-row[data-mid="${mid}"]`);
   if (!row) return;
   row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  const bubble = row.querySelector('.bubble, .card-msg, .quiz-card, .song-card, .invite-card, .itf-bubble');
+  const bubble = row.querySelector('.bubble, .card-msg, .quiz-card, .song-card, .invite-card, .itf-bubble, .gift-card, .box-card');
   if (bubble) { bubble.style.animation = 'highlight-flash 1s ease'; setTimeout(() => bubble.style.animation = '', 1100); }
 }
 
@@ -3026,7 +3287,6 @@ function getThinkTime() {
   switch (s.thinkTime) { case 'fast': return 5; case 'slow': return 15; default: return 8; }
 }
 
-/* ==================== doReply（表情 + 主动互动 + 贴纸 + 没字卡 toast） ==================== */
 function doReply() {
   const usable = State.cards.filter(c => !c.locked);
   if (State.cards.length === 0) { toast('还没有字卡，祂暂时说不了话'); return; }
@@ -3037,6 +3297,8 @@ function doReply() {
   const compInvite = maybeOtherCompanionInvite();
   const activeItf = maybeActiveInteraction();
   const stickerMsg = maybeOtherSticker();
+  const giftMsg = maybeOtherGift();
+  const boxMsg = maybeOtherBox();
   const n = 1 + Math.floor(Math.random() * 3);
   const picked = [];
   for (let i = 0; i < n; i++) picked.push(usable[Math.floor(Math.random() * usable.length)].text);
@@ -3058,6 +3320,8 @@ function doReply() {
   if (compInvite) setTimeout(() => pushOtherCompanionInvite(compInvite), 2500);
   if (activeItf) setTimeout(() => pushOtherInteraction(activeItf.content, activeItf.board), 2000);
   if (stickerMsg) setTimeout(() => pushOtherSticker(stickerMsg), 3000);
+  if (giftMsg) setTimeout(() => pushOtherGift(giftMsg), 3500);
+  if (boxMsg) setTimeout(() => pushOtherBox(boxMsg), 4000);
 }
 function hasAnyInteraction() {
   return (State.interactions.me.length + State.interactions.other.length + State.interactions.together.length) > 0;
@@ -3080,13 +3344,33 @@ function maybeActiveInteraction() {
   const item = pool[Math.floor(Math.random() * pool.length)];
   return { content: item.content, board: b };
 }
-/* ==================== 新增：祂发贴纸 ==================== */
 function maybeOtherSticker() {
   const s = State.settings;
   if (!s.stickerEnabled) return null;
   if (Math.random() * 100 >= (s.stickerProb || 0)) return null;
   if (!State.stickers.length) return null;
   return State.stickers[Math.floor(Math.random() * State.stickers.length)];
+}
+/* ==================== 新增：祂送礼物 ==================== */
+function maybeOtherGift() {
+  const s = State.settings;
+  if (!s.giftEnabled) return null;
+  if (Math.random() * 100 >= (s.giftProb || 0)) return null;
+  /* 从「当前爱意 >= 门槛」的礼物里抽 */
+  const available = State.gifts.filter(g => State.love >= (g.threshold || 0));
+  if (!available.length) return null;
+  return available[Math.floor(Math.random() * available.length)];
+}
+/* ==================== 新增：祂送盲盒 ==================== */
+function maybeOtherBox() {
+  const s = State.settings;
+  if (!s.boxEnabled) return null;
+  if (Math.random() * 100 >= (s.boxProb || 0)) return null;
+  /* 从全部礼物里抽（盲盒是随机礼物） */
+  if (!State.gifts.length) return null;
+  const tier = BOX_TIERS[Math.floor(Math.random() * BOX_TIERS.length)];
+  if (State.love < tier.price) return null;
+  return { tier: tier.key, price: tier.price };
 }
 function maybeOtherQuote() {
   const s = State.settings;
@@ -3153,11 +3437,35 @@ function pushOtherInteraction(content, board) {
   State.messages.push(msg);
   save.messages(); addLove(2); renderMessages(); scrollBottom();
 }
-/* ==================== 新增：祂发贴纸 ==================== */
 function pushOtherSticker(sticker) {
   const msg = { id: uid(), who: 'other', type: 'sticker', src: sticker.src, t: nowHM(), ts: Date.now() };
   State.messages.push(msg);
   save.messages(); addLove(1); renderMessages(); scrollBottom();
+}
+/* ==================== 新增：祂送礼物/盲盒 ==================== */
+function pushOtherGift(gift) {
+  const msg = {
+    id: uid(), who: 'other', type: 'gift', giftId: gift.id,
+    giftImg: gift.img, giftName: gift.name, giftDesc: gift.desc, giftPrice: gift.price,
+    opened: false, t: nowHM(), ts: Date.now()
+  };
+  State.messages.push(msg);
+  save.messages(); renderMessages(); scrollBottom();
+}
+function pushOtherBox(box) {
+  /* 从全部礼物里抽一个 */
+  const pick = State.gifts[Math.floor(Math.random() * State.gifts.length)];
+  if (!pick) return;
+  State.love = Math.max(0, State.love - box.price);
+  save.love();
+  const msg = {
+    id: uid(), who: 'other', type: 'box', tier: box.tier,
+    giftImg: pick.img, giftName: pick.name, giftDesc: pick.desc, giftPrice: pick.price,
+    opened: false, t: nowHM(), ts: Date.now()
+  };
+  State.messages.push(msg);
+  save.messages(); renderMessages(); scrollBottom();
+  const el = $('#hdr-love'); if (el) el.textContent = State.love;
 }
 function maybeNotify(text) {
   if (!State.settings.notify) return;
@@ -3226,12 +3534,8 @@ function runArchive(dayStr) {
   setTimeout(step, 200);
 }
 
-/* ==================== 新增：子页面内容栈 ==================== */
+/* ==================== 子页面内容栈 ==================== */
 let subStack = [];
-function resetSubStackIfNeeded() {
-  const subPage = $('#page-sub');
-  if (!subPage.classList.contains('active')) subStack = [];
-}
 
 /* ==================== 悬浮球 ==================== */
 function applyFloatBall() {
@@ -3406,8 +3710,10 @@ function handlePlusItem(name) {
   if (name === '陪伴') { return openCompanionModal(); }
   if (name === '快捷归档') { return enterArchiveMode(); }
   if (name === '互动') { return openInteractionPicker(); }
-  /* ==================== 新增：贴纸发送 ==================== */
   if (name === '贴纸') { return openStickerPicker(); }
+  /* ==================== 新增：礼物 + 盲盒 ==================== */
+  if (name === '礼物') { return openGiftPicker(); }
+  if (name === '盲盒') { return openBoxPicker(); }
   if (name === '拍照' || name === '相册') {
     const inp = document.createElement('input');
     inp.type = 'file'; inp.accept = 'image/*';
@@ -3449,11 +3755,11 @@ function handleBigItem(name) {
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* ==================== 小世界（竖排 + 贴纸入口） ==================== */
+/* ==================== 小世界 ==================== */
 function openWorld() {
   const items = [
-    ['字卡','i-card'], ['互动','i-interact'], ['贴纸','i-sticker'], ['头像','i-avatar'], ['背景','i-bg'],
-    ['礼物','i-gift'],
+    ['字卡','i-card'], ['互动','i-interact'], ['贴纸','i-sticker'], ['礼物','i-gift'],
+    ['头像','i-avatar'], ['背景','i-bg'],
     ['问卷','i-survey'], ['音乐','i-music']
   ];
   const html = items.map((it, i) =>
@@ -3466,6 +3772,7 @@ function openWorld() {
         if (name === '字卡') return openCardManager();
         if (name === '互动') return openInteractionManager();
         if (name === '贴纸') return openStickerManager();
+        if (name === '礼物') return openGiftManager();
         if (name === '头像') return openAvatarManager();
         if (name === '背景') return openBgManager();
         if (name === '问卷') return openQuizManager();
@@ -3476,7 +3783,7 @@ function openWorld() {
   });
 }
 
-/* ==================== 改动：openSub（加 subStack） ==================== */
+/* ==================== 改动：openSub 用 subStack ==================== */
 function openSub(title, bodyHTML, afterRender) {
   const subPage = $('#page-sub');
   if (subPage.classList.contains('active')) {
@@ -3728,6 +4035,7 @@ let moodSelectedDate = todayKey();
 function openMoodBook() {
   const now = new Date();
   if (moodYear == null) { moodYear = now.getFullYear(); moodMonth = now.getMonth(); }
+  moodSelectedDate = todayKey();
   openSub('心情手帐', `
     <div class="mood-cal-head"><span class="mood-cal-title" id="mood-cal-title"></span></div>
     <div class="mood-cal-grid" id="mood-cal-grid"></div>
@@ -3748,7 +4056,7 @@ function openMoodBook() {
     });
   });
 }
-/* ==================== 改动：日历格子（天数独立 + 祂我左右并排） ==================== */
+/* ==================== 改动：日历格子（选中高亮 + 长按菜单） ==================== */
 function renderMoodCalendar() {
   $('#mood-cal-title').textContent = `${moodYear}年${moodMonth + 1}月`;
   const grid = $('#mood-cal-grid');
@@ -3764,7 +4072,9 @@ function renderMoodCalendar() {
     const key = `${moodYear}-${pad(moodMonth+1)}-${pad(d)}`;
     const el = document.createElement('div');
     el.className = 'mood-cal-cell';
-    if (moodYear === today.getFullYear() && moodMonth === today.getMonth() && d === today.getDate()) el.classList.add('today');
+    const isToday = (moodYear === today.getFullYear() && moodMonth === today.getMonth() && d === today.getDate());
+    if (isToday) el.classList.add('today');
+    if (key === moodSelectedDate && !isToday) el.classList.add('selected');
     let inner = `<span class="d">${d}</span>`;
     const rec = State.moods[key];
     if (rec) {
@@ -3775,9 +4085,82 @@ function renderMoodCalendar() {
       inner += emo;
     }
     el.innerHTML = inner;
-    el.onclick = () => { moodSelectedDate = key; renderMoodBody(); };
+    el.onclick = () => { moodSelectedDate = key; renderMoodCalendar(); renderMoodBody(); };
+    bindLongPress(el, () => openMoodCellMenu(key));
     grid.appendChild(el);
   }
+}
+/* ==================== 新增：长按日历格子菜单 ==================== */
+function openMoodCellMenu(key) {
+  const rec = State.moods[key];
+  const hasMe = rec && rec.me && rec.me.mood != null;
+  let html = '';
+  if (hasMe) {
+    html += `<div class="msg-menu-item" id="mc-edit"><svg><use href="#i-card"/></svg>编辑手帐</div>`;
+    html += `<div class="msg-menu-item danger" id="mc-del"><svg><use href="#i-trash"/></svg>删除手帐</div>`;
+  } else {
+    html += `<div class="msg-menu-item green" id="mc-add"><svg><use href="#i-plus"/></svg>填写手帐</div>`;
+  }
+  openModal({ title: dayLabel(key), bodyHTML: html, actions: [] });
+  if (hasMe) {
+    $('#mc-edit').onclick = () => { closeModal(); openMoodEditor(key); };
+    $('#mc-del').onclick = () => {
+      closeModal();
+      if (State.moods[key]) { delete State.moods[key].me; }
+      save.moods(); renderMoodCalendar(); renderMoodBody(); toast('已删除');
+    };
+  } else {
+    $('#mc-add').onclick = () => { closeModal(); openMoodEditor(key); };
+  }
+}
+/* ==================== 新增：填写/编辑手帐弹窗 ==================== */
+function openMoodEditor(key) {
+  const rec = State.moods[key] || {};
+  const me = rec.me || {};
+  const curMood = (me.mood != null) ? me.mood : null;
+  const moodHTML = `<div class="mood-picker" id="mood-editor-picker">` + MOODS.map((m, i) =>
+    `<div class="mood-pick ${curMood===i?'active':''}" data-m="${i}"><span class="e ${m.txt?'txt':''}">${m.e}</span>${escapeHTML(m.t)}</div>`
+  ).join('') + `</div>`;
+  openModal({
+    title: '填写手帐（' + dayLabel(key) + '）',
+    bodyHTML: `
+      <div class="section-title">心情</div>
+      ${moodHTML}
+      <div class="section-title" style="margin-top:12px">天气</div>
+      <input class="field" id="mood-edit-weather" placeholder="晴朗/阴天/小雨…" value="${escapeHTML(me.weather || '')}">
+      <div class="section-title" style="margin-top:12px">笔记</div>
+      <textarea class="field" id="mood-edit-note" rows="4" placeholder="记录今天发生的小事...">${escapeHTML(me.note || '')}</textarea>
+    `,
+    actions: [{ label: '保存手帐', green: true, keepOpen: true, onClick: () => saveMoodEditor(key) }],
+    wide: true
+  });
+  let pickedMood = curMood;
+  $$('#modal-body [data-m]').forEach(el => {
+    el.onclick = () => {
+      pickedMood = +el.dataset.m;
+      $$('#modal-body [data-m]').forEach(x => x.classList.toggle('active', x === el));
+    };
+  });
+  $('#modal-body')._pickedMood = () => pickedMood;
+}
+function saveMoodEditor(key) {
+  const pickedMood = $('#modal-body')._pickedMood ? $('#modal-body')._pickedMood() : null;
+  if (pickedMood == null) { toast('选一个心情吧'); return; }
+  if (!State.moods[key]) State.moods[key] = {};
+  if (!State.moods[key].me) State.moods[key].me = {};
+  const wasRecorded = State.moods[key].me._recorded === true;
+  State.moods[key].me.mood = pickedMood;
+  State.moods[key].me.weather = $('#mood-edit-weather').value;
+  State.moods[key].me.note = $('#mood-edit-note').value;
+  if (!wasRecorded) {
+    State.moods[key].me._recorded = true;
+    addLove(3);
+    if (State.moods[key].his && State.moods[key].his.mood != null) addLove(3);
+  }
+  save.moods();
+  closeModal();
+  renderMoodCalendar(); renderMoodBody();
+  toast('已保存');
 }
 function renderMoodBody() {
   const body = $('#mood-body'); if (!body) return;
@@ -3794,10 +4177,9 @@ function renderMoodBody() {
   html += `</div>`;
   html += `<div class="mood-block mood-me"><div class="mood-block-title">我</div>`;
   if (me.mood != null) html += `<div class="mood-line">${MOODS[me.mood].e} ${MOODS[me.mood].t}</div>`;
-  html += `<button class="upload-btn" id="btn-pick-mood" style="margin-top:6px;border-style:solid"><svg><use href="#i-emoji"/></svg>${me.mood != null ? '换心情' : '选心情'}</button>`;
-  html += `<input class="field mood-field" id="mood-weather" placeholder="晴朗/阴天/小雨…" value="${escapeHTML(me.weather || '')}">`;
-  html += `<textarea class="field mood-field" id="mood-note" rows="3" placeholder="记录今天发生的小事...">${escapeHTML(me.note || '')}</textarea>`;
-  html += `<button class="upload-btn" id="btn-save-mood" style="margin-top:8px;border-style:solid"><svg><use href="#i-card"/></svg>保存手帐</button>`;
+  if (me.weather) html += `<div class="mood-line">☁ ${escapeHTML(me.weather)}</div>`;
+  if (me.note) html += `<div class="mood-line">${escapeHTML(me.note)}</div>`;
+  if (me.mood == null && !me.note) html += `<div class="mood-line" style="color:var(--text-soft)">长按格子填写手帐</div>`;
   html += `</div>`;
   const itf = State.itfStats[key];
   if (itf) {
@@ -3807,38 +4189,6 @@ function renderMoodBody() {
     html += `</div>`;
   }
   body.innerHTML = html;
-
-  $('#btn-pick-mood').onclick = () => pickMood(key);
-  $('#btn-save-mood').onclick = () => {
-    if (!State.moods[key]) State.moods[key] = {};
-    if (!State.moods[key].me) State.moods[key].me = {};
-    const wasRecorded = State.moods[key].me._recorded === true;
-    State.moods[key].me.weather = $('#mood-weather').value;
-    State.moods[key].me.note = $('#mood-note').value;
-    if (!wasRecorded) {
-      State.moods[key].me._recorded = true;
-      addLove(3);
-      if (State.moods[key].his && State.moods[key].his.mood != null) addLove(3);
-    }
-    save.moods(); renderMoodCalendar(); toast('已保存');
-  };
-}
-function pickMood(key) {
-  const rec = State.moods[key] || {};
-  const cur = rec.me && rec.me.mood;
-  const html = `<div class="mood-picker">` + MOODS.map((m, i) =>
-    `<div class="mood-pick ${cur===i?'active':''}" data-m="${i}"><span class="e">${m.e}</span>${m.t}</div>`
-  ).join('') + `</div>`;
-  openModal({ title: '选一个心情', bodyHTML: html, actions: [{ label: '取消', onClick: () => {} }] });
-  $$('#modal-body [data-m]').forEach(el => {
-    el.onclick = () => {
-      const i = +el.dataset.m;
-      if (!State.moods[key]) State.moods[key] = {};
-      if (!State.moods[key].me) State.moods[key].me = {};
-      State.moods[key].me.mood = i;
-      save.moods(); closeModal(); renderMoodCalendar(); renderMoodBody();
-    };
-  });
 }
 function runMoodHis() {
   const now = new Date();
@@ -3881,7 +4231,7 @@ function runMoodHis() {
       const lines = HIS_LINES[pickT];
       line = lines[Math.floor(Math.random() * lines.length)];
     } else {
-      const lines = HIS_LINES[moodT];
+      const lines = HIS_LINES[moodT] || HIS_LINES['平淡'];
       line = lines[Math.floor(Math.random() * lines.length)];
     }
     const weather = HIS_WEATHER[Math.floor(Math.random() * HIS_WEATHER.length)];
@@ -3893,12 +4243,9 @@ function runMoodHis() {
   }
   save.moods();
 }
-
-/* ==================== 音乐管理 ==================== */
+  /* ==================== 音乐管理 ==================== */
 function openMusicManager() {
-  showPage('page-sub'); $('#sub-title').textContent = '音乐';
-  const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `
+  openSub('音乐', `
     <div class="music-top">
       <div class="toolbar-row">
         <button class="tool-btn" id="mu-add"><svg><use href="#i-plus"/></svg>添加歌曲</button>
@@ -3908,12 +4255,13 @@ function openMusicManager() {
     </div>
     <div class="list-count-bar" id="music-count"></div>
     <div class="music-list" id="music-list"></div>
-  `;
-  subStack = [];
-  renderMusicList();
-  $('#mu-add').onclick = openAddSong;
-  $('#mu-import').onclick = importSongs;
-  $('#mu-export').onclick = exportSongs;
+  `, () => {
+    $('#sub-body').style.padding = '0';
+    renderMusicList();
+    $('#mu-add').onclick = openAddSong;
+    $('#mu-import').onclick = importSongs;
+    $('#mu-export').onclick = exportSongs;
+  });
 }
 function renderMusicList() {
   const list = $('#music-list'); if (!list) return;
@@ -4133,7 +4481,165 @@ function openQuiz() {
     });
   }, 100);
 }
-  /* ==================== 互动管理 ==================== */
+
+/* ==================== 问卷 ==================== */
+function openQuizManager() {
+  openSub('问卷', `<div class="quiz-mgr-top"><button class="upload-btn" id="btn-create-quiz" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>`, () => {
+    $('#sub-body').style.padding = '0';
+    renderQuizList();
+    $('#btn-create-quiz').onclick = () => openQuizCreate(null);
+  });
+}
+function renderQuizList() {
+  const list = $('#quiz-mgr-list'); if (!list) return;
+  if (!State.quizzes.length) { list.innerHTML = `<div class="empty-tip">还没有问卷。</div>`; return; }
+  list.innerHTML = '';
+  State.quizzes.forEach(q => {
+    const el = document.createElement('div');
+    el.className = 'quiz-item';
+    const done = quizHasResult(q.id);
+    el.innerHTML = `<span>${escapeHTML(q.title)}（${q.questions.length}题）${done?' <span style="color:var(--accent-deep);font-size:12px">已填</span>':''}</span>`;
+    el.onclick = () => openQuizItemMenu(q);
+    list.appendChild(el);
+  });
+}
+function quizHasResult(quizId) {
+  return State.quizResults.some(r => r.quizId === quizId);
+}
+function getQuizResult(quizId) {
+  return State.quizResults.find(r => r.quizId === quizId);
+}
+function openQuizItemMenu(q) {
+  openModal({ title: escapeHTML(q.title), bodyHTML: '', actions: [
+    { label: '查看', onClick: () => openQuizCreate(q, true) },
+    { label: '编辑', onClick: () => openQuizCreate(q, false) },
+    { label: '查看答卷结果', keepOpen: true, onClick: () => showQuizResult(q.id) },
+    { label: '删除', danger: true, onClick: () => { openModal({ title: '确定删除？', bodyHTML: '', actions: [{ label: '删除', danger: true, keepOpen: true, onClick: () => { State.quizzes = State.quizzes.filter(x => x.id !== q.id); State.quizResults = State.quizResults.filter(r => r.quizId !== q.id); save.quizzes(); save.quizResults(); closeModal(); renderQuizList(); } }] }); } }
+  ]});
+}
+function showQuizResult(quizId) {
+  const r = getQuizResult(quizId);
+  if (!r) { openModal({ title:'', bodyHTML:'祂还没填这份问卷', actions: [] }); setTimeout(closeModal, 1800); return; }
+  const card = buildQuizCard({ title: r.title, questions: r.questions, otherPicks: r.picks });
+  openModal({ title: '答卷结果', bodyHTML: '<div id="quiz-result-wrap"></div>', actions: [], wide: true });
+  $('#quiz-result-wrap').appendChild(card);
+}
+let quizEditing = null;
+function openQuizCreate(q, readonly) {
+  quizEditing = q ? { ...q, questions: q.questions.map(x => ({ ...x, options: [...x.options] })) } : { id: uid(), title: '', questions: [{ text: '', options: ['','','',''] }] };
+  $('#sub-title').textContent = readonly ? '查看问卷' : (q ? '编辑问卷' : '创建问卷');
+  const body = $('#sub-body'); body.style.padding = '0';
+  const subPage = $('#page-sub');
+  if (subPage.classList.contains('active')) {
+    subStack.push({ title: '问卷', html: '<div class="quiz-mgr-top"><button class="upload-btn" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>', after: () => { renderQuizList(); } });
+  } else { subStack = []; }
+  showPage('page-sub');
+  body.innerHTML = `
+    <div class="quiz-create-head"><input class="field" id="quiz-title" placeholder="问卷标题" value="${escapeHTML(quizEditing.title)}" ${readonly?'disabled':''}></div>
+    <div class="quiz-create-body" id="quiz-questions"></div>
+    ${readonly ? '' : `<div class="quiz-create-foot"><button class="upload-btn" id="btn-add-q" style="border-style:solid;flex:1"><svg><use href="#i-plus"/></svg>继续添加</button><button class="upload-btn" id="btn-save-quiz" style="border-style:solid;flex:1"><svg><use href="#i-card"/></svg>保存问卷</button></div>`}
+  `;
+  renderQuizQuestions(readonly);
+  if (readonly) return;
+  $('#btn-add-q').onclick = () => { syncQuizInputs(); quizEditing.questions.push({ text: '', options: ['','','',''] }); renderQuizQuestions(false); };
+  $('#btn-save-quiz').onclick = () => {
+    syncQuizInputs();
+    quizEditing.title = quizEditing.title.trim() || '未命名问卷';
+    quizEditing.questions = quizEditing.questions.filter(q => q.text.trim() || q.options.some(o => o.trim()));
+    quizEditing.questions.forEach(q => { q.options = q.options.filter(o => o.trim()); });
+    if (!quizEditing.questions.length) { openModal({ title:'', bodyHTML:'至少加一道题', actions: [] }); setTimeout(closeModal, 1500); return; }
+    const exist = State.quizzes.findIndex(x => x.id === quizEditing.id);
+    if (exist >= 0) State.quizzes[exist] = quizEditing; else State.quizzes.unshift(quizEditing);
+    save.quizzes(); openQuizManager();
+  };
+}
+function renderQuizQuestions(readonly) {
+  const wrap = $('#quiz-questions'); if (!wrap) return;
+  wrap.innerHTML = '';
+  quizEditing.questions.forEach((q, qi) => {
+    const el = document.createElement('div'); el.className = 'q-edit';
+    const head = document.createElement('div'); head.className = 'q-head';
+    if (readonly) {
+      const qt = document.createElement('div');
+      qt.style.flex = '1';
+      qt.innerHTML = `<span class="q-view-num">${qi + 1}.</span>${escapeHTML(q.text)}`;
+      head.appendChild(qt);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.className = 'field'; ta.rows = 1; ta.placeholder = '问题' + (qi + 1);
+      ta.value = q.text; ta.disabled = readonly; ta.dataset.qt = qi;
+      head.appendChild(ta);
+      const del = document.createElement('div'); del.className = 'q-del'; del.textContent = '×';
+      del.onclick = () => { syncQuizInputs(); quizEditing.questions.splice(qi, 1); if (!quizEditing.questions.length) quizEditing.questions.push({ text:'', options:['','','',''] }); renderQuizQuestions(false); };
+      head.appendChild(del);
+    }
+    el.appendChild(head);
+    q.options.forEach((opt, oi) => {
+      const row = document.createElement('div'); row.className = 'q-opt-row';
+      if (readonly) {
+        const lbl = document.createElement('div');
+        lbl.style.flex = '1';
+        lbl.innerHTML = `<span class="q-view-num">${String.fromCharCode(65+oi)}.</span>${escapeHTML(opt)}`;
+        row.appendChild(lbl);
+      } else {
+        const inp = document.createElement('textarea');
+        inp.className = 'field'; inp.rows = 1; inp.placeholder = String.fromCharCode(65+oi);
+        inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
+        row.appendChild(inp);
+        const del = document.createElement('div'); del.className = 'q-opt-del'; del.textContent = '×';
+        del.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.splice(oi, 1); if (!quizEditing.questions[qi].options.length) quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
+        row.appendChild(del);
+      }
+      el.appendChild(row);
+    });
+    if (!readonly) {
+      const addOpt = document.createElement('button'); addOpt.className = 'q-add-opt'; addOpt.textContent = '+ 添加选项';
+      addOpt.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
+      el.appendChild(addOpt);
+    }
+    wrap.appendChild(el);
+  });
+  $$('[data-qt]').forEach(inp => inp.oninput = () => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
+  $$('[data-qo]').forEach(inp => inp.oninput = () => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
+  const tt = $('#quiz-title'); if (tt) tt.oninput = () => { quizEditing.title = tt.value; };
+}
+function syncQuizInputs() {
+  const t = $('#quiz-title'); if (t) quizEditing.title = t.value;
+  $$('[data-qt]').forEach(inp => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
+  $$('[data-qo]').forEach(inp => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
+}
+function openQuizSendMenu() {
+  const list = State.quizzes.filter(q => q.questions.length && !quizHasResult(q.id));
+  if (!list.length) {
+    const all = State.quizzes.length;
+    openModal({ title:'', bodyHTML: all ? '问卷都填完啦，去小世界看看结果吧' : '还没有问卷', actions: [] });
+    setTimeout(closeModal, 1800);
+    return;
+  }
+  const html = `<div class="dup-list">` + list.map((q, i) => `<div class="dup-item" data-sq="${i}" style="cursor:pointer"><span style="flex:1">${escapeHTML(q.title)}（${q.questions.length}题）</span></div>`).join('') + `</div>`;
+  openModal({ title: '发送问卷', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-sq]').forEach(el => {
+    el.onclick = () => {
+      const q = list[+el.dataset.sq]; closeModal();
+      sendQuizToHim(q);
+    };
+  });
+}
+function sendQuizToHim(q) {
+  toast('祂在填写…');
+  setTimeout(() => {
+    const picks = {};
+    q.questions.forEach((qq, qi) => { picks[qi] = Math.floor(Math.random() * qq.options.length); });
+    State.quizResults.push({ id: uid(), quizId: q.id, title: q.title, questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })), picks, t: Date.now() });
+    save.quizResults();
+    /* ==================== 新增：问卷填完 +10 爱意 ==================== */
+    addLove(10);
+    const line = QUIZ_DONE_LINES[Math.floor(Math.random() * QUIZ_DONE_LINES.length)];
+    toast(line);
+  }, getThinkTime() * 1000);
+}
+
+/* ==================== 互动管理 ==================== */
 let itfBoard = 'me';
 let itfZone = 'normal';
 let itfSelectMode = false;
@@ -4141,9 +4647,7 @@ let itfSelected = new Set();
 
 function openInteractionManager() {
   itfBoard = 'me'; itfZone = 'normal'; itfSelectMode = false; itfSelected.clear();
-  showPage('page-sub'); $('#sub-title').textContent = '互动';
-  const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `
+  openSub('互动', `
     <div class="board-tabs" id="itf-board-tabs"></div>
     <div class="card-toolbar" id="itf-toolbar">
       <div class="toolbar-row">
@@ -4155,15 +4659,16 @@ function openInteractionManager() {
     </div>
     <div class="zone-tabs" id="itf-zone-tabs"></div>
     <div class="zone-body" id="itf-zone-body"></div>
-  `;
-  subStack = [];
-  renderItfBoardTabs();
-  renderItfZoneTabs();
-  renderItfBody();
-  $('#itf-add').onclick = openItfAdd;
-  $('#itf-dedup').onclick = doItfDedup;
-  $('#itf-import').onclick = importInteractions;
-  $('#itf-export').onclick = exportInteractions;
+  `, () => {
+    $('#sub-body').style.padding = '0';
+    renderItfBoardTabs();
+    renderItfZoneTabs();
+    renderItfBody();
+    $('#itf-add').onclick = openItfAdd;
+    $('#itf-dedup').onclick = doItfDedup;
+    $('#itf-import').onclick = importInteractions;
+    $('#itf-export').onclick = exportInteractions;
+  });
 }
 function renderItfBoardTabs() {
   const el = $('#itf-board-tabs'); if (!el) return;
@@ -4262,7 +4767,6 @@ function openItfItemMenu(item) {
     toast(item.locked ? '已上锁' : '已解锁');
   };
 }
-/* ==================== 改动：添加互动（大输入框 → 拆分 → 编辑/删除 → 全部保存） ==================== */
 let itfAddRows = [];
 function openItfAdd() {
   const ph = ITF_ADD_PLACEHOLDER[itfBoard] || '一行一条…';
@@ -4513,11 +5017,9 @@ function doReplyInteraction() {
   else pushOther('……');
 }
 
-/* ==================== 新增：贴纸管理 ==================== */
+/* ==================== 贴纸管理 ==================== */
 function openStickerManager() {
-  showPage('page-sub'); $('#sub-title').textContent = '贴纸';
-  const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `
+  openSub('贴纸', `
     <div class="card-toolbar" style="padding-top:8px">
       <div class="toolbar-row">
         <button class="tool-btn" id="st-add"><svg><use href="#i-plus"/></svg>添加贴纸</button>
@@ -4527,12 +5029,13 @@ function openStickerManager() {
     </div>
     <div class="list-count-bar" id="st-count"></div>
     <div class="zone-body" id="st-list"></div>
-  `;
-  subStack = [];
-  renderStickerList();
-  $('#st-add').onclick = openStickerAdd;
-  $('#st-import').onclick = importStickers;
-  $('#st-export').onclick = exportStickers;
+  `, () => {
+    $('#sub-body').style.padding = '0';
+    renderStickerList();
+    $('#st-add').onclick = openStickerAdd;
+    $('#st-import').onclick = importStickers;
+    $('#st-export').onclick = exportStickers;
+  });
 }
 function renderStickerList() {
   const list = $('#st-list'); if (!list) return;
@@ -4659,13 +5162,13 @@ async function exportStickers() {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/* ==================== 新增：贴纸发送（⊕） ==================== */
+/* ==================== 贴纸发送（⊕） ==================== */
 function openStickerPicker() {
   if (!State.stickers.length) { openModal({ title:'', bodyHTML:'还没有贴纸', actions: [] }); setTimeout(closeModal, 1500); return; }
   const html = `<div class="sticker-pick-scroll"><div class="sticker-grid">` + State.stickers.map((s, i) =>
     `<div class="sticker-cell" data-pick="${i}"><img src="${s.src}"></div>`
   ).join('') + `</div></div>`;
-  openModal({ title: '贴纸', bodyHTML: html, actions: [], wide: true });
+  openModal({ title: '贴纸（共 ' + State.stickers.length + ' 张）', bodyHTML: html, actions: [], wide: true });
   $$('#modal-body [data-pick]').forEach(el => {
     el.onclick = () => {
       const st = State.stickers[+el.dataset.pick];
@@ -4675,16 +5178,233 @@ function openStickerPicker() {
   });
 }
 
-/* ==================== 字卡管理（含上锁） ==================== */
+/* ==================== 礼物管理 ==================== */
+function openGiftManager() {
+  openSub('礼物', `
+    <div class="card-toolbar" style="padding-top:8px">
+      <div class="toolbar-row">
+        <button class="tool-btn" id="gf-add"><svg><use href="#i-plus"/></svg>添加礼物</button>
+        <button class="tool-btn" id="gf-import"><svg><use href="#i-import"/></svg>导入</button>
+        <button class="tool-btn" id="gf-export"><svg><use href="#i-export"/></svg>导出</button>
+      </div>
+    </div>
+    <div class="record-tabs" id="gf-record-tabs">
+      <div class="record-tab active" data-rtab="gift">礼物记录</div>
+      <div class="record-tab" data-rtab="box">盲盒记录</div>
+    </div>
+    <div class="list-count-bar" id="gf-count"></div>
+    <div class="zone-body" id="gf-list"></div>
+  `, () => {
+    $('#sub-body').style.padding = '0';
+    renderGiftList('gift');
+    $('#gf-add').onclick = openGiftAdd;
+    $('#gf-import').onclick = importGifts;
+    $('#gf-export').onclick = exportGifts;
+    $$('#gf-record-tabs [data-rtab]').forEach(t => {
+      t.onclick = () => {
+        $$('#gf-record-tabs [data-rtab]').forEach(x => x.classList.toggle('active', x === t));
+        renderGiftList(t.dataset.rtab);
+      };
+    });
+  });
+}
+/* 礼物/盲盒记录（tab 切换） */
+function renderGiftList(tab) {
+  const list = $('#gf-list'); if (!list) return;
+  const countEl = $('#gf-count');
+  if (tab === 'gift') {
+    if (countEl) countEl.textContent = '共 ' + State.giftRecords.length + ' 条礼物记录';
+    if (!State.giftRecords.length) { list.innerHTML = `<div class="zone-empty">还没有礼物记录。</div>`; return; }
+    list.innerHTML = '';
+    [...State.giftRecords].reverse().forEach(r => {
+      const el = document.createElement('div');
+      el.className = 'itf-pick-item';
+      el.innerHTML = `<div style="display:flex;align-items:center;gap:10px"><img src="${r.giftImg}" style="width:44px;height:44px;border-radius:10px;object-fit:cover"><div style="flex:1"><div class="ip-content">${escapeHTML(r.giftName||'')}</div><div style="font-size:12px;color:var(--text-soft)">${r.from==='me'?'我送祂':'祂送我'} · ♡${r.giftPrice||0}</div></div></div>`;
+      list.appendChild(el);
+    });
+  } else {
+    if (countEl) countEl.textContent = '共 ' + State.boxRecords.length + ' 条盲盒记录';
+    if (!State.boxRecords.length) { list.innerHTML = `<div class="zone-empty">还没有盲盒记录。</div>`; return; }
+    list.innerHTML = '';
+    [...State.boxRecords].reverse().forEach(r => {
+      const el = document.createElement('div');
+      el.className = 'itf-pick-item';
+      const tierName = (BOX_TIERS.find(t=>t.key===r.tier)||{}).name || '盲盒';
+      el.innerHTML = `<div style="display:flex;align-items:center;gap:10px"><img src="${r.giftImg}" style="width:44px;height:44px;border-radius:10px;object-fit:cover"><div style="flex:1"><div class="ip-content">${escapeHTML(r.giftName||'')}</div><div style="font-size:12px;color:var(--text-soft)">${tierName} · ${r.from==='me'?'我送祂':'祂送我'} · ♡${r.giftPrice||0}</div></div></div>`;
+      list.appendChild(el);
+    });
+  }
+}
+/* 添加礼物 */
+let giftTempImg = '';
+function openGiftAdd() {
+  giftTempImg = '';
+  renderGiftAddModal();
+}
+function renderGiftAddModal() {
+  const previewHTML = giftTempImg
+    ? `<img class="gift-preview" src="${giftTempImg}">`
+    : `<div class="gift-preview-empty">🖼️</div>`;
+  openModal({
+    title: '添加礼物',
+    wide: true,
+    bodyHTML: `
+      ${previewHTML}
+      <button class="upload-btn" id="gf-upload" style="border-style:solid;margin-bottom:10px"><svg><use href="#i-plus"/></svg>添加图片</button>
+      <input class="field" id="gf-name" placeholder="礼物名" style="margin-bottom:10px">
+      <input class="field" id="gf-desc" placeholder="礼物描述（可选）" style="margin-bottom:10px">
+      <input class="field" id="gf-price" type="number" placeholder="爱意值（送这个花多少）" style="margin-bottom:10px">
+      <input class="field" id="gf-threshold" type="number" placeholder="门槛（可选，默认为0）">
+    `,
+    actions: [
+      { label: '继续添加', keepOpen: true, onClick: () => saveGiftOne(true) },
+      { label: '保存礼物', green: true, keepOpen: true, onClick: () => saveGiftOne(false) }
+    ]
+  });
+  $('#gf-upload').onclick = () => pickImage((dataUrl) => {
+    giftTempImg = dataUrl;
+    renderGiftAddModal();
+  });
+  setTimeout(() => { const n = $('#gf-name'); if (n) n.value = ''; }, 50);
+}
+function saveGiftOne(continueAdd) {
+  if (!giftTempImg) { toast('先添加图片'); return; }
+  const name = $('#gf-name').value.trim();
+  if (!name) { toast('填一下礼物名'); return; }
+  const price = Math.max(0, Math.floor(+$('#gf-price').value || 0));
+  if (price <= 0) { toast('填一下爱意值'); return; }
+  const threshold = Math.max(0, Math.floor(+$('#gf-threshold').value || 0));
+  State.gifts.push({ id: uid(), img: giftTempImg, name, desc: $('#gf-desc').value.trim(), price, threshold, t: Date.now() });
+  save.gifts();
+  toast('已保存：' + name);
+  if (continueAdd) {
+    giftTempImg = '';
+    renderGiftAddModal();
+  } else {
+    closeModal();
+    renderGiftList('gift');
+  }
+}
+function importGifts() {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = async () => {
+    const f = inp.files[0]; if (!f) return;
+    const txt = await f.text();
+    let data;
+    try { data = JSON.parse(txt); } catch(e) { openModal({ title:'失败', bodyHTML:'JSON 格式不正确', actions: [] }); return; }
+    if (!Array.isArray(data)) { openModal({ title:'失败', bodyHTML:'格式不对', actions: [] }); return; }
+    let n = 0;
+    for (const item of data) {
+      if (!item.img || !item.name) continue;
+      State.gifts.push({ id: uid(), img: item.img, name: item.name, desc: item.desc || '', price: Math.max(0, item.price || 0), threshold: Math.max(0, item.threshold || 0), t: Date.now() });
+      n++;
+    }
+    await save.gifts(); renderGiftList('gift');
+    openModal({ title: '导入完成', bodyHTML: '已导入 ' + n + ' 个礼物', actions: [] });
+    setTimeout(closeModal, 2500);
+  };
+  inp.click();
+}
+async function exportGifts() {
+  if (!State.gifts.length) { openModal({ title:'', bodyHTML:'还没有礼物', actions: [] }); setTimeout(closeModal, 1500); return; }
+  const out = State.gifts.map(g => ({ img: g.img, name: g.name, desc: g.desc, price: g.price, threshold: g.threshold }));
+  const blob = new Blob([JSON.stringify(out)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `礼物_${dateStamp()}.json`; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* ==================== 礼物发送（⊕） ==================== */
+function openGiftPicker() {
+  if (!State.gifts.length) { openModal({ title:'', bodyHTML:'还没有礼物', actions: [] }); setTimeout(closeModal, 1500); return; }
+  const html = `<div style="max-height:50vh;overflow-y:auto">` + State.gifts.map((g, i) => {
+    const locked = State.love < (g.threshold || 0);
+    return `<div class="itf-pick-item${locked?' locked':''}" data-gpick="${i}" style="display:flex;align-items:center;gap:10px"><img src="${g.img}" style="width:48px;height:48px;border-radius:10px;object-fit:cover"><div style="flex:1"><div class="ip-content">${escapeHTML(g.name)}</div><div style="font-size:12px;color:var(--text-soft)">♡ ${g.price}${locked?` · 需爱意 ${g.threshold}`:''}</div></div></div>`;
+  }).join('') + `</div>`;
+  openModal({ title: '送礼物', bodyHTML: html, actions: [], wide: true });
+  $$('#modal-body [data-gpick]').forEach(el => {
+    el.onclick = () => {
+      if (el.classList.contains('locked')) { toast('爱意值不够，还不能送'); return; }
+      const g = State.gifts[+el.dataset.gpick];
+      if (State.love < g.price) { toast('爱意值不够'); return; }
+      closeModal();
+      sendMyGift(g);
+    };
+  });
+}
+function sendMyGift(g) {
+  State.love = Math.max(0, State.love - g.price);
+  save.love();
+  const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  const msg = {
+    id: uid(), who: 'me', type: 'gift', giftId: g.id,
+    giftImg: g.img, giftName: g.name, giftDesc: g.desc, giftPrice: g.price,
+    opened: false, t: nowHM(), ts: Date.now(), read: false
+  };
+  State.messages.push(msg);
+  save.messages(); renderMessages(); scrollBottom();
+  /* 祂延迟拆 */
+  setTimeout(() => {
+    msg.opened = true;
+    msg.openedAt = Date.now();
+    save.messages();
+    State.giftRecords.push({ id: uid(), giftId: g.id, giftImg: g.img, giftName: g.name, giftDesc: g.desc, giftPrice: g.price, from: 'me', t: Date.now() });
+    save.giftRecords();
+    renderMessages(); scrollBottom();
+    /* 祂回应 */
+    setTimeout(() => { triggerReply(); }, 800);
+  }, getThinkTime() * 1000);
+}
+
+/* ==================== 盲盒发送（⊕） ==================== */
+function openBoxPicker() {
+  if (!State.gifts.length) { openModal({ title:'', bodyHTML:'还没有礼物，盲盒里没东西', actions: [] }); setTimeout(closeModal, 1800); return; }
+  const html = BOX_TIERS.map((t, i) =>
+    `<div class="box-tier" data-bt="${i}"><div class="bt-name">${t.name}</div><div class="bt-price">♡ ${t.price}</div></div>`
+  ).join('');
+  openModal({ title: '送盲盒', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-bt]').forEach(el => {
+    el.onclick = () => {
+      const tier = BOX_TIERS[+el.dataset.bt];
+      if (State.love < tier.price) { toast('爱意值不够'); return; }
+      closeModal();
+      sendMyBox(tier);
+    };
+  });
+}
+function sendMyBox(tier) {
+  State.love = Math.max(0, State.love - tier.price);
+  save.love();
+  const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  const pick = State.gifts[Math.floor(Math.random() * State.gifts.length)];
+  const msg = {
+    id: uid(), who: 'me', type: 'box', tier: tier.key,
+    giftImg: pick.img, giftName: pick.name, giftDesc: pick.desc, giftPrice: pick.price,
+    opened: false, t: nowHM(), ts: Date.now(), read: false
+  };
+  State.messages.push(msg);
+  save.messages(); renderMessages(); scrollBottom();
+  /* 祂延迟拆 */
+  setTimeout(() => {
+    msg.opened = true;
+    msg.openedAt = Date.now();
+    save.messages();
+    State.boxRecords.push({ id: uid(), tier: tier.key, giftImg: pick.img, giftName: pick.name, giftDesc: pick.desc, giftPrice: pick.price, from: 'me', t: Date.now() });
+    save.boxRecords();
+    renderMessages(); scrollBottom();
+    setTimeout(() => { triggerReply(); }, 800);
+  }, getThinkTime() * 1000);
+}
+  /* ==================== 字卡管理（含上锁） ==================== */
 let cardSelectMode = false, cardSelected = new Set(), searchKeyword = '';
 let cardZone = 'normal';
 function openCardManager() {
   cardSelectMode = false; cardSelected.clear(); searchKeyword = ''; cardZone = 'normal';
-  showPage('page-sub'); $('#sub-title').textContent = '字卡';
-  const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `<div class="card-toolbar" id="card-toolbar"></div><div class="zone-tabs" id="card-zone-tabs"></div><div class="zone-body" id="card-zone-body"></div>`;
-  subStack = [];
-  renderCardToolbar(); renderCardZoneTabs(); renderCardList();
+  openSub('字卡', `<div class="card-toolbar" id="card-toolbar"></div><div class="zone-tabs" id="card-zone-tabs"></div><div class="zone-body" id="card-zone-body"></div>`, () => {
+    $('#sub-body').style.padding = '0';
+    renderCardToolbar(); renderCardZoneTabs(); renderCardList();
+  });
 }
 function renderCardZoneTabs() {
   const el = $('#card-zone-tabs'); if (!el) return;
@@ -4866,6 +5586,7 @@ let trashSelectMode = false, trashSelected = new Set();
 function openTrash() {
   trashSelectMode = false; trashSelected.clear();
   openSub('回收站', `<div class="card-toolbar" id="trash-toolbar"></div><div class="zone-body" id="trash-list"></div>`, () => {
+    $('#sub-body').style.padding = '0';
     renderTrashToolbar(); renderTrashList();
   });
 }
@@ -5180,159 +5901,7 @@ function initPlayPage() {
   });
 }
 
-/* ==================== 问卷（管理 + 答卷） ==================== */
-function openQuizManager() {
-  showPage('page-sub'); $('#sub-title').textContent = '问卷';
-  const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `<div class="quiz-mgr-top"><button class="upload-btn" id="btn-create-quiz" style="border-style:solid"><svg><use href="#i-plus"/></svg>创建问卷</button></div><div class="quiz-mgr-list" id="quiz-mgr-list"></div>`;
-  subStack = [];
-  renderQuizList();
-  $('#btn-create-quiz').onclick = () => openQuizCreate(null);
-}
-function renderQuizList() {
-  const list = $('#quiz-mgr-list'); if (!list) return;
-  if (!State.quizzes.length) { list.innerHTML = `<div class="empty-tip">还没有问卷。</div>`; return; }
-  list.innerHTML = '';
-  State.quizzes.forEach(q => {
-    const el = document.createElement('div');
-    el.className = 'quiz-item';
-    const done = quizHasResult(q.id);
-    el.innerHTML = `<span>${escapeHTML(q.title)}（${q.questions.length}题）${done?' <span style="color:var(--accent-deep);font-size:12px">已填</span>':''}</span>`;
-    el.onclick = () => openQuizItemMenu(q);
-    list.appendChild(el);
-  });
-}
-/* ==================== 新增：问卷是否有答卷 ==================== */
-function quizHasResult(quizId) {
-  return State.quizResults.some(r => r.quizId === quizId);
-}
-function getQuizResult(quizId) {
-  return State.quizResults.find(r => r.quizId === quizId);
-}
-function openQuizItemMenu(q) {
-  openModal({ title: escapeHTML(q.title), bodyHTML: '', actions: [
-    { label: '查看', onClick: () => openQuizCreate(q, true) },
-    { label: '编辑', onClick: () => openQuizCreate(q, false) },
-    { label: '查看答卷结果', onClick: () => showQuizResult(q.id) },
-    { label: '删除', danger: true, onClick: () => { openModal({ title: '确定删除？', bodyHTML: '', actions: [{ label: '删除', danger: true, keepOpen: true, onClick: () => { State.quizzes = State.quizzes.filter(x => x.id !== q.id); State.quizResults = State.quizResults.filter(r => r.quizId !== q.id); save.quizzes(); save.quizResults(); closeModal(); renderQuizList(); } }] }); } }
-  ]});
-}
-function showQuizResult(quizId) {
-  const r = getQuizResult(quizId);
-  if (!r) { openModal({ title:'', bodyHTML:'祂还没填这份问卷', actions: [] }); setTimeout(closeModal, 1800); return; }
-  const card = buildQuizCard({ title: r.title, questions: r.questions, otherPicks: r.picks });
-  openModal({ title: '答卷结果', bodyHTML: '<div id="quiz-result-wrap"></div>', actions: [], wide: true });
-  $('#quiz-result-wrap').appendChild(card);
-}
-let quizEditing = null;
-function openQuizCreate(q, readonly) {
-  quizEditing = q ? { ...q, questions: q.questions.map(x => ({ ...x, options: [...x.options] })) } : { id: uid(), title: '', questions: [{ text: '', options: ['','','',''] }] };
-  showPage('page-sub'); $('#sub-title').textContent = readonly ? '查看问卷' : (q ? '编辑问卷' : '创建问卷');
-  const body = $('#sub-body'); body.style.padding = '0';
-  body.innerHTML = `
-    <div class="quiz-create-head"><input class="field" id="quiz-title" placeholder="问卷标题" value="${escapeHTML(quizEditing.title)}" ${readonly?'disabled':''}></div>
-    <div class="quiz-create-body" id="quiz-questions"></div>
-    ${readonly ? '' : `<div class="quiz-create-foot"><button class="upload-btn" id="btn-add-q" style="border-style:solid;flex:1"><svg><use href="#i-plus"/></svg>继续添加</button><button class="upload-btn" id="btn-save-quiz" style="border-style:solid;flex:1"><svg><use href="#i-card"/></svg>保存问卷</button></div>`}
-  `;
-  renderQuizQuestions(readonly);
-  if (readonly) return;
-  $('#btn-add-q').onclick = () => { syncQuizInputs(); quizEditing.questions.push({ text: '', options: ['','','',''] }); renderQuizQuestions(false); };
-  $('#btn-save-quiz').onclick = () => {
-    syncQuizInputs();
-    quizEditing.title = quizEditing.title.trim() || '未命名问卷';
-    quizEditing.questions = quizEditing.questions.filter(q => q.text.trim() || q.options.some(o => o.trim()));
-    quizEditing.questions.forEach(q => { q.options = q.options.filter(o => o.trim()); });
-    if (!quizEditing.questions.length) { openModal({ title:'', bodyHTML:'至少加一道题', actions: [] }); setTimeout(closeModal, 1500); return; }
-    const exist = State.quizzes.findIndex(x => x.id === quizEditing.id);
-    if (exist >= 0) State.quizzes[exist] = quizEditing; else State.quizzes.unshift(quizEditing);
-    save.quizzes(); openQuizManager();
-  };
-}
-function renderQuizQuestions(readonly) {
-  const wrap = $('#quiz-questions'); if (!wrap) return;
-  wrap.innerHTML = '';
-  quizEditing.questions.forEach((q, qi) => {
-    const el = document.createElement('div'); el.className = 'q-edit';
-    const head = document.createElement('div'); head.className = 'q-head';
-    if (readonly) {
-      const qt = document.createElement('div');
-      qt.style.flex = '1';
-      qt.innerHTML = `<span class="q-view-num">${qi + 1}.</span>${escapeHTML(q.text)}`;
-      head.appendChild(qt);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.className = 'field'; ta.rows = 1; ta.placeholder = '问题' + (qi + 1);
-      ta.value = q.text; ta.disabled = readonly; ta.dataset.qt = qi;
-      head.appendChild(ta);
-      const del = document.createElement('div'); del.className = 'q-del'; del.textContent = '×';
-      del.onclick = () => { syncQuizInputs(); quizEditing.questions.splice(qi, 1); if (!quizEditing.questions.length) quizEditing.questions.push({ text:'', options:['','','',''] }); renderQuizQuestions(false); };
-      head.appendChild(del);
-    }
-    el.appendChild(head);
-    q.options.forEach((opt, oi) => {
-      const row = document.createElement('div'); row.className = 'q-opt-row';
-      if (readonly) {
-        const lbl = document.createElement('div');
-        lbl.style.flex = '1';
-        lbl.innerHTML = `<span class="q-view-num">${String.fromCharCode(65+oi)}.</span>${escapeHTML(opt)}`;
-        row.appendChild(lbl);
-      } else {
-        const inp = document.createElement('textarea');
-        inp.className = 'field'; inp.rows = 1; inp.placeholder = String.fromCharCode(65+oi);
-        inp.value = opt; inp.disabled = readonly; inp.dataset.qo = qi + '-' + oi;
-        row.appendChild(inp);
-        const del = document.createElement('div'); del.className = 'q-opt-del'; del.textContent = '×';
-        del.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.splice(oi, 1); if (!quizEditing.questions[qi].options.length) quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
-        row.appendChild(del);
-      }
-      el.appendChild(row);
-    });
-    if (!readonly) {
-      const addOpt = document.createElement('button'); addOpt.className = 'q-add-opt'; addOpt.textContent = '+ 添加选项';
-      addOpt.onclick = () => { syncQuizInputs(); quizEditing.questions[qi].options.push(''); renderQuizQuestions(false); };
-      el.appendChild(addOpt);
-    }
-    wrap.appendChild(el);
-  });
-  $$('[data-qt]').forEach(inp => inp.oninput = () => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
-  $$('[data-qo]').forEach(inp => inp.oninput = () => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
-  const tt = $('#quiz-title'); if (tt) tt.oninput = () => { quizEditing.title = tt.value; };
-}
-function syncQuizInputs() {
-  const t = $('#quiz-title'); if (t) quizEditing.title = t.value;
-  $$('[data-qt]').forEach(inp => { quizEditing.questions[+inp.dataset.qt].text = inp.value; });
-  $$('[data-qo]').forEach(inp => { const [qi, oi] = inp.dataset.qo.split('-').map(Number); quizEditing.questions[qi].options[oi] = inp.value; });
-}
-/* ==================== 新增：问卷发送 ==================== */
-function openQuizSendMenu() {
-  const list = State.quizzes.filter(q => q.questions.length && !quizHasResult(q.id));
-  if (!list.length) {
-    const all = State.quizzes.length;
-    openModal({ title:'', bodyHTML: all ? '问卷都填完啦，去小世界看看结果吧' : '还没有问卷', actions: [] });
-    setTimeout(closeModal, 1800);
-    return;
-  }
-  const html = `<div class="dup-list">` + list.map((q, i) => `<div class="dup-item" data-sq="${i}" style="cursor:pointer"><span style="flex:1">${escapeHTML(q.title)}（${q.questions.length}题）</span></div>`).join('') + `</div>`;
-  openModal({ title: '发送问卷', bodyHTML: html, actions: [] });
-  $$('#modal-body [data-sq]').forEach(el => {
-    el.onclick = () => {
-      const q = list[+el.dataset.sq]; closeModal();
-      sendQuizToHim(q);
-    };
-  });
-}
-function sendQuizToHim(q) {
-  toast('祂在填写…');
-  setTimeout(() => {
-    const picks = {};
-    q.questions.forEach((qq, qi) => { picks[qi] = Math.floor(Math.random() * qq.options.length); });
-    State.quizResults.push({ id: uid(), quizId: q.id, title: q.title, questions: q.questions.map(x => ({ text: x.text, options: [...x.options] })), picks, t: Date.now() });
-    save.quizResults();
-    const line = QUIZ_DONE_LINES[Math.floor(Math.random() * QUIZ_DONE_LINES.length)];
-    toast(line);
-  }, getThinkTime() * 1000);
-}
-  /* ==================== 设置 ==================== */
+/* ==================== 设置 ==================== */
 function openSettings() {
   openSub('设置', `
     <div class="setting-block glass" data-goto="set-chat"><svg class="block-icon"><use href="#i-card"/></svg><span>聊天</span></div>
@@ -5431,6 +6000,16 @@ function openSetChat() {
     <div class="set-row"><span class="label">祂可以使用贴纸</span><div class="switch ${s.stickerEnabled?'on':''}" id="sw-sticker"></div></div>
     <div class="set-row"><span class="label">贴纸概率（%）</span>
       <input class="field" id="in-sticker-prob" type="number" style="width:80px" value="${s.stickerProb ?? 7}"></div>
+
+    <div class="section-title">礼物</div>
+    <div class="set-row"><span class="label">祂可以送礼物</span><div class="switch ${s.giftEnabled?'on':''}" id="sw-gift"></div></div>
+    <div class="set-row"><span class="label">礼物概率（%）</span>
+      <input class="field" id="in-gift-prob" type="number" style="width:80px" value="${s.giftProb ?? 1}"></div>
+
+    <div class="section-title">盲盒</div>
+    <div class="set-row"><span class="label">祂可以送盲盒</span><div class="switch ${s.boxEnabled?'on':''}" id="sw-box"></div></div>
+    <div class="set-row"><span class="label">盲盒概率（%）</span>
+      <input class="field" id="in-box-prob" type="number" style="width:80px" value="${s.boxProb ?? 1}"></div>
   `, () => {
     markSeg('#seg-reply', s.replySpeedMin != null ? '' : s.replySpeed);
     markSeg('#seg-gap', s.multiGapMin != null ? '' : s.multiGap);
@@ -5462,6 +6041,8 @@ function openSetChat() {
     $('#sw-comp').onclick = function() { s.companionInviteEnabled = !s.companionInviteEnabled; this.classList.toggle('on', s.companionInviteEnabled); save.settings(); };
     $('#sw-emoji').onclick = function() { s.emojiEnabled = !s.emojiEnabled; this.classList.toggle('on', s.emojiEnabled); save.settings(); };
     $('#sw-sticker').onclick = function() { s.stickerEnabled = !s.stickerEnabled; this.classList.toggle('on', s.stickerEnabled); save.settings(); };
+    $('#sw-gift').onclick = function() { s.giftEnabled = !s.giftEnabled; this.classList.toggle('on', s.giftEnabled); save.settings(); };
+    $('#sw-box').onclick = function() { s.boxEnabled = !s.boxEnabled; this.classList.toggle('on', s.boxEnabled); save.settings(); };
     $('#in-quote-prob').onchange = e => { s.quoteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.quoteProb; save.settings(); };
     $('#in-heart-prob').onchange = e => { s.heartProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.heartProb; save.settings(); };
     $('#in-invite-prob').onchange = e => { s.inviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.inviteProb; save.settings(); };
@@ -5480,10 +6061,11 @@ function openSetChat() {
     $('#in-itf-active').onchange = e => { s.itfActiveProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.itfActiveProb; save.settings(); };
     $('#in-emoji-prob').onchange = e => { s.emojiProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.emojiProb; save.settings(); };
     $('#in-sticker-prob').onchange = e => { s.stickerProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.stickerProb; save.settings(); };
+    $('#in-gift-prob').onchange = e => { s.giftProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.giftProb; save.settings(); };
+    $('#in-box-prob').onchange = e => { s.boxProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.boxProb; save.settings(); };
   });
 }
 
-/* ==================== 改动：openSetAppearance（加气泡皮肤、头像开关） ==================== */
 function openSetAppearance() {
   const s = State.settings;
   const themes = [
@@ -5532,14 +6114,12 @@ function openSetAppearance() {
       cell.querySelector('.theme-swatch').style.background = swatchMap[cell.dataset.theme] || '';
       cell.onclick = () => { applyTheme(cell.dataset.theme); $$('#theme-grid .theme-cell').forEach(c => c.classList.toggle('active', c === cell)); };
     });
-    /* 气泡皮肤 */
     $$('#seg-bubble .seg-btn').forEach(b => {
       b.onclick = () => {
         applyBubbleSkin(b.dataset.v);
         $$('#seg-bubble .seg-btn').forEach(x => x.classList.toggle('active', x === b));
       };
     });
-    /* 头像开关 */
     $('#sw-every-avatar').onclick = function() {
       s.showEveryAvatar = !s.showEveryAvatar;
       this.classList.toggle('on', s.showEveryAvatar);
@@ -5601,9 +6181,8 @@ function openSetSystem() {
     $('#btn-backup').onclick = doBackup; $('#btn-restore').onclick = doRestore; $('#btn-clear').onclick = doClear;
   });
 }
-/* ==================== 改动：备份/恢复/清空（加 sticker、quizResults） ==================== */
 function doBackup() {
-  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, quizResults: State.quizResults, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, moods: State.moods, companionStats: State.companionStats, interactions: State.interactions, itfStats: State.itfStats, stickers: State.stickers, love: State.love };
+  const data = { version: VERSION, exportedAt: Date.now(), settings: State.settings, cards: State.cards, trash: State.trash, messages: State.messages, archive: State.archive, quizzes: State.quizzes, quizResults: State.quizResults, memos: State.memos, wishes: State.wishes, days: State.days, hearts: State.hearts, moods: State.moods, companionStats: State.companionStats, interactions: State.interactions, itfStats: State.itfStats, stickers: State.stickers, gifts: State.gifts, giftRecords: State.giftRecords, boxRecords: State.boxRecords, love: State.love };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = `阿遇♥阿凉_${dateStamp()}.json`; a.click();
@@ -5636,6 +6215,9 @@ function doRestore() {
       ['互动', () => { State.interactions = data.interactions || { me: [], other: [], together: [] }; }],
       ['互动统计', () => { State.itfStats = data.itfStats || {}; }],
       ['贴纸', () => { State.stickers = data.stickers || []; }],
+      ['礼物', () => { State.gifts = data.gifts || []; }],
+      ['礼物记录', () => { State.giftRecords = data.giftRecords || []; }],
+      ['盲盒记录', () => { State.boxRecords = data.boxRecords || []; }],
       ['爱意值', () => { State.love = data.love || 0; }]
     ];
     for (let i = 0; i < stages.length; i++) {
@@ -5647,9 +6229,10 @@ function doRestore() {
     }
     await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive();
     await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
-    await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers(); await save.love();
+    await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers();
+    await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.love();
     $('#restore-stage').textContent = '完成';
-    setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1200); }, 600);
+    setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1500); }, 800);
   };
   inp.click();
 }
@@ -5659,12 +6242,13 @@ function doClear() {
       State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.quizResults = [];
       State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
       State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
-      State.stickers = [];
+      State.stickers = []; State.gifts = []; State.giftRecords = []; State.boxRecords = [];
       State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.quizResults();
       await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.companionStats();
-      await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers(); await save.love(); await save.settings();
+      await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
+      await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.love(); await save.settings();
       location.reload();
     }}
   ]});
@@ -5701,7 +6285,6 @@ async function boot() {
     State.settings.avatarPairs = st.avatarPairs || [];
     State.settings.chatBgPool = st.chatBgPool || [];
     State.settings.lockBgPool = st.lockBgPool || [];
-    /* 旧数据补齐 */
     if (State.settings.quoteProb == null) State.settings.quoteProb = 7;
     if (State.settings.heartProb == null) State.settings.heartProb = 5;
     if (State.settings.inviteProb == null) State.settings.inviteProb = 6;
@@ -5718,6 +6301,10 @@ async function boot() {
     if (State.settings.bubbleSkin == null) State.settings.bubbleSkin = 'default';
     if (State.settings.stickerEnabled == null) State.settings.stickerEnabled = false;
     if (State.settings.stickerProb == null) State.settings.stickerProb = 7;
+    if (State.settings.giftEnabled == null) State.settings.giftEnabled = false;
+    if (State.settings.giftProb == null) State.settings.giftProb = 1;
+    if (State.settings.boxEnabled == null) State.settings.boxEnabled = false;
+    if (State.settings.boxProb == null) State.settings.boxProb = 1;
   }
   const c = await Store.read('cards.json'); if (c) State.cards = c;
   const t = await Store.read('trash.json'); if (t) State.trash = t;
@@ -5736,6 +6323,9 @@ async function boot() {
   const itf = await Store.read('interactions.json'); if (itf) State.interactions = Object.assign({ me: [], other: [], together: [] }, itf);
   const is = await Store.read('itf_stats.json'); if (is) State.itfStats = is;
   const stk = await Store.read('stickers.json'); if (stk) State.stickers = stk;
+  const gf = await Store.read('gifts.json'); if (gf) State.gifts = gf;
+  const gr = await Store.read('gift_records.json'); if (gr) State.giftRecords = gr;
+  const br = await Store.read('box_records.json'); if (br) State.boxRecords = br;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
 
   checkInterruptedCompanion();
@@ -5749,7 +6339,6 @@ async function boot() {
 
   $('#modal-mask').addEventListener('click', e => { if (e.target.id === 'modal-mask') closeModal(); });
   $('#sheet-mask').addEventListener('click', e => { if (e.target.id === 'sheet-mask') closeSheet(); });
-  /* ==================== 改动：返回按钮（先退 subStack） ==================== */
   $('#sub-back').onclick = () => {
     if (subStack.length) {
       const prev = subStack.pop();
