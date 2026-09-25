@@ -157,8 +157,7 @@ ul, li { list-style: none; }
 .card-list { padding: 4px var(--space-page-pad) 20px; gap: var(--space-block-gap); }
 .zone-body { padding: 0 var(--space-page-pad) 20px; gap: var(--space-block-gap); }
 .mail-list, .music-list, .wish-list, .day-list, .note-list, .space-list, .heart-list, .archive-list { gap: var(--space-block-gap); }
-.msg-row { gap: calc(var(--space-block-gap) * 0.8); }
-.chat-body { padding: var(--space-page-pad) calc(var(--space-page-pad) * 0.75) 8px; }
+.chat-body { padding: var(--space-page-pad) calc(var(--space-page-pad) * 0.75) 8px; gap: calc(var(--space-block-gap) + 2px); }
 
 .glass {
   background: var(--glass-bg);
@@ -334,11 +333,10 @@ ul, li { list-style: none; }
   display: flex; align-items: center; justify-content: center;
   color: var(--text-soft); background: var(--glass-bg-strong);
   border: 1px solid var(--glass-border);
-  opacity: 1; transition: opacity .2s ease;
+  opacity: 0;
+  transition: opacity .2s ease;
 }
 .touch-float .tf-close svg { width: 14px; height: 14px; }
-.touch-float.busy-me .tf-close,
-.touch-float.busy-his .tf-close { opacity: 0; pointer-events: none; }
 .touch-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
   width: 100%;
@@ -542,7 +540,7 @@ ul, li { list-style: none; }
 #hdr-love { color: var(--heart-red); }
 #hdr-love.pop { animation: num-pop .35s ease; }
 .hdr-more-btn {
-  position: absolute; right: 10px; top: calc(10px + env(safe-area-inset-top));
+  position: absolute; right: 8px; top: calc(8px + env(safe-area-inset-top));
   width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
   opacity: 0; color: var(--text); font-size: 20px; cursor: pointer;
 }
@@ -784,7 +782,6 @@ ul, li { list-style: none; }
 .sub-header {
   display: flex; align-items: center;
   padding: calc(10px + env(safe-area-inset-top)) 8px 10px;
-  border-radius: 0;
   border: none;
   background: transparent;
   backdrop-filter: none;
@@ -816,15 +813,6 @@ ul, li { list-style: none; }
 .block-icon { width: 22px; height: 22px; color: var(--accent-deep); }
 .sub-pad { padding: 0 14px; display: flex; flex-direction: column; gap: 10px; }
 .sub-pad-top { margin-top: 6px; }
-
-.float-ball {
-  position: fixed; z-index: 900;
-  width: 52px; height: 52px; right: 16px; bottom: 120px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  overflow: hidden; touch-action: none;
-}
-.float-ball img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
-.float-ball.hidden { display: none; }
 
 .card-toolbar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
 .toolbar-row { display: flex; gap: 8px; }
@@ -977,14 +965,7 @@ ul, li { list-style: none; }
 .range-row { display: flex; align-items: center; gap: 8px; }
 .range-row .field { width: 70px; text-align: center; }
 .range-row .tilde { color: var(--text-soft); }
-.float-preview {
-  width: 40px; height: 40px; border-radius: 50%; margin: 0 auto;
-  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
-}
-.float-preview img { width: 100%; height: 100%; object-fit: cover; }
 
-/* 气泡预览区 */
 .bubble-preview {
   display: flex; flex-direction: column; gap: 30px;
   padding: 14px; border-radius: 14px;
@@ -1007,7 +988,6 @@ ul, li { list-style: none; }
   animation: none;
 }
 
-/* 间距预览区 */
 .space-preview {
   display: flex; flex-direction: column;
   padding: var(--space-page-pad);
@@ -1023,7 +1003,6 @@ ul, li { list-style: none; }
   font-size: 13px; color: var(--text);
 }
 
-/* 字号预览区 */
 .font-preview {
   display: flex; flex-direction: column; gap: 30px;
   padding: 14px; border-radius: 14px;
@@ -1642,12 +1621,6 @@ ul, li { list-style: none; }
   width: 64px; height: 64px; border-radius: 10px; object-fit: cover;
   border: 1px solid var(--glass-border); position: relative;
 }
-.space-publish-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%; padding: 13px; border-radius: 14px;
-  font-size: 15px; color: #fff; background: #8fd4a8;
-  border: 1px solid rgba(111,191,143,0.5);
-}
 .space-pick-img {
   display: flex; align-items: center; gap: 4px;
   padding: 6px 10px; border-radius: 10px;
@@ -1690,7 +1663,6 @@ ul, li { list-style: none; }
   flex: 1; overflow-y: auto; padding: 18px 16px 30px;
 }
 .mail-detail::-webkit-scrollbar { width: 0; }
-/* 信纸框 */
 .mail-letter-box {
   border-radius: 16px;
   padding: 22px 20px 18px;
@@ -1702,7 +1674,7 @@ ul, li { list-style: none; }
 .mail-letter .ml-to { display: block; margin-bottom: 18px; }
 .mail-letter .ml-hello { display: block; margin-bottom: 18px; padding-left: 2em; }
 .mail-letter .ml-body { display: block; white-space: pre-wrap; margin-bottom: 18px; }
-.mail-letter .ml-bye { display: block; margin-bottom: 18px; padding-left: 2em; }
+.mail-letter .ml-bye { display: block; margin-bottom: 4px; padding-left: 2em; }
 .mail-letter .ml-bye-2 { display: block; margin-bottom: 18px; }
 .mail-letter .ml-sign { display: block; text-align: right; margin-top: 8px; }
 .mail-letter .ml-date { display: block; text-align: right; font-size: 13px; color: var(--text-soft); }
@@ -2427,7 +2399,7 @@ ul, li { list-style: none; }
   cursor: pointer;
 }
 .wo-card:active { transform: scale(.96); }
-.wo-card .wo-icon { color: var(--accent-deep); line-height: 1; }
+.wo-card .wo-icon { color: var(--accent-deep); line-height: 1; display: flex; align-items: center; justify-content: center; }
 .wo-card .wo-name { font-size: 12px; text-align: center; }
 .wo-card.wo-max { grid-column: span 3; grid-row: span 2; min-height: 132px; }
 .wo-card.wo-max .wo-icon svg { width: 32px; height: 32px; }
@@ -2554,11 +2526,6 @@ ul, li { list-style: none; }
         <path d="M9 18V6.5l9-2v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
         <circle cx="7" cy="18" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
         <circle cx="16" cy="15.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      </symbol>
-      <symbol id="i-floatball" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-        <circle cx="12" cy="12" r="3.4" fill="currentColor" opacity=".5"/>
-        <circle cx="12" cy="12" r="1.4" fill="currentColor"/>
       </symbol>
       <symbol id="i-lock" viewBox="0 0 24 24">
         <rect x="5.5" y="10" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
@@ -2725,39 +2692,6 @@ ul, li { list-style: none; }
       </symbol>
       <symbol id="i-chart" viewBox="0 0 24 24">
         <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </symbol>
-      <!-- 触碰同频图标（保留，但界面已改用 emoji） -->
-      <symbol id="i-touch-temp" viewBox="0 0 24 24">
-        <path d="M12 3.6c-1.6 0-2.8 1.3-2.8 2.8v7.2a4.2 4.2 0 1 0 5.6 0V6.4c0-1.5-1.2-2.8-2.8-2.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M12 9.4v7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <circle cx="12" cy="17.6" r="1.6" fill="currentColor"/>
-      </symbol>
-      <symbol id="i-touch-head" viewBox="0 0 24 24">
-        <path d="M8.4 20.4v-3.2c-1.6-1-2.6-2.8-2.6-4.8 0-3.4 2.8-6.2 6.2-6.2s6.2 2.8 6.2 6.2c0 2-1 3.8-2.6 4.8v3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M13.2 4.8c1.8.6 3.2 2.2 3.6 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      </symbol>
-      <symbol id="i-touch-hug" viewBox="0 0 24 24">
-        <circle cx="8.6" cy="8.4" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-        <circle cx="15.4" cy="8.4" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-        <path d="M3.4 20c.6-3 2.8-4.6 5.2-4.6 1.8 0 3.4.8 4.4 2.2 1-1.4 2.6-2.2 4.4-2.2 2.4 0 4.6 1.6 5.2 4.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <path d="M12 17.6c-.8-1-2.4-.6-2.4.8 0 1.3 2.4 2.6 2.4 2.6s2.4-1.3 2.4-2.6c0-1.4-1.6-1.8-2.4-.8z" fill="var(--heart-red)" opacity=".85"/>
-      </symbol>
-      <symbol id="i-touch-kiss" viewBox="0 0 24 24">
-        <path d="M12 20.5S4 15 4 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15 12 20.5 12 20.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M8.6 11.4c1.2-.9 2.6-1 4-.2 1.4-.8 2.8-.7 4 .2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="12" cy="13.6" r=".9" fill="currentColor"/>
-      </symbol>
-      <symbol id="i-touch-hand" viewBox="0 0 24 24">
-        <path d="M8.2 20.4v-6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <path d="M15.8 20.4v-6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <path d="M8.2 14.2c0-2.2 1.7-4 3.8-4s3.8 1.8 3.8 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <circle cx="12" cy="6" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-      </symbol>
-      <symbol id="i-touch-pinch" viewBox="0 0 24 24">
-        <path d="M7.4 13.6c0-2.6 2-4.8 4.6-4.8s4.6 2.2 4.6 4.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-        <path d="M7.4 13.6c-.8-1-1.6-1.4-2.4-1.4M16.6 13.6c.8-1 1.6-1.4 2.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="12" cy="6.8" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
-        <path d="M9.4 15.2l2.6 4 2.6-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
       </symbol>
     </defs>
   </svg>
@@ -3041,7 +2975,6 @@ const LOCK_PASSWORDS = [
 const DING_PRESETS = ['可以的','去吧','别去了','我支持你','跟着心走','再想想','等等看','随你'];
 const ASK_PRESETS = ['是的','不是','应该是吧','我觉得是','我也在想','你说呢','让我想想','我也说不准','再说吧','看情况'];
 
-/* ===== 心情：48 个（45 原 + 瑟瑟 + 安心 + 融化）===== */
 const MOODS = [
   { e: '😆', t: '开心' }, { e: '🤩', t: '兴奋' }, { e: '☺️', t: '平淡' }, { e: '😕', t: '难过' },
   { e: '😞', t: '疲惫' }, { e: '😠', t: '生气' }, { e: '🥰', t: '想你' }, { e: '😵‍💫', t: '忙碌' },
@@ -3060,7 +2993,6 @@ const MOODS = [
   { e: '🫠', t: '融化' }
 ];
 
-/* ===== 祂的台词：15 个真心情各有专属，其余 33 个用字卡 ===== */
 const HIS_LINES = {
   '开心': ['今天心情特别好！','想到你就想笑。','今天发生了件好事，想跟你说。','你在的话，我会更开心。','嘿嘿，今天很满足。','有好消息想第一个告诉你。','今天太阳很好，心情也好。','跟你聊天，心情就亮了。','今天一整天都乐呵呵的。','想和你分享今天的开心。','今天笑得停不下来。','好事一件接一件。','今天遇到的都是开心的事。','心里美滋滋的。','今天值得记下来。','跟你在一起，天天都开心。','今天笑得脸都酸了。','好事想跟你分享。','今天特别顺。','想到你，嘴角就压不住。'],
   '兴奋': ['有件事我超激动！','今天遇到特别有意思的事。','等不及想告诉你了。','我现在的状态，你肯定猜不到。','有点坐不住，太兴奋了。','今天发生了不得了的事。','想拉你一起疯。','心跳好快，想到就激动。','今天必须跟你分享这个。','兴奋到睡不着。','有惊喜想给你。','今天心跳得飞快。','忍不住一直笑。','今天遇到神仙好事了。','想马上见到你。','激动得睡不着。','今天像过节一样。','想拉你一起庆祝。','有个大计划想跟你说。','今天太带劲了。'],
@@ -3149,7 +3081,6 @@ const QUIZ_DONE_LINES = [
   '祂填好问卷，在等你。','祂写完了，去看看吧。'
 ];
 
-/* ===== 信箱：开头语 35 条 + 祝语 35 条 ===== */
 const MAIL_HELLO = [
   '见字如面，夫人。','阿凉，今天一切可好？','提笔时窗外正落着雪，忽然很想你。','乖宝，我又想你了。','灯下写信，字里全是你的名字。',
   '近日诸事缠身，唯有想你这件事，一日未落。','见字如晤，我的妻子。','阿凉，今夜月色很好，想与你同看。','我从不轻易提笔，除了给你。','夫人，船已靠岸，我却还在想你。',
@@ -3170,25 +3101,21 @@ const MAIL_BYE = [
   '无论世事如何变迁，我会一直在','我们下次见','我在这头，远远地念着你','你若安好，便是晴天','就此停笔，顺问安好'
 ];
 
-/* 留言笺 */
 const NOTE_QUOTA_FREE = 3;
 const NOTE_QUOTA_COST = 99;
 const NOTE_REPLY_PROB = 3;
 const NOTE_ACTIVE_PROB = 2;
 const NOTE_PLACEHOLDER = '写一张留言，贴在祂看得见的地方…';
 
-/* 恋人空间 */
 const SPACE_QUOTA_FREE = 3;
 const SPACE_QUOTA_COST = 520;
 const SPACE_ACTIVE_PROB = 2;
 const SPACE_PLACEHOLDER = '写点什么，和祂分享…';
 
-/* 信箱 */
 const MAIL_QUOTA_FREE = 1;
 const MAIL_QUOTA_COST = 999;
 const MAIL_ACTIVE_PROB = 1;
 
-/* 触碰同频：文案分「我对祂」和「祂对我」两组，各动作各 35 条 */
 const TOUCH_LINES = {
   temp: {
     me: [
@@ -3324,7 +3251,7 @@ const EMOJI_LIB = {
   '天气': ['🌞','🌖','🌗','🌘','🌑','🌒','🌓','🌔','⚡️','💥','🔥','🌪','🌈','☀️','🌤','⛅️','🌥','☁️','🌦','🌧','⛈','🌩','🌨','❄️','☃️','⛄️','💧','💦','🫧','☔️','☂️','🌊','🌫']
 };
 
-const VERSION = '1.0.2.2';
+const VERSION = '1.0.2.3';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
 const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
@@ -3349,7 +3276,8 @@ const BUBBLE_SKINS = [
   { v: 'speechless', name: '宝贝我无语了' },
   { v: 'moonlight', name: '白月光' }
 ];
-  const State = {
+
+const State = {
   settings: {
     theme: 'rose-glass',
     font: 'default',
@@ -3549,20 +3477,32 @@ function inDND() {
   return h >= 0 && h < 7;
 }
 
+/* ==================== 页面栈 ==================== */
 let pageStack = [];
 function showPage(id, push = true) {
   const cur = $$('.page').find(p => p.classList.contains('active'));
   if (cur && push && cur.id !== id) pageStack.push(cur.id);
   $$('.page').forEach(p => p.classList.toggle('active', p.id === id));
   applyBackgrounds();
+  hideAllFloatsOnLock();
   if (id === 'page-world') renderWorldPage();
 }
 function goBack() {
   const prev = pageStack.pop() || 'page-chat';
   $$('.page').forEach(p => p.classList.toggle('active', p.id === prev));
   applyBackgrounds();
+  hideAllFloatsOnLock();
+}
+/* 锁屏时隐藏所有悬浮窗 */
+function hideAllFloatsOnLock() {
+  const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
+  if (!lockActive) return;
+  ['#music-float','#companion-float','#touch-float','#video-float'].forEach(sel => {
+    const el = $(sel); if (el) el.classList.remove('active');
+  });
 }
 
+/* ==================== 弹窗 ==================== */
 let modalStack = [];
 function openModal({ title, bodyHTML, actions, wide }) {
   modalStack.push({ title: $('#modal-title').textContent, body: $('#modal-body').innerHTML, actions: $('#modal-actions').innerHTML, wide: $('#modal').classList.contains('wide') });
@@ -4150,6 +4090,7 @@ function enterChat() {
   if (!activeMsgTimer) activeMsgTimer = setInterval(checkActiveMsg, 60 * 1000);
   showPage('page-chat', false);
   renderedCount = MSG_PAGE;
+  updateLove();
   renderMessages();
   setTimeout(scrollBottom, 50);
 }
@@ -4227,31 +4168,11 @@ function initChatPage() {
   $('#arc-all').onclick = () => { State.messages.forEach(m => { if (m.type !== 'sys') archiveSelected.add(m.id); }); renderMessages(); };
   $('#arc-exit').onclick = () => exitArchiveMode();
   $('#arc-go').onclick = doArchive;
-  $('#mf-close').onclick = () => { $('#music-float').classList.remove('active'); if (Player.audio) Player.audio.pause(); Player.updateIcon(); };
-  $('#mf-pause').onclick = () => Player.toggle();
-  $('#mf-prev').onclick = () => Player.prev();
-  $('#mf-next').onclick = () => Player.next();
-  $('#mf-mode').onclick = () => {
-    const i = MODES.indexOf(Player.mode);
-    Player.mode = MODES[(i + 1) % MODES.length];
-    $('#mf-mode-icon use').setAttribute('href', MODE_ICONS[Player.mode]);
-    toast(MODE_NAMES[Player.mode]);
-  };
-  initMusicFloatDrag();
-  $('#cf-end').onclick = () => {
-    Companion.end();
-    toast('陪伴结束');
-  };
-  initCompanionFloatDrag();
-  $('#vf-expand').onclick = () => { Video.pickMiniMode(); };
-  initVideoFloatDrag();
-  initTouchFloatDrag();
-  $('#tf-close').onclick = () => tryCloseTouchFloat();
-  $$('#touch-grid [data-touch]').forEach(el => {
-    el.onclick = () => doTouch(el.dataset.touch);
-  });
+
   // 顶栏隐形 ⭐ → 世界之外
-  $('#hdr-more').onclick = () => { pageStack = []; showPage('page-world', false); };
+  const moreBtn = $('#hdr-more');
+  if (moreBtn) moreBtn.onclick = () => { pageStack = []; showPage('page-world', false); };
+
   renderMessages(); updateLove();
 }
 
@@ -4386,7 +4307,6 @@ function buildMsgRow(m, prevSame) {
   }
   const meta = document.createElement('div'); meta.className = 'msg-meta'; meta.textContent = m.t;
   if (m.who === 'me' && m.read) { const r = document.createElement('span'); r.className = 'read-flag'; r.textContent = '已读'; meta.appendChild(r); }
-  // 心情贴纸
   const mo = moodStickerOf(m.id);
   if (mo) { const s = document.createElement('span'); s.className = 'mood-flag'; s.textContent = mo; meta.appendChild(s); }
   col.appendChild(meta);
@@ -4412,7 +4332,6 @@ function heartMarkOf(mid) {
   if (byMe) return '🩷';
   return '🥰';
 }
-/* 消息贴心情：取该消息的 emoji */
 function moodStickerOf(mid) {
   const rec = State.moodStickers[mid];
   if (!rec) return '';
@@ -4420,7 +4339,6 @@ function moodStickerOf(mid) {
   if (!m) return '';
   return m.txt ? '' : m.e;
 }
-/* 贴心情的对象是否可贴 */
 function canStickMood(m) {
   if (!m || m.type === 'sys') return false;
   return ['text','img','sticker','gift','box','itf','card','song','companion'].includes(m.type);
@@ -4662,7 +4580,6 @@ function openMsgMenu(m) {
     html += `<div class="msg-menu-item" id="mm-quote"><svg><use href="#i-quote"/></svg>引用</div>`;
     html += `<div class="msg-menu-item" id="mm-heart"><svg><use href="#i-heart-mark"/></svg>心动</div>`;
   }
-  // 贴心情：只能贴对方消息，且消息类型可贴
   const canStick = (m.who !== 'me') && canStickMood(m);
   if (canStick) {
     html += `<div class="msg-menu-item" id="mm-mood"><svg><use href="#i-emoji"/></svg>贴心情</div>`;
@@ -4750,7 +4667,6 @@ function maybeOtherMoodSticker() {
     prob = { light: 3, daily: 5, sticky: 8, vsticky: 12 }[s.moodStickerProb] || 5;
   }
   if (Math.random() * 100 >= prob) return null;
-  // 从"我最近 3 条对方可贴的消息"里随机挑一条
   const mine = State.messages.filter(x => x.who === 'me' && canStickMood(x) && !State.moodStickers[x.id]);
   if (!mine.length) return null;
   const recent = mine.slice(-3);
@@ -5045,7 +4961,7 @@ function openTouchFloat() {
   el.classList.add('active');
 }
 function tryCloseTouchFloat() {
-  if (touchBusy) return;  // 120 秒内关不掉
+  if (touchBusy) return;
   $('#touch-float').classList.remove('active');
 }
 function doTouch(key) {
@@ -5054,18 +4970,15 @@ function doTouch(key) {
   if (!lines) return;
   const el = $('#touch-float');
   touchBusy = true;
-  // 我这一半：粉框 + 我的文案
   el.classList.remove('busy-his');
   el.classList.add('busy-me');
   showTouchMsg(key, lines.me);
   clearTouchTimers();
   touchTimers.push(setTimeout(() => {
-    // 60 秒到：祂必定回应，蓝框 + 祂的文案
     el.classList.remove('busy-me');
     el.classList.add('busy-his');
     showTouchMsg(key, lines.his);
     touchTimers.push(setTimeout(() => {
-      // 120 秒到：可关闭、可点
       el.classList.remove('busy-me', 'busy-his');
       touchBusy = false;
     }, TOUCH_HALF_MS));
@@ -6223,7 +6136,6 @@ function runMoodHis() {
       const lines = HIS_LINES[moodT];
       line = lines[Math.floor(Math.random() * lines.length)];
     } else {
-      // 没专属台词的（表情类心情）→ 用字卡随机 2~3 条拼一句
       line = buildFromCards(2, 3);
       if (!line) {
         const fallback = HIS_LINES['平淡'];
@@ -6518,13 +6430,11 @@ function renderMailList() {
     list.appendChild(el);
   });
 }
-/* 统一渲染信件（预览与详情共用） */
 function buildMailLetterHTML(m) {
   const hello = m.hello || '';
   const bye = m.bye || '';
   let byeHTML;
   if (bye.indexOf('\n') >= 0) {
-    // 两行式祝语（此致 / 敬礼）
     const parts = bye.split('\n');
     byeHTML = `<span class="ml-bye">${escapeHTML(parts[0])}</span><span class="ml-bye-2">${escapeHTML(parts[1] || '')}</span>`;
   } else {
@@ -8404,7 +8314,6 @@ function openSetBubble() {
     });
   });
 }
-/* 字体（全站字形） */
 function openSetFont() {
   const s = State.settings;
   const fonts = [
@@ -8442,7 +8351,6 @@ function openSetFont() {
     });
   });
 }
-/* 字号（只调聊天页） */
 function openSetChatFont() {
   const s = State.settings;
   const previewHTML = `
@@ -8490,7 +8398,6 @@ function openSetChatFont() {
     };
   });
 }
-/* 间距（全站） */
 function openSetSpace() {
   const s = State.settings;
   const previewHTML = `
@@ -8653,7 +8560,6 @@ function openSetFeature() {
     markSeg('#seg-lock', s.lockMode); bindSeg('#seg-lock', v => { s.lockMode = v; save.settings(); });
     markSeg('#seg-activemsg', s.activeMsgLevel); bindSeg('#seg-activemsg', v => { s.activeMsgLevel = v; save.settings(); });
     $('#sw-activemsg').onclick = function() { s.activeMsgEnabled = !s.activeMsgEnabled; this.classList.toggle('on', s.activeMsgEnabled); save.settings(); };
-    // 消息贴心情
     $('#sw-moodsticker').onclick = function() { s.moodStickerEnabled = !s.moodStickerEnabled; this.classList.toggle('on', s.moodStickerEnabled); save.settings(); };
     if (s.moodStickerCustom == null) markSeg('#seg-moodsticker', s.moodStickerProb || 'daily');
     bindSeg('#seg-moodsticker', v => { s.moodStickerProb = v; s.moodStickerCustom = null; save.settings(); $('#in-moodsticker').value = ''; });
@@ -8662,7 +8568,6 @@ function openSetFeature() {
       const v = Math.max(0, Math.min(100, +e.target.value || 0));
       s.moodStickerCustom = v; save.settings(); e.target.value = v; markSeg('#seg-moodsticker', '');
     };
-    // 其余概率开关
     $('#sw-quote').onclick = function() { s.quoteEnabled = !s.quoteEnabled; this.classList.toggle('on', s.quoteEnabled); save.settings(); };
     $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
     $('#sw-invite').onclick = function() { s.inviteEnabled = !s.inviteEnabled; this.classList.toggle('on', s.inviteEnabled); save.settings(); };
@@ -8722,7 +8627,6 @@ function openSetSystem() {
     $('#btn-reset-all').onclick = doResetAll;
   });
 }
-/* 信件格式测试：进临时测试信箱 */
 function openMailTest() {
   const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
   const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
@@ -8880,11 +8784,9 @@ function doClear() {
     }}
   ]});
 }
-/* 恢复出厂设置：内容 + 设置全清 */
 function doResetAll() {
   openModal({ title: '恢复出厂设置', bodyHTML: '确定要恢复出厂设置吗？<br>将清空全部数据 + 重置所有设置（外观、概率、头像等）。<br>此操作不可恢复，建议先备份。', actions: [
     { label: '确认恢复', danger: true, keepOpen: true, onClick: async () => {
-      // 清空所有数据
       State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.quizResults = [];
       State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
       State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
@@ -8895,7 +8797,6 @@ function doResetAll() {
       State.mails = []; State.mailQuota = null;
       State.moodStickers = {};
       State.love = 0;
-      // 重置设置
       State.settings = {
         theme: 'rose-glass',
         font: 'default',
@@ -8935,9 +8836,7 @@ function doResetAll() {
         activeMsgEnabled: false, activeMsgLevel: 'daily',
         moodStickerEnabled: true, moodStickerProb: 5, moodStickerCustom: null
       };
-      // 清缓存媒体
       await CacheStore.clear();
-      // 全写空
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.quizResults();
       await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.companionStats();
       await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
@@ -9018,7 +8917,6 @@ async function boot() {
     if (State.settings.dndEnabled == null) State.settings.dndEnabled = true;
     if (State.settings.activeMsgEnabled == null) State.settings.activeMsgEnabled = false;
     if (State.settings.activeMsgLevel == null) State.settings.activeMsgLevel = 'daily';
-    // 清理旧悬浮球字段
     delete State.settings.floatSize; delete State.settings.floatImg;
     delete State.settings.floatHidden; delete State.settings.floatPos;
   }
@@ -9064,12 +8962,42 @@ async function boot() {
   applyChatFont();
   applyBackgrounds(); applyAvatars();
 
-  initLockPage(); initChatPage(); initPlayPage();
-  initSheetDrag(); initVideoBoxDrag();
+  initLockPage();
+  initChatPage();
+  initPlayPage();
+  initSheetDrag();
+  initVideoBoxDrag();
 
+  /* ===== 悬浮窗拖动 + 按钮绑定（统一在这里，避免 initChatPage 中断） ===== */
+  initMusicFloatDrag();
+  initCompanionFloatDrag();
+  initVideoFloatDrag();
+  initTouchFloatDrag();
+
+  const mfClose = $('#mf-close'); if (mfClose) mfClose.onclick = () => { $('#music-float').classList.remove('active'); if (Player.audio) Player.audio.pause(); Player.updateIcon(); };
+  const mfPause = $('#mf-pause'); if (mfPause) mfPause.onclick = () => Player.toggle();
+  const mfPrev = $('#mf-prev'); if (mfPrev) mfPrev.onclick = () => Player.prev();
+  const mfNext = $('#mf-next'); if (mfNext) mfNext.onclick = () => Player.next();
+  const mfMode = $('#mf-mode'); if (mfMode) mfMode.onclick = () => {
+    const i = MODES.indexOf(Player.mode);
+    Player.mode = MODES[(i + 1) % MODES.length];
+    $('#mf-mode-icon use').setAttribute('href', MODE_ICONS[Player.mode]);
+    toast(MODE_NAMES[Player.mode]);
+  };
+  const cfEnd = $('#cf-end'); if (cfEnd) cfEnd.onclick = () => { Companion.end(); toast('陪伴结束'); };
+  const vfExpand = $('#vf-expand'); if (vfExpand) vfExpand.onclick = () => { Video.pickMiniMode(); };
+  const tfClose = $('#tf-close'); if (tfClose) tfClose.onclick = () => tryCloseTouchFloat();
+  $$('#touch-grid [data-touch]').forEach(el => {
+    el.onclick = () => doTouch(el.dataset.touch);
+  });
+
+  /* 遮罩点击关闭 */
   $('#modal-mask').addEventListener('click', e => { if (e.target.id === 'modal-mask') closeModal(); });
   $('#sheet-mask').addEventListener('click', e => { if (e.target.id === 'sheet-mask') closeSheet(); });
+
+  /* 子页面返回 */
   $('#sub-back').onclick = () => subBack();
+
   document.addEventListener('click', e => { if (!e.target.closest('.dropdown') && !e.target.closest('#day-repeat-row')) closeDropdown(); });
 }
 window.addEventListener('DOMContentLoaded', boot);
