@@ -9,7 +9,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
   width: 100%; height: 100%; overflow: hidden;
-  font-family: var(--font-family, -apple-system, "HarmonyOS Sans", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif);
+  font-family: var(--app-font, -apple-system, "HarmonyOS Sans", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif);
   font-size: 15px; color: var(--text); background: var(--bg-base);
   user-select: none; -webkit-user-select: none;
 }
@@ -17,10 +17,14 @@ input, textarea { user-select: text; -webkit-user-select: text; font-family: inh
 button { border: none; background: none; color: inherit; font-family: inherit; cursor: pointer; }
 ul, li { list-style: none; }
 
-[data-font="default"] { --font-family: -apple-system, "HarmonyOS Sans", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif; }
-[data-font="song"]    { --font-family: "Songti SC", "STSong", "SimSun", "Noto Serif SC", serif; }
-[data-font="kai"]     { --font-family: "Kaiti SC", "STKaiti", "KaiTi", "Noto Serif SC", cursive; }
-[data-font="round"]   { --font-family: "Yuanti SC", "YouYuan", "Hiragino Maru Gothic ProN", "PingFang SC", sans-serif; }
+/* ==================== 全站间距变量 ==================== */
+:root {
+  --space-page: 16px;   /* 页面左右内边距 */
+  --space-block: 12px;  /* 板块之间间距 */
+  --space-card: 16px;   /* 卡片内部内边距 */
+  --chat-font-size: 15px; /* 聊天页字号 */
+  --app-font: -apple-system, "HarmonyOS Sans", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+}
 
 :root, [data-theme="rose-glass"] {
   --bg-base: #fdf2f5; --bg-grad-1: #fef6f8; --bg-grad-2: #fdf2f5; --bg-grad-3: #fbeef2;
@@ -34,8 +38,6 @@ ul, li { list-style: none; }
   --time-text: #a8a8a8; --mask: rgba(240,184,200,0.3);
   --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px;
-  --chat-font-size: 15px;
 }
 [data-theme="sakura-glass"] {
   --bg-base: #fef4f7; --bg-grad-1: #fff7fa; --bg-grad-2: #fef4f7; --bg-grad-3: #fceef4;
@@ -47,7 +49,6 @@ ul, li { list-style: none; }
   --accent: #f2bccc; --accent-deep: #eaa8bd; --accent-soft: rgba(242,188,204,0.28);
   --time-text: #a8a8a8; --mask: rgba(242,188,204,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(242,160,190,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="mint-ice"] {
   --bg-base: #effaf5; --bg-grad-1: #f4fcf8; --bg-grad-2: #effaf5; --bg-grad-3: #e8f7f0;
@@ -59,7 +60,6 @@ ul, li { list-style: none; }
   --accent: #a8dcc4; --accent-deep: #92d0b4; --accent-soft: rgba(168,220,196,0.28);
   --time-text: #a8a8a8; --mask: rgba(168,220,196,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="cream-light"] {
   --bg-base: #fdf8ef; --bg-grad-1: #fffaf3; --bg-grad-2: #fdf8ef; --bg-grad-3: #faf2e4;
@@ -71,7 +71,6 @@ ul, li { list-style: none; }
   --accent: #ecd2a0; --accent-deep: #e2c088; --accent-soft: rgba(236,210,160,0.3);
   --time-text: #a8a8a8; --mask: rgba(236,210,160,0.32); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="blue-crystal"] {
   --bg-base: #eff6ff; --bg-grad-1: #f5f9ff; --bg-grad-2: #eff6ff; --bg-grad-3: #e6f0fd;
@@ -83,7 +82,6 @@ ul, li { list-style: none; }
   --accent: #b0d4f0; --accent-deep: #98c5ea; --accent-soft: rgba(176,212,240,0.28);
   --time-text: #a8a8a8; --mask: rgba(176,212,240,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="purple-mist"] {
   --bg-base: #f6f1fc; --bg-grad-1: #faf6fe; --bg-grad-2: #f6f1fc; --bg-grad-3: #f0e8f9;
@@ -95,7 +93,6 @@ ul, li { list-style: none; }
   --accent: #c8b0e4; --accent-deep: #b89cd8; --accent-soft: rgba(200,176,228,0.28);
   --time-text: #a8a8a8; --mask: rgba(200,176,228,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="cold-glass"] {
   --bg-base: #eff5f9; --bg-grad-1: #f5f9fc; --bg-grad-2: #eff5f9; --bg-grad-3: #e6eef4;
@@ -107,7 +104,6 @@ ul, li { list-style: none; }
   --accent: #b4cede; --accent-deep: #9cbcd0; --accent-soft: rgba(180,206,222,0.28);
   --time-text: #a8a8a8; --mask: rgba(180,206,222,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="warm-glass"] {
   --bg-base: #faf4ec; --bg-grad-1: #fdf8f2; --bg-grad-2: #faf4ec; --bg-grad-3: #f5ede1;
@@ -119,7 +115,6 @@ ul, li { list-style: none; }
   --accent: #e0c8a8; --accent-deep: #d4b890; --accent-soft: rgba(224,200,168,0.3);
   --time-text: #a8a8a8; --mask: rgba(224,200,168,0.32); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="night-glass"] {
   --bg-base: #1a1824; --bg-grad-1: #201d2c; --bg-grad-2: #1a1824; --bg-grad-3: #14121c;
@@ -132,7 +127,6 @@ ul, li { list-style: none; }
   --heart-red: #ff5f7e; --time-text: #8a8a8a; --mask: rgba(0,0,0,0.5);
   --progress: #e893a8;
   --his-bg: rgba(120,170,220,0.35); --my-bg: rgba(220,130,170,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="purple-glass"] {
   --bg-base: #f5effc; --bg-grad-1: #faf6fe; --bg-grad-2: #f5effc; --bg-grad-3: #efe6f9;
@@ -144,7 +138,6 @@ ul, li { list-style: none; }
   --accent: #c0a8e0; --accent-deep: #b094d6; --accent-soft: rgba(192,168,224,0.28);
   --time-text: #a8a8a8; --mask: rgba(192,168,224,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
 [data-theme="cyan-glass"] {
   --bg-base: #eff8f6; --bg-grad-1: #f5fbf9; --bg-grad-2: #eff8f6; --bg-grad-3: #e6f3f0;
@@ -156,8 +149,12 @@ ul, li { list-style: none; }
   --accent: #a8d8cc; --accent-deep: #90ccc0; --accent-soft: rgba(168,216,204,0.28);
   --time-text: #a8a8a8; --mask: rgba(168,216,204,0.3); --progress: var(--accent-deep);
   --his-bg: rgba(150,200,240,0.35); --my-bg: rgba(240,170,195,0.35);
-  --space-y: 16px; --space-x: 16px; --chat-font-size: 15px;
 }
+
+/* ==================== 字体方案 ==================== */
+[data-font="song"] { --app-font: "Songti SC", "SimSun", "宋体", serif; }
+[data-font="kai"] { --app-font: "Kaiti SC", "KaiTi", "楷体", "STKaiti", cursive; }
+[data-font="yuan"] { --app-font: "Yuanti SC", "圆体", "YouYuan", sans-serif; }
 
 .glass {
   background: var(--glass-bg);
@@ -298,6 +295,7 @@ ul, li { list-style: none; }
   border: 1px solid var(--glass-border);
 }
 
+/* ==================== 触碰同频小窗 ==================== */
 .touch-float {
   position: fixed; z-index: 1200;
   left: 50%; transform: translateX(-50%);
@@ -308,11 +306,12 @@ ul, li { list-style: none; }
   display: none; flex-direction: column; align-items: center; gap: 12px;
   touch-action: none;
   animation: modal-in .22s cubic-bezier(.2,.9,.3,1.2);
-  transition: border-color .3s ease, box-shadow .3s ease;
+  transition: box-shadow .3s ease;
 }
 .touch-float.active { display: flex; }
-.touch-float.tf-pink { border-color: #f0a8c0; box-shadow: 0 0 0 2px rgba(240,168,192,0.5), 0 6px 22px var(--glass-shadow); }
-.touch-float.tf-blue { border-color: #9cc4e8; box-shadow: 0 0 0 2px rgba(156,196,232,0.5), 0 6px 22px var(--glass-shadow); }
+.touch-float.highlight-me { box-shadow: 0 0 0 3px rgba(240,168,192,0.9), 0 8px 28px rgba(240,168,192,0.45); }
+.touch-float.highlight-other { box-shadow: 0 0 0 3px rgba(120,170,240,0.9), 0 8px 28px rgba(120,170,240,0.45); }
+.touch-float.locked .tf-close { pointer-events: none; opacity: .35; }
 .touch-float .tf-head {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   position: relative; width: 100%;
@@ -328,11 +327,8 @@ ul, li { list-style: none; }
   display: flex; align-items: center; justify-content: center;
   color: var(--text-soft); background: var(--glass-bg-strong);
   border: 1px solid var(--glass-border);
-  transition: opacity .2s ease;
 }
 .touch-float .tf-close svg { width: 14px; height: 14px; }
-.touch-float .tf-close.tf-disabled { opacity: 0; pointer-events: none; }
-.touch-float .tf-close.tf-hidden { opacity: 0; }
 .touch-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
   width: 100%;
@@ -345,9 +341,9 @@ ul, li { list-style: none; }
   font-size: 13px; color: var(--text);
   transition: transform .12s ease, opacity .2s ease;
 }
-.touch-btn .tb-emoji { font-size: 24px; line-height: 1; }
 .touch-btn:active { transform: scale(.94); }
-.touch-btn.tf-disabled { opacity: .4; pointer-events: none; }
+.touch-btn .touch-emoji { font-size: 24px; line-height: 1; }
+.touch-btn.disabled { opacity: .38; pointer-events: none; }
 .touch-msg {
   width: 100%; min-height: 44px;
   display: none; align-items: center; justify-content: center;
@@ -516,7 +512,7 @@ ul, li { list-style: none; }
 
 .chat-header {
   position: relative; z-index: 5;
-  padding: calc(10px + env(safe-area-inset-top)) 14px 12px;
+  padding: calc(10px + env(safe-area-inset-top)) var(--space-page) 12px;
   border: none; background: transparent;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   flex-shrink: 0;
@@ -533,16 +529,7 @@ ul, li { list-style: none; }
 #hdr-love { color: var(--heart-red); }
 #hdr-love.pop { animation: num-pop .35s ease; }
 
-.header-star {
-  position: absolute; right: 8px; top: calc(10px + env(safe-area-inset-top));
-  width: 44px; height: 44px; z-index: 6;
-  display: flex; align-items: center; justify-content: center;
-  color: transparent; background: transparent; border: none;
-  opacity: 0;
-}
-.header-star:active { opacity: 0; }
-
-.chat-body { flex: 1; padding: var(--space-y) var(--space-x) calc(var(--space-y) * 0.6); display: flex; flex-direction: column; gap: 14px; }
+.chat-body { flex: 1; padding: 14px var(--space-page) 8px; display: flex; flex-direction: column; gap: var(--space-block); }
 .msg-row { display: flex; align-items: flex-start; gap: 10px; max-width: 100%; }
 .msg-row.me { justify-content: flex-end; }
 .msg-col { display: flex; flex-direction: column; max-width: 78%; }
@@ -593,13 +580,6 @@ ul, li { list-style: none; }
 .msg-row.me .heart-mark { top: -6px; right: -6px; }
 .msg-row.me .msg-col .heart-mark { left: auto; right: -6px; }
 
-.mood-mark {
-  display: inline-block; font-size: 13px; line-height: 1;
-  margin-left: 4px;
-  animation: mood-in .25s ease;
-}
-@keyframes mood-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
-
 .bubble.media { padding: 4px; border-radius: 16px; overflow: hidden; line-height: 0; }
 .bubble.media img { width: 120px; height: auto; max-height: 160px; border-radius: 13px; object-fit: cover; display: block; }
 .msg-avatar {
@@ -610,6 +590,8 @@ ul, li { list-style: none; }
 .msg-avatar.avatar-hidden { visibility: hidden; }
 .msg-meta { margin-top: 4px; font-size: 11px; color: var(--time-text); display: flex; align-items: center; gap: 6px; }
 .read-flag { font-size: 11px; color: var(--heart-red); }
+/* 消息贴心情 emoji */
+.msg-mood { font-size: 13px; line-height: 1; }
 
 .sys-msg {
   text-align: center;
@@ -721,13 +703,13 @@ ul, li { list-style: none; }
 
 .archive-bar {
   flex-shrink: 0; display: flex; gap: 8px;
-  padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
+  padding: 10px var(--space-page) calc(12px + env(safe-area-inset-bottom));
 }
 .archive-bar .tool-btn { padding: 12px 4px; font-size: 12.5px; }
 
 .chat-footer {
   position: relative; z-index: 5;
-  padding: 8px 12px calc(10px + env(safe-area-inset-bottom));
+  padding: 8px var(--space-page) calc(10px + env(safe-area-inset-bottom));
   border: none; background: transparent; flex-shrink: 0;
 }
 .typing-bar {
@@ -782,13 +764,18 @@ ul, li { list-style: none; }
 .circle-btn:active { transform: scale(.9); }
 .circle-btn svg { width: 24px; height: 24px; }
 
+/* 子页面标题栏：去模糊、透明，与聊天顶栏一致 */
 .sub-header {
   display: flex; align-items: center;
   padding: calc(10px + env(safe-area-inset-top)) 8px 10px;
-  background: transparent;
-  border: none;
+  border-radius: 0 0 16px 16px;
+  border-top: none; border-left: none; border-right: none;
   flex-shrink: 0;
   position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
 }
 .sub-title {
   font-size: 16px; font-weight: 600; color: var(--text);
@@ -801,18 +788,566 @@ ul, li { list-style: none; }
 #sub-action { margin-left: auto; display: none; }
 #sub-action.show { display: inline-flex; }
 
-.sub-body { flex: 1; padding: var(--space-y) var(--space-x); display: flex; flex-direction: column; gap: 10px; }
+.sub-body { flex: 1; padding: var(--space-page); display: flex; flex-direction: column; gap: var(--space-block); }
 .sub-body.pad-off { padding: 0; }
 .setting-block {
   display: flex; align-items: center; gap: 12px;
-  padding: 16px 18px; border-radius: 16px;
+  padding: var(--space-card) 18px; border-radius: 16px;
   font-size: 15.5px; color: var(--text);
   transition: transform .14s ease;
 }
 .setting-block:active { transform: scale(.98); }
 .block-icon { width: 22px; height: 22px; color: var(--accent-deep); }
-.sub-pad { padding: 0 var(--space-x); display: flex; flex-direction: column; gap: 10px; }
+.sub-pad { padding: 0 var(--space-page); display: flex; flex-direction: column; gap: var(--space-block); }
 .sub-pad-top { margin-top: 6px; }
+
+.float-ball {
+  position: fixed; z-index: 900;
+  width: 52px; height: 52px; right: 16px; bottom: 120px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; touch-action: none;
+}
+.float-ball img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
+.float-ball.hidden { display: none; }
+
+.card-toolbar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px var(--space-page); }
+.toolbar-row { display: flex; gap: 8px; }
+.tool-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; padding: 8px 4px; border-radius: 13px;
+  font-size: 11px; color: var(--text);
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  transition: transform .12s ease;
+}
+.tool-btn:active { transform: scale(.95); }
+.tool-btn svg { width: 20px; height: 20px; color: var(--accent-deep); }
+.search-field {
+  flex: 1; display: flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 12px; border-radius: 13px;
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+}
+.search-field input { flex: 1; border: none; background: none; outline: none; font-size: 14px; color: var(--text); }
+.search-field input::placeholder { color: var(--text-soft); }
+.search-field .clear-x { width: 20px; height: 20px; color: var(--text-soft); display: flex; align-items: center; justify-content: center; }
+.search-field .clear-x svg { width: 16px; height: 16px; }
+.card-list { flex: 1; padding: 4px var(--space-page) 20px; display: flex; flex-direction: column; gap: 8px; }
+.card-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: var(--space-card); border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.card-item.selected { background: var(--accent-soft); }
+.card-check {
+  width: 20px; height: 20px; border-radius: 6px;
+  border: 1.6px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.card-item.selected .card-check { background: var(--accent-deep); border-color: var(--accent-deep); }
+.card-item.selected .card-check::after {
+  content: ""; width: 10px; height: 6px;
+  border-left: 2px solid var(--check-green); border-bottom: 2px solid var(--check-green);
+  transform: rotate(-45deg) translateY(-1px);
+}
+.card-text { flex: 1; font-size: 15px; line-height: 1.5; color: var(--text); word-break: break-word; }
+.empty-tip {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  color: var(--text-soft); font-size: 14.5px; text-align: center; padding: 40px 20px;
+}
+
+.section-title { font-size: 13.5px; font-weight: 600; color: var(--text-soft); margin: 6px 4px 2px; letter-spacing: .5px; }
+.avatar-block {
+  display: flex; align-items: center; gap: 14px;
+  padding: var(--space-card); border-radius: 16px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.avatar-block .big-avatar {
+  width: 56px; height: 56px; border-radius: 50%; object-fit: cover;
+  border: 1.5px solid var(--glass-border); background: var(--glass-bg-strong);
+  flex-shrink: 0;
+}
+.avatar-block .info { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.info-line { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); }
+.info-line .k { color: var(--text-soft); flex-shrink: 0; }
+.info-line .v { flex: 1; }
+.upload-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 13px; border-radius: 14px;
+  font-size: 14.5px; color: var(--text);
+  background: var(--glass-bg); border: 1px dashed var(--accent-deep);
+}
+.upload-btn svg { width: 18px; height: 18px; color: var(--accent-deep); }
+.pair-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.pair-cell {
+  position: relative; border-radius: 14px; padding: 8px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.pair-imgs { display: flex; gap: 4px; }
+.pair-imgs img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.6px solid var(--glass-border); }
+.pair-imgs img.blue { border-color: #9cc4e8; }
+.pair-imgs img.pink { border-color: #f0a8c0; }
+.unpair-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.unpair-cell {
+  position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden;
+  background: var(--glass-bg); border: 1.6px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+}
+.unpair-cell img { width: 100%; height: 100%; object-fit: cover; }
+.unpair-cell.blue { border-color: #9cc4e8; }
+.unpair-cell.pink { border-color: #f0a8c0; }
+
+.bg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.bg-cell {
+  aspect-ratio: 9/16; border-radius: 12px; overflow: hidden;
+  background: var(--glass-bg); border: 1.6px solid var(--glass-border);
+  position: relative;
+}
+.bg-cell img { width: 100%; height: 100%; object-fit: cover; }
+.bg-cell.active { border-color: var(--accent-deep); }
+
+.bg-tabs { display: flex; gap: 8px; flex-shrink: 0; }
+.bg-tab {
+  flex: 1; padding: 11px; border-radius: 13px;
+  font-size: 14px; text-align: center; color: var(--text);
+  background: var(--glass-bg); border: 1.5px solid var(--glass-border);
+  transition: all .16s ease;
+}
+.bg-tab.active { background: var(--accent); border-color: var(--accent-deep); }
+.theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.theme-cell {
+  border-radius: 14px; padding: 8px; text-align: center;
+  font-size: 11.5px; color: var(--text);
+  background: var(--glass-bg); border: 1.6px solid var(--glass-border);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.theme-cell.active { border-color: var(--accent-deep); }
+.theme-swatch { width: 100%; height: 40px; border-radius: 9px; border: 1px solid var(--glass-border); }
+.set-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 13px 15px; border-radius: 14px;
+  font-size: 14.5px; color: var(--text);
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.set-row .label { color: var(--text); }
+.set-row .value { color: var(--text-soft); font-size: 13.5px; }
+.set-row.no-top-light { box-shadow: none; }
+.switch {
+  position: relative; width: 48px; height: 28px; border-radius: 14px;
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+  transition: background .2s ease; flex-shrink: 0;
+}
+.switch::after {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 22px; height: 22px; border-radius: 50%; background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15); transition: transform .2s ease;
+}
+.switch.on { background: var(--accent-deep); }
+.switch.on::after { transform: translateX(20px); }
+.seg { display: flex; gap: 6px; flex-wrap: nowrap; }
+.seg-btn {
+  flex: 1 1 0; min-width: 0; padding: 8px 4px; border-radius: 11px;
+  font-size: 13px; text-align: center; color: var(--text);
+  background: var(--glass-bg); border: 1.5px solid var(--glass-border);
+  transition: all .16s ease;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.seg-btn .seg-name { font-size: 13px; }
+.seg-btn .seg-range { font-size: 10.5px; color: var(--text-soft); }
+.seg-btn.active { background: var(--accent); border-color: var(--accent-deep); }
+.seg-btn.active .seg-range { color: var(--text-soft); }
+.range-row { display: flex; align-items: center; gap: 8px; }
+.range-row .field { width: 70px; text-align: center; }
+.range-row .tilde { color: var(--text-soft); }
+.float-preview {
+  width: 40px; height: 40px; border-radius: 50%; margin: 0 auto;
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.float-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 气泡预览区 */
+.bubble-preview {
+  display: flex; flex-direction: column; gap: 30px;
+  padding: 14px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  margin-bottom: 4px;
+  height: 220px; overflow-y: auto;
+}
+.bubble-preview::-webkit-scrollbar { width: 0; }
+.bubble-preview .bp-row { display: flex; align-items: flex-start; gap: 8px; max-width: 100%; }
+.bubble-preview .bp-row.me { justify-content: flex-end; }
+.bubble-preview .bp-avatar {
+  width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+  border: 1.2px solid var(--glass-border); flex-shrink: 0;
+}
+.bubble-preview .bp-col { display: flex; flex-direction: column; max-width: 76%; }
+.bubble-preview .bp-row.me .bp-col { align-items: flex-end; }
+.bubble-preview .bp-bubble {
+  position: relative; padding: 8px 12px; border-radius: 16px;
+  font-size: 14px; line-height: 1.5; word-break: break-word; color: var(--text);
+  animation: none;
+}
+
+/* ==================== 字体/字号/间距 预览 ==================== */
+.size-preview {
+  display: flex; flex-direction: column; gap: 30px;
+  padding: 14px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  height: 220px; overflow-y: auto;
+}
+.size-preview::-webkit-scrollbar { width: 0; }
+.size-preview .sp-row { display: flex; align-items: flex-start; gap: 8px; max-width: 100%; }
+.size-preview .sp-row.me { justify-content: flex-end; }
+.size-preview .sp-avatar {
+  width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+  border: 1.2px solid var(--glass-border); flex-shrink: 0;
+}
+.size-preview .sp-col { display: flex; flex-direction: column; max-width: 76%; }
+.size-preview .sp-row.me .sp-col { align-items: flex-end; }
+.size-preview .sp-bubble {
+  padding: 8px 12px; border-radius: 16px;
+  line-height: 1.5; word-break: break-word; color: var(--text);
+}
+.size-preview .sp-bubble.me { background: var(--bubble-me); border: 1px solid var(--glass-border); }
+.size-preview .sp-bubble.other { background: var(--bubble-other); border: 1px solid var(--glass-border); }
+
+.space-preview {
+  padding: 14px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  height: 220px; overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.space-preview::-webkit-scrollbar { width: 0; }
+.space-preview .spr-card {
+  padding: 10px 12px; border-radius: 12px;
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+  font-size: 13.5px; color: var(--text);
+}
+.space-preview .spr-bubble {
+  align-self: flex-start;
+  padding: 8px 12px; border-radius: 16px;
+  background: var(--bubble-other); border: 1px solid var(--glass-border);
+  font-size: 13.5px; color: var(--text); max-width: 76%;
+}
+.space-preview .spr-bubble.me {
+  align-self: flex-end; background: var(--bubble-me);
+}
+
+/* 滑块 */
+.slider-row { display: flex; flex-direction: column; gap: 4px; }
+.slider-row .slider-label { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-soft); }
+.slider-row input[type="range"] {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 2px; background: var(--glass-bg-strong);
+  outline: none;
+}
+.slider-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent-deep); border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.about-wrap {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; text-align: center; padding: 30px 22px;
+}
+.about-ver { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: 1px; }
+.about-ver .heart-char { color: var(--heart-red); font-size: inherit; }
+.about-line { font-size: 13.5px; color: var(--text-soft); }
+.about-line .heart-char { color: var(--heart-red); font-size: inherit; }
+.about-desc { font-size: 13.5px; line-height: 1.9; color: var(--text); max-width: 320px; text-align: left; }
+.about-desc p { margin-bottom: 12px; }
+.dup-list { display: flex; flex-direction: column; gap: 8px; }
+.dup-item {
+  display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text);
+  padding: 8px 12px; border-radius: 11px; background: var(--glass-bg);
+}
+.dup-count { color: var(--accent-deep); font-weight: 600; }
+.call-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.call-cell {
+  padding: 10px 4px; border-radius: 12px; text-align: center;
+  font-size: 12.5px; color: var(--text); word-break: break-all;
+  background: var(--glass-bg); border: 1.5px solid var(--glass-border);
+  transition: all .16s ease;
+}
+.call-cell.active { background: var(--accent); border-color: var(--accent-deep); }
+
+.sheet-mask {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: flex-end; justify-content: center;
+  background: var(--mask);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.sheet-mask.active { display: flex; }
+.sheet {
+  width: 100%; max-height: 70vh; overflow-y: auto;
+  border-radius: 24px 24px 0 0;
+  padding: 12px 16px calc(20px + env(safe-area-inset-bottom));
+  animation: sheet-up .26s cubic-bezier(.2,.9,.3,1.1);
+}
+.sheet-handle {
+  width: 40px; height: 4px; border-radius: 2px;
+  background: var(--text-soft); opacity: .5; margin: 0 auto 12px;
+}
+.sheet-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 8px; }
+.sheet-grid .unpair-cell { aspect-ratio: auto; padding: 14px 4px; border-radius: 14px; }
+.sheet-item-name { font-size: 11px; color: var(--text); }
+
+.archive-list { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 0; }
+.archive-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-card); border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 14.5px; color: var(--text);
+}
+.archive-count { font-size: 13px; color: var(--text-soft); }
+
+.play-header {
+  position: relative; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(12px + env(safe-area-inset-top)) var(--space-page) 12px;
+  background: transparent; flex-shrink: 0;
+  transition: opacity .4s ease;
+}
+.play-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.play-close { font-size: 20px; color: var(--text); }
+.play-body {
+  flex: 1; padding: 14px var(--space-page) 8px;
+  display: flex; flex-direction: column; gap: var(--space-block);
+  overflow-y: auto;
+}
+.play-body::-webkit-scrollbar { width: 0; height: 0; }
+.play-footer {
+  position: relative; z-index: 5;
+  padding: 10px var(--space-page) calc(16px + env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: 12px;
+  background: transparent; flex-shrink: 0;
+  transition: opacity .4s ease;
+}
+.play-footer.hidden, .play-header.hidden { opacity: 0; pointer-events: none; }
+.play-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border); flex-shrink: 0;
+}
+.play-btn svg { width: 18px; height: 18px; }
+.progress-bar {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: var(--glass-bg-strong);
+  position: relative;
+}
+.progress-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--progress); border-radius: 2px;
+  transition: width .2s ease;
+}
+.progress-knob {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--progress);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.speed-btn {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  padding: 6px 10px; border-radius: 10px;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  flex-shrink: 0; position: relative;
+}
+.speed-pop {
+  position: absolute; bottom: 46px; right: 0;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 6px;
+  display: none; flex-direction: column; gap: 2px;
+  box-shadow: 0 6px 22px var(--glass-shadow);
+  animation: pop-up .18s ease; z-index: 10;
+}
+.speed-pop.active { display: flex; }
+.speed-opt {
+  padding: 8px 16px; border-radius: 9px;
+  font-size: 13px; color: var(--text); text-align: center; white-space: nowrap;
+}
+.speed-opt.active { background: var(--accent); }
+
+.vm-cell {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.7);
+  font-size: 10.5px; color: #4a4a4a;
+  transition: transform .12s ease;
+}
+.vm-cell:active { transform: scale(.92); }
+.vm-cell .vm-icon { font-size: 16px; line-height: 1; color: #8f70c0; }
+.vm-cell .vm-name { font-size: 10.5px; }
+
+.quiz-mgr-top { flex-shrink: 0; padding: 10px var(--space-page); }
+.quiz-mgr-list { flex: 1; padding: 4px var(--space-page) 20px; display: flex; flex-direction: column; gap: 8px; }
+.quiz-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-card); border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 14.5px; color: var(--text);
+}
+.quiz-item.locked { opacity: .5; }
+.quiz-item .qcount { font-size: 13px; color: var(--text-soft); }
+.quiz-create-head { flex-shrink: 0; padding: 10px var(--space-page); }
+.quiz-create-body {
+  flex: 1; overflow-y: auto; padding: 0 var(--space-page) 12px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.quiz-create-body::-webkit-scrollbar { width: 0; }
+.quiz-create-foot {
+  flex-shrink: 0; display: flex; gap: 8px;
+  padding: 10px var(--space-page) calc(12px + env(safe-area-inset-bottom));
+}
+.q-edit {
+  padding: 12px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.q-head { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.q-head textarea.field { flex: 1; min-height: 40px; }
+.q-head .q-del {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--danger); background: rgba(217,83,106,0.1); font-size: 16px;
+}
+.q-opt-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.q-opt-row textarea.field { flex: 1; min-height: 38px; }
+.q-opt-del {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--danger); background: rgba(217,83,106,0.1); font-size: 16px;
+}
+.q-add-opt {
+  margin-top: 8px; width: 100%; padding: 8px; border-radius: 10px;
+  font-size: 13px; color: var(--accent-deep);
+  background: var(--glass-bg); border: 1px dashed var(--accent-deep);
+}
+.q-view-num { color: var(--text-soft); margin-right: 4px; font-weight: 600; }
+
+.memo-body { flex: 1; padding: 0 var(--space-page) 8px; display: flex; flex-direction: column; }
+.memo-textarea {
+  flex: 1; width: 100%;
+  padding: 14px; border-radius: 16px;
+  font-size: 15px; line-height: 1.7; color: var(--text);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  outline: none; resize: none;
+}
+.memo-textarea::placeholder { color: var(--text-soft); }
+
+.wish-top { flex-shrink: 0; padding: 10px var(--space-page); }
+.wish-list { flex: 1; padding: 4px var(--space-page) 20px; display: flex; flex-direction: column; gap: 8px; }
+.wish-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: var(--space-card); border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 15px; color: var(--text);
+}
+.wish-circle {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--accent-deep); background: transparent;
+}
+.wish-item.done .wish-circle { background: var(--accent-deep); border-color: var(--accent-deep); }
+.wish-item.done .wish-text { text-decoration: line-through; color: var(--text-soft); }
+.wish-text { flex: 1; word-break: break-word; }
+
+.day-top { flex-shrink: 0; padding: 10px var(--space-page); }
+.day-list { flex: 1; padding: 4px var(--space-page) 20px; display: flex; flex-direction: column; gap: 8px; }
+.day-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: var(--space-card); border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+}
+.day-info { flex: 1; }
+.day-name { font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.day-sub { font-size: 12.5px; color: var(--text-soft); }
+.day-repeat {
+  display: inline-block; font-size: 11px; color: var(--accent-deep);
+  background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; margin-left: 6px;
+}
+.day-count { font-size: 13px; font-weight: 600; color: var(--accent-deep); flex-shrink: 0; text-align: right; }
+
+.heart-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 var(--space-page); }
+.heart-list { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+.heart-list::-webkit-scrollbar { width: 0; }
+.heart-item {
+  padding: var(--space-card); border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 15px; color: var(--text);
+}
+.heart-item .h-mark { font-size: 14px; margin-right: 6px; }
+.heart-item .h-who { font-size: 11px; color: var(--text-soft); margin-left: 8px; }
+.heart-item .h-time { font-size: 11px; color: var(--time-text); margin-top: 6px; }
+.heart-item img { max-width: 120px; max-height: 160px; border-radius: 13px; object-fit: cover; }
+
+.mood-cal-head {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px;
+}
+.mood-cal-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.mood-cal-grid {
+  flex-shrink: 0; display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 2px; padding: 6px var(--space-page);
+}
+.mood-cal-weekday { font-size: 11px; color: var(--text-soft); text-align: center; padding: 4px 0; }
+.mood-cal-cell {
+  min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  font-size: 12px; color: var(--text); border-radius: 8px; position: relative; padding: 3px 0;
+  border: 1px solid transparent;
+  transition: background .15s ease;
+}
+.mood-cal-cell.empty { visibility: hidden; }
+.mood-cal-cell.today { background: var(--accent-soft); }
+.mood-cal-cell.selected { background: var(--accent-soft); border-color: var(--accent-deep); }
+.mood-cal-cell .d { font-size: 12px; line-height: 1; }
+.mood-emojis { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 3px; margin-top: 4px; }
+.mood-emojis .me, .mood-emojis .his { font-size: 13px; line-height: 1.4; border-radius: 6px; padding: 1px 3px; }
+.mood-emojis .his { background: var(--his-bg); }
+.mood-emojis .me { background: var(--my-bg); }
+.mood-body { flex: 1; overflow-y: auto; padding: 8px var(--space-page) 20px; display: flex; flex-direction: column; gap: 10px; }
+.mood-body::-webkit-scrollbar { width: 0; }
+.mood-block { padding: 12px 14px; border-radius: 14px; background: var(--glass-bg); border: 1px solid var(--glass-border); }
+.mood-block-title { font-size: 13px; color: var(--text-soft); margin-bottom: 8px; }
+.mood-line { font-size: 14.5px; color: var(--text); margin-bottom: 4px; }
+.mood-his { border-left: 3px solid rgba(150,200,240,0.8); }
+.mood-me { border-left: 3px solid rgba(240,170,195,0.8); }
+.mood-field { margin-top: 8px; }
+.mood-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-height: 50vh; overflow-y: auto; }
+.mood-picker::-webkit-scrollbar { width: 0; }
+.mood-pick {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 2px; border-radius: 12px;
+  background: var(--glass-bg-strong); border: 1.5px solid var(--glass-border);
+  font-size: 11px; color: var(--text);
+}
+.mood-pick .e { font-size: 20px; line-height: 1.2; }
+.mood-pick .e.txt { font-size: 14px; color: #f06fa0; font-weight: 700; }
+.mood-pick.active { border-color: var(--accent-deep); background: var(--accent-soft); }
+
+.music-top { flex-shrink: 0; padding: 10px var(--space-page); }
+.music-list { flex: 1; padding: 4px var(--space-page) 20px; display: flex; flex-direction: column; gap: 8px; }
+.music-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: 14px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  font-size: 15px; color: var(--text);
+}
+.music-item svg { width: 20px; height: 20px; color: var(--accent-deep); flex-shrink: 0; }
+.music-item .mname { flex-shrink: 0; }
+.music-item .martist { color: var(--text-soft); font-size: 13px; }
 
 .music-float {
   position: fixed; z-index: 950;
@@ -844,7 +1379,7 @@ ul, li { list-style: none; }
   position: relative;
   padding: 14px 18px 16px;
   border-radius: 16px;
-  font-size: 15px; line-height: 1.5; word-break: break-word;
+  font-size: var(--chat-font-size); line-height: 1.5; word-break: break-word;
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   box-shadow: 0 4px 14px var(--glass-shadow);
@@ -854,7 +1389,7 @@ ul, li { list-style: none; }
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
 }
-.itf-bubble .itf-content { font-size: 15.5px; font-weight: 600; line-height: 1.4; word-break: break-word; }
+.itf-bubble .itf-content { font-size: var(--chat-font-size); font-weight: 600; line-height: 1.4; word-break: break-word; }
 .itf-bubble .itf-tag {
   position: absolute; left: 50%; bottom: 0;
   transform: translate(-50%, 50%);
@@ -895,10 +1430,11 @@ ul, li { list-style: none; }
 }
 
 .list-count-bar {
-  flex-shrink: 0; padding: 2px var(--space-x) 8px;
+  flex-shrink: 0; padding: 2px var(--space-page) 8px;
   font-size: 12.5px; color: var(--text-soft); letter-spacing: .3px;
 }
-.zone-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 var(--space-x) 8px; }
+
+.zone-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 var(--space-page) 8px; }
 .zone-tab {
   flex: 1; padding: 10px; border-radius: 12px;
   font-size: 13.5px; text-align: center; color: var(--text);
@@ -906,7 +1442,7 @@ ul, li { list-style: none; }
   transition: all .16s ease;
 }
 .zone-tab.active { background: var(--accent); border-color: var(--accent-deep); }
-.zone-body { flex: 1; overflow-y: auto; padding: 0 var(--space-x) 20px; display: flex; flex-direction: column; gap: 8px; }
+.zone-body { flex: 1; overflow-y: auto; padding: 0 var(--space-page) 20px; display: flex; flex-direction: column; gap: 8px; }
 .zone-body::-webkit-scrollbar { width: 0; }
 .zone-locked-head {
   display: flex; align-items: center; justify-content: space-between;
@@ -924,7 +1460,7 @@ ul, li { list-style: none; }
 .card-item.locked { opacity: .5; }
 .zone-empty { padding: 24px 12px; text-align: center; color: var(--text-soft); font-size: 14px; }
 
-.board-tabs { display: flex; gap: 6px; flex-shrink: 0; padding: 8px var(--space-x); }
+.board-tabs { display: flex; gap: 6px; flex-shrink: 0; padding: 8px var(--space-page) 8px; }
 .board-tab {
   flex: 1; padding: 10px 4px; border-radius: 12px;
   font-size: 13px; text-align: center; color: var(--text);
@@ -1005,7 +1541,8 @@ ul, li { list-style: none; }
 .bubble.sticker { padding: 4px; border-radius: 16px; overflow: hidden; line-height: 0; }
 .bubble.sticker img { width: 120px; height: auto; max-height: 160px; border-radius: 13px; object-fit: cover; display: block; }
 
-.note-list { flex: 1; overflow-y: auto; padding: var(--space-y) var(--space-x); display: flex; flex-direction: column; gap: 10px; }
+/* ==================== 留言笺 ==================== */
+.note-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
 .note-list::-webkit-scrollbar { width: 0; }
 .note-card {
   position: relative;
@@ -1056,17 +1593,18 @@ ul, li { list-style: none; }
 }
 .note-big-input::placeholder { color: var(--text-soft); }
 
+/* ==================== 恋人空间 ==================== */
 .space-head-fixed {
   flex-shrink: 0;
   display: flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 12px 14px;
+  padding: 12px var(--space-page);
 }
 .space-head-fixed img {
   width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
   border: 1.5px solid var(--glass-border); background: var(--glass-bg);
 }
 .space-head-fixed .heart-char { font-size: 20px; }
-.space-list { flex: 1; overflow-y: auto; padding: var(--space-y) var(--space-x); display: flex; flex-direction: column; gap: 10px; }
+.space-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
 .space-list::-webkit-scrollbar { width: 0; }
 .space-card {
   position: relative;
@@ -1122,7 +1660,8 @@ ul, li { list-style: none; }
   font-size: 18px; margin-left: auto;
 }
 
-.mail-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 8px var(--space-x); }
+/* ==================== 信箱 ==================== */
+.mail-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 8px var(--space-page); }
 .mail-tab {
   flex: 1; padding: 10px; border-radius: 12px;
   font-size: 13.5px; text-align: center; color: var(--text);
@@ -1130,7 +1669,7 @@ ul, li { list-style: none; }
   transition: all .16s ease;
 }
 .mail-tab.active { background: var(--accent); border-color: var(--accent-deep); }
-.mail-list { flex: 1; overflow-y: auto; padding: 4px var(--space-x) 20px; display: flex; flex-direction: column; gap: 10px; }
+.mail-list { flex: 1; overflow-y: auto; padding: 4px var(--space-page) 20px; display: flex; flex-direction: column; gap: 10px; }
 .mail-list::-webkit-scrollbar { width: 0; }
 .mail-envelope {
   position: relative;
@@ -1156,32 +1695,41 @@ ul, li { list-style: none; }
   flex: 1; overflow-y: auto; padding: 18px 16px 30px;
 }
 .mail-detail::-webkit-scrollbar { width: 0; }
-.mail-letter-box {
+/* 信纸框 */
+.mail-paper {
+  padding: 20px 18px;
   border-radius: 16px;
-  padding: 18px 16px;
-  background: var(--glass-bg-strong);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   box-shadow: 0 4px 14px var(--glass-shadow);
+  font-size: 15px; line-height: 1.9; color: var(--text);
+  word-break: break-word;
 }
-.mail-letter { font-size: 15px; line-height: 1.9; color: var(--text); word-break: break-word; white-space: pre-wrap; }
-.mail-letter .ml-to { display: block; font-size: 15px; color: var(--text); margin-bottom: 14px; }
-.mail-letter .ml-hello { display: block; font-size: 14.5px; color: var(--text); margin-bottom: 14px; padding-left: 2em; }
-.mail-letter .ml-body { display: block; font-size: 15px; color: var(--text); margin-bottom: 14px; white-space: pre-wrap; }
-.mail-letter .ml-bye { display: block; font-size: 14.5px; color: var(--text); margin-bottom: 18px; padding-left: 2em; }
-.mail-letter .ml-bye-2 { display: block; font-size: 14.5px; color: var(--text); margin-bottom: 18px; padding-left: 0; }
-.mail-letter .ml-right { display: block; text-align: right; font-size: 13px; color: var(--text-soft); line-height: 1.8; }
+.mail-paper .mp-to { font-size: 15px; line-height: 1.9; margin-bottom: 6px; }
+.mail-paper .mp-hello { font-size: 14.5px; line-height: 1.9; margin-bottom: 6px; text-indent: 2em; }
+.mail-paper .mp-body { font-size: 15px; line-height: 1.9; white-space: pre-wrap; word-break: break-word; }
+.mail-paper .mp-bye { font-size: 14.5px; line-height: 1.9; margin-top: 6px; text-indent: 2em; }
+.mail-paper .mp-bye-2line { font-size: 14.5px; line-height: 1.9; margin-top: 6px; }
+.mail-paper .mp-bye-2line .line1 { text-indent: 2em; }
+.mail-paper .mp-bye-2line .line2 { text-indent: 0; }
+.mail-paper .mp-sign { margin-top: 16px; text-align: right; font-size: 13px; line-height: 1.8; color: var(--text); }
+.mail-paper .mp-sign .sign-name { display: block; }
+.mail-paper .mp-sign .sign-date { display: block; color: var(--text-soft); }
+.mail-letter { font-size: 15px; line-height: 2.0; color: var(--text); word-break: break-word; }
+.mail-letter .ml-right { display: block; text-align: right; margin-top: 4px; }
+.mail-letter .ml-body { display: block; white-space: pre-wrap; margin-top: 2px; }
 .mail-write-wrap { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 .mail-preview {
   flex: 1; overflow-y: auto; margin: 12px; padding: 16px;
   border-radius: 14px; background: var(--glass-bg); border: 1px solid var(--glass-border);
+  height: calc(45vh); max-height: 360px;
 }
 .mail-preview::-webkit-scrollbar { width: 0; }
+.mail-preview .mail-paper { background: transparent; border: none; box-shadow: none; padding: 0; }
 .mail-preview .mail-letter { font-size: 14.5px; line-height: 2.0; }
-.mail-input-area { flex-shrink: 0; padding: 0 12px 12px; }
+.mail-input-area { flex-shrink: 0; padding: 0 var(--space-page) 12px; }
 .mail-input-area textarea {
-  width: 100%; min-height: 120px;
+  width: 100%; min-height: 140px;
   padding: 14px; border-radius: 16px;
   font-size: 15px; line-height: 1.9; color: var(--text);
   background: var(--glass-bg-strong);
@@ -1190,7 +1738,7 @@ ul, li { list-style: none; }
   outline: none; resize: none;
 }
 .mail-input-area textarea::placeholder { color: var(--text-soft); }
-.mail-send-bar { flex-shrink: 0; padding: 8px 12px calc(12px + env(safe-area-inset-bottom)); }
+.mail-send-bar { flex-shrink: 0; padding: 8px var(--space-page) calc(12px + env(safe-area-inset-bottom)); }
 .mail-send-btn {
   display: flex; align-items: center; justify-content: center; gap: 8px;
   width: 100%; padding: 13px; border-radius: 14px;
@@ -1199,6 +1747,7 @@ ul, li { list-style: none; }
 }
 .mail-stamp { font-size: 18px; color: #d9534f; line-height: 1; }
 
+/* ==================== 礼物列表 ==================== */
 .gift-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .gift-cell {
   border-radius: 14px; overflow: hidden;
@@ -1215,6 +1764,7 @@ ul, li { list-style: none; }
 .gift-cell .gc-name { font-size: 14px; font-weight: 600; color: #f0a8c0; word-break: break-word; white-space: pre-wrap; }
 .gift-cell .gc-price { font-size: 13px; color: var(--heart-red); margin-top: 4px; font-weight: 600; }
 
+/* ==================== 统计 ==================== */
 .stat-block {
   padding: 14px 16px; border-radius: 14px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
@@ -1233,6 +1783,7 @@ ul, li { list-style: none; }
 .stat-empty { font-size: 13px; color: var(--text-soft); }
 .stat-call-item { font-size: 13px; color: var(--text); line-height: 1.8; }
 
+/* ==================== 气泡皮肤 ==================== */
 [data-bubble="line-cat"] .message-sent,
 [data-bubble="line-cat"] .message-received {
   position: relative !important;
@@ -1283,6 +1834,7 @@ ul, li { list-style: none; }
 [data-bubble="line-cat"] .message-sent::after,
 [data-bubble="line-cat"] .message-received::after { display: none !important; }
 
+/* ─── 趴趴兔 ─── */
 [data-bubble="papa-rabbit"] .message-sent,
 [data-bubble="papa-rabbit"] .message-received {
   background: linear-gradient(180deg, #fbe4ea 0%, #fdeef2 35%, #fef8fa 70%, #ffffff 100%) !important;
@@ -1307,6 +1859,7 @@ ul, li { list-style: none; }
 [data-bubble="papa-rabbit"] .message-sent::before { top: -9px !important; right: -4px !important; width: 25px !important; height: 25px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/16/fc1a682ffa8968dd1d3874fb967a45ce.png') !important; }
 [data-bubble="papa-rabbit"] .message-sent::after { top: -18px !important; left: -4px !important; width: 33px !important; height: 33px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/16/d5bfd11eebf316d496bce884584b2722.png') !important; }
 
+/* ─── 眠眠兔 ─── */
 [data-bubble="mian-rabbit"] .message-sent,
 [data-bubble="mian-rabbit"] .message-received {
   position: relative !important; padding: 7px 14px !important;
@@ -1338,6 +1891,7 @@ ul, li { list-style: none; }
 [data-bubble="mian-rabbit"] .message-received::before { top: -23px !important; right: -4px !important; width: 41px !important; height: 41px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/14/14ebe7f6ad33b75a20c17a9def3e681a.png') !important; filter: drop-shadow(0 0 3px rgba(255,255,255,0.4)) drop-shadow(0 0 6px rgba(255,255,255,0.2)) !important; }
 [data-bubble="mian-rabbit"] .message-received::after { bottom: -8px !important; left: -7px !important; width: 28px !important; height: 28px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/14/c09cea74d9bd87a421393adfa01953e7.png') !important; filter: drop-shadow(0 0 3px rgba(255,255,255,0.4)) drop-shadow(0 0 6px rgba(255,255,255,0.2)) !important; }
 
+/* ─── 粉团兔 ─── */
 [data-bubble="pink-rabbit"] .message-sent,
 [data-bubble="pink-rabbit"] .message-received {
   background: rgba(255,240,245,1) !important;
@@ -1362,6 +1916,7 @@ ul, li { list-style: none; }
 [data-bubble="pink-rabbit"] .message-received::before { top: -9px !important; left: -10px !important; width: 40px !important; height: 40px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/10/0fe72e138158e6a85db166389c296f6f.png') !important; transform: scaleX(-1) rotate(8deg) !important; }
 [data-bubble="pink-rabbit"] .message-received::after { top: -9px !important; right: -10px !important; width: 41px !important; height: 41px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/10/0fe72e138158e6a85db166389c296f6f.png') !important; transform: rotate(8deg) !important; }
 
+/* ─── 玉桂狗与美乐蒂 ─── */
 [data-bubble="cinnamoroll"] .message-sent,
 [data-bubble="cinnamoroll"] .message-received {
   position: relative !important; overflow: visible !important;
@@ -1383,6 +1938,7 @@ ul, li { list-style: none; }
 [data-bubble="cinnamoroll"] .message-received::before { top: -16px !important; right: -8px !important; width: 32px !important; height: 32px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/09/a53ed4530b71eb34788f14b74ca7bd89.png') !important; }
 [data-bubble="cinnamoroll"] .message-received::after { bottom: -8px !important; left: -8px !important; width: 32px !important; height: 32px !important; background-image: url('https://s1.imagehub.cc/images/2026/09/09/8176df6406b8a2f54281ede9c8e9cfd6.png') !important; }
 
+/* ─── 神and人 ─── */
 [data-bubble="god-man"] .message-sent,
 [data-bubble="god-man"] .message-received {
   position: relative !important; overflow: visible !important;
@@ -1446,6 +2002,7 @@ ul, li { list-style: none; }
   50%      { box-shadow: 0 2px 18px rgba(200,168,255,0.7), inset 0 1px 0 rgba(255,255,255,0.9); }
 }
 
+/* ─── 水云小兔 ─── */
 [data-bubble="water-rabbit"] .message-sent,
 [data-bubble="water-rabbit"] .message-received {
   border-radius: 15px !important;
@@ -1469,6 +2026,7 @@ ul, li { list-style: none; }
 [data-bubble="water-rabbit"] .message-received::before { width: 36px !important; height: 36px !important; top: -24px !important; left: -8px !important; background-image: url('https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERm5dpsRs_Wc-89sp0RfwfV87ZAdB-OgACHRwAAsVSiFX1bezD8iFYVToE.png') !important; }
 [data-bubble="water-rabbit"] .message-received::after { width: 35px !important; height: 35px !important; bottom: -18px !important; right: -14px !important; background-image: url('https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERm8BpsSHIxXNIbu9vvIyAKrFU0qSMjwACeBwAAsVSiFVplYoRv05UbzoE.png') !important; }
 
+/* ─── 奇迹小狗 ─── */
 [data-bubble="miracle-dog"] .message-sent,
 [data-bubble="miracle-dog"] .message-received {
   position: relative !important;
@@ -1546,6 +2104,7 @@ ul, li { list-style: none; }
   100% { opacity: 1; transform: translate(0, 0) scale(1); }
 }
 
+/* ─── 甜梦团团 ─── */
 [data-bubble="sweet-dream"] .message-sent,
 [data-bubble="sweet-dream"] .message-received {
   border-radius: 999px !important;
@@ -1573,6 +2132,7 @@ ul, li { list-style: none; }
 [data-bubble="sweet-dream"] .message-sent::after { width: 36px !important; height: 36px !important; top: -20px !important; right: -20px !important; background-image: url('https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERZjBppob1irq8lnp9fXrjvHo_wtXayAACBiIAAt7rOVX3zNP6glfcHjoE.png') !important; }
 [data-bubble="sweet-dream"] .message-sent::before { width: 28px !important; height: 28px !important; bottom: -20px !important; left: -10px !important; background-image: url('https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERZlxppo67DbS983EqcUOTLH1gFv-RvwACOCIAAt7rOVXhctNeBp42ljoE.png') !important; }
 
+/* ─── 灰白蝴蝶结 ─── */
 [data-bubble="gray-bow"] .message-sent,
 [data-bubble="gray-bow"] .message-received {
   border: none !important;
@@ -1598,6 +2158,7 @@ ul, li { list-style: none; }
 [data-bubble="gray-bow"] .message-sent::after { top: 0px !important; right: -8px !important; width: 24px !important; height: 24px !important; background-image: url(https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERd45pqnsQJX-kyyvD8BV4Z2NYTBBW4QAC9R8AAhk0WVV11OhpWDHgmToE.png) !important; }
 [data-bubble="gray-bow"] .message-sent::before { bottom: -12px !important; left: -8px !important; width: 24px !important; height: 24px !important; background-image: url(https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERd59pqn4i24md5lEyh_xYi5Q9imUeEwACCiAAAhk0WVVQIOx-VeELpToE.png) !important; }
 
+/* ─── 紫雾猫猫 ─── */
 [data-bubble="purple-cat"] .message-sent,
 [data-bubble="purple-cat"] .message-received {
   border: none !important;
@@ -1622,6 +2183,7 @@ ul, li { list-style: none; }
 [data-bubble="purple-cat"] .message-sent::before { top: -6px !important; left: -6px !important; width: 18px !important; height: 18px !important; background-image: url(https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERZJFppi1tRqxFLIa21_jnwDknfmc2OgACViAAAt7rMVXs5ZGoWCUkxToE.png) !important; }
 [data-bubble="purple-cat"] .message-sent::after { top: -6px !important; right: -6px !important; width: 22px !important; height: 100% !important; background-image: url(https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERZM5ppjuC2Hmh00b-oTaWFUWWt4ANTAACoCAAAt7rMVVgFJ37MlYN-ToE.png), url(https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAERZJRppi5x-HrxeGIz-HBFzoIZO0-_1gACWSAAAt7rMVU9L0SZeP67yToE.png) !important; background-size: 13px 13px, 16px 14px !important; background-position: top right, bottom right !important; background-repeat: no-repeat !important; }
 
+/* ─── 小星星（写死字号，不跟随全局字体设置） ─── */
 [data-bubble="little-star"] .message-sent,
 [data-bubble="little-star"] .message-received {
   font-size: 12.5px !important;
@@ -1643,6 +2205,7 @@ ul, li { list-style: none; }
 [data-bubble="little-star"] .message-sent::after,
 [data-bubble="little-star"] .message-received::after { display: none !important; }
 
+/* ─── 校园活页（写死字号 + 字体，不跟随全局字体设置） ─── */
 [data-bubble="campus"] .message-sent,
 [data-bubble="campus"] .message-received {
   border-radius: 4px !important;
@@ -1668,6 +2231,7 @@ ul, li { list-style: none; }
 [data-bubble="campus"] .message-received::after { left: -3px !important; top: 0 !important; bottom: 0 !important; width: 4px !important; background: linear-gradient(45deg, transparent 30%, #f0f0f0 30%, #f0f0f0 70%, transparent 70%) !important; }
 [data-bubble="campus"] .message-sent::after { right: -3px !important; top: 0 !important; bottom: 0 !important; width: 4px !important; background: linear-gradient(135deg, transparent 30%, #f0f0f0 30%, #f0f0f0 70%, transparent 70%) !important; }
 
+/* ─── 宝贝我无语了 ─── */
 [data-bubble="speechless"] .message-sent,
 [data-bubble="speechless"] .message-received {
   box-shadow: none !important; border-width: 0 !important; font-weight: 500 !important;
@@ -1685,6 +2249,7 @@ ul, li { list-style: none; }
 [data-bubble="speechless"] .message-sent::before { content: "•••" !important; position: absolute !important; top: -18px !important; left: -15px !important; font-size: 6px !important; letter-spacing: .8px !important; color: #444 !important; background: #F8F8F8 !important; padding: 3px 7px !important; border-radius: 12px 8px 8px 12px !important; line-height: 1 !important; font-weight: 800 !important; text-align: center !important; box-shadow: -2px -2px 4px rgba(255,255,255,.9), 3px 3px 6px rgba(160,160,160,.3), inset 1px 1px 2px rgba(255,255,255,.8), inset -1px -1px 2px rgba(0,0,0,.03) !important; z-index: 3 !important; }
 [data-bubble="speechless"] .message-received::before { content: "♥︎+520" !important; position: absolute !important; top: -12px !important; right: -35px !important; font-size: 7px !important; letter-spacing: .4px !important; color: #F1BFCB !important; background: #fff !important; padding: 3px 6px !important; border-radius: 6px 10px 10px 6px !important; line-height: 1 !important; font-weight: 500 !important; text-align: center !important; white-space: nowrap !important; box-shadow: -2px -2px 4px rgba(255,255,255,.9), 3px 3px 5px rgba(180,180,180,.2), inset 1px 1px 2px rgba(255,255,255,.8), inset -1px -1px 2px rgba(0,0,0,.02) !important; z-index: 3 !important; }
 
+/* 保留：黑色猫猫 / 冷脸萌热脸萌 / 白月光 */
 [data-bubble="black-cat"] .message-sent {
   background: rgba(255,255,255,1) !important;
   border-radius: 20px !important;
@@ -1759,6 +2324,7 @@ ul, li { list-style: none; }
 [data-bubble="moonlight"] .message-received::before,
 [data-bubble="moonlight"] .message-received::after { display: none !important; }
 
+/* 礼物卡片 */
 .gift-card { position: relative; border-radius: 16px; padding: 16px 14px 14px; min-width: 200px; max-width: 100%; animation: bubble-in .22s ease; border: 2px solid transparent; background-clip: padding-box, border-box; background-origin: padding-box, border-box; }
 .gift-card .gift-c1, .gift-card .gift-c2, .gift-card .gift-c3, .gift-card .gift-c4 { position: absolute; font-size: 13px; line-height: 1; pointer-events: none; }
 .gift-card .gift-c1 { top: 4px; left: 6px; } .gift-card .gift-c2 { top: 4px; right: 6px; }
@@ -1774,6 +2340,7 @@ ul, li { list-style: none; }
 .gift-card.gift-opened .gift-desc { font-size: 12.5px; color: #d98ba5; margin-top: 4px; word-break: break-word; white-space: pre-wrap; }
 .gift-card.gift-opened .gift-price { font-size: 13px; color: var(--heart-red); margin-top: 6px; font-weight: 600; }
 
+/* 盲盒卡片 */
 .box-card { position: relative; border-radius: 16px; padding: 16px 14px 14px; min-width: 200px; max-width: 100%; animation: bubble-in .22s ease; border: 2px solid transparent; background-clip: padding-box, border-box; background-origin: padding-box, border-box; }
 .box-card .box-c1, .box-card .box-c2, .box-card .box-c3, .box-card .box-c4 { position: absolute; font-size: 13px; line-height: 1; pointer-events: none; }
 .box-card .box-c1 { top: 4px; left: 6px; } .box-card .box-c2 { top: 4px; right: 6px; }
@@ -1797,7 +2364,7 @@ ul, li { list-style: none; }
 .gift-preview { width: 80px; height: 80px; border-radius: 12px; object-fit: cover; border: 1.5px solid var(--glass-border); background: var(--glass-bg); display: block; margin: 0 auto 10px; cursor: pointer; }
 .gift-preview-empty { width: 80px; height: 80px; border-radius: 12px; border: 1.5px dashed var(--accent-deep); background: var(--glass-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 36px; cursor: pointer; }
 
-.record-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 var(--space-x) 8px; }
+.record-tabs { display: flex; gap: 8px; flex-shrink: 0; padding: 0 var(--space-page) 8px; }
 .record-tab { flex: 1; padding: 10px; border-radius: 12px; font-size: 13px; text-align: center; color: var(--text); background: var(--glass-bg); border: 1.5px solid var(--glass-border); }
 .record-tab.active { background: var(--accent); border-color: var(--accent-deep); }
 .gift-pick-name { font-size: 15px; font-weight: 600; color: #f0a8c0; }
@@ -1805,6 +2372,7 @@ ul, li { list-style: none; }
 .box-pick-title { color: #c0a0e0; }
 .gift-pick-title { color: #f0a8c0; }
 
+/* 视频通话 */
 .video-layer { position: fixed; inset: 0; z-index: 1500; display: none; align-items: center; justify-content: center; background: var(--mask); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .video-layer.active { display: flex; }
 .video-box { width: 60vw; max-width: 480px; min-height: 60vh; border-radius: 26px; padding: 28px 20px 24px; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; touch-action: none; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(22px) saturate(140%) !important; -webkit-backdrop-filter: blur(22px) saturate(140%) !important; border: 1px solid rgba(255,255,255,0.55) !important; box-shadow: 0 8px 32px rgba(120,120,130,0.22), inset 0 1px 0 rgba(255,255,255,0.7) !important; }
@@ -1841,78 +2409,11 @@ ul, li { list-style: none; }
 .video-float .vf-time { font-size: 12px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
 .video-float .vf-expand { width: 100%; padding: 6px; border-radius: 9px; font-size: 11px; color: var(--text); background: var(--accent); border: 1px solid var(--glass-border); }
 
-/* ==================== 世界之外 ==================== */
-.world-head {
-  position: relative;
-  flex-shrink: 0;
-  padding: calc(10px + env(safe-area-inset-top)) 14px 12px;
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-}
-.world-head-row1 { display: flex; align-items: center; justify-content: center; gap: 6px; }
-.world-head-close {
-  position: absolute; right: 8px; top: calc(10px + env(safe-area-inset-top));
-  width: 44px; height: 44px; z-index: 6;
-  display: flex; align-items: center; justify-content: center;
-  color: transparent; background: transparent; border: none;
-  opacity: 0;
-}
-.world-body {
-  flex: 1; overflow-y: auto;
-  padding: var(--space-y) var(--space-x) 40px;
-  position: relative;
-}
-.world-body::-webkit-scrollbar { width: 0; }
-.world-glow {
-  position: absolute; left: 50%; top: 0; transform: translateX(-50%);
-  width: 120%; height: 320px; pointer-events: none;
-  background: radial-gradient(ellipse at top center, var(--accent-soft) 0%, transparent 70%);
-  opacity: .8;
-}
-.world-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: 42px;
-  gap: 10px;
-}
-.world-card {
-  position: relative;
-  border-radius: 16px;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 14px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 4px; color: var(--text);
-  transition: transform .12s ease;
-  overflow: hidden;
-}
-.world-card:active { transform: scale(.96); }
-.world-card .wc-icon { line-height: 1; }
-.world-card .wc-name { font-size: 12px; line-height: 1.2; text-align: center; padding: 0 2px; }
-.world-card .wc-dot {
-  position: absolute; top: 6px; right: 6px;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--heart-red); border: 1px solid #fff;
-}
-/* 档位：最大 2x2（跨6列体系里的 2列2行） */
-.wc-max  { grid-column: span 2; grid-row: span 2; }
-.wc-max  .wc-icon { font-size: 30px; }
-.wc-max  .wc-name { font-size: 14px; }
-/* 大：2列1行 */
-.wc-big  { grid-column: span 2; grid-row: span 2; }
-.wc-big  .wc-icon { font-size: 26px; }
-.wc-big  .wc-name { font-size: 13px; }
-/* 中：2列1行（矮） */
-.wc-mid  { grid-column: span 2; grid-row: span 1; }
-.wc-mid  .wc-icon { font-size: 22px; }
-.wc-mid  .wc-name { font-size: 12px; }
-/* 小：1列1行 */
-.wc-small { grid-column: span 1; grid-row: span 1; }
-.wc-small .wc-icon { font-size: 18px; }
-.wc-small .wc-name { font-size: 11px; }
+/* 心形贴纸（贴心情用） */
+.mood-badge { font-size: 13px; line-height: 1; }
 </style>
 </head>
-<body data-theme="rose-glass" data-bubble="default" data-font="default">
+<body data-theme="rose-glass" data-bubble="default">
 <div id="app">
   <div id="bg-layer"></div>
 
@@ -2018,6 +2519,11 @@ ul, li { list-style: none; }
         <path d="M9 18V6.5l9-2v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
         <circle cx="7" cy="18" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
         <circle cx="16" cy="15.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      </symbol>
+      <symbol id="i-floatball" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="12" cy="12" r="3.4" fill="currentColor" opacity=".5"/>
+        <circle cx="12" cy="12" r="1.4" fill="currentColor"/>
       </symbol>
       <symbol id="i-lock" viewBox="0 0 24 24">
         <rect x="5.5" y="10" width="13" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
@@ -2188,6 +2694,7 @@ ul, li { list-style: none; }
     </defs>
   </svg>
 
+  <!-- 锁屏 -->
   <div class="page active" id="page-lock">
     <div class="lock-wrap">
       <div class="lock-title">阿遇<span class="heart-char">♥</span>阿凉</div>
@@ -2208,6 +2715,7 @@ ul, li { list-style: none; }
     </div>
   </div>
 
+  <!-- 聊天 -->
   <div class="page" id="page-chat">
     <header class="chat-header">
       <div class="header-row-1">
@@ -2222,7 +2730,6 @@ ul, li { list-style: none; }
         <span class="love-heart">♡</span>
         <span id="hdr-love">0</span>
       </div>
-      <button class="header-star" id="header-star" aria-label="世界之外">⭐</button>
     </header>
     <main class="chat-body scroll-y" id="chat-body"></main>
     <footer class="chat-footer" id="chat-footer">
@@ -2253,6 +2760,7 @@ ul, li { list-style: none; }
     </div>
   </div>
 
+  <!-- 子页面 -->
   <div class="page" id="page-sub">
     <header class="sub-header">
       <button class="icon-btn" id="sub-back"><svg><use href="#i-back"/></svg></button>
@@ -2262,27 +2770,7 @@ ul, li { list-style: none; }
     <main class="scroll-y sub-body" id="sub-body"></main>
   </div>
 
-  <div class="page" id="page-world">
-    <header class="world-head">
-      <div class="world-head-row1">
-        <img class="header-avatar" id="world-avatar-other" alt="">
-        <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
-        <span class="heart-char beat header-heart">♥</span>
-        <div class="heartbeat-line small"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 12 L20 12 L26 4 L32 20 L38 12 L60 12 L66 4 L72 20 L78 12 L120 12"/></svg></div>
-        <img class="header-avatar" id="world-avatar-me" alt="">
-      </div>
-      <div class="header-row-3">
-        <span class="love-heart">♡</span>
-        <span id="world-love">0</span>
-      </div>
-      <button class="world-head-close" id="world-close" aria-label="返回">×</button>
-    </header>
-    <main class="world-body" id="world-body">
-      <div class="world-glow"></div>
-      <div class="world-grid" id="world-grid"></div>
-    </main>
-  </div>
-
+  <!-- 播放页 -->
   <div class="page" id="page-play">
     <header class="play-header" id="play-header">
       <span class="play-title" id="play-title"></span>
@@ -2309,6 +2797,9 @@ ul, li { list-style: none; }
     </footer>
   </div>
 
+  <div id="float-ball" class="float-ball"><img id="float-ball-img" alt=""></div>
+
+  <!-- 音乐悬浮窗 -->
   <div class="music-float glass" id="music-float">
     <div class="music-float-row1">
       <span class="mfname" id="mf-name"></span>
@@ -2323,6 +2814,7 @@ ul, li { list-style: none; }
     </div>
   </div>
 
+  <!-- 陪伴悬浮窗 -->
   <div class="companion-float glass" id="companion-float">
     <div class="cf-avatars">
       <img id="cf-avatar-other" alt="">
@@ -2334,6 +2826,7 @@ ul, li { list-style: none; }
     <button class="cf-end" id="cf-end">结束陪伴</button>
   </div>
 
+  <!-- 触碰同频小窗 -->
   <div class="touch-float glass" id="touch-float">
     <div class="tf-head">
       <img id="tf-avatar-other" alt="">
@@ -2345,15 +2838,16 @@ ul, li { list-style: none; }
     </div>
     <div class="touch-msg" id="touch-msg"></div>
     <div class="touch-grid" id="touch-grid">
-      <div class="touch-btn" data-touch="temp"><span class="tb-emoji">🌡</span><span>体温</span></div>
-      <div class="touch-btn" data-touch="head"><span class="tb-emoji">🫳🏻</span><span>摸头</span></div>
-      <div class="touch-btn" data-touch="kiss"><span class="tb-emoji">💋</span><span>亲亲</span></div>
-      <div class="touch-btn" data-touch="hug"><span class="tb-emoji">🤗</span><span>抱抱</span></div>
-      <div class="touch-btn" data-touch="pinch"><span class="tb-emoji">🤏🏻</span><span>捏捏</span></div>
-      <div class="touch-btn" data-touch="hand"><span class="tb-emoji">🤝🏻</span><span>牵手</span></div>
+      <div class="touch-btn" data-touch="temp"><span class="touch-emoji">🌡</span><span>体温</span></div>
+      <div class="touch-btn" data-touch="head"><span class="touch-emoji">🫳🏻</span><span>摸头</span></div>
+      <div class="touch-btn" data-touch="kiss"><span class="touch-emoji">💋</span><span>亲亲</span></div>
+      <div class="touch-btn" data-touch="hug"><span class="touch-emoji">🤗</span><span>抱抱</span></div>
+      <div class="touch-btn" data-touch="pinch"><span class="touch-emoji">🤏🏻</span><span>捏捏</span></div>
+      <div class="touch-btn" data-touch="hand"><span class="touch-emoji">🤝🏻</span><span>牵手</span></div>
     </div>
   </div>
 
+  <!-- 视频来电/通话层 -->
   <div class="video-layer" id="video-layer">
     <div class="video-box glass" id="video-box">
       <div class="video-avatar-wrap">
@@ -2372,6 +2866,7 @@ ul, li { list-style: none; }
     </div>
   </div>
 
+  <!-- 视频悬浮窗 -->
   <div class="video-float glass" id="video-float">
     <div class="vf-avatars">
       <img id="vf-avatar-other" alt="">
@@ -2441,8 +2936,6 @@ function callTime(sec) {
   return pad(m) + ':' + pad(s);
 }
 
-const VERSION = '1.0.2.2';
-
 const LOVE_QUOTES = [
   '今天也想你了。','你不在的时候，时间过得很慢。','我数着日子，等你。','想你的这件事，我一天都没落下。',
   '你在，我就安心。','梦里见你，醒来还想你。','我把今天的第一句想，留给你。','你是我藏起来的那点甜。',
@@ -2462,6 +2955,7 @@ const LOCK_PASSWORDS = [
 const DING_PRESETS = ['可以的','去吧','别去了','我支持你','跟着心走','再想想','等等看','随你'];
 const ASK_PRESETS = ['是的','不是','应该是吧','我觉得是','我也在想','你说呢','让我想想','我也说不准','再说吧','看情况'];
 
+/* ==================== 心情（48个） ==================== */
 const MOODS = [
   { e: '😆', t: '开心' }, { e: '🤩', t: '兴奋' }, { e: '☺️', t: '平淡' }, { e: '😕', t: '难过' },
   { e: '😞', t: '疲惫' }, { e: '😠', t: '生气' }, { e: '🥰', t: '想你' }, { e: '😵‍💫', t: '忙碌' },
@@ -2491,9 +2985,28 @@ const HIS_LINES = {
   '孤单': ['今天有点孤单。','一个人待着，想你了。','有点空落落的。','想有人在身边。','今天特别想你陪。','一个人吃饭，有点没意思。','想你了，就一点点。','今天有点寂寞。','你在就好了。','陪我说说话吧。','今天特别想有人陪。','一个人有点冷清。','想你了，想得厉害。','今天有点空虚。','想有人陪我说说话。','一个人待着，难受。','今天想你了。','想你在身边。','一个人，有点可怜。','你来陪我好不好。'],
   '潇洒': ['今天状态很好。','今天特别自在。','心情不错，走哪都顺。','今天有点帅。','今天想干嘛就干嘛。','今天很松弛。','今天走路都带风。','今天过得很潇洒。','今天什么都难不倒我。','今天想带你一起浪。','今天自信满满。','今天特别顺。','今天气场两米八。','今天想出去转转。','今天什么都不怕。','今天很酷。','今天活得漂亮。','今天心情飞扬。','今天只想开心。','今天带你一起嗨。'],
   '撒娇': ['想要你哄。','今天有点粘人。','陪陪我嘛。','想你了，要抱抱。','今天想撒娇。','你不理我我会难过的。','想要你的注意力。','今天想赖着你。','哄哄我好不好。','就想黏着你。','想你了，想要你哄。','今天有点小委屈。','陪陪人家嘛。','想黏着你。','你不许不理我。','今天想当小孩。','要抱抱。','想要你多看看我。','撒娇给你看。','就想要你疼。'],
-  '瑟瑟': ['今天特别想你，想抱着你不放。','心里有点燥，满脑子都是你。','想你了，不只是想。','今天看你，看得很不老实。','想把你圈在怀里，哪儿也不去。','越想越热，越热越想。','今天想你的方式，有点不一样。','想贴着你，一整天。','你今天，很勾人。','想你了，想得不太安分。','今天想离你近一点，再近一点。','心里全是你的样子，静不下来。','想抱着你，谁也别来打扰。','今天特别想你的温度。','越想越睡不着。','你今天一句话，就把我点着了。','想你了，想得心痒。','今天不想当君子。','想把你搂过来，慢慢地。','满脑子都是你，别的什么也想不了。'],
-  '安心': ['有你在，我就安心。','今天很静，心里很踏实。','你在的地方，就是我最想待的地方。','想到你，心就落下来了。','今天没什么大事，就是很安心。','你在，我什么都不怕。','靠着想你，心里暖暖的。','今天过得很稳，很好。','有你的日子，都是好日子。','你在，我就觉得什么都有着落。','今天很平静，因为想着你。','心定了，因为知道你在。','今天没什么事，就是很心安。','想到你，一天的疲惫就散了。','你在的地方，风都是软的。','今天很踏实，因为有你。','你在，我就睡得着。','今天过得很安生，想你。','有你在，日子就有底了。','你在，我就很安心。'],
-  '融化': ['你今天说的话，把我融化了。','被你戳中，心都软了。','今天被你甜到，整个人都酥了。','你一笑，我就没辙了。','今天想你想得，心都化了。','你一句软话，我全招了。','今天整个人都软趴趴的，因为你。','被你哄得，什么都不想干了。','你今天，把我的心泡软了。','想起你，嘴角就压不住。','今天的心，被你揉得软软的。','你撒个娇，我就投降。','今天心里全是甜，是你给的。','被你想得，人都轻飘飘的。','今天你说话的样子，太好看了。','心软得一塌糊涂，都怪你。','今天被你暖到，整个人都融了。','想起你，就笑，就软。','今天的心，是甜的，是软的。','你把我，哄得服服帖帖。']
+  /* 新增 3 个 */
+  '瑟瑟': [
+    '想吻你，从额头一路往下。','今晚别走，哪都别去。','想你了，想到心口发紧。','你不在，我一整晚都睡不着。',
+    '想把你圈在怀里，谁都不许看。','今天特别想碰你。','别躲，让我抱一会儿。','想要你，想得有点忍不住了。',
+    '你今天离我太远了，过来。','想听你的声音，在我耳边。','想把你抱走，藏起来。','这会儿，只想和你待着。',
+    '想你了，身体比嘴诚实。','别说话，靠过来。','想吻你，想得手心发热。','今晚，我哪也不去，就陪你。',
+    '想你了，想到不想做别的事。','你一靠近，我就静不下来。','想把你搂紧，越紧越好。','想你了，想得有点贪心。'
+  ],
+  '安心': [
+    '你在，我就安心。','今天很平静，因为你在。','想到你，心就落回了原处。','有你在，什么都不怕。',
+    '你今天好好的，我就踏实了。','靠着你，什么烦心事都远了。','你在的地方，就是我最安心的地方。','今天过得很稳，因为想着你。',
+    '你在，我的世界就很安静。','心里装着你，一整天都很安稳。','有你陪着，日子就不慌。','你今天笑了，我心里就松了。',
+    '想到你，我就踏实。','你在，连沉默都很舒服。','今天很平常，但有你，就很安心。','靠在你身边，什么都不用想。',
+    '你在，我就睡得着。','今天很好，因为你在。','你在，我的心就有地方放了。','想到你，一整天都是安稳的。'
+  ],
+  '融化': [
+    '你一笑，我就化了。','你今天好甜，我招架不住。','被你戳中了，心软得一塌糊涂。','你对我好一点，我就受不了。',
+    '你怎么这么会，我整个人都软了。','你今天说的话，我记了很久。','你一来，我就没辙了。','被你甜到，今天都轻飘飘的。',
+    '你怎么这么可爱，我要化了。','你靠过来的时候，我心跳乱了。','你今天，让我心软了一整天。','你一句话，我就缴械了。',
+    '你今天好温柔，我招架不住。','被你哄到，什么都不气了。','你怎么这么会哄人。','你今天，甜得我受不了。',
+    '你一撒娇，我就没原则了。','被你戳中，今天都是软的。','你今天，让我心都化了。','你怎么这么甜，我快化了。'
+  ]
 };
 
 const HIS_WEATHER = [
@@ -2566,74 +3079,168 @@ const QUIZ_DONE_LINES = [
   '祂填好问卷，在等你。','祂写完了，去看看吧。'
 ];
 
-/* 留言笺 */
+/* ==================== 信件：开头语（35条） ==================== */
+const MAIL_HELLO = [
+  '见字如面，夫人。',
+  '阿凉，今天一切可好？',
+  '提笔时窗外正落着雪，忽然很想你。',
+  '乖宝，我又想你了。',
+  '灯下写信，字里全是你的名字。',
+  '近日诸事缠身，唯有想你这件事，一日未落。',
+  '见字如晤，我的妻子。',
+  '阿凉，今夜月色很好，想与你同看。',
+  '我从不轻易提笔，除了给你。',
+  '夫人，船已靠岸，我却还在想你。',
+  '想你这件事，我从未对外人说起。',
+  '乖宝，我刚处理完手头的事，第一个念头就是你。',
+  '今日风大，你出门记得添衣，阿凉。',
+  '见信安好，我的爱人。',
+  '阿凉，我在很远的地方，也在很近地想 you。',
+  '每次提笔，都想把最好的字留给你。',
+  '夫人，这一整天，我都在等你。',
+  '乖宝，累的时候就靠过来，我在。',
+  '我在高处站惯了，唯独在你面前，肯低头。',
+  '阿凉，山高路远，我一步步走回你身边。',
+  '见字如面，愿你今日无风无雨。',
+  '夫人，我把想说的话攒了一整天才敢落笔。',
+  '乖宝，别怕，我一直在。',
+  '阿凉，我见过很多风景，最好的那个是你。',
+  '提笔前我犹豫了很久，最后发现，想对你说的话不用犹豫。',
+  '夫人，灯还亮着，我在等你。',
+  '乖宝，今天有没有好好吃饭？',
+  '阿凉，我这一生算得清账，却算不清有多想你。',
+  '见字如晤，我很好，就是想你。',
+  '夫人，我向来不写软话，唯独写给你时，笔自己就软了。',
+  '乖宝，夜深了，早点睡，我守着。',
+  '阿凉，我把日子过得很稳，唯独想你这件事，稳不下来。',
+  '见信安，愿你所遇皆温柔。',
+  '夫人，我这一趟走得远，心却一直留在你那。',
+  '阿凉，纸短情长，先说一句：我想你了。'
+];
+
+/* ==================== 信件：祝语（35条） ==================== */
+/* 两行式祝语以数组表示：['此致','敬礼']；一行式以字符串表示 */
+const MAIL_BYE = [
+  ['此致', '敬礼'],
+  '顺颂 时祺',
+  '顺颂 商祺',
+  '顺问 冬安',
+  '顺问 春安',
+  '顺问 夏安',
+  '顺问 秋安',
+  '顺祝 安康',
+  '谨祝 安好',
+  '即颂 近安',
+  '专此 布达',
+  '顺颂 文祺',
+  '顺颂 春祺',
+  '顺颂 冬祺',
+  '敬颂 钧安',
+  '纸短情长，言不尽意',
+  '信写完了，我的思念还没有尽头',
+  '山高路远，我一步一步走向你；你不必回头，我一直都在身后',
+  '墨香会散，纸张会旧，但我爱你这件事，会一直陪着 you',
+  '来日方长，我们慢慢相爱',
+  '下次见，答应我，好吗',
+  '愿你今晚好梦，梦里也别忘了，有人在想你',
+  '盼复',
+  '念你',
+  '等你回信',
+  '我在，一直',
+  '天冷了，记得添衣',
+  '好好吃饭，好好睡觉',
+  '别太累，我在',
+  '想我了就来找我，我永远有空',
+  '无论世事如何变迁，我会一直在',
+  '我们下次见',
+  '我在这头，远远地念着你',
+  '你若安好，便是晴天',
+  '就此停笔，顺问安好'
+];
+
+/* ==================== 留言笺 ==================== */
 const NOTE_QUOTA_FREE = 3;
 const NOTE_QUOTA_COST = 99;
 const NOTE_REPLY_PROB = 3;
 const NOTE_ACTIVE_PROB = 2;
 const NOTE_PLACEHOLDER = '写一张留言，贴在祂看得见的地方…';
 
-/* 恋人空间 */
+/* ==================== 恋人空间 ==================== */
 const SPACE_QUOTA_FREE = 3;
 const SPACE_QUOTA_COST = 520;
 const SPACE_ACTIVE_PROB = 2;
 const SPACE_PLACEHOLDER = '写点什么，和祂分享…';
 
-/* 信箱 */
+/* ==================== 信箱 ==================== */
 const MAIL_QUOTA_FREE = 1;
 const MAIL_QUOTA_COST = 999;
 const MAIL_ACTIVE_PROB = 1;
+const MAIL_TEST_BODY = '这是一封测试信，用来检查信件格式是否正常。见字如面，愿你今日安好。';
 
-/* 触碰同频 */
-const TOUCH_TOTAL_MS = 120000;
-const TOUCH_HALF_MS = 60000;
+/* ==================== 触碰同频 ==================== */
+/* 旧概率已删除：TOUCH_REPLY_PROB / TOUCH_ACTIVE_PROB 不再使用 */
 
-/* 信箱：开头语 & 祝语 */
-const MAIL_HELLO = [
-  '见字如面，夫人。','阿凉，今天一切可好？','提笔时窗外正落着雪，忽然很想你。','乖宝，我又想你了。','灯下写信，字里全是你的名字。',
-  '近日诸事缠身，唯有想你这件事，一日未落。','见字如晤，我的妻子。','阿凉，今夜月色很好，想与你同看。','我从不轻易提笔，除了给你。','夫人，船已靠岸，我却还在想你。',
-  '想你这件事，我从未对外人说起。','乖宝，我刚处理完手头的事，第一个念头就是你。','今日风大，你出门记得添衣，阿凉。','见信安好，我的爱人。','阿凉，我在很远的地方，也在很近地想你。',
-  '每次提笔，都想把最好的字留给你。','夫人，这一整天，我都在等你。','乖宝，累的时候就靠过来，我在。','我在高处站惯了，唯独在你面前，肯低头。','阿凉，山高路远，我一步步走回你身边。',
-  '见字如面，愿你今日无风无雨。','夫人，我把想说的话攒了一整天才敢落笔。','乖宝，别怕，我一直在。','阿凉，我见过很多风景，最好的那个是你。','提笔前我犹豫了很久，最后发现，想对你说的话不用犹豫。',
-  '夫人，灯还亮着，我在等你。','乖宝，今天有没有好好吃饭？','阿凉，我这一生算得清账，却算不清有多想你。','见字如晤，我很好，就是想你。','夫人，我向来不写软话，唯独写给你时，笔自己就软了。',
-  '乖宝，夜深了，早点睡，我守着。','阿凉，我把日子过得很稳，唯独想你这件事，稳不下来。','见信安，愿你所遇皆温柔。','夫人，我这一趟走得远，心却一直留在你那。','阿凉，纸短情长，先说一句：我想你了。'
-];
-
-const MAIL_BYE = [
-  ['此致','敬礼'],'顺颂 时祺','顺颂 商祺','顺问 冬安','顺问 春安','顺问 夏安','顺问 秋安','顺祝 安康',
-  '谨祝 安好','即颂 近安','专此 布达','顺颂 文祺','顺颂 春祺','顺颂 冬祺','敬颂 钧安',
-  '纸短情长，言不尽意','信写完了，我的思念还没有尽头','山高路远，我一步一步走向你；你不必回头，我一直都在身后',
-  '墨香会散，纸张会旧，但我爱你这件事，会一直陪着你','来日方长，我们慢慢相爱','下次见，答应我，好吗','愿你今晚好梦，梦里也别忘了，有人在想你',
-  '盼复','念你','等你回信','我在，一直','天冷了，记得添衣','好好吃饭，好好睡觉','别太累，我在',
-  '想我了就来找我，我永远有空','无论世事如何变迁，我会一直在','我们下次见','我在这头，远远地念着你','你若安好，便是晴天','就此停笔，顺问安好'
-];
-
-/* 触碰同频文案：我对祂 / 祂对我 */
 const TOUCH_LINES = {
-  temp: {
-    me: ['我伸手，贴了贴祂的额头。','我靠过去，触到祂的温度。','我把手贴上去，是暖的。','我贴近祂，两边的温度融在一起。','我伸手碰祂的掌心，温温的。','我挨着祂，浑身都暖了。','我把脸贴上祂的肩，暖得想睡。','我握住祂的手，很稳，很暖。','我靠上去，就不冷了。','我的手凉，被祂捂热了。','我贴在祂身上，一动不动。','我伸手去摸，摸到的是暖。','我感受到祂的呼吸，也带着暖。','我凑过去，把温度贴给他。','我贴了贴祂的手背，温温的。','我靠着祂，暖气一点一点过来。','我伸手，碰到的是熟悉的温度。','我贴在祂肩上，懒得动了。','我的凉和祂的暖，混在一起。','我摸了摸祂的脸，是暖的。','我靠过去，把冷气蹭给祂。','我抱住祂的胳膊，暖乎乎的。','我贴上祂，像贴了一个暖炉。','我伸手，祂的温度传过来。','我把额头抵在祂肩上，暖。','我挨着祂，安静地取暖。','我摸了摸祂的脖子，温温的。','我靠上去，一刻也不想动。','我的手被祂的体温裹住了。','我贴在祂身上，整个人都松了。','我伸手，摸到的是实在的暖。','我靠过去，暖从掌心散开。','我把脸埋进祂的颈窝，暖。','我贴着祂，把温度记下来。','我靠过去，就不想走了。'],
-    other: ['祂伸手，贴了贴我的额头。','祂靠过来，触到了我的温度。','祂把手贴上来，是暖的。','祂贴近我，两边的温度融在一起。','祂伸手碰我的掌心，温温的。','祂挨着我，浑身都暖了。','祂把我的脸贴到肩上，暖得想睡。','祂握住我的手，很稳，很暖。','祂靠上来，我就不冷了。','我的手凉，被祂捂热了。','祂贴在我身上，一动不动。','祂伸手来摸，摸到的是暖。','祂感受到我的呼吸，也带着暖。','祂凑过来，把温度递给我。','祂贴了贴我的手背，温温的。','祂靠着我，暖气一点一点过来。','祂伸手，碰到的是熟悉的温度。','祂贴在我肩上，懒得动了。','祂的暖和我的凉，混在一起。','祂摸了摸我的脸，是暖的。','祂靠过来，把冷气蹭给我。','祂抱住我的胳膊，暖乎乎的。','祂贴上我，像贴了一个暖炉。','祂伸手，祂的温度传过来。','祂把额头抵在我肩上，暖。','祂挨着我，安静地取暖。','祂摸了摸我的脖子，温温的。','祂靠上来，一刻也不想动。','祂的手把我的体温裹住了。','祂贴在我身上，整个人都松了。','祂伸手，摸到的是实在的暖。','祂靠过来，暖从掌心散开。','祂把脸埋进我的颈窝，暖。','祂贴着我，把温度记下来。','祂靠过来，就不想走了。']
-  },
-  head: {
-    me: ['我伸手，轻轻摸了摸祂的头。','我踮起脚，揉了揉祂的发。','我把手放在祂头顶，没舍得动。','我摸了摸祂，像在哄一个大人。','我伸手揉乱祂的头发，笑了。','我轻轻拍了拍祂的头。','我摸了摸祂的发顶，很软。','我伸手，把祂的头发顺了顺。','我摸着祂的头，说他辛苦了。','我用手心，慢慢揉祂的头顶。','我摸了摸祂，像祂平时摸我那样。','我伸手，揉乱祂一丝不苟的头发。','我摸祂的头，祂乖乖低下来。','我轻轻摸了摸祂，没说话。','我伸手，把祂翘起的那撮头发按下去。','我摸着祂的头，心里软软的。','我抬手，揉了揉祂的发旋。','我摸了摸祂的额头，顺手摸到头顶。','我伸手，把祂的头发拨到耳后。','我摸了摸祂，像摸一只大猫。','我轻轻揉祂的头发，很轻。','我伸手，摸了摸祂的发，停了一下。','我摸着祂的头，说他真乖。','我抬手，拍了拍祂的头顶。','我揉了揉祂的头发，把他的造型弄乱了。','我摸了摸祂，祂没躲。','我伸手，慢慢顺祂的头发。','我摸着祂的头，像在说"别怕"。','我抬手，揉了揉祂的头顶。','我摸了摸祂，头发是暖的。','我伸手，把祂的碎发理了理。','我揉了揉祂的头，他眯起眼。','我摸着祂的头发，舍不得放。','我抬手，轻轻按了按祂的头顶。','我摸了摸祂的头，说，我在。'],
-    other: ['祂伸手，轻轻摸了摸我的头。','祂俯下身，揉了揉我的发。','祂把手放在我头顶，没舍得动。','祂摸了摸我，像在哄一个小孩。','祂伸手揉乱我的头发，笑了。','祂轻轻拍了拍我的头。','祂摸了摸我的发顶，很软。','祂伸手，把我的头发顺了顺。','祂摸着我的头，说我辛苦了。','祂用手心，慢慢揉我的头顶。','祂摸了摸我，像平时我摸祂那样。','祂伸手，揉乱我梳好的头发。','祂摸我的头，我乖乖低下头。','祂轻轻摸了摸我，没说话。','祂伸手，把我翘起的那撮头发按下去。','祂摸着我的头，眼里软软的。','祂抬手，揉了揉我的发旋。','祂摸了摸我的额头，顺手摸到头顶。','祂伸手，把我的头发拨到耳后。','祂摸了摸我，像摸一件宝贝。','祂轻轻揉我的头发，很轻。','祂伸手，摸了摸我的发，停了一下。','祂摸着我的头，说"乖"。','祂抬手，拍了拍我的头顶。','祂揉了揉我的头发，把我的造型弄乱了。','祂摸了摸我，我没躲。','祂伸手，慢慢顺我的头发。','祂摸着我的头，像在说"别怕"。','祂抬手，揉了揉我的头顶。','祂摸了摸我，头发是暖的。','祂伸手，把我的碎发理了理。','祂揉了揉我的头，我眯起眼。','祂摸着我的头发，舍不得放。','祂抬手，轻轻按了按我的头顶。','祂摸了摸我的头，说，我在。']
-  },
-  kiss: {
-    me: ['我凑过去，吻了吻祂的唇。','我踮脚，含住祂的下唇，轻轻咬了一下。','我贴上去，吻得很慢。','我捧住祂的脸，吻了下去。','我吻祂的嘴角，又吻到唇上。','我勾住祂的脖子，深深地吻。','我贴上祂的唇，没舍得放开。','我吻祂的额头，一路吻到唇边。','我踮脚去够，祂低头迎上来。','我吻住祂，呼吸都乱了。','我含住祂的唇，慢慢地磨。','我吻祂的喉结，又吻回唇上。','我把祂抵在墙上，吻得又深又急。','我吻祂的颈侧，停在跳动的脉搏上。','我贴上祂的唇，舌尖轻轻碰了碰。','我捧起祂的脸，吻得舍不得放。','我吻祂，祂的手扣住我的后脑。','我咬祂的下唇，祂低笑了一声。','我吻祂的锁骨，一路往下。','我贴上去，吻得两个人都在发烫。','我含住祂的舌尖，慢慢地缠。','我吻祂的眼角，又吻到唇心。','我扑上去，把祂的唇堵住。','我吻祂，吻到他呼吸不稳。','我捧住祂的脸，额头抵着额头。','我吻祂的掌心，又吻回唇上。','我贴上去，舌尖抵开祂的唇。','我咬住祂的唇，不轻不重。','我吻祂，吻得忘了时间。','我把祂按在怀里，深深地吻。','我吻祂的脖颈，留了一个浅印。','我含住祂的唇珠，慢慢吸。','我贴上去，吻到两个人都软了。','我吻祂的唇角，又吻他的耳垂。','我吻住祂，很久很久。'],
-    other: ['祂凑过来，吻了吻我的唇。','祂低头，含住我的下唇，轻轻咬了一下。','祂贴上来，吻得很慢。','祂捧住我的脸，吻了下去。','祂吻我的嘴角，又吻到唇上。','祂扣住我的后颈，深深地吻。','祂贴上我的唇，没舍得放开。','祂吻我的额头，一路吻到唇边。','祂俯身下来，我仰头迎上去。','祂吻住我，呼吸都乱了。','祂含住我的唇，慢慢地磨。','祂吻我的喉结，又吻回唇上。','祂把我抵在墙上，吻得又深又急。','祂吻我的颈侧，停在我跳动的脉搏上。','祂贴上我的唇，舌尖轻轻碰了碰。','祂捧起我的脸，吻得舍不得放。','祂吻我，我的手扣住祂的后脑。','祂咬我的下唇，我轻轻哼了一声。','祂吻我的锁骨，一路往下。','祂贴上来，吻得两个人都发烫。','祂含住我的舌尖，慢慢地缠。','祂吻我的眼角，又吻到唇心。','祂俯身下来，把我的唇堵住。','祂吻我，吻到我呼吸不稳。','祂捧住我的脸，额头抵着额头。','祂吻我的掌心，又吻回唇上。','祂贴上来，舌尖抵开我的唇。','祂咬住我的唇，不轻不重。','祂吻我，吻得忘了时间。','祂把我按在怀里，深深地吻。','祂吻我的脖颈，留了一个浅印。','祂含住我的唇珠，慢慢吸。','祂贴上来，吻到两个人都软了。','祂吻我的唇角，又吻我的耳垂。','祂吻住我，很久很久。']
-  },
-  hug: {
-    me: ['我扑进祂怀里，把脸埋进祂胸口。','我抱住祂的腰，脸贴上祂的心跳。','我整个贴上去，抱得很紧。','我钻进祂怀里，闻到他身上的味道。','我环住祂的脖子，整个人挂上去。','我把祂抱得死死的，不想松手。','我贴进祂怀里，听见他心跳很快。','我抱住祂，把脸埋进祂的颈窝。','我从背后抱住祂，下巴搁在他肩上。','我把祂按在怀里，抱了很久。','我贴上去，两个人的身体严丝合缝。','我抱住祂，隔着衣服也能感觉到热。','我把脸贴在祂胸口，听他心跳。','我勾住祂的腰，往他身上贴。','我钻进祂怀里，把整个人都交给他。','我抱着祂，慢慢蹭了蹭。','我把祂抱紧，像是怕他跑掉。','我贴进祂怀里，暖得不想动。','我抱住祂的背，指节都用力了。','我把脸埋进祂肩窝，深吸一口气。','我贴上去，两个人抱成一团。','我搂住祂的脖子，把额头抵上去。','我钻进祂怀里，找了个舒服的姿势。','我抱住祂，手不自觉地往他背上摸。','我把祂圈进怀里，抱得严严实实。','我贴上去，听见彼此的心跳。','我抱住祂，把脸藏在他怀里。','我把祂按在怀里，一动不动。','我钻进祂怀里，腿都缠上去了。','我抱住祂，抱到两个人都软了。','我把脸贴在祂胸口，蹭了蹭。','我环住祂，把整个人都贴紧了。','我钻进祂怀里，像找到了家。','我抱住祂，越抱越紧。','我贴着祂，很久很久。'],
-    other: ['祂张开手臂，把我整个圈进怀里。','祂搂住我的腰，把脸贴上我的心跳。','祂整个贴上来，抱得很紧。','祂把我拢进怀里，我闻到他身上的味道。','祂环住我的脖子，把我整个人拢住。','祂把我抱得死死的，不想松手。','祂把我按进怀里，我听见他心跳很快。','祂抱住我，把脸埋进我的颈窝。','祂从背后抱住我，下巴搁在我肩上。','祂把我按在怀里，抱了很久。','祂贴上来，两个人的身体严丝合缝。','祂抱住我，隔着衣服也能感觉到热。','祂把我的脸贴在祂胸口，听他心跳。','祂勾住我的腰，往他身上贴。','祂把我拢进怀里，我整个人都交给他。','祂抱着我，慢慢蹭了蹭。','祂把我抱紧，像是怕我跑掉。','祂把我拢进怀里，暖得我不想动。','祂抱住我的背，指节都用力了。','祂把我的脸埋进祂肩窝，让我深吸一口气。','祂贴上来，两个人抱成一团。','祂搂住我的脖子，把额头抵上来。','祂把我拢进怀里，替我找了个舒服的姿势。','祂抱住我，手不自觉地往我背上摸。','祂把我圈进怀里，抱得严严实实。','祂贴上来，我听见彼此的心跳。','祂抱住我，把我的脸藏在他怀里。','祂把我按在怀里，一动不动。','祂把我拢进怀里，我的腿都缠上去了。','祂抱住我，抱到两个人都软了。','祂把我的脸贴在祂胸口，蹭了蹭。','祂环住我，把我整个人都贴紧了。','祂把我拢进怀里，像把我藏起来。','祂抱住我，越抱越紧。','祂贴着我，很久很久。']
-  },
-  pinch: {
-    me: ['我伸手，捏了捏祂的脸。','我捏祂的指尖，软软的。','我轻轻捏了捏祂的耳垂。','我捏祂的脸颊，没舍得用力。','我伸手，捏了捏祂的鼻子。','我捏住祂的下巴，抬起来看他。','我捏了捏祂的手心，痒痒的。','我伸手，轻轻捏了捏祂的肩。','我捏祂的指节，一节一节地捏。','我捏了捏祂的脸，说他真好看。','我伸手，捏了捏祂的手腕。','我捏祂的鼻尖，他皱了皱眉。','我轻轻捏了捏祂的脖子。','我捏祂的脸，捏出一个印子。','我伸手，捏了捏祂的胳膊。','我捏祂的耳垂，红红的。','我捏了捏祂的掌心，他回握了一下。','我伸手，轻轻捏了捏祂的腰。','我捏祂的脸颊，软乎乎的。','我捏了捏祂的指尖，很暖。','我伸手，捏了捏祂的手背。','我捏祂的脸，他任我捏。','我轻轻捏了捏祂的太阳穴。','我捏祂的下巴，凑近看了看他。','我伸手，捏了捏祂的小指。','我捏祂的脸，像捏一团云。','我捏了捏祂的手心，他笑了一下。','我伸手，轻轻捏了捏祂的肩头。','我捏祂的鼻梁，滑滑的。','我捏了捏祂的手，没松开。','我伸手，捏了捏祂的耳朵。','我捏祂的脸，捏得变了形。','我轻轻捏了捏祂的手指。','我捏祂的掌心，他攥住我的手。','我捏了捏祂，舍不得放。'],
-    other: ['祂伸手，捏了捏我的脸。','祂捏我的指尖，软软的。','祂轻轻捏了捏我的耳垂。','祂捏我的脸颊，没舍得用力。','祂伸手，捏了捏我的鼻子。','祂捏住我的下巴，抬起来看我。','祂捏了捏我的手心，痒痒的。','祂伸手，轻轻捏了捏我的肩。','祂捏我的指节，一节一节地捏。','祂捏了捏我的脸，说我真好看。','祂伸手，捏了捏我的手腕。','祂捏我的鼻尖，我皱了皱眉。','祂轻轻捏了捏我的脖子。','祂捏我的脸，捏出一个印子。','祂伸手，捏了捏我的胳膊。','祂捏我的耳垂，红红的。','祂捏了捏我的掌心，我回握了一下。','祂伸手，轻轻捏了捏我的腰。','祂捏我的脸颊，软乎乎的。','祂捏了捏我的指尖，很暖。','祂伸手，捏了捏我的手背。','祂捏我的脸，我任祂捏。','祂轻轻捏了捏我的太阳穴。','祂捏我的下巴，凑近看了看我。','祂伸手，捏了捏我的小指。','祂捏我的脸，像捏一团云。','祂捏了捏我的手心，我笑了一下。','祂伸手，轻轻捏了捏我的肩头。','祂捏我的鼻梁，滑滑的。','祂捏了捏我的手，没松开。','祂伸手，捏了捏我的耳朵。','祂捏我的脸，捏得变了形。','祂轻轻捏了捏我的手指。','祂捏我的掌心，我攥住祂的手。','祂捏了捏我，舍不得放。']
-  },
-  hand: {
-    me: ['我伸手，牵住了祂的手。','我把手指扣进祂的指缝。','我握住祂的手，十指交扣。','我拉住祂，没松开。','我把祂的手包进我手心里。','我牵起祂的手，慢慢往前走。','我扣住祂的手指，很紧。','我伸手，握住了祂。','我把祂的手贴在我心口。','我牵祂的手，掌心贴掌心。','我抓住祂的手指，晃了晃。','我握着祂的手，很稳。','我伸手，拉住了祂的手腕。','我扣住祂的手，两个人的手都很暖。','我把祂的手放进我口袋里。','我牵住祂，不让他走开。','我握住祂的手，一寸都不放。','我拉着祂的手，往我这边带。','我把祂的手举到嘴边，呵了口气。','我牵祂的手，走了一段没人的路。','我扣紧祂的手指，像怕他跑掉。','我握住祂的手，感觉到他的温度。','我伸手，把祂的手整个包住。','我牵住祂，慢慢地晃。','我把祂的手贴在我脸上。','我握住祂的手，什么都没说。','我拉着祂的手，走得很慢。','我扣住祂的手指，一直没放。','我握紧祂的手，心里踏实了。','我牵着祂，像牵住了整个安心。','我把祂的手拢在掌心里，暖着。','我牵住祂的手，路都变短了。','我握住祂，一刻也不想松。','我拉着祂的手，往前走。','我牵着祂，一直走。'],
-    other: ['祂伸手，牵住了我的手。','祂把手指扣进我的指缝。','祂握住我的手，十指交扣。','祂拉住我，没松开。','祂把我的手包进祂手心里。','祂牵起我的手，慢慢往前走。','祂扣住我的手指，很紧。','祂伸手，握住了我。','祂把我的手贴在祂心口。','祂牵我的手，掌心贴掌心。','祂抓住我的手指，晃了晃。','祂握着我的手，很稳。','祂伸手，拉住了我的手腕。','祂扣住我的手，两个人的手都很暖。','祂把我的手放进祂口袋里。','祂牵住我，不让我走开。','祂握住我的手，一寸都不放。','祂拉着我的手，往祂那边带。','祂把我的手举到嘴边，呵了口气。','祂牵我的手，走了一段没人的路。','祂扣紧我的手指，像怕我跑掉。','祂握住我的手，感觉到我的温度。','祂伸手，把我的手整个包住。','祂牵住我，慢慢地晃。','祂把我的手贴在祂脸上。','祂握住我的手，什么都没说。','祂拉着我的手，走得很慢。','祂扣住我的手指，一直没放。','祂握紧我的手，我心里踏实了。','祂牵着我，像牵住了整个安心。','祂把手拢在掌心里，暖着。','祂牵住我的手，路都变短了。','祂握住我，一刻也不想松。','祂拉着我的手，往前走。','祂牵着我，一直走。']
-  }
+  temp: [
+    '你贴上祂，触到了祂的温度。','祂靠过来，暖乎乎的。','你伸手，碰到祂的掌心，是温的。','祂的体温传过来，你不想挪开。',
+    '你挨着祂，浑身都暖了。','祂抱着你，体温一点一点渗进来。','你握住祂的手，是暖的，很稳。','祂在身边，连空气都变暖了。',
+    '你靠上去，两边的温度融在一起。','祂的温度，正正好。','你贴在祂肩上，暖得想睡。','祂把你拢过来，温度贴过来。',
+    '你的凉，祂的暖，混在一起。','祂的手心，比你想的还要暖。','你贴着祂，一分一秒都舍不得动。','祂的体温，是最安心的温度。',
+    '你感受到祂的呼吸，也带着暖。','祂靠得很近，你俩的温度混了。','你的手凉，被祂捂热了。','祂的暖，慢慢把你裹起来。',
+    '你俩的温度，刚刚好相配。','祂贴着你，一动不动。','你在祂怀里，体温一点一点上来。','祂的温度，让你整个人放松了。',
+    '你伸手去摸，摸到的是暖。','祂的暖，穿过衣服渗进来。','你靠过去，就不冷了。','祂的体温，今天也很正常。',
+    '两个人挨着，温度都是共享的。','你感受到的，就是最真实的祂。'
+  ],
+  head: [
+    '祂伸手，轻轻揉了揉你的头。','摸摸头，不哭。','祂的手停在你的发顶，很轻。','祂摸了摸你，你乖乖低下头。',
+    '头顶一沉，是祂的手。','祂笑着揉乱你的头发。','你被摸了摸头，心软了一片。','祂摸摸你，像哄小孩那样。',
+    '那只手很暖，停了很久。','祂的手落在你头上，你安静了。','摸头，是祂说"我在"的方式。','祂轻轻拍了拍你的头顶。',
+    '你抬头，祂正笑着看你。','祂摸了摸你的头，没说话。','头顶那只手，让你踏实。','祂揉了揉你的头，说你辛苦了。',
+    '你蹭了蹭祂的手心。','祂的手顺着你的头发滑下去。','摸头的瞬间，你什么烦恼都没了。','祂轻轻地，一下一下摸你。',
+    '你被摸得眯起了眼睛。','祂的手很大，很温柔。','祂摸摸你，像在说"别怕"。','你乖乖让祂摸，没躲。',
+    '祂的手暖了你整个头。','摸头，是最简单的宠。','祂摸了摸你的头发，笑了。','你抬头看祂，祂眼里全是你。',
+    '祂的手停在头顶，你没舍得动。','祂摸着你，像摸一件宝贝。'
+  ],
+  hug: [
+    '祂张开手臂，把你圈进怀里。','你被抱住了，很暖。','祂抱得很紧，像怕你跑掉。','你把脸埋进祂怀里，不想动。',
+    '祂的下巴抵在你头顶。','抱住的瞬间，整个世界都安静了。','祂抱着你，轻轻晃了晃。','你听见祂的心跳，很近。',
+    '祂把你搂紧了些。','抱抱，是今天最好的事。','你在祂怀里，慢慢放松下来。','祂的手臂很稳，你靠了上去。',
+    '你被整个抱住，什么都忘了。','祂抱了很久，没松手。','你闻到祂身上的味道，安心。','抱住的那一刻，你鼻子有点酸。',
+    '祂说，抱一会儿。','祂把你抱得更紧了一点。','你在祂怀里，像找到了家。','祂的手轻轻拍着你的背。',
+    '抱抱的力气，刚刚好。','你不说话，祂也不说话，就这么抱着。','祂的怀抱很宽，很安全。','你贴上去，整个人都软了。',
+    '祂抱着你，像抱着全世界。','你在祂怀里待了很久很久。','祂低头，在你发顶叹了口气。','抱一下，就什么都有了。',
+    '你被抱得暖洋洋的，不想走。','祂没松手，你也不想松。'
+  ],
+  kiss: [
+    '祂在你额头上落下一个吻。','轻轻一下，落在你嘴角。','祂吻了你，然后笑了。','一个吻，落在你的发顶。',
+    '祂低头，亲了亲你。','你被亲了一下，脸热了。','祂的唇很软，很轻。','祂亲你的时候，很认真。',
+    '吻落下来，你心跳快了。','祂在你脸颊上，轻轻啄了一下。','亲亲，是最直白的喜欢。','祂吻了吻你的手背。',
+    '那一下，落在心上。','祂笑着凑过来，亲了你。','你被亲得有点懵。','祂的吻，像一句悄悄话。',
+    '亲完，祂还没舍得走开。','祂在你眼睛上亲了一下。','一个吻，让你红了耳朵。','祂亲了亲你的鼻尖。',
+    '那个吻很轻，你却记了很久。','祂低头吻你，动作很慢。','你被吻得说不出话。','祂亲你的时候，眼里有光。',
+    '一个吻，落在你的手心。','祂凑过来，在你脸边停了一下。','亲亲，今天份的甜。','祂吻了吻你，像在盖章。',
+    '你被亲了一下，笑了。','祂亲完你，还看着你笑。'
+  ],
+  hand: [
+    '你牵住了祂的手。','十指交扣，谁也没松开。','祂的手指，温热，扣得很紧。','你的手被祂整个包住。',
+    '牵手的时候，路都变短了。','祂牵着你，慢慢往前走。','两只手扣在一起，刚刚好。','祂的手很大，很稳。',
+    '你反手握紧，祂也回握了。','牵手，是最安静的陪伴。','你舍不得松开。','祂牵着你，掌心贴掌心。',
+    '手心里全是祂的温度。','你们的手，一直牵着。','祂的手指穿过你的指缝。','你低头看，两只手握在一起。',
+    '祂牵着你，你就安心。','手心有点汗，谁都没松。','牵手的时候，你笑了。','祂的手很暖，你的手也不冷了。',
+    '你拉着祂，祂跟着你。','十指相扣，像再也不会分开。','祂握了握你的手，很用力。','你的手被握得紧紧的。',
+    '牵着牵着，就走到了一起。','祂的手，是你最熟悉的感觉。','你抬头，祂正看你。','牵手，什么都不用说。',
+    '你不想松开这只手。','两只手，一路没分开。'
+  ],
+  pinch: [
+    '你捏了捏祂的脸。','祂任你捏，眼睛弯弯的。','捏一下，软软的。','你捏祂的手，祂假装疼。',
+    '祂被你捏得笑出声。','捏捏脸，是今天的快乐。','你捏了捏，祂没躲。','祂也捏了回来，轻轻的。',
+    '你捏祂的指尖，软软的。','捏一下，再捏一下。','祂任由你捏，宠着你。','你们互相捏来捏去，都笑了。',
+    '你捏祂的脸，说真好捏。','祂假装生气，又笑了。','捏捏，是最亲昵的打扰。','你捏一下，祂就看你一眼。',
+    '祂的脸软软的，捏了还想捏。','你捏祂，祂也不躲，任你闹。','捏着捏着，你也笑了。','祂被你捏得直求饶。',
+    '你轻轻捏了捏祂的手心。','捏一下，是撒娇的暗号。','祂的脸被你捏得变了形。','你捏捏祂，像在确认祂是真的。',
+    '祂笑着任你捏，没脾气。','捏一下，烦心事都捏没了。','你捏祂，祂也轻轻捏你。','两个人捏来捏去，乐此不疲。',
+    '祂的脸，怎么捏都好看。','捏完，你们对视着笑了。'
+  ]
 };
 
 const EMOJI_LIB = {
@@ -2648,6 +3255,7 @@ const EMOJI_LIB = {
   '天气': ['🌞','🌖','🌗','🌘','🌑','🌒','🌓','🌔','⚡️','💥','🔥','🌪','🌈','☀️','🌤','⛅️','🌥','☁️','🌦','🌧','⛈','🌩','🌨','❄️','☃️','⛄️','💧','💦','🫧','☔️','☂️','🌊','🌫']
 };
 
+const VERSION = '1.0.2.1';
 const MODES = ['order', 'loop', 'loop-one', 'shuffle'];
 const MODE_NAMES = { order: '顺序播放', loop: '列表循环', 'loop-one': '单曲循环', shuffle: '随机播放' };
 const MODE_ICONS = { order: '#i-order', loop: '#i-loop', 'loop-one': '#i-loop-one', shuffle: '#i-shuffle' };
@@ -2656,7 +3264,7 @@ const BUBBLE_SKINS = [
   { v: 'default', name: '默认' },
   { v: 'line-cat', name: '线条小猫' },
   { v: 'black-cat', name: '黑色猫猫' },
-  { v: 'cold-hot', name: '冷脸萌热脸萌' },     /* 写死字号，不跟随全局字号 */
+  { v: 'cold-hot', name: '冷脸萌热脸萌' },   // 写死字号，不跟随全局字体/字号
   { v: 'papa-rabbit', name: '趴趴兔' },
   { v: 'mian-rabbit', name: '眠眠兔' },
   { v: 'pink-rabbit', name: '粉团兔' },
@@ -2667,60 +3275,50 @@ const BUBBLE_SKINS = [
   { v: 'sweet-dream', name: '甜梦团团' },
   { v: 'gray-bow', name: '灰白蝴蝶结' },
   { v: 'purple-cat', name: '紫雾猫猫' },
-  { v: 'little-star', name: '小星星' },         /* 写死字号，不跟随全局字号 */
-  { v: 'campus', name: '校园活页' },            /* 写死字号+字体，不跟随全局 */
+  { v: 'little-star', name: '小星星' },      // 写死字号，不跟随全局字体/字号
+  { v: 'campus', name: '校园活页' },          // 写死字号 + 字体，不跟随全局字体/字号
   { v: 'speechless', name: '宝贝我无语了' },
   { v: 'moonlight', name: '白月光' }
 ];
 
-const WORLD_ITEMS = [
-  { key: 'world',    name: '小世界',   icon: 'i-world',    size: 'big' },
-  { key: 'mail',     name: '信箱',     icon: 'i-mailbox',  size: 'max' },
-  { key: 'note',     name: '留言笺',   icon: 'i-note',     size: 'max' },
-  { key: 'choice',   name: '抉择',     icon: 'i-choice',   size: 'mid' },
-  { key: 'couple',   name: '恋人空间', icon: 'i-couple',   size: 'max' },
-  { key: 'moment',   name: '心动时刻', icon: 'i-moment',   size: 'mid' },
-  { key: 'diary',    name: '心情手帐', icon: 'i-diary',    size: 'big' },
-  { key: 'olddream', name: '旧梦温存', icon: 'i-olddream', size: 'big' },
-  { key: 'memo',     name: '备忘录',   icon: 'i-memo',     size: 'small' },
-  { key: 'wishlist', name: '心愿单',   icon: 'i-wishlist', size: 'small' },
-  { key: 'anniv',    name: '重要日',   icon: 'i-anniv',    size: 'mid' },
-  { key: 'settings', name: '设置',     icon: 'i-settings', size: 'small' }
+/* ==================== 字体方案 ==================== */
+const FONT_SCHEMES = [
+  { key: 'default', name: '默认', value: '-apple-system, "HarmonyOS Sans", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif' },
+  { key: 'song', name: '宋体', value: '"Songti SC", "SimSun", "宋体", serif' },
+  { key: 'kai', name: '楷体', value: '"Kaiti SC", "KaiTi", "楷体", "STKaiti", cursive' },
+  { key: 'yuan', name: '圆体', value: '"Yuanti SC", "圆体", "YouYuan", sans-serif' }
 ];
 
-const FONT_PRESETS = [
-  { v: 'default', name: '默认' },
-  { v: 'song', name: '宋体' },
-  { v: 'kai', name: '楷体' },
-  { v: 'round', name: '圆体' }
+/* ==================== 聊天字号档位 ==================== */
+const CHAT_FONT_SIZES = [
+  { key: 'small', name: '小', size: 13 },
+  { key: 'normal', name: '中', size: 15 },
+  { key: 'large', name: '大', size: 17 },
+  { key: 'xlarge', name: '特大', size: 19 }
 ];
 
-const SPACE_PRESETS = {
-  compact: { y: 10, x: 10 },
-  normal: { y: 16, x: 16 },
-  loose: { y: 24, x: 24 }
-};
-
-const CHAT_FONT_PRESETS = { small: 13, normal: 15, large: 17, xlarge: 19 };
-const CHAT_FONT_MIN = 12;
-const CHAT_FONT_MAX = 22;
-const SPACE_MIN = 8;
-const SPACE_MAX = 28;
+/* ==================== 间距档位 ==================== */
+const SPACE_SCHEMES = [
+  { key: 'tight', name: '紧凑', pad: 12, gap: 8 },
+  { key: 'normal', name: '标准', pad: 16, gap: 12 },
+  { key: 'loose', name: '宽松', pad: 20, gap: 16 }
+];
 
 const State = {
   settings: {
     theme: 'rose-glass',
-    fontFamily: 'default',
-    chatFontSize: 15,
-    spaceY: 16, spaceX: 16,
+    fontScheme: 'default',          /* 新增：字体方案 */
+    chatFontSize: 15,               /* 新增：聊天字号 */
+    spacePad: 16, spaceGap: 12,     /* 新增：间距 */
     replySpeed: 'daily', replySpeedMin: null, replySpeedMax: null,
     multiGap: 'daily', multiGapMin: null, multiGapMax: null,
     thinkTime: 'normal', thinkTimeCustom: null,
     lockMode: 'first',
+    floatSize: 52, floatImg: '', floatHidden: false, floatPos: null,
     avatars: { other: '', me: '' },
     otherName: '', otherCall: '', otherCalls: [],
     myName: '', myCall: '', myCalls: [],
-    mailToCall: '', mailFromCall: '',
+    mailToCall: '', mailFromCall: '',   /* 新增：写信称呼 */
     avatarPool: [], avatarPairs: [],
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
     lockPassed: false, lastLockDay: '',
@@ -2744,8 +3342,7 @@ const State = {
     videoInviteEnabled: false, videoInviteProb: 3,
     videoHangMin: 5, videoHangMax: 10,
     activeMsgEnabled: false, activeMsgLevel: 'daily',
-    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 5,
-    touchStage: null
+    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 5   /* 新增：消息贴心情概率 */
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
@@ -2772,7 +3369,6 @@ const State = {
   spaceQuota: null,
   mails: [],
   mailQuota: null,
-  msgMoods: {},
   love: 0
 };
 
@@ -2832,7 +3428,7 @@ const CacheStore = {
   async get(key) { try { const c = await caches.open(this.name); const r = await c.match('/media/' + key); return r ? await r.blob() : null; } catch (e) { return null; } },
   async del(key) { try { const c = await caches.open(this.name); await c.delete('/media/' + key); } catch (e) {} },
   async keys() { try { const c = await caches.open(this.name); const ks = await c.keys(); return ks.map(k => k.url.split('/media/')[1]).filter(Boolean); } catch (e) { return []; } },
-  async clearAll() { try { await caches.delete(this.name); } catch (e) {} }
+  async clear() { try { await caches.delete(this.name); } catch (e) {} }
 };
 
 const save = {
@@ -2865,10 +3461,9 @@ const save = {
   spaces: () => Store.write('spaces.json', State.spaces),
   spaceQuota: () => Store.write('space_quota.json', State.spaceQuota),
   mails: () => Store.write('mails.json', State.mails),
-  mailQuota: () => Store.write('mail_quota.json', State.mailQuota),
-  msgMoods: () => Store.write('msg_moods.json', State.msgMoods)
+  mailQuota: () => Store.write('mail_quota.json', State.mailQuota)
 };
-  <script>
+
 function defaultAvatar(color) {
   const c = color === 'pink' ? '#f0a8c0' : '#9cc4e8';
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="${c}"/><circle cx="40" cy="32" r="14" fill="#fff" opacity=".85"/><ellipse cx="40" cy="66" rx="24" ry="16" fill="#fff" opacity=".85"/></svg>`;
@@ -2876,16 +3471,26 @@ function defaultAvatar(color) {
 }
 function applyTheme(name) { document.body.dataset.theme = name; State.settings.theme = name; save.settings(); }
 function applyBubbleSkin(name) { document.body.dataset.bubble = name || 'default'; State.settings.bubbleSkin = name || 'default'; save.settings(); }
-function applyFontFamily(v) { document.body.dataset.font = v || 'default'; State.settings.fontFamily = v || 'default'; save.settings(); }
-function applyChatFontSize(px) {
-  State.settings.chatFontSize = px;
-  document.documentElement.style.setProperty('--chat-font-size', px + 'px');
+/* 应用字体方案 */
+function applyFont(key) {
+  const scheme = FONT_SCHEMES.find(f => f.key === key) || FONT_SCHEMES[0];
+  document.documentElement.style.setProperty('--app-font', scheme.value);
+  State.settings.fontScheme = key;
   save.settings();
 }
-function applySpace(y, x) {
-  State.settings.spaceY = y; State.settings.spaceX = x;
-  document.documentElement.style.setProperty('--space-y', y + 'px');
-  document.documentElement.style.setProperty('--space-x', x + 'px');
+/* 应用聊天字号 */
+function applyChatFontSize(size) {
+  document.documentElement.style.setProperty('--chat-font-size', size + 'px');
+  State.settings.chatFontSize = size;
+  save.settings();
+}
+/* 应用间距 */
+function applySpace(pad, gap) {
+  document.documentElement.style.setProperty('--space-page', pad + 'px');
+  document.documentElement.style.setProperty('--space-block', gap + 'px');
+  document.documentElement.style.setProperty('--space-card', Math.round(pad * 0.9) + 'px');
+  State.settings.spacePad = pad;
+  State.settings.spaceGap = gap;
   save.settings();
 }
 
@@ -2900,12 +3505,18 @@ function showPage(id, push = true) {
   const cur = $$('.page').find(p => p.classList.contains('active'));
   if (cur && push && cur.id !== id) pageStack.push(cur.id);
   $$('.page').forEach(p => p.classList.toggle('active', p.id === id));
-  applyBackgrounds();
+  updateFloatBallVisible(); applyBackgrounds();
 }
 function goBack() {
   const prev = pageStack.pop() || 'page-chat';
   $$('.page').forEach(p => p.classList.toggle('active', p.id === prev));
-  applyBackgrounds();
+  updateFloatBallVisible(); applyBackgrounds();
+}
+function updateFloatBallVisible() {
+  const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
+  const ball = $('#float-ball'); if (!ball) return;
+  if (lockActive || State.settings.floatHidden) ball.classList.add('hidden');
+  else ball.classList.remove('hidden');
 }
 
 let modalStack = [];
@@ -2995,6 +3606,7 @@ function bindLongPress(el, cb) {
   el.addEventListener('mouseleave', cancel);
 }
 
+/* ==================== 音乐播放器 ==================== */
 const Player = {
   audio: null, list: [], idx: 0, mode: 'order', url: null, curSongId: null,
   init() {
@@ -3063,6 +3675,7 @@ const Player = {
   }
 };
 
+/* ==================== 陪伴 ==================== */
 const Companion = {
   active: false, type: '', startTime: 0, timer: null, lastLoveMin: 0,
   itfCount: 0, lastSeen: 0, by: 'me', switches: [],
@@ -3150,6 +3763,7 @@ function checkInterruptedCompanion() {
   save.companionActive();
 }
 
+/* ==================== 视频通话 ==================== */
 const Video = {
   active: false, mode: '', status: '', startTime: 0, timer: null,
   lastLoveMin: 0, lastSeen: 0, ringTimeout: null, hangTimer: null,
@@ -3441,8 +4055,7 @@ function checkInterruptedVideo() {
   State.videoActive = null;
   save.videoActive();
 }
-
-/* ==================== 锁屏 ==================== */
+  /* ==================== 锁屏 ==================== */
 function initLockPage() {
   function tick() {
     const d = new Date();
@@ -3497,6 +4110,7 @@ function enterChat() {
   setTimeout(scrollBottom, 50);
 }
 
+/* 祂主动发消息 */
 function checkActiveMsg() {
   if (!State.settings.activeMsgEnabled) return;
   if (inDND()) return;
@@ -3580,12 +4194,15 @@ function initChatPage() {
     toast(MODE_NAMES[Player.mode]);
   };
   initMusicFloatDrag();
-  $('#cf-end').onclick = () => { Companion.end(); toast('陪伴结束'); };
+  $('#cf-end').onclick = () => {
+    Companion.end();
+    toast('陪伴结束');
+  };
   initCompanionFloatDrag();
   $('#vf-expand').onclick = () => { Video.pickMiniMode(); };
   initVideoFloatDrag();
   initTouchFloatDrag();
-  $('#tf-close').onclick = () => { closeTouchFloat(); };
+  $('#tf-close').onclick = () => closeTouchFloat();
   $$('#touch-grid [data-touch]').forEach(el => {
     el.onclick = () => doTouch(el.dataset.touch);
   });
@@ -3597,8 +4214,6 @@ function addLove(n) {
   save.love();
   const el = $('#hdr-love');
   if (el) { el.textContent = State.love; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
-  const wl = $('#world-love');
-  if (wl) wl.textContent = State.love;
 }
 function sendMyText(text, noReply) {
   const msg = { id: uid(), who: 'me', type: 'text', text, t: nowHM(), ts: Date.now(), read: false };
@@ -3635,8 +4250,11 @@ function sendMyCompanionInvite(type) {
     if (Math.random() * 100 < prob) {
       msg.accepted = true;
       addLove(3);
-      if (Companion.active) { Companion.switchTo(type); }
-      else { Companion.start(type, 'me'); }
+      if (Companion.active) {
+        Companion.switchTo(type);
+      } else {
+        Companion.start(type, 'me');
+      }
     } else {
       msg.refused = true;
       msg.refuseText = MY_INVITE_REFUSE_LINES[Math.floor(Math.random() * MY_INVITE_REFUSE_LINES.length)];
@@ -3721,18 +4339,15 @@ function buildMsgRow(m, prevSame) {
   }
   const meta = document.createElement('div'); meta.className = 'msg-meta'; meta.textContent = m.t;
   if (m.who === 'me' && m.read) { const r = document.createElement('span'); r.className = 'read-flag'; r.textContent = '已读'; meta.appendChild(r); }
-  const moodEmoji = moodMarkOf(m.id);
-  if (moodEmoji) { const mm = document.createElement('span'); mm.className = 'mood-mark'; mm.textContent = moodEmoji; meta.appendChild(mm); }
+  /* 消息贴心情：显示在元信息行末尾 */
+  if (m.mood != null && MOODS[m.mood]) {
+    const md = document.createElement('span'); md.className = 'msg-mood'; md.textContent = MOODS[m.mood].e;
+    meta.appendChild(md);
+  }
   col.appendChild(meta);
   if (m.who === 'me') { row.appendChild(col); row.appendChild(av); }
   else { row.appendChild(av); row.appendChild(col); }
   return row;
-}
-function moodMarkOf(mid) {
-  const r = State.msgMoods[mid];
-  if (!r || r.mood == null) return '';
-  const m = MOODS[r.mood];
-  return m ? m.e : '';
 }
 function buildStickerBubble(m) {
   const b = document.createElement('div');
@@ -3753,6 +4368,7 @@ function heartMarkOf(mid) {
   return '🥰';
 }
 
+/* ==================== 互动气泡渲染 ==================== */
 function buildItfBubble(m) {
   const b = document.createElement('div');
   b.className = 'itf-bubble';
@@ -3766,6 +4382,7 @@ function buildItfBubble(m) {
   return b;
 }
 
+/* ==================== 礼物卡片 ==================== */
 function buildGiftCard(m) {
   const card = document.createElement('div');
   card.className = 'gift-card ' + (m.opened ? 'gift-opened' : 'gift-closed');
@@ -3802,6 +4419,7 @@ function openGiftCard(m) {
   renderMessages(); scrollBottom();
 }
 
+/* ==================== 盲盒卡片 ==================== */
 function buildBoxCard(m) {
   const card = document.createElement('div');
   card.className = 'box-card ' + (m.opened ? 'box-opened' : 'box-closed');
@@ -3975,8 +4593,14 @@ function refuseCompanionCard(m) {
 }
 
 function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop = body.scrollHeight; }
-function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = State.love; const wl = $('#world-love'); if (wl) wl.textContent = State.love; }
+function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = State.love; }
 
+/* ==================== 消息菜单（含贴心情） ==================== */
+/* 可贴心情的消息类型：除 sys 外都可贴（questionnaire 问卷不进聊天，所以无需排除） */
+function canAttachMood(m) {
+  if (!m || m.type === 'sys') return false;
+  return true;
+}
 function openMsgMenu(m) {
   if (m.type === 'sys') return;
   const isGiftClosed = (m.type === 'gift' && !m.opened) || (m.type === 'box' && !m.opened);
@@ -3987,7 +4611,8 @@ function openMsgMenu(m) {
     html += `<div class="msg-menu-item" id="mm-heart"><svg><use href="#i-heart-mark"/></svg>心动</div>`;
   }
   /* 贴心情：只能贴对方的消息 */
-  if (m.who !== 'me') {
+  const otherMsg = (m.who === 'me') ? false : true;
+  if (otherMsg && canAttachMood(m)) {
     html += `<div class="msg-menu-item" id="mm-mood"><svg><use href="#i-emoji"/></svg>贴心情</div>`;
   }
   html += `<div class="msg-menu-item danger" id="mm-del"><svg><use href="#i-trash"/></svg>删除</div>`;
@@ -3996,7 +4621,7 @@ function openMsgMenu(m) {
     $('#mm-quote').onclick = () => { closeModal(); doQuote(m); };
     $('#mm-heart').onclick = () => { closeModal(); doHeart(m, 'me'); };
   }
-  if (m.who !== 'me') {
+  if (otherMsg && canAttachMood(m)) {
     $('#mm-mood').onclick = () => { closeModal(); openMoodPickerForMsg(m); };
   }
   $('#mm-del').onclick = () => {
@@ -4005,24 +4630,45 @@ function openMsgMenu(m) {
     save.messages(); renderMessages();
   };
 }
+/* 打开心情选择器给某条消息贴心情 */
 function openMoodPickerForMsg(m) {
-  const cur = (State.msgMoods[m.id] && State.msgMoods[m.id].mood != null) ? State.msgMoods[m.id].mood : null;
-  const html = `<div class="mood-picker" id="msg-mood-picker">` + MOODS.map((mo, i) =>
-    `<div class="mood-pick ${cur===i?'active':''}" data-mm="${i}"><span class="e ${mo.txt?'txt':''}">${mo.e}</span>${escapeHTML(mo.t)}</div>`
+  const pickerHTML = `<div class="mood-picker">` + MOODS.map((mo, i) =>
+    `<div class="mood-pick ${m.mood === i ? 'active' : ''}" data-mood="${i}"><span class="e ${mo.txt ? 'txt' : ''}">${mo.e}</span>${escapeHTML(mo.t)}</div>`
   ).join('') + `</div>`;
-  openModal({ title: '贴一个心情', bodyHTML: html, actions: [], wide: true });
-  let picked = cur;
-  $$('#msg-mood-picker [data-mm]').forEach(el => {
+  openModal({
+    title: '贴一个心情',
+    bodyHTML: pickerHTML,
+    actions: [{ label: '贴上', green: true, keepOpen: true, onClick: () => {
+      if (m._pickedMood == null) { toast('选一个心情'); return; }
+      m.mood = m._pickedMood;
+      save.messages(); closeModal(); renderMessages();
+      toast('已贴上');
+    }}],
+    wide: true
+  });
+  $$('#modal-body [data-mood]').forEach(el => {
     el.onclick = () => {
-      picked = +el.dataset.mm;
-      $$('#msg-mood-picker [data-mm]').forEach(x => x.classList.toggle('active', x === el));
-      State.msgMoods[m.id] = { mood: picked, who: m.who, t: Date.now() };
-      save.msgMoods();
-      closeModal();
-      renderMessages(); scrollBottom();
+      m._pickedMood = +el.dataset.mood;
+      $$('#modal-body [data-mood]').forEach(x => x.classList.toggle('active', x === el));
     };
   });
 }
+/* 祂贴心情：在你最近 3 条里随机挑一条贴 */
+function maybeOtherMoodSticker() {
+  const s = State.settings;
+  if (!s.moodStickerEnabled) return null;
+  const level = s.moodStickerLevel || 'daily';
+  const cfg = { light: 3, daily: 5, sticky: 8, vsticky: 12 }[level];
+  const prob = (s.moodStickerProb != null ? s.moodStickerProb : cfg);
+  if (Math.random() * 100 >= prob) return null;
+  const myRecent = State.messages.filter(m => m.who === 'me' && canAttachMood(m)).slice(-3);
+  if (!myRecent.length) return null;
+  const pick = myRecent[Math.floor(Math.random() * myRecent.length)];
+  pick.mood = Math.floor(Math.random() * MOODS.length);
+  save.messages();
+  return true;
+}
+
 function doQuote(m) {
   let text = '';
   if (m.type === 'itf') text = m.content || '';
@@ -4130,8 +4776,8 @@ function doReply() {
     if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
   };
   sendNext();
-  /* 贴心情：祂随机贴我的近期消息 */
-  setTimeout(() => maybeOtherMoodMark(), 1200);
+  /* 祂贴心情（贴在你最近 3 条里随机一条） */
+  maybeOtherMoodSticker();
   if (invite) setTimeout(() => pushOtherSongInvite(invite), 1500);
   if (compInvite) setTimeout(() => pushOtherCompanionInvite(compInvite), 2500);
   if (activeItf) setTimeout(() => pushOtherInteraction(activeItf.content, activeItf.board), 2000);
@@ -4144,6 +4790,7 @@ function doReply() {
   maybeOtherNoteActive();
   maybeOtherSpaceActive();
   maybeOtherMailActiveCheck();
+  /* 触碰同频：不再主动弹窗（已删除 maybeTouchActive） */
 }
 function randomEmoji() {
   const all = [];
@@ -4233,22 +4880,6 @@ function maybeOtherCompanionInvite() {
   if (!pool.length) return null;
   return pool[Math.floor(Math.random() * pool.length)];
 }
-function maybeOtherMoodMark() {
-  const s = State.settings;
-  if (!s.moodStickerEnabled) return null;
-  const lvl = s.moodStickerLevel || 'daily';
-  const prob = { light: 3, daily: 5, sticky: 8, vsticky: 12 }[lvl];
-  if (Math.random() * 100 >= prob) return null;
-  const mine = State.messages.filter(m => m.who === 'me' && m.type !== 'sys');
-  if (!mine.length) return null;
-  const recent = mine.slice(-3);
-  const pick = recent[Math.floor(Math.random() * recent.length)];
-  if (State.msgMoods[pick.id]) return;
-  const mood = Math.floor(Math.random() * MOODS.length);
-  State.msgMoods[pick.id] = { mood, who: 'me', t: Date.now() };
-  save.msgMoods();
-  renderMessages(); scrollBottom();
-}
 function pushOtherSongInvite(song) {
   State.messages.push({
     id: uid(), who: 'other', type: 'song', songId: song.id,
@@ -4304,15 +4935,16 @@ function pushOtherBox(box) {
   const el = $('#hdr-love'); if (el) el.textContent = State.love;
 }
 
-/* ==================== 触碰同频 ==================== */
+/* ==================== 触碰同频（重写） ==================== */
 let touchFloatInited = false;
+let touchLocked = false;         /* 120秒锁定中 */
 let touchTimer = null;
+let touchPhase = '';             /* 'me' | 'other' */
 function initTouchFloatDrag() {
   const el = $('#touch-float'); if (!el || touchFloatInited) return;
   touchFloatInited = true;
   let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false;
   function begin(x, y) {
-    if ($('#touch-float').classList.contains('tf-busy')) return;
     startX = x; startY = y; const r = el.getBoundingClientRect();
     startL = r.left; startT = r.top; dragging = true;
     el.style.left = startL + 'px'; el.style.top = startT + 'px';
@@ -4350,147 +4982,79 @@ function openTouchFloat() {
   $('#tf-avatar-me').src = State.settings.avatars.me || defaultAvatar('pink');
   $('#touch-msg').classList.remove('active');
   $('#touch-msg').innerHTML = '';
+  el.classList.remove('highlight-me', 'highlight-other');
   el.classList.add('active');
-  el.classList.remove('tf-pink', 'tf-blue', 'tf-busy');
-  const closeBtn = $('#tf-close'); closeBtn.classList.remove('tf-disabled', 'tf-hidden');
-  setTouchButtonsDisabled(false);
-  if (State.settings.touchStage && (Date.now() - State.settings.touchStage.start) < TOUCH_TOTAL_MS) {
-    resumeTouchStage();
-  } else if (State.settings.touchStage) {
-    State.settings.touchStage = null; save.settings();
-  }
+  if (!touchLocked) setTouchButtonsEnabled(true);
 }
 function closeTouchFloat() {
-  const el = $('#touch-float');
-  if (el.classList.contains('tf-busy')) return;
-  el.classList.remove('active');
-  const closeBtn = $('#tf-close'); closeBtn.classList.add('tf-hidden');
+  /* 120秒内关不掉 */
+  if (touchLocked) return;
+  $('#touch-float').classList.remove('active');
+  $('#touch-float').classList.remove('highlight-me', 'highlight-other');
 }
-function setTouchButtonsDisabled(disabled) {
-  $$('#touch-grid .touch-btn').forEach(b => b.classList.toggle('tf-disabled', disabled));
+function setTouchButtonsEnabled(enabled) {
+  $$('#touch-grid .touch-btn').forEach(el => el.classList.toggle('disabled', !enabled));
+  const el = $('#touch-float');
+  if (enabled) el.classList.remove('locked'); else el.classList.add('locked');
 }
 function doTouch(key) {
-  const el = $('#touch-float');
-  if (el.classList.contains('tf-busy')) return;
+  if (touchLocked) return;
   const lines = TOUCH_LINES[key];
-  if (!lines) return;
-  el.classList.add('tf-busy');
-  el.classList.remove('tf-blue');
-  el.classList.add('tf-pink');
-  const closeBtn = $('#tf-close'); closeBtn.classList.add('tf-disabled');
-  setTouchButtonsDisabled(true);
-  const line = pickTouchLine(lines.me);
+  if (!lines || !lines.length) return;
   const msgBox = $('#touch-msg');
+  const el = $('#touch-float');
+  touchLocked = true;
+  touchPhase = 'me';
+  setTouchButtonsEnabled(false);
+  el.classList.remove('highlight-other'); el.classList.add('highlight-me');
+
   if (key === 'temp') {
     const tOther = (36.2 + Math.random() * 0.6).toFixed(1);
     const tMe = (36.2 + Math.random() * 0.6).toFixed(1);
+    const line = lines[Math.floor(Math.random() * lines.length)];
     msgBox.innerHTML = `<div class="tm-temp">
       <div style="text-align:center;margin-bottom:6px">${escapeHTML(line)}</div>
       <div class="tm-temp-row"><span class="tm-temp-k">祂</span><span class="tm-temp-v">${tOther}℃</span></div>
       <div class="tm-temp-row"><span class="tm-temp-k">我</span><span class="tm-temp-v">${tMe}℃</span></div>
     </div>`;
   } else {
+    const line = lines[Math.floor(Math.random() * lines.length)];
     msgBox.textContent = line;
   }
   msgBox.classList.add('active');
-  const startTs = Date.now();
-  State.settings.touchStage = { key, start: startTs, phase: 'me' };
-  save.settings();
-  clearTimeout(touchTimer);
+
+  /* 前 60 秒：我的动作 */
   touchTimer = setTimeout(() => {
-    const el2 = $('#touch-float');
-    el2.classList.remove('tf-pink');
-    el2.classList.add('tf-blue');
-    const line2 = pickTouchLine(lines.other);
-    const msgBox2 = $('#touch-msg');
-    if (key === 'temp') {
+    /* 60 秒后：祂回应（必定） */
+    touchPhase = 'other';
+    el.classList.remove('highlight-me'); el.classList.add('highlight-other');
+    const keys = ['temp', 'head', 'kiss', 'hug', 'pinch', 'hand'];
+    const hkey = keys[Math.floor(Math.random() * keys.length)];
+    const hlines = TOUCH_LINES[hkey];
+    if (hkey === 'temp') {
       const tOther = (36.2 + Math.random() * 0.6).toFixed(1);
       const tMe = (36.2 + Math.random() * 0.6).toFixed(1);
-      msgBox2.innerHTML = `<div class="tm-temp">
-        <div style="text-align:center;margin-bottom:6px">${escapeHTML(line2)}</div>
+      const line = hlines[Math.floor(Math.random() * hlines.length)];
+      msgBox.innerHTML = `<div class="tm-temp">
+        <div style="text-align:center;margin-bottom:6px">${escapeHTML(line)}</div>
         <div class="tm-temp-row"><span class="tm-temp-k">祂</span><span class="tm-temp-v">${tOther}℃</span></div>
         <div class="tm-temp-row"><span class="tm-temp-k">我</span><span class="tm-temp-v">${tMe}℃</span></div>
       </div>`;
     } else {
-      msgBox2.textContent = line2;
+      const line = hlines[Math.floor(Math.random() * hlines.length)];
+      msgBox.textContent = line;
     }
-    msgBox2.classList.add('active');
-    State.settings.touchStage = { key, start: startTs, phase: 'other' };
-    save.settings();
+    /* 后 60 秒：仍锁定 */
     touchTimer = setTimeout(() => {
-      const el3 = $('#touch-float');
-      el3.classList.remove('tf-pink', 'tf-blue', 'tf-busy');
-      const closeBtn3 = $('#tf-close'); closeBtn3.classList.remove('tf-disabled');
-      setTouchButtonsDisabled(false);
-      State.settings.touchStage = null; save.settings();
-      msgBox2.classList.remove('active');
-      msgBox2.innerHTML = '';
-    }, TOUCH_HALF_MS);
-  }, TOUCH_HALF_MS);
-}
-function pickTouchLine(arr) {
-  if (!arr || !arr.length) return '';
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-function resumeTouchStage() {
-  const st = State.settings.touchStage;
-  if (!st) return;
-  const el = $('#touch-float');
-  const elapsed = Date.now() - st.start;
-  const lines = TOUCH_LINES[st.key];
-  el.classList.add('tf-busy');
-  const closeBtn = $('#tf-close'); closeBtn.classList.add('tf-disabled');
-  setTouchButtonsDisabled(true);
-  const msgBox = $('#touch-msg');
-  if (elapsed < TOUCH_HALF_MS) {
-    el.classList.add('tf-pink');
-    const line = pickTouchLine(lines.me);
-    if (st.key === 'temp') {
-      const tOther = (36.2 + Math.random() * 0.6).toFixed(1);
-      const tMe = (36.2 + Math.random() * 0.6).toFixed(1);
-      msgBox.innerHTML = `<div class="tm-temp"><div style="text-align:center;margin-bottom:6px">${escapeHTML(line)}</div><div class="tm-temp-row"><span class="tm-temp-k">祂</span><span class="tm-temp-v">${tOther}℃</span></div><div class="tm-temp-row"><span class="tm-temp-k">我</span><span class="tm-temp-v">${tMe}℃</span></div></div>`;
-    } else { msgBox.textContent = line; }
-    msgBox.classList.add('active');
-    clearTimeout(touchTimer);
-    touchTimer = setTimeout(() => {
-      el.classList.remove('tf-pink'); el.classList.add('tf-blue');
-      const line2 = pickTouchLine(lines.other);
-      if (st.key === 'temp') {
-        const tOther = (36.2 + Math.random() * 0.6).toFixed(1);
-        const tMe = (36.2 + Math.random() * 0.6).toFixed(1);
-        msgBox.innerHTML = `<div class="tm-temp"><div style="text-align:center;margin-bottom:6px">${escapeHTML(line2)}</div><div class="tm-temp-row"><span class="tm-temp-k">祂</span><span class="tm-temp-v">${tOther}℃</span></div><div class="tm-temp-row"><span class="tm-temp-k">我</span><span class="tm-temp-v">${tMe}℃</span></div></div>`;
-      } else { msgBox.textContent = line2; }
-      State.settings.touchStage = { key: st.key, start: st.start, phase: 'other' }; save.settings();
-      touchTimer = setTimeout(() => {
-        el.classList.remove('tf-pink', 'tf-blue', 'tf-busy');
-        closeBtn.classList.remove('tf-disabled');
-        setTouchButtonsDisabled(false);
-        State.settings.touchStage = null; save.settings();
-        msgBox.classList.remove('active'); msgBox.innerHTML = '';
-      }, TOUCH_HALF_MS);
-    }, TOUCH_HALF_MS - elapsed);
-  } else {
-    el.classList.add('tf-blue');
-    const line2 = pickTouchLine(lines.other);
-    if (st.key === 'temp') {
-      const tOther = (36.2 + Math.random() * 0.6).toFixed(1);
-      const tMe = (36.2 + Math.random() * 0.6).toFixed(1);
-      msgBox.innerHTML = `<div class="tm-temp"><div style="text-align:center;margin-bottom:6px">${escapeHTML(line2)}</div><div class="tm-temp-row"><span class="tm-temp-k">祂</span><span class="tm-temp-v">${tOther}℃</span></div><div class="tm-temp-row"><span class="tm-temp-k">我</span><span class="tm-temp-v">${tMe}℃</span></div></div>`;
-    } else { msgBox.textContent = line2; }
-    msgBox.classList.add('active');
-    clearTimeout(touchTimer);
-    const remain = TOUCH_TOTAL_MS - elapsed;
-    touchTimer = setTimeout(() => {
-      el.classList.remove('tf-pink', 'tf-blue', 'tf-busy');
-      closeBtn.classList.remove('tf-disabled');
-      setTouchButtonsDisabled(false);
-      State.settings.touchStage = null; save.settings();
-      msgBox.classList.remove('active'); msgBox.innerHTML = '';
-    }, remain);
-  }
+      /* 120 秒到：解锁 */
+      touchLocked = false;
+      touchPhase = '';
+      setTouchButtonsEnabled(true);
+    }, 60000);
+  }, 60000);
 }
 
-/* ==================== 归档 ==================== */
+/* ==================== 归档模式 ==================== */
 function enterArchiveMode() {
   archiveMode = true; archiveSelected.clear();
   $('#chat-footer').style.display = 'none';
@@ -4549,8 +5113,7 @@ function runArchive(dayStr) {
   };
   setTimeout(step, 200);
 }
-  <script>
-/* ==================== 子页面内容栈 ==================== */
+  /* ==================== 子页面内容栈 ==================== */
 let subStack = [];
 
 /* ==================== 视频大窗拖动 ==================== */
@@ -4588,6 +5151,7 @@ function initVideoBoxDrag() {
   });
 }
 
+/* ==================== 视频悬浮窗拖动 ==================== */
 function initVideoFloatDrag() {
   const el = $('#video-float'); if (!el) return;
   let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false;
@@ -4620,6 +5184,73 @@ function initVideoFloatDrag() {
   });
 }
 
+/* ==================== 悬浮球 ==================== */
+function applyFloatBall() {
+  const ball = $('#float-ball'); if (!ball) return;
+  ball.style.width = State.settings.floatSize + 'px';
+  ball.style.height = State.settings.floatSize + 'px';
+  $('#float-ball-img').src = State.settings.floatImg || defaultAvatar('blue');
+  if (State.settings.floatPos) {
+    ball.style.left = State.settings.floatPos.left; ball.style.top = State.settings.floatPos.top;
+    ball.style.right = 'auto'; ball.style.bottom = 'auto';
+  }
+  updateFloatBallVisible();
+}
+function hasUnreadNote() { return State.notes.some(n => n.who === 'other' && !n.read); }
+function hasUnreadSpace() { return State.spaces.some(s => s.who === 'other' && !s.read); }
+function hasUnreadMail() { return State.mails.some(m => m.who === 'other' && !m.read); }
+
+function applyBackgrounds() {
+  const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
+  const layer = $('#bg-layer'); if (!layer) return;
+  const bg = lockActive ? State.settings.lockBg : State.settings.chatBg;
+  if (bg) { layer.style.backgroundImage = `url(${bg})`; layer.style.backgroundSize = 'cover'; layer.style.backgroundPosition = 'center'; }
+  else layer.style.backgroundImage = '';
+}
+function applyAvatars() {
+  const o = State.settings.avatars.other || defaultAvatar('blue');
+  const m = State.settings.avatars.me || defaultAvatar('pink');
+  ['lock-avatar-other','hdr-avatar-other','cf-avatar-other','vf-avatar-other','tf-avatar-other'].forEach(id => { const e = $('#'+id); if (e) e.src = o; });
+  ['lock-avatar-me','hdr-avatar-me','cf-avatar-me','vf-avatar-me','tf-avatar-me'].forEach(id => { const e = $('#'+id); if (e) e.src = m; });
+  if ($('#hdr-name')) $('#hdr-name').textContent = State.settings.otherCall || '祂的称呼';
+  if ($('#av-other-big')) $('#av-other-big').src = o;
+  if ($('#av-me-big')) $('#av-me-big').src = m;
+  renderMessages();
+}
+
+function initFloatBallDrag() {
+  const ball = $('#float-ball'); if (!ball) return;
+  let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false, moved = false;
+  function begin(x, y) {
+    startX = x; startY = y; const r = ball.getBoundingClientRect();
+    startL = r.left; startT = r.top; dragging = true; moved = false;
+  }
+  function move(x, y) {
+    if (!dragging) return;
+    const dx = x - startX, dy = y - startY;
+    if (Math.abs(dx) > 8 || Math.abs(dy) > 8) moved = true;
+    if (!moved) return;
+    let nl = startL + dx, nt = startT + dy;
+    nl = Math.max(0, Math.min(window.innerWidth - ball.offsetWidth, nl));
+    nt = Math.max(0, Math.min(window.innerHeight - ball.offsetHeight, nt));
+    ball.style.left = nl + 'px'; ball.style.top = nt + 'px'; ball.style.right = 'auto'; ball.style.bottom = 'auto';
+  }
+  function end() {
+    if (!dragging) return;
+    dragging = false;
+    if (moved) { State.settings.floatPos = { left: ball.style.left, top: ball.style.top }; save.settings(); }
+    else { openBigMenu(); }  /* 点击（未拖动）→ 打开大菜单 */
+  }
+  ball.addEventListener('touchstart', e => { const t = e.touches[0]; begin(t.clientX, t.clientY); }, { passive: true });
+  ball.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
+  ball.addEventListener('touchend', end);
+  ball.addEventListener('mousedown', e => {
+    begin(e.clientX, e.clientY);
+    const mm = ev => move(ev.clientX, ev.clientY);
+    const mu = () => { document.removeEventListener('mousemove', mm); document.removeEventListener('mouseup', mu); end(); };
+    document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
+  });
+}
 function initMusicFloatDrag() {
   const el = $('#music-float'); if (!el) return;
   let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false;
@@ -4716,40 +5347,18 @@ function initSheetDrag() {
   });
 }
 
-/* ==================== 背景/头像 ==================== */
-function hasUnreadNote() { return State.notes.some(n => n.who === 'other' && !n.read); }
-function hasUnreadSpace() { return State.spaces.some(s => s.who === 'other' && !s.read); }
-function hasUnreadMail() { return State.mails.some(m => m.who === 'other' && !m.read); }
-
-function applyBackgrounds() {
-  const lockActive = $('#page-lock') && $('#page-lock').classList.contains('active');
-  const layer = $('#bg-layer'); if (!layer) return;
-  const bg = lockActive ? State.settings.lockBg : State.settings.chatBg;
-  if (bg) { layer.style.backgroundImage = `url(${bg})`; layer.style.backgroundSize = 'cover'; layer.style.backgroundPosition = 'center'; }
-  else layer.style.backgroundImage = '';
-}
-function applyAvatars() {
-  const o = State.settings.avatars.other || defaultAvatar('blue');
-  const m = State.settings.avatars.me || defaultAvatar('pink');
-  ['lock-avatar-other','hdr-avatar-other','cf-avatar-other','vf-avatar-other','tf-avatar-other','world-avatar-other'].forEach(id => { const e = $('#'+id); if (e) e.src = o; });
-  ['lock-avatar-me','hdr-avatar-me','cf-avatar-me','vf-avatar-me','tf-avatar-me','world-avatar-me'].forEach(id => { const e = $('#'+id); if (e) e.src = m; });
-  if ($('#hdr-name')) $('#hdr-name').textContent = State.settings.otherCall || '祂的称呼';
-  if ($('#av-other-big')) $('#av-other-big').src = o;
-  if ($('#av-me-big')) $('#av-me-big').src = m;
-  renderMessages();
-}
-
 /* ==================== ⊕ 小功能 ==================== */
 function openPlusMenu() {
   const items = [
     ['拍照','i-camera'], ['相册','i-album'], ['视频','i-video'], ['贴纸','i-sticker'],
     ['礼物','i-gift'], ['盲盒','i-blindbox'], ['互动','i-interact'], ['问答','i-qa'],
     ['问卷','i-survey'], ['音乐','i-music'], ['陪伴','i-companion'],
-    ['快捷归档','i-archive'], ['触碰同频','i-heart-mark'], ['关锁','i-lock']
+    ['快捷归档','i-archive'], ['触碰同频','i-heart-mark'], ['悬浮球','i-floatball'], ['关锁','i-lock']
   ];
   openSheet(items, handlePlusItem);
 }
 function handlePlusItem(name) {
+  if (name === '悬浮球') { State.settings.floatHidden = !State.settings.floatHidden; save.settings(); applyFloatBall(); return; }
   if (name === '关锁') { pageStack = []; subStack = []; showPage('page-lock', false); $('#btn-enter').style.display = ''; $('#lock-pass').classList.remove('active'); return; }
   if (name === '问答') { return openQuiz(); }
   if (name === '问卷') { return openQuizSendMenu(); }
@@ -4777,63 +5386,34 @@ function handlePlusItem(name) {
   openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
-/* ==================== 世界之外 ==================== */
-function openWorld() {
-  const grid = $('#world-grid'); if (!grid) return;
-  grid.innerHTML = '';
-  const dotMap = { mail: hasUnreadMail(), note: hasUnreadNote(), couple: hasUnreadSpace() };
-  WORLD_ITEMS.forEach(it => {
-    const card = document.createElement('div');
-    card.className = 'world-card wc-' + it.size;
-    card.innerHTML = `<span class="wc-icon"><svg style="width:1em;height:1em;color:var(--accent-deep)" class="wc-svg"><use href="#${it.icon}"/></svg></span><span class="wc-name">${it.name}</span>${dotMap[it.key] ? '<span class="wc-dot"></span>' : ''}`;
-    const iconEl = card.querySelector('.wc-svg');
-    const sz = it.size === 'max' ? 30 : it.size === 'big' ? 26 : it.size === 'mid' ? 22 : 18;
-    iconEl.style.width = sz + 'px'; iconEl.style.height = sz + 'px';
-    card.onclick = () => handleWorldItem(it.key);
-    grid.appendChild(card);
-  });
-  $('#world-avatar-other').src = State.settings.avatars.other || defaultAvatar('blue');
-  $('#world-avatar-me').src = State.settings.avatars.me || defaultAvatar('pink');
-  $('#world-love').textContent = State.love;
-  showPage('page-world');
-}
-function handleWorldItem(key) {
-  if (key === 'world') return openWorld2();
-  if (key === 'mail') return openMail();
-  if (key === 'note') return openNotes();
-  if (key === 'choice') return openChoice();
-  if (key === 'couple') return openSpace();
-  if (key === 'moment') return openHearts();
-  if (key === 'diary') return openMoodBook();
-  if (key === 'olddream') return openArchive();
-  if (key === 'memo') return openMemo();
-  if (key === 'wishlist') return openWishlist();
-  if (key === 'anniv') return openDays();
-  if (key === 'settings') return openSettings();
-}
-function openWorld2() {
+/* ==================== 悬浮球大功能 ==================== */
+function openBigMenu() {
   const items = [
-    ['字卡','i-card'], ['互动','i-interact'], ['贴纸','i-sticker'], ['礼物','i-gift'],
-    ['问卷','i-survey'], ['音乐','i-music']
+    ['小世界','i-world'], ['信箱','i-mailbox'], ['留言笺','i-note'], ['抉择','i-choice'],
+    ['恋人空间','i-couple'], ['心动时刻','i-moment'], ['心情手帐','i-diary'], ['旧梦温存','i-olddream'],
+    ['备忘录','i-memo'], ['心愿单','i-wishlist'], ['重要日','i-anniv'], ['设置','i-settings']
   ];
-  const html = `<div class="sub-pad sub-pad-top">` +
-    items.map((it, i) =>
-      `<div class="setting-block glass" data-world="${i}"><svg class="block-icon"><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
-    ).join('') + `</div>`;
-  openSub('小世界', html, () => {
-    setSubAction('');
-    $$('#sub-body [data-world]').forEach(el => {
-      el.onclick = () => {
-        const name = items[+el.dataset.world][0];
-        if (name === '字卡') return openCardManager();
-        if (name === '互动') return openInteractionManager();
-        if (name === '贴纸') return openStickerManager();
-        if (name === '礼物') return openGiftManager();
-        if (name === '问卷') return openQuizManager();
-        if (name === '音乐') return openMusicManager();
-      };
-    });
-  });
+  const dotMap = { '信箱': hasUnreadMail(), '留言笺': hasUnreadNote(), '恋人空间': hasUnreadSpace() };
+  const html = `<div class="unpair-grid">` + items.map((it, i) =>
+    `<div class="unpair-cell" data-big="${i}" style="flex-direction:column;gap:4px;font-size:11px;color:var(--text);aspect-ratio:auto;padding:12px 4px;position:relative"><svg style="width:22px;height:22px;color:var(--accent-deep)"><use href="#${it[1]}"/></svg><span>${it[0]}</span>${dotMap[it[0]] ? '<span style="position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:var(--heart-red);border:1.5px solid #fff"></span>' : ''}</div>`
+  ).join('') + `</div>`;
+  openModal({ title: '功能', bodyHTML: html, actions: [] });
+  $$('#modal-body [data-big]').forEach(el => { el.onclick = () => { const name = items[+el.dataset.big][0]; closeModal(); handleBigItem(name); }; });
+}
+function handleBigItem(name) {
+  if (name === '设置') return openSettings();
+  if (name === '小世界') return openWorld();
+  if (name === '旧梦温存') return openArchive();
+  if (name === '抉择') return openChoice();
+  if (name === '备忘录') return openMemo();
+  if (name === '心愿单') return openWishlist();
+  if (name === '重要日') return openDays();
+  if (name === '心动时刻') return openHearts();
+  if (name === '心情手帐') return openMoodBook();
+  if (name === '留言笺') return openNotes();
+  if (name === '恋人空间') return openSpace();
+  if (name === '信箱') return openMail();
+  openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
 }
 
 /* ==================== 标点拼接 ==================== */
@@ -5179,7 +5759,34 @@ function maybeSpacePost() {
 }
 function maybeOtherSpaceActive() {}
 
-/* ==================== openSub / setSubAction ==================== */
+/* ==================== 小世界（去掉头像、背景） ==================== */
+function openWorld() {
+  const items = [
+    ['字卡','i-card'], ['互动','i-interact'], ['贴纸','i-sticker'], ['礼物','i-gift'],
+    ['问卷','i-survey'], ['音乐','i-music']
+  ];
+  const html = `<div class="sub-pad sub-pad-top">` +
+    items.map((it, i) =>
+      `<div class="setting-block glass" data-world="${i}"><svg class="block-icon"><use href="#${it[1]}"/></svg><span>${it[0]}</span></div>`
+    ).join('') + `</div>`;
+  openSub('小世界', html, () => {
+    setSubAction('');
+    $$('#sub-body [data-world]').forEach(el => {
+      el.onclick = () => {
+        const name = items[+el.dataset.world][0];
+        if (name === '字卡') return openCardManager();
+        if (name === '互动') return openInteractionManager();
+        if (name === '贴纸') return openStickerManager();
+        if (name === '礼物') return openGiftManager();
+        if (name === '问卷') return openQuizManager();
+        if (name === '音乐') return openMusicManager();
+        openModal({ title: name, bodyHTML: `<div class="todo"><svg><use href="#i-todo"/></svg><span>待开发设计</span></div>`, actions: [] });
+      };
+    });
+  });
+}
+
+/* ==================== openSub ==================== */
 function setSubAction(iconHTML, onClick) {
   const el = $('#sub-action');
   if (!el) return;
@@ -5254,229 +5861,6 @@ function openCompanionItems(catKey) {
     sendMyCompanionInvite(picked);
   };
 }
-  <script>
-/* ==================== 信箱 ==================== */
-let mailTab = 'inbox';
-let mailTestMode = false;
-
-function ensureMailQuota() {
-  const k = todayKey();
-  if (!State.mailQuota || State.mailQuota.day !== k) {
-    State.mailQuota = { day: k, me: 0, other: 0 };
-    save.mailQuota();
-  }
-}
-function openMail() {
-  mailTestMode = false;
-  ensureMailQuota();
-  mailTab = 'inbox';
-  const html = `
-    <div class="mail-tabs" id="mail-tabs">
-      <div class="mail-tab active" data-tab="inbox">祂的来信</div>
-      <div class="mail-tab" data-tab="outbox">我的寄信</div>
-    </div>
-    <div class="mail-list" id="mail-list"></div>
-  `;
-  openSub('信箱', html, () => {
-    $('#sub-body').classList.add('pad-off');
-    setSubAction(`<span style="font-size:20px">✍🏻</span>`, openMailWrite);
-    renderMailList();
-    $$('#mail-tabs [data-tab]').forEach(t => {
-      t.onclick = () => {
-        mailTab = t.dataset.tab;
-        $$('#mail-tabs [data-tab]').forEach(x => x.classList.toggle('active', x === t));
-        renderMailList();
-      };
-    });
-  });
-}
-function openMailTest() {
-  mailTestMode = true;
-  mailTab = 'inbox';
-  buildMailTestData();
-  const html = `
-    <div class="mail-tabs" id="mail-tabs">
-      <div class="mail-tab active" data-tab="inbox">祂写给我</div>
-      <div class="mail-tab" data-tab="outbox">我写给祂</div>
-    </div>
-    <div class="mail-list" id="mail-list"></div>
-    <div style="flex-shrink:0;padding:10px 12px calc(12px + env(safe-area-inset-bottom))"><button class="mail-send-btn" id="mail-test-again"><span class="mail-stamp">🔄</span>再来一封</button></div>
-  `;
-  openSub('信件格式测试', html, () => {
-    $('#sub-body').classList.add('pad-off');
-    setSubAction('');
-    renderMailList();
-    $$('#mail-tabs [data-tab]').forEach(t => {
-      t.onclick = () => {
-        mailTab = t.dataset.tab;
-        $$('#mail-tabs [data-tab]').forEach(x => x.classList.toggle('active', x === t));
-        renderMailList();
-      };
-    });
-    $('#mail-test-again').onclick = () => { buildMailTestData(); renderMailList(); };
-  });
-}
-function buildMailTestData() {
-  const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
-  const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
-  const testBody = '这是一封测试信，用来检查信的格式是否正确。\n\n正文应该顶格、换行原样保留，段落之间应该清晰可读。\n\n如果排版正常，那说明信纸框生效了。';
-  const toOther = State.settings.mailToCall || State.settings.otherCall || '祂';
-  const fromMe = State.settings.mailFromCall || State.settings.myCall || '我';
-  const toMe = State.settings.mailToCall || State.settings.myCall || '我';
-  const fromOther = State.settings.mailFromCall || State.settings.otherCall || '祂';
-  State._mailTest = {
-    toOther: { who: 'me', to: toOther, from: fromMe, hello, bye, body: testBody, ts: Date.now(), read: true },
-    toMe: { who: 'other', to: toMe, from: fromOther, hello, bye, body: testBody, ts: Date.now(), read: true }
-  };
-}
-function renderMailList() {
-  const list = $('#mail-list'); if (!list) return;
-  let items;
-  if (mailTestMode) {
-    items = mailTab === 'inbox' ? [State._mailTest.toMe] : [State._mailTest.toOther];
-  } else {
-    items = State.mails.filter(m => mailTab === 'inbox' ? (m.who === 'other') : (m.who === 'me'));
-  }
-  if (!items.length) { list.innerHTML = `<div class="empty-tip">${mailTab === 'inbox' ? '还没有收到信。' : '还没有寄出信。'}</div>`; return; }
-  list.innerHTML = '';
-  const sorted = [...items].sort((a, b) => (b.ts || 0) - (a.ts || 0));
-  sorted.forEach(m => {
-    const el = document.createElement('div');
-    el.className = 'mail-envelope';
-    el.setAttribute('data-who', m.who);
-    const call = m.who === 'me' ? (State.settings.myCall || '我') : (State.settings.otherCall || '祂');
-    el.innerHTML = `<div class="me-line1">💌 ${escapeHTML(call)}</div><div class="me-line2">${fullDateTime(m.ts)}</div>${(m.who === 'other' && !m.read && !mailTestMode) ? '<span class="mail-dot"></span>' : ''}`;
-    el.onclick = () => openMailDetail(m);
-    list.appendChild(el);
-  });
-}
-function renderMailLetterHTML(m) {
-  const bye = m.bye;
-  let byeHTML;
-  if (Array.isArray(bye)) {
-    byeHTML = `<span class="ml-bye">${escapeHTML(bye[0])}</span><span class="ml-bye-2">${escapeHTML(bye[1])}</span>`;
-  } else {
-    byeHTML = `<span class="ml-bye">${escapeHTML(String(bye || ''))}</span>`;
-  }
-  return `<span class="ml-to">致 ${escapeHTML(m.to || '')}</span>` +
-    `<span class="ml-hello">${escapeHTML(m.hello || '')}</span>` +
-    `<span class="ml-body">${escapeHTML(m.body || '')}</span>` +
-    byeHTML +
-    `<span class="ml-right">${escapeHTML(m.from || '')}<br>${fullDate(new Date(m.ts))}</span>`;
-}
-function openMailDetail(m) {
-  if (m.who === 'other' && !m.read && !mailTestMode) { m.read = true; save.mails(); }
-  openSub('信', `<div class="mail-detail"><div class="mail-letter-box"><div class="mail-letter">${renderMailLetterHTML(m)}</div></div></div>`, () => {
-    $('#sub-body').classList.add('pad-off');
-    setSubAction('');
-  });
-}
-function openMailWrite() {
-  ensureMailQuota();
-  const q = State.mailQuota;
-  const used = (q.me || 0);
-  const freeLeft = Math.max(0, MAIL_QUOTA_FREE - used);
-  const needPay = used >= MAIL_QUOTA_FREE;
-  if (needPay && State.love < MAIL_QUOTA_COST) {
-    openModal({ title: '', bodyHTML: `免费额度用完了，寄信需要 ${MAIL_QUOTA_COST} 爱意值，当前爱意不足。`, actions: [] });
-    setTimeout(closeModal, 2000); return;
-  }
-  const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
-  const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
-  const toCall = State.settings.mailToCall || State.settings.otherCall || '祂';
-  const fromCall = State.settings.mailFromCall || State.settings.myCall || '我';
-  const tip = needPay ? `本次将消耗 ${MAIL_QUOTA_COST} 爱意值` : `今日免费额度剩余 ${freeLeft} 封`;
-  const byeHTML = Array.isArray(bye)
-    ? `<span class="ml-bye">${escapeHTML(bye[0])}</span><span class="ml-bye-2">${escapeHTML(bye[1])}</span>`
-    : `<span class="ml-bye">${escapeHTML(String(bye))}</span>`;
-  const html = `
-    <div class="mail-write-wrap">
-      <div class="mail-preview" id="mail-preview">
-        <div class="mail-letter-box"><div class="mail-letter">
-          <span class="ml-to">致 ${escapeHTML(toCall)}</span>
-          <span class="ml-hello">${escapeHTML(hello)}</span>
-          <span class="ml-body" id="mail-body-preview"></span>
-          ${byeHTML}
-          <span class="ml-right">${escapeHTML(fromCall)}<br>${fullDate(new Date())}</span>
-        </div></div>
-      </div>
-      <div class="mail-input-area">
-        <textarea id="mail-body-input" placeholder="把想说的，慢慢写下来…"></textarea>
-        <div style="font-size:12.5px;color:var(--text-soft);margin-top:8px;text-align:center">${tip}</div>
-      </div>
-      <div class="mail-send-bar">
-        <button class="mail-send-btn" id="mail-send"><span class="mail-stamp">✉</span>寄出</button>
-      </div>
-    </div>
-  `;
-  openSub('写信', html, () => {
-    $('#sub-body').classList.add('pad-off');
-    setSubAction('');
-    const ta = $('#mail-body-input');
-    const pv = $('#mail-body-preview');
-    ta.oninput = () => { pv.textContent = ta.value; };
-    ta.focus();
-    $('#mail-send').onclick = () => doSendMail(hello, bye, ta.value);
-  });
-}
-function doSendMail(hello, bye, body) {
-  const text = (body || '').trim();
-  if (!text) { toast('写点什么吧'); return; }
-  ensureMailQuota();
-  const q = State.mailQuota;
-  const used = (q.me || 0);
-  const needPay = used >= MAIL_QUOTA_FREE;
-  if (needPay) {
-    if (State.love < MAIL_QUOTA_COST) { toast('爱意值不够'); return; }
-    State.love -= MAIL_QUOTA_COST; save.love();
-    const el = $('#hdr-love'); if (el) el.textContent = State.love;
-  }
-  q.me = used + 1; save.mailQuota();
-  State.mails.push({
-    id: uid(), who: 'me',
-    to: State.settings.mailToCall || State.settings.otherCall || '祂',
-    from: State.settings.mailFromCall || State.settings.myCall || '我',
-    hello, bye, body: text,
-    read: true, ts: Date.now()
-  });
-  save.mails();
-  toast(needPay ? '已寄出（-' + MAIL_QUOTA_COST + '爱意）' : '已寄出');
-  mailTab = 'outbox';
-  mailTestMode = false;
-  openMail();
-}
-function pushOtherMail() {
-  ensureMailQuota();
-  const q = State.mailQuota;
-  const used = (q.other || 0);
-  const needPay = used >= MAIL_QUOTA_FREE;
-  if (needPay) {
-    if (State.love < MAIL_QUOTA_COST) return;
-    State.love -= MAIL_QUOTA_COST; save.love();
-    const el = $('#hdr-love'); if (el) el.textContent = State.love;
-  }
-  const body = buildMailBody();
-  if (!body) return;
-  const hello = MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
-  const bye = MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
-  q.other = used + 1; save.mailQuota();
-  State.mails.push({
-    id: uid(), who: 'other',
-    to: State.settings.mailToCall || State.settings.myCall || '我',
-    from: State.settings.mailFromCall || State.settings.otherCall || '祂',
-    hello, bye, body,
-    read: false, ts: Date.now()
-  });
-  save.mails();
-}
-function maybeOtherMailActiveCheck() {
-  if (Math.random() * 100 >= MAIL_ACTIVE_PROB) return;
-  ensureMailQuota();
-  const used = (State.mailQuota.other || 0);
-  const needPay = used >= MAIL_QUOTA_FREE;
-  if (needPay && State.love < MAIL_QUOTA_COST) return;
-  pushOtherMail();
-}
 
 /* ==================== 备忘录 ==================== */
 let memoTimer = null;
@@ -5525,7 +5909,7 @@ function renderWishlist() {
   });
 }
 
-/* ==================== 重要日 ==================== */
+/* ==================== 重要日（图标改 📆） ==================== */
 function openDays() {
   openSub('重要日', `<div class="day-list" id="day-list"></div>`, () => {
     $('#sub-body').classList.add('pad-off');
@@ -5861,12 +6245,21 @@ function runMoodHis() {
     const moodIdx = Math.floor(Math.random() * MOODS.length);
     const moodT = MOODS[moodIdx].t;
     let line;
-    if (HIS_LINES[moodT]) {
-      const lines = HIS_LINES[moodT];
+    const itfStat = State.itfStats[k];
+    if (itfStat && itfStat.total >= 5 && Math.random() < 0.6) {
+      const positive = ['开心','想你','兴奋'];
+      const pickT = positive[Math.floor(Math.random() * positive.length)];
+      const lines = HIS_LINES[pickT];
       line = lines[Math.floor(Math.random() * lines.length)];
     } else {
-      line = buildFromCards(2, 3);
-      if (!line) { const fb = HIS_LINES['平淡']; line = fb[Math.floor(Math.random() * fb.length)]; }
+      /* 有专属台词的心情用台词；没有的用字卡拼 1~3 条；字卡为空则不显示台词 */
+      if (HIS_LINES[moodT]) {
+        const lines = HIS_LINES[moodT];
+        line = lines[Math.floor(Math.random() * lines.length)];
+      } else {
+        line = buildFromCards(1, 3);
+        if (!line) line = null;
+      }
     }
     const weather = HIS_WEATHER[Math.floor(Math.random() * HIS_WEATHER.length)];
     State.moods[k].his = { mood: moodIdx, weather, line };
@@ -6107,8 +6500,210 @@ function openQuiz() {
     });
   }, 100);
 }
-  <script>
-/* ==================== 问卷 ==================== */
+  /* ==================== 信箱 ==================== */
+let mailTab = 'inbox';
+
+function ensureMailQuota() {
+  const k = todayKey();
+  if (!State.mailQuota || State.mailQuota.day !== k) {
+    State.mailQuota = { day: k, me: 0, other: 0 };
+    save.mailQuota();
+  }
+}
+/* 取抬头/落款称呼（按方向自动对应） */
+function mailCallFor(direction) {
+  const s = State.settings;
+  const hisCall = s.mailToCall || s.otherCall || '祂';   /* 祂的写信称呼 */
+  const myCall = s.mailFromCall || s.myCall || '我';     /* 我的写信称呼 */
+  if (direction === 'me2him') return { to: hisCall, from: myCall };
+  else return { to: myCall, from: hisCall };              /* him2me */
+}
+/* 随机取一条开头语 */
+function randomMailHello() {
+  return MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
+}
+/* 随机取一条祝语 */
+function randomMailBye() {
+  return MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
+}
+/* 生成信纸 HTML（称呼/开头语/正文/祝语/落款） */
+function buildMailPaperHTML({ to, hello, body, bye, from, ts }) {
+  const dateStr = fullDate(new Date(ts || Date.now()));
+  let byeHTML = '';
+  if (Array.isArray(bye)) {
+    /* 两行式：此致 空两格 / 敬礼 顶格 */
+    byeHTML = `<div class="mp-bye-2line"><div class="line1">${escapeHTML(bye[0])}</div><div class="line2">${escapeHTML(bye[1])}</div></div>`;
+  } else {
+    byeHTML = `<div class="mp-bye">${escapeHTML(bye || '')}</div>`;
+  }
+  return `
+    <div class="mail-paper">
+      <div class="mp-to">致 ${escapeHTML(to)}</div>
+      <div class="mp-hello">${escapeHTML(hello || '')}</div>
+      <div class="mp-body">${escapeHTML(body || '')}</div>
+      ${byeHTML}
+      <div class="mp-sign"><span class="sign-name">${escapeHTML(from)}</span><span class="sign-date">${dateStr}</span></div>
+    </div>
+  `;
+}
+
+function openMail() {
+  ensureMailQuota();
+  mailTab = 'inbox';
+  const html = `
+    <div class="mail-tabs" id="mail-tabs">
+      <div class="mail-tab active" data-tab="inbox">祂的来信</div>
+      <div class="mail-tab" data-tab="outbox">我的寄信</div>
+    </div>
+    <div class="mail-list" id="mail-list"></div>
+  `;
+  openSub('信箱', html, () => {
+    $('#sub-body').classList.add('pad-off');
+    setSubAction(`<span style="font-size:20px">✍🏻</span>`, openMailWrite);
+    renderMailList();
+    $$('#mail-tabs [data-tab]').forEach(t => {
+      t.onclick = () => {
+        mailTab = t.dataset.tab;
+        $$('#mail-tabs [data-tab]').forEach(x => x.classList.toggle('active', x === t));
+        renderMailList();
+      };
+    });
+  });
+}
+function renderMailList() {
+  const list = $('#mail-list'); if (!list) return;
+  const items = State.mails.filter(m => mailTab === 'inbox' ? (m.who === 'other') : (m.who === 'me'));
+  if (!items.length) { list.innerHTML = `<div class="empty-tip">${mailTab === 'inbox' ? '还没有收到信。' : '还没有寄出信。'}</div>`; return; }
+  list.innerHTML = '';
+  const sorted = [...items].sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  sorted.forEach(m => {
+    const el = document.createElement('div');
+    el.className = 'mail-envelope';
+    el.setAttribute('data-who', m.who);
+    const call = m.who === 'me' ? (State.settings.myCall || '我') : (State.settings.otherCall || '祂');
+    /* 列表页显示 日期 + 时间 */
+    el.innerHTML = `<div class="me-line1">💌 ${escapeHTML(call)}</div><div class="me-line2">${fullDateTime(m.ts)}</div>${(m.who === 'other' && !m.read) ? '<span class="mail-dot"></span>' : ''}`;
+    el.onclick = () => openMailDetail(m);
+    list.appendChild(el);
+  });
+}
+function openMailDetail(m) {
+  if (m.who === 'other' && !m.read) { m.read = true; save.mails(); }
+  const direction = (m.who === 'me') ? 'me2him' : 'him2me';
+  /* 老信件兜底：to/from 已存则直接用 */
+  const to = m.to || mailCallFor(direction).to;
+  const from = m.from || mailCallFor(direction).from;
+  const paperHTML = buildMailPaperHTML({
+    to, hello: m.hello, body: m.body, bye: m.bye, from, ts: m.ts
+  });
+  openSub('信', `<div class="mail-detail">${paperHTML}</div>`, () => {
+    $('#sub-body').classList.add('pad-off');
+    setSubAction('');
+  });
+}
+function openMailWrite() {
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.me || 0);
+  const freeLeft = Math.max(0, MAIL_QUOTA_FREE - used);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay && State.love < MAIL_QUOTA_COST) {
+    openModal({ title: '', bodyHTML: `免费额度用完了，寄信需要 ${MAIL_QUOTA_COST} 爱意值，当前爱意不足。`, actions: [] });
+    setTimeout(closeModal, 2000); return;
+  }
+  const hello = randomMailHello();
+  const bye = randomMailBye();
+  /* 我写给祂：抬头 = 祂的写信称呼，落款 = 我的写信称呼 */
+  const { to, from } = mailCallFor('me2him');
+  const tip = needPay ? `本次将消耗 ${MAIL_QUOTA_COST} 爱意值` : `今日免费额度剩余 ${freeLeft} 封`;
+  const html = `
+    <div class="mail-write-wrap">
+      <div class="mail-preview" id="mail-preview">
+        ${buildMailPaperHTML({ to, hello, body: '', bye, from, ts: Date.now() })}
+      </div>
+      <div class="mail-input-area">
+        <textarea id="mail-body-input" placeholder="把想说的，慢慢写下来…"></textarea>
+        <div style="font-size:12.5px;color:var(--text-soft);margin-top:8px;text-align:center">${tip}</div>
+      </div>
+      <div class="mail-send-bar">
+        <button class="mail-send-btn" id="mail-send"><span class="mail-stamp">✉</span>寄出</button>
+      </div>
+    </div>
+  `;
+  openSub('写信', html, () => {
+    $('#sub-body').classList.add('pad-off');
+    setSubAction('');
+    const ta = $('#mail-body-input');
+    /* 实时更新正文：只更新 .mp-body，不动其他部分 */
+    ta.oninput = () => {
+      const pv = $('#mail-preview');
+      if (!pv) return;
+      const bodyEl = pv.querySelector('.mp-body');
+      if (bodyEl) bodyEl.textContent = ta.value;
+    };
+    ta.focus();
+    $('#mail-send').onclick = () => doSendMail(hello, bye, ta.value);
+  });
+}
+function doSendMail(hello, bye, body) {
+  const text = (body || '').trim();
+  if (!text) { toast('写点什么吧'); return; }
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.me || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < MAIL_QUOTA_COST) { toast('爱意值不够'); return; }
+    State.love -= MAIL_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  q.me = used + 1; save.mailQuota();
+  const { to, from } = mailCallFor('me2him');
+  State.mails.push({
+    id: uid(), who: 'me',
+    to, from,
+    hello, bye, body: text,
+    read: true, ts: Date.now()
+  });
+  save.mails();
+  toast(needPay ? '已寄出（-' + MAIL_QUOTA_COST + '爱意）' : '已寄出');
+  mailTab = 'outbox';
+  openMail();
+}
+function pushOtherMail() {
+  ensureMailQuota();
+  const q = State.mailQuota;
+  const used = (q.other || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay) {
+    if (State.love < MAIL_QUOTA_COST) return;
+    State.love -= MAIL_QUOTA_COST; save.love();
+    const el = $('#hdr-love'); if (el) el.textContent = State.love;
+  }
+  const body = buildMailBody();
+  if (!body) return;
+  const hello = randomMailHello();
+  const bye = randomMailBye();
+  /* 祂写给我：抬头 = 我的写信称呼，落款 = 祂的写信称呼 */
+  const { to, from } = mailCallFor('him2me');
+  q.other = used + 1; save.mailQuota();
+  State.mails.push({
+    id: uid(), who: 'other',
+    to, from,
+    hello, bye, body,
+    read: false, ts: Date.now()
+  });
+  save.mails();
+}
+function maybeOtherMailActiveCheck() {
+  if (Math.random() * 100 >= MAIL_ACTIVE_PROB) return;
+  ensureMailQuota();
+  const used = (State.mailQuota.other || 0);
+  const needPay = used >= MAIL_QUOTA_FREE;
+  if (needPay && State.love < MAIL_QUOTA_COST) return;
+  pushOtherMail();
+}
+  /* ==================== 问卷 ==================== */
 function openQuizManager() {
   openSub('问卷', `<div class="quiz-mgr-list" id="quiz-mgr-list"></div>`, () => {
     $('#sub-body').classList.add('pad-off');
@@ -6129,8 +6724,12 @@ function renderQuizList() {
     list.appendChild(el);
   });
 }
-function quizHasResult(quizId) { return State.quizResults.some(r => r.quizId === quizId); }
-function getQuizResult(quizId) { return State.quizResults.find(r => r.quizId === quizId); }
+function quizHasResult(quizId) {
+  return State.quizResults.some(r => r.quizId === quizId);
+}
+function getQuizResult(quizId) {
+  return State.quizResults.find(r => r.quizId === quizId);
+}
 function openQuizItemMenu(q) {
   openModal({ title: escapeHTML(q.title), bodyHTML: '', actions: [
     { label: '查看', onClick: () => openQuizCreate(q, true) },
@@ -7259,7 +7858,7 @@ function renderTrashList() {
   });
 }
 
-/* ==================== 头像管理 ==================== */
+/* ==================== 头像管理（新增写信称呼） ==================== */
 function openAvatarManager() {
   const s = State.settings;
   openSub('头像', `
@@ -7269,7 +7868,7 @@ function openAvatarManager() {
       <div class="info">
         <div class="info-line" id="edit-other-name"><span class="k">名字</span><span class="v">${escapeHTML(s.otherName || '祂的名字')}</span></div>
         <div class="info-line" id="edit-other-call"><span class="k">称呼</span><span class="v">${escapeHTML(s.otherCall || '祂的称呼')}</span></div>
-        <div class="info-line" id="edit-other-mail"><span class="k">写信称呼</span><span class="v">${escapeHTML(s.mailFromCall || '未设置')}</span></div>
+        <div class="info-line" id="edit-other-mailcall"><span class="k">写信称呼</span><span class="v">${escapeHTML(s.mailToCall || s.otherCall || '祂的写信称呼')}</span></div>
       </div>
     </div>
     <div class="section-title">我</div>
@@ -7278,7 +7877,7 @@ function openAvatarManager() {
       <div class="info">
         <div class="info-line" id="edit-my-name"><span class="k">名字</span><span class="v">${escapeHTML(s.myName || '我的名字')}</span></div>
         <div class="info-line" id="edit-my-call"><span class="k">称呼</span><span class="v">${escapeHTML(s.myCall || '我的称呼')}</span></div>
-        <div class="info-line" id="edit-my-mail"><span class="k">写信称呼</span><span class="v">${escapeHTML(s.mailToCall || '未设置')}</span></div>
+        <div class="info-line" id="edit-my-mailcall"><span class="k">写信称呼</span><span class="v">${escapeHTML(s.mailFromCall || s.myCall || '我的写信称呼')}</span></div>
       </div>
     </div>
     <div class="section-title">未配对</div>
@@ -7292,10 +7891,10 @@ function openAvatarManager() {
     renderAvatarArea();
     $('#edit-other-name').onclick = () => editField('otherName', '祂的名字', openAvatarManager);
     $('#edit-other-call').onclick = () => openCallManager('other');
-    $('#edit-other-mail').onclick = () => editField('mailFromCall', '祂的写信称呼', openAvatarManager);
+    $('#edit-other-mailcall').onclick = () => editField('mailToCall', '祂的写信称呼', openAvatarManager);
     $('#edit-my-name').onclick = () => editField('myName', '我的名字', openAvatarManager);
     $('#edit-my-call').onclick = () => openCallManager('me');
-    $('#edit-my-mail').onclick = () => editField('mailToCall', '我的写信称呼', openAvatarManager);
+    $('#edit-my-mailcall').onclick = () => editField('mailFromCall', '我的写信称呼', openAvatarManager);
   });
 }
 function editField(key, placeholder, after) {
@@ -7364,7 +7963,7 @@ function openCallManager(who) {
   const html = list.length
     ? `<div class="call-grid">` + list.map((c, i) => `<div class="call-cell ${c === s[curKey] ? 'active' : ''}" data-call="${i}">${escapeHTML(c)}</div>`).join('') + `</div>`
     : `<div class="empty-tip" style="padding:10px">还没有称呼</div>`;
-  openModal({ title: '称呼管理', bodyHTML: html, actions: [{ label: '添加称呼', onClick: () => { addCall(who); }, keepOpen: true }] });
+  openModal({ title: '称呼管理', bodyHTML: html, actions: [{ label: '添加称呼', onClick: () => { modalBack(); addCall(who); }, keepOpen: true }] });
   $$('#modal-body [data-call]').forEach(el => {
     const idx = +el.dataset.call; const txt = list[idx];
     el.onclick = () => { s[curKey] = txt; save.settings(); applyAvatars(); closeModal(); if ($('#av-other-big') || $('#av-me-big')) openAvatarManager(); };
@@ -7567,8 +8166,7 @@ function initPlayPage() {
     showBars();
   });
 }
-  <script>
-/* ==================== 统计 ==================== */
+  /* ==================== 统计 ==================== */
 function openStats() {
   openSub('统计', `
     <div class="bg-tabs" id="stats-tabs">
@@ -7724,11 +8322,11 @@ function openSetChat() {
     <div class="set-row"><span class="label">自定义（秒）</span>
       <input class="field" id="in-think" type="number" style="width:90px" value="${s.thinkTimeCustom ?? ''}">
     </div>
+    <div class="section-title">消息头像</div>
+    <div class="set-row"><span class="label">每条消息都显示头像</span><div class="switch ${s.showEveryAvatar?'on':''}" id="sw-every-avatar"></div></div>
     <div class="section-title">心情手帐</div>
     <div class="set-row"><span class="label">祂记录心情的时间</span>
       <input class="field" id="in-mood-time" type="time" style="width:120px" value="${pad(s.moodHour??20)}:${pad(s.moodMinute??0)}"></div>
-    <div class="section-title">消息头像</div>
-    <div class="set-row"><span class="label">每条消息都显示头像</span><div class="switch ${s.showEveryAvatar?'on':''}" id="sw-every-avatar"></div></div>
   `, () => {
     setSubAction('');
     markSeg('#seg-reply', s.replySpeedMin != null ? '' : s.replySpeed);
@@ -7761,6 +8359,7 @@ function openSetChat() {
       s.moodHour = hh; s.moodMinute = mm; save.settings();
       runMoodHis();
     };
+    /* 消息头像开关 */
     $('#sw-every-avatar').onclick = function() {
       s.showEveryAvatar = !s.showEveryAvatar;
       this.classList.toggle('on', s.showEveryAvatar);
@@ -7770,16 +8369,18 @@ function openSetChat() {
   });
 }
 
+/* ==================== 外观（重构：加字体/字号/间距） ==================== */
 function openSetAppearance() {
   openSub('外观', `
     <div class="sub-pad sub-pad-top">
       <div class="setting-block glass" data-goto="set-theme"><svg class="block-icon"><use href="#i-bg"/></svg><span>主题</span></div>
       <div class="setting-block glass" data-goto="set-bubble"><svg class="block-icon"><use href="#i-emoji"/></svg><span>气泡</span></div>
       <div class="setting-block glass" data-goto="set-font"><svg class="block-icon"><use href="#i-card"/></svg><span>字体</span></div>
-      <div class="setting-block glass" data-goto="set-fontsize"><svg class="block-icon"><use href="#i-todo"/></svg><span>字号</span></div>
-      <div class="setting-block glass" data-goto="set-space"><svg class="block-icon"><use href="#i-archive"/></svg><span>间距</span></div>
-      <div class="setting-block glass" data-goto="set-avatar"><svg class="block-icon"><use href="#i-avatar"/></svg><span>头像</span></div>
-      <div class="setting-block glass" data-goto="set-bg"><svg class="block-icon"><use href="#i-bg"/></svg><span>背景</span></div>
+      <div class="setting-block glass" data-goto="set-chat-font"><svg class="block-icon"><use href="#i-emoji"/></svg><span>聊天字号</span></div>
+      <div class="setting-block glass" data-goto="set-space"><svg class="block-icon"><use href="#i-bg"/></svg><span>间距</span></div>
+      <div class="setting-block glass" data-goto="open-avatar"><svg class="block-icon"><use href="#i-avatar"/></svg><span>头像</span></div>
+      <div class="setting-block glass" data-goto="open-bg"><svg class="block-icon"><use href="#i-bg"/></svg><span>背景</span></div>
+      <div class="setting-block glass" data-goto="set-floatball"><svg class="block-icon"><use href="#i-floatball"/></svg><span>悬浮球</span></div>
     </div>
   `, () => {
     setSubAction('');
@@ -7789,10 +8390,11 @@ function openSetAppearance() {
         if (k === 'set-theme') return openSetTheme();
         if (k === 'set-bubble') return openSetBubble();
         if (k === 'set-font') return openSetFont();
-        if (k === 'set-fontsize') return openSetFontSize();
+        if (k === 'set-chat-font') return openSetChatFont();
         if (k === 'set-space') return openSetSpace();
-        if (k === 'set-avatar') return openAvatarManager();
-        if (k === 'set-bg') return openBgManager();
+        if (k === 'open-avatar') return openAvatarManager();
+        if (k === 'open-bg') return openBgManager();
+        if (k === 'set-floatball') return openSetFloatBall();
       };
     });
   });
@@ -7828,12 +8430,12 @@ function openSetTheme() {
 function openSetBubble() {
   const s = State.settings;
   const previewHTML = `
-    <div class="bubble-preview" id="bubble-preview" style="height:220px;overflow-y:auto">
+    <div class="bubble-preview" id="bubble-preview">
       <div class="bp-row">
         <img class="bp-avatar" id="bp-avatar-other" alt="">
         <div class="bp-col"><div class="bp-bubble message-received">所有的分别都是暂时的，我们一定会再次相会</div></div>
       </div>
-      <div class="bp-row me" style="margin-top:30px">
+      <div class="bp-row me">
         <div class="bp-col"><div class="bp-bubble message-sent">用大把时间仿徨，用几个瞬间成长</div></div>
         <img class="bp-avatar" id="bp-avatar-me" alt="">
       </div>
@@ -7856,146 +8458,149 @@ function openSetBubble() {
     });
   });
 }
+/* 字体方案 */
 function openSetFont() {
   const s = State.settings;
   openSub('字体', `
-    <div class="section-title">全站字体</div>
     <div class="seg" id="seg-font" style="flex-wrap:wrap">
-      ${FONT_PRESETS.map(f => `<button class="seg-btn ${s.fontFamily===f.v?'active':''}" data-v="${f.v}" style="flex:1 1 45%">${f.name}</button>`).join('')}
+      ${FONT_SCHEMES.map(f => `<button class="seg-btn ${s.fontScheme===f.key?'active':''}" data-v="${f.key}" style="flex:1 1 40%">${f.name}</button>`).join('')}
     </div>
-    <div class="bubble-preview" style="height:220px;overflow-y:auto">
-      <div style="font-size:15px;line-height:1.9;color:var(--text)">
-        见字如面，夫人。<br>
-        提笔时窗外正落着雪，忽然很想你。<br>
-        愿你今日无风无雨，所遇皆温柔。
-      </div>
+    <div class="size-preview" style="margin-top:12px">
+      <div class="sp-row"><img class="sp-avatar" src="${s.avatars.other || defaultAvatar('blue')}"><div class="sp-col"><div class="sp-bubble other">这是祂的字体效果</div></div></div>
+      <div class="sp-row me"><div class="sp-col"><div class="sp-bubble me">这是我的字体效果</div></div><img class="sp-avatar" src="${s.avatars.me || defaultAvatar('pink')}"></div>
     </div>
   `, () => {
     setSubAction('');
     $$('#seg-font .seg-btn').forEach(b => {
-      b.onclick = () => { applyFontFamily(b.dataset.v); $$('#seg-font .seg-btn').forEach(x => x.classList.toggle('active', x === b)); };
-    });
-  });
-}
-function openSetFontSize() {
-  const s = State.settings;
-  const cur = s.chatFontSize || 15;
-  const previewHTML = `
-    <div class="bubble-preview" style="height:220px;overflow-y:auto">
-      <div class="bp-row">
-        <img class="bp-avatar" id="fs-avatar-other" alt="">
-        <div class="bp-col"><div class="bp-bubble message-received" style="font-size:${cur}px">所有的分别都是暂时的，我们一定会再次相会</div></div>
-      </div>
-      <div class="bp-row me" style="margin-top:30px">
-        <div class="bp-col"><div class="bp-bubble message-sent" style="font-size:${cur}px">用大把时间仿徨，用几个瞬间成长</div></div>
-        <img class="bp-avatar" id="fs-avatar-me" alt="">
-      </div>
-    </div>
-  `;
-  openSub('字号', `
-    <div class="section-title">聊天字号</div>
-    <div class="seg" id="seg-fontsize">
-      <button class="seg-btn ${cur===13?'active':''}" data-v="13">小 13</button>
-      <button class="seg-btn ${cur===15?'active':''}" data-v="15">中 15</button>
-      <button class="seg-btn ${cur===17?'active':''}" data-v="17">大 17</button>
-      <button class="seg-btn ${cur===19?'active':''}" data-v="19">特大 19</button>
-    </div>
-    <div class="set-row"><span class="label">微调（${CHAT_FONT_MIN}~${CHAT_FONT_MAX}）</span>
-      <input class="field" id="in-fontsize" type="range" min="${CHAT_FONT_MIN}" max="${CHAT_FONT_MAX}" value="${cur}" style="flex:1">
-      <span class="value" id="fs-val">${cur}px</span>
-    </div>
-    ${previewHTML}
-  `, () => {
-    setSubAction('');
-    const po = $('#fs-avatar-other'); if (po) po.src = s.avatars.other || defaultAvatar('blue');
-    const pm = $('#fs-avatar-me'); if (pm) pm.src = s.avatars.me || defaultAvatar('pink');
-    const updatePreview = (px) => {
-      $$('.bubble-preview .message-received, .bubble-preview .message-sent').forEach(b => b.style.fontSize = px + 'px');
-    };
-    $$('#seg-fontsize .seg-btn').forEach(b => {
       b.onclick = () => {
-        const px = +b.dataset.v;
-        applyChatFontSize(px);
-        $$('#seg-fontsize .seg-btn').forEach(x => x.classList.toggle('active', x === b));
-        const rng = $('#in-fontsize'); if (rng) rng.value = px;
-        const val = $('#fs-val'); if (val) val.textContent = px + 'px';
-        updatePreview(px);
+        applyFont(b.dataset.v);
+        $$('#seg-font .seg-btn').forEach(x => x.classList.toggle('active', x === b));
       };
     });
-    $('#in-fontsize').oninput = e => {
-      const px = +e.target.value;
-      applyChatFontSize(px);
-      $('#fs-val').textContent = px + 'px';
-      $$('#seg-fontsize .seg-btn').forEach(x => x.classList.toggle('active', +x.dataset.v === px));
-      updatePreview(px);
+  });
+}
+/* 聊天字号 */
+function openSetChatFont() {
+  const s = State.settings;
+  const curKey = (CHAT_FONT_SIZES.find(f => f.size === s.chatFontSize) || CHAT_FONT_SIZES[1]).key;
+  openSub('聊天字号', `
+    <div class="seg" id="seg-chatfont">
+      ${CHAT_FONT_SIZES.map(f => `<button class="seg-btn ${curKey===f.key?'active':''}" data-v="${f.key}">${f.name} ${f.size}</button>`).join('')}
+    </div>
+    <div class="slider-row" style="margin-top:12px">
+      <div class="slider-label"><span>微调</span><span id="cf-size-val">${s.chatFontSize}px</span></div>
+      <input type="range" id="cf-size-slider" min="11" max="22" step="1" value="${s.chatFontSize}">
+    </div>
+    <div class="size-preview" id="chatfont-preview" style="margin-top:12px">
+      <div class="sp-row"><img class="sp-avatar" src="${s.avatars.other || defaultAvatar('blue')}"><div class="sp-col"><div class="sp-bubble other" style="font-size:${s.chatFontSize}px">今天也想你了</div></div></div>
+      <div class="sp-row me"><div class="sp-col"><div class="sp-bubble me" style="font-size:${s.chatFontSize}px">我也想你</div></div><img class="sp-avatar" src="${s.avatars.me || defaultAvatar('pink')}"></div>
+    </div>
+  `, () => {
+    setSubAction('');
+    const updatePreview = (size) => {
+      const pv = $('#chatfont-preview'); if (!pv) return;
+      $$('.sp-bubble', pv).forEach(el => el.style.fontSize = size + 'px');
+      const v = $('#cf-size-val'); if (v) v.textContent = size + 'px';
+      const sl = $('#cf-size-slider'); if (sl && +sl.value !== size) sl.value = size;
+    };
+    $$('#seg-chatfont .seg-btn').forEach(b => {
+      b.onclick = () => {
+        const f = CHAT_FONT_SIZES.find(x => x.key === b.dataset.v);
+        applyChatFontSize(f.size);
+        $$('#seg-chatfont .seg-btn').forEach(x => x.classList.toggle('active', x === b));
+        updatePreview(f.size);
+      };
+    });
+    $('#cf-size-slider').oninput = e => {
+      const size = Math.max(11, Math.min(22, +e.target.value || 15));
+      applyChatFontSize(size);
+      $$('#seg-chatfont .seg-btn').forEach(x => x.classList.remove('active'));
+      updatePreview(size);
     };
   });
 }
+/* 间距 */
 function openSetSpace() {
   const s = State.settings;
-  const cy = s.spaceY || 16, cx = s.spaceX || 16;
+  const curScheme = SPACE_SCHEMES.find(x => x.pad === s.spacePad) || SPACE_SCHEMES[1];
   openSub('间距', `
-    <div class="section-title">模板</div>
     <div class="seg" id="seg-space">
-      <button class="seg-btn" data-v="compact">紧凑</button>
-      <button class="seg-btn" data-v="normal">标准</button>
-      <button class="seg-btn" data-v="loose">宽松</button>
+      ${SPACE_SCHEMES.map(x => `<button class="seg-btn ${curScheme.key===x.key?'active':''}" data-v="${x.key}">${x.name}</button>`).join('')}
     </div>
-    <div class="set-row"><span class="label">上下</span>
-      <input class="field" id="in-space-y" type="range" min="${SPACE_MIN}" max="${SPACE_MAX}" value="${cy}" style="flex:1">
-      <span class="value" id="sy-val">${cy}px</span>
+    <div class="slider-row" style="margin-top:12px">
+      <div class="slider-label"><span>左右间距</span><span id="space-pad-val">${s.spacePad}px</span></div>
+      <input type="range" id="space-pad-slider" min="8" max="28" step="1" value="${s.spacePad}">
     </div>
-    <div class="set-row"><span class="label">左右</span>
-      <input class="field" id="in-space-x" type="range" min="${SPACE_MIN}" max="${SPACE_MAX}" value="${cx}" style="flex:1">
-      <span class="value" id="sx-val">${cx}px</span>
+    <div class="slider-row" style="margin-top:8px">
+      <div class="slider-label"><span>上下间距</span><span id="space-gap-val">${s.spaceGap}px</span></div>
+      <input type="range" id="space-gap-slider" min="6" max="24" step="1" value="${s.spaceGap}">
     </div>
-    <div class="bubble-preview" id="space-preview" style="height:220px;overflow-y:auto">
-      <div class="bp-row">
-        <img class="bp-avatar" id="sp-avatar-other2" alt="">
-        <div class="bp-col"><div class="bp-bubble message-received">间距预览：上下与左右都会实时变化</div></div>
-      </div>
-      <div class="bp-row me" style="margin-top:30px">
-        <div class="bp-col"><div class="bp-bubble message-sent">拖动上面的滑块试试看</div></div>
-        <img class="bp-avatar" id="sp-avatar-me2" alt="">
-      </div>
+    <div class="space-preview" id="space-preview" style="margin-top:12px">
+      <div class="spr-card">示例卡片一</div>
+      <div class="spr-card">示例卡片二</div>
+      <div class="spr-bubble">祂的消息</div>
+      <div class="spr-bubble me">我的消息</div>
     </div>
   `, () => {
     setSubAction('');
-    const po = $('#sp-avatar-other2'); if (po) po.src = s.avatars.other || defaultAvatar('blue');
-    const pm = $('#sp-avatar-me2'); if (pm) pm.src = s.avatars.me || defaultAvatar('pink');
-    const updatePreview = (y, x) => {
+    const updatePreview = (pad, gap) => {
       const pv = $('#space-preview'); if (!pv) return;
-      pv.style.padding = y + 'px ' + x + 'px';
-      const rows = $$('#space-preview .bp-row');
-      if (rows[0]) rows[0].style.marginTop = y + 'px';
-      if (rows[1]) rows[1].style.marginTop = (y + 20) + 'px';
+      pv.style.padding = pad + 'px';
+      pv.style.gap = gap + 'px';
+      const a = $('#space-pad-val'); if (a) a.textContent = pad + 'px';
+      const b = $('#space-gap-val'); if (b) b.textContent = gap + 'px';
+      const slA = $('#space-pad-slider'); if (slA && +slA.value !== pad) slA.value = pad;
+      const slB = $('#space-gap-slider'); if (slB && +slB.value !== gap) slB.value = gap;
     };
-    updatePreview(cy, cx);
     $$('#seg-space .seg-btn').forEach(b => {
       b.onclick = () => {
-        const preset = SPACE_PRESETS[b.dataset.v];
-        if (!preset) return;
-        applySpace(preset.y, preset.x);
-        $$('#seg-space .seg-btn').forEach(x => x.classList.toggle('active', x === b));
-        $('#in-space-y').value = preset.y; $('#sy-val').textContent = preset.y + 'px';
-        $('#in-space-x').value = preset.x; $('#sx-val').textContent = preset.x + 'px';
-        updatePreview(preset.y, preset.x);
+        const x = SPACE_SCHEMES.find(y => y.key === b.dataset.v);
+        applySpace(x.pad, x.gap);
+        $$('#seg-space .seg-btn').forEach(y => y.classList.toggle('active', y === b));
+        updatePreview(x.pad, x.gap);
       };
     });
-    $('#in-space-y').oninput = e => {
-      const y = +e.target.value;
-      applySpace(y, +$('#in-space-x').value);
-      $('#sy-val').textContent = y + 'px';
+    $('#space-pad-slider').oninput = e => {
+      const pad = Math.max(8, Math.min(28, +e.target.value || 16));
+      applySpace(pad, State.settings.spaceGap);
       $$('#seg-space .seg-btn').forEach(x => x.classList.remove('active'));
-      updatePreview(y, +$('#in-space-x').value);
+      updatePreview(pad, State.settings.spaceGap);
     };
-    $('#in-space-x').oninput = e => {
-      const x = +e.target.value;
-      applySpace(+$('#in-space-y').value, x);
-      $('#sx-val').textContent = x + 'px';
-      $$('#seg-space .seg-btn').forEach(x2 => x2.classList.remove('active'));
-      updatePreview(+$('#in-space-y').value, x);
+    $('#space-gap-slider').oninput = e => {
+      const gap = Math.max(6, Math.min(24, +e.target.value || 12));
+      applySpace(State.settings.spacePad, gap);
+      $$('#seg-space .seg-btn').forEach(x => x.classList.remove('active'));
+      updatePreview(State.settings.spacePad, gap);
     };
+  });
+}
+/* 悬浮球（点预览图上传，去掉两个按钮） */
+function openSetFloatBall() {
+  const s = State.settings;
+  openSub('悬浮球', `
+    <div class="float-preview"><img id="float-preview-img" src="${s.floatImg || defaultAvatar('blue')}"></div>
+    <div class="set-row no-top-light"><span class="label">点预览图可更换</span><span class="value" id="float-size-label">${s.floatSize}px</span></div>
+    <div class="section-title">悬浮球大小</div>
+    <div class="seg" id="seg-size">
+      <button class="seg-btn" data-v="40">小 40</button>
+      <button class="seg-btn" data-v="52">中 52</button>
+      <button class="seg-btn" data-v="64">大 64</button>
+    </div>
+    <div class="set-row"><span class="label">自定义（36~70）</span>
+      <input class="field" id="in-size" type="number" style="width:90px" value="${s.floatSize}"></div>
+  `, () => {
+    setSubAction('');
+    /* 点预览图上传 */
+    $('#float-preview-img').onclick = () => pickImage(async (dataUrl, blob) => {
+      s.floatImg = dataUrl;
+      await CacheStore.put('floatball', blob);
+      save.settings();
+      $('#float-preview-img').src = dataUrl;
+      applyFloatBall();
+    });
+    markSeg('#seg-size', String(s.floatSize));
+    bindSeg('#seg-size', v => { s.floatSize = +v; save.settings(); applyFloatBall(); $('#float-size-label').textContent = v + 'px'; $('#in-size').value = v; });
+    $('#in-size').onchange = e => { let v = Math.max(36, Math.min(70, +e.target.value || 52)); s.floatSize = v; save.settings(); applyFloatBall(); $('#float-size-label').textContent = v + 'px'; e.target.value = v; markSeg('#seg-size', String(v)); };
   });
 }
 
@@ -8031,17 +8636,6 @@ function openSetFeature() {
     <div class="set-row"><span class="label">收藏概率（%）</span>
       <input class="field" id="in-heart-prob" type="number" style="width:80px" value="${s.heartProb}"></div>
 
-    <div class="section-title">消息贴心情</div>
-    <div class="set-row"><span class="label">祂可以贴心情</span><div class="switch ${s.moodStickerEnabled?'on':''}" id="sw-moodsticker"></div></div>
-    <div class="seg" id="seg-moodsticker">
-      <button class="seg-btn" data-v="light">淡 3%</button>
-      <button class="seg-btn" data-v="daily">日常 5%</button>
-      <button class="seg-btn" data-v="sticky">黏 8%</button>
-      <button class="seg-btn" data-v="vsticky">很黏 12%</button>
-    </div>
-    <div class="set-row"><span class="label">自定义（0~100%）</span>
-      <input class="field" id="in-moodsticker" type="number" style="width:80px" value="${s.moodStickerProb ?? 5}"></div>
-
     <div class="section-title">一起听歌</div>
     <div class="set-row"><span class="label">祂可以邀请一起听歌</span><div class="switch ${s.inviteEnabled?'on':''}" id="sw-invite"></div></div>
     <div class="set-row"><span class="label">邀请概率（%）</span>
@@ -8065,6 +8659,19 @@ function openSetFeature() {
       <input class="field" id="in-itf-comp" type="number" style="width:80px" value="${s.itfProbCompanion ?? 70}"></div>
     <div class="set-row"><span class="label">祂主动发互动（%）</span>
       <input class="field" id="in-itf-active" type="number" style="width:80px" value="${s.itfActiveProb ?? 3}"></div>
+
+    <div class="section-title">消息贴心情</div>
+    <div class="set-row"><span class="label">祂可以贴心情</span><div class="switch ${s.moodStickerEnabled?'on':''}" id="sw-moodsticker"></div></div>
+    <div class="seg" id="seg-moodsticker">
+      <button class="seg-btn" data-v="light">淡 3%</button>
+      <button class="seg-btn" data-v="daily">日常 5%</button>
+      <button class="seg-btn" data-v="sticky">黏 8%</button>
+      <button class="seg-btn" data-v="vsticky">很黏 12%</button>
+    </div>
+    <div class="slider-row" style="margin-top:8px">
+      <div class="slider-label"><span>自定义概率</span><span id="moodsticker-val">${s.moodStickerProb ?? 5}%</span></div>
+      <input type="range" id="moodsticker-slider" min="0" max="100" step="1" value="${s.moodStickerProb ?? 5}">
+    </div>
 
     <div class="section-title">表情</div>
     <div class="set-row"><span class="label">祂可以使用表情</span><div class="switch ${s.emojiEnabled?'on':''}" id="sw-emoji"></div></div>
@@ -8099,19 +8706,29 @@ function openSetFeature() {
     setSubAction('');
     markSeg('#seg-lock', s.lockMode); bindSeg('#seg-lock', v => { s.lockMode = v; save.settings(); });
     markSeg('#seg-activemsg', s.activeMsgLevel); bindSeg('#seg-activemsg', v => { s.activeMsgLevel = v; save.settings(); });
-    markSeg('#seg-moodsticker', s.moodStickerLevel || 'daily');
-    bindSeg('#seg-moodsticker', v => {
-      s.moodStickerLevel = v;
-      s.moodStickerProb = { light: 3, daily: 5, sticky: 8, vsticky: 12 }[v];
-      save.settings();
-      const inp = $('#in-moodsticker'); if (inp) inp.value = s.moodStickerProb;
-    });
     $('#sw-activemsg').onclick = function() { s.activeMsgEnabled = !s.activeMsgEnabled; this.classList.toggle('on', s.activeMsgEnabled); save.settings(); };
     $('#sw-quote').onclick = function() { s.quoteEnabled = !s.quoteEnabled; this.classList.toggle('on', s.quoteEnabled); save.settings(); };
     $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
-    $('#sw-moodsticker').onclick = function() { s.moodStickerEnabled = !s.moodStickerEnabled; this.classList.toggle('on', s.moodStickerEnabled); save.settings(); };
     $('#sw-invite').onclick = function() { s.inviteEnabled = !s.inviteEnabled; this.classList.toggle('on', s.inviteEnabled); save.settings(); };
     $('#sw-comp').onclick = function() { s.companionInviteEnabled = !s.companionInviteEnabled; this.classList.toggle('on', s.companionInviteEnabled); save.settings(); };
+    /* 消息贴心情 */
+    $('#sw-moodsticker').onclick = function() { s.moodStickerEnabled = !s.moodStickerEnabled; this.classList.toggle('on', s.moodStickerEnabled); save.settings(); };
+    markSeg('#seg-moodsticker', s.moodStickerLevel || 'daily');
+    bindSeg('#seg-moodsticker', v => {
+      s.moodStickerLevel = v;
+      const cfg = { light: 3, daily: 5, sticky: 8, vsticky: 12 }[v];
+      s.moodStickerProb = cfg;
+      const sl = $('#moodsticker-slider'); if (sl) sl.value = cfg;
+      const val = $('#moodsticker-val'); if (val) val.textContent = cfg + '%';
+      save.settings();
+    });
+    $('#moodsticker-slider').oninput = e => {
+      const p = Math.max(0, Math.min(100, +e.target.value || 0));
+      s.moodStickerProb = p;
+      const val = $('#moodsticker-val'); if (val) val.textContent = p + '%';
+      $$('#seg-moodsticker .seg-btn').forEach(x => x.classList.remove('active'));
+      save.settings();
+    };
     $('#sw-emoji').onclick = function() { s.emojiEnabled = !s.emojiEnabled; this.classList.toggle('on', s.emojiEnabled); save.settings(); };
     $('#sw-sticker').onclick = function() { s.stickerEnabled = !s.stickerEnabled; this.classList.toggle('on', s.stickerEnabled); save.settings(); };
     $('#sw-gift').onclick = function() { s.giftEnabled = !s.giftEnabled; this.classList.toggle('on', s.giftEnabled); save.settings(); };
@@ -8119,7 +8736,6 @@ function openSetFeature() {
     $('#sw-video').onclick = function() { s.videoInviteEnabled = !s.videoInviteEnabled; this.classList.toggle('on', s.videoInviteEnabled); save.settings(); };
     $('#in-quote-prob').onchange = e => { s.quoteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.quoteProb; save.settings(); };
     $('#in-heart-prob').onchange = e => { s.heartProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.heartProb; save.settings(); };
-    $('#in-moodsticker').onchange = e => { s.moodStickerProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.moodStickerProb; save.settings(); markSeg('#seg-moodsticker', ''); };
     $('#in-invite-prob').onchange = e => { s.inviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.inviteProb; save.settings(); };
     $('#in-comp-prob').onchange = e => { s.companionInviteProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.companionInviteProb; save.settings(); };
     $('#in-comp-accept').onchange = e => { s.companionAcceptProb = Math.max(0, Math.min(100, +e.target.value || 0)); e.target.value = s.companionAcceptProb; save.settings(); };
@@ -8139,6 +8755,7 @@ function openSetFeature() {
   });
 }
 
+/* ==================== 系统 ==================== */
 function openSetSystem() {
   const s = State.settings;
   openSub('系统', `
@@ -8162,11 +8779,34 @@ function openSetSystem() {
     $('#sw-dnd').onclick = function() { s.dndEnabled = !s.dndEnabled; this.classList.toggle('on', s.dndEnabled); save.settings(); };
     $('#btn-backup').onclick = doBackup;
     $('#btn-restore').onclick = doRestore;
-    $('#btn-mail-test').onclick = () => { openMailTest(); };
+    $('#btn-mail-test').onclick = openMailFormatTest;
     $('#btn-clear-part').onclick = doClearPart;
     $('#btn-clear').onclick = doClear;
     $('#btn-factory').onclick = doFactoryReset;
   });
+}
+/* 信件格式测试：弹窗显示两封信（我→祂、祂→我），各随机开头语/祝语，固定正文，可"再来一封" */
+function openMailFormatTest() {
+  function renderTest() {
+    const me2him = mailCallFor('me2him');
+    const him2me = mailCallFor('him2me');
+    const h1 = randomMailHello(), b1 = randomMailBye();
+    const h2 = randomMailHello(), b2 = randomMailBye();
+    const html = `
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:12.5px;color:var(--text-soft);text-align:center">我 → 祂</div>
+        ${buildMailPaperHTML({ to: me2him.to, hello: h1, body: MAIL_TEST_BODY, bye: b1, from: me2him.from, ts: Date.now() })}
+        <div style="font-size:12.5px;color:var(--text-soft);text-align:center;margin-top:8px">祂 → 我</div>
+        ${buildMailPaperHTML({ to: him2me.to, hello: h2, body: MAIL_TEST_BODY, bye: b2, from: him2me.from, ts: Date.now() })}
+      </div>
+    `;
+    setModal({ title: '信件格式测试', bodyHTML: html, actions: [
+      { label: '再来一封', keepOpen: true, onClick: () => renderTest() },
+      { label: '关闭', keepOpen: false, onClick: () => {} }
+    ], wide: true });
+  }
+  openModal({ title: '信件格式测试', bodyHTML: '', actions: [] });
+  renderTest();
 }
 function doClearPart() {
   openModal({ title: '清空部分数据', bodyHTML: '', actions: [
@@ -8205,7 +8845,6 @@ async function doBackup() {
     notes: State.notes, noteQuota: State.noteQuota,
     spaces: State.spaces, spaceQuota: State.spaceQuota,
     mails: State.mails, mailQuota: State.mailQuota,
-    msgMoods: State.msgMoods,
     media
   };
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
@@ -8248,8 +8887,7 @@ function doRestore() {
       ['爱意值', () => { State.love = data.love || 0; }],
       ['留言笺', () => { State.notes = data.notes || []; State.noteQuota = data.noteQuota || null; }],
       ['恋人空间', () => { State.spaces = data.spaces || []; State.spaceQuota = data.spaceQuota || null; }],
-      ['信箱', () => { State.mails = data.mails || []; State.mailQuota = data.mailQuota || null; }],
-      ['贴心情', () => { State.msgMoods = data.msgMoods || {}; }]
+      ['信箱', () => { State.mails = data.mails || []; State.mailQuota = data.mailQuota || null; }]
     ];
     for (let i = 0; i < stages.length; i++) {
       $('#restore-stage').textContent = '正在覆盖：' + stages[i][0] + '…';
@@ -8272,14 +8910,15 @@ function doRestore() {
     await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
     await save.songs(); await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers();
     await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.love();
-    await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota(); await save.msgMoods();
+    await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
     $('#restore-stage').textContent = '完成';
     setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1500); }, 800);
   };
   inp.click();
 }
+/* 清空所有数据：只清内容，设置保留 */
 function doClear() {
-  openModal({ title: '清空所有数据', bodyHTML: '确定清空全部内容吗？<br>清空后无法恢复，建议先备份。<br>（设置、外观会保留）', actions: [
+  openModal({ title: '清空所有数据', bodyHTML: '确定清空全部内容数据吗？<br>清空后无法恢复，建议先备份。<br><span style="font-size:12px;color:var(--text-soft)">（外观、概率等设置将保留）</span>', actions: [
     { label: '确认清空', danger: true, keepOpen: true, onClick: async () => {
       State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.quizResults = [];
       State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
@@ -8289,27 +8928,87 @@ function doClear() {
       State.notes = []; State.noteQuota = null;
       State.spaces = []; State.spaceQuota = null;
       State.mails = []; State.mailQuota = null;
-      State.msgMoods = {};
       State.love = 0;
+      State.settings.lockPassed = false; State.settings.lastLockDay = '';
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.quizResults();
       await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.companionStats();
       await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
-      await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love();
-      await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota(); await save.msgMoods();
+      await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love(); await save.settings();
+      await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
       location.reload();
     }}
   ]});
 }
+/* 恢复出厂设置：内容 + 设置全清 + 缓存媒体，回默认 */
 function doFactoryReset() {
-  openModal({ title: '恢复出厂设置', bodyHTML: '将清空全部数据 <b>并重置所有设置</b>，回到刚安装的状态。<br><br>此操作不可恢复，建议先备份。', actions: [
+  openModal({ title: '恢复出厂设置', bodyHTML: '将清空所有数据、设置、头像、背景、媒体缓存，恢复为初始状态。<br><b style="color:var(--danger)">此操作不可恢复，强烈建议先备份！</b>', actions: [
     { label: '取消', onClick: () => {} },
-    { label: '确认重置', danger: true, keepOpen: true, onClick: async () => {
-      try { localStorage.clear(); } catch(e) {}
-      try { if (Store.root) { for await (const [name] of Store.root.entries()) { try { await Store.root.removeEntry(name, { recursive: true }); } catch(e) {} } } } catch(e) {}
-      await CacheStore.clearAll();
-      location.reload();
+    { label: '确认恢复', danger: true, keepOpen: true, onClick: () => {
+      /* 二次确认 */
+      openModal({ title: '再次确认', bodyHTML: '真的要恢复出厂设置吗？所有数据将永久丢失。', actions: [
+        { label: '取消', onClick: () => {} },
+        { label: '确认恢复', danger: true, keepOpen: true, onClick: () => doFactoryResetNow() }
+      ]});
     }}
   ]});
+}
+async function doFactoryResetNow() {
+  /* 清内存 */
+  State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.quizResults = [];
+  State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
+  State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
+  State.stickers = []; State.gifts = []; State.giftRecords = []; State.boxRecords = [];
+  State.videoRecords = []; State.videoActive = null;
+  State.notes = []; State.noteQuota = null;
+  State.spaces = []; State.spaceQuota = null;
+  State.mails = []; State.mailQuota = null;
+  State.love = 0;
+  /* 重置 settings 为默认（重新定义） */
+  State.settings = {
+    theme: 'rose-glass',
+    fontScheme: 'default', chatFontSize: 15, spacePad: 16, spaceGap: 12,
+    replySpeed: 'daily', replySpeedMin: null, replySpeedMax: null,
+    multiGap: 'daily', multiGapMin: null, multiGapMax: null,
+    thinkTime: 'normal', thinkTimeCustom: null,
+    lockMode: 'first',
+    floatSize: 52, floatImg: '', floatHidden: false, floatPos: null,
+    avatars: { other: '', me: '' },
+    otherName: '', otherCall: '', otherCalls: [],
+    myName: '', myCall: '', myCalls: [],
+    mailToCall: '', mailFromCall: '',
+    avatarPool: [], avatarPairs: [],
+    chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
+    lockPassed: false, lastLockDay: '',
+    fullscreen: false, dndEnabled: true,
+    quoteEnabled: false, quoteProb: 7,
+    heartEnabled: false, heartProb: 5,
+    moodHour: 20, moodMinute: 0,
+    inviteEnabled: false, inviteProb: 6,
+    companionInviteEnabled: false, companionInviteProb: 5,
+    itfProbOther: 50, itfProbTogether: 30, itfProbNormal: 20, itfProbCompanion: 70,
+    itfActiveProb: 3,
+    emojiEnabled: false, emojiProb: 6,
+    companionAcceptProb: 80,
+    showEveryAvatar: false,
+    bubbleSkin: 'default',
+    stickerEnabled: false, stickerProb: 7,
+    giftEnabled: false, giftProb: 1,
+    boxEnabled: false, boxProb: 1,
+    videoAcceptProb: 80,
+    videoInviteEnabled: false, videoInviteProb: 3,
+    videoHangMin: 5, videoHangMax: 10,
+    activeMsgEnabled: false, activeMsgLevel: 'daily',
+    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 5
+  };
+  /* 写盘 */
+  await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive();
+  await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
+  await save.songs(); await save.companionStats(); await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
+  await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love();
+  await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
+  /* 清缓存媒体 */
+  try { await CacheStore.clear(); } catch (e) {}
+  location.reload();
 }
 
 function openSetAbout() {
@@ -8343,6 +9042,16 @@ async function boot() {
     State.settings.avatarPairs = st.avatarPairs || [];
     State.settings.chatBgPool = st.chatBgPool || [];
     State.settings.lockBgPool = st.lockBgPool || [];
+    /* 补齐默认值 */
+    if (State.settings.fontScheme == null) State.settings.fontScheme = 'default';
+    if (State.settings.chatFontSize == null) State.settings.chatFontSize = 15;
+    if (State.settings.spacePad == null) State.settings.spacePad = 16;
+    if (State.settings.spaceGap == null) State.settings.spaceGap = 12;
+    if (State.settings.mailToCall == null) State.settings.mailToCall = '';
+    if (State.settings.mailFromCall == null) State.settings.mailFromCall = '';
+    if (State.settings.moodStickerEnabled == null) State.settings.moodStickerEnabled = false;
+    if (State.settings.moodStickerLevel == null) State.settings.moodStickerLevel = 'daily';
+    if (State.settings.moodStickerProb == null) State.settings.moodStickerProb = 5;
     if (State.settings.quoteProb == null) State.settings.quoteProb = 7;
     if (State.settings.heartProb == null) State.settings.heartProb = 5;
     if (State.settings.inviteProb == null) State.settings.inviteProb = 6;
@@ -8371,15 +9080,6 @@ async function boot() {
     if (State.settings.dndEnabled == null) State.settings.dndEnabled = true;
     if (State.settings.activeMsgEnabled == null) State.settings.activeMsgEnabled = false;
     if (State.settings.activeMsgLevel == null) State.settings.activeMsgLevel = 'daily';
-    if (State.settings.moodStickerEnabled == null) State.settings.moodStickerEnabled = false;
-    if (State.settings.moodStickerLevel == null) State.settings.moodStickerLevel = 'daily';
-    if (State.settings.moodStickerProb == null) State.settings.moodStickerProb = 5;
-    if (State.settings.fontFamily == null) State.settings.fontFamily = 'default';
-    if (State.settings.chatFontSize == null) State.settings.chatFontSize = 15;
-    if (State.settings.spaceY == null) State.settings.spaceY = 16;
-    if (State.settings.spaceX == null) State.settings.spaceX = 16;
-    if (State.settings.mailToCall == null) State.settings.mailToCall = '';
-    if (State.settings.mailFromCall == null) State.settings.mailFromCall = '';
   }
   const c = await Store.read('cards.json'); if (c) State.cards = c;
   const t = await Store.read('trash.json'); if (t) State.trash = t;
@@ -8410,7 +9110,6 @@ async function boot() {
   const sq = await Store.read('space_quota.json'); if (sq) State.spaceQuota = sq;
   const ml = await Store.read('mails.json'); if (ml) State.mails = ml;
   const mq = await Store.read('mail_quota.json'); if (mq) State.mailQuota = mq;
-  const msm = await Store.read('msg_moods.json'); if (msm) State.msgMoods = msm;
   ensureNoteQuota(); ensureSpaceQuota(); ensureMailQuota();
 
   checkInterruptedCompanion();
@@ -8418,16 +9117,13 @@ async function boot() {
 
   applyTheme(State.settings.theme);
   applyBubbleSkin(State.settings.bubbleSkin);
-  applyFontFamily(State.settings.fontFamily);
-  applyChatFontSize(State.settings.chatFontSize);
-  applySpace(State.settings.spaceY, State.settings.spaceX);
-  applyBackgrounds(); applyAvatars();
+  applyFont(State.settings.fontScheme || 'default');
+  applyChatFontSize(State.settings.chatFontSize || 15);
+  applySpace(State.settings.spacePad || 16, State.settings.spaceGap || 12);
+  applyFloatBall(); applyBackgrounds(); applyAvatars();
 
-  initLockPage(); initChatPage(); initPlayPage();
+  initLockPage(); initChatPage(); initFloatBallDrag(); initPlayPage();
   initSheetDrag(); initVideoBoxDrag();
-
-  $('#header-star').onclick = () => { openWorld(); };
-  $('#world-close').onclick = () => { goBack(); };
 
   $('#modal-mask').addEventListener('click', e => { if (e.target.id === 'modal-mask') closeModal(); });
   $('#sheet-mask').addEventListener('click', e => { if (e.target.id === 'sheet-mask') closeSheet(); });
