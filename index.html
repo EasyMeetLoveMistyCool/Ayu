@@ -21,7 +21,7 @@ ul, li { list-style: none; }
 :root {
   --space-page: 16px;   /* 页面左右内边距 */
   --space-block: 12px;  /* 板块之间间距 */
-  --space-card: 16px;   /* 卡片内部内边距 */
+  --space-card: 14px;   /* 卡片内部内边距 */
   --chat-font-size: 15px; /* 聊天页字号 */
   --app-font: -apple-system, "HarmonyOS Sans", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
 }
@@ -229,7 +229,7 @@ ul, li { list-style: none; }
   min-height: 120px; gap: 10px; color: var(--text-soft); font-size: 15px; letter-spacing: 1px;
 }
 .todo svg { width: 48px; height: 48px; opacity: .5; }
-.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-block); }
 .choice-btn {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   padding: 18px 10px; border-radius: 16px;
@@ -242,7 +242,7 @@ ul, li { list-style: none; }
 
 .companion-cat {
   display: flex; align-items: center; gap: 12px;
-  padding: 14px 16px; border-radius: 14px;
+  padding: var(--space-card) 16px; border-radius: 14px;
   background: var(--glass-bg-strong);
   border: 1px solid var(--glass-border);
   font-size: 15px; color: var(--text);
@@ -295,7 +295,28 @@ ul, li { list-style: none; }
   border: 1px solid var(--glass-border);
 }
 
-/* ==================== 触碰同频小窗 ==================== */
+/* ==================== 音乐邀请悬浮窗 ==================== */
+.invite-float {
+  position: fixed; z-index: 1200;
+  left: 50%; transform: translateX(-50%);
+  top: 50%; margin-top: -140px;
+  width: 280px; max-width: 88vw;
+  border-radius: 20px;
+  padding: 14px 14px 16px;
+  display: none; flex-direction: column; align-items: center; gap: 12px;
+  touch-action: none;
+}
+.invite-float.active { display: flex; }
+.invite-float .if-close {
+  position: absolute; right: 10px; top: 10px;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-soft); background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+}
+.invite-float .if-close svg { width: 14px; height: 14px; }
+
+/* ==================== 触碰同频小窗（无进入动画） ==================== */
 .touch-float {
   position: fixed; z-index: 1200;
   left: 50%; transform: translateX(-50%);
@@ -305,13 +326,11 @@ ul, li { list-style: none; }
   padding: 14px 14px 16px;
   display: none; flex-direction: column; align-items: center; gap: 12px;
   touch-action: none;
-  animation: modal-in .22s cubic-bezier(.2,.9,.3,1.2);
   transition: box-shadow .3s ease;
 }
 .touch-float.active { display: flex; }
 .touch-float.highlight-me { box-shadow: 0 0 0 3px rgba(240,168,192,0.9), 0 8px 28px rgba(240,168,192,0.45); }
 .touch-float.highlight-other { box-shadow: 0 0 0 3px rgba(120,170,240,0.9), 0 8px 28px rgba(120,170,240,0.45); }
-.touch-float.locked .tf-close { pointer-events: none; opacity: .35; }
 .touch-float .tf-head {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   position: relative; width: 100%;
@@ -321,12 +340,14 @@ ul, li { list-style: none; }
   border: 1.5px solid var(--glass-border); background: var(--glass-bg);
 }
 .touch-float .tf-head .heart-char { font-size: 18px; }
+/* × 按钮保留但不可见 */
 .touch-float .tf-close {
   position: absolute; right: 0; top: 50%; transform: translateY(-50%);
   width: 26px; height: 26px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: var(--text-soft); background: var(--glass-bg-strong);
   border: 1px solid var(--glass-border);
+  opacity: 0;   /* 不可见，但保留功能 */
 }
 .touch-float .tf-close svg { width: 14px; height: 14px; }
 .touch-grid {
@@ -529,7 +550,7 @@ ul, li { list-style: none; }
 #hdr-love { color: var(--heart-red); }
 #hdr-love.pop { animation: num-pop .35s ease; }
 
-.chat-body { flex: 1; padding: 14px var(--space-page) 8px; display: flex; flex-direction: column; gap: var(--space-block); }
+.chat-body { flex: 1; padding: var(--space-page) var(--space-page) var(--space-block); display: flex; flex-direction: column; gap: var(--space-block); }
 .msg-row { display: flex; align-items: flex-start; gap: 10px; max-width: 100%; }
 .msg-row.me { justify-content: flex-end; }
 .msg-col { display: flex; flex-direction: column; max-width: 78%; }
@@ -590,7 +611,6 @@ ul, li { list-style: none; }
 .msg-avatar.avatar-hidden { visibility: hidden; }
 .msg-meta { margin-top: 4px; font-size: 11px; color: var(--time-text); display: flex; align-items: center; gap: 6px; }
 .read-flag { font-size: 11px; color: var(--heart-red); }
-/* 消息贴心情 emoji */
 .msg-mood { font-size: 13px; line-height: 1; }
 
 .sys-msg {
@@ -630,7 +650,7 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
-  padding: 14px;
+  padding: var(--space-card);
   min-width: 220px; max-width: 100%;
 }
 .card-msg-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px; text-align: center; }
@@ -657,7 +677,7 @@ ul, li { list-style: none; }
   background: var(--glass-bg);
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
-  padding: 14px;
+  padding: var(--space-card);
   width: 78vw; max-width: 100%;
   display: flex; flex-direction: column;
 }
@@ -934,6 +954,8 @@ ul, li { list-style: none; }
 .set-row .label { color: var(--text); }
 .set-row .value { color: var(--text-soft); font-size: 13.5px; }
 .set-row.no-top-light { box-shadow: none; }
+/* 设置项下方说明 */
+.set-hint { font-size: 12px; color: var(--text-soft); padding: 4px 8px 0; line-height: 1.5; }
 .switch {
   position: relative; width: 48px; height: 28px; border-radius: 14px;
   background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
@@ -966,15 +988,16 @@ ul, li { list-style: none; }
   background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
   display: flex; align-items: center; justify-content: center; overflow: hidden;
 }
-.float-preview img { width: 100%; height: 100%; object-fit: cover; }
+.float-preview img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
 
-/* 气泡预览区 */
+/* 气泡预览区（顶部留空，避免贴顶；高度 280） */
 .bubble-preview {
   display: flex; flex-direction: column; gap: 30px;
-  padding: 14px; border-radius: 14px;
+  padding: 24px 14px 14px;
+  border-radius: 14px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
   margin-bottom: 4px;
-  height: 220px; overflow-y: auto;
+  height: 280px; overflow-y: auto;
 }
 .bubble-preview::-webkit-scrollbar { width: 0; }
 .bubble-preview .bp-row { display: flex; align-items: flex-start; gap: 8px; max-width: 100%; }
@@ -994,9 +1017,10 @@ ul, li { list-style: none; }
 /* ==================== 字体/字号/间距 预览 ==================== */
 .size-preview {
   display: flex; flex-direction: column; gap: 30px;
-  padding: 14px; border-radius: 14px;
+  padding: 24px 14px 14px;
+  border-radius: 14px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
-  height: 220px; overflow-y: auto;
+  height: 280px; overflow-y: auto;
 }
 .size-preview::-webkit-scrollbar { width: 0; }
 .size-preview .sp-row { display: flex; align-items: flex-start; gap: 8px; max-width: 100%; }
@@ -1015,9 +1039,10 @@ ul, li { list-style: none; }
 .size-preview .sp-bubble.other { background: var(--bubble-other); border: 1px solid var(--glass-border); }
 
 .space-preview {
-  padding: 14px; border-radius: 14px;
+  padding: 14px;
+  border-radius: 14px;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
-  height: 220px; overflow-y: auto;
+  height: 280px; overflow-y: auto;
   display: flex; flex-direction: column;
 }
 .space-preview::-webkit-scrollbar { width: 0; }
@@ -1116,7 +1141,7 @@ ul, li { list-style: none; }
 .play-title { font-size: 15px; font-weight: 600; color: var(--text); }
 .play-close { font-size: 20px; color: var(--text); }
 .play-body {
-  flex: 1; padding: 14px var(--space-page) 8px;
+  flex: 1; padding: var(--space-page) var(--space-page) var(--space-block);
   display: flex; flex-direction: column; gap: var(--space-block);
   overflow-y: auto;
 }
@@ -1236,10 +1261,10 @@ ul, li { list-style: none; }
 }
 .q-view-num { color: var(--text-soft); margin-right: 4px; font-weight: 600; }
 
-.memo-body { flex: 1; padding: 0 var(--space-page) 8px; display: flex; flex-direction: column; }
+.memo-body { flex: 1; padding: 0 var(--space-page) var(--space-block); display: flex; flex-direction: column; }
 .memo-textarea {
   flex: 1; width: 100%;
-  padding: 14px; border-radius: 16px;
+  padding: var(--space-card); border-radius: 16px;
   font-size: 15px; line-height: 1.7; color: var(--text);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -1764,24 +1789,7 @@ ul, li { list-style: none; }
 .gift-cell .gc-name { font-size: 14px; font-weight: 600; color: #f0a8c0; word-break: break-word; white-space: pre-wrap; }
 .gift-cell .gc-price { font-size: 13px; color: var(--heart-red); margin-top: 4px; font-weight: 600; }
 
-/* ==================== 统计 ==================== */
-.stat-block {
-  padding: 14px 16px; border-radius: 14px;
-  background: var(--glass-bg); border: 1px solid var(--glass-border);
-  margin-bottom: 10px;
-}
-.stat-block .st-title {
-  font-size: 14px; font-weight: 600; color: var(--accent-deep);
-  margin-bottom: 8px;
-}
-.stat-block .st-line {
-  font-size: 13.5px; color: var(--text); line-height: 1.9;
-  display: flex; justify-content: space-between; gap: 10px;
-}
-.stat-block .st-line .st-k { color: var(--text-soft); }
-.stat-block .st-line .st-v { color: #f0a8c0; }
-.stat-empty { font-size: 13px; color: var(--text-soft); }
-.stat-call-item { font-size: 13px; color: var(--text); line-height: 1.8; }
+/* （统计样式已删除） */
 
 /* ==================== 气泡皮肤 ==================== */
 [data-bubble="line-cat"] .message-sent,
@@ -2409,7 +2417,6 @@ ul, li { list-style: none; }
 .video-float .vf-time { font-size: 12px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
 .video-float .vf-expand { width: 100%; padding: 6px; border-radius: 9px; font-size: 11px; color: var(--text); background: var(--accent); border: 1px solid var(--glass-border); }
 
-/* 心形贴纸（贴心情用） */
 .mood-badge { font-size: 13px; line-height: 1; }
 </style>
 </head>
@@ -2826,6 +2833,12 @@ ul, li { list-style: none; }
     <button class="cf-end" id="cf-end">结束陪伴</button>
   </div>
 
+  <!-- 音乐/陪伴邀请悬浮窗（卡片形式，不进消息流） -->
+  <div class="invite-float glass" id="invite-float">
+    <span class="if-close" id="if-close"><svg><use href="#i-close"/></svg></span>
+    <div id="invite-float-body"></div>
+  </div>
+
   <!-- 触碰同频小窗 -->
   <div class="touch-float glass" id="touch-float">
     <div class="tf-head">
@@ -2985,7 +2998,6 @@ const HIS_LINES = {
   '孤单': ['今天有点孤单。','一个人待着，想你了。','有点空落落的。','想有人在身边。','今天特别想你陪。','一个人吃饭，有点没意思。','想你了，就一点点。','今天有点寂寞。','你在就好了。','陪我说说话吧。','今天特别想有人陪。','一个人有点冷清。','想你了，想得厉害。','今天有点空虚。','想有人陪我说说话。','一个人待着，难受。','今天想你了。','想你在身边。','一个人，有点可怜。','你来陪我好不好。'],
   '潇洒': ['今天状态很好。','今天特别自在。','心情不错，走哪都顺。','今天有点帅。','今天想干嘛就干嘛。','今天很松弛。','今天走路都带风。','今天过得很潇洒。','今天什么都难不倒我。','今天想带你一起浪。','今天自信满满。','今天特别顺。','今天气场两米八。','今天想出去转转。','今天什么都不怕。','今天很酷。','今天活得漂亮。','今天心情飞扬。','今天只想开心。','今天带你一起嗨。'],
   '撒娇': ['想要你哄。','今天有点粘人。','陪陪我嘛。','想你了，要抱抱。','今天想撒娇。','你不理我我会难过的。','想要你的注意力。','今天想赖着你。','哄哄我好不好。','就想黏着你。','想你了，想要你哄。','今天有点小委屈。','陪陪人家嘛。','想黏着你。','你不许不理我。','今天想当小孩。','要抱抱。','想要你多看看我。','撒娇给你看。','就想要你疼。'],
-  /* 新增 3 个 */
   '瑟瑟': [
     '想吻你，从额头一路往下。','今晚别走，哪都别去。','想你了，想到心口发紧。','你不在，我一整晚都睡不着。',
     '想把你圈在怀里，谁都不许看。','今天特别想碰你。','别躲，让我抱一会儿。','想要你，想得有点忍不住了。',
@@ -3119,7 +3131,6 @@ const MAIL_HELLO = [
 ];
 
 /* ==================== 信件：祝语（35条） ==================== */
-/* 两行式祝语以数组表示：['此致','敬礼']；一行式以字符串表示 */
 const MAIL_BYE = [
   ['此致', '敬礼'],
   '顺颂 时祺',
@@ -3177,8 +3188,14 @@ const MAIL_QUOTA_COST = 999;
 const MAIL_ACTIVE_PROB = 1;
 const MAIL_TEST_BODY = '这是一封测试信，用来检查信件格式是否正常。见字如面，愿你今日安好。';
 
-/* ==================== 触碰同频 ==================== */
-/* 旧概率已删除：TOUCH_REPLY_PROB / TOUCH_ACTIVE_PROB 不再使用 */
+/* ==================== 邀请冷却（音乐/陪伴） ==================== */
+const INVITE_COOLDOWN_SCHEMES = [
+  { key: 'c1', name: '30~60分', min: 30, max: 60 },
+  { key: 'c2', name: '60~120分', min: 60, max: 120 },
+  { key: 'c3', name: '120~240分', min: 120, max: 240 }
+];
+
+/* ==================== 触碰同频（旧概率已删） ==================== */
 
 const TOUCH_LINES = {
   temp: [
@@ -3264,7 +3281,7 @@ const BUBBLE_SKINS = [
   { v: 'default', name: '默认' },
   { v: 'line-cat', name: '线条小猫' },
   { v: 'black-cat', name: '黑色猫猫' },
-  { v: 'cold-hot', name: '冷脸萌热脸萌' },   // 写死字号，不跟随全局字体/字号
+  { v: 'cold-hot', name: '冷脸萌热脸萌' },   /* 写死字号，不跟随全局字体/字号 */
   { v: 'papa-rabbit', name: '趴趴兔' },
   { v: 'mian-rabbit', name: '眠眠兔' },
   { v: 'pink-rabbit', name: '粉团兔' },
@@ -3275,8 +3292,8 @@ const BUBBLE_SKINS = [
   { v: 'sweet-dream', name: '甜梦团团' },
   { v: 'gray-bow', name: '灰白蝴蝶结' },
   { v: 'purple-cat', name: '紫雾猫猫' },
-  { v: 'little-star', name: '小星星' },      // 写死字号，不跟随全局字体/字号
-  { v: 'campus', name: '校园活页' },          // 写死字号 + 字体，不跟随全局字体/字号
+  { v: 'little-star', name: '小星星' },      /* 写死字号，不跟随全局字体/字号 */
+  { v: 'campus', name: '校园活页' },          /* 写死字号 + 字体，不跟随全局字体/字号 */
   { v: 'speechless', name: '宝贝我无语了' },
   { v: 'moonlight', name: '白月光' }
 ];
@@ -3307,9 +3324,9 @@ const SPACE_SCHEMES = [
 const State = {
   settings: {
     theme: 'rose-glass',
-    fontScheme: 'default',          /* 新增：字体方案 */
-    chatFontSize: 15,               /* 新增：聊天字号 */
-    spacePad: 16, spaceGap: 12,     /* 新增：间距 */
+    fontScheme: 'default',
+    chatFontSize: 15,
+    spacePad: 16, spaceGap: 12,
     replySpeed: 'daily', replySpeedMin: null, replySpeedMax: null,
     multiGap: 'daily', multiGapMin: null, multiGapMax: null,
     thinkTime: 'normal', thinkTimeCustom: null,
@@ -3318,31 +3335,35 @@ const State = {
     avatars: { other: '', me: '' },
     otherName: '', otherCall: '', otherCalls: [],
     myName: '', myCall: '', myCalls: [],
-    mailToCall: '', mailFromCall: '',   /* 新增：写信称呼 */
+    mailToCall: '', mailFromCall: '',
     avatarPool: [], avatarPairs: [],
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
     lockPassed: false, lastLockDay: '',
     fullscreen: false, dndEnabled: true,
-    quoteEnabled: false, quoteProb: 7,
-    heartEnabled: false, heartProb: 5,
+    quoteEnabled: false, quoteProb: 4,     /* 调整：7 → 4 */
+    heartEnabled: false, heartProb: 3,     /* 调整：5 → 3 */
     moodHour: 20, moodMinute: 0,
-    inviteEnabled: false, inviteProb: 6,
-    companionInviteEnabled: false, companionInviteProb: 5,
+    inviteEnabled: false, inviteProb: 3,   /* 调整：6 → 3 */
+    companionInviteEnabled: false, companionInviteProb: 3,  /* 调整：5 → 3 */
+    inviteCooldownKey: 'c1',                /* 音乐邀请冷却档位 */
+    companionCooldownKey: 'c1',             /* 陪伴邀请冷却档位 */
+    lastInviteTime: 0,                      /* 上次音乐邀请时间 */
+    lastCompanionInviteTime: 0,             /* 上次陪伴邀请时间 */
     itfProbOther: 50, itfProbTogether: 30, itfProbNormal: 20,
     itfProbCompanion: 70,
     itfActiveProb: 3,
-    emojiEnabled: false, emojiProb: 6,
+    emojiEnabled: false, emojiProb: 6,      /* 表情保留 6 */
     companionAcceptProb: 80,
     showEveryAvatar: false,
     bubbleSkin: 'default',
-    stickerEnabled: false, stickerProb: 7,
+    stickerEnabled: false, stickerProb: 3,  /* 调整：7 → 3 */
     giftEnabled: false, giftProb: 1,
     boxEnabled: false, boxProb: 1,
     videoAcceptProb: 80,
     videoInviteEnabled: false, videoInviteProb: 3,
     videoHangMin: 5, videoHangMax: 10,
     activeMsgEnabled: false, activeMsgLevel: 'daily',
-    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 5   /* 新增：消息贴心情概率 */
+    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 3  /* 调整：5 → 3 */
   },
   cards: [], trash: [], messages: [], archive: [],
   quizzes: [],
@@ -3352,7 +3373,7 @@ const State = {
   hearts: [],
   moods: {},
   songs: [],
-  companionStats: [],
+  companionStats: [],   /* 保留字段，不再记录 */
   companionActive: null,
   interactions: { me: [], other: [], together: [] },
   itfStats: {},
@@ -3361,7 +3382,7 @@ const State = {
   gifts: [],
   giftRecords: [],
   boxRecords: [],
-  videoRecords: [],
+  videoRecords: [],     /* 保留字段，不再记录 */
   videoActive: null,
   notes: [],
   noteQuota: null,
@@ -3369,7 +3390,8 @@ const State = {
   spaceQuota: null,
   mails: [],
   mailQuota: null,
-  love: 0
+  love: 0,
+  inviteActive: null    /* 当前音乐/陪伴邀请悬浮窗数据 */
 };
 
 const Store = {
@@ -3471,20 +3493,17 @@ function defaultAvatar(color) {
 }
 function applyTheme(name) { document.body.dataset.theme = name; State.settings.theme = name; save.settings(); }
 function applyBubbleSkin(name) { document.body.dataset.bubble = name || 'default'; State.settings.bubbleSkin = name || 'default'; save.settings(); }
-/* 应用字体方案 */
 function applyFont(key) {
   const scheme = FONT_SCHEMES.find(f => f.key === key) || FONT_SCHEMES[0];
   document.documentElement.style.setProperty('--app-font', scheme.value);
   State.settings.fontScheme = key;
   save.settings();
 }
-/* 应用聊天字号 */
 function applyChatFontSize(size) {
   document.documentElement.style.setProperty('--chat-font-size', size + 'px');
   State.settings.chatFontSize = size;
   save.settings();
 }
-/* 应用间距 */
 function applySpace(pad, gap) {
   document.documentElement.style.setProperty('--space-page', pad + 'px');
   document.documentElement.style.setProperty('--space-block', gap + 'px');
@@ -3737,10 +3756,7 @@ const Companion = {
   },
   end() {
     if (!this.active) return;
-    const endTime = Date.now();
-    const dur = Math.floor((endTime - this.startTime) / 1000);
-    State.companionStats.push({ id: uid(), type: this.type, by: this.by || 'me', start: this.startTime, end: endTime, dur, itfCount: this.itfCount, switches: this.switches.slice(), interrupted: false });
-    save.companionStats();
+    /* 统计已删除：不再 push companionStats */
     State.companionActive = null;
     save.companionActive();
     this.active = false;
@@ -3754,11 +3770,7 @@ const Companion = {
 function checkInterruptedCompanion() {
   const ca = State.companionActive;
   if (!ca) return;
-  const dur = Math.floor((ca.lastSeen - ca.start) / 1000);
-  if (dur >= 10) {
-    State.companionStats.push({ id: ca.id || uid(), type: ca.type, by: ca.by || 'me', start: ca.start, end: ca.lastSeen, dur, itfCount: ca.itfCount || 0, switches: ca.switches || [], interrupted: true });
-    save.companionStats();
-  }
+  /* 统计已删除：不记录中断 */
   State.companionActive = null;
   save.companionActive();
 }
@@ -3999,22 +4011,11 @@ const Video = {
     setTimeout(() => this.floatTick(), 1000);
   },
 
+  /* 统计已删除：addRecord 只发系统消息，不再存 videoRecords */
   addRecord(type, dur) {
-    if (!this.recordId) this.recordId = uid();
-    const mode = this.mode || 'outgoing';
-    let startTs, endTs;
-    if (type === 'normal' && this.startTime) {
-      startTs = this.startTime; endTs = Date.now();
-    } else if (type === 'missed' || type === 'rejected') {
-      startTs = Date.now(); endTs = Date.now();
-    } else {
-      startTs = this.startTime || Date.now(); endTs = Date.now();
-    }
-    State.videoRecords.push({ id: this.recordId, type, mode, start: startTs, end: endTs, dur, t: Date.now() });
-    save.videoRecords();
     const m = { id: uid(), who: 'sys', type: 'sys', text: '', t: nowHM(), ts: Date.now() };
     if (type === 'normal') {
-      const s = new Date(startTs), e = new Date(endTs);
+      const s = new Date(this.startTime || Date.now()), e = new Date(Date.now());
       m.text = '开始 ' + pad(s.getHours()) + ':' + pad(s.getMinutes()) + ' 结束 ' + pad(e.getHours()) + ':' + pad(e.getMinutes()) + ' 通话时长 ' + callTime(dur);
     } else if (type === 'missed') {
       m.text = nowHM() + ' 未接来电';
@@ -4033,24 +4034,15 @@ const Video = {
 function checkInterruptedVideo() {
   const va = State.videoActive;
   if (!va) return;
+  /* 统计已删除：中断记录不再存；只补系统消息 */
   if (va.status === 'talking') {
-    const dur = Math.floor((va.lastSeen - va.start) / 1000);
-    if (dur >= 10) {
-      State.videoRecords.push({ id: va.id || uid(), type: 'interrupted', mode: va.mode || '', start: va.start, end: va.lastSeen, dur, t: Date.now() });
-      save.videoRecords();
-      const m = { id: uid(), who: 'sys', type: 'sys', text: nowHM() + ' 通话中断', t: nowHM(), ts: Date.now() };
-      State.messages.push(m);
-      save.messages();
-    }
+    const m = { id: uid(), who: 'sys', type: 'sys', text: nowHM() + ' 通话中断', t: nowHM(), ts: Date.now() };
+    State.messages.push(m);
+    save.messages();
   } else if (va.status === 'ringing') {
-    State.videoRecords.push({ id: va.id || uid(), type: 'missed', mode: va.mode || '', start: va.start, end: va.lastSeen, dur: 0, t: Date.now() });
-    save.videoRecords();
     const m = { id: uid(), who: 'sys', type: 'sys', text: nowHM() + ' 未接来电', t: nowHM(), ts: Date.now() };
     State.messages.push(m);
     save.messages();
-  } else if (va.status === 'calling') {
-    State.videoRecords.push({ id: va.id || uid(), type: 'interrupted', mode: va.mode || '', start: va.start, end: va.lastSeen, dur: 0, t: Date.now() });
-    save.videoRecords();
   }
   State.videoActive = null;
   save.videoActive();
@@ -4202,7 +4194,9 @@ function initChatPage() {
   $('#vf-expand').onclick = () => { Video.pickMiniMode(); };
   initVideoFloatDrag();
   initTouchFloatDrag();
+  initInviteFloatDrag();
   $('#tf-close').onclick = () => closeTouchFloat();
+  $('#if-close').onclick = () => closeInviteFloat(true);
   $$('#touch-grid [data-touch]').forEach(el => {
     el.onclick = () => doTouch(el.dataset.touch);
   });
@@ -4242,25 +4236,13 @@ function sendMyInteraction(content, board) {
   return msg;
 }
 function sendMyCompanionInvite(type) {
-  const msg = { id: uid(), who: 'me', type: 'companion', text: '我想陪你 ' + type, companionType: type, accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false };
-  State.messages.push(msg);
-  save.messages(); addLove(2); renderMessages(); scrollBottom();
-  setTimeout(() => {
-    const prob = (State.settings.companionAcceptProb != null ? State.settings.companionAcceptProb : 80);
-    if (Math.random() * 100 < prob) {
-      msg.accepted = true;
-      addLove(3);
-      if (Companion.active) {
-        Companion.switchTo(type);
-      } else {
-        Companion.start(type, 'me');
-      }
-    } else {
-      msg.refused = true;
-      msg.refuseText = MY_INVITE_REFUSE_LINES[Math.floor(Math.random() * MY_INVITE_REFUSE_LINES.length)];
-    }
-    save.messages(); renderMessages(); scrollBottom();
-  }, getThinkTime() * 1000);
+  /* 改为：弹悬浮窗邀请，不进消息流 */
+  openInviteFloat({
+    kind: 'companion',
+    companionType: type,
+    text: '我想陪你 ' + type
+  });
+  return null;
 }
 
 function renderMessages() {
@@ -4339,7 +4321,6 @@ function buildMsgRow(m, prevSame) {
   }
   const meta = document.createElement('div'); meta.className = 'msg-meta'; meta.textContent = m.t;
   if (m.who === 'me' && m.read) { const r = document.createElement('span'); r.className = 'read-flag'; r.textContent = '已读'; meta.appendChild(r); }
-  /* 消息贴心情：显示在元信息行末尾 */
   if (m.mood != null && MOODS[m.mood]) {
     const md = document.createElement('span'); md.className = 'msg-mood'; md.textContent = MOODS[m.mood].e;
     meta.appendChild(md);
@@ -4595,8 +4576,124 @@ function refuseCompanionCard(m) {
 function scrollBottom() { const body = $('#chat-body'); if (body) body.scrollTop = body.scrollHeight; }
 function updateLove() { const el = $('#hdr-love'); if (el) el.textContent = State.love; }
 
+/* ==================== 邀请悬浮窗（音乐/陪伴） ==================== */
+let inviteFloatInited = false;
+function initInviteFloatDrag() {
+  const el = $('#invite-float'); if (!el || inviteFloatInited) return;
+  inviteFloatInited = true;
+  let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false;
+  function begin(x, y) {
+    startX = x; startY = y; const r = el.getBoundingClientRect();
+    startL = r.left; startT = r.top; dragging = true;
+    el.style.left = startL + 'px'; el.style.top = startT + 'px';
+    el.style.transform = 'none'; el.style.marginTop = '0'; el.style.bottom = 'auto';
+  }
+  function move(x, y) {
+    if (!dragging) return;
+    let nl = startL + (x - startX), nt = startT + (y - startY);
+    nl = Math.max(0, Math.min(window.innerWidth - el.offsetWidth, nl));
+    nt = Math.max(0, Math.min(window.innerHeight - el.offsetHeight, nt));
+    el.style.left = nl + 'px'; el.style.top = nt + 'px';
+  }
+  function end() { dragging = false; }
+  el.addEventListener('touchstart', e => {
+    if (e.target.closest('.ic-btn') || e.target.closest('#if-close')) return;
+    const t = e.touches[0]; begin(t.clientX, t.clientY);
+  }, { passive: true });
+  el.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
+  el.addEventListener('touchend', end);
+  el.addEventListener('mousedown', e => {
+    if (e.target.closest('.ic-btn') || e.target.closest('#if-close')) return;
+    begin(e.clientX, e.clientY);
+    const mm = ev => move(ev.clientX, ev.clientY);
+    const mu = () => { document.removeEventListener('mousemove', mm); document.removeEventListener('mouseup', mu); end(); };
+    document.addEventListener('mousemove', mm); document.addEventListener('mouseup', mu);
+  });
+}
+function openInviteFloat(data) {
+  State.inviteActive = data;
+  const el = $('#invite-float');
+  el.style.left = '50%'; el.style.top = '50%';
+  el.style.transform = 'translateX(-50%)';
+  el.style.marginTop = '-140px';
+  el.style.bottom = 'auto';
+  const body = $('#invite-float-body');
+  if (data.kind === 'song') {
+    /* 音乐邀请卡片 */
+    const song = State.songs.find(s => s.id === data.songId);
+    if (!song) { toast('歌不在了'); return; }
+    body.innerHTML = `
+      <div class="invite-card" style="min-width:auto;border:none;background:transparent;padding:0">
+        <div class="ic-row">
+          <svg class="ic-icon"><use href="#i-music-note"/></svg>
+          <div class="ic-text">一起听《${escapeHTML(song.name)}》</div>
+        </div>
+        <div class="ic-hint">${escapeHTML(song.artist || '')}</div>
+        <button class="ic-btn" id="if-accept">接受</button>
+        <button class="ic-btn" id="if-refuse" style="background:var(--danger);color:#fff;margin-top:6px">拒绝</button>
+      </div>`;
+    $('#if-accept').onclick = () => acceptInviteFloat(true);
+    $('#if-refuse').onclick = () => acceptInviteFloat(false);
+  } else if (data.kind === 'companion') {
+    body.innerHTML = `
+      <div class="invite-card" style="min-width:auto;border:none;background:transparent;padding:0">
+        <div class="ic-row">
+          <svg class="ic-icon"><use href="#i-companion"/></svg>
+          <div class="ic-text">${escapeHTML(data.text || '')}</div>
+        </div>
+        <button class="ic-btn" id="if-accept">接受</button>
+        <button class="ic-btn" id="if-refuse" style="background:var(--danger);color:#fff;margin-top:6px">拒绝</button>
+      </div>`;
+    $('#if-accept').onclick = () => acceptInviteFloat(true);
+    $('#if-refuse').onclick = () => acceptInviteFloat(false);
+  }
+  el.classList.add('active');
+}
+function closeInviteFloat(isReject) {
+  const el = $('#invite-float');
+  const data = State.inviteActive;
+  if (!data) { el.classList.remove('active'); return; }
+  if (isReject) {
+    /* 点 × 算拒绝 */
+    acceptInviteFloat(false);
+  } else {
+    el.classList.remove('active');
+    State.inviteActive = null;
+  }
+}
+function acceptInviteFloat(accepted) {
+  const el = $('#invite-float');
+  const data = State.inviteActive;
+  el.classList.remove('active');
+  State.inviteActive = null;
+  if (!data) return;
+  if (data.kind === 'song') {
+    if (accepted) {
+      /* 接受 → 播放 */
+      const song = State.songs.find(s => s.id === data.songId);
+      if (song) { Player.playSong(song, State.songs); addLove(3); }
+      toast('一起听');
+    } else {
+      toast('拒绝了');
+    }
+  } else if (data.kind === 'companion') {
+    if (accepted) {
+      if (Companion.active) {
+        if (Companion.type === data.companionType) { toast('已经在陪着了'); return; }
+        Companion.switchTo(data.companionType);
+        toast('已切换陪伴');
+      } else {
+        toast('祂在准备…');
+        setTimeout(() => { Companion.start(data.companionType, 'other'); toast('开始陪伴'); }, getThinkTime() * 1000);
+      }
+      addLove(3);
+    } else {
+      toast('拒绝了');
+    }
+  }
+}
+
 /* ==================== 消息菜单（含贴心情） ==================== */
-/* 可贴心情的消息类型：除 sys 外都可贴（questionnaire 问卷不进聊天，所以无需排除） */
 function canAttachMood(m) {
   if (!m || m.type === 'sys') return false;
   return true;
@@ -4610,7 +4707,6 @@ function openMsgMenu(m) {
     html += `<div class="msg-menu-item" id="mm-quote"><svg><use href="#i-quote"/></svg>引用</div>`;
     html += `<div class="msg-menu-item" id="mm-heart"><svg><use href="#i-heart-mark"/></svg>心动</div>`;
   }
-  /* 贴心情：只能贴对方的消息 */
   const otherMsg = (m.who === 'me') ? false : true;
   if (otherMsg && canAttachMood(m)) {
     html += `<div class="msg-menu-item" id="mm-mood"><svg><use href="#i-emoji"/></svg>贴心情</div>`;
@@ -4630,7 +4726,6 @@ function openMsgMenu(m) {
     save.messages(); renderMessages();
   };
 }
-/* 打开心情选择器给某条消息贴心情 */
 function openMoodPickerForMsg(m) {
   const pickerHTML = `<div class="mood-picker">` + MOODS.map((mo, i) =>
     `<div class="mood-pick ${m.mood === i ? 'active' : ''}" data-mood="${i}"><span class="e ${mo.txt ? 'txt' : ''}">${mo.e}</span>${escapeHTML(mo.t)}</div>`
@@ -4653,7 +4748,6 @@ function openMoodPickerForMsg(m) {
     };
   });
 }
-/* 祂贴心情：在你最近 3 条里随机挑一条贴 */
 function maybeOtherMoodSticker() {
   const s = State.settings;
   if (!s.moodStickerEnabled) return null;
@@ -4776,7 +4870,6 @@ function doReply() {
     if (idx < picked.length) setTimeout(sendNext, getMultiGap() * 1000);
   };
   sendNext();
-  /* 祂贴心情（贴在你最近 3 条里随机一条） */
   maybeOtherMoodSticker();
   if (invite) setTimeout(() => pushOtherSongInvite(invite), 1500);
   if (compInvite) setTimeout(() => pushOtherCompanionInvite(compInvite), 2500);
@@ -4790,7 +4883,6 @@ function doReply() {
   maybeOtherNoteActive();
   maybeOtherSpaceActive();
   maybeOtherMailActiveCheck();
-  /* 触碰同频：不再主动弹窗（已删除 maybeTouchActive） */
 }
 function randomEmoji() {
   const all = [];
@@ -4862,38 +4954,44 @@ function maybeOtherHeart() {
   if (!pool.length) return null;
   return pool[Math.floor(Math.random() * pool.length)];
 }
+/* 音乐邀请：加冷却判断 */
 function maybeOtherInvite() {
   const s = State.settings;
   if (!s.inviteEnabled) return null;
+  const now = Date.now();
+  const cd = INVITE_COOLDOWN_SCHEMES.find(x => x.key === (s.inviteCooldownKey || 'c1')) || INVITE_COOLDOWN_SCHEMES[0];
+  const cdMs = (cd.min + Math.random() * (cd.max - cd.min)) * 60 * 1000;
+  if (now - (s.lastInviteTime || 0) < cdMs) return null;
   if (Math.random() * 100 >= (s.inviteProb || 0)) return null;
   if (!State.songs.length) return null;
+  s.lastInviteTime = now; save.settings();
   return State.songs[Math.floor(Math.random() * State.songs.length)];
 }
+/* 陪伴邀请：陪伴中不再发 + 冷却 */
 function maybeOtherCompanionInvite() {
   const s = State.settings;
   if (!s.companionInviteEnabled) return null;
+  if (Companion.active) return null;   /* 陪伴中不再发新邀请 */
+  const now = Date.now();
+  const cd = INVITE_COOLDOWN_SCHEMES.find(x => x.key === (s.companionCooldownKey || 'c1')) || INVITE_COOLDOWN_SCHEMES[0];
+  const cdMs = (cd.min + Math.random() * (cd.max - cd.min)) * 60 * 1000;
+  if (now - (s.lastCompanionInviteTime || 0) < cdMs) return null;
   if (Math.random() * 100 >= (s.companionInviteProb || 0)) return null;
   const all = [];
   COMPANION_CATS.forEach(c => c.items.forEach(it => all.push(it)));
   let pool = all;
   if (Companion.active) pool = all.filter(it => it !== Companion.type);
   if (!pool.length) return null;
+  s.lastCompanionInviteTime = now; save.settings();
   return pool[Math.floor(Math.random() * pool.length)];
 }
+/* 音乐邀请：改为弹悬浮窗 */
 function pushOtherSongInvite(song) {
-  State.messages.push({
-    id: uid(), who: 'other', type: 'song', songId: song.id,
-    songName: song.name, artist: song.artist || '',
-    accepted: false, refused: false, t: nowHM(), ts: Date.now()
-  });
-  save.messages(); renderMessages(); scrollBottom();
+  openInviteFloat({ kind: 'song', songId: song.id, songName: song.name });
 }
+/* 陪伴邀请：改为弹悬浮窗 */
 function pushOtherCompanionInvite(type) {
-  State.messages.push({
-    id: uid(), who: 'other', type: 'companion', text: '祂想陪你 ' + type,
-    companionType: type, accepted: false, refused: false, t: nowHM(), ts: Date.now()
-  });
-  save.messages(); renderMessages(); scrollBottom();
+  openInviteFloat({ kind: 'companion', companionType: type, text: '祂想陪你 ' + type });
 }
 function pushOther(text, quote) {
   const msg = { id: uid(), who: 'other', type: 'text', text, t: nowHM(), ts: Date.now() };
@@ -4937,9 +5035,9 @@ function pushOtherBox(box) {
 
 /* ==================== 触碰同频（重写） ==================== */
 let touchFloatInited = false;
-let touchLocked = false;         /* 120秒锁定中 */
+let touchLocked = false;
 let touchTimer = null;
-let touchPhase = '';             /* 'me' | 'other' */
+let touchPhase = '';
 function initTouchFloatDrag() {
   const el = $('#touch-float'); if (!el || touchFloatInited) return;
   touchFloatInited = true;
@@ -4987,7 +5085,6 @@ function openTouchFloat() {
   if (!touchLocked) setTouchButtonsEnabled(true);
 }
 function closeTouchFloat() {
-  /* 120秒内关不掉 */
   if (touchLocked) return;
   $('#touch-float').classList.remove('active');
   $('#touch-float').classList.remove('highlight-me', 'highlight-other');
@@ -5023,9 +5120,7 @@ function doTouch(key) {
   }
   msgBox.classList.add('active');
 
-  /* 前 60 秒：我的动作 */
   touchTimer = setTimeout(() => {
-    /* 60 秒后：祂回应（必定） */
     touchPhase = 'other';
     el.classList.remove('highlight-me'); el.classList.add('highlight-other');
     const keys = ['temp', 'head', 'kiss', 'hug', 'pinch', 'hand'];
@@ -5044,11 +5139,11 @@ function doTouch(key) {
       const line = hlines[Math.floor(Math.random() * hlines.length)];
       msgBox.textContent = line;
     }
-    /* 后 60 秒：仍锁定 */
     touchTimer = setTimeout(() => {
-      /* 120 秒到：解锁 */
+      /* 120 秒到：解锁 + 清掉所有高亮 */
       touchLocked = false;
       touchPhase = '';
+      el.classList.remove('highlight-me', 'highlight-other');
       setTouchButtonsEnabled(true);
     }, 60000);
   }, 60000);
@@ -5218,6 +5313,7 @@ function applyAvatars() {
   renderMessages();
 }
 
+/* 悬浮球防误触：点击才打开大菜单，拖动不打开 */
 function initFloatBallDrag() {
   const ball = $('#float-ball'); if (!ball) return;
   let startX = 0, startY = 0, startL = 0, startT = 0, dragging = false, moved = false;
@@ -5239,7 +5335,7 @@ function initFloatBallDrag() {
     if (!dragging) return;
     dragging = false;
     if (moved) { State.settings.floatPos = { left: ball.style.left, top: ball.style.top }; save.settings(); }
-    else { openBigMenu(); }  /* 点击（未拖动）→ 打开大菜单 */
+    else { openBigMenu(); }
   }
   ball.addEventListener('touchstart', e => { const t = e.touches[0]; begin(t.clientX, t.clientY); }, { passive: true });
   ball.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
@@ -5909,7 +6005,7 @@ function renderWishlist() {
   });
 }
 
-/* ==================== 重要日（图标改 📆） ==================== */
+/* ==================== 重要日（图标 📆） ==================== */
 function openDays() {
   openSub('重要日', `<div class="day-list" id="day-list"></div>`, () => {
     $('#sub-body').classList.add('pad-off');
@@ -6252,7 +6348,6 @@ function runMoodHis() {
       const lines = HIS_LINES[pickT];
       line = lines[Math.floor(Math.random() * lines.length)];
     } else {
-      /* 有专属台词的心情用台词；没有的用字卡拼 1~3 条；字卡为空则不显示台词 */
       if (HIS_LINES[moodT]) {
         const lines = HIS_LINES[moodT];
         line = lines[Math.floor(Math.random() * lines.length)];
@@ -6397,18 +6492,8 @@ function openMusicPicker() {
   });
 }
 function inviteSong(song) {
-  const msg = {
-    id: uid(), who: 'me', type: 'song', songId: song.id,
-    songName: song.name, artist: song.artist || '',
-    accepted: false, refused: false, t: nowHM(), ts: Date.now(), read: false
-  };
-  State.messages.push(msg);
-  save.messages(); addLove(2); renderMessages(); scrollBottom();
-  setTimeout(() => {
-    if (Math.random() < 0.8) { msg.accepted = true; addLove(3); }
-    else { msg.refused = true; msg.refuseText = Math.random() < 0.5 ? '祂想待会儿再听。' : '祂这会有点忙。'; }
-    save.messages(); renderMessages(); scrollBottom();
-  }, getThinkTime() * 1000);
+  /* 改为：弹悬浮窗邀请，不进消息流 */
+  openInviteFloat({ kind: 'song', songId: song.id, songName: song.name });
 }
 
 /* ==================== 抉择 ==================== */
@@ -6518,20 +6603,17 @@ function mailCallFor(direction) {
   if (direction === 'me2him') return { to: hisCall, from: myCall };
   else return { to: myCall, from: hisCall };              /* him2me */
 }
-/* 随机取一条开头语 */
 function randomMailHello() {
   return MAIL_HELLO[Math.floor(Math.random() * MAIL_HELLO.length)];
 }
-/* 随机取一条祝语 */
 function randomMailBye() {
   return MAIL_BYE[Math.floor(Math.random() * MAIL_BYE.length)];
 }
-/* 生成信纸 HTML（称呼/开头语/正文/祝语/落款） */
+/* 生成信纸 HTML */
 function buildMailPaperHTML({ to, hello, body, bye, from, ts }) {
   const dateStr = fullDate(new Date(ts || Date.now()));
   let byeHTML = '';
   if (Array.isArray(bye)) {
-    /* 两行式：此致 空两格 / 敬礼 顶格 */
     byeHTML = `<div class="mp-bye-2line"><div class="line1">${escapeHTML(bye[0])}</div><div class="line2">${escapeHTML(bye[1])}</div></div>`;
   } else {
     byeHTML = `<div class="mp-bye">${escapeHTML(bye || '')}</div>`;
@@ -6581,7 +6663,6 @@ function renderMailList() {
     el.className = 'mail-envelope';
     el.setAttribute('data-who', m.who);
     const call = m.who === 'me' ? (State.settings.myCall || '我') : (State.settings.otherCall || '祂');
-    /* 列表页显示 日期 + 时间 */
     el.innerHTML = `<div class="me-line1">💌 ${escapeHTML(call)}</div><div class="me-line2">${fullDateTime(m.ts)}</div>${(m.who === 'other' && !m.read) ? '<span class="mail-dot"></span>' : ''}`;
     el.onclick = () => openMailDetail(m);
     list.appendChild(el);
@@ -6590,7 +6671,6 @@ function renderMailList() {
 function openMailDetail(m) {
   if (m.who === 'other' && !m.read) { m.read = true; save.mails(); }
   const direction = (m.who === 'me') ? 'me2him' : 'him2me';
-  /* 老信件兜底：to/from 已存则直接用 */
   const to = m.to || mailCallFor(direction).to;
   const from = m.from || mailCallFor(direction).from;
   const paperHTML = buildMailPaperHTML({
@@ -6613,7 +6693,6 @@ function openMailWrite() {
   }
   const hello = randomMailHello();
   const bye = randomMailBye();
-  /* 我写给祂：抬头 = 祂的写信称呼，落款 = 我的写信称呼 */
   const { to, from } = mailCallFor('me2him');
   const tip = needPay ? `本次将消耗 ${MAIL_QUOTA_COST} 爱意值` : `今日免费额度剩余 ${freeLeft} 封`;
   const html = `
@@ -6634,7 +6713,6 @@ function openMailWrite() {
     $('#sub-body').classList.add('pad-off');
     setSubAction('');
     const ta = $('#mail-body-input');
-    /* 实时更新正文：只更新 .mp-body，不动其他部分 */
     ta.oninput = () => {
       const pv = $('#mail-preview');
       if (!pv) return;
@@ -6668,6 +6746,8 @@ function doSendMail(hello, bye, body) {
   save.mails();
   toast(needPay ? '已寄出（-' + MAIL_QUOTA_COST + '爱意）' : '已寄出');
   mailTab = 'outbox';
+  /* 返回 bug 修复：清掉子栈里的"写信页"，避免返回多退一层 */
+  subStack = [];
   openMail();
 }
 function pushOtherMail() {
@@ -6684,7 +6764,6 @@ function pushOtherMail() {
   if (!body) return;
   const hello = randomMailHello();
   const bye = randomMailBye();
-  /* 祂写给我：抬头 = 我的写信称呼，落款 = 祂的写信称呼 */
   const { to, from } = mailCallFor('him2me');
   q.other = used + 1; save.mailQuota();
   State.mails.push({
@@ -6772,7 +6851,10 @@ function openQuizCreate(q, readonly) {
     if (!quizEditing.questions.length) { openModal({ title:'', bodyHTML:'至少加一道题', actions: [] }); setTimeout(closeModal, 1500); return; }
     const exist = State.quizzes.findIndex(x => x.id === quizEditing.id);
     if (exist >= 0) State.quizzes[exist] = quizEditing; else State.quizzes.unshift(quizEditing);
-    save.quizzes(); openQuizManager();
+    save.quizzes();
+    /* 返回 bug 修复：清掉子栈里的"创建问卷页" */
+    subStack = [];
+    openQuizManager();
   };
 }
 function renderQuizQuestions(readonly) {
@@ -7897,6 +7979,7 @@ function openAvatarManager() {
     $('#edit-my-mailcall').onclick = () => editField('mailFromCall', '我的写信称呼', openAvatarManager);
   });
 }
+/* editField 修复：modalBack → closeModal（修复穿透弹出悬浮球） */
 function editField(key, placeholder, after) {
   openModal({ title: placeholder, bodyHTML: `<input class="field" id="edit-field-input" value="${escapeHTML(State.settings[key] || '')}" placeholder="${placeholder}">`,
     actions: [{ label: '保存', keepOpen: true, onClick: () => { State.settings[key] = $('#edit-field-input').value.trim(); save.settings(); applyAvatars(); closeModal(); if (after) after(); } }]
@@ -8089,7 +8172,7 @@ function restoreArchiveToChat(day) {
   toast('已恢复到聊天');
 }
 
-/* ==================== 播放页 ==================== */
+/* ==================== 播放页（头像跟随开关） ==================== */
 let playState = { day: null, messages: [], idx: 0, timer: null, speed: 1, playing: true, baseDelay: 3000 };
 function openPlayPage(day) {
   const entry = State.archive.find(a => a.day === day);
@@ -8105,12 +8188,15 @@ function openPlayPage(day) {
   setTimeout(() => playNext(), 400);
 }
 function setPlayIcon(playing) { $('#play-pause-icon use').setAttribute('href', playing ? '#i-pause' : '#i-play'); }
+/* playNext：传入 prevSame，让归档播放跟随"消息头像"开关 */
 function playNext() {
   if (!playState.playing) return;
   if (playState.idx >= playState.messages.length) return;
   const m = playState.messages[playState.idx];
+  const prev = playState.idx > 0 ? playState.messages[playState.idx - 1] : null;
+  const prevSame = prev ? (prev.who === m.who && prev.type !== 'sys') : false;
   const body = $('#play-body');
-  body.appendChild(buildMsgRow(m));
+  body.appendChild(buildMsgRow(m, prevSame));
   body.scrollTop = body.scrollHeight;
   playState.idx++; updateProgress();
   playState.timer = setTimeout(playNext, playState.baseDelay / playState.speed);
@@ -8141,7 +8227,11 @@ function initPlayPage() {
     const target = Math.floor(pct * playState.messages.length);
     playState.idx = target;
     const body = $('#play-body'); body.innerHTML = '';
-    for (let i = 0; i < target; i++) body.appendChild(buildMsgRow(playState.messages[i]));
+    for (let i = 0; i < target; i++) {
+      const prev = i > 0 ? playState.messages[i - 1] : null;
+      const prevSame = prev ? (prev.who === playState.messages[i].who && prev.type !== 'sys') : false;
+      body.appendChild(buildMsgRow(playState.messages[i], prevSame));
+    }
     body.scrollTop = body.scrollHeight; updateProgress();
     clearTimeout(playState.timer);
     if (playState.playing) playNext();
@@ -8166,115 +8256,13 @@ function initPlayPage() {
     showBars();
   });
 }
-  /* ==================== 统计 ==================== */
-function openStats() {
-  openSub('统计', `
-    <div class="bg-tabs" id="stats-tabs">
-      <div class="bg-tab active" data-stab="call">通话记录</div>
-      <div class="bg-tab" data-stab="comp">陪伴记录</div>
-    </div>
-    <div id="stats-content"></div>
-  `, () => {
-    $('#sub-body').classList.add('pad-off');
-    setSubAction('');
-    renderStatsTab('call');
-    $$('#stats-tabs [data-stab]').forEach(t => {
-      t.onclick = () => {
-        $$('#stats-tabs [data-stab]').forEach(x => x.classList.toggle('active', x === t));
-        renderStatsTab(t.dataset.stab);
-      };
-    });
-  });
-}
-function renderStatsTab(tab) {
-  const wrap = $('#stats-content'); if (!wrap) return;
-  if (tab === 'call') {
-    const normalV = State.videoRecords.filter(r => r.type === 'normal');
-    const missedV = State.videoRecords.filter(r => r.type === 'missed');
-    const rejectedV = State.videoRecords.filter(r => r.type === 'rejected');
-    const interruptedV = State.videoRecords.filter(r => r.type === 'interrupted');
-    const totalDur = normalV.reduce((a,b)=>a+(b.dur||0),0);
-    const myOut = normalV.filter(r => r.mode === 'outgoing').length;
-    const hisOut = normalV.filter(r => r.mode === 'incoming').length;
-    let html = '';
-    html += `<div class="stat-block"><div class="st-title">汇总</div>`;
-    html += `<div class="st-line"><span class="st-k">通话次数</span><span class="st-v">${normalV.length}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">总时长</span><span class="st-v">${callTime(totalDur)}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">我打给祂</span><span class="st-v">${myOut}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">祂打给我</span><span class="st-v">${hisOut}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">未接来电</span><span class="st-v">${missedV.length}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">已拒绝</span><span class="st-v">${rejectedV.length}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">中断</span><span class="st-v">${interruptedV.length}</span></div>`;
-    html += `</div>`;
-    html += `<div class="stat-block"><div class="st-title">详细记录</div>`;
-    const records = [...State.videoRecords].reverse();
-    if (!records.length) html += `<div class="stat-empty">还没有通话记录</div>`;
-    else {
-      records.forEach(r => {
-        const d = new Date(r.start || r.t);
-        const dateStr = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
-        let line2 = '';
-        if (r.type === 'normal') {
-          const s = new Date(r.start), e = new Date(r.end);
-          line2 = '开始 ' + pad(s.getHours()) + ':' + pad(s.getMinutes()) + ' 结束 ' + pad(e.getHours()) + ':' + pad(e.getMinutes()) + ' 通话时长 ' + callTime(r.dur);
-        } else if (r.type === 'missed') line2 = '未接来电';
-        else if (r.type === 'rejected') line2 = '已拒绝';
-        else if (r.type === 'interrupted') line2 = '通话中断' + (r.dur ? ' 通话时长 ' + callTime(r.dur) : '');
-        const dir = r.mode === 'incoming' ? '祂打给我' : (r.mode === 'outgoing' ? '我打给祂' : '');
-        html += `<div class="stat-call-item"><div style="font-size:14px;color:var(--text)">${dateStr}</div><div style="font-size:13px;color:var(--text-soft);margin-top:4px">${dir} ${line2}</div></div>`;
-      });
-    }
-    html += `</div>`;
-    wrap.innerHTML = html;
-  } else {
-    const myComp = State.companionStats.filter(c => c.by === 'me' || !c.by);
-    const hisComp = State.companionStats.filter(c => c.by === 'other');
-    const allCompTotal = State.companionStats.reduce((a, b) => a + (b.dur || 0), 0);
-    const myCompTotal = myComp.reduce((a, b) => a + (b.dur || 0), 0);
-    const hisCompTotal = hisComp.reduce((a, b) => a + (b.dur || 0), 0);
-    const compRefused = State.messages.filter(m => m.type === 'companion' && m.who === 'me' && m.refused).length;
-    let html = '';
-    html += `<div class="stat-block"><div class="st-title">汇总</div>`;
-    html += `<div class="st-line"><span class="st-k">总次数</span><span class="st-v">${State.companionStats.length}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">总时长</span><span class="st-v">${hms(allCompTotal)}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">我发起</span><span class="st-v">${myComp.length} · ${hms(myCompTotal)}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">祂发起</span><span class="st-v">${hisComp.length} · ${hms(hisCompTotal)}</span></div>`;
-    html += `<div class="st-line"><span class="st-k">祂拒绝陪伴</span><span class="st-v">${compRefused}</span></div>`;
-    html += `</div>`;
-    html += `<div class="stat-block"><div class="st-title">详细记录</div>`;
-    const records = [...State.companionStats].reverse();
-    if (!records.length) html += `<div class="stat-empty">还没有陪伴记录</div>`;
-    else {
-      records.forEach(c => {
-        const d = new Date(c.start);
-        const dateStr = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
-        const who = c.by === 'other' ? '祂发起' : '我发起';
-        html += `<div class="stat-call-item"><div style="font-size:14px;color:var(--text)">${dateStr}</div><div style="font-size:13px;color:var(--text-soft);margin-top:4px">${who} · ${escapeHTML(c.type)} · ${hms(c.dur)}</div>`;
-        if (c.switches && c.switches.length) {
-          html += `<div style="font-size:12px;color:var(--text-soft);margin-top:6px">`;
-          c.switches.forEach(s => {
-            const sd = new Date(s.t);
-            html += `${pad(sd.getHours())}:${pad(sd.getMinutes())} ${escapeHTML(s.from)} → ${escapeHTML(s.to)}<br>`;
-          });
-          html += `</div>`;
-        }
-        if (c.interrupted) html += `<div style="font-size:12px;color:var(--danger);margin-top:4px">（被中断）</div>`;
-        html += `</div>`;
-      });
-    }
-    html += `</div>`;
-    wrap.innerHTML = html;
-  }
-}
-
-/* ==================== 设置 ==================== */
+  /* ==================== 设置 ==================== */
 function openSettings() {
   openSub('设置', `
     <div class="sub-pad sub-pad-top">
       <div class="setting-block glass" data-goto="set-chat"><svg class="block-icon"><use href="#i-card"/></svg><span>聊天</span></div>
       <div class="setting-block glass" data-goto="set-appearance"><svg class="block-icon"><use href="#i-bg"/></svg><span>外观</span></div>
       <div class="setting-block glass" data-goto="set-feature"><svg class="block-icon"><use href="#i-settings"/></svg><span>功能</span></div>
-      <div class="setting-block glass" data-goto="set-stats"><svg class="block-icon"><use href="#i-chart"/></svg><span>统计</span></div>
       <div class="setting-block glass" data-goto="set-system"><svg class="block-icon"><use href="#i-todo"/></svg><span>系统</span></div>
       <div class="setting-block glass" data-goto="set-about"><svg class="block-icon"><use href="#i-info"/></svg><span>关于</span></div>
     </div>
@@ -8284,7 +8272,6 @@ function handleSettingsGoto(key) {
   if (key === 'set-chat') return openSetChat();
   if (key === 'set-appearance') return openSetAppearance();
   if (key === 'set-feature') return openSetFeature();
-  if (key === 'set-stats') return openStats();
   if (key === 'set-system') return openSetSystem();
   if (key === 'set-about') return openSetAbout();
 }
@@ -8359,7 +8346,6 @@ function openSetChat() {
       s.moodHour = hh; s.moodMinute = mm; save.settings();
       runMoodHis();
     };
-    /* 消息头像开关 */
     $('#sw-every-avatar').onclick = function() {
       s.showEveryAvatar = !s.showEveryAvatar;
       this.classList.toggle('on', s.showEveryAvatar);
@@ -8369,7 +8355,7 @@ function openSetChat() {
   });
 }
 
-/* ==================== 外观（重构：加字体/字号/间距） ==================== */
+/* ==================== 外观（重构：字体/字号/间距/头像/背景/悬浮球） ==================== */
 function openSetAppearance() {
   openSub('外观', `
     <div class="sub-pad sub-pad-top">
@@ -8590,7 +8576,6 @@ function openSetFloatBall() {
       <input class="field" id="in-size" type="number" style="width:90px" value="${s.floatSize}"></div>
   `, () => {
     setSubAction('');
-    /* 点预览图上传 */
     $('#float-preview-img').onclick = () => pickImage(async (dataUrl, blob) => {
       s.floatImg = dataUrl;
       await CacheStore.put('floatball', blob);
@@ -8640,11 +8625,19 @@ function openSetFeature() {
     <div class="set-row"><span class="label">祂可以邀请一起听歌</span><div class="switch ${s.inviteEnabled?'on':''}" id="sw-invite"></div></div>
     <div class="set-row"><span class="label">邀请概率（%）</span>
       <input class="field" id="in-invite-prob" type="number" style="width:80px" value="${s.inviteProb}"></div>
+    <div class="section-title">邀请冷却</div>
+    <div class="seg" id="seg-invite-cd">
+      ${INVITE_COOLDOWN_SCHEMES.map(x => `<button class="seg-btn ${s.inviteCooldownKey===x.key?'active':''}" data-v="${x.key}">${x.name}</button>`).join('')}
+    </div>
 
     <div class="section-title">陪伴</div>
     <div class="set-row"><span class="label">祂可以邀请陪伴</span><div class="switch ${s.companionInviteEnabled?'on':''}" id="sw-comp"></div></div>
     <div class="set-row"><span class="label">邀请概率（%）</span>
       <input class="field" id="in-comp-prob" type="number" style="width:80px" value="${s.companionInviteProb}"></div>
+    <div class="section-title">陪伴邀请冷却</div>
+    <div class="seg" id="seg-comp-cd">
+      ${INVITE_COOLDOWN_SCHEMES.map(x => `<button class="seg-btn ${s.companionCooldownKey===x.key?'active':''}" data-v="${x.key}">${x.name}</button>`).join('')}
+    </div>
     <div class="set-row"><span class="label">祂接受陪伴邀请的概率（%）</span>
       <input class="field" id="in-comp-accept" type="number" style="width:80px" value="${s.companionAcceptProb}"></div>
 
@@ -8669,8 +8662,8 @@ function openSetFeature() {
       <button class="seg-btn" data-v="vsticky">很黏 12%</button>
     </div>
     <div class="slider-row" style="margin-top:8px">
-      <div class="slider-label"><span>自定义概率</span><span id="moodsticker-val">${s.moodStickerProb ?? 5}%</span></div>
-      <input type="range" id="moodsticker-slider" min="0" max="100" step="1" value="${s.moodStickerProb ?? 5}">
+      <div class="slider-label"><span>自定义概率</span><span id="moodsticker-val">${s.moodStickerProb ?? 3}%</span></div>
+      <input type="range" id="moodsticker-slider" min="0" max="100" step="1" value="${s.moodStickerProb ?? 3}">
     </div>
 
     <div class="section-title">表情</div>
@@ -8681,7 +8674,7 @@ function openSetFeature() {
     <div class="section-title">贴纸</div>
     <div class="set-row"><span class="label">祂可以使用贴纸</span><div class="switch ${s.stickerEnabled?'on':''}" id="sw-sticker"></div></div>
     <div class="set-row"><span class="label">贴纸概率（%）</span>
-      <input class="field" id="in-sticker-prob" type="number" style="width:80px" value="${s.stickerProb ?? 7}"></div>
+      <input class="field" id="in-sticker-prob" type="number" style="width:80px" value="${s.stickerProb ?? 3}"></div>
 
     <div class="section-title">礼物</div>
     <div class="set-row"><span class="label">祂可以送礼物</span><div class="switch ${s.giftEnabled?'on':''}" id="sw-gift"></div></div>
@@ -8711,6 +8704,11 @@ function openSetFeature() {
     $('#sw-heart').onclick = function() { s.heartEnabled = !s.heartEnabled; this.classList.toggle('on', s.heartEnabled); save.settings(); };
     $('#sw-invite').onclick = function() { s.inviteEnabled = !s.inviteEnabled; this.classList.toggle('on', s.inviteEnabled); save.settings(); };
     $('#sw-comp').onclick = function() { s.companionInviteEnabled = !s.companionInviteEnabled; this.classList.toggle('on', s.companionInviteEnabled); save.settings(); };
+    /* 邀请冷却 */
+    markSeg('#seg-invite-cd', s.inviteCooldownKey || 'c1');
+    bindSeg('#seg-invite-cd', v => { s.inviteCooldownKey = v; save.settings(); });
+    markSeg('#seg-comp-cd', s.companionCooldownKey || 'c1');
+    bindSeg('#seg-comp-cd', v => { s.companionCooldownKey = v; save.settings(); });
     /* 消息贴心情 */
     $('#sw-moodsticker').onclick = function() { s.moodStickerEnabled = !s.moodStickerEnabled; this.classList.toggle('on', s.moodStickerEnabled); save.settings(); };
     markSeg('#seg-moodsticker', s.moodStickerLevel || 'daily');
@@ -8761,7 +8759,8 @@ function openSetSystem() {
   openSub('系统', `
     <div class="sub-pad sub-pad-top">
       <div class="set-row"><span class="label">全屏模式</span><div class="switch ${s.fullscreen?'on':''}" id="sw-fullscreen"></div></div>
-      <div class="set-row"><span class="label">夜间免打扰（0:00~7:00）</span><div class="switch ${s.dndEnabled?'on':''}" id="sw-dnd"></div></div>
+      <div class="set-row"><span class="label">夜间免打扰</span><div class="switch ${s.dndEnabled?'on':''}" id="sw-dnd"></div></div>
+      <div class="set-hint">开启后，祂不会主动发消息，双方也不能打视频。</div>
       <div class="setting-block glass" id="btn-backup"><svg class="block-icon"><use href="#i-export"/></svg><span>立即备份数据</span></div>
       <div class="setting-block glass" id="btn-restore"><svg class="block-icon"><use href="#i-import"/></svg><span>覆盖备份数据</span></div>
       <div class="setting-block glass" id="btn-mail-test"><svg class="block-icon"><use href="#i-mailbox"/></svg><span>信件格式测试</span></div>
@@ -8785,7 +8784,7 @@ function openSetSystem() {
     $('#btn-factory').onclick = doFactoryReset;
   });
 }
-/* 信件格式测试：弹窗显示两封信（我→祂、祂→我），各随机开头语/祝语，固定正文，可"再来一封" */
+/* 信件格式测试：两封信（我→祂、祂→我），随机开头语/祝语，固定正文，可"再来一封" */
 function openMailFormatTest() {
   function renderTest() {
     const me2him = mailCallFor('me2him');
@@ -8838,10 +8837,10 @@ async function doBackup() {
     messages: State.messages, archive: State.archive, quizzes: State.quizzes,
     quizResults: State.quizResults, memos: State.memos, wishes: State.wishes,
     days: State.days, hearts: State.hearts, moods: State.moods, songs: State.songs,
-    companionStats: State.companionStats, interactions: State.interactions,
+    interactions: State.interactions,
     itfStats: State.itfStats, stickers: State.stickers, gifts: State.gifts,
     giftRecords: State.giftRecords, boxRecords: State.boxRecords,
-    videoRecords: State.videoRecords, love: State.love,
+    love: State.love,
     notes: State.notes, noteQuota: State.noteQuota,
     spaces: State.spaces, spaceQuota: State.spaceQuota,
     mails: State.mails, mailQuota: State.mailQuota,
@@ -8876,14 +8875,12 @@ function doRestore() {
       ['心动时刻', () => { State.hearts = data.hearts || []; }],
       ['心情手帐', () => { State.moods = data.moods || {}; }],
       ['音乐', () => { State.songs = data.songs || []; }],
-      ['陪伴统计', () => { State.companionStats = data.companionStats || []; }],
       ['互动', () => { State.interactions = data.interactions || { me: [], other: [], together: [] }; }],
       ['互动统计', () => { State.itfStats = data.itfStats || {}; }],
       ['贴纸', () => { State.stickers = data.stickers || []; }],
       ['礼物', () => { State.gifts = data.gifts || []; }],
       ['礼物记录', () => { State.giftRecords = data.giftRecords || []; }],
       ['盲盒记录', () => { State.boxRecords = data.boxRecords || []; }],
-      ['通话记录', () => { State.videoRecords = data.videoRecords || []; }],
       ['爱意值', () => { State.love = data.love || 0; }],
       ['留言笺', () => { State.notes = data.notes || []; State.noteQuota = data.noteQuota || null; }],
       ['恋人空间', () => { State.spaces = data.spaces || []; State.spaceQuota = data.spaceQuota || null; }],
@@ -8908,8 +8905,8 @@ function doRestore() {
     }
     await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive();
     await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
-    await save.songs(); await save.companionStats(); await save.interactions(); await save.itfStats(); await save.stickers();
-    await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.love();
+    await save.songs(); await save.interactions(); await save.itfStats(); await save.stickers();
+    await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.love();
     await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
     $('#restore-stage').textContent = '完成';
     setTimeout(() => { $('#modal-mask').style.pointerEvents = ''; closeModal(); openModal({ title:'已覆盖', bodyHTML:'备份已覆盖，正在刷新…', actions: [] }); setTimeout(() => location.reload(), 1500); }, 800);
@@ -8921,30 +8918,29 @@ function doClear() {
   openModal({ title: '清空所有数据', bodyHTML: '确定清空全部内容数据吗？<br>清空后无法恢复，建议先备份。<br><span style="font-size:12px;color:var(--text-soft)">（外观、概率等设置将保留）</span>', actions: [
     { label: '确认清空', danger: true, keepOpen: true, onClick: async () => {
       State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.quizResults = [];
-      State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
+      State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = [];
       State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
       State.stickers = []; State.gifts = []; State.giftRecords = []; State.boxRecords = [];
-      State.videoRecords = []; State.videoActive = null;
+      State.videoActive = null;
       State.notes = []; State.noteQuota = null;
       State.spaces = []; State.spaceQuota = null;
       State.mails = []; State.mailQuota = null;
       State.love = 0;
       State.settings.lockPassed = false; State.settings.lastLockDay = '';
       await save.cards(); await save.trash(); await save.messages(); await save.archive(); await save.quizzes(); await save.quizResults();
-      await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs(); await save.companionStats();
+      await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods(); await save.songs();
       await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
-      await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love(); await save.settings();
+      await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoActive(); await save.love(); await save.settings();
       await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
       location.reload();
     }}
   ]});
 }
-/* 恢复出厂设置：内容 + 设置全清 + 缓存媒体，回默认 */
+/* 恢复出厂设置：内容 + 设置全清 + 缓存媒体 */
 function doFactoryReset() {
   openModal({ title: '恢复出厂设置', bodyHTML: '将清空所有数据、设置、头像、背景、媒体缓存，恢复为初始状态。<br><b style="color:var(--danger)">此操作不可恢复，强烈建议先备份！</b>', actions: [
     { label: '取消', onClick: () => {} },
     { label: '确认恢复', danger: true, keepOpen: true, onClick: () => {
-      /* 二次确认 */
       openModal({ title: '再次确认', bodyHTML: '真的要恢复出厂设置吗？所有数据将永久丢失。', actions: [
         { label: '取消', onClick: () => {} },
         { label: '确认恢复', danger: true, keepOpen: true, onClick: () => doFactoryResetNow() }
@@ -8953,17 +8949,15 @@ function doFactoryReset() {
   ]});
 }
 async function doFactoryResetNow() {
-  /* 清内存 */
   State.cards = []; State.trash = []; State.messages = []; State.archive = []; State.quizzes = []; State.quizResults = [];
-  State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = []; State.companionStats = [];
+  State.memos = ''; State.wishes = []; State.days = []; State.hearts = []; State.moods = {}; State.songs = [];
   State.companionActive = null; State.interactions = { me: [], other: [], together: [] }; State.itfStats = {};
   State.stickers = []; State.gifts = []; State.giftRecords = []; State.boxRecords = [];
-  State.videoRecords = []; State.videoActive = null;
+  State.videoActive = null;
   State.notes = []; State.noteQuota = null;
   State.spaces = []; State.spaceQuota = null;
   State.mails = []; State.mailQuota = null;
   State.love = 0;
-  /* 重置 settings 为默认（重新定义） */
   State.settings = {
     theme: 'rose-glass',
     fontScheme: 'default', chatFontSize: 15, spacePad: 16, spaceGap: 12,
@@ -8980,33 +8974,33 @@ async function doFactoryResetNow() {
     chatBg: '', chatBgPool: [], lockBg: '', lockBgPool: [],
     lockPassed: false, lastLockDay: '',
     fullscreen: false, dndEnabled: true,
-    quoteEnabled: false, quoteProb: 7,
-    heartEnabled: false, heartProb: 5,
+    quoteEnabled: false, quoteProb: 4,
+    heartEnabled: false, heartProb: 3,
     moodHour: 20, moodMinute: 0,
-    inviteEnabled: false, inviteProb: 6,
-    companionInviteEnabled: false, companionInviteProb: 5,
+    inviteEnabled: false, inviteProb: 3,
+    companionInviteEnabled: false, companionInviteProb: 3,
+    inviteCooldownKey: 'c1', companionCooldownKey: 'c1',
+    lastInviteTime: 0, lastCompanionInviteTime: 0,
     itfProbOther: 50, itfProbTogether: 30, itfProbNormal: 20, itfProbCompanion: 70,
     itfActiveProb: 3,
     emojiEnabled: false, emojiProb: 6,
     companionAcceptProb: 80,
     showEveryAvatar: false,
     bubbleSkin: 'default',
-    stickerEnabled: false, stickerProb: 7,
+    stickerEnabled: false, stickerProb: 3,
     giftEnabled: false, giftProb: 1,
     boxEnabled: false, boxProb: 1,
     videoAcceptProb: 80,
     videoInviteEnabled: false, videoInviteProb: 3,
     videoHangMin: 5, videoHangMax: 10,
     activeMsgEnabled: false, activeMsgLevel: 'daily',
-    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 5
+    moodStickerEnabled: false, moodStickerLevel: 'daily', moodStickerProb: 3
   };
-  /* 写盘 */
   await save.settings(); await save.cards(); await save.trash(); await save.messages(); await save.archive();
   await save.quizzes(); await save.quizResults(); await save.memos(); await save.wishes(); await save.days(); await save.hearts(); await save.moods();
-  await save.songs(); await save.companionStats(); await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
-  await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoRecords(); await save.videoActive(); await save.love();
+  await save.songs(); await save.companionActive(); await save.interactions(); await save.itfStats(); await save.stickers();
+  await save.gifts(); await save.giftRecords(); await save.boxRecords(); await save.videoActive(); await save.love();
   await save.notes(); await save.noteQuota(); await save.spaces(); await save.spaceQuota(); await save.mails(); await save.mailQuota();
-  /* 清缓存媒体 */
   try { await CacheStore.clear(); } catch (e) {}
   location.reload();
 }
@@ -9042,7 +9036,6 @@ async function boot() {
     State.settings.avatarPairs = st.avatarPairs || [];
     State.settings.chatBgPool = st.chatBgPool || [];
     State.settings.lockBgPool = st.lockBgPool || [];
-    /* 补齐默认值 */
     if (State.settings.fontScheme == null) State.settings.fontScheme = 'default';
     if (State.settings.chatFontSize == null) State.settings.chatFontSize = 15;
     if (State.settings.spacePad == null) State.settings.spacePad = 16;
@@ -9051,11 +9044,15 @@ async function boot() {
     if (State.settings.mailFromCall == null) State.settings.mailFromCall = '';
     if (State.settings.moodStickerEnabled == null) State.settings.moodStickerEnabled = false;
     if (State.settings.moodStickerLevel == null) State.settings.moodStickerLevel = 'daily';
-    if (State.settings.moodStickerProb == null) State.settings.moodStickerProb = 5;
-    if (State.settings.quoteProb == null) State.settings.quoteProb = 7;
-    if (State.settings.heartProb == null) State.settings.heartProb = 5;
-    if (State.settings.inviteProb == null) State.settings.inviteProb = 6;
-    if (State.settings.companionInviteProb == null) State.settings.companionInviteProb = 5;
+    if (State.settings.moodStickerProb == null) State.settings.moodStickerProb = 3;
+    if (State.settings.quoteProb == null) State.settings.quoteProb = 4;
+    if (State.settings.heartProb == null) State.settings.heartProb = 3;
+    if (State.settings.inviteProb == null) State.settings.inviteProb = 3;
+    if (State.settings.companionInviteProb == null) State.settings.companionInviteProb = 3;
+    if (State.settings.inviteCooldownKey == null) State.settings.inviteCooldownKey = 'c1';
+    if (State.settings.companionCooldownKey == null) State.settings.companionCooldownKey = 'c1';
+    if (State.settings.lastInviteTime == null) State.settings.lastInviteTime = 0;
+    if (State.settings.lastCompanionInviteTime == null) State.settings.lastCompanionInviteTime = 0;
     if (State.settings.itfProbOther == null) State.settings.itfProbOther = 50;
     if (State.settings.itfProbTogether == null) State.settings.itfProbTogether = 30;
     if (State.settings.itfProbNormal == null) State.settings.itfProbNormal = 20;
@@ -9067,7 +9064,7 @@ async function boot() {
     if (State.settings.showEveryAvatar == null) State.settings.showEveryAvatar = false;
     if (State.settings.bubbleSkin == null) State.settings.bubbleSkin = 'default';
     if (State.settings.stickerEnabled == null) State.settings.stickerEnabled = false;
-    if (State.settings.stickerProb == null) State.settings.stickerProb = 7;
+    if (State.settings.stickerProb == null) State.settings.stickerProb = 3;
     if (State.settings.giftEnabled == null) State.settings.giftEnabled = false;
     if (State.settings.giftProb == null) State.settings.giftProb = 1;
     if (State.settings.boxEnabled == null) State.settings.boxEnabled = false;
@@ -9093,7 +9090,6 @@ async function boot() {
   const h = await Store.read('hearts.json'); if (h) State.hearts = h;
   const mo = await Store.read('moods.json'); if (mo) State.moods = mo;
   const so = await Store.read('songs.json'); if (so) State.songs = so;
-  const cs = await Store.read('companion_stats.json'); if (cs) State.companionStats = cs;
   const ca = await Store.read('companion_active.json'); if (ca) State.companionActive = ca;
   const itf = await Store.read('interactions.json'); if (itf) State.interactions = Object.assign({ me: [], other: [], together: [] }, itf);
   const is = await Store.read('itf_stats.json'); if (is) State.itfStats = is;
@@ -9101,7 +9097,6 @@ async function boot() {
   const gf = await Store.read('gifts.json'); if (gf) State.gifts = gf;
   const gr = await Store.read('gift_records.json'); if (gr) State.giftRecords = gr;
   const br = await Store.read('box_records.json'); if (br) State.boxRecords = br;
-  const vr = await Store.read('video_records.json'); if (vr) State.videoRecords = vr;
   const va = await Store.read('video_active.json'); if (va) State.videoActive = va;
   const l = await Store.read('love.json'); if (l != null) State.love = l;
   const nt = await Store.read('notes.json'); if (nt) State.notes = nt;
