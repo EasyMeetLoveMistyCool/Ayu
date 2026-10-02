@@ -14,7 +14,7 @@ body{
 }
 #app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden}
 
-/* ===== 复古手帐信 ===== */
+/* ========== 复古手帐信 ========== */
 body.retro{
   background-color:#e8dcc0;
   background-image:
@@ -26,7 +26,7 @@ body.retro{
 body.retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;box-shadow:0 2px 6px rgba(120,95,60,.15)}
 body.retro .names span{color:#6b5334}
 
-/* ===== 漫画风（黑白线稿 + 网点，无彩色） ===== */
+/* ========== 漫画风 ========== */
 body.comic{
   background-color:#fff;
   background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);
@@ -35,10 +35,57 @@ body.comic{
 }
 body.comic .topbar{background:#fff;border-bottom:3px solid #111;box-shadow:0 3px 0 #111}
 body.comic .names span{color:#111;font-weight:900}
-body.comic .bubble-me{background:#fff;border:3px solid #111}
-body.comic .bubble-her{background:#fff;border:3px solid #111}
 
-/* ===== 顶栏 ===== */
+/* ========== 少女手帐 ========== */
+body.girl{
+  background-color:#fdf2f6;
+  background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);
+  background-size:18px 18px;
+  color:#7a4a5c;
+}
+body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;box-shadow:0 2px 6px rgba(220,140,170,.25)}
+body.girl .names span{color:#c05a80}
+body.girl .page{background:#fdf2f6}
+body.girl .page-head{background:rgba(255,233,241,.95);border-bottom:1px solid #f3b8ce}
+body.girl .page-head h2,body.girl .page-head .back{color:#c05a80}
+body.girl .drawer-item{color:#7a4a5c}
+body.girl .set-group,body.girl .card-item{background:#fff;border-color:#f3c8d8}
+body.girl .tool{border-color:#f3b8ce;background:#fff5f8}
+body.girl .mini-btn{border-color:#f3b8ce;background:#fff5f8;color:#c05a80}
+body.girl .save-btn{border-color:#f3b8ce;background:linear-gradient(#ffe9f1,#ffd6e6);color:#c05a80}
+body.girl .empty-tip{color:#c08aa0}
+body.girl #composer{background:linear-gradient(transparent,rgba(253,242,246,.95))}
+body.girl .input-note{background:#fff;border:2px solid #ffd6e6;border-radius:14px;box-shadow:0 2px 8px rgba(220,140,170,.25)}
+body.girl #sendStamp{border:2px solid #f3a8c2;background:radial-gradient(circle at 35% 30%,#fff0f5,#ffd6e6);color:#d86a92;border-radius:50%}
+body.girl #drawer{background:linear-gradient(160deg,#ffe9f1,#ffd6e6);border-right:1px solid #f3b8ce}
+
+/* ========== 报纸 ========== */
+body.news{
+  background-color:#e8e2d0;
+  background-image:
+    linear-gradient(rgba(120,110,80,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,110,80,.04) 1px, transparent 1px);
+  background-size:100% 26px, 26px 100%;
+  color:#2a2a26;
+}
+body.news .topbar{background:#ece6d4;border-bottom:3px double #2a2a26;box-shadow:none}
+body.news .names span{color:#2a2a26;font-weight:700;letter-spacing:1px}
+body.news .page{background:#e8e2d0}
+body.news .page-head{background:#ece6d4;border-bottom:3px double #2a2a26}
+body.news .page-head h2,body.news .page-head .back{color:#2a2a26;font-family:"FangSong",serif;letter-spacing:2px}
+body.news .drawer-item{color:#2a2a26;font-family:"FangSong",serif}
+body.news #drawer{background:#ece6d4;border-right:3px double #2a2a26}
+body.news .set-group,body.news .card-item{background:#f2ecda;border:1px solid #6a6350}
+body.news .tool{border:1px solid #6a6350;background:#f2ecda}
+body.news .mini-btn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
+body.news .save-btn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;font-family:"FangSong",serif}
+body.news .empty-tip{color:#6a6350}
+body.news #composer{background:#e8e2d0;border-top:3px double #2a2a26}
+body.news .input-note{background:#f2ecda;border:1px solid #6a6350;border-radius:0;box-shadow:none}
+body.news #msgInput{color:#2a2a26}
+body.news #sendStamp{border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0;font-family:"FangSong",serif;transform:none}
+
+/* ========== 顶栏 ========== */
 .topbar{
   flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;
@@ -63,62 +110,102 @@ body.comic .bubble-her{background:#fff;border:3px solid #111}
 }
 .names{
   display:flex;justify-content:space-between;
-  width:72px;margin-top:5px;
-  font-size:12px;
+  width:72px;margin-top:5px;font-size:12px;
 }
 .names span:first-child{text-align:left;max-width:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .names span:last-child{text-align:right;max-width:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 body.comic .av-her,body.comic .av-me{border:2px solid #111;border-radius:4px}
+body.girl .av-her,body.girl .av-me{border:2px solid #f3b8ce;border-radius:12px}
+body.news .av-her,body.news .av-me{border:2px solid #2a2a26;border-radius:0}
 
-/* ===== 消息区 ===== */
-#stream{flex:1 1 auto;overflow-y:auto;padding:28px 20px 30px;position:relative;-webkit-overflow-scrolling:touch}
+/* ========== 消息区 ========== */
+#stream{flex:1 1 auto;overflow-y:auto;padding:28px 16px 30px;position:relative;-webkit-overflow-scrolling:touch}
 .note{
-  position:relative;max-width:68%;padding:14px 16px;margin:22px 0;
+  position:relative;max-width:72%;padding:14px 16px;margin:22px 0;
   font-size:16px;line-height:1.6;word-break:break-word;white-space:pre-wrap;
-  transition:transform .18s;
 }
+/* 你的：右对齐 */
 .note.me{
   background:#fdf3c8;border:1px solid #e2cf8a;border-radius:3px;
   box-shadow:2px 3px 8px rgba(120,95,50,.18);
-  margin-left:auto;margin-right:18px;color:#5a4a2e;
+  margin-left:auto;margin-right:8px;color:#5a4a2e;
 }
 body.retro .note.me::after{
   content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-3deg);
   width:46px;height:14px;background:rgba(200,180,130,.55);
   border-left:1px dashed rgba(255,255,255,.6);border-right:1px dashed rgba(255,255,255,.6);
 }
+/* 祂的：左对齐 */
 .note.her{
   background:#fbf7ec;border:1px solid #d8cba8;border-radius:2px;
   box-shadow:2px 3px 8px rgba(120,95,50,.15);
-  margin-right:auto;margin-left:18px;color:#4a3b2a;
+  margin-right:auto;margin-left:8px;color:#4a3b2a;
   background-image:repeating-linear-gradient(transparent 0 27px, rgba(150,130,95,.25) 27px 28px);
   background-position:0 10px;
 }
-body.comic .note.me,body.comic .note.her{background-image:none;border:3px solid #111;border-radius:4px}
+/* 漫画 */
+body.comic .note.me,body.comic .note.her{background-image:none;border:3px solid #111;border-radius:4px;box-shadow:none}
+/* 少女 */
+body.girl .note.me{
+  background:#fff;border:2px solid #ffd6e6;border-radius:16px;
+  box-shadow:0 3px 10px rgba(220,140,170,.28);color:#a04a6a;
+}
+body.girl .note.me::after{
+  content:"♥";position:absolute;top:-10px;left:-6px;
+  color:#f38bb0;font-size:16px;
+}
+body.girl .note.her{
+  background:#f6f0ff;border:2px solid #ddd0f5;border-radius:16px;
+  box-shadow:0 3px 10px rgba(180,150,220,.25);color:#6a5a8a;background-image:none;
+}
+body.girl .note.her::after{
+  content:"♥";position:absolute;top:-10px;right:-6px;
+  color:#c0a8e8;font-size:16px;
+}
+/* 报纸 */
+body.news .note.me{
+  background:#f2ecda;border:1px solid #6a6350;border-radius:0;
+  box-shadow:none;color:#2a2a26;font-family:"FangSong","STFangsong",serif;
+  border-left:4px solid #2a2a26;
+}
+body.news .note.her{
+  background:#f2ecda;border:1px solid #6a6350;border-radius:0;
+  box-shadow:none;color:#2a2a26;font-family:"FangSong","STFangsong",serif;
+  background-image:none;border-right:4px solid #2a2a26;
+}
 
+/* 时间戳 */
 .stamp{
   position:absolute;bottom:-12px;right:8px;font-size:10px;color:#a08a5f;
   border:1px solid #c8b68a;border-radius:50%;width:34px;height:34px;
   display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);
   opacity:.7;background:rgba(255,255,255,.35);padding:2px;text-align:center;line-height:1.1;
 }
-body.comic .stamp{border:2px solid #111;border-radius:3px;width:auto;height:auto;padding:1px 4px;transform:rotate(0);font-size:9px;color:#111;background:#fff}
+body.comic .stamp{border:2px solid #111;border-radius:3px;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px;color:#111;background:#fff}
+body.girl .stamp{border:1px solid #f3b8ce;border-radius:10px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px;color:#c05a80;background:#fff}
+body.news .stamp{border:none;border-top:1px solid #6a6350;border-bottom:1px solid #6a6350;border-radius:0;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px;color:#2a2a26;background:transparent;font-family:"FangSong",serif}
 
+/* 等待 */
 .waiting{
-  max-width:68%;margin:22px auto 22px 18px;padding:16px 14px;
+  max-width:72%;margin:22px auto 22px 8px;padding:16px 14px;
   background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#efe6cc 8px 16px);
   border:1px dashed #c9b98f;border-radius:3px;color:#a08a5f;font-size:14px;text-align:center;
   animation:breathe 2s ease-in-out infinite;
 }
 @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+body.girl .waiting{background:#fff0f5;border:2px dashed #f3b8ce;color:#c05a80;border-radius:14px}
+body.news .waiting{background:#f2ecda;border:1px dashed #6a6350;color:#6a6350;border-radius:0}
 
+/* 系统提示 */
 .sys{
   text-align:center;font-size:12.5px;color:#9a865e;margin:16px auto;padding:6px 12px;
   background:rgba(255,250,235,.6);border:1px dashed #c9b98f;border-radius:4px;max-width:80%;
 }
 body.comic .sys{background:#fff;border:2px dashed #111;color:#111}
+body.girl .sys{background:#fff;border:2px dashed #f3b8ce;color:#c05a80}
+body.news .sys{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26}
 
-/* ===== 底部输入 ===== */
+/* ========== 底部输入 ========== */
 #composer{flex:0 0 auto;padding:8px 12px calc(10px + env(safe-area-inset-bottom));position:relative}
 body.retro #composer{background:linear-gradient(transparent,rgba(232,220,192,.9))}
 body.comic #composer{background:#fff;border-top:3px solid #111}
@@ -143,7 +230,7 @@ body.comic #msgInput{color:#111}
 #sendStamp:active{transform:rotate(-8deg) scale(.92)}
 body.comic #sendStamp{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
 
-/* ===== 侧栏 ===== */
+/* ========== 侧栏 ========== */
 #drawerMask{position:fixed;inset:0;background:rgba(60,45,25,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
 #drawerMask.on{opacity:1;pointer-events:auto}
 #drawer{
@@ -156,11 +243,10 @@ body.comic #sendStamp{border:3px solid #111;background:#fff;color:#111;border-ra
 #drawer.on{transform:translateX(0)}
 body.comic #drawer{background:#fff;border-right:3px solid #111}
 .drawer-item{display:flex;align-items:center;gap:12px;padding:16px 20px;font-size:17px;color:#5a4a2e}
-body.comic .drawer-item{color:#111}
 .drawer-item:active{background:rgba(180,155,110,.2)}
 .drawer-item .ico{font-size:20px}
 
-/* ===== 页面 ===== */
+/* ========== 页面 ========== */
 .page{position:fixed;inset:0;display:none;flex-direction:column;z-index:10;overflow:hidden}
 body.retro .page{background:linear-gradient(160deg,#efe4c8,#e3d5b4)}
 body.comic .page{background:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px}
@@ -176,7 +262,7 @@ body.comic .page-head .back{color:#111}
 body.comic .page-head h2{color:#111}
 .page-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
 
-/* ===== 口袋 ===== */
+/* ========== 口袋 ========== */
 .toolbar{display:flex;gap:4px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px dashed #c9b98f;background:rgba(243,234,210,.7)}
 body.comic .toolbar{background:#fff;border-bottom:2px dashed #111}
 .tool{
@@ -194,6 +280,8 @@ body.comic .tool{border:2px solid #111;background:#fff}
   box-shadow:1px 2px 5px rgba(120,95,50,.12);word-break:break-word;white-space:pre-wrap;
 }
 body.comic .card-item{border:3px solid #111;border-radius:4px;background:#fff;color:#111}
+body.girl .card-item{border:2px solid #f3c8d8;border-radius:12px;background:#fff;color:#7a4a5c}
+body.news .card-item{border:1px solid #6a6350;border-radius:0;background:#f2ecda;color:#2a2a26}
 .card-item.locked{opacity:.42;filter:grayscale(1)}
 .card-item .lockbtn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;border-radius:50%}
 .card-item .lockbtn:active{background:rgba(180,155,110,.25)}
@@ -204,7 +292,7 @@ body.comic .card-item{border:3px solid #111;border-radius:4px;background:#fff;co
 .empty-tip{text-align:center;color:#a08a5f;font-size:14px;padding:40px 20px;line-height:1.8}
 body.comic .empty-tip{color:#111}
 
-/* ===== 添加页 ===== */
+/* ========== 添加页 ========== */
 #addArea{
   flex:1;width:100%;border:1px solid #d8cba8;border-radius:3px;background:#fbf7ec;
   background-image:repeating-linear-gradient(transparent 0 29px,rgba(150,130,95,.2) 29px 30px);
@@ -212,30 +300,44 @@ body.comic .empty-tip{color:#111}
   outline:none;resize:none;
 }
 body.comic #addArea{border:3px solid #111;border-radius:4px;background:#fff;background-image:none;color:#111}
+body.girl #addArea{border:2px solid #ffd6e6;border-radius:14px;background:#fff;background-image:none;color:#7a4a5c}
+body.news #addArea{border:1px solid #6a6350;border-radius:0;background:#f2ecda;background-image:none;color:#2a2a26;font-family:"FangSong",serif}
 #addArea::placeholder{color:#bca878}
 .save-btn{width:100%;margin-top:14px;height:48px;border-radius:6px;border:1px solid #b89b5e;background:linear-gradient(#f7ecd0,#e6d3a4);font-family:inherit;font-size:17px;font-weight:700;color:#7a5f30}
 body.comic .save-btn{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
 .save-btn:active{filter:brightness(.95)}
 
-/* ===== 设置 ===== */
+/* ========== 设置 ========== */
 .set-group{background:#fbf7ec;border:1px solid #d8cba8;border-radius:3px;padding:14px;margin-bottom:14px}
 body.comic .set-group{border:3px solid #111;border-radius:4px;background:#fff}
+body.girl .set-group{border:2px solid #f3c8d8;border-radius:12px;background:#fff}
+body.news .set-group{border:1px solid #6a6350;border-radius:0;background:#f2ecda}
 .set-group h3{font-size:14px;color:#a08a5f;margin-bottom:10px;font-weight:400}
 body.comic .set-group h3{color:#111;font-weight:700}
+body.girl .set-group h3{color:#c05a80}
+body.news .set-group h3{color:#2a2a26}
 .set-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:15.5px}
 .set-row input[type=number]{width:64px;height:34px;text-align:center;font-family:inherit;font-size:15px;border:1px solid #cbb98f;border-radius:4px;background:#fffaf0;color:#5a4a2e;outline:none}
 .set-row input[type=text]{width:110px;height:34px;text-align:center;font-family:inherit;font-size:15px;border:1px solid #cbb98f;border-radius:4px;background:#fffaf0;color:#5a4a2e;outline:none}
 body.comic .set-row input{border:2px solid #111;background:#fff;color:#111}
-.style-opts{display:flex;gap:10px;margin-top:6px}
-.style-opt{flex:1;height:56px;border:1px solid #cbb98f;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:15px}
+body.girl .set-row input{border:2px solid #ffd6e6;background:#fff;color:#7a4a5c}
+body.news .set-row input{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
+.style-opts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.style-opt{flex:1;min-width:44%;height:56px;border:1px solid #cbb98f;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:15px}
 body.comic .style-opt{border:2px solid #111;background:#fff}
+body.girl .style-opt{border:2px solid #f3c8d8;background:#fff;color:#7a4a5c;border-radius:12px}
+body.news .style-opt{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0}
 .style-opt.on{border:2px solid #c47a3a;background:#f7ecd0;font-weight:700}
 body.comic .style-opt.on{border:3px solid #111;background:#eee}
+body.girl .style-opt.on{border:2px solid #f38bb0;background:#ffe9f1}
+body.news .style-opt.on{border:2px solid #2a2a26;background:#ddd6c0}
 .mini-btn{font-family:inherit;font-size:14px;padding:5px 10px;margin-left:6px;border:1px solid #cbb98f;border-radius:5px;background:#fffaf0;color:#6b5334}
 .mini-btn:active{background:#e6d9ba}
 body.comic .mini-btn{border:2px solid #111;background:#fff;color:#111}
 .btn-danger{width:100%;height:46px;border-radius:6px;border:1px solid #c47a3a;background:#f7e0d0;color:#a5401a;font-family:inherit;font-size:16px;font-weight:700}
 body.comic .btn-danger{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
+body.girl .btn-danger{border:2px solid #f38bb0;background:#ffe9f1;color:#c05a80;border-radius:12px}
+body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0}
 .btn-danger:active{filter:brightness(.95)}
 
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:rgba(90,70,40,.92);color:#fdf3c8;font-size:14px;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;z-index:99;pointer-events:none;max-width:80%;text-align:center}
@@ -319,6 +421,8 @@ body.comic .btn-danger{border:3px solid #111;background:#fff;color:#111;border-r
       <div class="style-opts">
         <div class="style-opt" data-style="retro">复古手帐信</div>
         <div class="style-opt" data-style="comic">漫画风</div>
+        <div class="style-opt" data-style="girl">少女手帐</div>
+        <div class="style-opt" data-style="news">报纸</div>
       </div>
     </div>
     <div class="set-group">
@@ -332,7 +436,7 @@ body.comic .btn-danger{border:3px solid #111;background:#fff;color:#111;border-r
 <input type="file" id="fileInput" accept=".json,.txt" style="display:none">
 
 <script>
-/* ===== OPFS 封装 ===== */
+/* ===== OPFS ===== */
 const FS = {
   dir:null,
   async init(){
@@ -345,81 +449,68 @@ const FS = {
   async read(name,def){
     try{
       if(this.dir){
-        const fh = await this.dir.getFileHandle(name);
-        const f = await fh.getFile();
-        const t = await f.text();
+        const fh=await this.dir.getFileHandle(name);
+        const f=await fh.getFile();
+        const t=await f.text();
         return t?JSON.parse(t):def;
       }else{
-        const t = localStorage.getItem('ayu_'+name);
+        const t=localStorage.getItem('ayu_'+name);
         return t?JSON.parse(t):def;
       }
     }catch(e){ return def; }
   },
   async write(name,obj){
-    const t = JSON.stringify(obj);
+    const t=JSON.stringify(obj);
     try{
       if(this.dir){
-        const fh = await this.dir.getFileHandle(name,{create:true});
-        const w = await fh.createWritable();
+        const fh=await this.dir.getFileHandle(name,{create:true});
+        const w=await fh.createWritable();
         await w.write(t); await w.close();
       }else{
         localStorage.setItem('ayu_'+name,t);
       }
-    }catch(e){ console.warn('写入失败',e); }
+    }catch(e){}
   }
 };
 
-/* ===== 数据 ===== */
-let cards = [];
-let messages = [];
-let settings = { dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
-                 avatarHer:null,avatarMe:null,nameHer:'祂',nameMe:'我' };
+let cards=[], messages=[];
+let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
+               avatarHer:null,avatarMe:null,nameHer:'祂',nameMe:'我' };
 
-const uid = ()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-const rand = (a,b)=>a+Math.random()*(b-a);
-const randInt = (a,b)=>Math.floor(rand(a,b+1));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const rand=(a,b)=>a+Math.random()*(b-a);
+const randInt=(a,b)=>Math.floor(rand(a,b+1));
+const saveCards=()=>FS.write('cards.json',{cards});
+const saveMsgs =()=>FS.write('messages.json',{messages});
+const saveSet  =()=>FS.write('settings.json',settings);
 
-const saveCards = ()=>FS.write('cards.json',{cards});
-const saveMsgs  = ()=>FS.write('messages.json',{messages});
-const saveSet   = ()=>FS.write('settings.json',settings);
+const $=s=>document.querySelector(s);
+const stream=$('#stream'), drawer=$('#drawer'), mask=$('#drawerMask');
 
-const $ = s=>document.querySelector(s);
-const stream = $('#stream');
-const drawer = $('#drawer');
-const mask = $('#drawerMask');
-
-/* ===== 提示 ===== */
 let toastTimer;
 function toast(msg){
-  const t = $('#toast');
-  t.textContent = msg; t.classList.add('on');
+  const t=$('#toast'); t.textContent=msg; t.classList.add('on');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('on'),2000);
+  toastTimer=setTimeout(()=>t.classList.remove('on'),2000);
 }
 
-/* ===== 头像 & 称呼 ===== */
 function applyProfile(){
-  $('#avHer').style.backgroundImage = settings.avatarHer?`url(${settings.avatarHer})`:'none';
-  $('#avMe').style.backgroundImage  = settings.avatarMe ?`url(${settings.avatarMe})` :'none';
-  $('#nameHer').textContent = settings.nameHer||'祂';
-  $('#nameMe').textContent  = settings.nameMe ||'我';
+  $('#avHer').style.backgroundImage=settings.avatarHer?`url(${settings.avatarHer})`:'none';
+  $('#avMe').style.backgroundImage =settings.avatarMe ?`url(${settings.avatarMe})` :'none';
+  $('#nameHer').textContent=settings.nameHer||'祂';
+  $('#nameMe').textContent =settings.nameMe ||'我';
 }
 
-/* ===== 消息渲染 ===== */
 function fmtTime(ts){
-  const d = new Date(ts);
+  const d=new Date(ts);
   return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
 }
 function makeNote(m){
-  const el = document.createElement('div');
-  el.className = 'note '+(m.from==='me'?'me':'her');
-  const rot = rand(-5,5).toFixed(1);
-  const dx  = rand(-10,10).toFixed(1);
-  const dy  = rand(-4,4).toFixed(1);
-  el.style.transform = `rotate(${rot}deg) translate(${dx}px,${dy}px)`;
-  el.textContent = m.text;
-  const st = document.createElement('div');
-  st.className='stamp'; st.textContent = fmtTime(m.time);
+  const el=document.createElement('div');
+  el.className='note '+(m.from==='me'?'me':'her');
+  el.textContent=m.text;
+  const st=document.createElement('div');
+  st.className='stamp'; st.textContent=fmtTime(m.time);
   el.appendChild(st);
   return el;
 }
@@ -446,11 +537,8 @@ function showSystem(text){
   el.className='sys'; el.dataset.sys='1'; el.textContent=text;
   stream.appendChild(el); scrollBottom();
 }
-function removeEmptyTip(){
-  stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove());
-}
+function removeEmptyTip(){ stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove()); }
 
-/* ===== 发送 ===== */
 let pendingReply=false;
 function sendMessage(){
   const input=$('#msgInput');
@@ -461,32 +549,30 @@ function sendMessage(){
   triggerReply();
 }
 function triggerReply(){
-  const avail = cards.filter(c=>!c.locked);
+  const avail=cards.filter(c=>!c.locked);
   if(avail.length===0) return;
   if(pendingReply) return;
   pendingReply=true;
-  const delay = rand(settings.dMin,settings.dMax)*1000;
+  const delay=rand(settings.dMin,settings.dMax)*1000;
   setTimeout(async ()=>{
     pendingReply=false;
-    const n = randInt(1,3);
-    const pool = cards.filter(c=>!c.locked);
+    const n=randInt(1,3);
+    const pool=cards.filter(c=>!c.locked);
     for(let i=0;i<n;i++){
       if(pool.length===0) break;
-      const pick = pool[randInt(0,pool.length-1)];
+      const pick=pool[randInt(0,pool.length-1)];
       appendMessage({id:uid(),from:'her',text:pick.text,time:Date.now()});
       if(i<n-1) await new Promise(r=>setTimeout(r, rand(settings.gMin,settings.gMax)*1000));
     }
   }, delay);
 }
 
-/* ===== 输入框 ===== */
 $('#msgInput').addEventListener('input',function(){
   this.style.height='auto';
   this.style.height=Math.min(this.scrollHeight,120)+'px';
 });
 $('#sendStamp').addEventListener('click',sendMessage);
 
-/* ===== 侧栏 ===== */
 function openDrawer(){ drawer.classList.add('on'); mask.classList.add('on'); }
 function closeDrawer(){ drawer.classList.remove('on'); mask.classList.remove('on'); }
 mask.addEventListener('click',closeDrawer);
@@ -494,7 +580,7 @@ let sx=0,sy=0,edge=false;
 document.addEventListener('touchstart',e=>{
   if(e.target.closest('textarea,input')){edge=false;return;}
   const t=e.touches[0]; sx=t.clientX; sy=t.clientY;
-  edge = sx<28 && !drawer.classList.contains('on');
+  edge=sx<28 && !drawer.classList.contains('on');
 },{passive:true});
 document.addEventListener('touchmove',e=>{
   if(!edge) return;
@@ -507,7 +593,6 @@ drawer.addEventListener('touchmove',e=>{
   if(e.touches[0].clientX-sx<-40) closeDrawer();
 },{passive:true});
 
-/* ===== 页面切换 ===== */
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
   $('#'+id).classList.add('show');
@@ -532,7 +617,6 @@ document.querySelectorAll('[data-back]').forEach(el=>{
   });
 });
 
-/* ===== 口袋 ===== */
 let selMode=false, selSet=new Set(), searchKw='';
 function renderPocket(){
   const list=$('#pocketList');
@@ -582,8 +666,6 @@ function dedup(){
     cards=kept; saveCards(); renderPocket(); toast('已删除 '+removed+' 张重复字卡');
   }
 }
-/* 口袋工具条 */
-let delArmed=false;
 $('#pocketTools').addEventListener('click',e=>{
   const t=e.target.closest('.tool'); if(!t) return;
   const act=t.dataset.t;
@@ -615,7 +697,6 @@ $('#pocketTools').addEventListener('click',e=>{
   else if(act==='lockall'){ toast('点每张字卡右侧的锁，可单独上锁'); }
 });
 
-/* 导入 */
 $('#fileInput').addEventListener('change',async e=>{
   const f=e.target.files[0]; if(!f) return;
   const text=await f.text();
@@ -638,11 +719,11 @@ $('#fileInput').addEventListener('change',async e=>{
   });
   if(added) await saveCards();
   renderPocket();
+  removeEmptyTip();
   toast('导入 '+added+' 张，跳过 '+skipped+' 张重复');
   e.target.value='';
 });
 
-/* 导出 */
 async function exportCards(){
   const fmt=prompt('导出格式：输入 1 = JSON，2 = TXT','1');
   if(fmt!=='1'&&fmt!=='2') return;
@@ -662,7 +743,6 @@ async function exportCards(){
   toast('已导出 '+out.length+' 张字卡');
 }
 
-/* ===== 添加/保存 ===== */
 $('#saveCards').addEventListener('click',async ()=>{
   const area=$('#addArea');
   const editingId=area.dataset.editing;
@@ -681,7 +761,6 @@ $('#saveCards').addEventListener('click',async ()=>{
   removeEmptyTip();
 });
 
-/* ===== 设置 ===== */
 function renderSettings(){
   $('#dMin').value=settings.dMin; $('#dMax').value=settings.dMax;
   $('#gMin').value=settings.gMin; $('#gMax').value=settings.gMax;
@@ -714,7 +793,6 @@ $('#clearMsgs').addEventListener('click',()=>{
   }
 });
 
-/* 头像上传/清除 */
 let avTarget=null;
 const avFile=document.createElement('input');
 avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none';
@@ -740,7 +818,6 @@ avFile.addEventListener('change',e=>{
   r.readAsDataURL(f); e.target.value='';
 });
 
-/* ===== 启动 ===== */
 async function boot(){
   await FS.init();
   const c=await FS.read('cards.json',{cards:[]});
