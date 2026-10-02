@@ -8,11 +8,14 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{
-  font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;
-  color:#4a3b2a;user-select:none;
-}
+body{font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;color:#4a3b2a;user-select:none}
 #app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden}
+
+/* ========== 图标（线条） ========== */
+.ico{width:22px;height:22px;display:block}
+.ico path,.ico line,.ico circle,.ico rect,.ico polyline{
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
+}
 
 /* ========== 复古手帐信 ========== */
 body.retro{
@@ -25,39 +28,28 @@ body.retro{
 }
 body.retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;box-shadow:0 2px 6px rgba(120,95,60,.15)}
 body.retro .names span{color:#6b5334}
+body.retro .tool{color:#7a5f30}
 
 /* ========== 漫画风 ========== */
 body.comic{
   background-color:#fff;
   background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);
-  background-size:12px 12px;
-  color:#111;
+  background-size:12px 12px;color:#111;
 }
 body.comic .topbar{background:#fff;border-bottom:3px solid #111;box-shadow:0 3px 0 #111}
 body.comic .names span{color:#111;font-weight:900}
+body.comic .tool{color:#111}
+body.comic .tool{border:2px solid #111;border-radius:4px;background:#fff}
 
 /* ========== 少女手帐 ========== */
 body.girl{
   background-color:#fdf2f6;
   background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);
-  background-size:18px 18px;
-  color:#7a4a5c;
+  background-size:18px 18px;color:#7a4a5c;
 }
 body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;box-shadow:0 2px 6px rgba(220,140,170,.25)}
 body.girl .names span{color:#c05a80}
-body.girl .page{background:#fdf2f6}
-body.girl .page-head{background:rgba(255,233,241,.95);border-bottom:1px solid #f3b8ce}
-body.girl .page-head h2,body.girl .page-head .back{color:#c05a80}
-body.girl .drawer-item{color:#7a4a5c}
-body.girl .set-group,body.girl .card-item{background:#fff;border-color:#f3c8d8}
-body.girl .tool{border-color:#f3b8ce;background:#fff5f8}
-body.girl .mini-btn{border-color:#f3b8ce;background:#fff5f8;color:#c05a80}
-body.girl .save-btn{border-color:#f3b8ce;background:linear-gradient(#ffe9f1,#ffd6e6);color:#c05a80}
-body.girl .empty-tip{color:#c08aa0}
-body.girl #composer{background:linear-gradient(transparent,rgba(253,242,246,.95))}
-body.girl .input-note{background:#fff;border:2px solid #ffd6e6;border-radius:14px;box-shadow:0 2px 8px rgba(220,140,170,.25)}
-body.girl #sendStamp{border:2px solid #f3a8c2;background:radial-gradient(circle at 35% 30%,#fff0f5,#ffd6e6);color:#d86a92;border-radius:50%}
-body.girl #drawer{background:linear-gradient(160deg,#ffe9f1,#ffd6e6);border-right:1px solid #f3b8ce}
+body.girl .tool{color:#c05a80;border-color:#f3b8ce;background:#fff5f8}
 
 /* ========== 报纸 ========== */
 body.news{
@@ -65,142 +57,135 @@ body.news{
   background-image:
     linear-gradient(rgba(120,110,80,.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(120,110,80,.04) 1px, transparent 1px);
-  background-size:100% 26px, 26px 100%;
-  color:#2a2a26;
+  background-size:100% 26px, 26px 100%;color:#2a2a26;
 }
 body.news .topbar{background:#ece6d4;border-bottom:3px double #2a2a26;box-shadow:none}
 body.news .names span{color:#2a2a26;font-weight:700;letter-spacing:1px}
-body.news .page{background:#e8e2d0}
-body.news .page-head{background:#ece6d4;border-bottom:3px double #2a2a26}
-body.news .page-head h2,body.news .page-head .back{color:#2a2a26;font-family:"FangSong",serif;letter-spacing:2px}
-body.news .drawer-item{color:#2a2a26;font-family:"FangSong",serif}
-body.news #drawer{background:#ece6d4;border-right:3px double #2a2a26}
-body.news .set-group,body.news .card-item{background:#f2ecda;border:1px solid #6a6350}
-body.news .tool{border:1px solid #6a6350;background:#f2ecda}
-body.news .mini-btn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
-body.news .save-btn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;font-family:"FangSong",serif}
-body.news .empty-tip{color:#6a6350}
-body.news #composer{background:#e8e2d0;border-top:3px double #2a2a26}
-body.news .input-note{background:#f2ecda;border:1px solid #6a6350;border-radius:0;box-shadow:none}
-body.news #msgInput{color:#2a2a26}
-body.news #sendStamp{border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0;font-family:"FangSong",serif;transform:none}
+body.news .tool{color:#2a2a26;border:1px solid #6a6350;border-radius:0;background:#f2ecda}
+
+/* ========== 樱花夜 ========== */
+body.sakura{
+  background-color:#241826;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),
+    radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),
+    radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),
+    radial-gradient(circle at 88% 85%, rgba(255,190,215,.13) 0 2px, transparent 4px),
+    linear-gradient(160deg,#2b1c2e,#1c1420);
+  background-size:120px 120px,150px 150px,130px 130px,170px 170px,100% 100%;
+  color:#f2dbe6;
+}
+body.sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+body.sakura .names span{color:#ffc0d8}
+body.sakura .tool{color:#ffc0d8;border:1px solid #5a3f62;background:rgba(255,190,215,.08);border-radius:8px}
+body.sakura .page{background:linear-gradient(160deg,#2b1c2e,#1c1420)}
+body.sakura .page-head{background:rgba(51,34,58,.95);border-bottom:1px solid #4a3350}
+body.sakura .page-head h2,body.sakura .page-head .back{color:#ffc0d8}
+body.sakura .drawer-item{color:#f2dbe6}
+body.sakura #drawer{background:linear-gradient(160deg,#33223a,#241826);border-right:1px solid #4a3350}
+body.sakura .set-group,body.sakura .card-item{background:rgba(255,220,235,.07);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
+body.sakura .set-group h3{color:#ffc0d8}
+body.sakura .set-row input{border:1px solid #5a3f62;background:rgba(0,0,0,.2);color:#f2dbe6}
+body.sakura .mini-btn{border:1px solid #5a3f62;background:rgba(255,190,215,.1);color:#ffc0d8}
+body.sakura .style-opt{border:1px solid #5a3f62;background:rgba(255,190,215,.06);color:#f2dbe6}
+body.sakura .style-opt.on{border:2px solid #ff9ec4;background:rgba(255,158,196,.15)}
+body.sakura .btn-danger{border:1px solid #a04a70;background:rgba(160,74,112,.3);color:#ffc0d8}
+body.sakura .empty-tip{color:#c08aa8}
+body.sakura #composer{background:linear-gradient(transparent,rgba(36,24,38,.95))}
+body.sakura .input-note{background:rgba(255,220,235,.08);border:1px solid #5a3f62;border-radius:10px}
+body.sakura #msgInput{color:#f2dbe6}
+body.sakura #msgInput::placeholder{color:#8a6a86}
+body.sakura #sendStamp{border:1px solid #ff9ec4;background:radial-gradient(circle at 35% 30%,#5a3f62,#33223a);color:#ffc0d8;border-radius:50%}
+body.sakura .note.me{background:rgba(255,210,230,.12);border:1px solid #6a4a72;color:#ffe6f0;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+body.sakura .note.her{background:rgba(255,240,250,.09);border:1px solid #5a3f62;color:#f2dbe6;background-image:none;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+body.sakura .stamp{border:1px solid #7a5a82;color:#e0a8c0;background:rgba(255,190,215,.08);border-radius:8px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
+body.sakura .waiting{background:rgba(255,190,215,.07);border:1px dashed #6a4a72;color:#e0a8c0;border-radius:8px}
+body.sakura .sys{background:rgba(255,190,215,.08);border:1px dashed #6a4a72;color:#e0a8c0}
+body.sakura #addArea{background:rgba(255,220,235,.06);border:1px solid #5a3f62;color:#f2dbe6;background-image:none;border-radius:10px}
+body.sakura #addArea::placeholder{color:#8a6a86}
+body.sakura .save-btn{border:1px solid #ff9ec4;background:rgba(255,158,196,.18);color:#ffc0d8;border-radius:10px}
+
+/* ========== 玻璃花房 ========== */
+body.glass{
+  background-color:#f4f7f8;
+  background-image:
+    linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),
+    radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),
+    linear-gradient(160deg,#ffffff,#e6eff2);
+  background-size:44px 44px,44px 44px,100% 100%,100% 100%;
+  color:#3a4a52;
+}
+body.glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2;box-shadow:0 2px 8px rgba(140,170,180,.2)}
+body.glass .names span{color:#5a7a88}
+body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.8);border-radius:8px}
+body.glass .page{background:linear-gradient(160deg,#ffffff,#e6eff2)}
+body.glass .page-head{background:rgba(255,255,255,.95);border-bottom:1px solid #cfdde2}
+body.glass .page-head h2,body.glass .page-head .back{color:#5a7a88}
+body.glass .drawer-item{color:#3a4a52}
+body.glass #drawer{background:linear-gradient(160deg,#ffffff,#e6eff2);border-right:1px solid #cfdde2}
+body.glass .set-group,body.glass .card-item{background:#fff;border:1px solid #dbe6ea;border-radius:8px;box-shadow:0 2px 8px rgba(150,180,190,.12)}
+body.glass .set-group h3{color:#5a7a88}
+body.glass .set-row input{border:1px solid #cfdde2;background:#f7fbfc;color:#3a4a52}
+body.glass .mini-btn{border:1px solid #cfdde2;background:#f7fbfc;color:#5a7a88}
+body.glass .style-opt{border:1px solid #cfdde2;background:#fbfdfe;color:#3a4a52}
+body.glass .style-opt.on{border:2px solid #8ab4c4;background:#eaf4f8}
+body.glass .btn-danger{border:1px solid #c47a8a;background:#fdedf0;color:#a54a5a}
+body.glass .empty-tip{color:#8aaab4}
+body.glass #composer{background:linear-gradient(transparent,rgba(244,247,248,.95))}
+body.glass .input-note{background:#fff;border:1px solid #cfdde2;border-radius:10px;box-shadow:0 2px 10px rgba(150,180,190,.2)}
+body.glass #msgInput{color:#3a4a52}
+body.glass #msgInput::placeholder{color:#9ab4bc}
+body.glass #sendStamp{border:1px solid #8ab4c4;background:radial-gradient(circle at 35% 30%,#ffffff,#dcecf2);color:#5a7a88;border-radius:50%}
+body.glass .note.me{background:#ffffff;border:1px solid #dbe6ea;color:#3a4a52;border-radius:4px;box-shadow:0 3px 10px rgba(150,180,190,.18)}
+body.glass .note.her{background:#f7fbfc;border:1px solid #dbe6ea;color:#3a4a52;background-image:none;border-radius:4px;box-shadow:0 3px 10px rgba(150,180,190,.15)}
+body.glass .stamp{border:1px solid #cfdde2;color:#8aaab4;background:#fff;border-radius:8px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
+body.glass .waiting{background:#eef6f9;border:1px dashed #cfdde2;color:#8aaab4;border-radius:8px}
+body.glass .sys{background:rgba(255,255,255,.8);border:1px dashed #cfdde2;color:#8aaab4}
+body.glass #addArea{background:#fff;border:1px solid #cfdde2;color:#3a4a52;background-image:none;border-radius:10px}
+body.glass #addArea::placeholder{color:#9ab4bc}
+body.glass .save-btn{border:1px solid #8ab4c4;background:linear-gradient(#ffffff,#dcecf2);color:#5a7a88;border-radius:10px}
 
 /* ========== 顶栏 ========== */
-.topbar{
-  flex:0 0 auto;
-  display:flex;align-items:center;justify-content:center;
-  padding:8px 0 calc(6px + env(safe-area-inset-top));
-  position:relative;z-index:5;
-}
+.topbar{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:8px 0 calc(6px + env(safe-area-inset-top));position:relative;z-index:5}
 .avatar-wrap{display:flex;flex-direction:column;align-items:center}
 .avatar-group{position:relative;width:72px;height:44px}
-.av-her{
-  position:absolute;left:0;top:0;
-  width:44px;height:44px;border-radius:10px;
-  background:#fff;border:1px solid #cbb98f;
-  background-size:cover;background-position:center;
-  box-shadow:1px 2px 5px rgba(120,95,50,.2);
-}
-.av-me{
-  position:absolute;left:44px;bottom:0;
-  width:28px;height:28px;border-radius:7px;
-  background:#fff;border:1px solid #cbb98f;
-  background-size:cover;background-position:center;
-  box-shadow:1px 2px 4px rgba(120,95,50,.2);
-}
-.names{
-  display:flex;justify-content:space-between;
-  width:72px;margin-top:5px;font-size:12px;
-}
+.av-her{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid #cbb98f;background-size:cover;background-position:center;box-shadow:1px 2px 5px rgba(120,95,50,.2)}
+.av-me{position:absolute;left:44px;bottom:0;width:28px;height:28px;border-radius:7px;background:#fff;border:1px solid #cbb98f;background-size:cover;background-position:center;box-shadow:1px 2px 4px rgba(120,95,50,.2)}
+.names{display:flex;justify-content:space-between;width:72px;margin-top:5px;font-size:12px}
 .names span:first-child{text-align:left;max-width:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .names span:last-child{text-align:right;max-width:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 body.comic .av-her,body.comic .av-me{border:2px solid #111;border-radius:4px}
 body.girl .av-her,body.girl .av-me{border:2px solid #f3b8ce;border-radius:12px}
 body.news .av-her,body.news .av-me{border:2px solid #2a2a26;border-radius:0}
+body.sakura .av-her,body.sakura .av-me{border:1px solid #6a4a72;border-radius:10px;background:#33223a}
+body.glass .av-her,body.glass .av-me{border:1px solid #cfdde2;border-radius:10px}
 
 /* ========== 消息区 ========== */
 #stream{flex:1 1 auto;overflow-y:auto;padding:28px 16px 30px;position:relative;-webkit-overflow-scrolling:touch}
-.note{
-  position:relative;max-width:72%;padding:14px 16px;margin:22px 0;
-  font-size:16px;line-height:1.6;word-break:break-word;white-space:pre-wrap;
-}
-/* 你的：右对齐 */
-.note.me{
-  background:#fdf3c8;border:1px solid #e2cf8a;border-radius:3px;
-  box-shadow:2px 3px 8px rgba(120,95,50,.18);
-  margin-left:auto;margin-right:8px;color:#5a4a2e;
-}
-body.retro .note.me::after{
-  content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-3deg);
-  width:46px;height:14px;background:rgba(200,180,130,.55);
-  border-left:1px dashed rgba(255,255,255,.6);border-right:1px dashed rgba(255,255,255,.6);
-}
-/* 祂的：左对齐 */
-.note.her{
-  background:#fbf7ec;border:1px solid #d8cba8;border-radius:2px;
-  box-shadow:2px 3px 8px rgba(120,95,50,.15);
-  margin-right:auto;margin-left:8px;color:#4a3b2a;
-  background-image:repeating-linear-gradient(transparent 0 27px, rgba(150,130,95,.25) 27px 28px);
-  background-position:0 10px;
-}
-/* 漫画 */
+.note{position:relative;max-width:72%;padding:14px 16px;margin:22px 0;font-size:16px;line-height:1.6;word-break:break-word;white-space:pre-wrap}
+.note.me{background:#fdf3c8;border:1px solid #e2cf8a;border-radius:3px;box-shadow:2px 3px 8px rgba(120,95,50,.18);margin-left:auto;margin-right:8px;color:#5a4a2e}
+body.retro .note.me::after{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-3deg);width:46px;height:14px;background:rgba(200,180,130,.55);border-left:1px dashed rgba(255,255,255,.6);border-right:1px dashed rgba(255,255,255,.6)}
+.note.her{background:#fbf7ec;border:1px solid #d8cba8;border-radius:2px;box-shadow:2px 3px 8px rgba(120,95,50,.15);margin-right:auto;margin-left:8px;color:#4a3b2a;background-image:repeating-linear-gradient(transparent 0 27px, rgba(150,130,95,.25) 27px 28px);background-position:0 10px}
 body.comic .note.me,body.comic .note.her{background-image:none;border:3px solid #111;border-radius:4px;box-shadow:none}
-/* 少女 */
-body.girl .note.me{
-  background:#fff;border:2px solid #ffd6e6;border-radius:16px;
-  box-shadow:0 3px 10px rgba(220,140,170,.28);color:#a04a6a;
-}
-body.girl .note.me::after{
-  content:"♥";position:absolute;top:-10px;left:-6px;
-  color:#f38bb0;font-size:16px;
-}
-body.girl .note.her{
-  background:#f6f0ff;border:2px solid #ddd0f5;border-radius:16px;
-  box-shadow:0 3px 10px rgba(180,150,220,.25);color:#6a5a8a;background-image:none;
-}
-body.girl .note.her::after{
-  content:"♥";position:absolute;top:-10px;right:-6px;
-  color:#c0a8e8;font-size:16px;
-}
-/* 报纸 */
-body.news .note.me{
-  background:#f2ecda;border:1px solid #6a6350;border-radius:0;
-  box-shadow:none;color:#2a2a26;font-family:"FangSong","STFangsong",serif;
-  border-left:4px solid #2a2a26;
-}
-body.news .note.her{
-  background:#f2ecda;border:1px solid #6a6350;border-radius:0;
-  box-shadow:none;color:#2a2a26;font-family:"FangSong","STFangsong",serif;
-  background-image:none;border-right:4px solid #2a2a26;
-}
+body.girl .note.me{background:#fff;border:2px solid #ffd6e6;border-radius:16px;box-shadow:0 3px 10px rgba(220,140,170,.28);color:#a04a6a}
+body.girl .note.me::after{content:"♥";position:absolute;top:-10px;left:-6px;color:#f38bb0;font-size:16px}
+body.girl .note.her{background:#f6f0ff;border:2px solid #ddd0f5;border-radius:16px;box-shadow:0 3px 10px rgba(180,150,220,.25);color:#6a5a8a;background-image:none}
+body.girl .note.her::after{content:"♥";position:absolute;top:-10px;right:-6px;color:#c0a8e8;font-size:16px}
+body.news .note.me{background:#f2ecda;border:1px solid #6a6350;border-radius:0;box-shadow:none;color:#2a2a26;font-family:"FangSong","STFangsong",serif;border-left:4px solid #2a2a26}
+body.news .note.her{background:#f2ecda;border:1px solid #6a6350;border-radius:0;box-shadow:none;color:#2a2a26;font-family:"FangSong","STFangsong",serif;background-image:none;border-right:4px solid #2a2a26}
 
-/* 时间戳 */
-.stamp{
-  position:absolute;bottom:-12px;right:8px;font-size:10px;color:#a08a5f;
-  border:1px solid #c8b68a;border-radius:50%;width:34px;height:34px;
-  display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);
-  opacity:.7;background:rgba(255,255,255,.35);padding:2px;text-align:center;line-height:1.1;
-}
+.stamp{position:absolute;bottom:-12px;right:8px;font-size:10px;color:#a08a5f;border:1px solid #c8b68a;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);opacity:.7;background:rgba(255,255,255,.35);padding:2px;text-align:center;line-height:1.1}
 body.comic .stamp{border:2px solid #111;border-radius:3px;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px;color:#111;background:#fff}
 body.girl .stamp{border:1px solid #f3b8ce;border-radius:10px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px;color:#c05a80;background:#fff}
 body.news .stamp{border:none;border-top:1px solid #6a6350;border-bottom:1px solid #6a6350;border-radius:0;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px;color:#2a2a26;background:transparent;font-family:"FangSong",serif}
 
-/* 等待 */
-.waiting{
-  max-width:72%;margin:22px auto 22px 8px;padding:16px 14px;
-  background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#efe6cc 8px 16px);
-  border:1px dashed #c9b98f;border-radius:3px;color:#a08a5f;font-size:14px;text-align:center;
-  animation:breathe 2s ease-in-out infinite;
-}
+.waiting{max-width:72%;margin:22px auto 22px 8px;padding:16px 14px;background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#efe6cc 8px 16px);border:1px dashed #c9b98f;border-radius:3px;color:#a08a5f;font-size:14px;text-align:center;animation:breathe 2s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
 body.girl .waiting{background:#fff0f5;border:2px dashed #f3b8ce;color:#c05a80;border-radius:14px}
 body.news .waiting{background:#f2ecda;border:1px dashed #6a6350;color:#6a6350;border-radius:0}
 
-/* 系统提示 */
-.sys{
-  text-align:center;font-size:12.5px;color:#9a865e;margin:16px auto;padding:6px 12px;
-  background:rgba(255,250,235,.6);border:1px dashed #c9b98f;border-radius:4px;max-width:80%;
-}
+.sys{text-align:center;font-size:12.5px;color:#9a865e;margin:16px auto;padding:6px 12px;background:rgba(255,250,235,.6);border:1px dashed #c9b98f;border-radius:4px;max-width:80%}
 body.comic .sys{background:#fff;border:2px dashed #111;color:#111}
 body.girl .sys{background:#fff;border:2px dashed #f3b8ce;color:#c05a80}
 body.news .sys{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26}
@@ -209,52 +194,31 @@ body.news .sys{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26}
 #composer{flex:0 0 auto;padding:8px 12px calc(10px + env(safe-area-inset-bottom));position:relative}
 body.retro #composer{background:linear-gradient(transparent,rgba(232,220,192,.9))}
 body.comic #composer{background:#fff;border-top:3px solid #111}
-.input-note{
-  position:relative;background:#fdf3c8;border:1px solid #e2cf8a;border-radius:3px;
-  box-shadow:2px 3px 10px rgba(120,95,50,.2);padding:10px 56px 10px 12px;
-}
+.input-note{position:relative;background:#fdf3c8;border:1px solid #e2cf8a;border-radius:3px;box-shadow:2px 3px 10px rgba(120,95,50,.2);padding:10px 56px 10px 12px}
 body.comic .input-note{background:#fff;border:3px solid #111;border-radius:4px}
-#msgInput{
-  width:100%;border:none;outline:none;background:transparent;font-family:inherit;
-  font-size:16px;color:#5a4a2e;resize:none;max-height:120px;line-height:1.4;
-}
+#msgInput{width:100%;border:none;outline:none;background:transparent;font-family:inherit;font-size:16px;color:#5a4a2e;resize:none;max-height:120px;line-height:1.4}
 body.comic #msgInput{color:#111}
 #msgInput::placeholder{color:#bca878}
-#sendStamp{
-  position:absolute;right:8px;bottom:8px;width:46px;height:46px;border-radius:50%;
-  border:2px solid #b89b5e;background:radial-gradient(circle at 35% 30%,#f7ecd0,#e6d3a4);
-  color:#8a6f3c;font-family:inherit;font-size:15px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 6px rgba(120,95,50,.3);transform:rotate(-8deg);
-}
+#sendStamp{position:absolute;right:8px;bottom:8px;width:46px;height:46px;border-radius:50%;border:2px solid #b89b5e;background:radial-gradient(circle at 35% 30%,#f7ecd0,#e6d3a4);color:#8a6f3c;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(120,95,50,.3);transform:rotate(-8deg)}
 #sendStamp:active{transform:rotate(-8deg) scale(.92)}
 body.comic #sendStamp{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
 
 /* ========== 侧栏 ========== */
 #drawerMask{position:fixed;inset:0;background:rgba(60,45,25,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
 #drawerMask.on{opacity:1;pointer-events:auto}
-#drawer{
-  position:fixed;top:0;left:0;bottom:0;width:210px;
-  background:linear-gradient(160deg,#f3ead2,#e6d9ba);
-  border-right:1px solid #c9b98f;box-shadow:4px 0 16px rgba(90,70,40,.25);
-  transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);
-  z-index:21;padding-top:calc(30px + env(safe-area-inset-top));
-}
+#drawer{position:fixed;top:0;left:0;bottom:0;width:210px;background:linear-gradient(160deg,#f3ead2,#e6d9ba);border-right:1px solid #c9b98f;box-shadow:4px 0 16px rgba(90,70,40,.25);transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:21;padding-top:calc(30px + env(safe-area-inset-top))}
 #drawer.on{transform:translateX(0)}
 body.comic #drawer{background:#fff;border-right:3px solid #111}
 .drawer-item{display:flex;align-items:center;gap:12px;padding:16px 20px;font-size:17px;color:#5a4a2e}
 .drawer-item:active{background:rgba(180,155,110,.2)}
-.drawer-item .ico{font-size:20px}
+.drawer-item .ico{font-size:0}
 
 /* ========== 页面 ========== */
 .page{position:fixed;inset:0;display:none;flex-direction:column;z-index:10;overflow:hidden}
 body.retro .page{background:linear-gradient(160deg,#efe4c8,#e3d5b4)}
 body.comic .page{background:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px}
 .page.show{display:flex}
-.page-head{
-  flex:0 0 auto;height:52px;display:flex;align-items:center;padding:0 14px;
-  padding-top:env(safe-area-inset-top);border-bottom:1px solid #cbb98f;background:rgba(243,234,210,.95);
-}
+.page-head{flex:0 0 auto;height:52px;display:flex;align-items:center;padding:0 14px;padding-top:env(safe-area-inset-top);border-bottom:1px solid #cbb98f;background:rgba(243,234,210,.95)}
 body.comic .page-head{border-bottom:3px solid #111;background:#fff}
 .page-head .back{font-size:22px;width:36px;color:#6b5334}
 body.comic .page-head .back{color:#111}
@@ -263,28 +227,23 @@ body.comic .page-head h2{color:#111}
 .page-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
 
 /* ========== 口袋 ========== */
-.toolbar{display:flex;gap:4px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px dashed #c9b98f;background:rgba(243,234,210,.7)}
+.toolbar{display:flex;gap:6px;padding:10px 12px;border-bottom:1px dashed #c9b98f;background:rgba(243,234,210,.7);align-items:center}
 body.comic .toolbar{background:#fff;border-bottom:2px dashed #111}
-.tool{
-  flex:1;min-width:38px;height:40px;border-radius:6px;border:1px solid #cbb98f;
-  background:rgba(255,250,235,.8);font-size:17px;
-  display:flex;align-items:center;justify-content:center;
-}
-body.comic .tool{border:2px solid #111;background:#fff}
+.tool{flex:1;min-width:40px;height:42px;border-radius:6px;border:1px solid #cbb98f;background:rgba(255,250,235,.8);display:flex;align-items:center;justify-content:center;color:#7a5f30}
 .tool:active{background:#e6d9ba}
 .tool.on{background:#d9c48f;border-color:#a88b4e}
+.tool.more{flex:0 0 44px}
+.toolbar .expanded{display:none;gap:6px;flex:1}
+.toolbar.open .expanded{display:flex}
 
-.card-item{
-  position:relative;background:#fbf7ec;border:1px solid #d8cba8;border-radius:3px;
-  padding:13px 44px 13px 14px;margin-bottom:10px;font-size:15.5px;line-height:1.45;color:#4a3b2a;
-  box-shadow:1px 2px 5px rgba(120,95,50,.12);word-break:break-word;white-space:pre-wrap;
-}
+/* 字卡 */
+.card-item{position:relative;background:#fbf7ec;border:1px solid #d8cba8;border-radius:3px;padding:13px 44px 13px 14px;margin-bottom:10px;font-size:15.5px;line-height:1.45;color:#4a3b2a;box-shadow:1px 2px 5px rgba(120,95,50,.12);word-break:break-word;white-space:pre-wrap}
 body.comic .card-item{border:3px solid #111;border-radius:4px;background:#fff;color:#111}
 body.girl .card-item{border:2px solid #f3c8d8;border-radius:12px;background:#fff;color:#7a4a5c}
 body.news .card-item{border:1px solid #6a6350;border-radius:0;background:#f2ecda;color:#2a2a26}
-.card-item.locked{opacity:.42;filter:grayscale(1)}
-.card-item .lockbtn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;border-radius:50%}
-.card-item .lockbtn:active{background:rgba(180,155,110,.25)}
+.card-item.locked{opacity:.5;filter:grayscale(1)}
+.card-item .locktag{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:14px;color:#a08a5f}
+body.comic .card-item .locktag{color:#111}
 .card-item.sel{outline:2px solid #c47a3a;background:#f7ecd0}
 .card-item .chk{position:absolute;left:6px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:2px solid #c47a3a;border-radius:4px;display:none;align-items:center;justify-content:center;font-size:14px;color:#c47a3a}
 .card-item.selmode{padding-left:36px}
@@ -292,13 +251,33 @@ body.news .card-item{border:1px solid #6a6350;border-radius:0;background:#f2ecda
 .empty-tip{text-align:center;color:#a08a5f;font-size:14px;padding:40px 20px;line-height:1.8}
 body.comic .empty-tip{color:#111}
 
+/* 多选底部条 */
+#multiBar{position:fixed;left:0;right:0;bottom:0;background:rgba(243,234,210,.98);border-top:1px solid #cbb98f;display:none;padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;z-index:30}
+body.comic #multiBar{background:#fff;border-top:3px solid #111}
+#multiBar.on{display:flex}
+.mbtn{flex:1;height:46px;border-radius:6px;border:1px solid #cbb98f;background:#fffaf0;font-family:inherit;font-size:15px;color:#6b5334;display:flex;align-items:center;justify-content:center;gap:6px}
+.mbtn:active{background:#e6d9ba}
+.mbtn.danger{color:#a5401a;border-color:#c47a3a;background:#f7e0d0}
+body.comic .mbtn{border:2px solid #111;background:#fff;color:#111}
+
+/* 全选行 */
+#selectAllRow{padding:8px 12px;font-size:14px;color:#8a6f3c;display:none;align-items:center;gap:8px;border-bottom:1px dashed #c9b98f}
+#selectAllRow.on{display:flex}
+#selectAllRow input{width:18px;height:18px}
+
+/* 弹出菜单 */
+#sheetMask{position:fixed;inset:0;background:rgba(60,45,25,.35);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+#sheetMask.on{opacity:1;pointer-events:auto}
+#sheet{position:fixed;left:0;right:0;bottom:0;background:#f3ead2;border-top:1px solid #cbb98f;border-radius:14px 14px 0 0;padding:10px 0 calc(10px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .25s;z-index:41}
+body.comic #sheet{background:#fff;border-top:3px solid #111;border-radius:0}
+#sheet.on{transform:translateY(0)}
+.sheet-item{padding:15px 20px;font-size:16px;color:#5a4a2e;text-align:center}
+.sheet-item:active{background:rgba(180,155,110,.2)}
+.sheet-item.danger{color:#a5401a}
+.sheet-cancel{margin-top:6px;border-top:1px solid #cbb98f;color:#8a6f3c}
+
 /* ========== 添加页 ========== */
-#addArea{
-  flex:1;width:100%;border:1px solid #d8cba8;border-radius:3px;background:#fbf7ec;
-  background-image:repeating-linear-gradient(transparent 0 29px,rgba(150,130,95,.2) 29px 30px);
-  background-position:0 12px;padding:14px;font-family:inherit;font-size:16px;line-height:30px;color:#4a3b2a;
-  outline:none;resize:none;
-}
+#addArea{flex:1;width:100%;border:1px solid #d8cba8;border-radius:3px;background:#fbf7ec;background-image:repeating-linear-gradient(transparent 0 29px,rgba(150,130,95,.2) 29px 30px);background-position:0 12px;padding:14px;font-family:inherit;font-size:16px;line-height:30px;color:#4a3b2a;outline:none;resize:none}
 body.comic #addArea{border:3px solid #111;border-radius:4px;background:#fff;background-image:none;color:#111}
 body.girl #addArea{border:2px solid #ffd6e6;border-radius:14px;background:#fff;background-image:none;color:#7a4a5c}
 body.news #addArea{border:1px solid #6a6350;border-radius:0;background:#f2ecda;background-image:none;color:#2a2a26;font-family:"FangSong",serif}
@@ -345,6 +324,21 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
 </style>
 </head>
 <body class="retro">
+
+<!-- SVG 图标定义 -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><line x1="16" y1="16" x2="21" y2="21"/></symbol>
+  <symbol id="i-add" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-del" viewBox="0 0 24 24"><polyline points="4 7 20 7"/><line x1="9" y1="7" x2="9" y2="4"/><line x1="15" y1="7" x2="15" y2="4"/><path d="M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></symbol>
+  <symbol id="i-dedup" viewBox="0 0 24 24"><rect x="4" y="4" width="13" height="13" rx="2"/><path d="M8 20h10a2 2 0 0 0 2-2V8"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M12 3v12"/><polyline points="8 11 12 15 16 11"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M12 15V3"/><polyline points="8 7 12 3 16 7"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+  <symbol id="i-pocket" viewBox="0 0 24 24"><path d="M4 5h16v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="10" y1="14" x2="14" y2="14"/></symbol>
+  <symbol id="i-set" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+</svg>
+
 <div id="app">
   <div class="topbar">
     <div class="avatar-wrap">
@@ -366,21 +360,26 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
 
 <div id="drawerMask"></div>
 <div id="drawer">
-  <div class="drawer-item" data-go="pocket"><span class="ico">🗄️</span>口袋</div>
-  <div class="drawer-item" data-go="settings"><span class="ico">⚙️</span>设置</div>
+  <div class="drawer-item" data-go="pocket"><svg class="ico"><use href="#i-pocket"/></svg>口袋</div>
+  <div class="drawer-item" data-go="settings"><svg class="ico"><use href="#i-set"/></svg>设置</div>
 </div>
 
+<!-- 口袋 -->
 <div class="page" id="page-pocket">
-  <div class="page-head"><div class="back" data-back>←</div><h2>口袋</h2></div>
+  <div class="page-head"><div class="back" data-back>←</div><h2 id="pocketTitle">口袋</h2></div>
   <div class="toolbar" id="pocketTools">
-    <div class="tool" data-t="search">🔍</div>
-    <div class="tool" data-t="add">➕</div>
-    <div class="tool" data-t="dedup">⧉</div>
-    <div class="tool" data-t="import">⬇</div>
-    <div class="tool" data-t="export">⬆</div>
-    <div class="tool" data-t="del">🗑</div>
-    <div class="tool" data-t="lockall">🔒</div>
+    <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
+    <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+    <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+    <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
+    <div class="tool more" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+    <div class="expanded">
+      <div class="tool" data-t="dedup"><svg class="ico"><use href="#i-dedup"/></svg></div>
+      <div class="tool" data-t="import"><svg class="ico"><use href="#i-in"/></svg></div>
+      <div class="tool" data-t="export"><svg class="ico"><use href="#i-out"/></svg></div>
+    </div>
   </div>
+  <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
   <div class="page-body" id="pocketList"></div>
 </div>
 
@@ -397,12 +396,8 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
   <div class="page-body">
     <div class="set-group">
       <h3>头像</h3>
-      <div class="set-row"><span>祂的头像</span>
-        <span><button class="mini-btn" data-av="her">上传</button>
-        <button class="mini-btn" data-avclear="her">清除</button></span></div>
-      <div class="set-row"><span>我的头像</span>
-        <span><button class="mini-btn" data-av="me">上传</button>
-        <button class="mini-btn" data-avclear="me">清除</button></span></div>
+      <div class="set-row"><span>祂的头像</span><span><button class="mini-btn" data-av="her">上传</button><button class="mini-btn" data-avclear="her">清除</button></span></div>
+      <div class="set-row"><span>我的头像</span><span><button class="mini-btn" data-av="me">上传</button><button class="mini-btn" data-avclear="me">清除</button></span></div>
     </div>
     <div class="set-group">
       <h3>称呼</h3>
@@ -411,10 +406,8 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
     </div>
     <div class="set-group">
       <h3>祂回复</h3>
-      <div class="set-row"><span>延迟（秒）</span>
-        <span><input type="number" id="dMin" min="0"> ～ <input type="number" id="dMax" min="0"></span></div>
-      <div class="set-row"><span>字卡间隔（秒）</span>
-        <span><input type="number" id="gMin" min="0"> ～ <input type="number" id="gMax" min="0"></span></div>
+      <div class="set-row"><span>延迟（秒）</span><span><input type="number" id="dMin" min="0"> ～ <input type="number" id="dMax" min="0"></span></div>
+      <div class="set-row"><span>字卡间隔（秒）</span><span><input type="number" id="gMin" min="0"> ～ <input type="number" id="gMax" min="0"></span></div>
     </div>
     <div class="set-group">
       <h3>风格</h3>
@@ -423,6 +416,8 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
         <div class="style-opt" data-style="comic">漫画风</div>
         <div class="style-opt" data-style="girl">少女手帐</div>
         <div class="style-opt" data-style="news">报纸</div>
+        <div class="style-opt" data-style="sakura">樱花夜</div>
+        <div class="style-opt" data-style="glass">玻璃花房</div>
       </div>
     </div>
     <div class="set-group">
@@ -430,6 +425,20 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
       <button class="btn-danger" id="clearMsgs">清空聊天记录</button>
     </div>
   </div>
+</div>
+
+<div id="multiBar">
+  <button class="mbtn" id="mLock">锁上</button>
+  <button class="mbtn" id="mUnlock">解锁</button>
+  <button class="mbtn danger" id="mDel">删除</button>
+</div>
+
+<div id="sheetMask"></div>
+<div id="sheet">
+  <div class="sheet-item" id="shEdit">编辑</div>
+  <div class="sheet-item" id="shLock">锁上</div>
+  <div class="sheet-item danger" id="shDel">删除</div>
+  <div class="sheet-item sheet-cancel" id="shCancel">取消</div>
 </div>
 
 <div id="toast"></div>
@@ -440,42 +449,27 @@ body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;
 const FS = {
   dir:null,
   async init(){
-    try{
-      const root = await navigator.storage.getDirectory();
-      this.dir = await root.getDirectoryHandle('ayu_aliang',{create:true});
-      return true;
+    try{ const root=await navigator.storage.getDirectory();
+      this.dir=await root.getDirectoryHandle('ayu_aliang',{create:true}); return true;
     }catch(e){ this.dir=null; return false; }
   },
   async read(name,def){
     try{
-      if(this.dir){
-        const fh=await this.dir.getFileHandle(name);
-        const f=await fh.getFile();
-        const t=await f.text();
-        return t?JSON.parse(t):def;
-      }else{
-        const t=localStorage.getItem('ayu_'+name);
-        return t?JSON.parse(t):def;
-      }
+      if(this.dir){ const fh=await this.dir.getFileHandle(name); const f=await fh.getFile(); const t=await f.text(); return t?JSON.parse(t):def; }
+      else{ const t=localStorage.getItem('ayu_'+name); return t?JSON.parse(t):def; }
     }catch(e){ return def; }
   },
   async write(name,obj){
     const t=JSON.stringify(obj);
     try{
-      if(this.dir){
-        const fh=await this.dir.getFileHandle(name,{create:true});
-        const w=await fh.createWritable();
-        await w.write(t); await w.close();
-      }else{
-        localStorage.setItem('ayu_'+name,t);
-      }
+      if(this.dir){ const fh=await this.dir.getFileHandle(name,{create:true}); const w=await fh.createWritable(); await w.write(t); await w.close(); }
+      else{ localStorage.setItem('ayu_'+name,t); }
     }catch(e){}
   }
 };
 
 let cards=[], messages=[];
-let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
-               avatarHer:null,avatarMe:null,nameHer:'祂',nameMe:'我' };
+let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',avatarHer:null,avatarMe:null,nameHer:'祂',nameMe:'我' };
 
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const rand=(a,b)=>a+Math.random()*(b-a);
@@ -483,16 +477,11 @@ const randInt=(a,b)=>Math.floor(rand(a,b+1));
 const saveCards=()=>FS.write('cards.json',{cards});
 const saveMsgs =()=>FS.write('messages.json',{messages});
 const saveSet  =()=>FS.write('settings.json',settings);
-
 const $=s=>document.querySelector(s);
 const stream=$('#stream'), drawer=$('#drawer'), mask=$('#drawerMask');
 
 let toastTimer;
-function toast(msg){
-  const t=$('#toast'); t.textContent=msg; t.classList.add('on');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('on'),2000);
-}
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('on'),2000); }
 
 function applyProfile(){
   $('#avHer').style.backgroundImage=settings.avatarHer?`url(${settings.avatarHer})`:'none';
@@ -500,64 +489,33 @@ function applyProfile(){
   $('#nameHer').textContent=settings.nameHer||'祂';
   $('#nameMe').textContent =settings.nameMe ||'我';
 }
-
-function fmtTime(ts){
-  const d=new Date(ts);
-  return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
-}
+function fmtTime(ts){ const d=new Date(ts); return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); }
 function makeNote(m){
   const el=document.createElement('div');
   el.className='note '+(m.from==='me'?'me':'her');
   el.textContent=m.text;
-  const st=document.createElement('div');
-  st.className='stamp'; st.textContent=fmtTime(m.time);
-  el.appendChild(st);
-  return el;
+  const st=document.createElement('div'); st.className='stamp'; st.textContent=fmtTime(m.time);
+  el.appendChild(st); return el;
 }
-function renderMessages(){
-  stream.innerHTML='';
-  messages.forEach(m=>stream.appendChild(makeNote(m)));
-  scrollBottom();
-}
+function renderMessages(){ stream.innerHTML=''; messages.forEach(m=>stream.appendChild(makeNote(m))); scrollBottom(); }
 function scrollBottom(){ requestAnimationFrame(()=>stream.scrollTop=stream.scrollHeight); }
-function appendMessage(m,save){
-  messages.push(m);
-  if(save!==false) saveMsgs();
-  stream.appendChild(makeNote(m));
-  scrollBottom();
-}
-function showWaiting(){
-  const el=document.createElement('div');
-  el.className='waiting'; el.id='waitingNote'; el.textContent='祂正在写…';
-  stream.appendChild(el); scrollBottom();
-}
-function hideWaiting(){ const w=document.getElementById('waitingNote'); if(w) w.remove(); }
-function showSystem(text){
-  const el=document.createElement('div');
-  el.className='sys'; el.dataset.sys='1'; el.textContent=text;
-  stream.appendChild(el); scrollBottom();
-}
+function appendMessage(m,save){ messages.push(m); if(save!==false) saveMsgs(); stream.appendChild(makeNote(m)); scrollBottom(); }
+function showSystem(text){ const el=document.createElement('div'); el.className='sys'; el.dataset.sys='1'; el.textContent=text; stream.appendChild(el); scrollBottom(); }
 function removeEmptyTip(){ stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove()); }
 
 let pendingReply=false;
 function sendMessage(){
-  const input=$('#msgInput');
-  const text=input.value.trim();
-  if(!text) return;
+  const input=$('#msgInput'); const text=input.value.trim(); if(!text) return;
   appendMessage({id:uid(),from:'me',text,time:Date.now()});
-  input.value=''; input.style.height='auto';
-  triggerReply();
+  input.value=''; input.style.height='auto'; triggerReply();
 }
 function triggerReply(){
-  const avail=cards.filter(c=>!c.locked);
-  if(avail.length===0) return;
-  if(pendingReply) return;
-  pendingReply=true;
+  const avail=cards.filter(c=>!c.locked); if(avail.length===0) return;
+  if(pendingReply) return; pendingReply=true;
   const delay=rand(settings.dMin,settings.dMax)*1000;
   setTimeout(async ()=>{
     pendingReply=false;
-    const n=randInt(1,3);
-    const pool=cards.filter(c=>!c.locked);
+    const n=randInt(1,3); const pool=cards.filter(c=>!c.locked);
     for(let i=0;i<n;i++){
       if(pool.length===0) break;
       const pick=pool[randInt(0,pool.length-1)];
@@ -566,97 +524,159 @@ function triggerReply(){
     }
   }, delay);
 }
-
-$('#msgInput').addEventListener('input',function(){
-  this.style.height='auto';
-  this.style.height=Math.min(this.scrollHeight,120)+'px';
-});
+$('#msgInput').addEventListener('input',function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,120)+'px'; });
 $('#sendStamp').addEventListener('click',sendMessage);
 
 function openDrawer(){ drawer.classList.add('on'); mask.classList.add('on'); }
 function closeDrawer(){ drawer.classList.remove('on'); mask.classList.remove('on'); }
 mask.addEventListener('click',closeDrawer);
 let sx=0,sy=0,edge=false;
-document.addEventListener('touchstart',e=>{
-  if(e.target.closest('textarea,input')){edge=false;return;}
-  const t=e.touches[0]; sx=t.clientX; sy=t.clientY;
-  edge=sx<28 && !drawer.classList.contains('on');
-},{passive:true});
-document.addEventListener('touchmove',e=>{
-  if(!edge) return;
-  const t=e.touches[0];
-  const dx=t.clientX-sx, dy=Math.abs(t.clientY-sy);
-  if(dx>40 && dy<40){ openDrawer(); edge=false; }
-},{passive:true});
+document.addEventListener('touchstart',e=>{ if(e.target.closest('textarea,input')){edge=false;return;} const t=e.touches[0]; sx=t.clientX; sy=t.clientY; edge=sx<28 && !drawer.classList.contains('on'); },{passive:true});
+document.addEventListener('touchmove',e=>{ if(!edge) return; const t=e.touches[0]; const dx=t.clientX-sx, dy=Math.abs(t.clientY-sy); if(dx>40 && dy<40){ openDrawer(); edge=false; } },{passive:true});
 drawer.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
-drawer.addEventListener('touchmove',e=>{
-  if(e.touches[0].clientX-sx<-40) closeDrawer();
-},{passive:true});
+drawer.addEventListener('touchmove',e=>{ if(e.touches[0].clientX-sx<-40) closeDrawer(); },{passive:true});
 
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
-  $('#'+id).classList.add('show');
-}
+function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); $('#'+id).classList.add('show'); }
 function hidePages(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); }
 document.querySelectorAll('[data-go]').forEach(el=>{
   el.addEventListener('click',()=>{
     const go=el.dataset.go; closeDrawer();
-    if(go==='pocket'){ renderPocket(); showPage('page-pocket'); }
+    if(go==='pocket'){ lockedView=false; selMode=false; searchKw=''; renderPocket(); showPage('page-pocket'); }
     if(go==='settings'){ renderSettings(); showPage('page-settings'); }
   });
 });
 document.querySelectorAll('[data-back]').forEach(el=>{
   el.addEventListener('click',()=>{
     if($('#page-add').classList.contains('show')){
-      if($('#addArea').value.trim()){
-        if(!confirm('还没放进口袋，确定离开吗？')) return;
-        $('#addArea').value='';
-      }
+      if($('#addArea').value.trim()){ if(!confirm('还没放进口袋，确定离开吗？')) return; $('#addArea').value=''; }
     }
+    exitSelMode();
+    lockedView=false; searchKw='';
     hidePages();
   });
 });
 
-let selMode=false, selSet=new Set(), searchKw='';
-function renderPocket(){
-  const list=$('#pocketList');
-  list.innerHTML='';
-  let arr=cards.slice();
+/* ===== 口袋 ===== */
+let selMode=false, selSet=new Set(), searchKw='', lockedView=false;
+function currentList(){
+  if(lockedView) return cards.filter(c=>c.locked);
+  let arr=cards.filter(c=>!c.locked);
   if(searchKw) arr=arr.filter(c=>c.text.includes(searchKw));
+  return arr;
+}
+function renderPocket(){
+  $('#pocketTitle').textContent = lockedView?'锁起来的':'口袋';
+  const list=$('#pocketList'); list.innerHTML='';
+  const arr=currentList();
   if(arr.length===0){
-    list.innerHTML='<div class="empty-tip">'+(searchKw?'没找到匹配的字卡':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧')+'</div>';
-    return;
+    list.innerHTML='<div class="empty-tip">'+(lockedView?'还没有锁上的字卡':(searchKw?'没找到匹配的字卡':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧'))+'</div>';
+    updateMultiBar(); return;
   }
   arr.forEach(c=>{
     const el=document.createElement('div');
-    el.className='card-item'+(c.locked?' locked':'')+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');
+    el.className='card-item'+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');
     el.textContent=c.text;
-    const chk=document.createElement('div');
-    chk.className='chk'; chk.textContent=selSet.has(c.id)?'✓':'';
-    el.appendChild(chk);
-    const lb=document.createElement('div');
-    lb.className='lockbtn'; lb.textContent=c.locked?'🔒':'🔓';
-    lb.addEventListener('click',ev=>{ev.stopPropagation();toggleLock(c.id);});
-    el.appendChild(lb);
+    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=selSet.has(c.id)?'✓':''; el.appendChild(chk);
+    const lt=document.createElement('div'); lt.className='locktag'; lt.textContent=c.locked?'🔒':'';
+    el.appendChild(lt);
     el.addEventListener('click',()=>{
       if(selMode){
         if(selSet.has(c.id)) selSet.delete(c.id); else selSet.add(c.id);
         renderPocket();
-      }else{ editCard(c.id); }
+      }else{ openSheet(c.id); }
     });
     list.appendChild(el);
   });
+  updateMultiBar();
+  updateSelectAll();
 }
-function toggleLock(id){
+function updateSelectAll(){
+  const row=$('#selectAllRow');
+  if(!selMode){ row.classList.remove('on'); return; }
+  row.classList.add('on');
+  const arr=currentList();
+  $('#selectAllChk').checked = arr.length>0 && arr.every(c=>selSet.has(c.id));
+}
+$('#selectAllChk').addEventListener('change',e=>{
+  const arr=currentList();
+  if(e.target.checked) arr.forEach(c=>selSet.add(c.id));
+  else selSet.clear();
+  renderPocket();
+});
+function updateMultiBar(){ $('#multiBar').classList.toggle('on', selMode); }
+function exitSelMode(){
+  selMode=false; selSet.clear();
+  $('#selectAllRow').classList.remove('on');
+  $('#multiBar').classList.remove('on');
+  const del=$('#pocketTools .tool[data-t="del"]'); if(del) del.classList.remove('on');
+}
+
+/* 工具条 */
+$('#pocketTools').addEventListener('click',e=>{
+  const t=e.target.closest('.tool'); if(!t) return;
+  const act=t.dataset.t;
+  if(act==='search'){
+    const kw=prompt('搜索字卡',searchKw);
+    if(kw!==null){ searchKw=kw.trim(); lockedView=false; renderPocket(); }
+  }
+  else if(act==='add'){
+    $('#addArea').value=''; delete $('#addArea').dataset.editing; showPage('page-add');
+  }
+  else if(act==='del'){
+    if(!selMode){ selMode=true; selSet.clear(); t.classList.add('on'); renderPocket(); }
+    else{ exitSelMode(); renderPocket(); }
+  }
+  else if(act==='locked'){ lockedView=!lockedView; selMode=false; selSet.clear(); searchKw=''; renderPocket(); }
+  else if(act==='more'){ $('#pocketTools').classList.toggle('open'); }
+  else if(act==='dedup'){ dedup(); }
+  else if(act==='import'){ $('#fileInput').click(); }
+  else if(act==='export'){ exportCards(); }
+});
+
+/* 多选操作 */
+$('#mLock').addEventListener('click',()=>{
+  if(selSet.size===0){ toast('还没选字卡'); return; }
+  cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; });
+  saveCards(); exitSelMode(); renderPocket(); removeEmptyTip(); toast('已锁上 '+selSet.size+' 张');
+});
+$('#mUnlock').addEventListener('click',()=>{
+  if(selSet.size===0){ toast('还没选字卡'); return; }
+  cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; });
+  saveCards(); exitSelMode(); renderPocket(); toast('已解锁 '+selSet.size+' 张');
+});
+$('#mDel').addEventListener('click',()=>{
+  if(selSet.size===0){ toast('还没选字卡'); return; }
+  if(confirm('删除选中的 '+selSet.size+' 张字卡？')){
+    cards=cards.filter(c=>!selSet.has(c.id));
+    saveCards(); exitSelMode(); renderPocket(); toast('已删除');
+  }
+});
+
+/* 弹出菜单 */
+let sheetCardId=null;
+function openSheet(id){
+  sheetCardId=id;
   const c=cards.find(x=>x.id===id); if(!c) return;
-  c.locked=!c.locked; saveCards(); renderPocket();
+  $('#shLock').textContent = c.locked?'解锁':'锁上';
+  $('#sheetMask').classList.add('on'); $('#sheet').classList.add('on');
 }
-function editCard(id){
-  const c=cards.find(x=>x.id===id); if(!c) return;
-  $('#addArea').value=c.text;
-  $('#addArea').dataset.editing=id;
-  showPage('page-add');
-}
+function closeSheet(){ $('#sheetMask').classList.remove('on'); $('#sheet').classList.remove('on'); }
+$('#sheetMask').addEventListener('click',closeSheet);
+$('#shCancel').addEventListener('click',closeSheet);
+$('#shEdit').addEventListener('click',()=>{ const id=sheetCardId; closeSheet(); if(id) editCard(id); });
+$('#shLock').addEventListener('click',()=>{
+  const c=cards.find(x=>x.id===sheetCardId); if(c){ c.locked=!c.locked; saveCards(); }
+  closeSheet(); renderPocket(); if(!c?.locked) removeEmptyTip();
+});
+$('#shDel').addEventListener('click',()=>{
+  const c=cards.find(x=>x.id===sheetCardId); if(!c){ closeSheet(); return; }
+  if(confirm('删除这张字卡？')){
+    cards=cards.filter(x=>x.id!==sheetCardId); saveCards(); renderPocket(); toast('已删除');
+  }
+  closeSheet();
+});
+function editCard(id){ const c=cards.find(x=>x.id===id); if(!c) return; $('#addArea').value=c.text; $('#addArea').dataset.editing=id; showPage('page-add'); }
+
 function dedup(){
   const seen=new Set(); const kept=[];
   cards.forEach(c=>{ if(seen.has(c.text)) return; seen.add(c.text); kept.push(c); });
@@ -666,155 +686,73 @@ function dedup(){
     cards=kept; saveCards(); renderPocket(); toast('已删除 '+removed+' 张重复字卡');
   }
 }
-$('#pocketTools').addEventListener('click',e=>{
-  const t=e.target.closest('.tool'); if(!t) return;
-  const act=t.dataset.t;
-  if(act==='search'){
-    const kw=prompt('搜索字卡',searchKw);
-    if(kw!==null){ searchKw=kw.trim(); renderPocket(); }
-  }
-  else if(act==='add'){
-    $('#addArea').value=''; delete $('#addArea').dataset.editing;
-    showPage('page-add');
-  }
-  else if(act==='dedup'){ dedup(); }
-  else if(act==='import'){ $('#fileInput').click(); }
-  else if(act==='export'){ exportCards(); }
-  else if(act==='del'){
-    if(!selMode){
-      selMode=true; selSet.clear(); t.classList.add('on'); t.textContent='✓';
-      renderPocket(); toast('选择要删除的字卡，再点 ✓');
-    }else{
-      if(selSet.size===0){ toast('还没选字卡'); return; }
-      if(confirm('删除选中的 '+selSet.size+' 张字卡？')){
-        cards=cards.filter(c=>!selSet.has(c.id));
-        saveCards(); selMode=false; selSet.clear();
-        t.classList.remove('on'); t.textContent='🗑';
-        renderPocket(); toast('已删除');
-      }
-    }
-  }
-  else if(act==='lockall'){ toast('点每张字卡右侧的锁，可单独上锁'); }
-});
 
+/* 导入 */
 $('#fileInput').addEventListener('change',async e=>{
   const f=e.target.files[0]; if(!f) return;
-  const text=await f.text();
-  let incoming=[];
-  const name=f.name.toLowerCase();
+  const text=await f.text(); let incoming=[]; const name=f.name.toLowerCase();
   try{
     if(name.endsWith('.json')||text.trim().startsWith('{')){
-      const obj=JSON.parse(text);
-      const arr=Array.isArray(obj)?obj:(obj.cards||[]);
+      const obj=JSON.parse(text); const arr=Array.isArray(obj)?obj:(obj.cards||[]);
       incoming=arr.map(x=>typeof x==='string'?x:(x.text||'')).filter(Boolean);
-    }else{
-      incoming=text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
-    }
+    }else{ incoming=text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean); }
   }catch(err){ toast('文件格式无法识别'); e.target.value=''; return; }
-  const exist=new Set(cards.map(c=>c.text));
-  let added=0,skipped=0;
-  incoming.forEach(txt=>{
-    if(exist.has(txt)){ skipped++; return; }
-    cards.push({id:uid(),text:txt,locked:false}); exist.add(txt); added++;
-  });
+  const exist=new Set(cards.map(c=>c.text)); let added=0,skipped=0;
+  incoming.forEach(txt=>{ if(exist.has(txt)){ skipped++; return; } cards.push({id:uid(),text:txt,locked:false}); exist.add(txt); added++; });
   if(added) await saveCards();
-  renderPocket();
-  removeEmptyTip();
+  renderPocket(); removeEmptyTip();
   toast('导入 '+added+' 张，跳过 '+skipped+' 张重复');
   e.target.value='';
 });
-
+/* 导出 */
 async function exportCards(){
-  const fmt=prompt('导出格式：输入 1 = JSON，2 = TXT','1');
-  if(fmt!=='1'&&fmt!=='2') return;
-  const out=cards.filter(c=>!c.locked);
-  let data,fname,type;
-  if(fmt==='1'){
-    data=JSON.stringify({cards:out.map(c=>({text:c.text}))},null,2);
-    fname='阿遇♡阿凉字卡.json'; type='application/json';
-  }else{
-    data=out.map(c=>c.text).join('\n');
-    fname='阿遇♡阿凉字卡.txt'; type='text/plain';
-  }
-  const blob=new Blob([data],{type});
-  const a=document.createElement('a');
+  const fmt=prompt('导出格式：输入 1 = JSON，2 = TXT','1'); if(fmt!=='1'&&fmt!=='2') return;
+  const out=cards.filter(c=>!c.locked); let data,fname,type;
+  if(fmt==='1'){ data=JSON.stringify({cards:out.map(c=>({text:c.text}))},null,2); fname='阿遇♡阿凉字卡.json'; type='application/json'; }
+  else{ data=out.map(c=>c.text).join('\n'); fname='阿遇♡阿凉字卡.txt'; type='text/plain'; }
+  const blob=new Blob([data],{type}); const a=document.createElement('a');
   a.href=URL.createObjectURL(blob); a.download=fname; a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-  toast('已导出 '+out.length+' 张字卡');
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000); toast('已导出 '+out.length+' 张字卡');
 }
 
 $('#saveCards').addEventListener('click',async ()=>{
-  const area=$('#addArea');
-  const editingId=area.dataset.editing;
+  const area=$('#addArea'); const editingId=area.dataset.editing;
   const lines=area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
   if(lines.length===0){ toast('还没写呢'); return; }
   if(editingId){
-    const c=cards.find(x=>x.id===editingId);
-    if(c){ c.text=area.value.trim(); await saveCards(); }
-    delete area.dataset.editing;
-    area.value=''; toast('已放进口袋');
+    const c=cards.find(x=>x.id===editingId); if(c){ c.text=area.value.trim(); await saveCards(); }
+    delete area.dataset.editing; area.value=''; toast('已放进口袋');
   }else{
     for(const line of lines) cards.push({id:uid(),text:line,locked:false});
-    await saveCards();
-    area.value=''; toast('放进了 '+lines.length+' 张字卡');
+    await saveCards(); area.value=''; toast('放进了 '+lines.length+' 张字卡');
   }
   removeEmptyTip();
 });
 
+/* ===== 设置 ===== */
 function renderSettings(){
   $('#dMin').value=settings.dMin; $('#dMax').value=settings.dMax;
   $('#gMin').value=settings.gMin; $('#gMax').value=settings.gMax;
-  $('#nameHerIn').value=settings.nameHer||'祂';
-  $('#nameMeIn').value=settings.nameMe||'我';
-  document.querySelectorAll('.style-opt').forEach(o=>{
-    o.classList.toggle('on',o.dataset.style===settings.style);
-  });
+  $('#nameHerIn').value=settings.nameHer||'祂'; $('#nameMeIn').value=settings.nameMe||'我';
+  document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('on',o.dataset.style===settings.style));
 }
-function bindNum(id,key){
-  $('#'+id).addEventListener('change',e=>{
-    let v=parseInt(e.target.value)||0; if(v<0) v=0;
-    settings[key]=v; saveSet();
-  });
-}
-bindNum('dMin','dMin'); bindNum('dMax','dMax');
-bindNum('gMin','gMin'); bindNum('gMax','gMax');
+function bindNum(id,key){ $('#'+id).addEventListener('change',e=>{ let v=parseInt(e.target.value)||0; if(v<0) v=0; settings[key]=v; saveSet(); }); }
+bindNum('dMin','dMin'); bindNum('dMax','dMax'); bindNum('gMin','gMin'); bindNum('gMax','gMax');
 $('#nameHerIn').addEventListener('input',e=>{settings.nameHer=e.target.value||'祂';saveSet();applyProfile();});
 $('#nameMeIn').addEventListener('input',e=>{settings.nameMe =e.target.value||'我';saveSet();applyProfile();});
 document.querySelectorAll('.style-opt').forEach(o=>{
-  o.addEventListener('click',()=>{
-    settings.style=o.dataset.style;
-    document.body.className=settings.style;
-    saveSet(); renderSettings();
-  });
+  o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style; saveSet(); renderSettings(); });
 });
 $('#clearMsgs').addEventListener('click',()=>{
-  if(confirm('清空所有聊天记录？此操作不可恢复')){
-    messages=[]; saveMsgs(); renderMessages(); toast('已清空');
-  }
+  if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); }
 });
-
 let avTarget=null;
-const avFile=document.createElement('input');
-avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none';
-document.body.appendChild(avFile);
-document.querySelectorAll('[data-av]').forEach(b=>{
-  b.addEventListener('click',()=>{ avTarget=b.dataset.av; avFile.click(); });
-});
-document.querySelectorAll('[data-avclear]').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const k=b.dataset.avclear;
-    if(k==='her') settings.avatarHer=null; else settings.avatarMe=null;
-    saveSet(); applyProfile();
-  });
-});
+const avFile=document.createElement('input'); avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none'; document.body.appendChild(avFile);
+document.querySelectorAll('[data-av]').forEach(b=>{ b.addEventListener('click',()=>{ avTarget=b.dataset.av; avFile.click(); }); });
+document.querySelectorAll('[data-avclear]').forEach(b=>{ b.addEventListener('click',()=>{ const k=b.dataset.avclear; if(k==='her') settings.avatarHer=null; else settings.avatarMe=null; saveSet(); applyProfile(); }); });
 avFile.addEventListener('change',e=>{
   const f=e.target.files[0]; if(!f||!avTarget) return;
-  const r=new FileReader();
-  r.onload=()=>{
-    if(avTarget==='her') settings.avatarHer=r.result;
-    else settings.avatarMe=r.result;
-    saveSet(); applyProfile(); toast('已更换头像');
-  };
+  const r=new FileReader(); r.onload=()=>{ if(avTarget==='her') settings.avatarHer=r.result; else settings.avatarMe=r.result; saveSet(); applyProfile(); toast('已更换头像'); };
   r.readAsDataURL(f); e.target.value='';
 });
 
@@ -823,12 +761,10 @@ async function boot(){
   const c=await FS.read('cards.json',{cards:[]});
   const m=await FS.read('messages.json',{messages:[]});
   const s=await FS.read('settings.json',null);
-  cards=c.cards||[];
-  messages=m.messages||[];
+  cards=c.cards||[]; messages=m.messages||[];
   if(s) settings=Object.assign(settings,s);
   document.body.className=settings.style||'retro';
-  applyProfile();
-  renderMessages();
+  applyProfile(); renderMessages();
   if(cards.length===0) showSystem('口袋里还没有字卡，去给祂放几张吧');
 }
 boot();
