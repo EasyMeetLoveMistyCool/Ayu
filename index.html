@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#e8dcc0">
+<title>阿遇♡阿凉</title>
+<style>
+/* ============ 基础 ============ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;
+  background:#e8dcc0;
+  color:#4a3b2a;
+  user-select:none;
+}
+#app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden}
+
+/* ============ 复古手帐信 主题 ============ */
+body.retro{
+  background-color:#e8dcc0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),
+    radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),
+    radial-gradient(circle at 40% 80%, rgba(160,130,90,.07) 0 2px, transparent 3px),
+    linear-gradient(160deg,#efe4c8,#e3d5b4);
+  background-size:60px 60px,80px 80px,50px 50px,100% 100%;
+}
+body.retro .topbar{
+  background:linear-gradient(#f3ead2,#e9dcbc);
+  border-bottom:1px solid #cbb98f;
+  box-shadow:0 2px 6px rgba(120,95,60,.15);
+}
+body.retro .topbar h1{color:#6b5334;letter-spacing:4px}
+
+/* ============ 漫画风 主题 ============ */
+body.comic{
+  background-color:#fdf6e3;
+  background-image:radial-gradient(rgba(0,0,0,.10) 1px, transparent 1.5px);
+  background-size:14px 14px;
+}
+body.comic .topbar{
+  background:linear-gradient(#fff,#ffe9f0);
+  border-bottom:3px solid #222;
+  box-shadow:0 3px 0 #222;
+}
+body.comic .topbar h1{color:#e0527a;letter-spacing:2px;font-weight:900}
+body.comic .bubble-me{background:#fff3b0;border:3px solid #222;border-radius:16px 16px 4px 16px}
+body.comic .bubble-her{background:#fff;border:3px solid #222;border-radius:16px 16px 16px 4px}
+
+/* ============ 顶栏 ============ */
+.topbar{
+  flex:0 0 auto;
+  height:52px;
+  display:flex;align-items:center;justify-content:center;
+  padding-top:env(safe-area-inset-top);
+  position:relative;z-index:5;
+}
+.topbar h1{font-size:20px;font-weight:700}
+
+/* ============ 消息区 ============ */
+#stream{
+  flex:1 1 auto;
+  overflow-y:auto;
+  padding:18px 14px 10px;
+  position:relative;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* 便签 / 信纸 通用 */
+.note{
+  position:relative;
+  max-width:72%;
+  padding:12px 14px;
+  margin:14px 0;
+  font-size:16px;
+  line-height:1.5;
+  word-break:break-word;
+  white-space:pre-wrap;
+  transition:transform .18s;
+}
+/* 你的便签：淡黄便签纸 */
+.note.me{
+  background:#fdf3c8;
+  border:1px solid #e2cf8a;
+  border-radius:3px;
+  box-shadow:2px 3px 8px rgba(120,95,50,.18);
+  margin-left:auto;
+  margin-right:6px;
+  color:#5a4a2e;
+}
+body.retro .note.me::after{ /* 和纸胶带 */
+  content:"";
+  position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-3deg);
+  width:46px;height:14px;
+  background:rgba(200,180,130,.55);
+  border-left:1px dashed rgba(255,255,255,.6);
+  border-right:1px dashed rgba(255,255,255,.6);
+}
+/* 祂的信纸碎片：米白横线信纸 */
+.note.her{
+  background:#fbf7ec;
+  border:1px solid #d8cba8;
+  border-radius:2px;
+  box-shadow:2px 3px 8px rgba(120,95,50,.15);
+  margin-right:auto;
+  margin-left:6px;
+  color:#4a3b2a;
+  background-image:repeating-linear-gradient(
+    transparent 0 27px, rgba(150,130,95,.25) 27px 28px);
+  background-position:0 10px;
+}
+body.comic .note.me,body.comic .note.her{background-image:none}
+
+/* 时间戳邮戳 */
+.stamp{
+  position:absolute;bottom:-12px;right:8px;
+  font-size:10px;color:#a08a5f;
+  border:1px solid #c8b68a;
+  border-radius:50%;
+  width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  transform:rotate(-12deg);
+  opacity:.7;
+  background:rgba(255,255,255,.35);
+  padding:2px;text-align:center;line-height:1.1;
+}
+body.comic .stamp{border:2px solid #222;border-radius:6px;width:auto;height:auto;padding:1px 4px;transform:rotate(0);font-size:9px;color:#222;background:#fff}
+
+/* 待贴空白便签（等待状态） */
+.waiting{
+  max-width:72%;
+  margin:14px auto 14px 6px;
+  padding:16px 14px;
+  background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#efe6cc 8px 16px);
+  border:1px dashed #c9b98f;
+  border-radius:3px;
+  color:#a08a5f;
+  font-size:14px;
+  text-align:center;
+  animation:breathe 2s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* 系统提示 */
+.sys{
+  text-align:center;font-size:12.5px;color:#9a865e;
+  margin:16px auto;padding:6px 12px;
+  background:rgba(255,250,235,.6);
+  border:1px dashed #c9b98f;border-radius:4px;
+  max-width:80%;
+}
+
+/* ============ 底部输入 ============ */
+#composer{
+  flex:0 0 auto;
+  padding:8px 12px calc(10px + env(safe-area-inset-bottom));
+  position:relative;
+  background:linear-gradient(transparent,rgba(232,220,192,.9));
+}
+body.comic #composer{background:#fdf6e3;border-top:3px solid #222}
+.input-note{
+  position:relative;
+  background:#fdf3c8;
+  border:1px solid #e2cf8a;
+  border-radius:3px;
+  box-shadow:2px 3px 10px rgba(120,95,50,.2);
+  padding:10px 56px 10px 12px;
+}
+body.comic .input-note{background:#fff;border:3px solid #222;border-radius:14px}
+#msgInput{
+  width:100%;border:none;outline:none;background:transparent;
+  font-family:inherit;font-size:16px;color:#5a4a2e;
+  resize:none;max-height:120px;line-height:1.4;
+}
+#msgInput::placeholder{color:#bca878}
+/* 邮戳按钮 */
+#sendStamp{
+  position:absolute;right:8px;bottom:8px;
+  width:46px;height:46px;border-radius:50%;
+  border:2px solid #b89b5e;
+  background:radial-gradient(circle at 35% 30%,#f7ecd0,#e6d3a4);
+  color:#8a6f3c;font-family:inherit;font-size:15px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 6px rgba(120,95,50,.3);
+  transform:rotate(-8deg);
+}
+#sendStamp:active{transform:rotate(-8deg) scale(.92)}
+body.comic #sendStamp{border:3px solid #222;background:#ffd6e5;color:#e0527a;border-radius:50%}
+
+/* ============ 侧栏 ============ */
+#drawerMask{
+  position:fixed;inset:0;background:rgba(60,45,25,.35);
+  opacity:0;pointer-events:none;transition:opacity .25s;z-index:20;
+}
+#drawerMask.on{opacity:1;pointer-events:auto}
+#drawer{
+  position:fixed;top:0;left:0;bottom:0;width:210px;
+  background:linear-gradient(160deg,#f3ead2,#e6d9ba);
+  border-right:1px solid #c9b98f;
+  box-shadow:4px 0 16px rgba(90,70,40,.25);
+  transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);
+  z-index:21;padding-top:calc(30px + env(safe-area-inset-top));
+}
+body.comic #drawer{background:#fff;border-right:3px solid #222}
+#drawer.on{transform:translateX(0)}
+.drawer-item{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 20px;font-size:17px;color:#5a4a2e;
+}
+.drawer-item:active{background:rgba(180,155,110,.2)}
+.drawer-item .ico{font-size:20px}
+
+/* ============ 页面容器 ============ */
+.page{position:fixed;inset:0;background:#e8dcc0;display:none;flex-direction:column;z-index:10;overflow:hidden}
+body.comic .page{background:#fdf6e3}
+body.retro .page{background:linear-gradient(160deg,#efe4c8,#e3d5b4)}
+.page.show{display:flex}
+.page-head{
+  flex:0 0 auto;height:52px;display:flex;align-items:center;
+  padding:0 14px;padding-top:env(safe-area-inset-top);
+  border-bottom:1px solid #cbb98f;background:rgba(243,234,210,.95);
+}
+body.comic .page-head{border-bottom:3px solid #222;background:#fff}
+.page-head .back{font-size:22px;width:36px;color:#6b5334}
+.page-head h2{flex:1;text-align:center;font-size:18px;color:#6b5334;font-weight:700;margin-right:36px}
+body.comic .page-head h2{color:#e0527a}
+.page-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
+
+/* ============ 口袋 ============ */
+.toolbar{
+  display:flex;gap:4px;flex-wrap:wrap;
+  padding:10px 12px;border-bottom:1px dashed #c9b98f;
+  background:rgba(243,234,210,.7);
+}
+body.comic .toolbar{background:#fff;border-bottom:2px dashed #222}
+.tool{
+  flex:1;min-width:38px;height:40px;border-radius:6px;border:1px solid #cbb98f;
+  background:rgba(255,250,235,.8);font-size:17px;
+  display:flex;align-items:center;justify-content:center;
+}
+body.comic .tool{border:2px solid #222;background:#fff}
+.tool:active{background:#e6d9ba}
+.tool.on{background:#d9c48f;border-color:#a88b4e}
+
+.card-item{
+  position:relative;
+  background:#fbf7ec;border:1px solid #d8cba8;border-radius:3px;
+  padding:13px 44px 13px 14px;margin-bottom:10px;
+  font-size:15.5px;line-height:1.45;color:#4a3b2a;
+  box-shadow:1px 2px 5px rgba(120,95,50,.12);
+  word-break:break-word;white-space:pre-wrap;
+}
+body.comic .card-item{border:3px solid #222;border-radius:10px;background:#fff}
+.card-item.locked{opacity:.42;filter:grayscale(1)}
+.card-item .lockbtn{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;border-radius:50%;
+}
+.card-item .lockbtn:active{background:rgba(180,155,110,.25)}
+.card-item.sel{outline:2px solid #c47a3a;background:#f7ecd0}
+.card-item .chk{
+  position:absolute;left:6px;top:50%;transform:translateY(-50%);
+  width:22px;height:22px;border:2px solid #c47a3a;border-radius:4px;
+  display:none;align-items:center;justify-content:center;font-size:14px;color:#c47a3a;
+}
+.card-item.selmode{padding-left:36px}
+.card-item.selmode .chk{display:flex}
+.empty-tip{text-align:center;color:#a08a5f;font-size:14px;padding:40px 20px;line-height:1.8}
+
+/* ============ 添加页 ============ */
+#addArea{
+  flex:1;width:100%;border:1px solid #d8cba8;border-radius:3px;
+  background:#fbf7ec;
+  background-image:repeating-linear-gradient(transparent 0 29px,rgba(150,130,95,.2) 29px 30px);
+  background-position:0 12px;
+  padding:14px;font-family:inherit;font-size:16px;line-height:30px;color:#4a3b2a;
+  outline:none;resize:none;
+}
+body.comic #addArea{border:3px solid #222;border-radius:12px;background:#fff;background-image:none}
+#addArea::placeholder{color:#bca878}
+.save-btn{
+  width:100%;margin-top:14px;height:48px;border-radius:6px;
+  border:1px solid #b89b5e;background:linear-gradient(#f7ecd0,#e6d3a4);
+  font-family:inherit;font-size:17px;font-weight:700;color:#7a5f30;
+}
+body.comic .save-btn{border:3px solid #222;background:#ffd6e5;color:#e0527a;border-radius:14px}
+.save-btn:active{filter:brightness(.95)}
+
+/* ============ 设置页 ============ */
+.set-group{
+  background:#fbf7ec;border:1px solid #d8cba8;border-radius:3px;
+  padding:14px;margin-bottom:14px;
+}
+body.comic .set-group{border:3px solid #222;border-radius:12px;background:#fff}
+.set-group h3{font-size:14px;color:#a08a5f;margin-bottom:10px;font-weight:400}
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:15.5px}
+.set-row input[type=number]{
+  width:64px;height:34px;text-align:center;font-family:inherit;font-size:15px;
+  border:1px solid #cbb98f;border-radius:4px;background:#fffaf0;color:#5a4a2e;outline:none;
+}
+.set-row input[type=range]{width:130px}
+.style-opts{display:flex;gap:10px;margin-top:6px}
+.style-opt{
+  flex:1;height:56px;border:1px solid #cbb98f;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+.style-opt.on{border:2px solid #c47a3a;background:#f7ecd0;font-weight:700}
+.btn-danger{
+  width:100%;height:46px;border-radius:6px;border:1px solid #c47a3a;
+  background:#f7e0d0;color:#a5401a;font-family:inherit;font-size:16px;font-weight:700;
+}
+body.comic .btn-danger{border:3px solid #222;border-radius:12px}
+.btn-danger:active{filter:brightness(.95)}
+
+/* ============ 提示 ============ */
+#toast{
+  position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);
+  background:rgba(90,70,40,.92);color:#fdf3c8;font-size:14px;
+  padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;
+  z-index:99;pointer-events:none;max-width:80%;text-align:center;
+}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body class="retro">
+<div id="app">
+  <div class="topbar"><h1>祂</h1></div>
+  <div id="stream"></div>
+  <div id="composer">
+    <div class="input-note">
+      <textarea id="msgInput" rows="1" placeholder="想对祂说的话…"></textarea>
+      <button id="sendStamp">贴</button>
+    </div>
+  </div>
+</div>
+
+<!-- 侧栏 -->
+<div id="drawerMask"></div>
+<div id="drawer">
+  <div class="drawer-item" data-go="pocket"><span class="ico">🗄️</span>口袋</div>
+  <div class="drawer-item" data-go="settings"><span class="ico">⚙️</span>设置</div>
+</div>
+
+<!-- 口袋页 -->
+<div class="page" id="page-pocket">
+  <div class="page-head"><div class="back" data-back>←</div><h2>口袋</h2></div>
+  <div class="toolbar" id="pocketTools">
+    <div class="tool" data-t="search">🔍</div>
+    <div class="tool" data-t="add">➕</div>
+    <div class="tool" data-t="dedup">⧉</div>
+    <div class="tool" data-t="import">⬇</div>
+    <div class="tool" data-t="export">⬆</div>
+    <div class="tool" data-t="del">🗑</div>
+    <div class="tool" data-t="lockall">🔒</div>
+  </div>
+  <div class="page-body" id="pocketList"></div>
+</div>
+
+<!-- 添加页 -->
+<div class="page" id="page-add">
+  <div class="page-head"><div class="back" data-back>←</div><h2>添加字卡</h2></div>
+  <div class="page-body" style="display:flex;flex-direction:column">
+    <textarea id="addArea" placeholder="祂会用这些字卡回复你哦…"></textarea>
+    <button class="save-btn" id="saveCards">放进口袋</button>
+  </div>
+</div>
+
+<!-- 设置页 -->
+<div class="page" id="page-settings">
+  <div class="page-head"><div class="back" data-back>←</div><h2>设置</h2></div>
+  <div class="page-body">
+    <div class="set-group">
+      <h3>祂回复</h3>
+      <div class="set-row"><span>延迟（秒）</span>
+        <span><input type="number" id="dMin" min="0"> ～ <input type="number" id="dMax" min="0"></span></div>
+      <div class="set-row"><span>字卡间隔（秒）</span>
+        <span><input type="number" id="gMin" min="0"> ～ <input type="number" id="gMax" min="0"></span></div>
+    </div>
+    <div class="set-group">
+      <h3>风格</h3>
+      <div class="style-opts">
+        <div class="style-opt" data-style="retro">复古手帐信</div>
+        <div class="style-opt" data-style="comic">漫画风</div>
+      </div>
+    </div>
+    <div class="set-group">
+      <h3>数据</h3>
+      <button class="btn-danger" id="clearMsgs">清空聊天记录</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<input type="file" id="fileInput" accept=".json,.txt" style="display:none">
+
+<script>
+/* =========================================================
+   阿遇♡阿凉  —— 一对一私人手帐聊天
+   ========================================================= */
+
+/* ---------- OPFS 封装 ---------- */
+const FS = {
+  dir:null,
+  async init(){
+    try{
+      const root = await navigator.storage.getDirectory();
+      this.dir = await root.getDirectoryHandle('ayu_aliang',{create:true});
+      return true;
+    }catch(e){
+      console.warn('OPFS 不可用，降级到 localStorage',e);
+      this.dir = null;
+      return false;
+    }
+  },
+  async read(name,def){
+    try{
+      if(this.dir){
+        const fh = await this.dir.getFileHandle(name);
+        const f = await fh.getFile();
+        const t = await f.text();
+        return t?JSON.parse(t):def;
+      }else{
+        const t = localStorage.getItem('ayu_'+name);
+        return t?JSON.parse(t):def;
+      }
+    }catch(e){ return def; }
+  },
+  async write(name,obj){
+    const t = JSON.stringify(obj);
+    try{
+      if(this.dir){
+        const fh = await this.dir.getFileHandle(name,{create:true});
+        const w = await fh.createWritable();
+        await w.write(t); await w.close();
+      }else{
+        localStorage.setItem('ayu_'+name,t);
+      }
+    }catch(e){ console.warn('写入失败',e); }
+  }
+};
+
+/* ---------- 数据 ---------- */
+let cards = [];       // {id,text,locked}
+let messages = [];    // {id,from:'me'|'her',text,time}
+let settings = { dMin:30,dMax:60,gMin:5,gMax:8,style:'retro' };
+
+const uid = ()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const rand = (a,b)=>a+Math.random()*(b-a);
+const randInt = (a,b)=>Math.floor(rand(a,b+1));
+
+/* ---------- 存档 ---------- */
+const saveCards = ()=>FS.write('cards.json',{cards});
+const saveMsgs  = ()=>FS.write('messages.json',{messages});
+const saveSet   = ()=>FS.write('settings.json',settings);
+
+/* ---------- DOM ---------- */
+const $ = s=>document.querySelector(s);
+const stream = $('#stream');
+const drawer = $('#drawer');
+const mask = $('#drawerMask');
+
+/* ---------- 提示 ---------- */
+let toastTimer;
+function toast(msg){
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('on'),2000);
+}
+
+/* ---------- 渲染消息 ---------- */
+function fmtTime(ts){
+  const d = new Date(ts);
+  return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
+}
+function renderMessages(){
+  stream.innerHTML='';
+  messages.forEach(m=>{
+    const el = document.createElement('div');
+    el.className = 'note '+(m.from==='me'?'me':'her');
+    // 随机轻微偏移+旋转（错落拼贴）
+    const rot = rand(-3.5,3.5).toFixed(1);
+    const dx  = rand(-6,6).toFixed(1);
+    el.style.transform = `rotate(${rot}deg) translateX(${dx}px)`;
+    el.textContent = m.text;
+    const st = document.createElement('div');
+    st.className='stamp'; st.textContent = fmtTime(m.time);
+    el.appendChild(st);
+    stream.appendChild(el);
+  });
+  scrollBottom();
+}
+function scrollBottom(){ requestAnimationFrame(()=>stream.scrollTop = stream.scrollHeight); }
+
+function appendMessage(m,save){
+  messages.push(m);
+  if(save!==false) saveMsgs();
+  // 只追加，不整页重绘（保持其它便签位置）
+  const el = document.createElement('div');
+  el.className = 'note '+(m.from==='me'?'me':'her');
+  const rot = rand(-3.5,3.5).toFixed(1);
+  const dx  = rand(-6,6).toFixed(1);
+  el.style.transform = `rotate(${rot}deg) translateX(${dx}px)`;
+  el.textContent = m.text;
+  const st = document.createElement('div');
+  st.className='stamp'; st.textContent = fmtTime(m.time);
+  el.appendChild(st);
+  stream.appendChild(el);
+  scrollBottom();
+}
+function showWaiting(){
+  const el = document.createElement('div');
+  el.className='waiting'; el.id='waitingNote';
+  el.textContent='祂正在写…';
+  stream.appendChild(el); scrollBottom();
+}
+function hideWaiting(){
+  const w = document.getElementById('waitingNote');
+  if(w) w.remove();
+}
+function showSystem(text){
+  const el = document.createElement('div');
+  el.className='sys'; el.textContent = text;
+  stream.appendChild(el); scrollBottom();
+}
+
+/* ---------- 发送（你） ---------- */
+let pendingReply = false;   // 是否已有回复流程进行中
+function sendMessage(){
+  const input = $('#msgInput');
+  const text = input.value.trim();
+  if(!text) return;
+  appendMessage({id:uid(),from:'me',text,time:Date.now()});
+  input.value=''; input.style.height='auto';
+  triggerReply();
+}
+
+/* ---------- 祂回复 ---------- */
+function triggerReply(){
+  const avail = cards.filter(c=>!c.locked);
+  if(avail.length===0){ return; }   // 口袋空 → 不回复
+  if(pendingReply) return;          // 已在计时中 → 继续计时，不重计
+  pendingReply = true;
+  const delay = rand(settings.dMin,settings.dMax)*1000;
+  setTimeout(async ()=>{
+    pendingReply = false;
+    const n = randInt(1,3);         // 1~3 张
+    const locked = cards.filter(c=>!c.locked);
+    for(let i=0;i<n;i++){
+      if(locked.length===0) break;
+      const pick = locked[randInt(0,locked.length-1)];
+      appendMessage({id:uid(),from:'her',text:pick.text,time:Date.now()});
+      if(i<n-1){
+        await new Promise(r=>setTimeout(r, rand(settings.gMin,settings.gMax)*1000));
+      }
+    }
+  }, delay);
+}
+
+/* ---------- 输入框自适应高度 ---------- */
+$('#msgInput').addEventListener('input',function(){
+  this.style.height='auto';
+  this.style.height=Math.min(this.scrollHeight,120)+'px';
+});
+$('#sendStamp').addEventListener('click',sendMessage);
+
+/* ---------- 侧栏滑动 ---------- */
+function openDrawer(){ drawer.classList.add('on'); mask.classList.add('on'); }
+function closeDrawer(){ drawer.classList.remove('on'); mask.classList.remove('on'); }
+mask.addEventListener('click',closeDrawer);
+
+let touchX=0,touchY=0,edge=false;
+document.addEventListener('touchstart',e=>{
+  const t=e.touches[0];
+  touchX=t.clientX; touchY=t.clientY;
+  edge = touchX < 28 && !drawer.classList.contains('on');
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+  if(!edge) return;
+  const t=e.touches[0];
+  const dx=t.clientX-touchX, dy=Math.abs(t.clientY-touchY);
+  if(dx>40 && dy<40){ openDrawer(); edge=false; }
+},{passive:true});
+// 侧栏内右滑关闭
+drawer.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;},{passive:true});
+drawer.addEventListener('touchmove',e=>{
+  const dx=e.touches[0].clientX-touchX;
+  if(dx<-40) closeDrawer();
+},{passive:true});
+
+/* ---------- 页面切换 ---------- */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+  $('#'+id).classList.add('show');
+}
+function hidePages(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+}
+document.querySelectorAll('[data-go]').forEach(el=>{
+  el.addEventListener('click',()=>{
+    const go = el.dataset.go;
+    closeDrawer();
+    if(go==='pocket'){ renderPocket(); showPage('page-pocket'); }
+    if(go==='settings'){ renderSettings(); showPage('page-settings'); }
+  });
+});
+document.querySelectorAll('[data-back]').forEach(el=>{
+  el.addEventListener('click',()=>{
+    // 添加页未保存确认
+    if($('#page-add').classList.contains('show')){
+      if($('#addArea').value.trim()){
+        if(!confirm('还没放进口袋，确定离开吗？')) return;
+        $('#addArea').value='';
+      }
+    }
+    hidePages();
+  });
+});
+
+/* ---------- 口袋 ---------- */
+let selMode=false, selSet=new Set(), searchKw='';
+function renderPocket(){
+  const list = $('#pocketList');
+  list.innerHTML='';
+  let arr = cards.slice();
+  if(searchKw) arr = arr.filter(c=>c.text.includes(searchKw));
+  if(arr.length===0){
+    list.innerHTML = '<div class="empty-tip">'+(searchKw?'没找到匹配的字卡':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧')+'</div>';
+    return;
+  }
+  arr.forEach(c=>{
+    const el = document.createElement('div');
+    el.className='card-item'+(c.locked?' locked':'')+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');
+    el.dataset.id = c.id;
+    el.textContent = c.text;
+    const chk = document.createElement('div');
+    chk.className='chk'; chk.textContent = selSet.has(c.id)?'✓':'';
+    el.appendChild(chk);
+    const lb = document.createElement('div');
+    lb.className='lockbtn'; lb.textContent = c.locked?'🔒':'🔓';
+    lb.addEventListener('click',ev=>{ev.stopPropagation();toggleLock(c.id);});
+    el.appendChild(lb);
+    el.addEventListener('click',()=>{
+      if(selMode){
+        if(selSet.has(c.id)) selSet.delete(c.id); else selSet.add(c.id);
+        renderPocket();
+      }else{
+        editCard(c.id);
+      }
+    });
+    list.appendChild(el);
+  });
+}
+function toggleLock(id){
+  const c = cards.find(x=>x.id===id);
+  if(!c) return;
+  c.locked = !c.locked;
+  saveCards(); renderPocket();
+}
+function editCard(id){
+  const c = cards.find(x=>x.id===id);
+  if(!c) return;
+  $('#addArea').value = c.text;
+  $('#addArea').dataset.editing = id;
+  showPage('page-add');
+}
+
+/* 口袋工具条 */
+$('#pocketTools').addEventListener('click',e=>{
+  const t = e.target.closest('.tool'); if(!t) return;
+  const act = t.dataset.t;
+  if(act==='search'){
+    const kw = prompt('搜索字卡',searchKw);
+    if(kw!==null){ searchKw=kw.trim(); renderPocket(); }
+  }
+  else if(act==='add'){
+    $('#addArea').value=''; delete $('#addArea').dataset.editing;
+    showPage('page-add');
+  }
+  else if(act==='dedup'){ dedup(); }
+  else if(act==='import'){ $('#fileInput').click(); }
+  else if(act==='export'){ exportCards(); }
+  else if(act==='del'){ toggleSelMode(t); }
+  else if(act==='lockall'){ toast('点每张字卡右侧的锁，可单独上锁'); }
+});
+
+/* 去重 */
+function dedup(){
+  const seen = new Set(); const kept=[];
+  // 保留最早：cards 按加入顺序，先出现的保留
+  cards.forEach(c=>{
+    if(seen.has(c.text)) return;
+    seen.add(c.text); kept.push(c);
+  });
+  const removed = cards.length-kept.length;
+  if(removed===0){ toast('没有重复的字卡'); return; }
+  if(confirm('发现 '+removed+' 张重复，保留最早的，删除其余？')){
+    cards = kept; saveCards(); renderPocket();
+    toast('已删除 '+removed+' 张重复字卡');
+  }
+}
+
+/* 批量删除 */
+function toggleSelMode(btn){
+  selMode = !selMode;
+  selSet.clear();
+  btn.classList.toggle('on',selMode);
+  renderPocket();
+  if(selMode){
+    btn.textContent='✓';
+    toast('选择要删除的字卡，再点 ✓');
+  }else{
+    btn.textContent='🗑';
+  }
+  // 简化：selMode 下点 ✓ 执行删除
+}
+// 覆盖：selMode 时点 🗑 变成确认删除
+$('#pocketTools').addEventListener('click',e=>{
+  const t=e.target.closest('.tool'); if(!t) return;
+  if(t.dataset.t==='del' && selMode && selSet.size>0){
+    if(confirm('删除选中的 '+selSet.size+' 张字卡？')){
+      cards = cards.filter(c=>!selSet.has(c.id));
+      saveCards(); selMode=false; selSet.clear();
+      t.classList.remove('on'); t.textContent='🗑';
+      renderPocket(); toast('已删除');
+    }
+  }
+},true);
+
+/* 导入 */
+$('#fileInput').addEventListener('change',async e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const text = await f.text();
+  let incoming = [];
+  const name = f.name.toLowerCase();
+  try{
+    if(name.endsWith('.json') || text.trim().startsWith('{')){
+      const obj = JSON.parse(text);
+      const arr = Array.isArray(obj)?obj:(obj.cards||[]);
+      incoming = arr.map(x=>typeof x==='string'?x:(x.text||'')).filter(Boolean);
+    }else{
+      incoming = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+    }
+  }catch(err){ toast('文件格式无法识别'); e.target.value=''; return; }
+
+  const exist = new Set(cards.map(c=>c.text));
+  let added=0, skipped=0;
+  incoming.forEach(txt=>{
+    if(exist.has(txt)){ skipped++; return; }
+    cards.push({id:uid(),text:txt,locked:false});
+    exist.add(txt); added++;
+  });
+  if(added) await saveCards();
+  renderPocket();
+  toast('导入 '+added+' 张，跳过 '+skipped+' 张重复');
+  e.target.value='';
+});
+
+/* 导出 */
+async function exportCards(){
+  const fmt = prompt('导出格式：输入 1 = JSON，2 = TXT','1');
+  if(fmt!=='1' && fmt!=='2') return;
+  const out = cards.filter(c=>!c.locked);   // 只导未锁
+  let data, fname, type;
+  if(fmt==='1'){
+    data = JSON.stringify({cards:out.map(c=>({text:c.text}))},null,2);
+    fname = '阿遇♡阿凉字卡.json'; type='application/json';
+  }else{
+    data = out.map(c=>c.text).join('\n');
+    fname = '阿遇♡阿凉字卡.txt'; type='text/plain';
+  }
+  const blob = new Blob([data],{type});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fname;
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast('已导出 '+out.length+' 张字卡');
+}
+
+/* ---------- 添加/保存字卡 ---------- */
+$('#saveCards').addEventListener('click',async ()=>{
+  const area = $('#addArea');
+  const editingId = area.dataset.editing;
+  const lines = area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
+  if(lines.length===0){ toast('还没写呢'); return; }
+
+  if(editingId){
+    // 编辑单张：整段作为一张
+    const c = cards.find(x=>x.id===editingId);
+    if(c){ c.text = area.value.trim(); await saveCards(); }
+    delete area.dataset.editing;
+    area.value='';
+    toast('已放进口袋');
+  }else{
+    // 新增：一行一张
+    for(const line of lines){
+      cards.push({id:uid(),text:line,locked:false});
+    }
+    await saveCards();
+    area.value='';
+    toast('放进了 '+lines.length+' 张字卡');
+  }
+  // 保存后留在本页（不清空页面，继续加）
+});
+
+/* ---------- 设置 ---------- */
+function renderSettings(){
+  $('#dMin').value = settings.dMin;
+  $('#dMax').value = settings.dMax;
+  $('#gMin').value = settings.gMin;
+  $('#gMax').value = settings.gMax;
+  document.querySelectorAll('.style-opt').forEach(o=>{
+    o.classList.toggle('on', o.dataset.style===settings.style);
+  });
+}
+function bindNum(id,key){
+  $('#'+id).addEventListener('change',e=>{
+    let v = parseInt(e.target.value)||0;
+    if(v<0) v=0;
+    settings[key]=v; saveSet();
+  });
+}
+bindNum('dMin','dMin'); bindNum('dMax','dMax');
+bindNum('gMin','gMin'); bindNum('gMax','gMax');
+document.querySelectorAll('.style-opt').forEach(o=>{
+  o.addEventListener('click',()=>{
+    settings.style = o.dataset.style;
+    document.body.className = settings.style;
+    saveSet(); renderSettings();
+  });
+});
+$('#clearMsgs').addEventListener('click',()=>{
+  if(confirm('清空所有聊天记录？此操作不可恢复')){
+    messages=[]; saveMsgs(); renderMessages(); toast('已清空');
+  }
+});
+
+/* ---------- 启动 ---------- */
+async function boot(){
+  await FS.init();
+  const c = await FS.read('cards.json',{cards:[]});
+  const m = await FS.read('messages.json',{messages:[]});
+  const s = await FS.read('settings.json',null);
+  cards = c.cards||[];
+  messages = m.messages||[];
+  if(s) settings = Object.assign(settings,s);
+  document.body.className = settings.style||'retro';
+
+  renderMessages();
+  // 打开时，口袋空 → 提示一次
+  if(cards.length===0){
+    showSystem('口袋里还没有字卡，去给祂放几张吧');
+  }
+}
+boot();
+</script>
+</body>
+</html>
