@@ -7,7 +7,7 @@
 <title>阿遇♡阿凉</title>
 <style>
 /* ============================================================
-   全局底层 CSS（所有主题共用）
+   全局底层 CSS
    ============================================================ */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
@@ -17,10 +17,8 @@ body{font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;colo
 body.has-bg #bgLayer,body.has-bg #bgMask{display:block}
 .ico{width:22px;height:22px;display:block;flex:0 0 auto}
 .ico-inline{width:16px;height:16px;display:inline-block;vertical-align:-3px;margin-right:5px}
-#app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden;z-index:1}
-body.page-open #app{visibility:hidden}
 
-/* 14 套主题根容器：同时只有一套 .active */
+/* 14 套主题根容器 */
 .theme-root{position:fixed;inset:0;display:none;flex-direction:column;overflow:hidden;z-index:1}
 .theme-root.active{display:flex}
 body.page-open .theme-root{visibility:hidden}
@@ -35,17 +33,13 @@ body.page-open .theme-root{visibility:hidden}
 .theme-root .quote-bar{display:none;margin:0 0 8px;font-size:13px;position:relative;opacity:.95}
 .theme-root .quote-bar.on{display:block}
 .theme-root .quote-bar .q-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:16px;opacity:.6}
-.theme-root .msgnote{position:relative;word-break:break-word;white-space:pre-wrap;animation:noteIn .28s ease both}
-.theme-root .msgnote.sticker-note{background:transparent !important;border:none !important;padding:0 !important;box-shadow:none !important;background-image:none !important}
-.theme-root .msgnote.sticker-note::before,.theme-root .msgnote.sticker-note::after{display:none !important}
+.theme-root .msgnote{position:relative;word-break:break-word;white-space:pre-wrap}
 .theme-root .msgnote .stkmsg{max-width:160px;max-height:160px;display:block}
 .theme-root .msgnote .imgmsg{max-width:200px;max-height:240px;display:block}
 .theme-root .msgnote .nav{position:absolute;width:26px;height:26px;background-size:cover;background-position:center}
 .theme-root .msgnote .stamp{position:absolute;bottom:-14px;right:10px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;padding:2px;font-size:10px}
 .theme-root .msgnote .itag{display:inline-block;font-size:10px;opacity:.85;margin-right:6px;padding:1px 6px;border:1px solid currentColor;border-radius:6px;vertical-align:1px}
 .theme-root .sys{text-align:center;font-size:12.5px;margin:16px auto;padding:6px 12px;border-radius:4px;max-width:80%}
-.theme-root .waiting{max-width:72%;margin:24px auto 24px 20px;padding:16px 14px;font-size:14px;text-align:center;animation:breathe 2s ease-in-out infinite}
-@keyframes noteIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
 
 /* 通用页面 */
@@ -98,7 +92,7 @@ body.page-open .theme-root{visibility:hidden}
 #selectAllRow.on{display:flex}
 #selectAllRow input{width:18px;height:18px}
 
-/* 贴纸 / 卡片 / 互动 / 音乐 通用外观 */
+/* 贴纸 / 卡片 / 互动 / 音乐 通用 */
 .stk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:4px 0}
 .stk-cell{position:relative;aspect-ratio:1/1}
 .stk-cell .stk-thumb{width:100%;height:100%}
@@ -186,11 +180,11 @@ body.page-open .theme-root{visibility:hidden}
 #quickMusic{display:none;flex:1 1 auto;min-height:0;flex-direction:column;overflow:hidden}
 #quickMusic.on{display:flex}
 .qs-head{text-align:center;font-size:14px;font-weight:700;padding:4px 0 10px;flex:0 0 auto}
-  /* ============================================================
-   主题 1 · retro 复古手帐
+   /* ============================================================
+   retro 复古手帐
    ============================================================ */
 body.theme-retro{background-color:#e8dcc0;background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);color:#4a3b2a}
-body.theme-retro .topbar{padding:12px 0 calc(8px + env(safe-area-inset-top));background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f}
+body.theme-retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;padding:12px 0 calc(8px + env(safe-area-inset-top))}
 body.theme-retro .retro-cover{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:340px;position:relative;padding:0 14px}
 body.theme-retro .retro-polaroid{display:flex;flex-direction:column;align-items:center;gap:3px}
 body.theme-retro .retro-polaroid .av-her,body.theme-retro .retro-polaroid .av-me{width:56px;height:56px;border-radius:2px;background:#fff;background-size:cover;background-position:center;border:4px solid #fff;box-shadow:1px 3px 6px rgba(0,0,0,.25);transform:rotate(-4deg)}
@@ -221,18 +215,22 @@ body.theme-retro .msgnote.interact.touch{margin-left:auto;margin-right:20px;back
 body.theme-retro .msgnote.interact.back{margin-right:auto;margin-left:20px;background:#fbf7ec;border:2px dashed #c9b98f;color:#4a3b2a;border-radius:4px}
 body.theme-retro .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#f7ecd0;border:4px double #b89b5e;color:#6b5334;border-radius:14px;padding:14px 20px}
 body.theme-retro .sys{background:rgba(255,250,235,.6);border:1px dashed #c9b98f;color:#9a865e}
-body.theme-retro .waiting{background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#efe6cc 8px 16px);border:1px dashed #c9b98f;color:#a08a5f;border-radius:3px}
+body.theme-retro .retro-tape-deco{position:absolute;top:-6px;left:16px;width:34px;height:12px;background:rgba(200,175,130,.5);transform:rotate(-6deg)}
 body.theme-retro #drawer{background:linear-gradient(160deg,#f3ead2,#e6d9ba);border-right:1px solid #c9b98f}
-body.theme-retro .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#5a4a2e}
+body.theme-retro .drawer-item{padding:15px 20px;font-size:16px;color:#5a4a2e}
+body.theme-retro .retro-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-retro .retro-page{font-size:11px;color:#a08a5f;font-weight:700}
+body.theme-retro .retro-drawer-name{flex:1}
 body.theme-retro #quickDrawer{background:#f3ead2;border-top:1px solid #cbb98f}
 body.theme-retro .qb{color:#7a5f30}
 body.theme-retro .qb:active{background:rgba(200,170,110,.2)}
 body.theme-retro .drawer-handle{background:#c9b98f}
 body.theme-retro .box{background:#e9dcbc;border:1px solid #c9b98f;box-shadow:inset 0 -3px 0 rgba(150,120,70,.15);display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
-body.theme-retro .drawer-cell{padding:12px 4px;border-radius:10px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fbf7ec;border:1px solid #d0bf95;color:#5a4a2e;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+body.theme-retro .drawer-cell{padding:12px 4px;border-radius:10px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fbf7ec;border:1px solid #d0bf95;color:#5a4a2e;box-shadow:0 2px 4px rgba(0,0,0,.1);position:relative}
 body.theme-retro .drawer-cell.on{border:2px solid #c47a3a}
 body.theme-retro .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
 body.theme-retro .drawer-cell .cnt{font-size:11px;opacity:.65}
+body.theme-retro .retro-pocket-tape{position:absolute;top:-4px;left:50%;transform:translateX(-50%) rotate(-3deg);width:30px;height:10px;background:rgba(200,180,130,.6)}
 body.theme-retro .panel .tool{color:#7a5f30;border:1px solid #cbb98f;background:linear-gradient(#fffaf0,#f3ead2);border-radius:6px}
 body.theme-retro .card-item{background:linear-gradient(#fbf7ec,#f6f0e0);border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px}
 body.theme-retro .empty-tip{color:#a08a5f}
@@ -243,11 +241,10 @@ body.theme-retro .mp-fill{background:#b89b5e}
 body.theme-retro .mp-knob{background:#7a5f30}
 
 /* ============================================================
-   主题 2 · comic 漫画（四格 + 手绘涂鸦，无尖角）
+   comic 漫画（四格 + 涂鸦，无尖角）
    ============================================================ */
 body.theme-comic{background-color:#fbf8f1;background-image:radial-gradient(circle at 25% 30%, rgba(30,30,30,.03) 0 1.2px, transparent 2px),radial-gradient(circle at 70% 65%, rgba(30,30,30,.025) 0 1.2px, transparent 2px),linear-gradient(160deg,#fbf8f1,#f0ead9);background-size:14px 14px,18px 18px,100% 100%;color:#1b1b1b;font-family:"Kaiti SC","STKaiti","KaiTi",sans-serif}
 body.theme-comic .topbar{background:repeating-linear-gradient(45deg,#fffdf6 0 6px,#f5efdd 6px 12px);border-bottom:4px solid #111;padding:10px 0 calc(8px + env(safe-area-inset-top));flex-direction:column;gap:8px;position:relative}
-body.theme-comic .topbar::before{content:"";position:absolute;left:10px;right:10px;bottom:-4px;height:4px;background:repeating-linear-gradient(90deg,#111 0 6px,transparent 6px 12px)}
 body.theme-comic .comic-head{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:340px;padding:0 14px}
 body.theme-comic .comic-episode{font-size:12px;font-weight:900;color:#111;border:2px solid #111;padding:2px 8px;background:#ffe14a}
 body.theme-comic .comic-title{font-size:20px;font-weight:900;color:#111;letter-spacing:2px}
@@ -265,11 +262,12 @@ body.theme-comic .msg-input{color:#111;font-weight:600}
 body.theme-comic .msg-input::placeholder{color:#8a8a8a}
 body.theme-comic .send-btn{right:8px;bottom:8px;width:52px;height:46px;font-size:14px;font-weight:900;border:3px solid #111;background:#ffe14a;color:#111;border-radius:0;box-shadow:3px 3px 0 #111}
 body.theme-comic .quote-bar{padding:8px 12px;background:#ffe14a;border:3px solid #111;color:#111;font-weight:700}
-body.theme-comic .msgnote{max-width:80%;padding:16px 14px;font-size:16px;line-height:1.6;background:#fff;border:3px solid #111;color:#111;border-radius:0;box-shadow:4px 4px 0 rgba(17,17,17,.85)}
+body.theme-comic .msgnote{max-width:80%;padding:16px 14px 16px 26px;font-size:16px;line-height:1.6;background:#fff;border:3px solid #111;color:#111;border-radius:0;box-shadow:4px 4px 0 rgba(17,17,17,.85)}
 body.theme-comic .msgnote.me{margin-left:auto;margin-right:6px}
 body.theme-comic .msgnote.her{margin-right:auto;margin-left:6px}
 body.theme-comic .msgnote::before{content:"";position:absolute;right:-8px;top:-8px;width:16px;height:16px;background:#d63a2a;transform:rotate(45deg)}
 body.theme-comic .msgnote.her::before{right:auto;left:-8px}
+body.theme-comic .comic-cellno{position:absolute;left:6px;top:6px;font-size:12px;color:#d63a2a;font-weight:900}
 body.theme-comic .msgnote .stkmsg{border-radius:0}
 body.theme-comic .msgnote .imgmsg{border-radius:0}
 body.theme-comic .msgnote .nav{border:3px solid #111;background-color:#fff;border-radius:0}
@@ -282,21 +280,22 @@ body.theme-comic .msgnote.interact.touch{margin-left:auto;margin-right:6px;backg
 body.theme-comic .msgnote.interact.back{margin-right:auto;margin-left:6px;background:#fff;border:3px dashed #111}
 body.theme-comic .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#ffe14a;border:4px double #111;color:#111;padding:14px 20px}
 body.theme-comic .sys{background:#ffe14a;border:2px solid #111;color:#111;font-weight:700}
-body.theme-comic .waiting{background:#fff;border:3px dashed #111;color:#111;border-radius:0;font-weight:700}
 body.theme-comic #drawer{background:#fffdf6;border-right:4px solid #111}
-body.theme-comic .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#111;font-weight:700;border-bottom:2px dashed #111}
+body.theme-comic .drawer-item{padding:15px 20px;font-size:16px;color:#111;font-weight:700;border-bottom:2px dashed #111}
+body.theme-comic .comic-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-comic .comic-ep{font-size:11px;font-weight:900;border:2px solid #111;padding:1px 6px;background:#ffe14a}
 body.theme-comic #quickDrawer{background:#fffdf6;border-top:4px solid #111}
 body.theme-comic .qb{color:#111;font-weight:700;border:2px solid #111;background:#fff;margin:2px;border-radius:0}
 body.theme-comic .qb:active{background:#ffe14a}
 body.theme-comic .drawer-handle{background:#111}
 body.theme-comic .box{background:#fffdf6;border:3px solid #111;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:0;box-shadow:4px 4px 0 rgba(17,17,17,.2)}
-body.theme-comic .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:3px solid #111;color:#111;border-radius:0;box-shadow:3px 3px 0 #111;font-weight:700}
+body.theme-comic .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:3px solid #111;color:#111;border-radius:0;box-shadow:3px 3px 0 #111;font-weight:700;position:relative}
 body.theme-comic .drawer-cell.on{background:#ffe14a;color:#111}
+body.theme-comic .comic-cell-num{position:absolute;left:4px;top:2px;font-size:11px;font-weight:900;color:#d63a2a}
 body.theme-comic .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
 body.theme-comic .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-comic .panel .tool{color:#111;border:3px solid #111;background:#fff;border-radius:0;box-shadow:3px 3px 0 #111}
 body.theme-comic .card-item{background:#fff;border:3px solid #111;color:#111;border-radius:0;box-shadow:4px 4px 0 rgba(17,17,17,.85);font-weight:600}
-body.theme-comic .card-item::before{content:"";position:absolute;right:-8px;top:-8px;width:16px;height:16px;background:#d63a2a;transform:rotate(45deg)}
 body.theme-comic .empty-tip{color:#111}
 body.theme-comic #miniPlayer{background:#fffdf6;border:3px solid #111;color:#111;border-radius:0;box-shadow:4px 4px 0 rgba(17,17,17,.2)}
 body.theme-comic .mp-btn{color:#111}
@@ -305,7 +304,7 @@ body.theme-comic .mp-fill{background:#111}
 body.theme-comic .mp-knob{background:#111}
 
 /* ============================================================
-   主题 3 · girl 少女手帐
+   girl 少女手帐
    ============================================================ */
 body.theme-girl{background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);background-size:18px 18px;color:#7a4a5c}
 body.theme-girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;padding:10px 0 calc(8px + env(safe-area-inset-top));flex-direction:column;gap:6px}
@@ -328,9 +327,10 @@ body.theme-girl .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-size:
 body.theme-girl .quote-bar{padding:8px 12px;background:#fff0f5;border:2px solid #ffd6e6;color:#c05a80;border-radius:10px}
 body.theme-girl .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
 body.theme-girl .msgnote.me{margin-left:auto;margin-right:20px;background:#fff;border:2px solid #ffd6e6;color:#a04a6a;border-radius:16px}
-body.theme-girl .msgnote.me::after{content:"♥";position:absolute;top:-10px;left:-6px;color:#f38bb0;font-size:16px}
 body.theme-girl .msgnote.her{margin-right:auto;margin-left:20px;background:#f6f0ff;border:2px solid #ddd0f5;color:#6a5a8a;border-radius:16px}
-body.theme-girl .msgnote.her::after{content:"♥";position:absolute;top:-10px;right:-6px;color:#c0a8e8;font-size:16px}
+body.theme-girl .girl-heart-deco{position:absolute;top:-10px;font-size:16px;color:#f38bb0}
+body.theme-girl .msgnote.me .girl-heart-deco{left:-6px}
+body.theme-girl .msgnote.her .girl-heart-deco{right:-6px;color:#c0a8e8}
 body.theme-girl .msgnote .stkmsg{border-radius:8px}
 body.theme-girl .msgnote .imgmsg{border-radius:10px}
 body.theme-girl .msgnote .nav{border:2px solid #f3c8d8;background-color:#fff;border-radius:14px}
@@ -342,9 +342,10 @@ body.theme-girl .msgnote.interact.touch{margin-left:auto;margin-right:20px;backg
 body.theme-girl .msgnote.interact.back{margin-right:auto;margin-left:20px;background:#f6f0ff;border:2px dashed #c0a8e8;color:#6a5a8a;border-radius:4px}
 body.theme-girl .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#ffe9f1;border:4px double #f38bb0;color:#c05a80;border-radius:14px;padding:14px 20px}
 body.theme-girl .sys{background:#fff;border:2px dashed #f3b8ce;color:#c05a80}
-body.theme-girl .waiting{background:#fff0f5;border:2px dashed #f3b8ce;color:#c05a80;border-radius:14px}
 body.theme-girl #drawer{background:linear-gradient(160deg,#ffe9f1,#ffd6e6);border-right:1px solid #f3b8ce}
-body.theme-girl .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#7a4a5c}
+body.theme-girl .drawer-item{padding:15px 20px;font-size:16px;color:#7a4a5c}
+body.theme-girl .girl-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-girl .girl-dot{width:22px;height:22px;border-radius:50%;background:#ffe9f1;color:#f38bb0;display:flex;align-items:center;justify-content:center;font-size:11px;border:1px solid #f3c8d8}
 body.theme-girl #quickDrawer{background:#ffe9f1;border-top:1px solid #f3b8ce}
 body.theme-girl .qb{color:#c05a80}
 body.theme-girl .qb:active{background:rgba(243,184,206,.3)}
@@ -352,6 +353,7 @@ body.theme-girl .drawer-handle{background:#f3b8ce}
 body.theme-girl .box{background:#ffe9f1;border:1px solid #f3b8ce;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
 body.theme-girl .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:14px;box-shadow:0 2px 4px rgba(0,0,0,.1)}
 body.theme-girl .drawer-cell.on{border:2px solid #f38bb0}
+body.theme-girl .girl-sticker-round{width:34px;height:34px;border-radius:50%;background:#ffe9f1;display:flex;align-items:center;justify-content:center;color:#f38bb0}
 body.theme-girl .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
 body.theme-girl .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-girl .panel .tool{color:#c05a80;border:1px solid #f3b8ce;background:#fff5f8;border-radius:10px}
@@ -364,7 +366,7 @@ body.theme-girl .mp-fill{background:#f38bb0}
 body.theme-girl .mp-knob{background:#c05a80}
 
 /* ============================================================
-   主题 4 · news 报纸（遇凉晚报）
+   news 报纸（遇凉晚报）
    ============================================================ */
 body.theme-news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.06) 1px, transparent 1px);background-size:100% 26px,26px 100%;color:#2a2a26;font-family:"FangSong","STFangsong",serif}
 body.theme-news .topbar{background:#ece6d4;border-bottom:4px double #2a2a26;padding:8px 0 calc(6px + env(safe-area-inset-top));flex-direction:column}
@@ -388,25 +390,29 @@ body.theme-news .msg-input{color:#2a2a26}
 body.theme-news .msg-input::placeholder{color:#8a8270}
 body.theme-news .send-btn{right:8px;bottom:8px;width:52px;height:36px;font-size:13px;border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0;letter-spacing:1px}
 body.theme-news .quote-bar{padding:8px 12px;background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
-body.theme-news .msgnote{max-width:80%;padding:14px 16px 14px 22px;margin:16px 0;font-size:15.5px;line-height:1.6}
+body.theme-news .msgnote{max-width:80%;padding:14px 16px 14px 22px;margin:18px 0;font-size:15.5px;line-height:1.6;position:relative}
 body.theme-news .msgnote.me{margin-left:auto;margin-right:12px;background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;border-left:4px solid #2a2a26}
-body.theme-news .msgnote.me::before{content:"◆";position:absolute;left:6px;top:6px;color:#6a6350;font-size:8px}
 body.theme-news .msgnote.her{margin-right:auto;margin-left:12px;background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;border-right:4px solid #2a2a26}
-body.theme-news .msgnote.her::before{content:"◆";position:absolute;right:6px;top:6px;color:#6a6350;font-size:8px}
+body.theme-news .news-col-label{font-size:11px;font-weight:700;letter-spacing:3px;color:#6a6350;border-bottom:1px solid #6a6350;padding-bottom:4px;margin-bottom:6px}
+body.theme-news .news-body{column-count:1;column-gap:12px}
+body.theme-news .news-headline{font-size:16px;font-weight:900;letter-spacing:1px;margin-bottom:6px;border-left:4px solid #2a2a26;padding-left:8px}
+body.theme-news .news-text{font-size:15px;line-height:1.7;text-indent:2em}
 body.theme-news .msgnote .stkmsg{border:2px solid #6a6350}
 body.theme-news .msgnote .imgmsg{border:2px solid #6a6350}
 body.theme-news .msgnote .nav{border:1px solid #6a6350;background-color:#f2ecda;border-radius:0}
 body.theme-news .msgnote.me .nav{right:-13px;bottom:-13px}
 body.theme-news .msgnote.her .nav{left:-13px;bottom:-13px}
 body.theme-news .msgnote .stamp{border-top:1px solid #6a6350;border-bottom:1px solid #6a6350;color:#2a2a26;background:transparent;padding:1px 4px;font-size:9px}
-body.theme-news .msgnote.interact{padding:12px 14px;margin:16px 0;font-size:15px;max-width:70%}
+body.theme-news .msgnote.interact{padding:12px 14px;margin:18px 0;font-size:15px;max-width:70%}
 body.theme-news .msgnote.interact.touch{margin-left:auto;margin-right:12px;background:#f4eeda;border:2px solid #2a2a26;color:#2a2a26;border-radius:0}
 body.theme-news .msgnote.interact.back{margin-right:auto;margin-left:12px;background:#f4eeda;border:2px dashed #6a6350;color:#2a2a26;border-radius:0}
 body.theme-news .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#ddd6c0;border:4px double #2a2a26;color:#2a2a26;border-radius:0;padding:14px 20px}
 body.theme-news .sys{background:#f4eeda;border:1px dashed #6a6350;color:#2a2a26}
-body.theme-news .waiting{background:#f4eeda;border:1px dashed #6a6350;color:#6a6350;border-radius:0}
 body.theme-news #drawer{background:#ece6d4;border-right:4px double #2a2a26}
-body.theme-news .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#2a2a26;border-bottom:1px solid #6a6350}
+body.theme-news .drawer-item{padding:15px 20px;font-size:16px;color:#2a2a26;border-bottom:1px solid #6a6350}
+body.theme-news .news-drawer-title{font-size:13px;font-weight:700;letter-spacing:3px;text-align:center;padding:8px 0;border-bottom:3px double #2a2a26;color:#2a2a26}
+body.theme-news .news-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-news .news-page{font-size:11px;font-weight:700;color:#6a6350;letter-spacing:1px}
 body.theme-news #quickDrawer{background:#ece6d4;border-top:4px double #2a2a26}
 body.theme-news .qb{color:#2a2a26}
 body.theme-news .qb:active{background:#ddd6c0}
@@ -414,11 +420,9 @@ body.theme-news .drawer-handle{background:#6a6350}
 body.theme-news .box{background:#ece6d4;border:1px solid #6a6350;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:0}
 body.theme-news .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
 body.theme-news .drawer-cell.on{border:2px solid #2a2a26}
-body.theme-news .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
 body.theme-news .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-news .panel .tool{color:#2a2a26;border:1px solid #6a6350;background:#f2ecda;border-radius:0}
 body.theme-news .card-item{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;border-left:3px double #2a2a26;padding-left:18px}
-body.theme-news .card-item::before{content:"❚";position:absolute;left:8px;top:8px;color:#6a6350;font-size:9px}
 body.theme-news .empty-tip{color:#6a6350}
 body.theme-news #miniPlayer{background:#ece6d4;border:2px solid #6a6350;color:#2a2a26}
 body.theme-news .mp-btn{color:#2a2a26}
@@ -427,7 +431,7 @@ body.theme-news .mp-fill{background:#2a2a26}
 body.theme-news .mp-knob{background:#2a2a26}
 
 /* ============================================================
-   主题 5 · sakura 樱花夜
+   sakura 樱花夜
    ============================================================ */
 body.theme-sakura{background-color:#241826;background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);background-size:120px 120px,150px 150px,130px 130px,100% 100%;color:#f2dbe6}
 body.theme-sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;padding:10px 0 calc(8px + env(safe-area-inset-top));position:relative;overflow:hidden}
@@ -446,9 +450,10 @@ body.theme-sakura .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-siz
 body.theme-sakura .quote-bar{padding:8px 12px;background:rgba(255,190,215,.12);border:1px solid #5a3f62;color:#ffc0d8}
 body.theme-sakura .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
 body.theme-sakura .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(255,210,230,.12);border:1px solid #6a4a72;color:#ffe6f0;border-radius:4px}
-body.theme-sakura .msgnote.me::after{content:"✿";position:absolute;top:-12px;left:-4px;color:#ff9ec4;font-size:14px}
 body.theme-sakura .msgnote.her{margin-right:auto;margin-left:20px;background:rgba(255,240,250,.09);border:1px solid #5a3f62;color:#f2dbe6;border-radius:4px}
-body.theme-sakura .msgnote.her::after{content:"✿";position:absolute;top:-12px;right:-4px;color:#c0a8e8;font-size:14px}
+body.theme-sakura .sakura-petal-deco{position:absolute;top:-12px;font-size:14px;color:#ff9ec4}
+body.theme-sakura .msgnote.me .sakura-petal-deco{left:-4px}
+body.theme-sakura .msgnote.her .sakura-petal-deco{right:-4px;color:#c0a8e8}
 body.theme-sakura .msgnote .stkmsg{border-radius:8px}
 body.theme-sakura .msgnote .imgmsg{border-radius:10px}
 body.theme-sakura .msgnote .nav{border:1px solid #5a3f62;background-color:#33223a;border-radius:6px}
@@ -460,9 +465,11 @@ body.theme-sakura .msgnote.interact.touch{margin-left:auto;margin-right:20px;bac
 body.theme-sakura .msgnote.interact.back{margin-right:auto;margin-left:20px;background:rgba(200,180,255,.16);border:2px dashed #a88ad8;color:#f2dbe6;border-radius:4px}
 body.theme-sakura .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:rgba(255,158,196,.3);border:4px double #ff9ec4;color:#ffc0d8;border-radius:14px;padding:14px 20px}
 body.theme-sakura .sys{background:rgba(255,190,215,.08);border:1px dashed #6a4a72;color:#e0a8c0}
-body.theme-sakura .waiting{background:rgba(255,190,215,.07);border:1px dashed #6a4a72;color:#e0a8c0;border-radius:8px}
 body.theme-sakura #drawer{background:linear-gradient(160deg,#33223a,#241826);border-right:1px solid #4a3350}
-body.theme-sakura .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#f2dbe6}
+body.theme-sakura .drawer-item{padding:15px 20px;font-size:16px;color:#f2dbe6}
+body.theme-sakura .sakura-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-sakura .sakura-flower{color:#ff9ec4;font-size:14px}
+body.theme-sakura .sakura-branch{position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(#5a3f62,#241826);opacity:.5}
 body.theme-sakura #quickDrawer{background:#33223a;border-top:1px solid #4a3350}
 body.theme-sakura .qb{color:#ffc0d8}
 body.theme-sakura .qb:active{background:rgba(255,158,196,.12)}
@@ -470,7 +477,7 @@ body.theme-sakura .drawer-handle{background:#5a3f62}
 body.theme-sakura .box{background:#33223a;border:1px solid #5a3f62;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
 body.theme-sakura .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,220,235,.09);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
 body.theme-sakura .drawer-cell.on{border:2px solid #ff9ec4}
-body.theme-sakura .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-sakura .sakura-blossom{color:#ff9ec4;font-size:20px}
 body.theme-sakura .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-sakura .panel .tool{color:#ffc0d8;border:1px solid #5a3f62;background:rgba(255,190,215,.08);border-radius:8px}
 body.theme-sakura .card-item{background:rgba(255,220,235,.07);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
@@ -482,7 +489,7 @@ body.theme-sakura .mp-fill{background:#ff9ec4}
 body.theme-sakura .mp-knob{background:#ffc0d8}
 
 /* ============================================================
-   主题 6 · glass 玻璃花房
+   glass 玻璃花房
    ============================================================ */
 body.theme-glass{background-color:#f4f7f8;background-image:linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#ffffff,#e6eff2);background-size:44px 44px,44px 44px,100% 100%,100% 100%;color:#3a4a52}
 body.theme-glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2;padding:10px 0 calc(8px + env(safe-area-inset-top))}
@@ -504,7 +511,7 @@ body.theme-glass .quote-bar{padding:8px 12px;background:#eaf4f8;border:1px solid
 body.theme-glass .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(120,160,180,.15)}
 body.theme-glass .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);color:#3a4a52;border-radius:12px}
 body.theme-glass .msgnote.her{margin-right:auto;margin-left:20px;background:rgba(240,248,250,.72);border:1px solid rgba(255,255,255,.9);color:#3a4a52;border-radius:12px}
-body.theme-glass .msgnote.me::after,body.theme-glass .msgnote.her::after{content:"";position:absolute;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),transparent 70%);top:-6px;left:8px;pointer-events:none}
+body.theme-glass .glass-shine{position:absolute;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),transparent 70%);top:-6px;left:8px;pointer-events:none}
 body.theme-glass .msgnote .stkmsg{border-radius:8px}
 body.theme-glass .msgnote .imgmsg{border-radius:10px}
 body.theme-glass .msgnote .nav{border:1px solid #cfdde2;background-color:#fff;border-radius:6px}
@@ -516,9 +523,9 @@ body.theme-glass .msgnote.interact.touch{margin-left:auto;margin-right:20px;back
 body.theme-glass .msgnote.interact.back{margin-right:auto;margin-left:20px;background:rgba(240,247,250,.85);border:2px dashed #a8ccd8;color:#3a4a52;border-radius:4px}
 body.theme-glass .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:rgba(220,236,242,.9);border:4px double #8ab4c4;color:#3a4a52;border-radius:14px;padding:14px 20px}
 body.theme-glass .sys{background:rgba(255,255,255,.8);border:1px dashed #cfdde2;color:#8aaab4}
-body.theme-glass .waiting{background:#eef6f9;border:1px dashed #cfdde2;color:#8aaab4;border-radius:8px}
 body.theme-glass #drawer{background:linear-gradient(160deg,#ffffff,#e6eff2);border-right:1px solid #cfdde2}
-body.theme-glass .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#3a4a52}
+body.theme-glass .drawer-item{padding:15px 20px;font-size:16px;color:#3a4a52}
+body.theme-glass .glass-drawer-item{display:flex;align-items:center;gap:10px}
 body.theme-glass #quickDrawer{background:#fff;border-top:1px solid #cfdde2}
 body.theme-glass .qb{color:#5a7a88}
 body.theme-glass .qb:active{background:#eaf4f8}
@@ -526,7 +533,7 @@ body.theme-glass .drawer-handle{background:#cfdde2}
 body.theme-glass .box{background:#fff;border:1px solid #dbe6ea;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
 body.theme-glass .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#f7fbfc;border:1px solid #dbe6ea;color:#5a7a88;border-radius:8px}
 body.theme-glass .drawer-cell.on{border:2px solid #8ab4c4}
-body.theme-glass .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-glass .glass-drawer-handle{width:24px;height:4px;background:#cfdde2;border-radius:2px}
 body.theme-glass .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-glass .panel .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.85);border-radius:8px}
 body.theme-glass .card-item{background:rgba(255,255,255,.85);border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px}
@@ -538,7 +545,7 @@ body.theme-glass .mp-fill{background:#8ab4c4}
 body.theme-glass .mp-knob{background:#5a7a88}
 
 /* ============================================================
-   主题 7 · ticket 电影票根
+   ticket 电影票根
    ============================================================ */
 body.theme-ticket{background-color:#1a1f26;background-image:radial-gradient(circle at 50% 0%, rgba(255,220,150,.12) 0, rgba(255,220,150,0) 55%),linear-gradient(160deg,#232a33,#141a20);color:#e8e2d2}
 body.theme-ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f;padding:10px 0 calc(8px + env(safe-area-inset-top))}
@@ -559,11 +566,13 @@ body.theme-ticket .msg-input{color:#3a3428}
 body.theme-ticket .msg-input::placeholder{color:#a89e80}
 body.theme-ticket .send-btn{right:8px;bottom:8px;width:52px;height:40px;font-size:13px;border:2px solid #c9b878;background:radial-gradient(circle at 35% 30%,#f7efd0,#e6d9a8);color:#5a4a20;border-radius:4px}
 body.theme-ticket .quote-bar{padding:8px 12px;background:#f5efdc;border:1px solid #d8cca8;color:#3a3428}
-body.theme-ticket .msgnote{max-width:76%;padding:14px 16px;margin:22px 0;font-size:15.5px;line-height:1.6}
+body.theme-ticket .msgnote{max-width:76%;padding:14px 16px 14px 22px;margin:22px 0;font-size:15.5px;line-height:1.6;position:relative}
 body.theme-ticket .msgnote.me{margin-left:auto;margin-right:16px;background:#f5efdc;border:1px dashed #d8cca8;color:#3a3428;border-radius:4px}
 body.theme-ticket .msgnote.me::before{content:"";position:absolute;left:-1px;top:0;bottom:0;width:8px;background-image:radial-gradient(circle,#1a1f26 3px,transparent 3px);background-size:8px 14px;background-position:left center;background-repeat:repeat-y}
 body.theme-ticket .msgnote.her{margin-right:auto;margin-left:16px;background:#ece4cc;border:1px dashed #d0c4a0;color:#3a3428;border-radius:4px}
 body.theme-ticket .msgnote.her::before{content:"";position:absolute;right:-1px;top:0;bottom:0;width:8px;background-image:radial-gradient(circle,#1a1f26 3px,transparent 3px);background-size:8px 14px;background-position:right center;background-repeat:repeat-y}
+body.theme-ticket .ticket-admit{position:absolute;left:20px;top:6px;font-size:9px;letter-spacing:2px;color:#a89e80}
+body.theme-ticket .ticket-seat{position:absolute;right:10px;top:6px;font-size:9px;letter-spacing:1px;color:#a89e80}
 body.theme-ticket .msgnote .stkmsg{border-radius:4px}
 body.theme-ticket .msgnote .imgmsg{border-radius:4px}
 body.theme-ticket .msgnote .nav{border:1px solid #4a5460;background-color:#2a323c;border-radius:4px}
@@ -575,9 +584,10 @@ body.theme-ticket .msgnote.interact.touch{margin-left:auto;margin-right:16px;bac
 body.theme-ticket .msgnote.interact.back{margin-right:auto;margin-left:16px;background:#ece4cc;border:2px dashed #c0b490;color:#3a3428;border-radius:4px}
 body.theme-ticket .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#e6d9a8;border:4px double #c9b878;color:#3a3428;border-radius:4px;padding:14px 20px}
 body.theme-ticket .sys{background:rgba(255,255,255,.06);border:1px dashed #4a5460;color:#a89e80}
-body.theme-ticket .waiting{background:rgba(245,239,220,.12);border:1px dashed #4a5460;color:#c8c0a8;border-radius:4px}
 body.theme-ticket #drawer{background:linear-gradient(160deg,#2a323c,#1a1f26);border-right:1px solid #3a434f}
-body.theme-ticket .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#e8e2d2}
+body.theme-ticket .drawer-item{padding:15px 20px;font-size:16px;color:#e8e2d2}
+body.theme-ticket .ticket-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-ticket .ticket-row{font-size:11px;color:#e8c88a;font-weight:700;letter-spacing:1px}
 body.theme-ticket #quickDrawer{background:#2a323c;border-top:1px solid #3a434f}
 body.theme-ticket .qb{color:#e8c88a}
 body.theme-ticket .qb:active{background:rgba(232,200,138,.12)}
@@ -585,7 +595,6 @@ body.theme-ticket .drawer-handle{background:#4a5460}
 body.theme-ticket .box{background:#2a323c;border:1px solid #3a434f;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:6px}
 body.theme-ticket .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px}
 body.theme-ticket .drawer-cell.on{border:2px solid #e8c88a}
-body.theme-ticket .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
 body.theme-ticket .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-ticket .panel .tool{color:#e8c88a;border:1px solid #3a434f;background:rgba(255,255,255,.05);border-radius:6px}
 body.theme-ticket .card-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px;border-left:6px dashed #1a1f26;border-right:6px dashed #1a1f26}
@@ -595,8 +604,8 @@ body.theme-ticket .mp-btn{color:#5a4a20}
 body.theme-ticket .mp-bar{background:rgba(120,100,50,.25)}
 body.theme-ticket .mp-fill{background:#c9b878}
 body.theme-ticket .mp-knob{background:#5a4a20}
-  /* ============================================================
-   主题 8 · dream 梦里见过
+   /* ============================================================
+   dream 梦里见过
    ============================================================ */
 body.theme-dream{background-color:#ece4ee;background-image:radial-gradient(circle at 25% 20%, rgba(220,200,240,.6) 0, rgba(220,200,240,0) 50%),radial-gradient(circle at 80% 70%, rgba(230,210,235,.5) 0, rgba(230,210,235,0) 50%),linear-gradient(160deg,#f0e9f2,#ddd3e2);color:#5f5470}
 body.theme-dream .topbar{background:linear-gradient(#f2ecf4,#e3d9e8);border-bottom:1px solid #cdc0d6;padding:12px 0 calc(10px + env(safe-area-inset-top))}
@@ -618,9 +627,9 @@ body.theme-dream .quote-bar{padding:8px 12px;background:rgba(255,255,255,.8);bor
 body.theme-dream .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6;filter:blur(.15px)}
 body.theme-dream .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:18px}
 body.theme-dream .msgnote.her{margin-right:auto;margin-left:20px;background:rgba(240,232,248,.8);border:1px solid #cdc0d6;color:#5f5470;border-radius:18px}
-body.theme-dream .msgnote.me::after,body.theme-dream .msgnote.her::after{content:"";position:absolute;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.7),transparent 70%);top:-10px;pointer-events:none}
-body.theme-dream .msgnote.me::before{content:"☾";position:absolute;top:-14px;left:8px;color:#b8a0cc;font-size:13px}
-body.theme-dream .msgnote.her::before{content:"☾";position:absolute;top:-14px;right:8px;color:#a8a0d8;font-size:13px}
+body.theme-dream .dream-moon-deco{position:absolute;top:-14px;font-size:13px;color:#b8a0cc}
+body.theme-dream .msgnote.me .dream-moon-deco{left:8px}
+body.theme-dream .msgnote.her .dream-moon-deco{right:8px;color:#a8a0d8}
 body.theme-dream .msgnote .stkmsg{border-radius:10px}
 body.theme-dream .msgnote .imgmsg{border-radius:12px}
 body.theme-dream .msgnote .nav{border:1px solid #cdc0d6;background-color:#faf6fc;border-radius:12px}
@@ -632,9 +641,10 @@ body.theme-dream .msgnote.interact.touch{margin-left:auto;margin-right:20px;back
 body.theme-dream .msgnote.interact.back{margin-right:auto;margin-left:20px;background:rgba(240,232,248,.9);border:2px dashed #a8a0d8;color:#5f5470;border-radius:4px}
 body.theme-dream .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#e3d6ee;border:4px double #b8a0cc;color:#5f5470;border-radius:14px;padding:14px 20px}
 body.theme-dream .sys{background:rgba(255,255,255,.6);border:1px dashed #cdc0d6;color:#a898b8}
-body.theme-dream .waiting{background:rgba(255,255,255,.6);border:1px dashed #cdc0d6;color:#a898b8;border-radius:12px}
 body.theme-dream #drawer{background:linear-gradient(160deg,#f2ecf4,#ddd3e2);border-right:1px solid #cdc0d6}
-body.theme-dream .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#5f5470}
+body.theme-dream .drawer-item{padding:15px 20px;font-size:16px;color:#5f5470}
+body.theme-dream .dream-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-dream .dream-dot{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff,#c0a8e8);box-shadow:0 0 8px rgba(184,160,204,.8)}
 body.theme-dream #quickDrawer{background:#f2ecf4;border-top:1px solid #cdc0d6}
 body.theme-dream .qb{color:#7a6a92}
 body.theme-dream .qb:active{background:rgba(184,160,204,.2)}
@@ -642,7 +652,7 @@ body.theme-dream .drawer-handle{background:#cdc0d6}
 body.theme-dream .box{background:rgba(255,255,255,.6);border:1px solid #cdc0d6;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
 body.theme-dream .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
 body.theme-dream .drawer-cell.on{border:2px solid #b8a0cc}
-body.theme-dream .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-dream .dream-orb{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(184,160,204,.4));box-shadow:0 0 12px rgba(184,160,204,.6)}
 body.theme-dream .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-dream .panel .tool{color:#7a6a92;border:1px solid #cdc0d6;background:rgba(255,255,255,.7);border-radius:10px}
 body.theme-dream .card-item{background:rgba(255,255,255,.7);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
@@ -654,7 +664,7 @@ body.theme-dream .mp-fill{background:#b8a0cc}
 body.theme-dream .mp-knob{background:#7a6a92}
 
 /* ============================================================
-   主题 9 · cafe 咖啡馆手写
+   cafe 咖啡馆手写
    ============================================================ */
 body.theme-cafe{background-color:#f3e9d8;background-image:radial-gradient(circle at 25% 20%, rgba(160,120,80,.08) 0 2px, transparent 3px),radial-gradient(circle at 75% 65%, rgba(160,120,80,.06) 0 2px, transparent 3px),linear-gradient(160deg,#f7efe0,#e8d8bf);background-size:56px 56px,90px 90px,100% 100%;color:#5a4632}
 body.theme-cafe .topbar{background:linear-gradient(#f7efe0,#ecdcc2);border-bottom:1px solid #c9b28c;padding:12px 0 calc(10px + env(safe-area-inset-top))}
@@ -674,9 +684,8 @@ body.theme-cafe .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-size:
 body.theme-cafe .quote-bar{padding:8px 12px;background:#fdf6e8;border:1px solid #ddc9a4;color:#7a5c3a;border-radius:4px}
 body.theme-cafe .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6;font-style:italic}
 body.theme-cafe .msgnote.me{margin-left:auto;margin-right:20px;background:#fdf6e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:2px;border-left:3px solid #b8945c;transform:rotate(-.5deg)}
-body.theme-cafe .msgnote.me::after{content:"";position:absolute;right:-4px;bottom:6px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #c69a5e, #8a6334);opacity:.35}
-body.theme-cafe .msgnote.me::before{content:"";position:absolute;top:-6px;left:16px;width:34px;height:12px;background:rgba(200,175,130,.5);transform:rotate(-6deg)}
 body.theme-cafe .msgnote.her{margin-right:auto;margin-left:20px;background:#fbf5e8;border:1px solid #d8c8a8;color:#5a4632;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 26px,rgba(150,120,85,.16) 26px 27px);border-right:3px solid #a89066;transform:rotate(.5deg)}
+body.theme-cafe .cafe-stain{position:absolute;right:6px;bottom:6px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #c69a5e, #8a6334);opacity:.35}
 body.theme-cafe .msgnote .stkmsg{border-radius:4px}
 body.theme-cafe .msgnote .imgmsg{border-radius:4px}
 body.theme-cafe .msgnote .nav{border:1px solid #c9b28c;background-color:#fff;border-radius:4px}
@@ -688,9 +697,10 @@ body.theme-cafe .msgnote.interact.touch{margin-left:auto;margin-right:20px;backg
 body.theme-cafe .msgnote.interact.back{margin-right:auto;margin-left:20px;background:#fbf5e8;border:2px dashed #c9b28c;color:#5a4632;border-radius:2px}
 body.theme-cafe .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#f7e9cc;border:4px double #b8945c;color:#5a4632;border-radius:2px;padding:14px 20px}
 body.theme-cafe .sys{background:#fbf5e8;border:1px dashed #c9b28c;color:#a89066}
-body.theme-cafe .waiting{background:#f7efe0;border:1px dashed #c9b28c;color:#a89066;border-radius:2px}
 body.theme-cafe #drawer{background:linear-gradient(160deg,#f7efe0,#e8d8bf);border-right:1px solid #c9b28c}
-body.theme-cafe .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#5a4632}
+body.theme-cafe .drawer-item{padding:15px 20px;font-size:16px;color:#5a4632}
+body.theme-cafe .cafe-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-cafe .cafe-cup{font-size:16px}
 body.theme-cafe #quickDrawer{background:#f7efe0;border-top:1px solid #c9b28c}
 body.theme-cafe .qb{color:#7a5c3a}
 body.theme-cafe .qb:active{background:rgba(184,148,92,.18)}
@@ -698,7 +708,7 @@ body.theme-cafe .drawer-handle{background:#c9b28c}
 body.theme-cafe .box{background:#ecdcc2;border:1px solid #c9b28c;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:6px}
 body.theme-cafe .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fbf5e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:4px}
 body.theme-cafe .drawer-cell.on{border:2px solid #b8945c}
-body.theme-cafe .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-cafe .cafe-coaster-mini{width:34px;height:34px;border-radius:50%;background:#fdf6e8;border:1px solid #ddc9a4;display:flex;align-items:center;justify-content:center;color:#8a6a40}
 body.theme-cafe .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-cafe .panel .tool{color:#8a6a40;border:1px solid #c9b28c;background:linear-gradient(#fffaf0,#f3e6cc);border-radius:2px}
 body.theme-cafe .card-item{background:linear-gradient(#fbf5e8,#f5ecd8);border:1px solid #ddc9a4;color:#5a4632;border-radius:2px}
@@ -710,7 +720,7 @@ body.theme-cafe .mp-fill{background:#b8945c}
 body.theme-cafe .mp-knob{background:#7a5c3a}
 
 /* ============================================================
-   主题 10 · starry 星空信纸
+   starry 星空信纸
    ============================================================ */
 body.theme-starry{background-color:#101530;background-image:radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 1px, transparent 2px),radial-gradient(circle at 42% 32%, rgba(255,240,200,.85) 0 1px, transparent 2px),radial-gradient(circle at 68% 12%, rgba(200,220,255,.8) 0 1px, transparent 2px),radial-gradient(circle at 82% 52%, rgba(255,255,255,.7) 0 1px, transparent 2px),radial-gradient(circle at 28% 72%, rgba(220,230,255,.75) 0 1px, transparent 2px),radial-gradient(circle at 58% 84%, rgba(255,245,220,.7) 0 1px, transparent 2px),linear-gradient(160deg,#141a3a,#0a0e22);background-size:220px 220px,260px 260px,200px 200px,240px 240px,280px 280px,210px 210px,100% 100%;color:#dfe4ff}
 body.theme-starry .topbar{background:linear-gradient(#1a2246,#141a38);border-bottom:1px solid #3a4478;padding:14px 0 calc(10px + env(safe-area-inset-top))}
@@ -730,11 +740,10 @@ body.theme-starry .msg-input{color:#dfe4ff}
 body.theme-starry .msg-input::placeholder{color:#6a76a8}
 body.theme-starry .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-size:20px;border:1px solid #7a86c8;background:radial-gradient(circle at 35% 30%,#3a4478,#1a2246);color:#c8d4ff;border-radius:50%}
 body.theme-starry .quote-bar{padding:8px 12px;background:rgba(200,212,255,.12);border:1px solid #3a4478;color:#c8d4ff}
-body.theme-starry .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
-body.theme-starry .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(120,140,230,.18);border:1px solid #4a5490;border-bottom:2px solid #8a96d8;color:#eaefff;border-radius:0}
-body.theme-starry .msgnote.her{margin-right:auto;margin-left:20px;background:rgba(200,212,255,.09);border:1px solid #3a4478;border-bottom:2px solid #6a76a8;color:#dfe4ff;border-radius:0}
-body.theme-starry .msgnote.me::after,body.theme-starry .msgnote.her::after{content:"✦";position:absolute;top:-3px;right:-3px;color:#fff;font-size:8px}
-body.theme-starry .msgnote.me::before,body.theme-starry .msgnote.her::before{content:"";position:absolute;bottom:-4px;left:-4px;width:6px;height:6px;border-radius:50%;background:rgba(200,220,255,.5)}
+body.theme-starry .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6;background-image:repeating-linear-gradient(transparent 0 26px,rgba(138,150,216,.16) 26px 27px);background-position:0 8px}
+body.theme-starry .msgnote.me{margin-left:auto;margin-right:20px;background-color:rgba(120,140,230,.18);border:1px solid #4a5490;border-bottom:2px solid #8a96d8;color:#eaefff;border-radius:0}
+body.theme-starry .msgnote.her{margin-right:auto;margin-left:20px;background-color:rgba(200,212,255,.09);border:1px solid #3a4478;border-bottom:2px solid #6a76a8;color:#dfe4ff;border-radius:0}
+body.theme-starry .starry-star{position:absolute;top:-4px;right:-4px;color:#fff;font-size:10px}
 body.theme-starry .msgnote .stkmsg{border-radius:0}
 body.theme-starry .msgnote .imgmsg{border-radius:0}
 body.theme-starry .msgnote .nav{border:1px solid #3a4478;background-color:#1a2246;border-radius:2px}
@@ -746,9 +755,10 @@ body.theme-starry .msgnote.interact.touch{margin-left:auto;margin-right:20px;bac
 body.theme-starry .msgnote.interact.back{margin-right:auto;margin-left:20px;background:rgba(200,212,255,.14);border:none;border-bottom:2px dashed #6a76a8;color:#dfe4ff;border-radius:0}
 body.theme-starry .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:rgba(138,150,216,.32);border:none;border-top:2px double #8a96d8;border-bottom:2px double #8a96d8;color:#eaefff;border-radius:0;padding:14px 20px}
 body.theme-starry .sys{background:rgba(200,212,255,.07);border:1px dashed #4a5490;color:#9aa6d8}
-body.theme-starry .waiting{background:rgba(200,212,255,.06);border:1px dashed #4a5490;color:#9aa6d8;border-radius:2px}
 body.theme-starry #drawer{background:linear-gradient(160deg,#1a2246,#0e1330);border-right:1px solid #3a4478}
-body.theme-starry .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#dfe4ff}
+body.theme-starry .drawer-item{padding:15px 20px;font-size:16px;color:#dfe4ff}
+body.theme-starry .starry-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-starry .starry-node{color:#c8d4ff}
 body.theme-starry #quickDrawer{background:#1a2246;border-top:1px solid #3a4478}
 body.theme-starry .qb{color:#c8d4ff}
 body.theme-starry .qb:active{background:rgba(138,150,216,.14)}
@@ -756,7 +766,7 @@ body.theme-starry .drawer-handle{background:#3a4478}
 body.theme-starry .box{background:#1a2246;border:1px solid #3a4478;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:2px}
 body.theme-starry .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(200,212,255,.09);border:1px solid #3a4478;color:#dfe4ff;border-radius:2px}
 body.theme-starry .drawer-cell.on{border:2px solid #8a96d8}
-body.theme-starry .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-starry .starry-cluster{font-size:12px;color:#c8d4ff;letter-spacing:2px}
 body.theme-starry .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-starry .panel .tool{color:#c8d4ff;border:1px solid #3a4478;background:rgba(200,212,255,.08);border-radius:2px}
 body.theme-starry .card-item{background:rgba(200,212,255,.07);border:none;border-bottom:1px solid #8a96d8;color:#dfe4ff;border-radius:0;background-image:repeating-linear-gradient(transparent 0 27px,rgba(138,150,216,.18) 27px 28px)}
@@ -768,7 +778,7 @@ body.theme-starry .mp-fill{background:#8a96d8}
 body.theme-starry .mp-knob{background:#c8d4ff}
 
 /* ============================================================
-   主题 11 · rain 雨天窗边
+   rain 雨天窗边
    ============================================================ */
 body.theme-rain{background-color:#dfe7ec;background-image:linear-gradient(rgba(120,150,170,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(120,150,170,.08) 1px, transparent 1px),radial-gradient(circle at 30% 20%, rgba(255,255,255,.7) 0, rgba(255,255,255,0) 40%),linear-gradient(160deg,#e8eef2,#ccd8e0);background-size:100% 22px,34px 100%,100% 100%,100% 100%;color:#3a4a58}
 body.theme-rain .topbar{background:linear-gradient(#e8eef2,#d8e2e8);border-bottom:2px solid #b0c0cc;padding:10px 0 calc(8px + env(safe-area-inset-top))}
@@ -789,11 +799,9 @@ body.theme-rain .quote-bar{padding:8px 12px;background:rgba(255,255,255,.9);bord
 body.theme-rain .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
 body.theme-rain .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(255,255,255,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:22px;border-bottom-right-radius:4px}
 body.theme-rain .msgnote.her{margin-right:auto;margin-left:20px;background:rgba(245,250,252,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:22px;border-bottom-left-radius:4px}
-body.theme-rain .msgnote.me::after,body.theme-rain .msgnote.her::after{content:"";position:absolute;top:-8px;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9),rgba(180,205,220,.5))}
-body.theme-rain .msgnote.me::after{right:12px}
-body.theme-rain .msgnote.her::after{left:12px}
-body.theme-rain .msgnote.me::before{content:"";position:absolute;top:-14px;right:24px;width:2px;height:10px;background:linear-gradient(rgba(140,170,190,0),rgba(140,170,190,.6));border-radius:2px}
-body.theme-rain .msgnote.her::before{content:"";position:absolute;top:-14px;left:24px;width:2px;height:10px;background:linear-gradient(rgba(140,170,190,0),rgba(140,170,190,.6));border-radius:2px}
+body.theme-rain .rain-drop{position:absolute;top:-8px;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9),rgba(180,205,220,.5))}
+body.theme-rain .msgnote.me .rain-drop{right:12px}
+body.theme-rain .msgnote.her .rain-drop{left:12px}
 body.theme-rain .msgnote .stkmsg{border-radius:12px}
 body.theme-rain .msgnote .imgmsg{border-radius:12px}
 body.theme-rain .msgnote .nav{border:1px solid #b0c0cc;background-color:#fff;border-radius:50%}
@@ -805,9 +813,10 @@ body.theme-rain .msgnote.interact.touch{margin-left:auto;margin-right:20px;backg
 body.theme-rain .msgnote.interact.back{margin-right:auto;margin-left:20px;background:rgba(245,250,252,.95);border:2px dashed #a8c0cc;color:#3a4a58;border-radius:22px;border-bottom-left-radius:4px}
 body.theme-rain .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#dce8ee;border:4px double #8aa8bc;color:#3a4a58;border-radius:22px;padding:14px 20px}
 body.theme-rain .sys{background:rgba(255,255,255,.7);border:1px dashed #b0c0cc;color:#8aa4b4}
-body.theme-rain .waiting{background:rgba(255,255,255,.7);border:1px dashed #b0c0cc;color:#8aa4b4;border-radius:20px}
 body.theme-rain #drawer{background:linear-gradient(160deg,#e8eef2,#ccd8e0);border-right:1px solid #b0c0cc}
-body.theme-rain .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#3a4a58}
+body.theme-rain .drawer-item{padding:15px 20px;font-size:16px;color:#3a4a58}
+body.theme-rain .rain-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-rain .rain-pane{width:24px;height:16px;border:2px solid #8aa8bc;border-radius:2px;background:rgba(255,255,255,.6)}
 body.theme-rain #quickDrawer{background:#e8eef2;border-top:1px solid #b0c0cc}
 body.theme-rain .qb{color:#5a7a90}
 body.theme-rain .qb:active{background:rgba(138,168,188,.18)}
@@ -815,7 +824,7 @@ body.theme-rain .drawer-handle{background:#b0c0cc}
 body.theme-rain .box{background:#d8e2e8;border:1px solid #b0c0cc;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:20px}
 body.theme-rain .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,255,255,.85);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px}
 body.theme-rain .drawer-cell.on{border:2px solid #8aa8bc}
-body.theme-rain .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-rain .rain-pane-mini{width:34px;height:30px;border:2px solid #8aa8bc;border-radius:2px;background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;color:#5a7a90}
 body.theme-rain .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-rain .panel .tool{color:#5a7a90;border:1px solid #b0c0cc;background:rgba(255,255,255,.75);border-radius:20px}
 body.theme-rain .card-item{background:rgba(255,255,255,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px}
@@ -827,7 +836,7 @@ body.theme-rain .mp-fill{background:#8aa8bc}
 body.theme-rain .mp-knob{background:#5a7a90}
 
 /* ============================================================
-   主题 12 · washi 和风宣纸
+   washi 和风宣纸
    ============================================================ */
 body.theme-washi{background-color:#f0e8d4;background-image:linear-gradient(rgba(150,130,100,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(150,130,100,.05) 1px, transparent 1px),radial-gradient(circle at 80% 15%, rgba(178,58,42,.06) 0, rgba(178,58,42,0) 35%),linear-gradient(160deg,#f7f0dd,#e6dcc2);background-size:100% 30px,30px 100%,100% 100%,100% 100%;color:#4a3a2a;font-family:"Kaiti SC","STKaiti","KaiTi",serif}
 body.theme-washi .topbar{background:linear-gradient(#f7f0dd,#ece2c8);border-bottom:2px solid #c9b48a;padding:12px 0 calc(10px + env(safe-area-inset-top));flex-direction:column}
@@ -847,8 +856,8 @@ body.theme-washi .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-size
 body.theme-washi .quote-bar{padding:8px 12px;background:#faf5e6;border:1px solid #d8c8a0;color:#8a5a4a;border-radius:0}
 body.theme-washi .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
 body.theme-washi .msgnote.me{margin-left:auto;margin-right:20px;background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0;border-left:4px solid #b23a2a;padding-left:22px}
-body.theme-washi .msgnote.me::after{content:"印";position:absolute;left:6px;bottom:6px;width:14px;height:14px;line-height:14px;font-size:9px;text-align:center;color:#fff;background:#b23a2a;border-radius:2px}
 body.theme-washi .msgnote.her{margin-right:auto;margin-left:20px;background:#f5eed8;border:1px solid #d0c098;color:#4a3a2a;border-radius:0;border-right:4px solid #8a5a4a}
+body.theme-washi .washi-seal-deco{position:absolute;left:6px;bottom:6px;width:14px;height:14px;line-height:14px;font-size:9px;text-align:center;color:#fff;background:#b23a2a;border-radius:2px}
 body.theme-washi .msgnote .stkmsg{border-radius:0}
 body.theme-washi .msgnote .imgmsg{border-radius:0}
 body.theme-washi .msgnote .nav{border:1px solid #c9b48a;background-color:#fff;border-radius:0}
@@ -860,9 +869,10 @@ body.theme-washi .msgnote.interact.touch{margin-left:auto;margin-right:20px;back
 body.theme-washi .msgnote.interact.back{margin-right:auto;margin-left:20px;background:#f5eed8;border:2px dashed #8a5a4a;color:#4a3a2a;border-radius:0;border-right:4px solid #8a5a4a}
 body.theme-washi .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#f7eccd;border:4px double #b23a2a;color:#4a3a2a;border-radius:0;padding:14px 20px}
 body.theme-washi .sys{background:#faf5e6;border:1px dashed #c9b48a;color:#8a7a5a}
-body.theme-washi .waiting{background:#faf5e6;border:1px dashed #c9b48a;color:#a89070;border-radius:0}
 body.theme-washi #drawer{background:linear-gradient(160deg,#f7f0dd,#e6dcc2);border-right:2px solid #c9b48a}
-body.theme-washi .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#4a3a2a;border-bottom:1px solid #d8c8a0}
+body.theme-washi .drawer-item{padding:15px 20px;font-size:16px;color:#4a3a2a;border-bottom:1px solid #d8c8a0}
+body.theme-washi .washi-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-washi .washi-idx{font-size:12px;color:#b23a2a;font-weight:700}
 body.theme-washi #quickDrawer{background:#f7f0dd;border-top:2px solid #c9b48a}
 body.theme-washi .qb{color:#8a5a4a}
 body.theme-washi .qb:active{background:rgba(178,58,42,.12)}
@@ -870,7 +880,7 @@ body.theme-washi .drawer-handle{background:#c9b48a}
 body.theme-washi .box{background:#ece2c8;border:1px solid #c9b48a;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:0}
 body.theme-washi .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0}
 body.theme-washi .drawer-cell.on{border:2px solid #b23a2a}
-body.theme-washi .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-washi .washi-vlabel{writing-mode:vertical-rl;font-size:13px;letter-spacing:2px}
 body.theme-washi .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-washi .panel .tool{color:#8a5a4a;border:1px solid #c9b48a;background:rgba(255,252,240,.85);border-radius:0}
 body.theme-washi .card-item{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0;border-left:4px solid #b23a2a}
@@ -882,7 +892,7 @@ body.theme-washi .mp-fill{background:#b23a2a}
 body.theme-washi .mp-knob{background:#8a5a4a}
 
 /* ============================================================
-   主题 13 · tape 磁带青春
+   tape 磁带青春
    ============================================================ */
 body.theme-tape{background-color:#2a2620;background-image:linear-gradient(rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(160deg,#332e26,#1e1a16);background-size:100% 20px,20px 100%,100% 100%;color:#f0e0c0}
 body.theme-tape .topbar{background:linear-gradient(#3a342a,#2a2620);border-bottom:3px solid #d88a30;padding:12px 0 calc(10px + env(safe-area-inset-top))}
@@ -906,11 +916,13 @@ body.theme-tape .msg-input{color:#f0e0c0}
 body.theme-tape .msg-input::placeholder{color:#8a7040}
 body.theme-tape .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-size:20px;border:2px solid #d88a30;background:radial-gradient(circle at 35% 30%,#5a4a2a,#332e26);color:#f0b060;border-radius:4px}
 body.theme-tape .quote-bar{padding:8px 12px;background:rgba(255,190,100,.14);border:2px solid #6a5a3a;color:#f0b060;border-radius:4px}
-body.theme-tape .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
-body.theme-tape .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(255,190,100,.16);border:2px solid #6a5a3a;color:#f7ecd0;border-radius:4px;border-left:6px solid #f0b060;padding-left:22px}
-body.theme-tape .msgnote.me::after{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:3px;background:repeating-linear-gradient(#d88a30 0 3px,transparent 3px 6px);opacity:.6}
+body.theme-tape .msgnote{max-width:72%;padding:14px 16px 14px 22px;margin:24px 0;font-size:16px;line-height:1.6}
+body.theme-tape .msgnote.me{margin-left:auto;margin-right:20px;background:rgba(255,190,100,.16);border:2px solid #6a5a3a;color:#f7ecd0;border-radius:4px;border-left:6px solid #f0b060}
 body.theme-tape .msgnote.her{margin-right:auto;margin-left:20px;background:rgba(255,220,160,.1);border:2px solid #5a4a2a;color:#f0e0c0;border-radius:4px;border-right:6px solid #c87a28}
-body.theme-tape .msgnote.her::after{content:"";position:absolute;right:5px;top:8px;bottom:8px;width:3px;background:repeating-linear-gradient(#c87a28 0 3px,transparent 3px 6px);opacity:.6}
+body.theme-tape .tape-track{position:absolute;left:5px;top:8px;bottom:8px;width:3px;background:repeating-linear-gradient(#d88a30 0 3px,transparent 3px 6px);opacity:.6}
+body.theme-tape .msgnote.her .tape-track{left:auto;right:5px;background:repeating-linear-gradient(#c87a28 0 3px,transparent 3px 6px)}
+body.theme-tape .tape-side{position:absolute;right:10px;top:4px;font-size:11px;font-weight:700;color:#f0b060}
+body.theme-tape .msgnote.her .tape-side{right:auto;left:10px}
 body.theme-tape .msgnote .stkmsg{border-radius:4px}
 body.theme-tape .msgnote .imgmsg{border-radius:4px}
 body.theme-tape .msgnote .nav{border:1px solid #6a5a3a;background-color:#3a342a;border-radius:4px}
@@ -922,9 +934,10 @@ body.theme-tape .msgnote.interact.touch{margin-left:auto;margin-right:20px;backg
 body.theme-tape .msgnote.interact.back{margin-right:auto;margin-left:20px;background:rgba(255,220,160,.14);border:2px dashed #c87a28;color:#f0e0c0;border-radius:4px;border-right:6px solid #c87a28}
 body.theme-tape .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:rgba(240,176,96,.3);border:4px double #f0b060;color:#f7ecd0;border-radius:4px;padding:14px 20px}
 body.theme-tape .sys{background:rgba(255,190,100,.09);border:1px dashed #6a5a3a;color:#d8b070}
-body.theme-tape .waiting{background:rgba(255,190,100,.08);border:1px dashed #6a5a3a;color:#d8b070;border-radius:4px}
 body.theme-tape #drawer{background:linear-gradient(160deg,#3a342a,#221e18);border-right:3px solid #d88a30}
-body.theme-tape .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#f0e0c0}
+body.theme-tape .drawer-item{padding:15px 20px;font-size:16px;color:#f0e0c0}
+body.theme-tape .tape-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-tape .tape-track-no{font-size:11px;color:#f0b060;font-weight:700}
 body.theme-tape #quickDrawer{background:#3a342a;border-top:3px solid #d88a30}
 body.theme-tape .qb{color:#f0b060}
 body.theme-tape .qb:active{background:rgba(240,176,96,.14)}
@@ -932,7 +945,7 @@ body.theme-tape .drawer-handle{background:#6a5a3a}
 body.theme-tape .box{background:#3a342a;border:2px solid #6a5a3a;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:6px}
 body.theme-tape .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,200,120,.1);border:2px solid #6a5a3a;color:#f0e0c0;border-radius:4px}
 body.theme-tape .drawer-cell.on{border:2px solid #f0b060}
-body.theme-tape .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-tape .tape-case{width:34px;height:24px;border:2px solid #8a7a4a;background:rgba(255,200,120,.1);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#f0b060}
 body.theme-tape .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-tape .panel .tool{color:#f0b060;border:2px solid #6a5a3a;background:repeating-linear-gradient(45deg,rgba(255,180,80,.08) 0 6px,rgba(255,180,80,.02) 6px 12px);border-radius:4px}
 body.theme-tape .card-item{background:rgba(255,200,120,.1);border:2px solid #6a5a3a;color:#f0e0c0;border-radius:4px;border-left:6px solid #d88a30}
@@ -944,7 +957,7 @@ body.theme-tape .mp-fill{background:#d88a30}
 body.theme-tape .mp-knob{background:#f0b060}
 
 /* ============================================================
-   主题 14 · mint 薄荷清晨
+   mint 薄荷清晨
    ============================================================ */
 body.theme-mint{background-color:#f0f7f4;background-image:radial-gradient(circle at 22% 26%, rgba(120,200,170,.14) 0 2px, transparent 3px),radial-gradient(circle at 76% 62%, rgba(120,200,170,.1) 0 2px, transparent 3px),radial-gradient(circle at 50% 15%, rgba(255,255,255,.8) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#f7fcfa,#e0efe8);background-size:64px 64px,84px 84px,100% 100%,100% 100%;color:#2f4a42}
 body.theme-mint .topbar{background:linear-gradient(#f7fcfa,#e6f2ec);border-bottom:1px solid #b8d8cc;padding:12px 0 calc(10px + env(safe-area-inset-top))}
@@ -964,9 +977,10 @@ body.theme-mint .send-btn{right:8px;bottom:8px;width:46px;height:46px;font-size:
 body.theme-mint .quote-bar{padding:8px 12px;background:#eaf6f0;border:1px solid #b8d8cc;color:#4a8a74;border-radius:6px}
 body.theme-mint .msgnote{max-width:72%;padding:14px 16px;margin:24px 0;font-size:16px;line-height:1.6}
 body.theme-mint .msgnote.me{margin-left:auto;margin-right:20px;background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;border-left:3px solid #6ab898}
-body.theme-mint .msgnote.me::after{content:"❋";position:absolute;top:-10px;right:-2px;color:#6ab898;font-size:12px;opacity:.7}
 body.theme-mint .msgnote.her{margin-right:auto;margin-left:20px;background:#f4fbf8;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;border-right:3px solid #7ac8a8}
-body.theme-mint .msgnote.her::after{content:"❋";position:absolute;top:-10px;left:-2px;color:#7ac8a8;font-size:12px;opacity:.7}
+body.theme-mint .mint-leaf-deco{position:absolute;top:-10px;font-size:12px;color:#6ab898;opacity:.7}
+body.theme-mint .msgnote.me .mint-leaf-deco{right:-2px}
+body.theme-mint .msgnote.her .mint-leaf-deco{left:-2px;color:#7ac8a8}
 body.theme-mint .msgnote .stkmsg{border-radius:6px}
 body.theme-mint .msgnote .imgmsg{border-radius:6px}
 body.theme-mint .msgnote .nav{border:1px solid #b8d8cc;background-color:#fff;border-radius:6px}
@@ -978,9 +992,10 @@ body.theme-mint .msgnote.interact.touch{margin-left:auto;margin-right:20px;backg
 body.theme-mint .msgnote.interact.back{margin-right:auto;margin-left:20px;background:#f4fbf8;border:2px dashed #7ac8a8;color:#2f4a42;border-radius:6px}
 body.theme-mint .msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;background:#d8f0e6;border:4px double #6ab898;color:#2f4a42;border-radius:6px;padding:14px 20px}
 body.theme-mint .sys{background:rgba(255,255,255,.8);border:1px dashed #b8d8cc;color:#7aa896}
-body.theme-mint .waiting{background:#eaf6f0;border:1px dashed #b8d8cc;color:#7aa896;border-radius:6px}
 body.theme-mint #drawer{background:linear-gradient(160deg,#f7fcfa,#e0efe8);border-right:1px solid #b8d8cc}
-body.theme-mint .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px;color:#2f4a42}
+body.theme-mint .drawer-item{padding:15px 20px;font-size:16px;color:#2f4a42}
+body.theme-mint .mint-drawer-item{display:flex;align-items:center;gap:10px}
+body.theme-mint .mint-leaf-dot{color:#6ab898;font-size:14px}
 body.theme-mint #quickDrawer{background:#fff;border-top:1px solid #b8d8cc}
 body.theme-mint .qb{color:#4a8a74}
 body.theme-mint .qb:active{background:#e0f4ec}
@@ -988,7 +1003,7 @@ body.theme-mint .drawer-handle{background:#b8d8cc}
 body.theme-mint .box{background:#e6f2ec;border:1px solid #b8d8cc;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
 body.theme-mint .drawer-cell{padding:12px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px}
 body.theme-mint .drawer-cell.on{border:2px solid #6ab898}
-body.theme-mint .drawer-cell .pull{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.35}
+body.theme-mint .mint-leaf-shape{width:30px;height:30px;border-radius:50% 0 50% 0;background:linear-gradient(135deg,#d8f0e6,#7ac8a8);border:1px solid #6ab898}
 body.theme-mint .drawer-cell .cnt{font-size:11px;opacity:.65}
 body.theme-mint .panel .tool{color:#4a8a74;border:1px solid #b8d8cc;background:rgba(255,255,255,.8);border-radius:6px}
 body.theme-mint .card-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px}
@@ -998,6 +1013,10 @@ body.theme-mint .mp-btn{color:#4a8a74}
 body.theme-mint .mp-bar{background:#e0f4ec}
 body.theme-mint .mp-fill{background:#6ab898}
 body.theme-mint .mp-knob{background:#4a8a74}
+
+/* 通用补充 */
+body[class*="theme-"] .minileaf,
+body[class*="theme-"] .mint-leaf-shape{display:block}
 </style>
 </head>
 <body class="theme-retro">
@@ -1049,11 +1068,7 @@ body.theme-mint .mp-knob{background:#4a8a74}
   <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></symbol>
 </svg>
 
-<!-- ============================================================
-     14 套主题独立根容器（同时只有一套 .active）
-     ============================================================ -->
-
-<!-- 1. retro 复古手帐 -->
+<!-- ===== 1. retro 复古手帐 ===== -->
 <div class="theme-root" id="tr-retro" data-theme="retro">
   <div id="lb-retro" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
@@ -1080,7 +1095,7 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 2. comic 漫画 -->
+<!-- ===== 2. comic 漫画 ===== -->
 <div class="theme-root" id="tr-comic" data-theme="comic">
   <div id="lb-comic" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
@@ -1091,14 +1106,8 @@ body.theme-mint .mp-knob{background:#4a8a74}
     </div>
     <div class="comic-line"></div>
     <div class="comic-avatars">
-      <div class="comic-av-wrap">
-        <div class="av-her" id="avHer-comic"></div>
-        <div class="av-name-her" id="nameHer-comic"></div>
-      </div>
-      <div class="comic-av-wrap right">
-        <div class="av-me" id="avMe-comic"></div>
-        <div class="av-name-me" id="nameMe-comic"></div>
-      </div>
+      <div class="comic-av-wrap"><div class="av-her" id="avHer-comic"></div><div class="av-name-her" id="nameHer-comic"></div></div>
+      <div class="comic-av-wrap right"><div class="av-me" id="avMe-comic"></div><div class="av-name-me" id="nameMe-comic"></div></div>
     </div>
   </div>
   <div id="stream-comic" class="stream"></div>
@@ -1112,22 +1121,16 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 3. girl 少女手帐 -->
+<!-- ===== 3. girl 少女手帐 ===== -->
 <div class="theme-root" id="tr-girl" data-theme="girl">
   <div id="lb-girl" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="girl-head">
       <div class="girl-lace left"></div>
       <div class="girl-av-row">
-        <div class="girl-av-wrap">
-          <div class="av-her" id="avHer-girl"></div>
-          <div class="av-name-her" id="nameHer-girl"></div>
-        </div>
+        <div class="girl-av-wrap"><div class="av-her" id="avHer-girl"></div><div class="av-name-her" id="nameHer-girl"></div></div>
         <div class="girl-bow">🎀</div>
-        <div class="girl-av-wrap">
-          <div class="av-me" id="avMe-girl"></div>
-          <div class="av-name-me" id="nameMe-girl"></div>
-        </div>
+        <div class="girl-av-wrap"><div class="av-me" id="avMe-girl"></div><div class="av-name-me" id="nameMe-girl"></div></div>
       </div>
       <div class="girl-lace right"></div>
     </div>
@@ -1144,21 +1147,15 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 4. news 报纸 -->
+<!-- ===== 4. news 报纸 ===== -->
 <div class="theme-root" id="tr-news" data-theme="news">
   <div id="lb-news" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="news-masthead">
       <div class="news-top-row">
-        <div class="news-av-box">
-          <div class="av-her" id="avHer-news"></div>
-          <div class="av-name-her" id="nameHer-news"></div>
-        </div>
+        <div class="news-av-box"><div class="av-her" id="avHer-news"></div><div class="av-name-her" id="nameHer-news"></div></div>
         <div class="news-issue" id="newsIssue">第 1 期 · 今日 · 星期</div>
-        <div class="news-av-box">
-          <div class="av-me" id="avMe-news"></div>
-          <div class="av-name-me" id="nameMe-news"></div>
-        </div>
+        <div class="news-av-box"><div class="av-me" id="avMe-news"></div><div class="av-name-me" id="nameMe-news"></div></div>
       </div>
       <div class="news-title-row">
         <div class="news-side left">祂</div>
@@ -1180,20 +1177,14 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 5. sakura 樱花夜 -->
+<!-- ===== 5. sakura 樱花夜 ===== -->
 <div class="theme-root" id="tr-sakura" data-theme="sakura">
   <div id="lb-sakura" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="sakura-head">
-      <div class="sakura-lantern">
-        <div class="av-her" id="avHer-sakura"></div>
-        <div class="av-name-her" id="nameHer-sakura"></div>
-      </div>
+      <div class="sakura-lantern"><div class="av-her" id="avHer-sakura"></div><div class="av-name-her" id="nameHer-sakura"></div></div>
       <div class="sakura-wood">阿遇♡阿凉</div>
-      <div class="sakura-lantern">
-        <div class="av-me" id="avMe-sakura"></div>
-        <div class="av-name-me" id="nameMe-sakura"></div>
-      </div>
+      <div class="sakura-lantern"><div class="av-me" id="avMe-sakura"></div><div class="av-name-me" id="nameMe-sakura"></div></div>
     </div>
   </div>
   <div id="stream-sakura" class="stream"></div>
@@ -1207,21 +1198,15 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 6. glass 玻璃花房 -->
+<!-- ===== 6. glass 玻璃花房 ===== -->
 <div class="theme-root" id="tr-glass" data-theme="glass">
   <div id="lb-glass" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="glass-head">
       <div class="glass-frame">
-        <div class="glass-av-wrap">
-          <div class="av-her" id="avHer-glass"></div>
-          <div class="av-name-her" id="nameHer-glass"></div>
-        </div>
+        <div class="glass-av-wrap"><div class="av-her" id="avHer-glass"></div><div class="av-name-her" id="nameHer-glass"></div></div>
         <div class="glass-name">阿遇♡阿凉</div>
-        <div class="glass-av-wrap">
-          <div class="av-me" id="avMe-glass"></div>
-          <div class="av-name-me" id="nameMe-glass"></div>
-        </div>
+        <div class="glass-av-wrap"><div class="av-me" id="avMe-glass"></div><div class="av-name-me" id="nameMe-glass"></div></div>
       </div>
     </div>
   </div>
@@ -1236,25 +1221,16 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 7. ticket 电影票根 -->
+<!-- ===== 7. ticket 电影票根 ===== -->
 <div class="theme-root" id="tr-ticket" data-theme="ticket">
   <div id="lb-ticket" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="ticket-head">
       <div class="ticket-bulbs"></div>
       <div class="ticket-board">
-        <div class="ticket-stamp">
-          <div class="av-her" id="avHer-ticket"></div>
-          <div class="av-name-her" id="nameHer-ticket"></div>
-        </div>
-        <div class="ticket-board-mid">
-          <div class="ticket-today">今日放映</div>
-          <div class="ticket-name">阿遇♡阿凉</div>
-        </div>
-        <div class="ticket-stamp">
-          <div class="av-me" id="avMe-ticket"></div>
-          <div class="av-name-me" id="nameMe-ticket"></div>
-        </div>
+        <div class="ticket-stamp"><div class="av-her" id="avHer-ticket"></div><div class="av-name-her" id="nameHer-ticket"></div></div>
+        <div class="ticket-board-mid"><div class="ticket-today">今日放映</div><div class="ticket-name">阿遇♡阿凉</div></div>
+        <div class="ticket-stamp"><div class="av-me" id="avMe-ticket"></div><div class="av-name-me" id="nameMe-ticket"></div></div>
       </div>
     </div>
   </div>
@@ -1269,22 +1245,16 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 8. dream 梦里见过 -->
+<!-- ===== 8. dream 梦里见过 ===== -->
 <div class="theme-root" id="tr-dream" data-theme="dream">
   <div id="lb-dream" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="dream-head">
       <div class="dream-moon">☾</div>
       <div class="dream-clouds">
-        <div class="dream-av-wrap">
-          <div class="av-her" id="avHer-dream"></div>
-          <div class="av-name-her" id="nameHer-dream"></div>
-        </div>
+        <div class="dream-av-wrap"><div class="av-her" id="avHer-dream"></div><div class="av-name-her" id="nameHer-dream"></div></div>
         <div class="dream-name">阿遇♡阿凉</div>
-        <div class="dream-av-wrap">
-          <div class="av-me" id="avMe-dream"></div>
-          <div class="av-name-me" id="nameMe-dream"></div>
-        </div>
+        <div class="dream-av-wrap"><div class="av-me" id="avMe-dream"></div><div class="av-name-me" id="nameMe-dream"></div></div>
       </div>
     </div>
   </div>
@@ -1299,20 +1269,14 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 9. cafe 咖啡馆手写 -->
+<!-- ===== 9. cafe 咖啡馆手写 ===== -->
 <div class="theme-root" id="tr-cafe" data-theme="cafe">
   <div id="lb-cafe" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="cafe-head">
-      <div class="cafe-coaster">
-        <div class="av-her" id="avHer-cafe"></div>
-        <div class="av-name-her" id="nameHer-cafe"></div>
-      </div>
+      <div class="cafe-coaster"><div class="av-her" id="avHer-cafe"></div><div class="av-name-her" id="nameHer-cafe"></div></div>
       <div class="cafe-sugar">阿遇♡阿凉</div>
-      <div class="cafe-coaster">
-        <div class="av-me" id="avMe-cafe"></div>
-        <div class="av-name-me" id="nameMe-cafe"></div>
-      </div>
+      <div class="cafe-coaster"><div class="av-me" id="avMe-cafe"></div><div class="av-name-me" id="nameMe-cafe"></div></div>
     </div>
   </div>
   <div id="stream-cafe" class="stream"></div>
@@ -1326,22 +1290,16 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 10. starry 星空信纸 -->
+<!-- ===== 10. starry 星空信纸 ===== -->
 <div class="theme-root" id="tr-starry" data-theme="starry">
   <div id="lb-starry" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="starry-head">
       <div class="starry-arc"></div>
       <div class="starry-row">
-        <div class="starry-node">
-          <div class="av-her" id="avHer-starry"></div>
-          <div class="av-name-her" id="nameHer-starry"></div>
-        </div>
+        <div class="starry-node"><div class="av-her" id="avHer-starry"></div><div class="av-name-her" id="nameHer-starry"></div></div>
         <div class="starry-name">阿遇♡阿凉</div>
-        <div class="starry-node">
-          <div class="av-me" id="avMe-starry"></div>
-          <div class="av-name-me" id="nameMe-starry"></div>
-        </div>
+        <div class="starry-node"><div class="av-me" id="avMe-starry"></div><div class="av-name-me" id="nameMe-starry"></div></div>
       </div>
     </div>
   </div>
@@ -1356,21 +1314,15 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 11. rain 雨天窗边 -->
+<!-- ===== 11. rain 雨天窗边 ===== -->
 <div class="theme-root" id="tr-rain" data-theme="rain">
   <div id="lb-rain" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="rain-head">
       <div class="rain-frame">
-        <div class="rain-av-wrap">
-          <div class="av-her" id="avHer-rain"></div>
-          <div class="av-name-her" id="nameHer-rain"></div>
-        </div>
+        <div class="rain-av-wrap"><div class="av-her" id="avHer-rain"></div><div class="av-name-her" id="nameHer-rain"></div></div>
         <div class="rain-name">阿遇♡阿凉</div>
-        <div class="rain-av-wrap">
-          <div class="av-me" id="avMe-rain"></div>
-          <div class="av-name-me" id="nameMe-rain"></div>
-        </div>
+        <div class="rain-av-wrap"><div class="av-me" id="avMe-rain"></div><div class="av-name-me" id="nameMe-rain"></div></div>
       </div>
     </div>
   </div>
@@ -1385,20 +1337,14 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 12. washi 和风宣纸 -->
+<!-- ===== 12. washi 和风宣纸 ===== -->
 <div class="theme-root" id="tr-washi" data-theme="washi">
   <div id="lb-washi" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="washi-head">
-      <div class="washi-seal">
-        <div class="av-her" id="avHer-washi"></div>
-        <div class="av-name-her" id="nameHer-washi"></div>
-      </div>
+      <div class="washi-seal"><div class="av-her" id="avHer-washi"></div><div class="av-name-her" id="nameHer-washi"></div></div>
       <div class="washi-vname">阿遇<br>阿凉</div>
-      <div class="washi-seal">
-        <div class="av-me" id="avMe-washi"></div>
-        <div class="av-name-me" id="nameMe-washi"></div>
-      </div>
+      <div class="washi-seal"><div class="av-me" id="avMe-washi"></div><div class="av-name-me" id="nameMe-washi"></div></div>
     </div>
     <div class="washi-inkline"></div>
   </div>
@@ -1413,7 +1359,7 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 13. tape 磁带青春 -->
+<!-- ===== 13. tape 磁带青春 ===== -->
 <div class="theme-root" id="tr-tape" data-theme="tape">
   <div id="lb-tape" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
@@ -1422,15 +1368,9 @@ body.theme-mint .mp-knob{background:#4a8a74}
         <div class="tape-screw tl"></div><div class="tape-screw tr"></div>
         <div class="tape-screw bl"></div><div class="tape-screw br"></div>
         <div class="tape-window">
-          <div class="tape-reel">
-            <div class="av-her" id="avHer-tape"></div>
-            <div class="av-name-her" id="nameHer-tape"></div>
-          </div>
+          <div class="tape-reel"><div class="av-her" id="avHer-tape"></div><div class="av-name-her" id="nameHer-tape"></div></div>
           <div class="tape-label-mid">阿遇♡阿凉</div>
-          <div class="tape-reel">
-            <div class="av-me" id="avMe-tape"></div>
-            <div class="av-name-me" id="nameMe-tape"></div>
-          </div>
+          <div class="tape-reel"><div class="av-me" id="avMe-tape"></div><div class="av-name-me" id="nameMe-tape"></div></div>
         </div>
       </div>
     </div>
@@ -1446,21 +1386,15 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 
-<!-- 14. mint 薄荷清晨 -->
+<!-- ===== 14. mint 薄荷清晨 ===== -->
 <div class="theme-root" id="tr-mint" data-theme="mint">
   <div id="lb-mint" class="listen-banner">♪ <span class="lb-name">祂</span> 正在和你一起听</div>
   <div class="topbar">
     <div class="mint-head">
       <div class="mint-leaf-bar">
-        <div class="mint-drop">
-          <div class="av-her" id="avHer-mint"></div>
-          <div class="av-name-her" id="nameHer-mint"></div>
-        </div>
+        <div class="mint-drop"><div class="av-her" id="avHer-mint"></div><div class="av-name-her" id="nameHer-mint"></div></div>
         <div class="mint-name">阿遇♡阿凉</div>
-        <div class="mint-drop">
-          <div class="av-me" id="avMe-mint"></div>
-          <div class="av-name-me" id="nameMe-mint"></div>
-        </div>
+        <div class="mint-drop"><div class="av-me" id="avMe-mint"></div><div class="av-name-me" id="nameMe-mint"></div></div>
       </div>
     </div>
   </div>
@@ -1475,7 +1409,7 @@ body.theme-mint .mp-knob{background:#4a8a74}
   </div>
 </div>
 <!-- ============================================================
-     共用功能层（页面 / 弹层 / 播放器 / 快捷抽屉）
+     共用功能层
      ============================================================ -->
 <div id="drawerMask"></div>
 <div id="drawer" class="theme-drawer"></div>
@@ -1742,12 +1676,7 @@ function sendBtnEl(){return document.getElementById('sendStamp-'+curTheme());}
 function quoteBarEl(){return document.getElementById('quoteBar-'+curTheme());}
 function quoteTextEl(){return document.getElementById('quoteText-'+curTheme());}
 function quoteCloseEl(){return document.getElementById('quoteClose-'+curTheme());}
-function avHerEl(){return document.getElementById('avHer-'+curTheme());}
-function avMeEl(){return document.getElementById('avMe-'+curTheme());}
-function nameHerEl(){return document.getElementById('nameHer-'+curTheme());}
-function nameMeEl(){return document.getElementById('nameMe-'+curTheme());}
 function lbEl(){return document.getElementById('lb-'+curTheme());}
-
 function applyThemeActive(){
   $$('.theme-root').forEach(r=>r.classList.remove('active'));
   const r=themeRoot();if(r)r.classList.add('active');
@@ -1765,9 +1694,52 @@ function themePlaceholder(){
   return map[curTheme()]||'想对祂说的话…';
 }
 
-/* ---------- 头像 / 名字同步 ---------- */
+/* ---------- 主题 UI 对象：逻辑统一，结构按主题 ---------- */
+/* 通用工具 */
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+function avatarNode(from){
+  const av=from==='me'?settings.avatarMe:settings.avatarHer;
+  if(!av)return null;
+  const n=el('div','nav');
+  n.style.backgroundImage=`url(${av})`;
+  return n;
+}
+function stampNode(time){return el('div','stamp',fmtTime(time));}
+function quoteNode(m){
+  if(!m.quote)return null;
+  const q=el('span','quote');
+  q.textContent='❝ '+(m.quote.text||(m.quote.type==='photo'?'[图片]':(m.quote.type==='sticker'?'[贴纸]':'')));
+  return q;
+}
+function contentNode(m,decorCls){
+  const wrap=[];
+  if(decorCls)wrap.push(el('div',decorCls,''));
+  if(m.type==='sticker'){
+    const img=el('img','stkmsg');img.src=m.data;
+    return {prefix:wrap,body:img,text:''};
+  }
+  if(m.type==='photo'){
+    const img=el('img','imgmsg');img.src=m.data;
+    return {prefix:wrap,body:img,text:''};
+  }
+  if(m.type==='interact'){
+    const tag=el('span','itag',INTERACT_LABEL[m.dir]||'互动');
+    return {prefix:wrap,body:tag,text:m.text};
+  }
+  return {prefix:wrap,body:null,text:m.text};
+}
+
+/* 侧栏点击统一入口 */
+function onSideClick(it){
+  closeDrawer();
+  if(it.go==='pocket')openPocket();
+  else if(it.go==='settings')openSettings();
+  else if(it.go==='collection')openCollection();
+  else openDoing(it.n);
+}
+
+/* 头像 / 名字同步 */
 function applyProfile(){
-  const t=curTheme();
   const h=settings.avatarHer,m=settings.avatarMe;
   THEMES.forEach(th=>{
     const ah=document.getElementById('avHer-'+th);if(ah)ah.style.backgroundImage=h?`url(${h})`:'none';
@@ -1818,59 +1790,472 @@ function fmtTime(ts){
   const d=new Date(ts);
   return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
 }
-  /* ============================================================
+   /* ============================================================
+   14 套主题 UI 对象：逻辑统一，结构按主题
+   ============================================================ */
+const INTERACT_LABEL={touch:'触碰',back:'回握',pair:'缱绻'};
+const UI_THEMES={};
+
+/* 通用：把内容塞进消息元素 */
+function fillNote(e,m){
+  const q=quoteNode(m);if(q)e.appendChild(q);
+  if(m.type==='sticker'){
+    const img=el('img','stkmsg');img.src=m.data;e.appendChild(img);return;
+  }
+  if(m.type==='photo'){
+    const img=el('img','imgmsg');img.src=m.data;e.appendChild(img);return;
+  }
+  if(m.type==='interact'){
+    const tag=el('span','itag',INTERACT_LABEL[m.dir]||'互动');
+    e.appendChild(tag);
+    e.appendChild(document.createTextNode(m.text));
+    return;
+  }
+  e.appendChild(document.createTextNode(m.text));
+}
+function bindNoteClick(e,idx){
+  e.addEventListener('click',(ev)=>{
+    if(ev.target.closest('.nav'))return;
+    openMsgMenu(idx,e);
+  });
+}
+function baseNote(m,withAvatar,idx,extraClass){
+  const e=el('div','msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'')+(m.type==='interact'?' interact':'')+(extraClass?(' '+extraClass):''));
+  if(m.type==='interact')e.classList.add(m.dir||'touch');
+  return e;
+}
+function finishNote(e,m,withAvatar,idx){
+  if(withAvatar){const n=avatarNode(m.from);if(n)e.appendChild(n);}
+  e.appendChild(stampNode(m.time));
+  bindNoteClick(e,idx);
+  return e;
+}
+
+/* ---------- retro 复古手帐 ---------- */
+UI_THEMES.retro={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    if(m.type!=='sticker'&&m.type!=='photo')e.appendChild(el('div','retro-tape-deco'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach((it,i)=>{
+      const d=el('div','drawer-item retro-drawer-item');
+      d.innerHTML=`<span class="retro-page">${String(i+1).padStart(2,'0')}</span><svg class="ico"><use href="#${it.ic}"/></svg><span class="retro-drawer-name">${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell retro-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="retro-pocket-tape"></div><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- comic 漫画 ---------- */
+UI_THEMES.comic={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','comic-cellno','◆'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach((it,i)=>{
+      const d=el('div','drawer-item comic-drawer-item');
+      d.innerHTML=`<span class="comic-ep">第${i+1}话</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach((c,i)=>{
+      const d=el('div','drawer-cell comic-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<span class="comic-cell-num">${i+1}</span><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- girl 少女手帐 ---------- */
+UI_THEMES.girl={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','girl-heart-deco','♥'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item girl-drawer-item');
+      d.innerHTML=`<span class="girl-dot">♥</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell girl-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="girl-sticker-round"><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- news 报纸 ---------- */
+UI_THEMES.news={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    /* 引用在前 */
+    const q=quoteNode(m);if(q)e.appendChild(q);
+    if(m.type==='sticker'||m.type==='photo'){
+      e.appendChild(el('div','news-col-label',m.from==='me'?'图片新闻':'图片新闻'));
+      const img=el('img',m.type==='sticker'?'stkmsg':'imgmsg');img.src=m.data;e.appendChild(img);
+    }else if(m.type==='interact'){
+      e.appendChild(el('div','news-col-label',m.from==='me'?'读者来信':'本报讯'));
+      const wrap=el('div','news-body');
+      wrap.appendChild(el('div','news-headline',INTERACT_LABEL[m.dir]||'互动'));
+      wrap.appendChild(el('div','news-text',m.text));
+      e.appendChild(wrap);
+    }else{
+      e.appendChild(el('div','news-col-label',m.from==='me'?'读者来信':'本报讯'));
+      const wrap=el('div','news-body');
+      wrap.appendChild(el('div','news-headline',(m.text||'').slice(0,10)));
+      wrap.appendChild(el('div','news-text',m.text));
+      e.appendChild(wrap);
+    }
+    if(withAvatar){const n=avatarNode(m.from);if(n)e.appendChild(n);}
+    e.appendChild(stampNode(m.time));
+    bindNoteClick(e,idx);
+    return e;
+  },
+  drawer(box){
+    box.innerHTML='';
+    const title=el('div','news-drawer-title','今日版面');
+    box.appendChild(title);
+    sideItems.forEach((it,i)=>{
+      const d=el('div','drawer-item news-drawer-item');
+      d.innerHTML=`<span class="news-page">A${i+1}</span><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell news-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<span style="font-size:12px;opacity:.7">版 ${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- sakura 樱花夜 ---------- */
+UI_THEMES.sakura={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','sakura-petal-deco','✿'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item sakura-drawer-item');
+      d.innerHTML=`<span class="sakura-flower">✿</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell sakura-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="sakura-blossom">✿</div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- glass 玻璃花房 ---------- */
+UI_THEMES.glass={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','glass-shine'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item glass-drawer-item');
+      d.innerHTML=`<svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell glass-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="glass-drawer-handle"></div><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- ticket 电影票根 ---------- */
+UI_THEMES.ticket={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','ticket-admit','ADMIT ONE'));
+    e.appendChild(el('div','ticket-seat','NO.'+String(idx+1).padStart(4,'0')));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach((it,i)=>{
+      const d=el('div','drawer-item ticket-drawer-item');
+      d.innerHTML=`<span class="ticket-row">${String(i+1).padStart(2,'0')}</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell ticket-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- dream 梦里见过 ---------- */
+UI_THEMES.dream={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','dream-moon-deco','☾'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item dream-drawer-item');
+      d.innerHTML=`<span class="dream-dot"></span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell dream-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="dream-orb"></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- cafe 咖啡馆手写 ---------- */
+UI_THEMES.cafe={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','cafe-stain'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item cafe-drawer-item');
+      d.innerHTML=`<span class="cafe-cup">☕</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell cafe-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="cafe-coaster-mini"><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- starry 星空信纸 ---------- */
+UI_THEMES.starry={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','starry-star','✦'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item starry-drawer-item');
+      d.innerHTML=`<span class="starry-node">✦</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell starry-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="starry-cluster">✦ ✦</div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- rain 雨天窗边 ---------- */
+UI_THEMES.rain={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','rain-drop'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item rain-drawer-item');
+      d.innerHTML=`<span class="rain-pane"></span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell rain-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="rain-pane-mini"><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- washi 和风宣纸 ---------- */
+UI_THEMES.washi={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','washi-seal-deco','印'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    const idxs=['一','二','三','四','五','六','七','八','九','十'];
+    sideItems.forEach((it,i)=>{
+      const d=el('div','drawer-item washi-drawer-item');
+      d.innerHTML=`<span class="washi-idx">${idxs[i]||(i+1)}</span><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell washi-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<span class="washi-vlabel">${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- tape 磁带青春 ---------- */
+UI_THEMES.tape={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','tape-track'));
+    e.appendChild(el('div','tape-side','A'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach((it,i)=>{
+      const d=el('div','drawer-item tape-drawer-item');
+      d.innerHTML=`<span class="tape-track-no">${String(i+1).padStart(2,'0')}</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell tape-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="tape-case"><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* ---------- mint 薄荷清晨 ---------- */
+UI_THEMES.mint={
+  note(m,withAvatar,idx){
+    const e=baseNote(m,withAvatar,idx);
+    e.appendChild(el('div','mint-leaf-deco','❋'));
+    fillNote(e,m);
+    return finishNote(e,m,withAvatar,idx);
+  },
+  drawer(box){
+    box.innerHTML='';
+    sideItems.forEach(it=>{
+      const d=el('div','drawer-item mint-drawer-item');
+      d.innerHTML=`<span class="mint-leaf-dot">❋</span><svg class="ico"><use href="#${it.ic}"/></svg><span>${it.n}</span>`;
+      d.addEventListener('click',()=>onSideClick(it));
+      box.appendChild(d);
+    });
+  },
+  pocketBox(box){
+    box.innerHTML='';
+    pocketCats.forEach(c=>{
+      const d=el('div','drawer-cell mint-pocket-cell'+(curCat===c.key?' on':''));
+      d.innerHTML=`<div class="mint-leaf-shape"></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
+      box.appendChild(d);
+    });
+  }
+};
+
+/* 当前主题 UI 对象 */
+function UI(){return UI_THEMES[curTheme()]||UI_THEMES.retro;}
+   /* ============================================================
    消息渲染 / 菜单 / 引用 / 发送 / 回复
    ============================================================ */
 
-const INTERACT_LABEL={touch:'触碰',back:'回握',pair:'缱绻'};
-
-/* ---------- 渲染一条消息 ---------- */
+/* ---------- 渲染一条（按主题结构） ---------- */
 function makeNote(m,withAvatar,idx){
-  const el=document.createElement('div');
-  const isInteract=m.type==='interact';
-  el.className='msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'')+(isInteract?' interact':'');
-  if(isInteract)el.classList.add(m.dir||'touch');
-  /* 引用 */
-  if(m.quote){
-    const q=document.createElement('span');
-    q.className='quote';
-    q.textContent='❝ '+(m.quote.text||(m.quote.type==='photo'?'[图片]':(m.quote.type==='sticker'?'[贴纸]':'')));
-    el.appendChild(q);
-  }
-  /* 内容 */
-  if(m.type==='sticker'){
-    const img=document.createElement('img');img.className='stkmsg';img.src=m.data;el.appendChild(img);
-  }else if(m.type==='photo'){
-    const img=document.createElement('img');img.className='imgmsg';img.src=m.data;el.appendChild(img);
-  }else if(isInteract){
-    const tag=document.createElement('span');tag.className='itag';
-    tag.textContent=INTERACT_LABEL[m.dir]||'互动';
-    el.appendChild(tag);
-    el.appendChild(document.createTextNode(m.text));
-  }else{
-    el.textContent=m.text;
-  }
-  /* 头像 */
-  if(withAvatar){
-    const av=m.from==='me'?settings.avatarMe:settings.avatarHer;
-    if(av){
-      const nav=document.createElement('div');
-      nav.className='nav';
-      nav.style.backgroundImage=`url(${av})`;
-      el.appendChild(nav);
-    }
-  }
-  /* 时间戳 */
-  const st=document.createElement('div');
-  st.className='stamp';
-  st.textContent=fmtTime(m.time);
-  el.appendChild(st);
-  /* 点击菜单 */
-  el.addEventListener('click',(e)=>{
-    if(e.target.closest('.nav'))return;
-    openMsgMenu(idx,el);
-  });
-  return el;
+  return UI().note(m,withAvatar,idx);
 }
 
 function firstOfGroup(idx){
@@ -1878,53 +2263,39 @@ function firstOfGroup(idx){
   return messages[idx-1].from!==messages[idx].from;
 }
 
-/* ---------- 渲染全部消息 ---------- */
 function renderMessages(){
-  const s=streamEl();
-  if(!s)return;
+  const s=streamEl();if(!s)return;
   s.innerHTML='';
   messages.forEach((m,i)=>s.appendChild(makeNote(m,firstOfGroup(i),i)));
   scrollBottom();
 }
 function scrollBottom(){
-  const s=streamEl();
-  if(!s)return;
+  const s=streamEl();if(!s)return;
   requestAnimationFrame(()=>{s.scrollTop=s.scrollHeight;});
 }
-/* ---------- 追加一条 ---------- */
 function appendMessage(m){
   messages.push(m);saveMsgs();
   const withAvatar=messages.length===1||messages[messages.length-2].from!==m.from;
   const s=streamEl();
-  if(s){
-    s.appendChild(makeNote(m,withAvatar,messages.length-1));
-    scrollBottom();
-  }
+  if(s){s.appendChild(makeNote(m,withAvatar,messages.length-1));scrollBottom();}
 }
-/* ---------- 系统提示 ---------- */
 function showSystem(text){
-  const s=streamEl();
-  if(!s)return;
-  const el=document.createElement('div');
-  el.className='sys';
-  el.dataset.sys='1';
-  el.textContent=text;
-  s.appendChild(el);
-  scrollBottom();
+  const s=streamEl();if(!s)return;
+  const e=el('div','sys');e.dataset.sys='1';e.textContent=text;
+  s.appendChild(e);scrollBottom();
 }
 function removeEmptyTip(){
-  const s=streamEl();
-  if(!s)return;
+  const s=streamEl();if(!s)return;
   s.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove());
 }
 
 /* ---------- 消息菜单 ---------- */
 let msgMenuIdx=-1,msgMenuEl=null;
-function openMsgMenu(idx,el){
-  msgMenuIdx=idx;msgMenuEl=el;
+function openMsgMenu(idx,e){
+  msgMenuIdx=idx;msgMenuEl=e;
   const menu=$('#msgMenu');
   menu.classList.add('on');
-  const r=el.getBoundingClientRect();
+  const r=e.getBoundingClientRect();
   menu.style.left=Math.max(8,Math.min(window.innerWidth-140,r.left))+'px';
   menu.style.top=Math.min(window.innerHeight-110,r.bottom+6)+'px';
 }
@@ -1945,36 +2316,29 @@ let pendingQuote=null;
 $('#mmQuote').addEventListener('click',()=>{
   if(msgMenuIdx<0){closeMsgMenu();return;}
   const m=messages[msgMenuIdx];
-  pendingQuote={
-    text:m.text||(m.type==='photo'?'[图片]':(m.type==='sticker'?'[贴纸]':''))
-  };
-  const qt=quoteTextEl();
-  if(qt)qt.textContent=pendingQuote.text;
-  const qb=quoteBarEl();
-  if(qb)qb.classList.add('on');
+  pendingQuote={text:m.text||(m.type==='photo'?'[图片]':(m.type==='sticker'?'[贴纸]':''))};
+  const qt=quoteTextEl();if(qt)qt.textContent=pendingQuote.text;
+  const qb=quoteBarEl();if(qb)qb.classList.add('on');
   closeMsgMenu();
 });
-document.addEventListener('click',e=>{
-  if(e.target.closest('.q-x')&&e.target.id&&e.target.id.indexOf('quoteClose-')===0){
+/* 引用关闭：14 套各绑 */
+THEMES.forEach(t=>{
+  const qx=document.getElementById('quoteClose-'+t);
+  if(qx)qx.addEventListener('click',()=>{
     pendingQuote=null;
-    const t=e.target.id.replace('quoteClose-','');
     const qb=document.getElementById('quoteBar-'+t);
     if(qb)qb.classList.remove('on');
-  }
+  });
 });
 
 /* ---------- 发送 ---------- */
 function sendMessage(){
-  const input=msgInputEl();
-  if(!input)return;
-  const text=input.value.trim();
-  if(!text)return;
+  const input=msgInputEl();if(!input)return;
+  const text=input.value.trim();if(!text)return;
   const m={id:uid(),from:'me',type:'text',text,time:Date.now()};
   if(pendingQuote){
-    m.quote=pendingQuote;
-    pendingQuote=null;
-    const qb=quoteBarEl();
-    if(qb)qb.classList.remove('on');
+    m.quote=pendingQuote;pendingQuote=null;
+    const qb=quoteBarEl();if(qb)qb.classList.remove('on');
   }
   appendMessage(m);
   input.value='';input.style.height='auto';
@@ -1984,15 +2348,8 @@ function sendMessage(){
 /* ---------- 收藏 ---------- */
 function saveToCollection(m){
   if(Math.random()>0.3)return;
-  const item={
-    id:uid(),
-    type:m.type,
-    text:m.text||'',
-    data:m.data||'',
-    time:Date.now()
-  };
-  collection.push(item);
-  saveCollection();
+  const item={id:uid(),type:m.type,text:m.text||'',data:m.data||'',time:Date.now()};
+  collection.push(item);saveCollection();
 }
 
 /* ---------- 触发回复 ---------- */
@@ -2037,39 +2394,29 @@ async function triggerReply(){
   },delay);
 }
 
-/* ---------- 输入框 / 发送键绑定（14 套分别绑） ---------- */
+/* ---------- 14 套输入框 / 发送键绑定 ---------- */
 THEMES.forEach(t=>{
   const inp=document.getElementById('msgInput-'+t);
-  if(inp){
-    inp.addEventListener('input',function(){
-      this.style.height='auto';
-      this.style.height=Math.min(this.scrollHeight,120)+'px';
-    });
-  }
+  if(inp)inp.addEventListener('input',function(){
+    this.style.height='auto';
+    this.style.height=Math.min(this.scrollHeight,120)+'px';
+  });
   const btn=document.getElementById('sendStamp-'+t);
   if(btn)btn.addEventListener('click',sendMessage);
-  const qx=document.getElementById('quoteClose-'+t);
-  if(qx)qx.addEventListener('click',()=>{
-    pendingQuote=null;
-    const qb=document.getElementById('quoteBar-'+t);
-    if(qb)qb.classList.remove('on');
-  });
 });
-  /* ============================================================
-   快捷抽屉（贴纸 / 互动 / 音乐）+ 拍照相册 + 问题1 修复
+   /* ============================================================
+   快捷抽屉 / 拍照相册 / 贴纸（问题1修复）/ 互动 / 一起听
    ============================================================ */
 
-/* ---------- 快捷格 ---------- */
 const quickItems=[
   {ic:'i-cam',n:'拍照',act:'camera'},{ic:'i-pic',n:'相册',act:'album'},{ic:'i-vid',n:'视频'},
   {ic:'i-sticker',n:'贴纸',act:'sticker'},{ic:'i-touch',n:'互动',act:'interact'},{ic:'i-music',n:'音乐',act:'music'},
   {ic:'i-ask',n:'回应'},{ic:'i-together',n:'陪伴'},{ic:'i-archive',n:'归档'},{ic:'i-sync',n:'同频'}
 ];
 (function buildQuick(){
-  const g=$('#quickGrid');
-  if(!g)return;
+  const g=$('#quickGrid');if(!g)return;
   quickItems.forEach(q=>{
-    const d=document.createElement('div');d.className='qb';
+    const d=el('div','qb');
     d.innerHTML=`<svg class="ico"><use href="#${q.ic}"/></svg><span>${q.n}</span>`;
     d.addEventListener('click',()=>{
       if(q.act==='sticker')showQuickSticker();
@@ -2102,7 +2449,7 @@ function handlePhoto(file,from){
 $('#cameraInput').addEventListener('change',e=>{handlePhoto(e.target.files[0],'me');e.target.value='';});
 $('#albumInput').addEventListener('change',e=>{handlePhoto(e.target.files[0],'me');e.target.value='';});
 
-/* ---------- 抽屉开关 ---------- */
+/* ---------- 抽屉三态 ---------- */
 function showQuickSticker(){
   $('#quickGrid').style.display='none';
   $('#quickInteract').classList.remove('on');
@@ -2127,9 +2474,7 @@ function showQuickInteract(){
 function renderQiTabs(){
   const tabs=$('#qiTabs');tabs.innerHTML='';
   [['touch','触碰'],['pair','缱绻']].forEach(([k,label])=>{
-    const d=document.createElement('div');
-    d.className='qi-tab'+(qiDir===k?' on':'');
-    d.textContent=label;
+    const d=el('div','qi-tab'+(qiDir===k?' on':''),label);
     d.addEventListener('click',()=>{qiDir=k;renderQiTabs();renderQuickInteract();});
     tabs.appendChild(d);
   });
@@ -2147,7 +2492,7 @@ function renderQuickMusic(){
   if(musicList.length===0){box.innerHTML='<div class="qs-empty">还没有歌，去口袋 → 音乐添加</div>';return;}
   const frag=document.createDocumentFragment();
   musicList.forEach(m=>{
-    const d=document.createElement('div');d.className='music-item';
+    const d=el('div','music-item');
     d.innerHTML=`<div class="mi-info"><div class="mi-name">${escapeHtml(m.name||'未命名')}</div><div class="mi-sub">${escapeHtml(m.artist||'')}</div></div><div class="qi-invite"><svg class="ico"><use href="#i-invite"/></svg></div>`;
     d.addEventListener('click',(e)=>{
       if(e.target.closest('.qi-invite')){togetherWithSong(m);}
@@ -2159,10 +2504,10 @@ function renderQuickMusic(){
   box.appendChild(frag);
 }
 function renderInviteLabel(){
-  const el=$('#qmInvite');if(!el)return;
+  const e=$('#qmInvite');if(!e)return;
   const ch=callHerName();
-  if(settings.listening){el.textContent='♪ 正在和'+ch+'一起听…';el.classList.add('on');}
-  else{el.innerHTML='邀请<span id="qmCallHer">'+ch+'</span>一起听';el.classList.remove('on');}
+  if(settings.listening){e.textContent='♪ 正在和'+ch+'一起听…';e.classList.add('on');}
+  else{e.innerHTML='邀请<span id="qmCallHer">'+ch+'</span>一起听';e.classList.remove('on');}
 }
 function openQuick(){
   if(document.body.classList.contains('page-open'))return;
@@ -2177,7 +2522,7 @@ function toggleQuick(){
   if(d.classList.contains('on'))closeQuick();else openQuick();
 }
 $('#qHandle').addEventListener('click',toggleQuick);
-$$('[data-hold]').forEach(el=>el.addEventListener('click',toggleQuick));
+$$('[data-hold]').forEach(e=>e.addEventListener('click',toggleQuick));
 
 /* ---------- 下拉手势 ---------- */
 let sY=0,tracking=false,mode=null,lockGesture=false;
@@ -2203,23 +2548,19 @@ document.addEventListener('touchend',()=>{tracking=false;lockGesture=false;},{pa
 /* ============================================================
    贴纸：懒加载 + 滚动 + 兜底（问题1 修复）
    ============================================================ */
-
 let qsShown=20,qsLoading=false;
-
 async function readStickersBatch(list){
   await Promise.all(list.map(async s=>{
     if(stickerCache[s.id]==null){stickerCache[s.id]=await FS.readSticker(s.id);}
   }));
 }
 function makeStickerCell(s,data,selMode,selected,onClick){
-  const cell=document.createElement('div');
-  cell.className='stk-cell'+(selMode?' selmode':'')+(selected?' sel':'');
-  const th=document.createElement('div');th.className='stk-thumb';
-  if(data){const img=document.createElement('img');img.loading='lazy';img.src=data;th.appendChild(img);}
+  const cell=el('div','stk-cell'+(selMode?' selmode':'')+(selected?' sel':''));
+  const th=el('div','stk-thumb');
+  if(data){const img=el('img');img.loading='lazy';img.src=data;th.appendChild(img);}
   cell.appendChild(th);
   if(selMode){
-    const chk=document.createElement('div');chk.className='chk';
-    chk.textContent=selected?'✓':'';cell.appendChild(chk);
+    const chk=el('div','chk',selected?'✓':'');cell.appendChild(chk);
   }
   cell.addEventListener('click',()=>onClick(s));
   return cell;
@@ -2249,7 +2590,7 @@ async function appendQuickSticker(from,count){
   }
   box.appendChild(frag);
 }
-/* 问题1 修复：内容不足一屏时自动补一批，避免"滚不动" */
+/* 问题1 修复：内容不足一屏时自动补一批 */
 function ensureStickerScrollable(){
   const sc=$('#qsScroll');if(!sc)return;
   setTimeout(()=>{
@@ -2282,7 +2623,7 @@ function renderQuickInteract(){
   if(arr.length===0){box.innerHTML='<div class="qs-empty" style="grid-column:1/-1">还没有可发的动作</div>';return;}
   const frag=document.createDocumentFragment();
   arr.forEach(x=>{
-    const c=document.createElement('div');c.className='qi-item';c.textContent=x.text;
+    const c=el('div','qi-item',x.text);
     c.addEventListener('click',()=>{
       const m={id:uid(),from:'me',type:'interact',dir:qiDir,text:x.text,time:Date.now()};
       appendMessage(m);saveToCollection(m);closeQuick();triggerReply();
@@ -2300,16 +2641,12 @@ $('#qmInvite').addEventListener('click',()=>{
 function setListening(on){
   settings.listening=!!on;saveSet();
   const b=lbEl();
-  if(b){
-    if(on)b.classList.add('on');
-    else b.classList.remove('on');
-  }
+  if(b){if(on)b.classList.add('on');else b.classList.remove('on');}
   renderInviteLabel();
 }
-  /* ============================================================
+   /* ============================================================
    迷你播放器 + 音乐播放
    ============================================================ */
-
 const audioEl=$('#audioEl');
 const mp=$('#miniPlayer');
 let mpState={index:-1,mode:'order',dragging:false,objectUrl:null};
@@ -2348,20 +2685,15 @@ async function playIndex(idx){
   updateMpPlayIcon();
 }
 
-/* ---------- 播放按钮图标 ---------- */
 function updateMpPlayIcon(){
   $('#mpPlayIcon').setAttribute('href',audioEl.paused?'#i-play':'#i-pause');
 }
-
-/* ---------- 秒 -> mm:ss ---------- */
 function fmtSec(s){
   s=Math.max(0,Math.floor(s||0));
   const m=Math.floor(s/60);
   const ss=s%60;
   return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0');
 }
-
-/* ---------- 进度更新 ---------- */
 function updateProgress(){
   const cur=audioEl.currentTime||0;
   const dur=audioEl.duration||0;
@@ -2376,8 +2708,6 @@ audioEl.addEventListener('timeupdate',updateProgress);
 audioEl.addEventListener('loadedmetadata',updateProgress);
 audioEl.addEventListener('play',updateMpPlayIcon);
 audioEl.addEventListener('pause',updateMpPlayIcon);
-
-/* ---------- 播放结束 ---------- */
 audioEl.addEventListener('ended',()=>{
   const md=mpState.mode;
   if(md==='one'){audioEl.currentTime=0;audioEl.play();return;}
@@ -2386,11 +2716,7 @@ audioEl.addEventListener('ended',()=>{
   if(mpState.index<musicList.length-1)playIndex(mpState.index+1);
   else{audioEl.pause();updateMpPlayIcon();}
 });
-
-/* ---------- 播放/上一首/下一首/关闭 ---------- */
-$('#mpPlay').addEventListener('click',()=>{
-  if(audioEl.paused)audioEl.play();else audioEl.pause();
-});
+$('#mpPlay').addEventListener('click',()=>{if(audioEl.paused)audioEl.play();else audioEl.pause();});
 $('#mpPrev').addEventListener('click',()=>{
   if(musicList.length===0)return;
   playIndex((mpState.index-1+musicList.length)%musicList.length);
@@ -2404,29 +2730,22 @@ $('#mpClose').addEventListener('click',()=>{
   setListening(false);
   mp.classList.remove('on');
 });
-
-/* ---------- 循环模式切换 ---------- */
 $('#mpMode').addEventListener('click',()=>{
   const i=MP_MODES.findIndex(x=>x[0]===mpState.mode);
   const nm=MP_MODES[(i+1)%MP_MODES.length];
   mpState.mode=nm[0];
   $('#mpModeIcon').setAttribute('href','#'+nm[2]);
   const lab=$('#mpModeLabel');
-  lab.textContent=nm[1];
-  lab.classList.add('on');
+  lab.textContent=nm[1];lab.classList.add('on');
   clearTimeout(lab._t);
   lab._t=setTimeout(()=>lab.classList.remove('on'),1400);
   toast(nm[1]);
 });
 
-/* ---------- 进度条拖动 ---------- */
+/* 进度条拖动 */
 (function(){
   const bar=$('#mpBar');
-  function pct(x){
-    const r=bar.getBoundingClientRect();
-    let p=(x-r.left)/r.width;
-    return Math.max(0,Math.min(1,p));
-  }
+  function pct(x){const r=bar.getBoundingClientRect();let p=(x-r.left)/r.width;return Math.max(0,Math.min(1,p));}
   function st(x){if(!audioEl.duration)return;mpState.dragging=true;mv(x);}
   function mv(x){
     if(!mpState.dragging)return;
@@ -2443,18 +2762,14 @@ $('#mpMode').addEventListener('click',()=>{
   }
   bar.addEventListener('touchstart',e=>{st(e.touches[0].clientX);e.preventDefault();},{passive:false});
   bar.addEventListener('touchmove',e=>{mv(e.touches[0].clientX);e.preventDefault();},{passive:false});
-  bar.addEventListener('touchend',e=>{
-    en(e.changedTouches&&e.changedTouches[0]?e.changedTouches[0].clientX:0);
-  });
+  bar.addEventListener('touchend',e=>{en(e.changedTouches&&e.changedTouches[0]?e.changedTouches[0].clientX:0);});
 })();
 
-/* ---------- 播放器位置 ---------- */
+/* 播放器位置 */
 function applyMpPos(){
   const w=mp.offsetWidth||(window.innerWidth-24);
   let left=12,top=window.innerHeight-200;
-  if(settings.mpPos&&typeof settings.mpPos.left==='number'){
-    left=settings.mpPos.left;top=settings.mpPos.top;
-  }
+  if(settings.mpPos&&typeof settings.mpPos.left==='number'){left=settings.mpPos.left;top=settings.mpPos.top;}
   left=Math.max(4,Math.min(window.innerWidth-w-4,left));
   const h=mp.offsetHeight||120;
   top=Math.max(4,Math.min(window.innerHeight-h-4,top));
@@ -2464,8 +2779,7 @@ function applyMpPos(){
   mp.style.right='auto';
   mp.style.bottom='auto';
 }
-
-/* ---------- 播放器拖动 ---------- */
+/* 播放器拖动 */
 (function(){
   let dragging=false,sx=0,sy=0,ox=0,oy=0;
   function st(x,y){
@@ -2495,14 +2809,13 @@ function applyMpPos(){
   head.addEventListener('touchend',en);
 })();
 window.addEventListener('resize',()=>{if(mp.classList.contains('on'))applyMpPos();});
-  /* ============================================================
-   侧边抽屉 + 页面切换 + 口袋 + 添加/保存
+   /* ============================================================
+   侧栏抽屉 + 页面切换 + 口袋 + 添加/保存
    ============================================================ */
-
 const drawer=$('#drawer');
 const mask=$('#drawerMask');
 
-/* ---------- 侧边抽屉目录（14 套主题共用这一份列表，样式由主题 CSS 决定） ---------- */
+/* ---------- 侧栏目录（结构由 UI().drawer 生成） ---------- */
 const sideItems=[
   {n:'口袋',ic:'i-box',go:'pocket'},
   {n:'信箱',ic:'i-mail',go:'doing'},
@@ -2515,25 +2828,18 @@ const sideItems=[
   {n:'重要日',ic:'i-day',go:'doing'},
   {n:'设置',ic:'i-set',go:'settings'}
 ];
-(function buildDrawer(){
-  if(!drawer)return;
-  drawer.innerHTML='';
-  sideItems.forEach(it=>{
-    const d=document.createElement('div');
-    d.className='drawer-item';
-    d.innerHTML=`<svg class="ico"><use href="#${it.ic}"/></svg>${it.n}`;
-    d.addEventListener('click',()=>{
-      closeDrawer();
-      if(it.go==='pocket')openPocket();
-      else if(it.go==='settings')openSettings();
-      else if(it.go==='collection')openCollection();
-      else openDoing(it.n);
-    });
-    drawer.appendChild(d);
-  });
-})();
-function openDrawer(){drawer.classList.add('on');mask.classList.add('on');}
-function closeDrawer(){drawer.classList.remove('on');mask.classList.remove('on');}
+function buildDrawer(){
+  UI().drawer(drawer);
+}
+function openDrawer(){
+  buildDrawer();
+  drawer.classList.add('on');
+  mask.classList.add('on');
+}
+function closeDrawer(){
+  drawer.classList.remove('on');
+  mask.classList.remove('on');
+}
 mask.addEventListener('click',closeDrawer);
 
 /* ---------- 左滑打开 / 右滑关闭 ---------- */
@@ -2583,14 +2889,12 @@ function openCollection(){
   renderCollection();
   showPage('page-collection');
 }
-$$('[data-back]').forEach(el=>{
-  el.addEventListener('click',()=>{
+$$('[data-back]').forEach(e=>{
+  e.addEventListener('click',()=>{
     if($('#page-add').classList.contains('show')){
       const hasText=$('#addArea').value.trim();
       const hasMusic=($('#musicExtra').style.display!=='none')&&($('#mName').value.trim()||$('#addArea').dataset.fileId);
-      if(hasText||hasMusic){
-        if(!confirm('还没放进口袋，确定离开吗？'))return;
-      }
+      if(hasText||hasMusic){if(!confirm('还没放进口袋，确定离开吗？'))return;}
       resetAddPage();
     }
     exitSelMode();hidePages();
@@ -2615,28 +2919,7 @@ function catCount(key){
 }
 function renderPocketBox(){
   $('#pocketTitle').textContent='口袋';
-  const box=$('#pocketBox');box.innerHTML='';
-  const t=curTheme();
-  /* 每主题不同布局 */
-  if(t==='news'){
-    /* 报纸：版面表 */
-    pocketCats.forEach(c=>{
-      const d=document.createElement('div');
-      d.className='drawer-cell'+(curCat===c.key?' on':'');
-      d.innerHTML=`<span style="font-size:12px;opacity:.7">版 ${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
-      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
-      box.appendChild(d);
-    });
-  }else{
-    /* 默认四宫格 */
-    pocketCats.forEach(c=>{
-      const d=document.createElement('div');
-      d.className='drawer-cell'+(curCat===c.key?' on':'');
-      d.innerHTML=`<div class="pull"></div><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
-      d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
-      box.appendChild(d);
-    });
-  }
+  UI().pocketBox($('#pocketBox'));
   renderPanel();
 }
 function renderPanel(){
@@ -2663,12 +2946,12 @@ function resetAddPage(){
   area.placeholder='祂会用这些字卡回复你哦…';
 }
 
-/* ---------- 保存字卡/互动/音乐 ---------- */
+/* ---------- 保存字卡 / 互动 / 音乐 ---------- */
 $('#saveCards').addEventListener('click',async()=>{
   const area=$('#addArea');
   const editingId=area.dataset.editing;
 
-  /* 音乐模式 */
+  /* 音乐 */
   if(addCtx.mode==='music'){
     const name=$('#mName').value.trim();
     const artist=$('#mArtist').value.trim();
@@ -2693,11 +2976,10 @@ $('#saveCards').addEventListener('click',async()=>{
     return;
   }
 
-  /* 多行文本 */
   const lines=area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
   if(lines.length===0){toast('还没写呢');return;}
 
-  /* 互动模式 */
+  /* 互动 */
   if(addCtx.mode==='interact'){
     const dir=addCtx.dir;
     const arr=interactions[dir]||(interactions[dir]=[]);
@@ -2723,7 +3005,7 @@ $('#saveCards').addEventListener('click',async()=>{
     return;
   }
 
-  /* 字卡模式 */
+  /* 字卡 */
   if(editingId){
     const c=cards.find(x=>x.id===editingId);
     if(c){c.text=area.value.trim();await saveCards();}
@@ -2762,7 +3044,7 @@ $('#mFileBtn').addEventListener('click',()=>{
   });
   inp.click();
 });
-  /* ============================================================
+   /* ============================================================
    口袋 · 字卡面板
    ============================================================ */
 let selMode=false,selSet=new Set(),searchKw='',lockedView=false,cardShown=50;
@@ -2776,9 +3058,7 @@ function renderCardPanel(p){
   </div>
   <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
   <div id="cardList"></div>`;
-  bindCardTools();
-  cardShown=50;
-  renderCardList();
+  bindCardTools();cardShown=50;renderCardList();
 }
 function currentCards(){
   if(lockedView)return cards.filter(c=>c.locked);
@@ -2790,38 +3070,26 @@ function renderCardList(){
   const list=$('#cardList');if(!list)return;list.innerHTML='';
   const arr=currentCards();
   if(arr.length===0){
-    const e=document.createElement('div');
-    e.className='empty-tip';
+    const e=el('div','empty-tip');
     e.innerHTML=lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧');
-    list.appendChild(e);
-    updateMultiBar();updateSelectAll();
-    return;
+    list.appendChild(e);updateMultiBar();updateSelectAll();return;
   }
   const slice=arr.slice(0,cardShown);
   const frag=document.createDocumentFragment();
   slice.forEach(c=>{
-    const el=document.createElement('div');
-    el.className='card-item'+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');
-    el.textContent=c.text;
-    const chk=document.createElement('div');
-    chk.className='chk';chk.textContent=selSet.has(c.id)?'✓':'';
-    el.appendChild(chk);
-    el.addEventListener('click',()=>{
-      if(selMode){
-        if(selSet.has(c.id))selSet.delete(c.id);else selSet.add(c.id);
-        renderCardList();
-      }else openSheet(c.id);
+    const e=el('div','card-item'+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':''),c.text);
+    const chk=el('div','chk',selSet.has(c.id)?'✓':'');e.appendChild(chk);
+    e.addEventListener('click',()=>{
+      if(selMode){if(selSet.has(c.id))selSet.delete(c.id);else selSet.add(c.id);renderCardList();}
+      else openSheet(c.id);
     });
-    frag.appendChild(el);
+    frag.appendChild(e);
   });
   list.appendChild(frag);
   if(cardShown<arr.length){
-    const more=document.createElement('div');
-    more.className='empty-tip';more.style.padding='16px';more.textContent='加载更多…';
+    const more=el('div','empty-tip');more.style.padding='16px';more.textContent='加载更多…';
     list.appendChild(more);
-    const io=new IntersectionObserver(ents=>{
-      if(ents[0].isIntersecting){cardShown+=50;io.disconnect();renderCardList();}
-    });
+    const io=new IntersectionObserver(ents=>{if(ents[0].isIntersecting){cardShown+=50;io.disconnect();renderCardList();}});
     io.observe(more);
   }
   updateMultiBar();updateSelectAll();
@@ -2845,14 +3113,12 @@ function exitSelMode(){
 function bindCardTools(){
   const tools=$('#cardTools');if(!tools)return;
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool');if(!t)return;
-    const act=t.dataset.t;
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
     if(act==='search'){
       const kw=prompt('搜索字卡',searchKw);
       if(kw!==null){searchKw=kw.trim();lockedView=false;cardShown=50;renderCardList();}
     }else if(act==='add'){
-      resetAddPage();
-      addCtx={mode:'card',dir:'touch'};
+      resetAddPage();addCtx={mode:'card',dir:'touch'};
       $('#addTitle').textContent='添加字卡';
       $('#addArea').placeholder='祂会用这些字卡回复你哦…';
       showPage('page-add');
@@ -2881,7 +3147,7 @@ function editCard(id){
 }
 
 /* ============================================================
-   口袋 · 贴纸面板（问题1 修复：滚动 + 懒加载 + 兜底）
+   口袋 · 贴纸面板（问题1 修复）
    ============================================================ */
 let stkSel=new Set(),stkSelMode=false,stkShown=20,stkLoading=false;
 function renderStickerPanel(p){
@@ -2892,24 +3158,17 @@ function renderStickerPanel(p){
     <div class="tool" data-t="export"><svg class="ico"><use href="#i-export"/></svg></div>
   </div>
   <div id="stkList"></div>`;
-  bindStkTools();
-  stkShown=20;
-  renderStkList();
+  bindStkTools();stkShown=20;renderStkList();
 }
 async function renderStkList(){
   const list=$('#stkList');if(!list)return;list.innerHTML='';
-  if(stickers.length===0){
-    list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>';
-    return;
-  }
-  const grid=document.createElement('div');
-  grid.className='stk-grid';
-  list.appendChild(grid);
+  if(stickers.length===0){list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>';return;}
+  const grid=el('div','stk-grid');list.appendChild(grid);
   stkShown=0;
   await appendStkBatch(grid,20);
   ensureStkPanelScrollable(grid);
 }
-/* 问题1 修复：口袋贴纸内容不足一屏时自动补一批 */
+/* 问题1 修复：内容不足一屏时自动补批 */
 function ensureStkPanelScrollable(grid){
   const list=$('#stkList');if(!list)return;
   setTimeout(()=>{
@@ -2926,17 +3185,13 @@ async function appendStkBatch(grid,count){
   for(const s of slice){
     const data=stickerCache[s.id];
     const cell=makeStickerCell(s,data,stkSelMode,stkSel.has(s.id),(s)=>{
-      if(stkSelMode){
-        if(stkSel.has(s.id))stkSel.delete(s.id);else stkSel.add(s.id);
-        renderStkList();
-      }
+      if(stkSelMode){if(stkSel.has(s.id))stkSel.delete(s.id);else stkSel.add(s.id);renderStkList();}
     });
     frag.appendChild(cell);
   }
-  grid.appendChild(frag);
-  stkShown+=slice.length;
+  grid.appendChild(frag);stkShown+=slice.length;
 }
-/* 问题1 修复：#stkList 的滚动监听用捕获 */
+/* 问题1 修复：#stkList 滚动监听用捕获 */
 document.addEventListener('scroll',e=>{
   const list=e.target;
   if(list&&list.id==='stkList'){
@@ -2953,8 +3208,7 @@ document.addEventListener('scroll',e=>{
 function bindStkTools(){
   const tools=$('#stkTools');if(!tools)return;
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool');if(!t)return;
-    const act=t.dataset.t;
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
     if(act==='add')addStickersFlow();
     else if(act==='del'){
       if(!stkSelMode){stkSelMode=true;stkSel.clear();t.classList.add('on');renderStkList();}
@@ -2974,18 +3228,14 @@ stkFile.addEventListener('change',e=>{
   pendingStickers=[];let done=0;
   files.forEach(f=>{
     const r=new FileReader();
-    r.onload=()=>{
-      pendingStickers.push(r.result);
-      done++;
-      if(done===files.length)showPreview();
-    };
+    r.onload=()=>{pendingStickers.push(r.result);done++;if(done===files.length)showPreview();};
     r.readAsDataURL(f);
   });
   e.target.value='';
 });
 function showPreview(){
   const g=$('#pvGrid');g.innerHTML='';
-  pendingStickers.forEach(d=>{const img=document.createElement('img');img.src=d;g.appendChild(img);});
+  pendingStickers.forEach(d=>{const img=el('img');img.src=d;g.appendChild(img);});
   $('#pvCount').textContent=pendingStickers.length;
   $('#previewMask').classList.add('on');
 }
@@ -3046,6 +3296,7 @@ async function exportStickers(){
    口袋 · 互动面板
    ============================================================ */
 let itDir='touch',itSel=new Set(),itSelMode=false,itShown=50,itSearch='',itLockedView=false;
+const INTERACT_PLACE={touch:'想对祂做的动作…',back:'想让他对你做的动作…',pair:'想一起做的动作…'};
 function renderInteractPanel(p){
   p.innerHTML=`<div class="toolbar" id="itTabs">
     <div class="tool it-tab on" data-dir="touch">触碰 (${(interactions.touch||[]).length})</div>
@@ -3061,9 +3312,7 @@ function renderInteractPanel(p){
   </div>
   <div id="selectAllRow"><input type="checkbox" id="itSelectAllChk"><label for="itSelectAllChk">全选</label></div>
   <div id="itList"></div>`;
-  bindInteractTools();
-  itShown=50;
-  renderInteractList();
+  bindInteractTools();itShown=50;renderInteractList();
 }
 function bindInteractTools(){
   const tabs=$('#itTabs');
@@ -3075,14 +3324,12 @@ function bindInteractTools(){
   });
   const tools=$('#itTools');
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool');if(!t)return;
-    const act=t.dataset.t;
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
     if(act==='search'){
       const kw=prompt('搜索动作',itSearch);
       if(kw!==null){itSearch=kw.trim();itLockedView=false;itShown=50;renderInteractList();}
     }else if(act==='add'){
-      resetAddPage();
-      addCtx={mode:'interact',dir:itDir};
+      resetAddPage();addCtx={mode:'interact',dir:itDir};
       $('#addTitle').textContent='添加'+INTERACT_LABEL[itDir];
       $('#addArea').placeholder=INTERACT_PLACE[itDir];
       showPage('page-add');
@@ -3100,7 +3347,6 @@ function bindInteractTools(){
     renderInteractList();
   });
 }
-const INTERACT_PLACE={touch:'想对祂做的动作…',back:'想让他对你做的动作…',pair:'想一起做的动作…'};
 function currentInteracts(){
   let arr=(interactions[itDir]||[]);
   if(itLockedView)return arr.filter(x=>x.locked);
@@ -3112,38 +3358,26 @@ function renderInteractList(){
   const list=$('#itList');if(!list)return;list.innerHTML='';
   const arr=currentInteracts();
   if(arr.length===0){
-    const e=document.createElement('div');
-    e.className='empty-tip';
+    const e=el('div','empty-tip');
     e.innerHTML=itLockedView?'还没有锁上的动作':(itSearch?'没找到':'这个抽屉还没有动作<br>点 ➕ 添加');
-    list.appendChild(e);
-    updateInteractSelRow();
-    return;
+    list.appendChild(e);updateInteractSelRow();return;
   }
   const slice=arr.slice(0,itShown);
   const frag=document.createDocumentFragment();
   slice.forEach(c=>{
-    const el=document.createElement('div');
-    el.className='card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':'');
-    el.textContent=c.text;
-    const chk=document.createElement('div');
-    chk.className='chk';chk.textContent=itSel.has(c.id)?'✓':'';
-    el.appendChild(chk);
-    el.addEventListener('click',()=>{
-      if(itSelMode){
-        if(itSel.has(c.id))itSel.delete(c.id);else itSel.add(c.id);
-        renderInteractList();
-      }else openInteractSheet(c.id);
+    const e=el('div','card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':''),c.text);
+    const chk=el('div','chk',itSel.has(c.id)?'✓':'');e.appendChild(chk);
+    e.addEventListener('click',()=>{
+      if(itSelMode){if(itSel.has(c.id))itSel.delete(c.id);else itSel.add(c.id);renderInteractList();}
+      else openInteractSheet(c.id);
     });
-    frag.appendChild(el);
+    frag.appendChild(e);
   });
   list.appendChild(frag);
   if(itShown<arr.length){
-    const more=document.createElement('div');
-    more.className='empty-tip';more.style.padding='16px';more.textContent='加载更多…';
+    const more=el('div','empty-tip');more.style.padding='16px';more.textContent='加载更多…';
     list.appendChild(more);
-    const io=new IntersectionObserver(ents=>{
-      if(ents[0].isIntersecting){itShown+=50;io.disconnect();renderInteractList();}
-    });
+    const io=new IntersectionObserver(ents=>{if(ents[0].isIntersecting){itShown+=50;io.disconnect();renderInteractList();}});
     io.observe(more);
   }
   updateInteractSelRow();
@@ -3185,30 +3419,23 @@ function renderMusicPanel(p){
   </div>
   <div id="selectAllRowM" style="display:none;padding:8px 2px;font-size:14px;align-items:center;gap:8px"><input type="checkbox" id="musicSelectAll"><label for="musicSelectAll">全选</label></div>
   <div id="musicList"></div>`;
-  bindMusicTools();
-  renderMusicList();
+  bindMusicTools();renderMusicList();
 }
 function renderMusicList(){
   const list=$('#musicList');if(!list)return;list.innerHTML='';
   if(musicList.length===0){list.innerHTML='<div class="empty-tip">还没有歌<br>点 ➕ 添加</div>';return;}
   const frag=document.createDocumentFragment();
   musicList.forEach(m=>{
-    const el=document.createElement('div');
-    el.className='card-item'+(musicSelMode?' selmode':'')+(musicSel.has(m.id)?' sel':'');
-    el.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
-    const chk=document.createElement('div');
-    chk.className='chk';chk.textContent=musicSel.has(m.id)?'✓':'';
-    el.appendChild(chk);
-    el.addEventListener('click',()=>{
-      if(musicSelMode){
-        if(musicSel.has(m.id))musicSel.delete(m.id);else musicSel.add(m.id);
-        renderMusicList();
-      }else editMusic(m.id);
+    const e=el('div','card-item'+(musicSelMode?' selmode':'')+(musicSel.has(m.id)?' sel':''));
+    e.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
+    const chk=el('div','chk',musicSel.has(m.id)?'✓':'');e.appendChild(chk);
+    e.addEventListener('click',()=>{
+      if(musicSelMode){if(musicSel.has(m.id))musicSel.delete(m.id);else musicSel.add(m.id);renderMusicList();}
+      else editMusic(m.id);
     });
-    frag.appendChild(el);
+    frag.appendChild(e);
   });
-  list.appendChild(frag);
-  updateMusicSelRow();
+  list.appendChild(frag);updateMusicSelRow();
 }
 function updateMusicSelRow(){
   const row=$('#selectAllRowM');if(!row)return;
@@ -3219,8 +3446,7 @@ function updateMusicSelRow(){
 function bindMusicTools(){
   const tools=$('#musicTools');if(!tools)return;
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool');if(!t)return;
-    const act=t.dataset.t;
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
     if(act==='search'){
       const kw=prompt('搜索歌名/歌手');
       if(kw!==null)renderMusicListFilter(kw.trim());
@@ -3242,11 +3468,10 @@ function renderMusicListFilter(kw){
   if(arr.length===0){list.innerHTML='<div class="empty-tip">没找到</div>';return;}
   const frag=document.createDocumentFragment();
   arr.forEach(m=>{
-    const el=document.createElement('div');
-    el.className='card-item';
-    el.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
-    el.addEventListener('click',()=>editMusic(m.id));
-    frag.appendChild(el);
+    const e=el('div','card-item');
+    e.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
+    e.addEventListener('click',()=>editMusic(m.id));
+    frag.appendChild(e);
   });
   list.appendChild(frag);
 }
@@ -3268,13 +3493,10 @@ function editMusic(id){
   $('#addArea').dataset.editing=id;
   $('#mName').value=m.name||'';
   $('#mArtist').value=m.artist||'';
-  if(m.fileId){
-    $('#addArea').dataset.fileId=m.fileId;
-    $('#mFileTip').textContent='已有音频文件';
-  }
+  if(m.fileId){$('#addArea').dataset.fileId=m.fileId;$('#mFileTip').textContent='已有音频文件';}
   showPage('page-add');
 }
-  /* ============================================================
+   /* ============================================================
    多选栏（锁上 / 解锁 / 删除）
    ============================================================ */
 $('#mDel').addEventListener('click',async()=>{
@@ -3285,8 +3507,7 @@ $('#mDel').addEventListener('click',async()=>{
       stickers=stickers.filter(s=>!stkSel.has(s.id));
       await saveStickers();
       stkSelMode=false;stkSel.clear();
-      renderStkList();renderPocketBox();
-      toast('已删除');
+      renderStkList();renderPocketBox();toast('已删除');
     }
     return;
   }
@@ -3294,8 +3515,7 @@ $('#mDel').addEventListener('click',async()=>{
     if(selSet.size===0){toast('还没选字卡');return;}
     if(confirm('删除选中的 '+selSet.size+' 张字卡？')){
       cards=cards.filter(c=>!selSet.has(c.id));
-      saveCards();exitSelMode();renderCardList();
-      toast('已删除');
+      saveCards();exitSelMode();renderCardList();toast('已删除');
     }
     return;
   }
@@ -3303,8 +3523,7 @@ $('#mDel').addEventListener('click',async()=>{
     if(itSel.size===0){toast('还没选互动');return;}
     if(confirm('删除选中的 '+itSel.size+' 条互动？')){
       interactions[itDir]=(interactions[itDir]||[]).filter(x=>!itSel.has(x.id));
-      saveInteractions();exitInteractSel();renderInteractList();renderPocketBox();
-      toast('已删除');
+      saveInteractions();exitInteractSel();renderInteractList();renderPocketBox();toast('已删除');
     }
     return;
   }
@@ -3318,8 +3537,7 @@ $('#mDel').addEventListener('click',async()=>{
       musicList=musicList.filter(m=>!musicSel.has(m.id));
       await saveMusic();
       musicSelMode=false;musicSel.clear();
-      renderMusicList();renderPocketBox();
-      toast('已删除');
+      renderMusicList();renderPocketBox();toast('已删除');
     }
   }
 });
@@ -3328,16 +3546,14 @@ $('#mLock').addEventListener('click',()=>{
     if(selSet.size===0){toast('还没选字卡');return;}
     const n=selSet.size;
     cards.forEach(c=>{if(selSet.has(c.id))c.locked=true;});
-    saveCards();exitSelMode();renderCardList();removeEmptyTip();
-    toast('已锁上 '+n+' 张');
+    saveCards();exitSelMode();renderCardList();removeEmptyTip();toast('已锁上 '+n+' 张');
     return;
   }
   if(curCat==='interact'){
     if(itSel.size===0){toast('还没选互动');return;}
     const n=itSel.size;
     (interactions[itDir]||[]).forEach(x=>{if(itSel.has(x.id))x.locked=true;});
-    saveInteractions();exitInteractSel();renderInteractList();
-    toast('已锁上 '+n+' 条');
+    saveInteractions();exitInteractSel();renderInteractList();toast('已锁上 '+n+' 条');
   }
 });
 $('#mUnlock').addEventListener('click',()=>{
@@ -3345,58 +3561,53 @@ $('#mUnlock').addEventListener('click',()=>{
     if(selSet.size===0){toast('还没选字卡');return;}
     const n=selSet.size;
     cards.forEach(c=>{if(selSet.has(c.id))c.locked=false;});
-    saveCards();exitSelMode();renderCardList();
-    toast('已解锁 '+n+' 张');
+    saveCards();exitSelMode();renderCardList();toast('已解锁 '+n+' 张');
     return;
   }
   if(curCat==='interact'){
     if(itSel.size===0){toast('还没选互动');return;}
     const n=itSel.size;
     (interactions[itDir]||[]).forEach(x=>{if(itSel.has(x.id))x.locked=false;});
-    saveInteractions();exitInteractSel();renderInteractList();
-    toast('已解锁 '+n+' 条');
+    saveInteractions();exitInteractSel();renderInteractList();toast('已解锁 '+n+' 条');
   }
 });
 
 /* ============================================================
-   底部弹层（编辑 / 锁 / 删 / 清重复 / 导入 / 导出）
+   底部弹层
    ============================================================ */
 let sheetCardId=null,itSheetId=null,sheetCtx='card';
 function openSheet(id){
   sheetCardId=id;itSheetId=null;sheetCtx='card';
   const c=cards.find(x=>x.id===id);if(!c)return;
-  $$('#sheet .sheet-item').forEach(el=>{
-    el.style.display=['shEdit','shLock','shDel','shCancel'].includes(el.id)?'block':'none';
+  $$('#sheet .sheet-item').forEach(e=>{
+    e.style.display=['shEdit','shLock','shDel','shCancel'].includes(e.id)?'block':'none';
   });
   const li=$('#shLock');
   if(c.locked){li.textContent='解锁';li.dataset.act='unlock';}
   else{li.textContent='锁上';li.dataset.act='lock';}
-  $('#sheetMask').classList.add('on');
-  $('#sheet').classList.add('on');
+  $('#sheetMask').classList.add('on');$('#sheet').classList.add('on');
 }
 function openInteractSheet(id){
   itSheetId=id;sheetCardId=null;sheetCtx='interact';
   const c=(interactions[itDir]||[]).find(x=>x.id===id);if(!c)return;
-  $$('#sheet .sheet-item').forEach(el=>{
-    el.style.display=['shEdit','shLock','shDel','shCancel'].includes(el.id)?'block':'none';
+  $$('#sheet .sheet-item').forEach(e=>{
+    e.style.display=['shEdit','shLock','shDel','shCancel'].includes(e.id)?'block':'none';
   });
   const li=$('#shLock');
   if(c.locked){li.textContent='解锁';li.dataset.act='unlock';}
   else{li.textContent='锁上';li.dataset.act='lock';}
-  $('#sheetMask').classList.add('on');
-  $('#sheet').classList.add('on');
+  $('#sheetMask').classList.add('on');$('#sheet').classList.add('on');
 }
 function openMoreSheet(ctx){
   sheetCtx=ctx;sheetCardId=null;itSheetId=null;
-  $$('#sheet .sheet-item').forEach(el=>{
+  $$('#sheet .sheet-item').forEach(e=>{
     let show=false;
-    if(ctx==='card')show=['shClean','shImport','shExport','shCancel'].includes(el.id);
-    else if(ctx==='music')show=['shImport','shExport','shCancel'].includes(el.id);
-    else if(ctx==='interact')show=['shImport','shExport','shCancel'].includes(el.id);
-    el.style.display=show?'block':'none';
+    if(ctx==='card')show=['shClean','shImport','shExport','shCancel'].includes(e.id);
+    else if(ctx==='music')show=['shImport','shExport','shCancel'].includes(e.id);
+    else if(ctx==='interact')show=['shImport','shExport','shCancel'].includes(e.id);
+    e.style.display=show?'block':'none';
   });
-  $('#sheetMask').classList.add('on');
-  $('#sheet').classList.add('on');
+  $('#sheetMask').classList.add('on');$('#sheet').classList.add('on');
 }
 function closeSheet(){
   $('#sheetMask').classList.remove('on');
@@ -3405,21 +3616,17 @@ function closeSheet(){
 $('#sheetMask').addEventListener('click',closeSheet);
 $('#shCancel').addEventListener('click',closeSheet);
 $('#shEdit').addEventListener('click',()=>{
-  const cid=sheetCardId;
-  if(cid){closeSheet();editCard(cid);return;}
-  const iid=itSheetId;
-  if(iid){closeSheet();editInteract(iid);}
+  const cid=sheetCardId;if(cid){closeSheet();editCard(cid);return;}
+  const iid=itSheetId;if(iid){closeSheet();editInteract(iid);}
 });
 $('#shLock').addEventListener('click',()=>{
   if(sheetCtx==='card'){
-    const c=cards.find(x=>x.id===sheetCardId);
-    if(!c){closeSheet();return;}
+    const c=cards.find(x=>x.id===sheetCardId);if(!c){closeSheet();return;}
     const act=$('#shLock').dataset.act;
     if(act==='lock'){c.locked=true;toast('已锁上');}else{c.locked=false;toast('已解锁');}
     saveCards();closeSheet();renderCardList();removeEmptyTip();
   }else{
-    const it=(interactions[itDir]||[]).find(x=>x.id===itSheetId);
-    if(!it){closeSheet();return;}
+    const it=(interactions[itDir]||[]).find(x=>x.id===itSheetId);if(!it){closeSheet();return;}
     const act=$('#shLock').dataset.act;
     if(act==='lock'){it.locked=true;toast('已锁上');}else{it.locked=false;toast('已解锁');}
     saveInteractions();closeSheet();renderInteractList();
@@ -3447,7 +3654,6 @@ $('#shClean').addEventListener('click',()=>{closeSheet();cleanInteractDup();});
 $('#shImport').addEventListener('click',()=>{closeSheet();importCurrent();});
 $('#shExport').addEventListener('click',()=>{closeSheet();exportCurrent();});
 
-/* 清互动重复 */
 function cleanInteractDup(){
   const set=new Set();
   ['touch','back','pair'].forEach(k=>{(interactions[k]||[]).forEach(x=>set.add(x.text));});
@@ -3455,8 +3661,7 @@ function cleanInteractDup(){
   if(removed===0){toast('没有和互动重复的字卡');return;}
   if(!confirm('清掉 '+removed+' 条和互动重复的字卡？'))return;
   cards=cards.filter(c=>!set.has(c.text));
-  saveCards();renderCardList();
-  toast('清掉了 '+removed+' 条');
+  saveCards();renderCardList();toast('清掉了 '+removed+' 条');
 }
 function importCurrent(){ if(sheetCtx==='music'){importMusic();}else{$('#fileInput').click();} }
 function exportCurrent(){ if(sheetCtx==='music'){exportMusic();}else{exportCards();} }
@@ -3534,18 +3739,11 @@ function renderCollection(){
   const arr=collection.slice().sort((a,b)=>b.time-a.time);
   const frag=document.createDocumentFragment();
   arr.forEach(c=>{
-    const el=document.createElement('div');
-    el.className='collection-item';
-    if(c.type==='photo'){
-      el.innerHTML=`<img src="${c.data}">`;
-    }else{
-      el.textContent=c.text||'';
-    }
-    const t=document.createElement('div');
-    t.className='ci-time';
-    t.textContent=fmtTime(c.time);
-    el.appendChild(t);
-    frag.appendChild(el);
+    const e=el('div','collection-item');
+    if(c.type==='photo'){e.innerHTML=`<img src="${c.data}">`;}
+    else{e.textContent=c.text||'';}
+    const t=el('div','ci-time',fmtTime(c.time));e.appendChild(t);
+    frag.appendChild(e);
   });
   box.appendChild(frag);
 }
@@ -3564,8 +3762,7 @@ function renderSettings(){
 }
 function bindNum(id,key){
   $('#'+id).addEventListener('change',e=>{
-    let v=parseInt(e.target.value)||0;
-    if(v<0)v=0;
+    let v=parseInt(e.target.value)||0;if(v<0)v=0;
     settings[key]=v;saveSet();
   });
 }
@@ -3587,7 +3784,6 @@ $$('.style-opt').forEach(o=>{
     if(inp)inp.placeholder=themePlaceholder();
     if($('#page-pocket').classList.contains('show'))renderPocketBox();
     $$('.style-opt').forEach(x=>x.classList.toggle('on',x===o));
-    closeDrawer();
   });
 });
 $('#clearMsgs').addEventListener('click',()=>{
@@ -3596,7 +3792,7 @@ $('#clearMsgs').addEventListener('click',()=>{
   }
 });
 
-/* 背景图片上传 */
+/* 背景上传 */
 const bgFile=document.createElement('input');
 bgFile.type='file';bgFile.accept='image/*';bgFile.multiple=true;bgFile.style.display='none';
 document.body.appendChild(bgFile);
@@ -3628,8 +3824,7 @@ document.body.appendChild(avFile);
 $('#setAvHer').addEventListener('click',()=>{avTarget='her';avFile.click();});
 $('#setAvMe').addEventListener('click',()=>{avTarget='me';avFile.click();});
 avFile.addEventListener('change',e=>{
-  const f=e.target.files[0];
-  if(!f||!avTarget)return;
+  const f=e.target.files[0];if(!f||!avTarget)return;
   const r=new FileReader();
   r.onload=()=>{
     if(avTarget==='her')settings.avatarHer=r.result;
@@ -3640,12 +3835,12 @@ avFile.addEventListener('change',e=>{
   r.readAsDataURL(f);
   e.target.value='';
 });
-  /* ============================================================
+
+/* ============================================================
    启动
    ============================================================ */
 async function boot(){
   await FS.init();
-
   const c=await FS.read('cards.json',{cards:[]});
   const m=await FS.read('messages.json',{messages:[]});
   const s=await FS.read('settings.json',null);
@@ -3653,56 +3848,23 @@ async function boot(){
   const it=await FS.read('interactions.json',null);
   const mu=await FS.read('music.json',{musicList:[]});
   const co=await FS.read('collection.json',{collection:[]});
-
-  cards=c.cards||[];
-  messages=m.messages||[];
-  stickers=st.stickers||[];
+  cards=c.cards||[];messages=m.messages||[];stickers=st.stickers||[];
   if(it&&typeof it==='object'){interactions=Object.assign({touch:[],back:[],pair:[]},it);}
-  musicList=mu.musicList||[];
-  collection=co.collection||[];
+  musicList=mu.musicList||[];collection=co.collection||[];
   if(s){settings=Object.assign(settings,s);if(!Array.isArray(settings.bgs))settings.bgs=[];}
-
-  /* 应用主题 */
   applyThemeActive();
-  applyProfile();
-  applyBg();
-  renderMessages();
-
-  /* 输入框 placeholder 按主题走 */
+  applyProfile();applyBg();renderMessages();
   const inp=msgInputEl();
   if(inp)inp.placeholder=themePlaceholder();
-
-  /* 一起听提示 */
-  if(settings.listening){
-    const b=lbEl();
-    if(b)b.classList.add('on');
-  }
-
-  /* 空口袋提示 */
+  if(settings.listening){const b=lbEl();if(b)b.classList.add('on');}
   if(cards.length===0)showSystem('口袋里还没有字卡，去给祂放几张吧');
 }
-
 boot();
 
-/* ============================================================
-   页面可见性：切回前台刷新进度
-   ============================================================ */
-document.addEventListener('visibilitychange',()=>{
-  if(!document.hidden){
-    updateProgress();
-  }
-});
-
-/* ============================================================
-   阻止 iOS 双击缩放 / 长按选中
-   ============================================================ */
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateProgress();});
 document.addEventListener('gesturestart',e=>e.preventDefault());
 document.addEventListener('dblclick',e=>e.preventDefault());
-
-/* ============================================================
-   收尾
-   ============================================================ */
-console.log('阿遇♡阿凉 · 14 套独立框架已加载');
+console.log('阿遇♡阿凉 · 14 套独立 UI 框架已加载');
 </script>
 </body>
 </html>
