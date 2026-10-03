@@ -14,14 +14,8 @@ body.page-open #app{visibility:hidden}
 .ico{width:22px;height:22px;display:block;flex:0 0 auto}
 .ico-inline{width:16px;height:16px;display:inline-block;vertical-align:-3px;margin-right:5px}
 
-/* ===================================================================
-   主题：复古手帐信
-   =================================================================== */
-body.retro{
-  background-color:#e8dcc0;
-  background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);
-  background-size:60px 60px,80px 80px,100% 100%;color:#4a3b2a;
-}
+/* ===== 复古手帐信 ===== */
+body.retro{background-color:#e8dcc0;background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);background-size:60px 60px,80px 80px,100% 100%;color:#4a3b2a}
 body.retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;box-shadow:0 2px 6px rgba(120,95,60,.15)}
 body.retro .names span{color:#6b5334}
 body.retro .page{background:linear-gradient(160deg,#efe4c8,#e3d5b4)}
@@ -29,6 +23,7 @@ body.retro .page-head{background:rgba(243,234,210,.95);border-bottom:1px solid #
 body.retro .page-head h2,body.retro .page-head .back{color:#6b5334}
 body.retro #drawer{background:linear-gradient(160deg,#f3ead2,#e6d9ba);border-right:1px solid #c9b98f}
 body.retro .drawer-item{color:#5a4a2e}
+body.retro .drawer-item.act{background:rgba(200,170,110,.25)}
 body.retro .toolbar{background:rgba(243,234,210,.7);border-bottom:1px dashed #c9b98f}
 body.retro .tool{color:#7a5f30;border:1px solid #cbb98f;background:rgba(255,250,235,.8);border-radius:6px}
 body.retro .card-item{background:#fbf7ec;border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px}
@@ -61,14 +56,15 @@ body.retro .waiting{background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#ef
 body.retro .sys{background:rgba(255,250,235,.6);border:1px dashed #c9b98f;color:#9a865e}
 body.retro .av-her,body.retro .av-me{border:1px solid #cbb98f}
 body.retro .person-av{border:1px solid #cbb98f}
+body.retro .msgnote .nav{border:1px solid #cbb98f;background:#fff}
+body.retro #quickDrawer{background:#f3ead2;border-top:1px solid #cbb98f}
+body.retro .qb{color:#7a5f30}
+body.retro .qb:active{background:rgba(200,170,110,.2)}
+body.retro .drawer-handle{background:#c9b98f}
+body.retro .hold-handle{background:#cbb98f}
 
-/* ===================================================================
-   主题：漫画风
-   =================================================================== */
-body.comic{
-  background-color:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);
-  background-size:12px 12px;color:#111;
-}
+/* ===== 漫画风 ===== */
+body.comic{background-color:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px;color:#111}
 body.comic .topbar{background:#fff;border-bottom:3px solid #111;box-shadow:0 3px 0 #111}
 body.comic .names span{color:#111;font-weight:900}
 body.comic .page{background:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px}
@@ -76,6 +72,7 @@ body.comic .page-head{background:#fff;border-bottom:3px solid #111}
 body.comic .page-head h2,body.comic .page-head .back{color:#111}
 body.comic #drawer{background:#fff;border-right:3px solid #111}
 body.comic .drawer-item{color:#111}
+body.comic .drawer-item.act{background:#eee}
 body.comic .toolbar{background:#fff;border-bottom:2px dashed #111}
 body.comic .tool{color:#111;border:2px solid #111;background:#fff;border-radius:4px}
 body.comic .card-item{background:#fff;border:3px solid #111;color:#111;border-radius:4px}
@@ -106,14 +103,15 @@ body.comic .waiting{background:#fff;border:2px dashed #111;color:#111;border-rad
 body.comic .sys{background:#fff;border:2px dashed #111;color:#111}
 body.comic .av-her,body.comic .av-me{border:2px solid #111;border-radius:4px}
 body.comic .person-av{border:2px solid #111;border-radius:6px}
+body.comic .msgnote .nav{border:2px solid #111;background:#fff;border-radius:4px}
+body.comic #quickDrawer{background:#fff;border-top:3px solid #111}
+body.comic .qb{color:#111}
+body.comic .qb:active{background:#eee}
+body.comic .drawer-handle{background:#111}
+body.comic .hold-handle{background:#111}
 
-/* ===================================================================
-   主题：少女手帐
-   =================================================================== */
-body.girl{
-  background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);
-  background-size:18px 18px;color:#7a4a5c;
-}
+/* ===== 少女手帐 ===== */
+body.girl{background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);background-size:18px 18px;color:#7a4a5c}
 body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;box-shadow:0 2px 6px rgba(220,140,170,.25)}
 body.girl .names span{color:#c05a80}
 body.girl .page{background:#fdf2f6}
@@ -121,6 +119,7 @@ body.girl .page-head{background:rgba(255,233,241,.95);border-bottom:1px solid #f
 body.girl .page-head h2,body.girl .page-head .back{color:#c05a80}
 body.girl #drawer{background:linear-gradient(160deg,#ffe9f1,#ffd6e6);border-right:1px solid #f3b8ce}
 body.girl .drawer-item{color:#7a4a5c}
+body.girl .drawer-item.act{background:rgba(243,184,206,.35)}
 body.girl .toolbar{background:rgba(255,233,241,.7);border-bottom:1px dashed #f3b8ce}
 body.girl .tool{color:#c05a80;border:1px solid #f3b8ce;background:#fff5f8;border-radius:10px}
 body.girl .card-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px}
@@ -154,14 +153,15 @@ body.girl .waiting{background:#fff0f5;border:2px dashed #f3b8ce;color:#c05a80;bo
 body.girl .sys{background:#fff;border:2px dashed #f3b8ce;color:#c05a80}
 body.girl .av-her,body.girl .av-me{border:2px solid #f3b8ce;border-radius:12px}
 body.girl .person-av{border:2px solid #f3b8ce;border-radius:14px}
+body.girl .msgnote .nav{border:2px solid #f3c8d8;background:#fff;border-radius:14px}
+body.girl #quickDrawer{background:#ffe9f1;border-top:1px solid #f3b8ce}
+body.girl .qb{color:#c05a80}
+body.girl .qb:active{background:rgba(243,184,206,.3)}
+body.girl .drawer-handle{background:#f3b8ce}
+body.girl .hold-handle{background:#f3b8ce}
 
-/* ===================================================================
-   主题：报纸
-   =================================================================== */
-body.news{
-  background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.04) 1px, transparent 1px);
-  background-size:100% 26px, 26px 100%;color:#2a2a26;
-}
+/* ===== 报纸 ===== */
+body.news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.04) 1px, transparent 1px);background-size:100% 26px, 26px 100%;color:#2a2a26}
 body.news .topbar{background:#ece6d4;border-bottom:3px double #2a2a26;box-shadow:none}
 body.news .names span{color:#2a2a26;font-weight:700;letter-spacing:1px}
 body.news .page{background:#e8e2d0}
@@ -169,6 +169,7 @@ body.news .page-head{background:#ece6d4;border-bottom:3px double #2a2a26}
 body.news .page-head h2,body.news .page-head .back{color:#2a2a26;font-family:"FangSong",serif;letter-spacing:2px}
 body.news #drawer{background:#ece6d4;border-right:3px double #2a2a26}
 body.news .drawer-item{color:#2a2a26;font-family:"FangSong",serif}
+body.news .drawer-item.act{background:#ddd6c0}
 body.news .toolbar{background:#ece6d4;border-bottom:2px dashed #6a6350}
 body.news .tool{color:#2a2a26;border:1px solid #6a6350;background:#f2ecda;border-radius:0}
 body.news .card-item{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
@@ -200,15 +201,15 @@ body.news .waiting{background:#f2ecda;border:1px dashed #6a6350;color:#6a6350;bo
 body.news .sys{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26}
 body.news .av-her,body.news .av-me{border:2px solid #2a2a26;border-radius:0}
 body.news .person-av{border:1px solid #6a6350;border-radius:0}
+body.news .msgnote .nav{border:1px solid #6a6350;background:#f2ecda;border-radius:0}
+body.news #quickDrawer{background:#ece6d4;border-top:3px double #2a2a26}
+body.news .qb{color:#2a2a26;font-family:"FangSong",serif}
+body.news .qb:active{background:#ddd6c0}
+body.news .drawer-handle{background:#6a6350}
+body.news .hold-handle{background:#6a6350}
 
-/* ===================================================================
-   主题：樱花夜
-   =================================================================== */
-body.sakura{
-  background-color:#241826;
-  background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),radial-gradient(circle at 88% 85%, rgba(255,190,215,.13) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);
-  background-size:120px 120px,150px 150px,130px 130px,170px 170px,100% 100%;color:#f2dbe6;
-}
+/* ===== 樱花夜 ===== */
+body.sakura{background-color:#241826;background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),radial-gradient(circle at 88% 85%, rgba(255,190,215,.13) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);background-size:120px 120px,150px 150px,130px 130px,170px 170px,100% 100%;color:#f2dbe6}
 body.sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 body.sakura .names span{color:#ffc0d8}
 body.sakura .page{background:linear-gradient(160deg,#2b1c2e,#1c1420)}
@@ -216,6 +217,7 @@ body.sakura .page-head{background:rgba(51,34,58,.95);border-bottom:1px solid #4a
 body.sakura .page-head h2,body.sakura .page-head .back{color:#ffc0d8}
 body.sakura #drawer{background:linear-gradient(160deg,#33223a,#241826);border-right:1px solid #4a3350}
 body.sakura .drawer-item{color:#f2dbe6}
+body.sakura .drawer-item.act{background:rgba(255,158,196,.18)}
 body.sakura .toolbar{background:rgba(51,34,58,.7);border-bottom:1px dashed #4a3350}
 body.sakura .tool{color:#ffc0d8;border:1px solid #5a3f62;background:rgba(255,190,215,.08);border-radius:8px}
 body.sakura .card-item{background:rgba(255,220,235,.07);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
@@ -248,15 +250,15 @@ body.sakura .waiting{background:rgba(255,190,215,.07);border:1px dashed #6a4a72;
 body.sakura .sys{background:rgba(255,190,215,.08);border:1px dashed #6a4a72;color:#e0a8c0}
 body.sakura .av-her,body.sakura .av-me{border:1px solid #6a4a72;border-radius:10px}
 body.sakura .person-av{border:1px solid #6a4a72;border-radius:12px}
+body.sakura .msgnote .nav{border:1px solid #5a3f62;background:#33223a;border-radius:6px}
+body.sakura #quickDrawer{background:#33223a;border-top:1px solid #4a3350}
+body.sakura .qb{color:#ffc0d8}
+body.sakura .qb:active{background:rgba(255,158,196,.12)}
+body.sakura .drawer-handle{background:#5a3f62}
+body.sakura .hold-handle{background:#5a3f62}
 
-/* ===================================================================
-   主题：玻璃花房
-   =================================================================== */
-body.glass{
-  background-color:#f4f7f8;
-  background-image:linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#ffffff,#e6eff2);
-  background-size:44px 44px,44px 44px,100% 100%,100% 100%;color:#3a4a52;
-}
+/* ===== 玻璃花房 ===== */
+body.glass{background-color:#f4f7f8;background-image:linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#ffffff,#e6eff2);background-size:44px 44px,44px 44px,100% 100%,100% 100%;color:#3a4a52}
 body.glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2;box-shadow:0 2px 8px rgba(140,170,180,.2)}
 body.glass .names span{color:#5a7a88}
 body.glass .page{background:linear-gradient(160deg,#ffffff,#e6eff2)}
@@ -264,6 +266,7 @@ body.glass .page-head{background:rgba(255,255,255,.95);border-bottom:1px solid #
 body.glass .page-head h2,body.glass .page-head .back{color:#5a7a88}
 body.glass #drawer{background:linear-gradient(160deg,#ffffff,#e6eff2);border-right:1px solid #cfdde2}
 body.glass .drawer-item{color:#3a4a52}
+body.glass .drawer-item.act{background:rgba(138,180,196,.18)}
 body.glass .toolbar{background:rgba(255,255,255,.7);border-bottom:1px dashed #cfdde2}
 body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.9);border-radius:8px}
 body.glass .card-item{background:#fff;border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px}
@@ -296,59 +299,69 @@ body.glass .waiting{background:#eef6f9;border:1px dashed #cfdde2;color:#8aaab4;b
 body.glass .sys{background:rgba(255,255,255,.8);border:1px dashed #cfdde2;color:#8aaab4}
 body.glass .av-her,body.glass .av-me{border:1px solid #cfdde2;border-radius:10px}
 body.glass .person-av{border:1px solid #cfdde2;border-radius:12px}
+body.glass .msgnote .nav{border:1px solid #cfdde2;background:#fff;border-radius:6px}
+body.glass #quickDrawer{background:#fff;border-top:1px solid #cfdde2}
+body.glass .qb{color:#5a7a88}
+body.glass .qb:active{background:#eaf4f8}
+body.glass .drawer-handle{background:#cfdde2}
+body.glass .hold-handle{background:#cfdde2}
 
-/* ===================================================================
-   主题：午后台灯（新）
-   =================================================================== */
-body.lamp{
-  background-color:#efe3c8;
+/* ===== 电影票根 ===== */
+body.ticket{
+  background-color:#1a1f26;
   background-image:
-    radial-gradient(circle at 50% 30%, rgba(255,220,150,.45) 0, rgba(255,220,150,0) 55%),
-    linear-gradient(160deg,#f3e6c9,#e3d3ac);
-  color:#6a5333;
+    radial-gradient(circle at 50% 0%, rgba(255,220,150,.12) 0, rgba(255,220,150,0) 55%),
+    linear-gradient(160deg,#232a33,#141a20);
+  color:#e8e2d2;
 }
-body.lamp .topbar{background:linear-gradient(#f6ead0,#ecdcb6);border-bottom:1px solid #d3bd8c;box-shadow:0 2px 10px rgba(180,140,80,.2)}
-body.lamp .names span{color:#8a6a3a}
-body.lamp .page{background:linear-gradient(160deg,#f3e6c9,#e3d3ac)}
-body.lamp .page-head{background:rgba(246,234,208,.95);border-bottom:1px solid #d3bd8c}
-body.lamp .page-head h2,body.lamp .page-head .back{color:#8a6a3a}
-body.lamp #drawer{background:linear-gradient(160deg,#f6ead0,#e3d3ac);border-right:1px solid #d3bd8c}
-body.lamp .drawer-item{color:#6a5333}
-body.lamp .toolbar{background:rgba(246,234,208,.7);border-bottom:1px dashed #d3bd8c}
-body.lamp .tool{color:#8a6a3a;border:1px solid #d3bd8c;background:rgba(255,250,235,.85);border-radius:6px}
-body.lamp .card-item{background:#fdf6e3;border:1px solid #e0cb9a;color:#6a5333;border-radius:4px}
-body.lamp .empty-tip{color:#b0985f}
-body.lamp #selectAllRow{color:#8a6a3a;border-bottom:1px dashed #d3bd8c}
-body.lamp #multiBar{background:rgba(246,234,208,.98);border-top:1px solid #d3bd8c}
-body.lamp .mbtn{border:1px solid #d3bd8c;background:#fffaf0;color:#7a5f30}
-body.lamp #sheet{background:#f6ead0;border-top:1px solid #d3bd8c}
-body.lamp .sheet-item{color:#6a5333}
-body.lamp .sheet-cancel{border-top:1px solid #d3bd8c;color:#8a6a3a}
-body.lamp #addArea{background:#fdf6e3;border:1px solid #e0cb9a;color:#6a5333;background-image:repeating-linear-gradient(transparent 0 29px,rgba(190,150,90,.18) 29px 30px)}
-body.lamp .save-btn{border:1px solid #c9a860;background:linear-gradient(#fbeecb,#e9d29a);color:#7a5f30}
-body.lamp .set-group{background:#fdf6e3;border:1px solid #e0cb9a}
-body.lamp .set-group h3{color:#b0985f}
-body.lamp .field-row span,body.lamp .set-row span{color:#8a6a3a}
-body.lamp .field-row input,body.lamp .set-row input{border:1px solid #d3bd8c;background:#fffaf0;color:#6a5333}
-body.lamp .style-opt{border:1px solid #d3bd8c;background:transparent;color:#6a5333}
-body.lamp .style-opt.on{border:2px solid #c9a860;background:#f7ecd0}
-body.lamp .btn-danger{border:1px solid #c47a3a;background:#f7e0d0;color:#a5401a}
-body.lamp #composer{background:linear-gradient(transparent,rgba(239,227,200,.92))}
-body.lamp .input-note{background:#fdf6e3;border:1px solid #e0cb9a}
-body.lamp #msgInput{color:#6a5333}
-body.lamp #msgInput::placeholder{color:#c0a878}
-body.lamp #sendStamp{border:2px solid #c9a860;background:radial-gradient(circle at 35% 30%,#fbeecb,#e9d29a);color:#8a6a3a;border-radius:50%;transform:rotate(-8deg)}
-body.lamp .note.me{background:#fdf3c8;border:1px solid #e2cf8a;color:#6a5333;border-radius:3px}
-body.lamp .note.her{background:#fdf6e3;border:1px solid #e0cb9a;color:#6a5333;border-radius:3px;background-image:repeating-linear-gradient(transparent 0 27px, rgba(190,150,90,.2) 27px 28px);background-position:0 10px}
-body.lamp .stamp{border:1px solid #d3bd8c;color:#b0985f;background:rgba(255,255,255,.4);border-radius:50%;width:34px;height:34px;transform:rotate(-12deg);font-size:10px}
-body.lamp .waiting{background:repeating-linear-gradient(45deg,#f4e8cc 0 8px,#eddfbe 8px 16px);border:1px dashed #d3bd8c;color:#b0985f;border-radius:4px}
-body.lamp .sys{background:rgba(255,250,235,.6);border:1px dashed #d3bd8c;color:#a08a5f}
-body.lamp .av-her,body.lamp .av-me{border:1px solid #d3bd8c}
-body.lamp .person-av{border:1px solid #d3bd8c}
+body.ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+body.ticket .names span{color:#e8c88a}
+body.ticket .page{background:linear-gradient(160deg,#232a33,#141a20)}
+body.ticket .page-head{background:rgba(42,50,60,.95);border-bottom:1px solid #3a434f}
+body.ticket .page-head h2,body.ticket .page-head .back{color:#e8c88a}
+body.ticket #drawer{background:linear-gradient(160deg,#2a323c,#1a1f26);border-right:1px solid #3a434f}
+body.ticket .drawer-item{color:#e8e2d2}
+body.ticket .drawer-item.act{background:rgba(232,200,138,.15)}
+body.ticket .toolbar{background:rgba(42,50,60,.7);border-bottom:1px dashed #3a434f}
+body.ticket .tool{color:#e8c88a;border:1px solid #3a434f;background:rgba(255,255,255,.05);border-radius:6px}
+body.ticket .card-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px}
+body.ticket .empty-tip{color:#8a8270}
+body.ticket #selectAllRow{color:#e8c88a;border-bottom:1px dashed #3a434f}
+body.ticket #multiBar{background:rgba(42,50,60,.98);border-top:1px solid #3a434f}
+body.ticket .mbtn{border:1px solid #3a434f;background:rgba(255,255,255,.06);color:#e8c88a}
+body.ticket #sheet{background:#2a323c;border-top:1px solid #3a434f}
+body.ticket .sheet-item{color:#e8e2d2}
+body.ticket .sheet-cancel{border-top:1px solid #3a434f;color:#e8c88a}
+body.ticket #addArea{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;background-image:none;border-radius:4px}
+body.ticket #addArea::placeholder{color:#a89e80}
+body.ticket .save-btn{border:1px solid #c9b878;background:linear-gradient(#f7efd0,#e6d9a8);color:#5a4a20;border-radius:4px}
+body.ticket .set-group{background:rgba(255,255,255,.06);border:1px solid #3a434f;border-radius:6px}
+body.ticket .set-group h3{color:#e8c88a}
+body.ticket .field-row span,body.ticket .set-row span{color:#c8c0a8}
+body.ticket .field-row input,body.ticket .set-row input{border:1px solid #3a434f;background:rgba(0,0,0,.3);color:#e8e2d2}
+body.ticket .style-opt{border:1px solid #3a434f;background:rgba(255,255,255,.05);color:#e8e2d2}
+body.ticket .style-opt.on{border:2px solid #e8c88a;background:rgba(232,200,138,.15)}
+body.ticket .btn-danger{border:1px solid #a06a50;background:rgba(160,80,60,.25);color:#e8a890}
+body.ticket #composer{background:linear-gradient(transparent,rgba(26,31,38,.95))}
+body.ticket .input-note{background:#f5efdc;border:1px solid #d8cca8;border-radius:4px}
+body.ticket #msgInput{color:#3a3428}
+body.ticket #msgInput::placeholder{color:#a89e80}
+body.ticket #sendStamp{border:2px solid #c9b878;background:radial-gradient(circle at 35% 30%,#f7efd0,#e6d9a8);color:#5a4a20;border-radius:4px;transform:none}
+body.ticket .note.me{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+body.ticket .note.her{background:#ece4cc;border:1px solid #d0c4a0;color:#3a3428;border-radius:4px;background-image:none;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+body.ticket .stamp{border:1px solid #c0b490;color:#8a7a50;background:#faf5e6;border-radius:4px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
+body.ticket .waiting{background:rgba(245,239,220,.12);border:1px dashed #4a5460;color:#c8c0a8;border-radius:4px}
+body.ticket .sys{background:rgba(255,255,255,.06);border:1px dashed #4a5460;color:#a89e80}
+body.ticket .av-her,body.ticket .av-me{border:1px solid #4a5460;border-radius:6px}
+body.ticket .person-av{border:1px solid #4a5460;border-radius:8px}
+body.ticket .msgnote .nav{border:1px solid #4a5460;background:#2a323c;border-radius:4px}
+body.ticket #quickDrawer{background:#2a323c;border-top:1px solid #3a434f}
+body.ticket .qb{color:#e8c88a}
+body.ticket .qb:active{background:rgba(232,200,138,.12)}
+body.ticket .drawer-handle{background:#4a5460}
+body.ticket .hold-handle{background:#4a5460}
 
-/* ===================================================================
-   主题：梦里见过（新）
-   =================================================================== */
+/* ===== 梦里见过 ===== */
 body.dream{
   background-color:#ece4ee;
   background-image:
@@ -364,6 +377,7 @@ body.dream .page-head{background:rgba(242,236,244,.95);border-bottom:1px solid #
 body.dream .page-head h2,body.dream .page-head .back{color:#7a6a92}
 body.dream #drawer{background:linear-gradient(160deg,#f2ecf4,#ddd3e2);border-right:1px solid #cdc0d6}
 body.dream .drawer-item{color:#5f5470}
+body.dream .drawer-item.act{background:rgba(184,160,204,.22)}
 body.dream .toolbar{background:rgba(242,236,244,.7);border-bottom:1px dashed #cdc0d6}
 body.dream .tool{color:#7a6a92;border:1px solid #cdc0d6;background:rgba(255,255,255,.7);border-radius:10px}
 body.dream .card-item{background:rgba(255,255,255,.7);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
@@ -396,9 +410,15 @@ body.dream .waiting{background:rgba(255,255,255,.6);border:1px dashed #cdc0d6;co
 body.dream .sys{background:rgba(255,255,255,.6);border:1px dashed #cdc0d6;color:#a898b8}
 body.dream .av-her,body.dream .av-me{border:1px solid #cdc0d6;border-radius:12px}
 body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
+body.dream .msgnote .nav{border:1px solid #cdc0d6;background:rgba(255,255,255,.8);border-radius:12px}
+body.dream #quickDrawer{background:#f2ecf4;border-top:1px solid #cdc0d6}
+body.dream .qb{color:#7a6a92}
+body.dream .qb:active{background:rgba(184,160,204,.2)}
+body.dream .drawer-handle{background:#cdc0d6}
+body.dream .hold-handle{background:#cdc0d6}
 
 /* ===================================================================
-   通用结构样式
+   通用结构
    =================================================================== */
 .topbar{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:8px 0 calc(6px + env(safe-area-inset-top));position:relative;z-index:5}
 .avatar-wrap{display:flex;flex-direction:column;align-items:center}
@@ -409,28 +429,49 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
 .names span:first-child{text-align:left;max-width:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .names span:last-child{text-align:right;max-width:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-#stream{flex:1 1 auto;overflow-y:auto;padding:28px 16px 30px;position:relative;-webkit-overflow-scrolling:touch}
-.note{position:relative;max-width:72%;padding:14px 16px;margin:22px 0;font-size:16px;line-height:1.6;word-break:break-word;white-space:pre-wrap}
-.note.me{margin-left:auto;margin-right:8px}
-.note.her{margin-right:auto;margin-left:8px}
+#stream{flex:1 1 auto;overflow-y:auto;padding:28px 16px 40px;position:relative;-webkit-overflow-scrolling:touch}
+/* 消息 + 头像 */
+.msgnote{position:relative;max-width:72%;padding:14px 16px;margin:22px 0;font-size:16px;line-height:1.6;word-break:break-word;white-space:pre-wrap}
+.msgnote.me{margin-left:auto;margin-right:8px}
+.msgnote.her{margin-right:auto;margin-left:8px}
+.msgnote .nav{position:absolute;width:26px;height:26px;border-radius:7px;background:#fff;background-size:cover;background-position:center}
+.msgnote.me .nav{right:-10px;bottom:-10px}
+.msgnote.her .nav{left:-10px;bottom:-10px}
 .stamp{position:absolute;bottom:-12px;right:8px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;padding:2px}
+.msgnote.me .stamp{right:20px}
 .waiting{max-width:72%;margin:22px auto 22px 8px;padding:16px 14px;font-size:14px;text-align:center;animation:breathe 2s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
 .sys{text-align:center;font-size:12.5px;margin:16px auto;padding:6px 12px;border-radius:4px;max-width:80%}
 
-#composer{flex:0 0 auto;padding:8px 12px calc(10px + env(safe-area-inset-bottom));position:relative}
+/* 底部：拉手 + 输入 + 快捷抽屉 */
+#composer{flex:0 0 auto;position:relative;padding:0 12px calc(10px + env(safe-area-inset-bottom))}
+.hold-bar{display:flex;align-items:center;justify-content:center;height:20px}
+.hold-handle{width:44px;height:4px;border-radius:2px;opacity:.6}
 .input-note{position:relative;padding:10px 56px 10px 12px}
 #msgInput{width:100%;border:none;outline:none;background:transparent;font-family:inherit;font-size:16px;resize:none;max-height:120px;line-height:1.4}
 #sendStamp{position:absolute;right:8px;bottom:8px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:15px;font-weight:700}
 #sendStamp:active{transform:scale(.92)}
 
+/* 快捷抽屉 */
+#quickDrawer{position:fixed;left:0;right:0;bottom:0;transform:translateY(100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:15;padding:8px 10px calc(6px + env(safe-area-inset-bottom));border-radius:16px 16px 0 0}
+#quickDrawer.on{transform:translateY(0)}
+.drawer-handle{width:44px;height:4px;border-radius:2px;margin:2px auto 10px;opacity:.6}
+.quick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.qb{display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 2px;border-radius:10px;font-size:11px}
+.qb .ico{width:22px;height:22px}
+.qb:active{opacity:.7}
+
+/* 遮罩 */
 #drawerMask{position:fixed;inset:0;background:rgba(40,30,20,.4);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
 #drawerMask.on{opacity:1;pointer-events:auto}
-#drawer{position:fixed;top:0;left:0;bottom:0;width:210px;box-shadow:4px 0 16px rgba(0,0,0,.2);transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:21;padding-top:calc(30px + env(safe-area-inset-top))}
+
+/* 侧栏 */
+#drawer{position:fixed;top:0;left:0;bottom:0;width:220px;box-shadow:4px 0 16px rgba(0,0,0,.2);transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:21;padding-top:calc(16px + env(safe-area-inset-top));overflow-y:auto;-webkit-overflow-scrolling:touch}
 #drawer.on{transform:translateX(0)}
-.drawer-item{display:flex;align-items:center;gap:12px;padding:16px 20px;font-size:17px}
+.drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px}
 .drawer-item:active{opacity:.7}
 
+/* 页面 */
 .page{position:fixed;inset:0;display:none;flex-direction:column;z-index:10;overflow:hidden}
 .page.show{display:flex}
 .page-head{flex:0 0 auto;height:52px;display:flex;align-items:center;padding:0 14px;padding-top:env(safe-area-inset-top)}
@@ -438,17 +479,26 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
 .page-head h2{flex:1;text-align:center;font-size:18px;font-weight:700;margin-right:36px}
 .page-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
 
-.toolbar{display:flex;gap:6px;padding:10px 12px;align-items:center}
-.tool{flex:1;min-width:40px;height:42px;display:flex;align-items:center;justify-content:center}
-.tool:active{opacity:.6}
-.tool.more{flex:0 0 44px}
-
+/* 口袋：抽屉盒 */
+.box-wrap{padding:14px}
+.box{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px;border-radius:12px}
+.drawer-cell{position:relative;padding:14px 4px;border-radius:10px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.drawer-cell .cnt{font-size:11px;opacity:.65}
+.drawer-cell .pull{width:22px;height:3px;border-radius:2px;background:currentColor;opacity:.4}
+.drawer-cell.on{outline:2px solid #c47a3a}
+.panel{margin-top:12px}
+.panel .toolbar{display:flex;gap:6px;padding:10px 0;align-items:center;border-bottom:none;background:transparent}
+.panel .tool{flex:1;min-width:40px;height:42px;display:flex;align-items:center;justify-content:center}
+.panel .tool:active{opacity:.6}
+.panel .tool.more{flex:0 0 44px}
+.count-line{font-size:13px;opacity:.7;padding:6px 2px}
 .card-item{position:relative;padding:13px 40px 13px 14px;margin-bottom:10px;font-size:15.5px;line-height:1.45;word-break:break-word;white-space:pre-wrap}
-.card-item.sel{outline:2px solid #c47a3a;background:#f7ecd0}
+.card-item.sel{outline:2px solid #c47a3a}
 .card-item .chk{position:absolute;left:6px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:2px solid #c47a3a;border-radius:4px;display:none;align-items:center;justify-content:center;font-size:14px;color:#c47a3a}
 .card-item.selmode{padding-left:36px}
 .card-item.selmode .chk{display:flex}
 .empty-tip{text-align:center;font-size:14px;padding:40px 20px;line-height:1.8}
+.doing{text-align:center;font-size:15px;padding:60px 20px;opacity:.6;line-height:2}
 
 #multiBar{position:fixed;left:0;right:0;bottom:0;display:none;padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;z-index:30}
 #multiBar.on{display:flex}
@@ -456,7 +506,7 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
 .mbtn:active{opacity:.7}
 .mbtn.danger{color:#a5401a}
 
-#selectAllRow{padding:8px 12px;font-size:14px;display:none;align-items:center;gap:8px}
+#selectAllRow{padding:8px 2px;font-size:14px;display:none;align-items:center;gap:8px}
 #selectAllRow.on{display:flex}
 #selectAllRow input{width:18px;height:18px}
 
@@ -475,19 +525,17 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
 
 .set-group{padding:14px;margin-bottom:14px}
 .set-group h3{font-size:15px;margin-bottom:12px;font-weight:400;display:flex;align-items:center;gap:6px}
-
-/* 人物块：大头像在左，右边名字/称呼，输入框撑满同高 */
 .person-block{display:flex;align-items:flex-start;gap:14px}
 .person-av{width:80px;height:80px;border-radius:12px;background:#fff;background-size:cover;background-position:center;flex:0 0 auto}
 .person-fields{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0}
 .person-fields .field-row{display:flex;align-items:center;gap:8px}
-.person-fields .field-row span{flex:0 0 auto;font-size:14px;width:auto}
+.person-fields .field-row span{flex:0 0 auto;font-size:14px}
 .person-fields .field-row input{flex:1;min-width:0;height:36px;font-family:inherit;font-size:15px;padding:0 10px;outline:none;border-radius:5px}
 
 .set-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:15.5px}
 .set-row input[type=number]{width:64px;height:34px;text-align:center;font-family:inherit;font-size:15px;outline:none;border-radius:4px}
 .style-opts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-.style-opt{flex:1;min-width:44%;height:56px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.style-opt{flex:1;min-width:44%;height:52px;display:flex;align-items:center;justify-content:center;font-size:14px}
 .style-opt.on{font-weight:700}
 .btn-danger{width:100%;height:46px;font-family:inherit;font-size:16px;font-weight:700}
 .btn-danger:active{opacity:.85}
@@ -499,12 +547,8 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
 <body class="retro">
 
 <svg width="0" height="0" style="position:absolute">
-  <symbol id="i-pocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M5 8.2c-.9 0-1.6.8-1.5 1.7l.9 8.4c.1.9.8 1.5 1.7 1.5h11.8c.9 0 1.6-.6 1.7-1.5l.9-8.4c.1-.9-.6-1.7-1.5-1.7z"/><path d="M4 8.2h16"/><path d="M9.6 12.4h4.8"/>
-  </symbol>
-  <symbol id="i-set" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 2.6l1.3 2.2"/><path d="M17.4 4.6l.2 2.6"/><path d="M20.8 8.4l-2.2 1.4"/><path d="M21.2 14.2l-2.5.7"/><path d="M18.4 19.2l-2.2-1.4"/><path d="M13.6 21.4l-1-2.4"/><path d="M8.2 21l.4-2.6"/><path d="M4 18l2-1.8"/><path d="M2.8 12.4l2.5-.6"/><path d="M4.6 6.6l2.3 1.2"/><path d="M8.6 3l1.1 2.4"/><circle cx="12" cy="12" r="5.6"/><circle cx="12" cy="12" r="2.2"/>
-  </symbol>
+  <symbol id="i-pocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.2c-.9 0-1.6.8-1.5 1.7l.9 8.4c.1.9.8 1.5 1.7 1.5h11.8c.9 0 1.6-.6 1.7-1.5l.9-8.4c.1-.9-.6-1.7-1.5-1.7z"/><path d="M4 8.2h16"/><path d="M9.6 12.4h4.8"/></symbol>
+  <symbol id="i-set" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6l1.3 2.2"/><path d="M17.4 4.6l.2 2.6"/><path d="M20.8 8.4l-2.2 1.4"/><path d="M21.2 14.2l-2.5.7"/><path d="M18.4 19.2l-2.2-1.4"/><path d="M13.6 21.4l-1-2.4"/><path d="M8.2 21l.4-2.6"/><path d="M4 18l2-1.8"/><path d="M2.8 12.4l2.5-.6"/><path d="M4.6 6.6l2.3 1.2"/><path d="M8.6 3l1.1 2.4"/><circle cx="12" cy="12" r="5.6"/><circle cx="12" cy="12" r="2.2"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.8" cy="10.8" r="6"/><path d="M15.4 15.4l4.6 4.6"/></symbol>
   <symbol id="i-add" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M12 8.2v7.6"/><path d="M8.2 12h7.6"/></symbol>
   <symbol id="i-del" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.4h13"/><path d="M9.6 7.4V5.6c0-.7.5-1.2 1.2-1.2h2.4c.7 0 1.2.5 1.2 1.2v1.8"/><path d="M7.2 7.4l.8 11.2c0 .7.6 1.2 1.3 1.2h5.4c.7 0 1.3-.5 1.3-1.2l.8-11.2"/><path d="M10.4 10.8v5.4"/><path d="M13.6 10.8v5.4"/></symbol>
@@ -513,6 +557,27 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
   <symbol id="i-reply" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.6h9.4l3.6 3.6v11.2c0 .7-.6 1.2-1.2 1.2H6c-.7 0-1.2-.5-1.2-1.2V5.8c0-.7.5-1.2 1.2-1.2z"/><path d="M8.4 12.6h6"/><path d="M8.4 16h3.6"/></symbol>
   <symbol id="i-style" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.4c4.4 0 7.8 3 7.8 6.8 0 2.4-1.8 3.6-3.6 3.6h-1.2c-1 0-1.8.8-1.8 1.8 0 .5.2.9.4 1.2.3.4.4.8.4 1.2 0 1-.8 1.6-1.8 1.6-4.4 0-7.8-3.6-7.8-8S7.6 4.4 12 4.4z"/><circle cx="8.8" cy="10" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="15.2" cy="10" r="1"/></symbol>
   <symbol id="i-data" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.6" y="5" width="14.8" height="14.4" rx="1.8"/><path d="M4.6 9.4h14.8"/><path d="M9.4 13h5.2"/><path d="M9.4 16h3.2"/></symbol>
+  <!-- 侧栏图标 -->
+  <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 8l2-4h14l2 4"/><path d="M9 12h6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-space" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="11" r="4.5"/><circle cx="15.5" cy="11" r="4.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.7 12 20 12 20z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-dream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14a8 8 0 1 1-9.8-9 6.5 6.5 0 0 0 9.8 9z"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="17" rx="1.6"/><path d="M8.5 8h7"/><path d="M8.5 12h7"/><path d="M8.5 16h4"/></symbol>
+  <symbol id="i-wish" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.6 1-5.8L3.5 9.7l5.9-.9z"/></symbol>
+  <symbol id="i-day" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17"/><path d="M8 3.5v3"/><path d="M16 3.5v3"/></symbol>
+  <!-- 快捷栏图标 -->
+  <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.2"/></symbol>
+  <symbol id="i-pic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 17l5-5 4 4 2-2 5 5"/></symbol>
+  <symbol id="i-vid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3z"/></symbol>
+  <symbol id="i-sticker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.3 4.7 5.2.8-3.8 3.6.9 5.1L12 15.3l-4.6 2.4.9-5.1L4.5 9l5.2-.8z"/></symbol>
+  <symbol id="i-touch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10"/><path d="M12 10V4.5a1.5 1.5 0 0 1 3 0V11"/><path d="M15 11V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-2a1.5 1.5 0 0 1 3 0v1"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></symbol>
+  <symbol id="i-ask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/><circle cx="12" cy="16.6" r="0.6" fill="currentColor"/></symbol>
+  <symbol id="i-together" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20s-6-3.6-6-7.8A3.2 3.2 0 0 1 9 9.6a3.2 3.2 0 0 1 6 0 3.2 3.2 0 0 1 6 2.6C21 16.4 15 20 15 20"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="5" rx="1"/><path d="M5 9.5V19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M10 13h4"/></symbol>
+  <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.4 12h7.2"/></symbol>
 </svg>
 
 <div id="app">
@@ -527,6 +592,7 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
   </div>
   <div id="stream"></div>
   <div id="composer">
+    <div class="hold-bar" id="holdBar"><div class="hold-handle"></div></div>
     <div class="input-note">
       <textarea id="msgInput" rows="1" placeholder="想对祂说的话…"></textarea>
       <button id="sendStamp">贴</button>
@@ -534,25 +600,27 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
   </div>
 </div>
 
-<div id="drawerMask"></div>
-<div id="drawer">
-  <div class="drawer-item" data-go="pocket"><svg class="ico"><use href="#i-pocket"/></svg>口袋</div>
-  <div class="drawer-item" data-go="settings"><svg class="ico"><use href="#i-set"/></svg>设置</div>
+<!-- 快捷抽屉 -->
+<div id="quickDrawer">
+  <div class="drawer-handle" id="qHandle"></div>
+  <div class="quick-grid" id="quickGrid"></div>
 </div>
 
+<div id="drawerMask"></div>
+<div id="drawer"></div>
+
+<!-- 口袋 -->
 <div class="page" id="page-pocket">
   <div class="page-head"><div class="back" data-back>←</div><h2 id="pocketTitle">口袋</h2></div>
-  <div class="toolbar" id="pocketTools">
-    <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
-    <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
-    <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
-    <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
-    <div class="tool more" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+  <div class="page-body">
+    <div class="box-wrap">
+      <div class="box" id="pocketBox"></div>
+      <div class="panel" id="pocketPanel"></div>
+    </div>
   </div>
-  <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
-  <div class="page-body" id="pocketList"></div>
 </div>
 
+<!-- 添加字卡 -->
 <div class="page" id="page-add">
   <div class="page-head"><div class="back" data-back>←</div><h2>添加字卡</h2></div>
   <div class="page-body" style="display:flex;flex-direction:column">
@@ -561,6 +629,7 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
   </div>
 </div>
 
+<!-- 设置 -->
 <div class="page" id="page-settings">
   <div class="page-head"><div class="back" data-back>←</div><h2>设置</h2></div>
   <div class="page-body">
@@ -569,8 +638,8 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
       <div class="person-block">
         <div class="person-av" id="setAvHer"></div>
         <div class="person-fields">
-          <div class="field-row"><span>名字</span><input type="text" id="setNameHer" placeholder="留空"></div>
-          <div class="field-row"><span>称呼</span><input type="text" id="setCallHer" placeholder="留空"></div>
+          <div class="field-row"><span>名字</span><input type="text" id="setNameHer"></div>
+          <div class="field-row"><span>称呼</span><input type="text" id="setCallHer"></div>
         </div>
       </div>
     </div>
@@ -579,8 +648,8 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
       <div class="person-block">
         <div class="person-av" id="setAvMe"></div>
         <div class="person-fields">
-          <div class="field-row"><span>名字</span><input type="text" id="setNameMe" placeholder="留空"></div>
-          <div class="field-row"><span>称呼</span><input type="text" id="setCallMe" placeholder="留空"></div>
+          <div class="field-row"><span>名字</span><input type="text" id="setNameMe"></div>
+          <div class="field-row"><span>称呼</span><input type="text" id="setCallMe"></div>
         </div>
       </div>
     </div>
@@ -598,7 +667,7 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
         <div class="style-opt" data-style="news">报纸</div>
         <div class="style-opt" data-style="sakura">樱花夜</div>
         <div class="style-opt" data-style="glass">玻璃花房</div>
-        <div class="style-opt" data-style="lamp">午后台灯</div>
+        <div class="style-opt" data-style="ticket">电影票根</div>
         <div class="style-opt" data-style="dream">梦里见过</div>
       </div>
     </div>
@@ -607,6 +676,12 @@ body.dream .person-av{border:1px solid #cdc0d6;border-radius:14px}
       <button class="btn-danger" id="clearMsgs">清空聊天记录</button>
     </div>
   </div>
+</div>
+
+<!-- 通用"待开发"页 -->
+<div class="page" id="page-doing">
+  <div class="page-head"><div class="back" data-back>←</div><h2 id="doingTitle">待开发</h2></div>
+  <div class="page-body"><div class="doing">这里还在做<br>以后会有的</div></div>
 </div>
 
 <div id="multiBar">
@@ -638,11 +713,9 @@ const FS = {
 };
 
 let cards=[], messages=[];
-let settings={
-  dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
-  avatarHer:null,avatarMe:null,
-  nameHer:'',nameMe:'', callHer:'',callMe:''
-};
+let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
+  avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'' };
+
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const rand=(a,b)=>a+Math.random()*(b-a);
 const randInt=(a,b)=>Math.floor(rand(a,b+1));
@@ -656,29 +729,51 @@ let toastTimer;
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('on'),2000); }
 
 function applyProfile(){
-  const h=settings.avatarHer, m=settings.avatarMe;
+  const h=settings.avatarHer,m=settings.avatarMe;
   $('#avHer').style.backgroundImage=h?`url(${h})`:'none';
   $('#avMe').style.backgroundImage =m?`url(${m})`:'none';
   $('#setAvHer').style.backgroundImage=h?`url(${h})`:'none';
   $('#setAvMe').style.backgroundImage =m?`url(${m})`:'none';
   $('#nameHer').textContent=settings.callHer||'';
   $('#nameMe').textContent =settings.callMe ||'';
-  $('#setNameHer').value=settings.nameHer||'';
-  $('#setNameMe').value =settings.nameMe ||'';
-  $('#setCallHer').value=settings.callHer||'';
-  $('#setCallMe').value =settings.callMe ||'';
+  $('#setNameHer').value=settings.nameHer||''; $('#setNameMe').value=settings.nameMe||'';
+  $('#setCallHer').value=settings.callHer||''; $('#setCallMe').value=settings.callMe||'';
 }
 function fmtTime(ts){ const d=new Date(ts); return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); }
-function makeNote(m){
+
+// 消息：每轮第一句带头像
+function makeNote(m, withAvatar){
   const el=document.createElement('div');
-  el.className='note '+(m.from==='me'?'me':'her');
+  el.className='msgnote '+(m.from==='me'?'me':'her');
   el.textContent=m.text;
+  if(withAvatar){
+    const side = m.from==='me'?'me':'her';
+    const av = side==='me'?settings.avatarMe:settings.avatarHer;
+    if(av){
+      const nav=document.createElement('div');
+      nav.className='nav'; nav.style.backgroundImage=`url(${av})`;
+      el.appendChild(nav);
+    }
+  }
   const st=document.createElement('div'); st.className='stamp'; st.textContent=fmtTime(m.time);
   el.appendChild(st); return el;
 }
-function renderMessages(){ stream.innerHTML=''; messages.forEach(m=>stream.appendChild(makeNote(m))); scrollBottom(); }
+// 判断某条是否该带头像（同一个人连续消息，只第一条带）
+function firstOfGroup(idx){
+  if(idx===0) return true;
+  return messages[idx-1].from !== messages[idx].from;
+}
+function renderMessages(){
+  stream.innerHTML='';
+  messages.forEach((m,i)=>stream.appendChild(makeNote(m, firstOfGroup(i))));
+  scrollBottom();
+}
 function scrollBottom(){ requestAnimationFrame(()=>stream.scrollTop=stream.scrollHeight); }
-function appendMessage(m,save){ messages.push(m); if(save!==false) saveMsgs(); stream.appendChild(makeNote(m)); scrollBottom(); }
+function appendMessage(m){
+  messages.push(m); saveMsgs();
+  const withAvatar = messages.length===1 || messages[messages.length-2].from!==m.from;
+  stream.appendChild(makeNote(m, withAvatar)); scrollBottom();
+}
 function showSystem(text){ const el=document.createElement('div'); el.className='sys'; el.dataset.sys='1'; el.textContent=text; stream.appendChild(el); scrollBottom(); }
 function removeEmptyTip(){ stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove()); }
 
@@ -706,50 +801,155 @@ function triggerReply(){
 $('#msgInput').addEventListener('input',function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,120)+'px'; });
 $('#sendStamp').addEventListener('click',sendMessage);
 
+/* 快捷抽屉 */
+const quickItems=[
+  {ic:'i-cam',n:'拍照'},{ic:'i-pic',n:'相册'},{ic:'i-vid',n:'视频'},
+  {ic:'i-sticker',n:'贴纸'},{ic:'i-touch',n:'互动'},{ic:'i-music',n:'音乐'},
+  {ic:'i-ask',n:'回应'},{ic:'i-together',n:'陪伴'},{ic:'i-archive',n:'归档'},
+  {ic:'i-sync',n:'同频'}
+];
+(function buildQuick(){
+  const g=$('#quickGrid');
+  quickItems.forEach(q=>{
+    const d=document.createElement('div'); d.className='qb';
+    d.innerHTML=`<svg class="ico"><use href="#${q.ic}"/></svg><span>${q.n}</span>`;
+    d.addEventListener('click',()=>toast('「'+q.n+'」还在做'));
+    g.appendChild(d);
+  });
+})();
+function openQuick(){ $('#quickDrawer').classList.add('on'); }
+function closeQuick(){ $('#quickDrawer').classList.remove('on'); }
+$('#qHandle').addEventListener('click',closeQuick);
+$('#holdBar').addEventListener('click',openQuick);
+
+/* 底部上滑打开快捷抽屉 */
+let upY=0,upTracking=false;
+document.addEventListener('touchstart',e=>{
+  if(e.target.closest('textarea,input,#quickDrawer')) return;
+  const t=e.touches[0]; upY=t.clientY; upTracking = (t.clientY > window.innerHeight-120);
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+  if(!upTracking) return;
+  const dy = upY - e.touches[0].clientY;
+  if(dy>50){ openQuick(); upTracking=false; }
+},{passive:true});
+document.addEventListener('touchend',()=>{upTracking=false;},{passive:true});
+
+/* 侧栏 */
+const sideItems=[
+  {n:'口袋',ic:'i-box',go:'pocket'},
+  {n:'信箱',ic:'i-mail',go:'doing'},
+  {n:'恋人空间',ic:'i-space',go:'doing'},
+  {n:'心动时刻',ic:'i-heart',go:'doing'},
+  {n:'时光温存',ic:'i-clock',go:'doing'},
+  {n:'旧梦温存',ic:'i-dream',go:'doing'},
+  {n:'备忘录',ic:'i-note',go:'doing'},
+  {n:'心愿单',ic:'i-wish',go:'doing'},
+  {n:'重要日',ic:'i-day',go:'doing'},
+  {n:'设置',ic:'i-set',go:'settings'}
+];
+(function buildDrawer(){
+  sideItems.forEach(it=>{
+    const d=document.createElement('div'); d.className='drawer-item';
+    d.innerHTML=`<svg class="ico"><use href="#${it.ic}"/></svg>${it.n}`;
+    d.addEventListener('click',()=>{ closeDrawer(); if(it.go==='pocket'){openPocket();} else if(it.go==='settings'){openSettings();} else {openDoing(it.n);} });
+    drawer.appendChild(d);
+  });
+})();
 function openDrawer(){ drawer.classList.add('on'); mask.classList.add('on'); }
 function closeDrawer(){ drawer.classList.remove('on'); mask.classList.remove('on'); }
 mask.addEventListener('click',closeDrawer);
 let sx=0,sy=0,edge=false;
-document.addEventListener('touchstart',e=>{ if(e.target.closest('textarea,input')){ edge=false; return; } const t=e.touches[0]; sx=t.clientX; sy=t.clientY; edge = !drawer.classList.contains('on'); },{passive:true});
+document.addEventListener('touchstart',e=>{ if(e.target.closest('textarea,input,#quickDrawer')){ edge=false; return; } const t=e.touches[0]; sx=t.clientX; sy=t.clientY; edge = !drawer.classList.contains('on'); },{passive:true});
 document.addEventListener('touchmove',e=>{ if(!edge) return; const t=e.touches[0]; const dx=t.clientX-sx, dy=Math.abs(t.clientY-sy); if(dx>60 && dy<50){ openDrawer(); edge=false; } },{passive:true});
 document.addEventListener('touchend',()=>{ edge=false; },{passive:true});
 let cx=0;
 document.addEventListener('touchstart',e=>{ if(drawer.classList.contains('on')) cx=e.touches[0].clientX; },{passive:true});
 document.addEventListener('touchmove',e=>{ if(!drawer.classList.contains('on')) return; if(e.touches[0].clientX - cx < -60) closeDrawer(); },{passive:true});
 
+/* 页面 */
 function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); $('#'+id).classList.add('show'); document.body.classList.add('page-open'); }
 function hidePages(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); document.body.classList.remove('page-open'); }
-document.querySelectorAll('[data-go]').forEach(el=>{
-  el.addEventListener('click',()=>{
-    const go=el.dataset.go; closeDrawer();
-    if(go==='pocket'){ lockedView=false; selMode=false; searchKw=''; renderPocket(); showPage('page-pocket'); }
-    if(go==='settings'){ applyProfile(); renderSettings(); showPage('page-settings'); }
-  });
-});
+function openDoing(name){ $('#doingTitle').textContent=name; showPage('page-doing'); }
+function openSettings(){ applyProfile(); renderSettings(); showPage('page-settings'); }
 document.querySelectorAll('[data-back]').forEach(el=>{
   el.addEventListener('click',()=>{
     if($('#page-add').classList.contains('show')){
       if($('#addArea').value.trim()){ if(!confirm('还没放进口袋，确定离开吗？')) return; $('#addArea').value=''; }
     }
-    exitSelMode(); lockedView=false; searchKw='';
+    exitSelMode();
     hidePages();
   });
 });
 
+/* ================= 口袋：抽屉盒 ================= */
+const pocketCats=[
+  {key:'card', n:'字卡', ic:'i-note'},
+  {key:'sticker', n:'贴纸', ic:'i-sticker'},
+  {key:'interact', n:'互动', ic:'i-touch'},
+  {key:'music', n:'音乐', ic:'i-music'}
+];
+let curCat=null;
+function openPocket(){ curCat=null; renderPocketBox(); showPage('page-pocket'); }
+function catCount(key){
+  if(key==='card') return cards.length;
+  return 0; // 其它待开发
+}
+function renderPocketBox(){
+  $('#pocketTitle').textContent='口袋';
+  const box=$('#pocketBox'); box.innerHTML='';
+  pocketCats.forEach(c=>{
+    const d=document.createElement('div'); d.className='drawer-cell'+(curCat===c.key?' on':'');
+    d.innerHTML=`<div class="pull"></div><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
+    d.addEventListener('click',()=>{ curCat=c.key; renderPocketBox(); renderPanel(); });
+    box.appendChild(d);
+  });
+  renderPanel();
+}
+function renderPanel(){
+  const p=$('#pocketPanel');
+  if(!curCat){ p.innerHTML=''; return; }
+  if(curCat==='card'){ renderCardPanel(p); return; }
+  p.innerHTML='<div class="doing">这一类还在做</div>';
+}
+
+/* 字卡面板（工具条 + 数量 + 列表） */
 let selMode=false, selSet=new Set(), searchKw='', lockedView=false;
-function currentList(){
+function renderCardPanel(p){
+  p.innerHTML=`
+    <div class="toolbar" id="cardTools">
+      <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
+      <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+      <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+      <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
+      <div class="tool more" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+    </div>
+    <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
+    <div class="count-line" id="countLine"></div>
+    <div id="cardList"></div>`;
+  bindCardTools(); renderCardList();
+}
+function currentCards(){
   if(lockedView) return cards.filter(c=>c.locked);
   let arr=cards.filter(c=>!c.locked);
   if(searchKw) arr=arr.filter(c=>c.text.includes(searchKw));
   return arr;
 }
-function renderPocket(){
-  $('#pocketTitle').textContent = lockedView?'锁起来的':'口袋';
-  const list=$('#pocketList'); list.innerHTML='';
-  const arr=currentList();
+function renderCardList(){
+  const list=$('#cardList'); if(!list) return;
+  list.innerHTML='';
+  const arr=currentCards();
+  // 数量行
+  const total=cards.filter(c=>!c.locked).length;
+  const lockedN=cards.filter(c=>c.locked).length;
+  let line='';
+  if(lockedView) line='锁起来 '+arr.length+' 张';
+  else if(searchKw) line='找到 '+arr.length+' 张';
+  else line='口袋里 '+total+' 张 · 锁起来 '+lockedN+' 张';
+  $('#countLine').textContent=line;
   if(arr.length===0){
-    list.innerHTML='<div class="empty-tip">'+(lockedView?'还没有锁上的字卡':(searchKw?'没找到匹配的字卡':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧'))+'</div>';
-    updateMultiBar(); return;
+    list.innerHTML='<div class="empty-tip">'+(lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧'))+'</div>';
+    updateMultiBar(); updateSelectAll(); return;
   }
   arr.forEach(c=>{
     const el=document.createElement('div');
@@ -757,55 +957,35 @@ function renderPocket(){
     el.textContent=c.text;
     const chk=document.createElement('div'); chk.className='chk'; chk.textContent=selSet.has(c.id)?'✓':''; el.appendChild(chk);
     el.addEventListener('click',()=>{
-      if(selMode){ if(selSet.has(c.id)) selSet.delete(c.id); else selSet.add(c.id); renderPocket(); }
-      else{ openSheet(c.id); }
+      if(selMode){ if(selSet.has(c.id)) selSet.delete(c.id); else selSet.add(c.id); renderCardList(); }
+      else openSheet(c.id);
     });
     list.appendChild(el);
   });
   updateMultiBar(); updateSelectAll();
 }
-function updateSelectAll(){
-  const row=$('#selectAllRow');
-  if(!selMode){ row.classList.remove('on'); return; }
-  row.classList.add('on');
-  const arr=currentList();
-  $('#selectAllChk').checked = arr.length>0 && arr.every(c=>selSet.has(c.id));
-}
-$('#selectAllChk').addEventListener('change',e=>{
-  const arr=currentList();
-  if(e.target.checked) arr.forEach(c=>selSet.add(c.id)); else selSet.clear();
-  renderPocket();
-});
+function updateSelectAll(){ const row=$('#selectAllRow'); if(!row) return; if(!selMode){ row.classList.remove('on'); return; } row.classList.add('on'); const arr=currentCards(); $('#selectAllChk').checked = arr.length>0 && arr.every(c=>selSet.has(c.id)); }
 function updateMultiBar(){ $('#multiBar').classList.toggle('on', selMode); }
-function exitSelMode(){ selMode=false; selSet.clear(); $('#selectAllRow').classList.remove('on'); $('#multiBar').classList.remove('on'); const del=$('#pocketTools .tool[data-t="del"]'); if(del) del.classList.remove('on'); }
+function exitSelMode(){ selMode=false; selSet.clear(); const r=$('#selectAllRow'); if(r) r.classList.remove('on'); $('#multiBar').classList.remove('on'); const del=document.querySelector('#cardTools .tool[data-t="del"]'); if(del) del.classList.remove('on'); }
+function bindCardTools(){
+  const tools=$('#cardTools'); if(!tools) return;
+  tools.addEventListener('click',e=>{
+    const t=e.target.closest('.tool'); if(!t) return;
+    const act=t.dataset.t;
+    if(act==='search'){ const kw=prompt('搜索字卡',searchKw); if(kw!==null){ searchKw=kw.trim(); lockedView=false; renderCardList(); } }
+    else if(act==='add'){ $('#addArea').value=''; delete $('#addArea').dataset.editing; showPage('page-add'); }
+    else if(act==='del'){ if(!selMode){ selMode=true; selSet.clear(); t.classList.add('on'); renderCardList(); } else{ exitSelMode(); renderCardList(); } }
+    else if(act==='locked'){ lockedView=!lockedView; selMode=false; selSet.clear(); searchKw=''; renderCardList(); }
+    else if(act==='more'){ openMoreSheet(); }
+  });
+  const all=$('#selectAllChk'); if(all) all.addEventListener('change',e=>{ const arr=currentCards(); if(e.target.checked) arr.forEach(c=>selSet.add(c.id)); else selSet.clear(); renderCardList(); });
+}
+/* 多选操作 */
+$('#mLock').addEventListener('click',()=>{ if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; }); saveCards(); exitSelMode(); renderCardList(); removeEmptyTip(); toast('已锁上 '+n+' 张'); });
+$('#mUnlock').addEventListener('click',()=>{ if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; }); saveCards(); exitSelMode(); renderCardList(); toast('已解锁 '+n+' 张'); });
+$('#mDel').addEventListener('click',()=>{ if(selSet.size===0){toast('还没选字卡');return;} if(confirm('删除选中的 '+selSet.size+' 张字卡？')){ cards=cards.filter(c=>!selSet.has(c.id)); saveCards(); exitSelMode(); renderCardList(); toast('已删除'); } });
 
-$('#pocketTools').addEventListener('click',e=>{
-  const t=e.target.closest('.tool'); if(!t) return;
-  const act=t.dataset.t;
-  if(act==='search'){ const kw=prompt('搜索字卡',searchKw); if(kw!==null){ searchKw=kw.trim(); lockedView=false; renderPocket(); } }
-  else if(act==='add'){ $('#addArea').value=''; delete $('#addArea').dataset.editing; showPage('page-add'); }
-  else if(act==='del'){ if(!selMode){ selMode=true; selSet.clear(); t.classList.add('on'); renderPocket(); } else{ exitSelMode(); renderPocket(); } }
-  else if(act==='locked'){ lockedView=!lockedView; selMode=false; selSet.clear(); searchKw=''; renderPocket(); }
-  else if(act==='more'){ openMoreSheet(); }
-});
-
-$('#mLock').addEventListener('click',()=>{
-  if(selSet.size===0){ toast('还没选字卡'); return; }
-  const n=selSet.size;
-  cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; });
-  saveCards(); exitSelMode(); renderPocket(); removeEmptyTip(); toast('已锁上 '+n+' 张');
-});
-$('#mUnlock').addEventListener('click',()=>{
-  if(selSet.size===0){ toast('还没选字卡'); return; }
-  const n=selSet.size;
-  cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; });
-  saveCards(); exitSelMode(); renderPocket(); toast('已解锁 '+n+' 张');
-});
-$('#mDel').addEventListener('click',()=>{
-  if(selSet.size===0){ toast('还没选字卡'); return; }
-  if(confirm('删除选中的 '+selSet.size+' 张字卡？')){ cards=cards.filter(c=>!selSet.has(c.id)); saveCards(); exitSelMode(); renderPocket(); toast('已删除'); }
-});
-
+/* 弹出菜单 */
 let sheetCardId=null;
 function openSheet(id){
   sheetCardId=id;
@@ -814,12 +994,10 @@ function openSheet(id){
     el.style.display = ['shEdit','shLock','shDel','shCancel'].includes(el.id) ? 'block' : 'none';
   });
   const li=$('#shLock');
-  if(c.locked){ li.textContent='解锁'; li.dataset.act='unlock'; }
-  else{ li.textContent='锁上'; li.dataset.act='lock'; }
+  if(c.locked){ li.textContent='解锁'; li.dataset.act='unlock'; } else { li.textContent='锁上'; li.dataset.act='lock'; }
   $('#sheetMask').classList.add('on'); $('#sheet').classList.add('on');
 }
 function openMoreSheet(){
-  sheetCardId=null;
   document.querySelectorAll('#sheet .sheet-item').forEach(el=>{
     el.style.display = ['shDedup','shImport','shExport','shCancel'].includes(el.id) ? 'block' : 'none';
   });
@@ -829,17 +1007,8 @@ function closeSheet(){ $('#sheetMask').classList.remove('on'); $('#sheet').class
 $('#sheetMask').addEventListener('click',closeSheet);
 $('#shCancel').addEventListener('click',closeSheet);
 $('#shEdit').addEventListener('click',()=>{ const id=sheetCardId; closeSheet(); if(id) editCard(id); });
-$('#shLock').addEventListener('click',()=>{
-  const c=cards.find(x=>x.id===sheetCardId); if(!c){ closeSheet(); return; }
-  const act=$('#shLock').dataset.act;
-  if(act==='lock'){ c.locked=true; toast('已锁上'); } else { c.locked=false; toast('已解锁'); }
-  saveCards(); closeSheet(); renderPocket(); removeEmptyTip();
-});
-$('#shDel').addEventListener('click',()=>{
-  if(!cards.find(x=>x.id===sheetCardId)){ closeSheet(); return; }
-  if(confirm('删除这张字卡？')){ cards=cards.filter(x=>x.id!==sheetCardId); saveCards(); renderPocket(); toast('已删除'); }
-  closeSheet();
-});
+$('#shLock').addEventListener('click',()=>{ const c=cards.find(x=>x.id===sheetCardId); if(!c){closeSheet();return;} const act=$('#shLock').dataset.act; if(act==='lock'){c.locked=true;toast('已锁上');}else{c.locked=false;toast('已解锁');} saveCards(); closeSheet(); renderCardList(); removeEmptyTip(); });
+$('#shDel').addEventListener('click',()=>{ if(!cards.find(x=>x.id===sheetCardId)){closeSheet();return;} if(confirm('删除这张字卡？')){ cards=cards.filter(x=>x.id!==sheetCardId); saveCards(); renderCardList(); toast('已删除'); } closeSheet(); });
 $('#shDedup').addEventListener('click',()=>{ closeSheet(); dedup(); });
 $('#shImport').addEventListener('click',()=>{ closeSheet(); $('#fileInput').click(); });
 $('#shExport').addEventListener('click',()=>{ closeSheet(); exportCards(); });
@@ -850,7 +1019,7 @@ function dedup(){
   cards.forEach(c=>{ if(seen.has(c.text)) return; seen.add(c.text); kept.push(c); });
   const removed=cards.length-kept.length;
   if(removed===0){ toast('没有重复的字卡'); return; }
-  if(confirm('发现 '+removed+' 张重复，保留最早的，删除其余？')){ cards=kept; saveCards(); renderPocket(); toast('已删除 '+removed+' 张重复字卡'); }
+  if(confirm('发现 '+removed+' 张重复，保留最早的，删除其余？')){ cards=kept; saveCards(); renderCardList(); toast('已删除 '+removed+' 张重复字卡'); }
 }
 $('#fileInput').addEventListener('change',async e=>{
   const f=e.target.files[0]; if(!f) return;
@@ -862,7 +1031,7 @@ $('#fileInput').addEventListener('change',async e=>{
   const exist=new Set(cards.map(c=>c.text)); let added=0,skipped=0;
   incoming.forEach(txt=>{ if(exist.has(txt)){ skipped++; return; } cards.push({id:uid(),text:txt,locked:false}); exist.add(txt); added++; });
   if(added) await saveCards();
-  renderPocket(); removeEmptyTip();
+  if(curCat==='card'){ renderCardList(); removeEmptyTip(); }
   toast('导入 '+added+' 张，跳过 '+skipped+' 张重复');
   e.target.value='';
 });
@@ -875,42 +1044,48 @@ async function exportCards(){
   a.href=URL.createObjectURL(blob); a.download=fname; a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000); toast('已导出 '+out.length+' 张字卡');
 }
+/* 保存字卡：自动去重 + 留在本页 */
 $('#saveCards').addEventListener('click',async ()=>{
   const area=$('#addArea'); const editingId=area.dataset.editing;
   const lines=area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
   if(lines.length===0){ toast('还没写呢'); return; }
-  if(editingId){ const c=cards.find(x=>x.id===editingId); if(c){ c.text=area.value.trim(); await saveCards(); } delete area.dataset.editing; area.value=''; toast('已放进口袋'); }
-  else{ for(const line of lines) cards.push({id:uid(),text:line,locked:false}); await saveCards(); area.value=''; toast('放进了 '+lines.length+' 张字卡'); }
+  if(editingId){
+    const c=cards.find(x=>x.id===editingId);
+    if(c){ c.text=area.value.trim(); await saveCards(); }
+    delete area.dataset.editing; area.value=''; toast('已放进口袋');
+  }else{
+    const exist=new Set(cards.map(c=>c.text)); let added=0,skipped=0;
+    lines.forEach(line=>{ if(exist.has(line)){ skipped++; return; } cards.push({id:uid(),text:line,locked:false}); exist.add(line); added++; });
+    await saveCards();
+    area.value='';
+    toast(skipped? ('放进了 '+added+' 张，跳过 '+skipped+' 张重复') : ('放进了 '+added+' 张字卡'));
+  }
   removeEmptyTip();
+  // 留在添加页
+  document.body.classList.add('page-open');
+  $('#page-add').classList.add('show');
 });
 
+/* 设置 */
 function renderSettings(){
   $('#dMin').value=settings.dMin; $('#dMax').value=settings.dMax;
   $('#gMin').value=settings.gMin; $('#gMax').value=settings.gMax;
   document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('on',o.dataset.style===settings.style));
   applyProfile();
 }
-function bindNum(id,key){ $('#'+id).addEventListener('change',e=>{ let v=parseInt(e.target.value)||0; if(v<0) v=0; settings[key]=v; saveSet(); }); }
+function bindNum(id,key){ $('#'+id).addEventListener('change',e=>{ let v=parseInt(e.target.value)||0; if(v<0)v=0; settings[key]=v; saveSet(); }); }
 bindNum('dMin','dMin'); bindNum('dMax','dMax'); bindNum('gMin','gMin'); bindNum('gMax','gMax');
 $('#setNameHer').addEventListener('input',e=>{settings.nameHer=e.target.value;saveSet();});
 $('#setNameMe').addEventListener('input',e=>{settings.nameMe=e.target.value;saveSet();});
 $('#setCallHer').addEventListener('input',e=>{settings.callHer=e.target.value;saveSet();applyProfile();});
 $('#setCallMe').addEventListener('input',e=>{settings.callMe=e.target.value;saveSet();applyProfile();});
-document.querySelectorAll('.style-opt').forEach(o=>{
-  o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style; saveSet(); renderSettings(); });
-});
-$('#clearMsgs').addEventListener('click',()=>{
-  if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); }
-});
+document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style; saveSet(); renderSettings(); }); });
+$('#clearMsgs').addEventListener('click',()=>{ if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); } });
 let avTarget=null;
 const avFile=document.createElement('input'); avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none'; document.body.appendChild(avFile);
 $('#setAvHer').addEventListener('click',()=>{ avTarget='her'; avFile.click(); });
 $('#setAvMe').addEventListener('click',()=>{ avTarget='me'; avFile.click(); });
-avFile.addEventListener('change',e=>{
-  const f=e.target.files[0]; if(!f||!avTarget) return;
-  const r=new FileReader(); r.onload=()=>{ if(avTarget==='her') settings.avatarHer=r.result; else settings.avatarMe=r.result; saveSet(); applyProfile(); toast('已更换头像'); };
-  r.readAsDataURL(f); e.target.value='';
-});
+avFile.addEventListener('change',e=>{ const f=e.target.files[0]; if(!f||!avTarget) return; const r=new FileReader(); r.onload=()=>{ if(avTarget==='her') settings.avatarHer=r.result; else settings.avatarMe=r.result; saveSet(); applyProfile(); renderMessages(); toast('已更换头像'); }; r.readAsDataURL(f); e.target.value=''; });
 
 async function boot(){
   await FS.init();
