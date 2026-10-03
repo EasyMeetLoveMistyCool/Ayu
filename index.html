@@ -12,7 +12,6 @@ body{font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;colo
 #bgLayer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;pointer-events:none;display:none}
 #bgMask{position:fixed;inset:0;z-index:0;pointer-events:none;display:none}
 body.has-bg #bgLayer,body.has-bg #bgMask{display:block}
-/* 只让 顶栏/页面/快捷栏/输入区 透背景；侧栏保持实心 */
 body.has-bg .topbar{background:transparent !important;border-bottom-color:transparent !important;box-shadow:none !important}
 body.has-bg .page,body.has-bg .page-head,body.has-bg #quickDrawer,body.has-bg #composer{background:transparent !important}
 body.has-bg .page-head{border-bottom-color:transparent !important}
@@ -70,7 +69,6 @@ body.retro .box{background:#e9dcbc;border:1px solid #c9b98f;box-shadow:inset 0 -
 body.retro .drawer-cell{background:#fbf7ec;border:1px solid #d0bf95;color:#5a4a2e}
 body.retro .drawer-cell.on{border:2px solid #c47a3a}
 body.retro .bg-thumb{border:1px solid #cbb98f}
-body.retro .stk-thumb{background:#fff;border:1px solid #cbb98f}
 body.retro .stk-cell.sel{outline:2px solid #c47a3a}
 
 /* ===== 漫画风 ===== */
@@ -120,7 +118,6 @@ body.comic .box{background:#fff;border:3px solid #111;box-shadow:none}
 body.comic .drawer-cell{background:#fff;border:2px solid #111;color:#111;border-radius:4px}
 body.comic .drawer-cell.on{border:3px solid #111}
 body.comic .bg-thumb{border:2px solid #111}
-body.comic .stk-thumb{background:#fff;border:2px solid #111;border-radius:4px}
 body.comic .stk-cell.sel{outline:3px solid #111}
 
 /* ===== 少女手帐 ===== */
@@ -173,7 +170,6 @@ body.girl .box{background:#ffe9f1;border:1px solid #f3b8ce;box-shadow:inset 0 -3
 body.girl .drawer-cell{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:14px}
 body.girl .drawer-cell.on{border:2px solid #f38bb0}
 body.girl .bg-thumb{border:2px solid #f3c8d8}
-body.girl .stk-thumb{background:#fff;border:2px solid #f3c8d8;border-radius:12px}
 body.girl .stk-cell.sel{outline:2px solid #f38bb0}
 
 /* ===== 报纸 ===== */
@@ -224,7 +220,6 @@ body.news .box{background:#ece6d4;border:1px solid #6a6350;box-shadow:none}
 body.news .drawer-cell{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
 body.news .drawer-cell.on{border:2px solid #2a2a26}
 body.news .bg-thumb{border:1px solid #6a6350;border-radius:0}
-body.news .stk-thumb{background:#f2ecda;border:1px solid #6a6350;border-radius:0}
 body.news .stk-cell.sel{outline:2px solid #2a2a26}
 
 /* ===== 樱花夜 ===== */
@@ -276,7 +271,6 @@ body.sakura .box{background:#33223a;border:1px solid #5a3f62;box-shadow:inset 0 
 body.sakura .drawer-cell{background:rgba(255,220,235,.09);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
 body.sakura .drawer-cell.on{border:2px solid #ff9ec4}
 body.sakura .bg-thumb{border:1px solid #5a3f62}
-body.sakura .stk-thumb{background:#33223a;border:1px solid #5a3f62;border-radius:8px}
 body.sakura .stk-cell.sel{outline:2px solid #ff9ec4}
 
 /* ===== 玻璃花房 ===== */
@@ -328,7 +322,6 @@ body.glass .box{background:#fff;border:1px solid #dbe6ea;box-shadow:inset 0 -3px
 body.glass .drawer-cell{background:#f7fbfc;border:1px solid #dbe6ea;color:#5a7a88;border-radius:8px}
 body.glass .drawer-cell.on{border:2px solid #8ab4c4}
 body.glass .bg-thumb{border:1px solid #cfdde2}
-body.glass .stk-thumb{background:#f7fbfc;border:1px solid #dbe6ea;border-radius:8px}
 body.glass .stk-cell.sel{outline:2px solid #8ab4c4}
 
 /* ===== 电影票根 ===== */
@@ -380,7 +373,6 @@ body.ticket .box{background:#2a323c;border:1px solid #3a434f;box-shadow:inset 0 
 body.ticket .drawer-cell{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px}
 body.ticket .drawer-cell.on{border:2px solid #e8c88a}
 body.ticket .bg-thumb{border:1px solid #4a5460}
-body.ticket .stk-thumb{background:#f5efdc;border:1px solid #d8cca8;border-radius:4px}
 body.ticket .stk-cell.sel{outline:2px solid #e8c88a}
 
 /* ===== 梦里见过 ===== */
@@ -432,7 +424,6 @@ body.dream .box{background:rgba(255,255,255,.6);border:1px solid #cdc0d6;box-sha
 body.dream .drawer-cell{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
 body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 body.dream .bg-thumb{border:1px solid #cdc0d6}
-body.dream .stk-thumb{background:rgba(255,255,255,.8);border:1px solid #d6cae0;border-radius:12px}
 body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
 
 /* ===== 通用结构 ===== */
@@ -459,7 +450,9 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
 @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
 .sys{text-align:center;font-size:12.5px;margin:16px auto;padding:6px 12px;border-radius:4px;max-width:80%}
 
-#composer{flex:0 0 auto;position:relative;padding:0 12px calc(10px + env(safe-area-inset-bottom))}
+/* 底部：输入框在上，快捷栏在下 */
+#composer{flex:0 0 auto;position:relative;padding:0 12px calc(10px + env(safe-area-inset-bottom));transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:16}
+body.quick-open #composer{transform:translateY(calc(-1 * var(--quick-h, 130px)))}
 .hold-bar{display:flex;align-items:center;justify-content:center;height:20px}
 .hold-handle{width:44px;height:4px;border-radius:2px;opacity:.6}
 .input-note{position:relative;padding:10px 56px 10px 12px}
@@ -467,7 +460,6 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
 #sendStamp{position:absolute;right:8px;bottom:8px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:15px;font-weight:700}
 #sendStamp:active{transform:scale(.92)}
 
-/* 快捷抽屉 */
 #quickDrawer{position:fixed;left:0;right:0;bottom:0;transform:translateY(100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:15;padding:8px 10px calc(6px + env(safe-area-inset-bottom));border-radius:16px 16px 0 0}
 #quickDrawer.on{transform:translateY(0)}
 .drawer-handle{width:44px;height:4px;border-radius:2px;margin:2px auto 10px;opacity:.6}
@@ -475,19 +467,16 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
 .qb{display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 2px;border-radius:10px;font-size:11px}
 .qb .ico{width:22px;height:22px}
 .qb:active{opacity:.7}
-/* 快捷栏里的贴纸库 */
 #quickSticker{display:none}
 #quickSticker.on{display:block}
 .qs-head{text-align:center;font-size:14px;font-weight:700;padding:4px 0 10px}
 .qs-body{height:240px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-content:start}
-.qs-body .stk-thumb{width:100%;aspect-ratio:1/1;border-radius:8px;background-size:cover;background-position:center}
+.qs-body .stk-thumb{width:100%;aspect-ratio:1/1}
 .qs-empty{grid-column:1/-1;text-align:center;opacity:.6;font-size:13px;padding:30px 0}
 .qs-back{text-align:center;font-size:13px;opacity:.7;padding:10px 0 2px}
 
-/* 遮罩 */
 #drawerMask{position:fixed;inset:0;background:rgba(40,30,20,.4);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
 #drawerMask.on{opacity:1;pointer-events:auto}
-/* 侧栏（实心，不透背景） */
 #drawer{position:fixed;top:0;left:0;bottom:0;width:220px;box-shadow:4px 0 16px rgba(0,0,0,.2);transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:21;padding-top:calc(16px + env(safe-area-inset-top));overflow-y:auto;-webkit-overflow-scrolling:touch}
 #drawer.on{transform:translateX(0)}
 .drawer-item{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:16px}
@@ -519,14 +508,13 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
 .empty-tip{text-align:center;font-size:14px;padding:40px 20px;line-height:1.8}
 .doing{text-align:center;font-size:15px;padding:60px 20px;opacity:.6;line-height:2}
 
-/* 贴纸网格（口袋管理） */
+/* 贴纸网格：透明、无边框 */
 .stk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:4px 0}
 .stk-cell{position:relative;aspect-ratio:1/1}
-.stk-cell .stk-thumb{width:100%;height:100%;border-radius:8px;background-size:cover;background-position:center}
-.stk-cell.selmode{padding-left:0}
-.stk-cell .chk{position:absolute;left:4px;top:4px;width:22px;height:22px;border:2px solid #c47a3a;border-radius:4px;background:rgba(255,255,255,.8);display:none;align-items:center;justify-content:center;font-size:14px;color:#c47a3a}
+.stk-cell .stk-thumb{width:100%;height:100%;background-color:transparent;border:none;background-size:contain;background-repeat:no-repeat;background-position:center}
+.stk-cell .chk{position:absolute;left:4px;top:4px;width:22px;height:22px;border:2px solid #c47a3a;border-radius:4px;background:rgba(255,255,255,.85);display:none;align-items:center;justify-content:center;font-size:14px;color:#c47a3a}
 .stk-cell.selmode .chk{display:flex}
-.stk-cell.sel .stk-thumb{outline:3px solid #c47a3a;outline-offset:-1px}
+.stk-cell.sel .stk-thumb{outline:3px solid #c47a3a;outline-offset:-2px;border-radius:8px}
 
 #multiBar{position:fixed;left:0;right:0;bottom:0;display:none;padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;z-index:30}
 #multiBar.on{display:flex}
@@ -573,12 +561,11 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
 .btn-danger{width:100%;height:46px;font-family:inherit;font-size:16px;font-weight:700}
 .btn-danger:active{opacity:.85}
 
-/* 贴纸预览 */
 #previewMask{position:fixed;inset:0;background:rgba(20,15,10,.85);z-index:60;display:none;flex-direction:column;padding:20px}
 #previewMask.on{display:flex}
 .pv-title{color:#fff;text-align:center;font-size:16px;margin-bottom:14px}
 .pv-grid{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-content:start}
-.pv-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px}
+.pv-grid img{width:100%;aspect-ratio:1/1;object-fit:contain;background:transparent}
 .pv-btns{display:flex;gap:10px;padding-top:14px}
 .pv-btns button{flex:1;height:48px;border-radius:8px;border:none;font-family:inherit;font-size:16px;font-weight:700}
 
@@ -602,6 +589,8 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
   <symbol id="i-reply" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.6h9.4l3.6 3.6v11.2c0 .7-.6 1.2-1.2 1.2H6c-.7 0-1.2-.5-1.2-1.2V5.8c0-.7.5-1.2 1.2-1.2z"/><path d="M8.4 12.6h6"/><path d="M8.4 16h3.6"/></symbol>
   <symbol id="i-style" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.4c4.4 0 7.8 3 7.8 6.8 0 2.4-1.8 3.6-3.6 3.6h-1.2c-1 0-1.8.8-1.8 1.8 0 .5.2.9.4 1.2.3.4.4.8.4 1.2 0 1-.8 1.6-1.8 1.6-4.4 0-7.8-3.6-7.8-8S7.6 4.4 12 4.4z"/><circle cx="8.8" cy="10" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="15.2" cy="10" r="1"/></symbol>
   <symbol id="i-data" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.6" y="5" width="14.8" height="14.4" rx="1.8"/><path d="M4.6 9.4h14.8"/><path d="M9.4 13h5.2"/><path d="M9.4 16h3.2"/></symbol>
+  <symbol id="i-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v10"/><polyline points="8 9.5 12 13.5 16 9.5"/><path d="M4.5 15.5v3a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-3"/></symbol>
+  <symbol id="i-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13.5v-10"/><polyline points="8 7.5 12 3.5 16 7.5"/><path d="M4.5 15.5v3a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-3"/></symbol>
   <symbol id="i-bg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M4 17l5-5 4 4 2-2 5 5"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8"/><path d="M7.2 3.8c-.8 1.6-.9 3 .3 4.3"/><path d="M16.8 3.8c.8 1.6.9 3-.3 4.3"/><path d="M7.5 8.1c-2 .8-3.2 2.6-3.2 5.4 0 4 2.4 7 7.7 7s7.7-3 7.7-7c0-2.8-1.2-4.6-3.2-5.4"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
@@ -753,7 +742,6 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
   <div class="sheet-item sheet-cancel" id="shCancel">取消</div>
 </div>
 
-<!-- 贴纸预览 -->
 <div id="previewMask">
   <div class="pv-title">预览（<span id="pvCount">0</span> 张）</div>
   <div class="pv-grid" id="pvGrid"></div>
@@ -790,7 +778,6 @@ const FS = {
       else{ localStorage.setItem('ayu_'+name,t); }
     }catch(e){}
   },
-  // 贴纸：存成文件
   async saveSticker(id, dataUrl){
     try{
       const res=await fetch(dataUrl); const blob=await res.blob();
@@ -813,6 +800,7 @@ const FS = {
 };
 
 let cards=[], messages=[], stickers=[];
+let stickerCache={};   // id -> dataUrl
 let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
   avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',
   bgs:[], bgCur:null, bgMask:55 };
@@ -924,7 +912,7 @@ function triggerReply(){
 $('#msgInput').addEventListener('input',function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,120)+'px'; });
 $('#sendStamp').addEventListener('click',sendMessage);
 
-/* 快捷抽屉 */
+/* 快捷抽屉：输入框在上，快捷栏在下 */
 const quickItems=[
   {ic:'i-cam',n:'拍照'},{ic:'i-pic',n:'相册'},{ic:'i-vid',n:'视频'},
   {ic:'i-sticker',n:'贴纸',act:'sticker'},{ic:'i-touch',n:'互动'},{ic:'i-music',n:'音乐'},
@@ -940,29 +928,33 @@ const quickItems=[
     g.appendChild(d);
   });
 })();
-function showQuickSticker(){
-  $('#quickGrid').style.display='none';
-  $('#quickSticker').classList.add('on');
-  renderQuickSticker();
-}
-function hideQuickSticker(){
-  $('#quickGrid').style.display='';
-  $('#quickSticker').classList.remove('on');
-}
+function showQuickSticker(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.add('on'); renderQuickSticker(); }
+function hideQuickSticker(){ $('#quickGrid').style.display=''; $('#quickSticker').classList.remove('on'); }
 $('#qsBack').addEventListener('click',hideQuickSticker);
 async function renderQuickSticker(){
   const box=$('#qsBody'); box.innerHTML='';
   if(stickers.length===0){ box.innerHTML='<div class="qs-empty">还没有贴纸</div>'; return; }
-  for(const s of stickers){
-    const data=await FS.readSticker(s.id);
+  const datas = await Promise.all(stickers.map(s=>stickerCache[s.id]||FS.readSticker(s.id)));
+  stickers.forEach((s,i)=>{ stickerCache[s.id]=datas[i]; });
+  stickers.forEach((s,i)=>{
     const d=document.createElement('div'); d.className='stk-thumb';
-    if(data) d.style.backgroundImage=`url(${data})`;
-    d.addEventListener('click',()=>{ if(data){ appendMessage({id:uid(),from:'me',type:'sticker',data,time:Date.now()}); closeQuick(); hideQuickSticker(); } });
+    if(datas[i]) d.style.backgroundImage=`url(${datas[i]})`;
+    d.addEventListener('click',()=>{ if(datas[i]){ appendMessage({id:uid(),from:'me',type:'sticker',data:datas[i],time:Date.now()}); closeQuick(); } });
     box.appendChild(d);
-  }
+  });
 }
-function openQuick(){ if(document.body.classList.contains('page-open')) return; $('#quickDrawer').classList.add('on'); }
-function closeQuick(){ $('#quickDrawer').classList.remove('on'); hideQuickSticker(); }
+function openQuick(){
+  if(document.body.classList.contains('page-open')) return;
+  const d=$('#quickDrawer');
+  d.classList.add('on');
+  document.body.classList.add('quick-open');
+  // 计算快捷栏高度，顶输入框
+  requestAnimationFrame(()=>{
+    const h=d.offsetHeight;
+    document.documentElement.style.setProperty('--quick-h', h+'px');
+  });
+}
+function closeQuick(){ $('#quickDrawer').classList.remove('on'); document.body.classList.remove('quick-open'); hideQuickSticker(); }
 function toggleQuick(){ const d=$('#quickDrawer'); if(d.classList.contains('on')) closeQuick(); else openQuick(); }
 $('#qHandle').addEventListener('click',toggleQuick);
 $('#holdBar').addEventListener('click',toggleQuick);
@@ -1053,8 +1045,9 @@ function renderPanel(){
   p.innerHTML='<div class="doing">这一类还在做</div>';
 }
 
-/* ===== 字卡面板 ===== */
+/* 字卡面板：分批加载 */
 let selMode=false, selSet=new Set(), searchKw='', lockedView=false;
+let cardShown=50;
 function renderCardPanel(p){
   p.innerHTML=`
     <div class="toolbar" id="cardTools">
@@ -1066,7 +1059,7 @@ function renderCardPanel(p){
     </div>
     <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
     <div id="cardList"></div>`;
-  bindCardTools(); renderCardList();
+  bindCardTools(); cardShown=50; renderCardList();
 }
 function currentCards(){
   if(lockedView) return cards.filter(c=>c.locked);
@@ -1087,7 +1080,9 @@ function renderCardList(){
     e.innerHTML = lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧');
     list.appendChild(e); updateMultiBar(); updateSelectAll(); return;
   }
-  arr.forEach(c=>{
+  const slice=arr.slice(0,cardShown);
+  const frag=document.createDocumentFragment();
+  slice.forEach(c=>{
     const el=document.createElement('div');
     el.className='card-item'+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');
     el.textContent=c.text;
@@ -1096,8 +1091,16 @@ function renderCardList(){
       if(selMode){ if(selSet.has(c.id)) selSet.delete(c.id); else selSet.add(c.id); renderCardList(); }
       else openSheet(c.id);
     });
-    list.appendChild(el);
+    frag.appendChild(el);
   });
+  list.appendChild(frag);
+  if(cardShown < arr.length){
+    const more=document.createElement('div'); more.className='empty-tip'; more.style.padding='16px'; more.textContent='加载更多…';
+    list.appendChild(more);
+    // 滚到底自动加载
+    const io=new IntersectionObserver((ents)=>{ if(ents[0].isIntersecting){ cardShown+=50; io.disconnect(); renderCardList(); } });
+    io.observe(more);
+  }
   updateMultiBar(); updateSelectAll();
 }
 function updateSelectAll(){ const row=$('#selectAllRow'); if(!row) return; if(!selMode){ row.classList.remove('on'); return; } row.classList.add('on'); const arr=currentCards(); $('#selectAllChk').checked = arr.length>0 && arr.every(c=>selSet.has(c.id)); }
@@ -1108,25 +1111,24 @@ function bindCardTools(){
   tools.addEventListener('click',e=>{
     const t=e.target.closest('.tool'); if(!t) return;
     const act=t.dataset.t;
-    if(act==='search'){ const kw=prompt('搜索字卡',searchKw); if(kw!==null){ searchKw=kw.trim(); lockedView=false; renderCardList(); } }
+    if(act==='search'){ const kw=prompt('搜索字卡',searchKw); if(kw!==null){ searchKw=kw.trim(); lockedView=false; cardShown=50; renderCardList(); } }
     else if(act==='add'){ $('#addArea').value=''; delete $('#addArea').dataset.editing; showPage('page-add'); }
     else if(act==='del'){ if(!selMode){ selMode=true; selSet.clear(); t.classList.add('on'); renderCardList(); } else{ exitSelMode(); renderCardList(); } }
-    else if(act==='locked'){ lockedView=!lockedView; selMode=false; selSet.clear(); searchKw=''; renderCardList(); }
+    else if(act==='locked'){ lockedView=!lockedView; selMode=false; selSet.clear(); searchKw=''; cardShown=50; renderCardList(); }
     else if(act==='more'){ openMoreSheet(); }
   });
   const all=$('#selectAllChk'); if(all) all.addEventListener('change',e=>{ const arr=currentCards(); if(e.target.checked) arr.forEach(c=>selSet.add(c.id)); else selSet.clear(); renderCardList(); });
 }
-/* ===== 贴纸面板 ===== */
+/* 贴纸面板：透明无边框、缓存+并行读 */
 let stkSel=new Set(), stkSelMode=false;
 function renderStickerPanel(p){
   p.innerHTML=`
     <div class="toolbar" id="stkTools">
       <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
       <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
-      <div class="tool" data-t="import"><svg class="ico"><use href="#i-more"/></svg></div>
-      <div class="tool" data-t="export"><svg class="ico"><use href="#i-data"/></svg></div>
+      <div class="tool" data-t="import"><svg class="ico"><use href="#i-import"/></svg></div>
+      <div class="tool" data-t="export"><svg class="ico"><use href="#i-export"/></svg></div>
     </div>
-    <div id="selectAllRow" style="display:none"></div>
     <div id="stkList"></div>`;
   bindStkTools(); renderStkList();
 }
@@ -1134,21 +1136,21 @@ async function renderStkList(){
   const list=$('#stkList'); if(!list) return;
   list.innerHTML='';
   if(stickers.length===0){ list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>'; return; }
+  const datas = await Promise.all(stickers.map(s=>stickerCache[s.id]||FS.readSticker(s.id)));
+  stickers.forEach((s,i)=>{ if(datas[i]) stickerCache[s.id]=datas[i]; });
   const grid=document.createElement('div'); grid.className='stk-grid';
-  for(const s of stickers){
-    const data=await FS.readSticker(s.id);
+  stickers.forEach((s,i)=>{
     const cell=document.createElement('div');
     cell.className='stk-cell'+(stkSelMode?' selmode':'')+(stkSel.has(s.id)?' sel':'');
     const th=document.createElement('div'); th.className='stk-thumb';
-    if(data) th.style.backgroundImage=`url(${data})`;
+    if(datas[i]) th.style.backgroundImage=`url(${datas[i]})`;
     cell.appendChild(th);
     const chk=document.createElement('div'); chk.className='chk'; chk.textContent=stkSel.has(s.id)?'✓':''; cell.appendChild(chk);
     cell.addEventListener('click',()=>{
       if(stkSelMode){ if(stkSel.has(s.id)) stkSel.delete(s.id); else stkSel.add(s.id); renderStkList(); }
-      else { /* 点贴纸：不做事 */ }
     });
     grid.appendChild(cell);
-  }
+  });
   list.appendChild(grid);
   $('#multiBar').classList.toggle('on', stkSelMode);
 }
@@ -1163,7 +1165,6 @@ function bindStkTools(){
     else if(act==='export'){ exportStickers(); }
   });
 }
-/* 加贴纸：相册多选 → 预览 → 加入 */
 let pendingStickers=[];
 const stkFile=document.createElement('input'); stkFile.type='file'; stkFile.accept='image/*'; stkFile.multiple=true; stkFile.style.display='none'; document.body.appendChild(stkFile);
 function addStickersFlow(){ stkFile.value=''; stkFile.click(); }
@@ -1171,11 +1172,7 @@ stkFile.addEventListener('change',e=>{
   const files=[...e.target.files]; if(!files.length) return;
   pendingStickers=[];
   let done=0;
-  files.forEach(f=>{
-    const r=new FileReader();
-    r.onload=()=>{ pendingStickers.push(r.result); done++; if(done===files.length) showPreview(); };
-    r.readAsDataURL(f);
-  });
+  files.forEach(f=>{ const r=new FileReader(); r.onload=()=>{ pendingStickers.push(r.result); done++; if(done===files.length) showPreview(); }; r.readAsDataURL(f); });
   e.target.value='';
 });
 function showPreview(){
@@ -1187,17 +1184,12 @@ function showPreview(){
 $('#pvCancel').addEventListener('click',()=>{ pendingStickers=[]; $('#previewMask').classList.remove('on'); });
 $('#pvOk').addEventListener('click',async ()=>{
   let added=0;
-  for(const d of pendingStickers){
-    const id=uid();
-    const ok=await FS.saveSticker(id,d);
-    if(ok){ stickers.push({id}); added++; }
-  }
+  for(const d of pendingStickers){ const id=uid(); const ok=await FS.saveSticker(id,d); if(ok){ stickers.push({id}); stickerCache[id]=d; added++; } }
   await saveStickers();
   pendingStickers=[]; $('#previewMask').classList.remove('on');
   renderStkList(); renderPocketBox();
   toast('已加入 '+added+' 张贴纸');
 });
-/* 导入贴纸 json */
 function importStickers(){
   const inp=document.createElement('input'); inp.type='file'; inp.accept='.json';
   inp.addEventListener('change',async e=>{
@@ -1210,7 +1202,7 @@ function importStickers(){
         const data = typeof item==='string'?item:(item.data||'');
         if(!data) continue;
         const id=uid(); const ok=await FS.saveSticker(id,data);
-        if(ok){ stickers.push({id}); added++; }
+        if(ok){ stickers.push({id}); stickerCache[id]=data; added++; }
       }
       await saveStickers(); renderStkList(); renderPocketBox();
       toast('导入了 '+added+' 张贴纸');
@@ -1218,22 +1210,21 @@ function importStickers(){
   });
   inp.click();
 }
-/* 导出贴纸 json */
 async function exportStickers(){
   if(stickers.length===0){ toast('还没有贴纸'); return; }
   const out=[];
-  for(const s of stickers){ const data=await FS.readSticker(s.id); if(data) out.push({data}); }
+  for(const s of stickers){ const data=stickerCache[s.id]||await FS.readSticker(s.id); if(data) out.push({data}); }
   const blob=new Blob([JSON.stringify({stickers:out})],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='阿遇♡阿凉贴纸.json'; a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
   toast('已导出 '+out.length+' 张贴纸');
 }
-/* 贴纸批量删 */
+/* 多选删除 */
 $('#mDel').addEventListener('click',async ()=>{
   if(curCat==='sticker'){
     if(stkSel.size===0){ toast('还没选贴纸'); return; }
     if(confirm('删除选中的 '+stkSel.size+' 张贴纸？')){
-      for(const id of stkSel) await FS.delSticker(id);
+      for(const id of stkSel){ await FS.delSticker(id); delete stickerCache[id]; }
       stickers=stickers.filter(s=>!stkSel.has(s.id));
       await saveStickers();
       stkSelMode=false; stkSel.clear(); renderStkList(); renderPocketBox(); toast('已删除');
@@ -1245,11 +1236,9 @@ $('#mDel').addEventListener('click',async ()=>{
     if(confirm('删除选中的 '+selSet.size+' 张字卡？')){ cards=cards.filter(c=>!selSet.has(c.id)); saveCards(); exitSelMode(); renderCardList(); toast('已删除'); }
   }
 });
-/* 字卡多选：锁/解锁 */
 $('#mLock').addEventListener('click',()=>{ if(curCat!=='card') return; if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; }); saveCards(); exitSelMode(); renderCardList(); removeEmptyTip(); toast('已锁上 '+n+' 张'); });
 $('#mUnlock').addEventListener('click',()=>{ if(curCat!=='card') return; if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; }); saveCards(); exitSelMode(); renderCardList(); toast('已解锁 '+n+' 张'); });
 
-/* 字卡弹出菜单 */
 let sheetCardId=null;
 function openSheet(id){
   sheetCardId=id;
@@ -1346,28 +1335,15 @@ $('#setCallMe').addEventListener('input',e=>{settings.callMe=e.target.value;save
 document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style; saveSet(); applyBg(); renderSettings(); }); });
 $('#clearMsgs').addEventListener('click',()=>{ if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); } });
 
-/* 背景库 */
 const bgFile=document.createElement('input'); bgFile.type='file'; bgFile.accept='image/*'; bgFile.multiple=true; bgFile.style.display='none'; document.body.appendChild(bgFile);
 bgFile.addEventListener('change',e=>{
   const files=[...e.target.files]; if(!files.length) return;
   let done=0;
-  files.forEach(f=>{
-    const r=new FileReader();
-    r.onload=()=>{
-      settings.bgs.push({id:uid(), data:r.result});
-      done++;
-      if(done===files.length){ saveSet(); renderBgList(); toast('已添加 '+files.length+' 张背景'); }
-    };
-    r.readAsDataURL(f);
-  });
+  files.forEach(f=>{ const r=new FileReader(); r.onload=()=>{ settings.bgs.push({id:uid(), data:r.result}); done++; if(done===files.length){ saveSet(); renderBgList(); toast('已添加 '+files.length+' 张背景'); } }; r.readAsDataURL(f); });
   e.target.value='';
 });
-$('#bgMaskRange').addEventListener('input',e=>{
-  const v=parseInt(e.target.value)||0;
-  settings.bgMask=v; saveSet(); applyBg(); $('#bgMaskVal').textContent=v;
-});
+$('#bgMaskRange').addEventListener('input',e=>{ const v=parseInt(e.target.value)||0; settings.bgMask=v; saveSet(); applyBg(); $('#bgMaskVal').textContent=v; });
 
-/* 头像 */
 let avTarget=null;
 const avFile=document.createElement('input'); avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none'; document.body.appendChild(avFile);
 $('#setAvHer').addEventListener('click',()=>{ avTarget='her'; avFile.click(); });
