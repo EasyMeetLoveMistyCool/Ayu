@@ -25,6 +25,7 @@ body.has-bg .style-opt{background:rgba(255,255,255,.85) !important}
 body.has-bg .drawer-cell{background:rgba(255,252,244,.92) !important}
 #app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden;z-index:1}
 body.page-open #app{visibility:hidden}
+body.page-open .topbar{visibility:hidden}
 .ico{width:22px;height:22px;display:block;flex:0 0 auto}
 .ico-inline{width:16px;height:16px;display:inline-block;vertical-align:-3px;margin-right:5px}
 body.retro{background-color:#e8dcc0;background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);background-size:60px 60px,80px 80px,100% 100%;color:#4a3b2a}
@@ -76,6 +77,8 @@ body.retro .drawer-cell{background:#fbf7ec;border:1px solid #d0bf95;color:#5a4a2
 body.retro .drawer-cell.on{border:2px solid #c47a3a}
 body.retro .bg-thumb{border:1px solid #cbb98f}
 body.retro .stk-cell.sel{outline:2px solid #c47a3a}
+body.retro .it-tab.on{border:2px solid #c47a3a;background:#f7ecd0}
+body.retro .qi-item{border:1px solid #cbb98f;background:#fffaf0;color:#6b5334}
 body.comic{background-color:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px;color:#111}
 body.comic .topbar{background:#fff;border-bottom:3px solid #111;box-shadow:0 3px 0 #111}
 body.comic .names span{color:#111;font-weight:900}
@@ -123,6 +126,8 @@ body.comic .drawer-cell{background:#fff;border:2px solid #111;color:#111;border-
 body.comic .drawer-cell.on{border:3px solid #111}
 body.comic .bg-thumb{border:2px solid #111}
 body.comic .stk-cell.sel{outline:3px solid #111}
+body.comic .it-tab.on{border:3px solid #111;background:#eee}
+body.comic .qi-item{border:2px solid #111;background:#fff;color:#111}
 body.girl{background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);background-size:18px 18px;color:#7a4a5c}
 body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;box-shadow:0 2px 6px rgba(220,140,170,.25)}
 body.girl .names span{color:#c05a80}
@@ -173,6 +178,8 @@ body.girl .drawer-cell{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;bo
 body.girl .drawer-cell.on{border:2px solid #f38bb0}
 body.girl .bg-thumb{border:2px solid #f3c8d8}
 body.girl .stk-cell.sel{outline:2px solid #f38bb0}
+body.girl .it-tab.on{border:2px solid #f38bb0;background:#ffe9f1}
+body.girl .qi-item{border:2px solid #f3c8d8;background:#fff;color:#c05a80}
 body.news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.04) 1px, transparent 1px);background-size:100% 26px, 26px 100%;color:#2a2a26}
 body.news .topbar{background:#ece6d4;border-bottom:3px double #2a2a26;box-shadow:none}
 body.news .names span{color:#2a2a26;font-weight:700;letter-spacing:1px}
@@ -221,6 +228,8 @@ body.news .drawer-cell{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26
 body.news .drawer-cell.on{border:2px solid #2a2a26}
 body.news .bg-thumb{border:1px solid #6a6350;border-radius:0}
 body.news .stk-cell.sel{outline:2px solid #2a2a26}
+body.news .it-tab.on{border:2px solid #2a2a26;background:#ddd6c0}
+body.news .qi-item{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
 body.sakura{background-color:#241826;background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),radial-gradient(circle at 88% 85%, rgba(255,190,215,.13) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);background-size:120px 120px,150px 150px,130px 130px,170px 170px,100% 100%;color:#f2dbe6}
 body.sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 body.sakura .names span{color:#ffc0d8}
@@ -270,6 +279,8 @@ body.sakura .drawer-cell{background:rgba(255,220,235,.09);border:1px solid #5a3f
 body.sakura .drawer-cell.on{border:2px solid #ff9ec4}
 body.sakura .bg-thumb{border:1px solid #5a3f62}
 body.sakura .stk-cell.sel{outline:2px solid #ff9ec4}
+body.sakura .it-tab.on{border:2px solid #ff9ec4;background:rgba(255,158,196,.15)}
+body.sakura .qi-item{border:1px solid #5a3f62;background:rgba(255,190,215,.1);color:#ffc0d8}
 body.glass{background-color:#f4f7f8;background-image:linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#ffffff,#e6eff2);background-size:44px 44px,44px 44px,100% 100%,100% 100%;color:#3a4a52}
 body.glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2;box-shadow:0 2px 8px rgba(140,170,180,.2)}
 body.glass .names span{color:#5a7a88}
@@ -319,6 +330,8 @@ body.glass .drawer-cell{background:#f7fbfc;border:1px solid #dbe6ea;color:#5a7a8
 body.glass .drawer-cell.on{border:2px solid #8ab4c4}
 body.glass .bg-thumb{border:1px solid #cfdde2}
 body.glass .stk-cell.sel{outline:2px solid #8ab4c4}
+body.glass .it-tab.on{border:2px solid #8ab4c4;background:#eaf4f8}
+body.glass .qi-item{border:1px solid #cfdde2;background:#f7fbfc;color:#5a7a88}
 body.ticket{background-color:#1a1f26;background-image:radial-gradient(circle at 50% 0%, rgba(255,220,150,.12) 0, rgba(255,220,150,0) 55%),linear-gradient(160deg,#232a33,#141a20);color:#e8e2d2}
 body.ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 body.ticket .names span{color:#e8c88a}
@@ -368,6 +381,8 @@ body.ticket .drawer-cell{background:#f5efdc;border:1px solid #d8cca8;color:#3a34
 body.ticket .drawer-cell.on{border:2px solid #e8c88a}
 body.ticket .bg-thumb{border:1px solid #4a5460}
 body.ticket .stk-cell.sel{outline:2px solid #e8c88a}
+body.ticket .it-tab.on{border:2px solid #e8c88a;background:rgba(232,200,138,.15)}
+body.ticket .qi-item{border:1px solid #3a434f;background:rgba(255,255,255,.06);color:#e8c88a}
 body.dream{background-color:#ece4ee;background-image:radial-gradient(circle at 25% 20%, rgba(220,200,240,.6) 0, rgba(220,200,240,0) 50%),radial-gradient(circle at 80% 70%, rgba(230,210,235,.5) 0, rgba(230,210,235,0) 50%),linear-gradient(160deg,#f0e9f2,#ddd3e2);color:#5f5470}
 body.dream .topbar{background:linear-gradient(#f2ecf4,#e3d9e8);border-bottom:1px solid #cdc0d6;box-shadow:0 2px 10px rgba(160,140,180,.18)}
 body.dream .names span{color:#7a6a92}
@@ -417,6 +432,8 @@ body.dream .drawer-cell{background:rgba(255,255,255,.8);border:1px solid #d6cae0
 body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 body.dream .bg-thumb{border:1px solid #cdc0d6}
 body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
+body.dream .it-tab.on{border:2px solid #b8a0cc;background:#f0e6f6}
+body.dream .qi-item{border:1px solid #cdc0d6;background:rgba(255,255,255,.7);color:#7a6a92}
 body.cafe{background-color:#f3e9d8;background-image:radial-gradient(circle at 25% 20%, rgba(160,120,80,.08) 0 2px, transparent 3px),linear-gradient(160deg,#f7efe0,#e8d8bf);background-size:56px 56px,100% 100%;color:#5a4632}
 body.cafe .topbar{background:linear-gradient(#f7efe0,#ecdcc2);border-bottom:1px solid #c9b28c;box-shadow:0 2px 6px rgba(120,95,60,.15)}
 body.cafe .names span{color:#7a5c3a}
@@ -465,6 +482,8 @@ body.cafe .drawer-cell{background:#fbf5e8;border:1px solid #ddc9a4;color:#5a4632
 body.cafe .drawer-cell.on{border:2px solid #b8945c}
 body.cafe .bg-thumb{border:1px solid #c9b28c}
 body.cafe .stk-cell.sel{outline:2px solid #b8945c}
+body.cafe .it-tab.on{border:2px solid #b8945c;background:#f7e9cc}
+body.cafe .qi-item{border:1px solid #c9b28c;background:#fffaf0;color:#7a5c3a}
 body.starry{background-color:#101530;background-image:radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 1px, transparent 2px),radial-gradient(circle at 42% 32%, rgba(255,240,200,.85) 0 1px, transparent 2px),radial-gradient(circle at 68% 12%, rgba(200,220,255,.8) 0 1px, transparent 2px),radial-gradient(circle at 82% 52%, rgba(255,255,255,.7) 0 1px, transparent 2px),radial-gradient(circle at 28% 72%, rgba(220,230,255,.75) 0 1px, transparent 2px),radial-gradient(circle at 58% 84%, rgba(255,245,220,.7) 0 1px, transparent 2px),radial-gradient(circle at 90% 80%, rgba(200,215,255,.65) 0 1px, transparent 2px),linear-gradient(160deg,#141a3a,#0a0e22);background-size:220px 220px,260px 260px,200px 200px,240px 240px,280px 280px,210px 210px,230px 230px,100% 100%;color:#dfe4ff}
 body.starry .topbar{background:linear-gradient(#1a2246,#141a38);border-bottom:1px solid #3a4478;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 body.starry .names span{color:#c8d4ff}
@@ -514,6 +533,8 @@ body.starry .drawer-cell{background:rgba(200,212,255,.09);border:1px solid #3a44
 body.starry .drawer-cell.on{border:2px solid #8a96d8}
 body.starry .bg-thumb{border:1px solid #3a4478}
 body.starry .stk-cell.sel{outline:2px solid #8a96d8}
+body.starry .it-tab.on{border:2px solid #8a96d8;background:rgba(138,150,216,.18)}
+body.starry .qi-item{border:1px solid #3a4478;background:rgba(200,212,255,.1);color:#c8d4ff}
 body.rain{background-color:#dfe7ec;background-image:linear-gradient(rgba(120,150,170,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(120,150,170,.08) 1px, transparent 1px),linear-gradient(160deg,#e8eef2,#ccd8e0);background-size:100% 22px,34px 100%,100% 100%;color:#3a4a58}
 body.rain .topbar{background:linear-gradient(#e8eef2,#d8e2e8);border-bottom:1px solid #b0c0cc;box-shadow:0 2px 8px rgba(100,130,150,.2)}
 body.rain .names span{color:#5a7a90}
@@ -563,6 +584,8 @@ body.rain .drawer-cell{background:rgba(255,255,255,.85);border:1px solid #c0ced8
 body.rain .drawer-cell.on{border:2px solid #8aa8bc}
 body.rain .bg-thumb{border:1px solid #b0c0cc}
 body.rain .stk-cell.sel{outline:2px solid #8aa8bc}
+body.rain .it-tab.on{border:2px solid #8aa8bc;background:#e2eef4}
+body.rain .qi-item{border:1px solid #b0c0cc;background:rgba(255,255,255,.85);color:#5a7a90}
 body.washi{background-color:#f0e8d4;background-image:linear-gradient(rgba(150,130,100,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(150,130,100,.05) 1px, transparent 1px),linear-gradient(160deg,#f7f0dd,#e6dcc2);background-size:100% 30px,30px 100%,100% 100%;color:#4a3a2a}
 body.washi .topbar{background:linear-gradient(#f7f0dd,#ece2c8);border-bottom:2px solid #c9b48a;box-shadow:none}
 body.washi .names span{color:#8a5a4a}
@@ -611,6 +634,8 @@ body.washi .drawer-cell{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2
 body.washi .drawer-cell.on{border:2px solid #b23a2a}
 body.washi .bg-thumb{border:1px solid #c9b48a;border-radius:2px}
 body.washi .stk-cell.sel{outline:2px solid #b23a2a}
+body.washi .it-tab.on{border:2px solid #b23a2a;background:#f7eccd}
+body.washi .qi-item{border:1px solid #c9b48a;background:#faf5e6;color:#8a5a4a}
 body.tape{background-color:#2a2620;background-image:linear-gradient(rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(160deg,#332e26,#1e1a16);background-size:100% 20px,20px 100%,100% 100%;color:#f0e0c0}
 body.tape .topbar{background:linear-gradient(#3a342a,#2a2620);border-bottom:2px solid #d88a30;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 body.tape .names span{color:#f0b060}
@@ -660,6 +685,8 @@ body.tape .drawer-cell{background:rgba(255,200,120,.1);border:1px solid #6a5a3a;
 body.tape .drawer-cell.on{border:2px solid #f0b060}
 body.tape .bg-thumb{border:1px solid #6a5a3a}
 body.tape .stk-cell.sel{outline:2px solid #f0b060}
+body.tape .it-tab.on{border:2px solid #f0b060;background:rgba(240,176,96,.18)}
+body.tape .qi-item{border:1px solid #6a5a3a;background:rgba(255,180,80,.1);color:#f0b060}
 body.mint{background-color:#f0f7f4;background-image:radial-gradient(circle at 22% 26%, rgba(120,200,170,.14) 0 2px, transparent 3px),radial-gradient(circle at 76% 62%, rgba(120,200,170,.1) 0 2px, transparent 3px),linear-gradient(160deg,#f7fcfa,#e0efe8);background-size:64px 64px,84px 84px,100% 100%;color:#2f4a42}
 body.mint .topbar{background:linear-gradient(#f7fcfa,#e6f2ec);border-bottom:1px solid #b8d8cc;box-shadow:0 2px 6px rgba(90,150,130,.15)}
 body.mint .names span{color:#4a8a74}
@@ -709,6 +736,8 @@ body.mint .drawer-cell{background:#fff;border:1px solid #cce4da;color:#2f4a42;bo
 body.mint .drawer-cell.on{border:2px solid #6ab898}
 body.mint .bg-thumb{border:1px solid #b8d8cc}
 body.mint .stk-cell.sel{outline:2px solid #6ab898}
+body.mint .it-tab.on{border:2px solid #6ab898;background:#e0f4ec}
+body.mint .qi-item{border:1px solid #b8d8cc;background:#fff;color:#4a8a74}
 .topbar{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:8px 0 calc(6px + env(safe-area-inset-top));position:relative;z-index:5}
 .avatar-wrap{display:flex;flex-direction:column;align-items:center}
 .avatar-group{position:relative;width:72px;height:44px}
@@ -840,52 +869,67 @@ body.mint .stk-cell.sel{outline:2px solid #6ab898}
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:rgba(40,30,20,.9);color:#fff;font-size:14px;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;z-index:99;pointer-events:none;max-width:80%;text-align:center}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ===== 互动气泡：14 主题 × 3 方向 ===== */
-.msgnote.interact{border-style:dashed}
-.msgnote.interact .itag{display:inline-block;font-size:10px;opacity:.8;margin-right:6px;padding:1px 5px;border:1px solid currentColor;border-radius:6px;vertical-align:1px}
-.msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center}
-body.retro .msgnote.interact{background:#fdf3c8;border:1px dashed #c9a86a;color:#5a4a2e}
-body.retro .msgnote.interact.her{background:#fbf7ec;border:1px dashed #c9b98f;color:#4a3b2a}
-body.retro .msgnote.interact.pair{background:#f7ecd0;border:2px double #b89b5e;color:#6b5334}
-body.comic .msgnote.interact{background:#fff;border:3px dashed #111;color:#111}
-body.comic .msgnote.interact.her{background:#fff;border:3px dashed #111;color:#111}
-body.comic .msgnote.interact.pair{background:#eee;border:4px double #111;color:#111}
-body.girl .msgnote.interact{background:#fff0f5;border:2px dashed #f38bb0;color:#a04a6a}
-body.girl .msgnote.interact.her{background:#f6f0ff;border:2px dashed #c0a8e8;color:#6a5a8a}
-body.girl .msgnote.interact.pair{background:#ffe9f1;border:3px double #f38bb0;color:#c05a80}
-body.news .msgnote.interact{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26;border-left:4px double #6a6350}
-body.news .msgnote.interact.her{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26;border-right:4px double #6a6350}
-body.news .msgnote.interact.pair{background:#ddd6c0;border:3px double #2a2a26;color:#2a2a26}
-body.sakura .msgnote.interact{background:rgba(255,190,215,.14);border:1px dashed #ff9ec4;color:#ffe6f0}
-body.sakura .msgnote.interact.her{background:rgba(220,200,255,.12);border:1px dashed #a88ad8;color:#f2dbe6}
-body.sakura .msgnote.interact.pair{background:rgba(255,158,196,.2);border:2px double #ff9ec4;color:#ffc0d8}
-body.glass .msgnote.interact{background:#eaf4f8;border:1px dashed #8ab4c4;color:#3a4a52}
-body.glass .msgnote.interact.her{background:#f0f7fa;border:1px dashed #a8ccd8;color:#3a4a52}
-body.glass .msgnote.interact.pair{background:#dcecf2;border:2px double #8ab4c4;color:#3a4a52}
-body.ticket .msgnote.interact{background:#f5efdc;border:1px dashed #c9b878;color:#3a3428;border-left:4px solid #c9b878}
-body.ticket .msgnote.interact.her{background:#ece4cc;border:1px dashed #c0b490;color:#3a3428;border-right:4px solid #c0b490}
-body.ticket .msgnote.interact.pair{background:#e6d9a8;border:3px double #c9b878;color:#3a3428}
-body.dream .msgnote.interact{background:rgba(255,255,255,.9);border:1px dashed #b8a0cc;color:#5f5470}
-body.dream .msgnote.interact.her{background:rgba(240,232,248,.9);border:1px dashed #a8a0d8;color:#5f5470}
-body.dream .msgnote.interact.pair{background:#e3d6ee;border:2px double #b8a0cc;color:#5f5470}
-body.cafe .msgnote.interact{background:#fdf6e8;border:1px dashed #b8945c;color:#5a4632;border-left:3px solid #b8945c}
-body.cafe .msgnote.interact.her{background:#fbf5e8;border:1px dashed #c9b28c;color:#5a4632;border-right:3px solid #c9b28c}
-body.cafe .msgnote.interact.pair{background:#f7e9cc;border:2px double #b8945c;color:#5a4632}
-body.starry .msgnote.interact{background:rgba(120,140,230,.22);border:1px dashed #8a96d8;color:#eaefff}
-body.starry .msgnote.interact.her{background:rgba(200,212,255,.12);border:1px dashed #6a76a8;color:#dfe4ff}
-body.starry .msgnote.interact.pair{background:rgba(138,150,216,.26);border:2px double #8a96d8;color:#eaefff}
-body.rain .msgnote.interact{background:rgba(255,255,255,.95);border:1px dashed #8aa8bc;color:#3a4a58;border-left:3px solid #8aa8bc}
-body.rain .msgnote.interact.her{background:rgba(245,250,252,.95);border:1px dashed #a8c0cc;color:#3a4a58;border-right:3px solid #a8c0cc}
-body.rain .msgnote.interact.pair{background:#dce8ee;border:2px double #8aa8bc;color:#3a4a58}
-body.washi .msgnote.interact{background:#faf5e6;border:1px dashed #b23a2a;color:#4a3a2a;border-left:4px solid #b23a2a}
-body.washi .msgnote.interact.her{background:#f5eed8;border:1px dashed #8a5a4a;color:#4a3a2a;border-right:4px solid #8a5a4a}
-body.washi .msgnote.interact.pair{background:#f7eccd;border:3px double #b23a2a;color:#4a3a2a}
-body.tape .msgnote.interact{background:rgba(255,190,100,.2);border:1px dashed #f0b060;color:#f7ecd0;border-left:3px solid #f0b060}
-body.tape .msgnote.interact.her{background:rgba(255,220,160,.12);border:1px dashed #c87a28;color:#f0e0c0;border-right:3px solid #c87a28}
-body.tape .msgnote.interact.pair{background:rgba(240,176,96,.24);border:2px double #f0b060;color:#f7ecd0}
-body.mint .msgnote.interact{background:#fff;border:1px dashed #6ab898;color:#2f4a42;border-left:3px solid #6ab898}
-body.mint .msgnote.interact.her{background:#f4fbf8;border:1px dashed #7ac8a8;color:#2f4a42;border-right:3px solid #7ac8a8}
-body.mint .msgnote.interact.pair{background:#d8f0e6;border:2px double #6ab898;color:#2f4a42}
+/* ===== 互动气泡：14 主题 × 3 方向（位置+形态+色彩三重区分）===== */
+.msgnote.interact{border-style:dashed;padding:10px 14px;margin:18px 0;font-size:15px;max-width:66%}
+.msgnote.interact .itag{display:inline-block;font-size:10px;opacity:.85;margin-right:6px;padding:1px 6px;border:1px solid currentColor;border-radius:6px;vertical-align:1px}
+/* 触碰 = 靠右 + 标签式 */
+.msgnote.interact.touch{margin-left:auto;margin-right:20px;border-radius:20px;border-style:solid;border-width:1px}
+.msgnote.interact.touch::before{content:"";position:absolute;left:-3px;top:50%;transform:translateY(-50%);width:4px;height:60%;border-radius:2px;background:currentColor;opacity:.5}
+/* 回握 = 靠左 + 方角 */
+.msgnote.interact.back{margin-right:auto;margin-left:20px;border-radius:4px;border-style:dashed;border-width:2px}
+.msgnote.interact.back::before{content:"";position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:4px;height:60%;border-radius:2px;background:currentColor;opacity:.5}
+/* 缱绻 = 居中 + 双线框 */
+.msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;border-style:double;border-width:4px;border-radius:14px;padding:14px 20px}
+
+body.retro .msgnote.interact.touch{background:#fdf3c8;border:1px solid #b89b5e;color:#5a4a2e}
+body.retro .msgnote.interact.back{background:#fbf7ec;border:2px dashed #c9b98f;color:#4a3b2a}
+body.retro .msgnote.interact.pair{background:#f7ecd0;border:4px double #b89b5e;color:#6b5334}
+body.comic .msgnote.interact.touch{background:#fff;border:3px solid #111;color:#111}
+body.comic .msgnote.interact.back{background:#fff;border:3px dashed #111;color:#111}
+body.comic .msgnote.interact.pair{background:#eee;border:5px double #111;color:#111}
+body.girl .msgnote.interact.touch{background:#fff0f5;border:2px solid #f38bb0;color:#a04a6a}
+body.girl .msgnote.interact.back{background:#f6f0ff;border:2px dashed #c0a8e8;color:#6a5a8a}
+body.girl .msgnote.interact.pair{background:#ffe9f1;border:4px double #f38bb0;color:#c05a80}
+body.news .msgnote.interact.touch{background:#f2ecda;border:2px solid #2a2a26;color:#2a2a26}
+body.news .msgnote.interact.back{background:#f2ecda;border:2px dashed #6a6350;color:#2a2a26}
+body.news .msgnote.interact.pair{background:#ddd6c0;border:4px double #2a2a26;color:#2a2a26}
+body.sakura .msgnote.interact.touch{background:rgba(255,158,196,.22);border:2px solid #ff9ec4;color:#ffe6f0}
+body.sakura .msgnote.interact.back{background:rgba(200,180,255,.16);border:2px dashed #a88ad8;color:#f2dbe6}
+body.sakura .msgnote.interact.pair{background:rgba(255,158,196,.3);border:4px double #ff9ec4;color:#ffc0d8}
+body.glass .msgnote.interact.touch{background:#eaf4f8;border:2px solid #8ab4c4;color:#3a4a52}
+body.glass .msgnote.interact.back{background:#f0f7fa;border:2px dashed #a8ccd8;color:#3a4a52}
+body.glass .msgnote.interact.pair{background:#dcecf2;border:4px double #8ab4c4;color:#3a4a52}
+body.ticket .msgnote.interact.touch{background:#f5efdc;border:2px solid #c9b878;color:#3a3428}
+body.ticket .msgnote.interact.back{background:#ece4cc;border:2px dashed #c0b490;color:#3a3428}
+body.ticket .msgnote.interact.pair{background:#e6d9a8;border:4px double #c9b878;color:#3a3428}
+body.dream .msgnote.interact.touch{background:rgba(255,255,255,.92);border:2px solid #b8a0cc;color:#5f5470}
+body.dream .msgnote.interact.back{background:rgba(240,232,248,.92);border:2px dashed #a8a0d8;color:#5f5470}
+body.dream .msgnote.interact.pair{background:#e3d6ee;border:4px double #b8a0cc;color:#5f5470}
+body.cafe .msgnote.interact.touch{background:#fdf6e8;border:2px solid #b8945c;color:#5a4632}
+body.cafe .msgnote.interact.back{background:#fbf5e8;border:2px dashed #c9b28c;color:#5a4632}
+body.cafe .msgnote.interact.pair{background:#f7e9cc;border:4px double #b8945c;color:#5a4632}
+body.starry .msgnote.interact.touch{background:rgba(120,140,230,.26);border:2px solid #8a96d8;color:#eaefff}
+body.starry .msgnote.interact.back{background:rgba(200,212,255,.14);border:2px dashed #6a76a8;color:#dfe4ff}
+body.starry .msgnote.interact.pair{background:rgba(138,150,216,.32);border:4px double #8a96d8;color:#eaefff}
+body.rain .msgnote.interact.touch{background:rgba(255,255,255,.95);border:2px solid #8aa8bc;color:#3a4a58}
+body.rain .msgnote.interact.back{background:rgba(245,250,252,.95);border:2px dashed #a8c0cc;color:#3a4a58}
+body.rain .msgnote.interact.pair{background:#dce8ee;border:4px double #8aa8bc;color:#3a4a58}
+body.washi .msgnote.interact.touch{background:#faf5e6;border:2px solid #b23a2a;color:#4a3a2a}
+body.washi .msgnote.interact.back{background:#f5eed8;border:2px dashed #8a5a4a;color:#4a3a2a}
+body.washi .msgnote.interact.pair{background:#f7eccd;border:4px double #b23a2a;color:#4a3a2a}
+body.tape .msgnote.interact.touch{background:rgba(255,190,100,.24);border:2px solid #f0b060;color:#f7ecd0}
+body.tape .msgnote.interact.back{background:rgba(255,220,160,.14);border:2px dashed #c87a28;color:#f0e0c0}
+body.tape .msgnote.interact.pair{background:rgba(240,176,96,.3);border:4px double #f0b060;color:#f7ecd0}
+body.mint .msgnote.interact.touch{background:#fff;border:2px solid #6ab898;color:#2f4a42}
+body.mint .msgnote.interact.back{background:#f4fbf8;border:2px dashed #7ac8a8;color:#2f4a42}
+body.mint .msgnote.interact.pair{background:#d8f0e6;border:4px double #6ab898;color:#2f4a42}
+
+.qi-tabs{display:flex;gap:8px;padding:4px 0 10px;flex:0 0 auto}
+.qi-tab{flex:1;height:38px;display:flex;align-items:center;justify-content:center;font-size:14px;border-radius:8px;border:1px solid currentColor;opacity:.6}
+.qi-tab.on{opacity:1;font-weight:700}
+.qi-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:2px 0}
+.qi-item{min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13.5px;border-radius:8px;padding:8px 6px;line-height:1.35}
+.qi-item:active{opacity:.7}
 </style>
 </head>
 <body class="retro">
@@ -957,7 +1001,11 @@ body.mint .msgnote.interact.pair{background:#d8f0e6;border:2px double #6ab898;co
   </div>
   <div id="quickInteract">
     <div class="qs-head">互动</div>
-    <div class="qs-scroll"><div id="qiBody"></div></div>
+    <div class="qi-tabs" id="qiTabs">
+      <div class="qi-tab on" data-dir="touch">触碰</div>
+      <div class="qi-tab" data-dir="pair">缱绻</div>
+    </div>
+    <div class="qs-scroll"><div class="qi-list" id="qiBody"></div></div>
   </div>
 </div>
 
@@ -1194,7 +1242,7 @@ function makeNote(m, withAvatar){
   const el=document.createElement('div');
   const isInteract = m.type==='interact';
   el.className='msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'')+(isInteract?' interact':'');
-  if(isInteract && m.dir==='pair') el.classList.add('pair');
+  if(isInteract){ el.classList.add(m.dir||'touch'); }
   if(m.type==='sticker'){
     const img=document.createElement('img'); img.className='stkmsg'; img.src=m.data;
     el.appendChild(img);
@@ -1222,14 +1270,6 @@ function appendMessage(m){
 }
 function showSystem(text){ const el=document.createElement('div'); el.className='sys'; el.dataset.sys='1'; el.textContent=text; stream.appendChild(el); scrollBottom(); }
 function removeEmptyTip(){ stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove()); }
-
-function sendInteract(dir){
-  const arr=(interactions[dir]||[]).filter(x=>!x.locked);
-  if(arr.length===0){ toast('还没有'+INTERACT_LABEL[dir]+'的动作'); return; }
-  const t=arr[randInt(0,arr.length-1)];
-  appendMessage({id:uid(),from:'me',type:'interact',dir,text:t.text,time:Date.now()});
-  triggerReply();
-}
 
 let pendingReply=false;
 function sendMessage(){
@@ -1279,7 +1319,16 @@ const quickItems=[
 })();
 function showQuickSticker(){ $('#quickGrid').style.display='none'; $('#quickInteract').classList.remove('on'); $('#quickSticker').classList.add('on'); renderQuickSticker(); }
 function hideQuickSticker(){ $('#quickGrid').style.display=''; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.remove('on'); }
-function showQuickInteract(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.add('on'); renderQuickInteract(); }
+let qiDir='touch';
+function showQuickInteract(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.add('on'); qiDir='touch'; renderQiTabs(); renderQuickInteract(); }
+function renderQiTabs(){
+  const tabs=$('#qiTabs'); tabs.innerHTML='';
+  [['touch','触碰'],['pair','缱绻']].forEach(([k,label])=>{
+    const d=document.createElement('div'); d.className='qi-tab'+(qiDir===k?' on':''); d.textContent=label;
+    d.addEventListener('click',()=>{ qiDir=k; renderQiTabs(); renderQuickInteract(); });
+    tabs.appendChild(d);
+  });
+}
 let qsShown=20;
 
 async function readStickersBatch(list){
@@ -1330,24 +1379,15 @@ async function renderQuickStickerBatch(){
 }
 function renderQuickInteract(){
   const box=$('#qiBody'); box.innerHTML='';
-  const groups=[['touch','触碰'],['pair','缱绻']];
-  let any=false;
-  groups.forEach(([k,label])=>{
-    const arr=(interactions[k]||[]).filter(x=>!x.locked);
-    if(arr.length===0) return;
-    any=true;
-    const h=document.createElement('div'); h.className='qs-empty'; h.style.textAlign='left'; h.style.padding='6px 2px'; h.textContent=label;
-    box.appendChild(h);
-    const grid=document.createElement('div'); grid.className='stk-grid'; grid.style.gridTemplateColumns='repeat(3,1fr)';
-    arr.forEach(x=>{
-      const c=document.createElement('div'); c.className='stk-cell';
-      c.style.aspectRatio='auto'; c.style.padding='10px 6px'; c.style.display='flex'; c.style.alignItems='center'; c.style.justifyContent='center'; c.style.textAlign='center'; c.style.fontSize='13px'; c.style.borderRadius='8px'; c.style.border='1px solid currentColor'; c.textContent=x.text;
-      c.addEventListener('click',()=>{ appendMessage({id:uid(),from:'me',type:'interact',dir:k,text:x.text,time:Date.now()}); closeQuick(); triggerReply(); });
-      grid.appendChild(c);
-    });
-    box.appendChild(grid);
+  const arr=(interactions[qiDir]||[]).filter(x=>!x.locked);
+  if(arr.length===0){ box.innerHTML='<div class="qs-empty" style="grid-column:1/-1">还没有可发的动作</div>'; return; }
+  const frag=document.createDocumentFragment();
+  arr.forEach(x=>{
+    const c=document.createElement('div'); c.className='qi-item'; c.textContent=x.text;
+    c.addEventListener('click',()=>{ appendMessage({id:uid(),from:'me',type:'interact',dir:qiDir,text:x.text,time:Date.now()}); closeQuick(); triggerReply(); });
+    frag.appendChild(c);
   });
-  if(!any) box.innerHTML='<div class="qs-empty">还没有可发的互动</div>';
+  box.appendChild(frag);
 }
 function openQuick(){
   if(document.body.classList.contains('page-open')) return;
@@ -1894,7 +1934,6 @@ function renderSettings(){
   $('#bgMaskRange').value = settings.bgMask==null?55:settings.bgMask;
   $('#bgMaskVal').textContent = $('#bgMaskRange').value;
   document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('on',o.dataset.style===settings.style));
-  applyProfile(); applyBg();
 }
 function bindNum(id,key){ $('#'+id).addEventListener('change',e=>{ let v=parseInt(e.target.value)||0; if(v<0)v=0; settings[key]=v; saveSet(); }); }
 bindNum('dMin','dMin'); bindNum('dMax','dMax'); bindNum('gMin','gMin'); bindNum('gMax','gMax');
@@ -1902,7 +1941,12 @@ $('#setNameHer').addEventListener('input',e=>{settings.nameHer=e.target.value;sa
 $('#setNameMe').addEventListener('input',e=>{settings.nameMe=e.target.value;saveSet();});
 $('#setCallHer').addEventListener('input',e=>{settings.callHer=e.target.value;saveSet();applyProfile();});
 $('#setCallMe').addEventListener('input',e=>{settings.callMe=e.target.value;saveSet();applyProfile();});
-document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style; saveSet(); applyBg(); renderSettings(); }); });
+document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{
+  document.body.classList.remove('retro','comic','girl','news','sakura','glass','ticket','dream','cafe','starry','rain','washi','tape','mint');
+  document.body.classList.add(o.dataset.style);
+  settings.style=o.dataset.style; saveSet();
+  document.querySelectorAll('.style-opt').forEach(x=>x.classList.toggle('on',x===o));
+}); });
 $('#clearMsgs').addEventListener('click',()=>{ if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); } });
 
 const bgFile=document.createElement('input'); bgFile.type='file'; bgFile.accept='image/*'; bgFile.multiple=true; bgFile.style.display='none'; document.body.appendChild(bgFile);
