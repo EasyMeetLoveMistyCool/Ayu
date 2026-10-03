@@ -903,6 +903,26 @@ const quickItems=[
 function showQuickSticker(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.add('on'); renderQuickSticker(); }
 function hideQuickSticker(){ $('#quickGrid').style.display=''; $('#quickSticker').classList.remove('on'); }
 let qsShown=20;
+
+async function readStickersBatch(list){
+  await Promise.all(list.map(async s=>{
+    if(stickerCache[s.id]==null){ stickerCache[s.id]=await FS.readSticker(s.id); }
+  }));
+}
+
+function makeStickerCell(s, data, selMode, selected, onClick){
+  const cell=document.createElement('div');
+  cell.className='stk-cell'+(selMode?' selmode':'')+(selected?' sel':'');
+  const th=document.createElement('div'); th.className='stk-thumb';
+  if(data){ const img=document.createElement('img'); img.loading='lazy'; img.src=data; th.appendChild(img); }
+  cell.appendChild(th);
+  if(selMode){
+    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=selected?'✓':''; cell.appendChild(chk);
+  }
+  cell.addEventListener('click',()=>onClick(s));
+  return cell;
+}
+
 async function renderQuickSticker(){
   const box=$('#qsBody'); box.innerHTML='';
   if(stickers.length===0){ box.innerHTML='<div class="qs-empty">还没有贴纸</div>'; return; }
@@ -913,16 +933,13 @@ async function renderQuickStickerBatch(){
   const box=$('#qsBody');
   const oldMore=box.querySelector('.qs-empty'); if(oldMore) oldMore.remove();
   const slice=stickers.slice(0, qsShown);
-  box.innerHTML='';
+  await readStickersBatch(slice);
   const frag=document.createDocumentFragment();
   for(const s of slice){
-    let data=stickerCache[s.id];
-    if(!data){ data=await FS.readSticker(s.id); stickerCache[s.id]=data; }
-    const cell=document.createElement('div'); cell.className='stk-cell';
-    const th=document.createElement('div'); th.className='stk-thumb';
-    if(data){ const img=document.createElement('img'); img.loading='lazy'; img.src=data; th.appendChild(img); }
-    cell.appendChild(th);
-    cell.addEventListener('click',()=>{ if(data){ appendMessage({id:uid(),from:'me',type:'sticker',data,time:Date.now()}); closeQuick(); } });
+    const data=stickerCache[s.id];
+    const cell=makeStickerCell(s, data, false, false, (s)=>{
+      if(data){ appendMessage({id:uid(),from:'me',type:'sticker',data,time:Date.now()}); closeQuick(); }
+    });
     frag.appendChild(cell);
   }
   box.appendChild(frag);
@@ -1122,20 +1139,18 @@ async function renderStkList(){
   const list=$('#stkList'); if(!list) return;
   list.innerHTML='';
   if(stickers.length===0){ list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>'; return; }
-  const grid=document.createElement('div'); grid.className='stk-grid';
   const slice=stickers.slice(0,stkShown);
+  await readStickersBatch(slice);
+  const grid=document.createElement('div'); grid.className='stk-grid';
+  const frag=document.createDocumentFragment();
   for(const s of slice){
-    let data=stickerCache[s.id];
-    if(!data){ data=await FS.readSticker(s.id); stickerCache[s.id]=data; }
-    const cell=document.createElement('div');
-    cell.className='stk-cell'+(stkSelMode?' selmode':'')+(stkSel.has(s.id)?' sel':'');
-    const th=document.createElement('div'); th.className='stk-thumb';
-    if(data){ const img=document.createElement('img'); img.loading='lazy'; img.src=data; th.appendChild(img); }
-    cell.appendChild(th);
-    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=stkSel.has(s.id)?'✓':''; cell.appendChild(chk);
-    cell.addEventListener('click',()=>{ if(stkSelMode){ if(stkSel.has(s.id)) stkSel.delete(s.id); else stkSel.add(s.id); renderStkList(); } });
-    grid.appendChild(cell);
+    const data=stickerCache[s.id];
+    const cell=makeStickerCell(s, data, stkSelMode, stkSel.has(s.id), (s)=>{
+      if(stkSelMode){ if(stkSel.has(s.id)) stkSel.delete(s.id); else stkSel.add(s.id); renderStkList(); }
+    });
+    frag.appendChild(cell);
   }
+  grid.appendChild(frag);
   list.appendChild(grid);
   if(stickers.length>stkShown){
     const more=document.createElement('div'); more.className='empty-tip'; more.style.padding='16px'; more.textContent='加载更多…';
