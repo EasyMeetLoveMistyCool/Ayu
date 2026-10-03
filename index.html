@@ -8,7 +8,11 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;color:#4a3b2a;user-select:none}
+body{font-family:"Kaiti SC","STKaiti","KaiTi","FangSong","STFangsong",serif;color:#4a3b2a;user-select:none;position:relative}
+/* 背景图（全站） */
+#bgLayer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;pointer-events:none;display:none}
+#bgMask{position:fixed;inset:0;z-index:0;pointer-events:none;display:none}
+body.has-bg #bgLayer,body.has-bg #bgMask{display:block}
 #app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden;z-index:1}
 body.page-open #app{visibility:hidden}
 .ico{width:22px;height:22px;display:block;flex:0 0 auto}
@@ -23,7 +27,6 @@ body.retro .page-head{background:rgba(243,234,210,.95);border-bottom:1px solid #
 body.retro .page-head h2,body.retro .page-head .back{color:#6b5334}
 body.retro #drawer{background:linear-gradient(160deg,#f3ead2,#e6d9ba);border-right:1px solid #c9b98f}
 body.retro .drawer-item{color:#5a4a2e}
-body.retro .drawer-item.act{background:rgba(200,170,110,.25)}
 body.retro .tool{color:#7a5f30;border:1px solid #cbb98f;background:rgba(255,250,235,.8);border-radius:6px}
 body.retro .card-item{background:#fbf7ec;border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px}
 body.retro .empty-tip{color:#a08a5f}
@@ -73,7 +76,6 @@ body.comic .page-head{background:#fff;border-bottom:3px solid #111}
 body.comic .page-head h2,body.comic .page-head .back{color:#111}
 body.comic #drawer{background:#fff;border-right:3px solid #111}
 body.comic .drawer-item{color:#111}
-body.comic .drawer-item.act{background:#eee}
 body.comic .tool{color:#111;border:2px solid #111;background:#fff;border-radius:4px}
 body.comic .card-item{background:#fff;border:3px solid #111;color:#111;border-radius:4px}
 body.comic .empty-tip{color:#111}
@@ -121,7 +123,6 @@ body.girl .page-head{background:rgba(255,233,241,.95);border-bottom:1px solid #f
 body.girl .page-head h2,body.girl .page-head .back{color:#c05a80}
 body.girl #drawer{background:linear-gradient(160deg,#ffe9f1,#ffd6e6);border-right:1px solid #f3b8ce}
 body.girl .drawer-item{color:#7a4a5c}
-body.girl .drawer-item.act{background:rgba(243,184,206,.35)}
 body.girl .tool{color:#c05a80;border:1px solid #f3b8ce;background:#fff5f8;border-radius:10px}
 body.girl .card-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px}
 body.girl .empty-tip{color:#c08aa0}
@@ -172,7 +173,6 @@ body.news .page-head{background:#ece6d4;border-bottom:3px double #2a2a26}
 body.news .page-head h2,body.news .page-head .back{color:#2a2a26;font-family:"FangSong",serif;letter-spacing:2px}
 body.news #drawer{background:#ece6d4;border-right:3px double #2a2a26}
 body.news .drawer-item{color:#2a2a26;font-family:"FangSong",serif}
-body.news .drawer-item.act{background:#ddd6c0}
 body.news .tool{color:#2a2a26;border:1px solid #6a6350;background:#f2ecda;border-radius:0}
 body.news .card-item{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
 body.news .empty-tip{color:#6a6350}
@@ -221,7 +221,6 @@ body.sakura .page-head{background:rgba(51,34,58,.95);border-bottom:1px solid #4a
 body.sakura .page-head h2,body.sakura .page-head .back{color:#ffc0d8}
 body.sakura #drawer{background:linear-gradient(160deg,#33223a,#241826);border-right:1px solid #4a3350}
 body.sakura .drawer-item{color:#f2dbe6}
-body.sakura .drawer-item.act{background:rgba(255,158,196,.18)}
 body.sakura .tool{color:#ffc0d8;border:1px solid #5a3f62;background:rgba(255,190,215,.08);border-radius:8px}
 body.sakura .card-item{background:rgba(255,220,235,.07);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
 body.sakura .empty-tip{color:#c08aa8}
@@ -271,7 +270,6 @@ body.glass .page-head{background:rgba(255,255,255,.95);border-bottom:1px solid #
 body.glass .page-head h2,body.glass .page-head .back{color:#5a7a88}
 body.glass #drawer{background:linear-gradient(160deg,#ffffff,#e6eff2);border-right:1px solid #cfdde2}
 body.glass .drawer-item{color:#3a4a52}
-body.glass .drawer-item.act{background:rgba(138,180,196,.18)}
 body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.9);border-radius:8px}
 body.glass .card-item{background:#fff;border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px}
 body.glass .empty-tip{color:#8aaab4}
@@ -321,7 +319,6 @@ body.ticket .page-head{background:rgba(42,50,60,.95);border-bottom:1px solid #3a
 body.ticket .page-head h2,body.ticket .page-head .back{color:#e8c88a}
 body.ticket #drawer{background:linear-gradient(160deg,#2a323c,#1a1f26);border-right:1px solid #3a434f}
 body.ticket .drawer-item{color:#e8e2d2}
-body.ticket .drawer-item.act{background:rgba(232,200,138,.15)}
 body.ticket .tool{color:#e8c88a;border:1px solid #3a434f;background:rgba(255,255,255,.05);border-radius:6px}
 body.ticket .card-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px}
 body.ticket .empty-tip{color:#8a8270}
@@ -371,7 +368,6 @@ body.dream .page-head{background:rgba(242,236,244,.95);border-bottom:1px solid #
 body.dream .page-head h2,body.dream .page-head .back{color:#7a6a92}
 body.dream #drawer{background:linear-gradient(160deg,#f2ecf4,#ddd3e2);border-right:1px solid #cdc0d6}
 body.dream .drawer-item{color:#5f5470}
-body.dream .drawer-item.act{background:rgba(184,160,204,.22)}
 body.dream .tool{color:#7a6a92;border:1px solid #cdc0d6;background:rgba(255,255,255,.7);border-radius:10px}
 body.dream .card-item{background:rgba(255,255,255,.7);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
 body.dream .empty-tip{color:#a898b8}
@@ -464,8 +460,8 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 .page-head .back{font-size:22px;width:36px}
 .page-head h2{flex:1;text-align:center;font-size:18px;font-weight:700;margin-right:36px}
 .page-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch}
+body.has-bg .page{background:transparent !important}
 
-/* 口袋：收纳盒 + 四抽屉 */
 .box-wrap{padding:6px 4px}
 .box{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-radius:14px}
 .drawer-cell{position:relative;padding:12px 4px;border-radius:10px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 2px 4px rgba(0,0,0,.1);transition:transform .15s}
@@ -478,7 +474,6 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 .panel .tool{flex:1;min-width:40px;height:42px;display:flex;align-items:center;justify-content:center}
 .panel .tool:active{opacity:.6}
 .panel .tool.more{flex:0 0 44px}
-.count-line{font-size:13px;opacity:.7;padding:6px 2px}
 .card-item{position:relative;padding:13px 40px 13px 14px;margin-bottom:10px;font-size:15.5px;line-height:1.45;word-break:break-word;white-space:pre-wrap}
 .card-item.sel{outline:2px solid #c47a3a}
 .card-item .chk{position:absolute;left:6px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:2px solid #c47a3a;border-radius:4px;display:none;align-items:center;justify-content:center;font-size:14px;color:#c47a3a}
@@ -521,11 +516,15 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 
 .set-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:15.5px}
 .set-row input[type=number]{width:64px;height:34px;text-align:center;font-family:inherit;font-size:15px;outline:none;border-radius:4px}
+.set-row input[type=range]{flex:1;margin-left:14px}
+.bg-preview{width:56px;height:56px;border-radius:8px;background-size:cover;background-position:center;border:1px solid #cbb98f;margin-right:12px}
 .style-opts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .style-opt{flex:1;min-width:44%;height:52px;display:flex;align-items:center;justify-content:center;font-size:14px}
 .style-opt.on{font-weight:700}
 .btn-danger{width:100%;height:46px;font-family:inherit;font-size:16px;font-weight:700}
 .btn-danger:active{opacity:.85}
+.mini-btn{font-family:inherit;font-size:13px;padding:6px 12px;border:1px solid #cbb98f;border-radius:5px;background:#fffaf0;color:#6b5334}
+.mini-btn:active{opacity:.7}
 
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:rgba(40,30,20,.9);color:#fff;font-size:14px;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;z-index:99;pointer-events:none;max-width:80%;text-align:center}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -533,13 +532,11 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 </head>
 <body class="retro">
 
+<div id="bgLayer"></div>
+<div id="bgMask"></div>
+
 <svg width="0" height="0" style="position:absolute">
-  <symbol id="i-pocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8 3.5h8"/>
-    <path d="M7.2 3.8c-.8 1.6-.9 3 .3 4.3"/>
-    <path d="M16.8 3.8c.8 1.6.9 3-.3 4.3"/>
-    <path d="M7.5 8.1c-2 .8-3.2 2.6-3.2 5.4 0 4 2.4 7 7.7 7s7.7-3 7.7-7c0-2.8-1.2-4.6-3.2-5.4"/>
-  </symbol>
+  <symbol id="i-pocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8"/><path d="M7.2 3.8c-.8 1.6-.9 3 .3 4.3"/><path d="M16.8 3.8c.8 1.6.9 3-.3 4.3"/><path d="M7.5 8.1c-2 .8-3.2 2.6-3.2 5.4 0 4 2.4 7 7.7 7s7.7-3 7.7-7c0-2.8-1.2-4.6-3.2-5.4"/></symbol>
   <symbol id="i-set" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6l1.3 2.2"/><path d="M17.4 4.6l.2 2.6"/><path d="M20.8 8.4l-2.2 1.4"/><path d="M21.2 14.2l-2.5.7"/><path d="M18.4 19.2l-2.2-1.4"/><path d="M13.6 21.4l-1-2.4"/><path d="M8.2 21l.4-2.6"/><path d="M4 18l2-1.8"/><path d="M2.8 12.4l2.5-.6"/><path d="M4.6 6.6l2.3 1.2"/><path d="M8.6 3l1.1 2.4"/><circle cx="12" cy="12" r="5.6"/><circle cx="12" cy="12" r="2.2"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.8" cy="10.8" r="6"/><path d="M15.4 15.4l4.6 4.6"/></symbol>
   <symbol id="i-add" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M12 8.2v7.6"/><path d="M8.2 12h7.6"/></symbol>
@@ -549,6 +546,7 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
   <symbol id="i-reply" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.6h9.4l3.6 3.6v11.2c0 .7-.6 1.2-1.2 1.2H6c-.7 0-1.2-.5-1.2-1.2V5.8c0-.7.5-1.2 1.2-1.2z"/><path d="M8.4 12.6h6"/><path d="M8.4 16h3.6"/></symbol>
   <symbol id="i-style" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.4c4.4 0 7.8 3 7.8 6.8 0 2.4-1.8 3.6-3.6 3.6h-1.2c-1 0-1.8.8-1.8 1.8 0 .5.2.9.4 1.2.3.4.4.8.4 1.2 0 1-.8 1.6-1.8 1.6-4.4 0-7.8-3.6-7.8-8S7.6 4.4 12 4.4z"/><circle cx="8.8" cy="10" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="15.2" cy="10" r="1"/></symbol>
   <symbol id="i-data" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.6" y="5" width="14.8" height="14.4" rx="1.8"/><path d="M4.6 9.4h14.8"/><path d="M9.4 13h5.2"/><path d="M9.4 16h3.2"/></symbol>
+  <symbol id="i-bg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M4 17l5-5 4 4 2-2 5 5"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8"/><path d="M7.2 3.8c-.8 1.6-.9 3 .3 4.3"/><path d="M16.8 3.8c.8 1.6.9 3-.3 4.3"/><path d="M7.5 8.1c-2 .8-3.2 2.6-3.2 5.4 0 4 2.4 7 7.7 7s7.7-3 7.7-7c0-2.8-1.2-4.6-3.2-5.4"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
   <symbol id="i-space" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6.5 8 6.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M12 17s-3-1.8-3-3.9A1.6 1.6 0 0 1 12 12a1.6 1.6 0 0 1 3 1.1C15 15.2 12 17 12 17z"/></symbol>
@@ -565,9 +563,9 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
   <symbol id="i-touch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10"/><path d="M12 10V4.5a1.5 1.5 0 0 1 3 0V11"/><path d="M15 11V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-2a1.5 1.5 0 0 1 3 0v1"/></symbol>
   <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></symbol>
   <symbol id="i-ask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/><circle cx="12" cy="16.6" r="0.6" fill="currentColor"/></symbol>
-  <symbol id="i-together" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="2.6"/><path d="M3.5 19c.6-3 2.4-4.6 5-4.6s4.4 1.6 5 4.6"/><circle cx="16.5" cy="9.5" r="2"/><path d="M14.5 19c.4-2.3 1.6-3.5 2-3.5"/></symbol>
+  <symbol id="i-together" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7.5" r="2.8"/><path d="M3.8 19c.6-3.2 2.6-5 5.2-5s4.6 1.8 5.2 5"/><path d="M16 6.5a2.4 2.4 0 0 1 0 4.8"/><path d="M17.8 14.6c1.6.7 2.6 2.2 3 4.4"/></symbol>
   <symbol id="i-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="5" rx="1"/><path d="M5 9.5V19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M10 13h4"/></symbol>
-  <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="12" r="1.6"/><circle cx="18.5" cy="12" r="1.6"/><path d="M9 8.6c1.2 1.8 1.2 4.8 0 6.8"/><path d="M15 8.6c-1.2 1.8-1.2 4.8 0 6.8"/></symbol>
+  <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.6" fill="currentColor"/><path d="M9.6 8.8c-1.4 1.8-1.4 4.6 0 6.4"/><path d="M14.4 8.8c1.4 1.8 1.4 4.6 0 6.4"/><path d="M7.4 6.4c-2.2 3-2.2 8.2 0 11.2"/><path d="M16.6 6.4c2.2 3 2.2 8.2 0 11.2"/></symbol>
 </svg>
 
 <div id="app">
@@ -640,6 +638,15 @@ body.dream .drawer-cell.on{border:2px solid #b8a0cc}
       </div>
     </div>
     <div class="set-group">
+      <h3><svg class="ico-inline"><use href="#i-bg"/></svg>背景</h3>
+      <div class="set-row" style="justify-content:flex-start">
+        <div class="bg-preview" id="bgPreview"></div>
+        <button class="mini-btn" id="bgUpload">上传</button>
+        <button class="mini-btn" id="bgClear" style="margin-left:8px">清除</button>
+      </div>
+      <div class="set-row"><span>蒙版</span><input type="range" id="bgMaskRange" min="0" max="100" value="55"></div>
+    </div>
+    <div class="set-group">
       <h3><svg class="ico-inline"><use href="#i-reply"/></svg>祂回复</h3>
       <div class="set-row"><span>延迟（秒）</span><span><input type="number" id="dMin" min="0"> ～ <input type="number" id="dMax" min="0"></span></div>
       <div class="set-row"><span>字卡间隔（秒）</span><span><input type="number" id="gMin" min="0"> ～ <input type="number" id="gMax" min="0"></span></div>
@@ -699,7 +706,8 @@ const FS = {
 
 let cards=[], messages=[];
 let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
-  avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'' };
+  avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',
+  bg:null, bgMask:55 };
 
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const rand=(a,b)=>a+Math.random()*(b-a);
@@ -724,6 +732,21 @@ function applyProfile(){
   $('#setNameHer').value=settings.nameHer||''; $('#setNameMe').value=settings.nameMe||'';
   $('#setCallHer').value=settings.callHer||''; $('#setCallMe').value=settings.callMe||'';
 }
+/* 背景 */
+function applyBg(){
+  const L=$('#bgLayer'), M=$('#bgMask');
+  if(settings.bg){
+    document.body.classList.add('has-bg');
+    L.style.backgroundImage=`url(${settings.bg})`;
+    const a=(settings.bgMask==null?55:settings.bgMask)/100;
+    M.style.background=`rgba(255,255,255,${a})`;
+    $('#bgPreview').style.backgroundImage=`url(${settings.bg})`;
+  }else{
+    document.body.classList.remove('has-bg');
+    L.style.backgroundImage='none'; M.style.background='none';
+    $('#bgPreview').style.backgroundImage='none';
+  }
+}
 function fmtTime(ts){ const d=new Date(ts); return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); }
 
 function makeNote(m, withAvatar){
@@ -738,11 +761,7 @@ function makeNote(m, withAvatar){
   el.appendChild(st); return el;
 }
 function firstOfGroup(idx){ if(idx===0) return true; return messages[idx-1].from !== messages[idx].from; }
-function renderMessages(){
-  stream.innerHTML='';
-  messages.forEach((m,i)=>stream.appendChild(makeNote(m, firstOfGroup(i))));
-  scrollBottom();
-}
+function renderMessages(){ stream.innerHTML=''; messages.forEach((m,i)=>stream.appendChild(makeNote(m, firstOfGroup(i)))); scrollBottom(); }
 function scrollBottom(){ requestAnimationFrame(()=>stream.scrollTop=stream.scrollHeight); }
 function appendMessage(m){
   messages.push(m); saveMsgs();
@@ -792,14 +811,30 @@ const quickItems=[
     g.appendChild(d);
   });
 })();
-function openQuick(){ $('#quickDrawer').classList.add('on'); }
+function openQuick(){ if(document.body.classList.contains('page-open')) return; $('#quickDrawer').classList.add('on'); }
 function closeQuick(){ $('#quickDrawer').classList.remove('on'); }
-$('#qHandle').addEventListener('click',closeQuick);
-$('#holdBar').addEventListener('click',openQuick);
-let upY=0,upTracking=false;
-document.addEventListener('touchstart',e=>{ if(e.target.closest('textarea,input,#quickDrawer')) return; const t=e.touches[0]; upY=t.clientY; upTracking = (t.clientY > window.innerHeight-120); },{passive:true});
-document.addEventListener('touchmove',e=>{ if(!upTracking) return; const dy = upY - e.touches[0].clientY; if(dy>50){ openQuick(); upTracking=false; } },{passive:true});
-document.addEventListener('touchend',()=>{upTracking=false;},{passive:true});
+/* 提手 + 底部拉手：点击开关 */
+function toggleQuick(){ const d=$('#quickDrawer'); if(d.classList.contains('on')) closeQuick(); else openQuick(); }
+$('#qHandle').addEventListener('click',toggleQuick);
+$('#holdBar').addEventListener('click',toggleQuick);
+/* 上滑开、下滑关（仅聊天页） */
+let sY=0, tracking=false, mode=null;
+document.addEventListener('touchstart',e=>{
+  if(e.target.closest('textarea,input')) return;
+  if(document.body.classList.contains('page-open')){ tracking=false; return; }
+  const t=e.touches[0]; sY=t.clientY;
+  if($('#quickDrawer').classList.contains('on')){ mode='close'; }
+  else if(t.clientY > window.innerHeight-120){ mode='open'; }
+  else{ mode=null; }
+  tracking=!!mode;
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+  if(!tracking) return;
+  const dy = sY - e.touches[0].clientY;
+  if(mode==='open' && dy>50){ openQuick(); tracking=false; }
+  if(mode==='close' && dy<-50){ closeQuick(); tracking=false; }
+},{passive:true});
+document.addEventListener('touchend',()=>{tracking=false;},{passive:true});
 
 /* 侧栏 */
 const sideItems=[
@@ -828,10 +863,10 @@ let cx=0;
 document.addEventListener('touchstart',e=>{ if(drawer.classList.contains('on')) cx=e.touches[0].clientX; },{passive:true});
 document.addEventListener('touchmove',e=>{ if(!drawer.classList.contains('on')) return; if(e.touches[0].clientX - cx < -60) closeDrawer(); },{passive:true});
 
-function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); $('#'+id).classList.add('show'); document.body.classList.add('page-open'); }
+function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); $('#'+id).classList.add('show'); document.body.classList.add('page-open'); closeQuick(); }
 function hidePages(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); document.body.classList.remove('page-open'); }
 function openDoing(name){ $('#doingTitle').textContent=name; showPage('page-doing'); }
-function openSettings(){ applyProfile(); renderSettings(); showPage('page-settings'); }
+function openSettings(){ applyProfile(); applyBg(); renderSettings(); showPage('page-settings'); }
 document.querySelectorAll('[data-back]').forEach(el=>{
   el.addEventListener('click',()=>{
     if($('#page-add').classList.contains('show')){
@@ -879,7 +914,6 @@ function renderCardPanel(p){
       <div class="tool more" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
     </div>
     <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
-    <div class="count-line" id="countLine"></div>
     <div id="cardList"></div>`;
   bindCardTools(); renderCardList();
 }
@@ -893,15 +927,17 @@ function renderCardList(){
   const list=$('#cardList'); if(!list) return;
   list.innerHTML='';
   const arr=currentCards();
-  const total=cards.filter(c=>!c.locked).length;
-  const lockedN=cards.filter(c=>c.locked).length;
+  // 只在搜索/锁列表时显示提示（口袋里数量抽屉上已有）
   let line='';
   if(lockedView) line='锁起来 '+arr.length+' 张';
   else if(searchKw) line='找到 '+arr.length+' 张';
-  else line='口袋里 '+total+' 张 · 锁起来 '+lockedN+' 张';
-  $('#countLine').textContent=line;
+  if(line){
+    const l=document.createElement('div'); l.className='count-line'; l.textContent=line; list.appendChild(l);
+  }
   if(arr.length===0){
-    list.innerHTML='<div class="empty-tip">'+(lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧'))+'</div>';
+    const e=document.createElement('div'); e.className='empty-tip';
+    e.innerHTML = lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧');
+    list.appendChild(e);
     updateMultiBar(); updateSelectAll(); return;
   }
   arr.forEach(c=>{
@@ -1010,15 +1046,15 @@ $('#saveCards').addEventListener('click',async ()=>{
     toast(skipped? ('放进了 '+added+' 张，跳过 '+skipped+' 张重复') : ('放进了 '+added+' 张字卡'));
   }
   removeEmptyTip();
-  document.body.classList.add('page-open');
-  $('#page-add').classList.add('show');
+  document.body.classList.add('page-open'); $('#page-add').classList.add('show');
 });
 
 function renderSettings(){
   $('#dMin').value=settings.dMin; $('#dMax').value=settings.dMax;
   $('#gMin').value=settings.gMin; $('#gMax').value=settings.gMax;
+  $('#bgMaskRange').value = settings.bgMask==null?55:settings.bgMask;
   document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('on',o.dataset.style===settings.style));
-  applyProfile();
+  applyProfile(); applyBg();
 }
 function bindNum(id,key){ $('#'+id).addEventListener('change',e=>{ let v=parseInt(e.target.value)||0; if(v<0)v=0; settings[key]=v; saveSet(); }); }
 bindNum('dMin','dMin'); bindNum('dMax','dMax'); bindNum('gMin','gMin'); bindNum('gMax','gMax');
@@ -1026,8 +1062,17 @@ $('#setNameHer').addEventListener('input',e=>{settings.nameHer=e.target.value;sa
 $('#setNameMe').addEventListener('input',e=>{settings.nameMe=e.target.value;saveSet();});
 $('#setCallHer').addEventListener('input',e=>{settings.callHer=e.target.value;saveSet();applyProfile();});
 $('#setCallMe').addEventListener('input',e=>{settings.callMe=e.target.value;saveSet();applyProfile();});
-document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style; saveSet(); renderSettings(); }); });
+document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{ settings.style=o.dataset.style; document.body.className=settings.style+(settings.bg?' has-bg':''); saveSet(); renderSettings(); }); });
 $('#clearMsgs').addEventListener('click',()=>{ if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); } });
+
+/* 背景 */
+const bgFile=document.createElement('input'); bgFile.type='file'; bgFile.accept='image/*'; bgFile.style.display='none'; document.body.appendChild(bgFile);
+$('#bgUpload').addEventListener('click',()=>bgFile.click());
+$('#bgClear').addEventListener('click',()=>{ settings.bg=null; saveSet(); applyBg(); toast('已清除背景'); });
+bgFile.addEventListener('change',e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ settings.bg=r.result; saveSet(); applyBg(); toast('已更换背景'); }; r.readAsDataURL(f); e.target.value=''; });
+$('#bgMaskRange').addEventListener('input',e=>{ settings.bgMask=parseInt(e.target.value)||0; saveSet(); applyBg(); });
+
+/* 头像 */
 let avTarget=null;
 const avFile=document.createElement('input'); avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none'; document.body.appendChild(avFile);
 $('#setAvHer').addEventListener('click',()=>{ avTarget='her'; avFile.click(); });
@@ -1042,7 +1087,7 @@ async function boot(){
   cards=c.cards||[]; messages=m.messages||[];
   if(s) settings=Object.assign(settings,s);
   document.body.className=settings.style||'retro';
-  applyProfile(); renderMessages();
+  applyProfile(); applyBg(); renderMessages();
   if(cards.length===0) showSystem('口袋里还没有字卡，去给祂放几张吧');
 }
 boot();
