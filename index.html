@@ -944,9 +944,12 @@ function toggleQuick(){ const d=$('#quickDrawer'); if(d.classList.contains('on')
 $('#qHandle').addEventListener('click',toggleQuick);
 $('#holdBar').addEventListener('click',toggleQuick);
 let sY=0, tracking=false, mode=null;
+let lockGesture=false;
 document.addEventListener('touchstart',e=>{
   if(e.target.closest('textarea,input')) return;
-  if(document.body.classList.contains('page-open')){ tracking=false; return; }
+  if(document.body.classList.contains('page-open')){ tracking=false; lockGesture=false; return; }
+  if(e.target.closest('#quickDrawer') && !e.target.closest('#qHandle')){ lockGesture=true; tracking=false; return; }
+  lockGesture=false;
   const t=e.touches[0]; sY=t.clientY;
   if($('#quickDrawer').classList.contains('on')){ mode='close'; }
   else if(t.clientY > window.innerHeight-120){ mode='open'; }
@@ -954,12 +957,12 @@ document.addEventListener('touchstart',e=>{
   tracking=!!mode;
 },{passive:true});
 document.addEventListener('touchmove',e=>{
-  if(!tracking) return;
+  if(lockGesture || !tracking) return;
   const dy = sY - e.touches[0].clientY;
   if(mode==='open' && dy>50){ openQuick(); tracking=false; }
   if(mode==='close' && dy<-50){ closeQuick(); tracking=false; }
 },{passive:true});
-document.addEventListener('touchend',()=>{tracking=false;},{passive:true});
+document.addEventListener('touchend',()=>{tracking=false; lockGesture=false;},{passive:true});
 
 /* 侧栏 */
 const sideItems=[
