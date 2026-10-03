@@ -214,18 +214,18 @@ body.page-open .topbar{visibility:hidden}
 .collection-item{padding:13px 14px;margin-bottom:10px;font-size:15px;line-height:1.45;word-break:break-word;position:relative}
 .collection-item .ci-time{font-size:11px;opacity:.55;margin-top:6px}
 .collection-item img{max-width:100%;border-radius:8px;display:block;margin-top:6px}
+#stkList{max-height:60vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 
-/* ===== 主题 1 复古手帐信 ===== */
 body.retro{background-color:#e8dcc0;background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);background-size:60px 60px,80px 80px,100% 100%;color:#4a3b2a}
-body.retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;box-shadow:0 2px 6px rgba(120,95,60,.15)}
+body.retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f}
 body.retro .names span{color:#6b5334}
 body.retro .page{background:linear-gradient(160deg,#efe4c8,#e3d5b4)}
 body.retro .page-head{background:rgba(243,234,210,.95);border-bottom:1px solid #cbb98f}
 body.retro .page-head h2,body.retro .page-head .back{color:#6b5334}
 body.retro #drawer{background:linear-gradient(160deg,#f3ead2,#e6d9ba);border-right:1px solid #c9b98f}
 body.retro .drawer-item{color:#5a4a2e}
-body.retro .tool{color:#7a5f30;border:1px solid #cbb98f;background:linear-gradient(#fffaf0,#f3ead2);border-radius:6px;box-shadow:0 1px 2px rgba(120,95,60,.12)}
-body.retro .card-item{background:linear-gradient(#fbf7ec,#f6f0e0);border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px;box-shadow:0 1px 3px rgba(120,95,60,.1)}
+body.retro .tool{color:#7a5f30;border:1px solid #cbb98f;background:linear-gradient(#fffaf0,#f3ead2);border-radius:6px}
+body.retro .card-item{background:linear-gradient(#fbf7ec,#f6f0e0);border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px}
 body.retro .empty-tip{color:#a08a5f}
 body.retro #selectAllRow{color:#8a6f3c;border-bottom:1px dashed #c9b98f}
 body.retro #multiBar{background:rgba(243,234,210,.98);border-top:1px solid #cbb98f}
@@ -234,7 +234,7 @@ body.retro #sheet{background:#f3ead2;border-top:1px solid #cbb98f}
 body.retro .sheet-item{color:#5a4a2e}
 body.retro .sheet-cancel{border-top:1px solid #cbb98f;color:#8a6f3c}
 body.retro #addArea{background:#fbf7ec;border:1px solid #d8cba8;color:#4a3b2a;background-image:repeating-linear-gradient(transparent 0 29px,rgba(150,130,95,.2) 29px 30px)}
-body.retro .save-btn{border:1px solid #b89b5e;background:linear-gradient(#f7ecd0,#e6d3a4);color:#7a5f30;box-shadow:0 2px 4px rgba(120,95,60,.2)}
+body.retro .save-btn{border:1px solid #b89b5e;background:linear-gradient(#f7ecd0,#e6d3a4);color:#7a5f30}
 body.retro .set-group{background:#fbf7ec;border:1px solid #d8cba8}
 body.retro .set-group h3{color:#a08a5f}
 body.retro .field-row span,body.retro .set-row span{color:#7a6a4e}
@@ -243,13 +243,13 @@ body.retro .style-opt{border:1px solid #cbb98f;background:transparent;color:#5a4
 body.retro .style-opt.on{border:2px solid #c47a3a;background:#f7ecd0}
 body.retro .btn-danger{border:1px solid #c47a3a;background:#f7e0d0;color:#a5401a}
 body.retro #composer{background:linear-gradient(transparent,rgba(232,220,192,.9))}
-body.retro .input-note{background:#fdf3c8;border:1px solid #e2cf8a;box-shadow:0 2px 6px rgba(120,95,60,.15)}
+body.retro .input-note{background:#fdf3c8;border:1px solid #e2cf8a}
 body.retro #msgInput{color:#5a4a2e}
 body.retro #msgInput::placeholder{color:#bca878}
-body.retro #sendStamp{border:2px solid #b89b5e;background:radial-gradient(circle at 35% 30%,#f7ecd0,#e6d3a4);color:#8a6f3c;border-radius:50%;transform:rotate(-8deg);box-shadow:0 2px 4px rgba(120,95,60,.25)}
-body.retro .msgnote.me{background:#fdf3c8;border:1px solid #e2cf8a;color:#5a4a2e;border-radius:3px;box-shadow:0 2px 6px rgba(120,95,60,.12)}
-body.retro .msgnote.me::after{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-3deg);width:46px;height:14px;background:rgba(200,180,130,.55);box-shadow:0 1px 2px rgba(0,0,0,.1)}
-body.retro .msgnote.her{background:#fbf7ec;border:1px solid #d8cba8;color:#4a3b2a;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 27px, rgba(150,130,95,.25) 27px 28px);background-position:0 10px;box-shadow:0 2px 6px rgba(120,95,60,.12)}
+body.retro #sendStamp{border:2px solid #b89b5e;background:radial-gradient(circle at 35% 30%,#f7ecd0,#e6d3a4);color:#8a6f3c;border-radius:50%;transform:rotate(-8deg)}
+body.retro .msgnote.me{background:#fdf3c8;border:1px solid #e2cf8a;color:#5a4a2e;border-radius:3px}
+body.retro .msgnote.me::after{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-3deg);width:46px;height:14px;background:rgba(200,180,130,.55)}
+body.retro .msgnote.her{background:#fbf7ec;border:1px solid #d8cba8;color:#4a3b2a;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 27px, rgba(150,130,95,.25) 27px 28px);background-position:0 10px}
 body.retro .stamp{border:1px solid #c8b68a;color:#a08a5f;background:rgba(255,255,255,.35);border-radius:50%;width:34px;height:34px;transform:rotate(-12deg);font-size:10px}
 body.retro .waiting{background:repeating-linear-gradient(45deg,#f4ecd6 0 8px,#efe6cc 8px 16px);border:1px dashed #c9b98f;color:#a08a5f;border-radius:3px}
 body.retro .sys{background:rgba(255,250,235,.6);border:1px dashed #c9b98f;color:#9a865e}
@@ -270,7 +270,7 @@ body.retro .qi-item{border:1px solid #cbb98f;background:#fffaf0;color:#6b5334}
 body.retro .msgnote.interact.touch{background:#fdf3c8;border:1px solid #b89b5e;color:#5a4a2e}
 body.retro .msgnote.interact.back{background:#fbf7ec;border:2px dashed #c9b98f;color:#4a3b2a}
 body.retro .msgnote.interact.pair{background:#f7ecd0;border:4px double #b89b5e;color:#6b5334}
-body.retro #miniPlayer{background:linear-gradient(#f7ecd0,#e6d3a4);border:1px solid #b89b5e;color:#5a4a2e;box-shadow:0 6px 20px rgba(120,95,60,.35)}
+body.retro #miniPlayer{background:linear-gradient(#f7ecd0,#e6d3a4);border:1px solid #b89b5e;color:#5a4a2e}
 body.retro .mp-btn{color:#7a5f30}
 body.retro .mp-bar{background:rgba(120,95,60,.2)}
 body.retro .mp-fill{background:#b89b5e}
@@ -283,90 +283,86 @@ body.retro .msgmenu .mi{color:#5a4a2e;border-bottom:1px solid #e0d2b0}
 body.retro .msgmenu .mi:last-child{border-bottom:none}
 body.retro .quote-bar{background:#fdf3c8;border:1px solid #e2cf8a;color:#7a5f30}
 body.retro .msgnote .quote{background:rgba(200,180,130,.3);border-left:3px solid #b89b5e;color:#6b5334}
-body.retro .collection-item{background:linear-gradient(#fbf7ec,#f6f0e0);border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px;box-shadow:0 1px 3px rgba(120,95,60,.1)}
+body.retro .collection-item{background:linear-gradient(#fbf7ec,#f6f0e0);border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px}
 
-/* ===== 主题 2 漫画风 ===== */
-body.comic{background-color:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px;color:#111}
-body.comic .topbar{background:#fff;border-bottom:3px solid #111;box-shadow:0 3px 0 #111}
+body.comic{background-color:#fff;color:#111}
+body.comic .topbar{background:#fff;border-bottom:3px solid #111}
 body.comic .names span{color:#111;font-weight:900}
-body.comic .page{background:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px}
+body.comic .page{background:#fff}
 body.comic .page-head{background:#fff;border-bottom:3px solid #111}
-body.comic .page-head h2,body.comic .page-head .back{color:#111;font-weight:900}
+body.comic .page-head h2,body.comic .page-head .back{color:#111;font-weight:900;font-family:"Kaiti SC","STKaiti",sans-serif}
 body.comic #drawer{background:#fff;border-right:3px solid #111}
 body.comic .drawer-item{color:#111;font-weight:700}
-body.comic .tool{color:#111;border:2px solid #111;background:#fff;border-radius:4px;box-shadow:2px 2px 0 #111}
-body.comic .card-item{background:#fff;border:3px solid #111;color:#111;border-radius:4px;box-shadow:3px 3px 0 #111}
+body.comic .tool{color:#111;border:2px solid #111;background:#fff;border-radius:0}
+body.comic .card-item{background:#fff;border:2px solid #111;color:#111;border-radius:0}
 body.comic .empty-tip{color:#111}
 body.comic #selectAllRow{color:#111;border-bottom:2px dashed #111}
 body.comic #multiBar{background:#fff;border-top:3px solid #111}
-body.comic .mbtn{border:2px solid #111;background:#fff;color:#111;box-shadow:2px 2px 0 #111}
+body.comic .mbtn{border:2px solid #111;background:#fff;color:#111}
 body.comic #sheet{background:#fff;border-top:3px solid #111}
 body.comic .sheet-item{color:#111}
 body.comic .sheet-cancel{border-top:2px solid #111;color:#111}
-body.comic #addArea{background:#fff;border:3px solid #111;color:#111;background-image:none;border-radius:4px}
-body.comic .save-btn{border:3px solid #111;background:#fff;color:#111;border-radius:4px;box-shadow:3px 3px 0 #111}
-body.comic .set-group{background:#fff;border:3px solid #111;border-radius:4px;box-shadow:3px 3px 0 #111}
+body.comic #addArea{background:#fff;border:2px solid #111;color:#111;background-image:none;border-radius:0}
+body.comic .save-btn{border:2px solid #111;background:#fff;color:#111;border-radius:0}
+body.comic .set-group{background:#fff;border:2px solid #111;border-radius:0}
 body.comic .set-group h3{color:#111;font-weight:700}
 body.comic .field-row span,body.comic .set-row span{color:#111}
 body.comic .field-row input,body.comic .set-row input{border:2px solid #111;background:#fff;color:#111}
 body.comic .style-opt{border:2px solid #111;background:#fff;color:#111}
-body.comic .style-opt.on{border:3px solid #111;background:#eee}
-body.comic .btn-danger{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
+body.comic .style-opt.on{border:2px solid #111;background:#111;color:#fff}
+body.comic .btn-danger{border:2px solid #111;background:#fff;color:#111;border-radius:0}
 body.comic #composer{background:#fff;border-top:3px solid #111}
-body.comic .input-note{background:#fff;border:3px solid #111;border-radius:4px}
+body.comic .input-note{background:#fff;border:2px solid #111;border-radius:0}
 body.comic #msgInput{color:#111}
 body.comic #msgInput::placeholder{color:#999}
-body.comic #sendStamp{border:3px solid #111;background:#fff;color:#111;border-radius:4px;transform:none;box-shadow:2px 2px 0 #111}
-body.comic .msgnote.me,body.comic .msgnote.her{background:#fff;border:3px solid #111;color:#111;border-radius:4px;background-image:none;box-shadow:4px 4px 0 #111;position:relative}
+body.comic #sendStamp{border:2px solid #111;background:#fff;color:#111;border-radius:0;transform:none}
+body.comic .msgnote.me,body.comic .msgnote.her{background:#fff;border:2px solid #111;color:#111;border-radius:0;background-image:none}
 body.comic .msgnote.me::after,body.comic .msgnote.her::after{display:none}
-body.comic .msgnote.me::before{content:"";position:absolute;right:12px;top:12px;width:30px;height:30px;background-image:radial-gradient(#111 1px,transparent 1.4px);background-size:5px 5px;opacity:.55;pointer-events:none}
-body.comic .msgnote.her::before{content:"";position:absolute;right:12px;top:12px;width:30px;height:30px;background-image:radial-gradient(#111 1px,transparent 1.4px);background-size:5px 5px;opacity:.55;pointer-events:none}
-body.comic .stamp{border:2px solid #111;color:#111;background:#fff;border-radius:3px;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px}
-body.comic .waiting{background:#fff;border:2px dashed #111;color:#111;border-radius:4px}
+body.comic .stamp{border:none;color:#111;background:transparent;font-size:9px;font-weight:700}
+body.comic .waiting{background:#fff;border:2px dashed #111;color:#111;border-radius:0}
 body.comic .sys{background:#fff;border:2px dashed #111;color:#111}
-body.comic .av-her,body.comic .av-me{border:2px solid #111;border-radius:4px}
-body.comic .person-av{border:2px solid #111;border-radius:6px}
-body.comic .msgnote .nav{border:2px solid #111;background-color:#fff;border-radius:4px}
+body.comic .av-her,body.comic .av-me{border:2px solid #111;border-radius:0}
+body.comic .person-av{border:2px solid #111;border-radius:0}
+body.comic .msgnote .nav{border:2px solid #111;background-color:#fff;border-radius:0}
 body.comic #quickDrawer{background:#fff;border-top:3px solid #111}
 body.comic .qb{color:#111}
 body.comic .qb:active{background:#eee}
 body.comic .drawer-handle,body.comic .hold-handle{background:#111}
-body.comic .box{background:#fff;border:3px solid #111;box-shadow:none}
-body.comic .drawer-cell{background:#fff;border:2px solid #111;color:#111;border-radius:4px;box-shadow:2px 2px 0 #111}
-body.comic .drawer-cell.on{border:3px solid #111}
+body.comic .box{background:#fff;border:2px solid #111}
+body.comic .drawer-cell{background:#fff;border:2px solid #111;color:#111;border-radius:0}
+body.comic .drawer-cell.on{border:2px solid #111;background:#111;color:#fff}
 body.comic .bg-thumb{border:2px solid #111}
 body.comic .stk-cell.sel{outline:3px solid #111}
-body.comic .it-tab.on{border:3px solid #111;background:#eee}
+body.comic .it-tab.on{border:2px solid #111;background:#111;color:#fff}
 body.comic .qi-item{border:2px solid #111;background:#fff;color:#111}
-body.comic .msgnote.interact.touch{background:#fff;border:3px solid #111;color:#111}
-body.comic .msgnote.interact.back{background:#fff;border:3px dashed #111;color:#111}
-body.comic .msgnote.interact.pair{background:#eee;border:5px double #111;color:#111}
-body.comic #miniPlayer{background:#fff;border:3px solid #111;color:#111;box-shadow:0 6px 0 #111}
+body.comic .msgnote.interact.touch{background:#fff;border:2px solid #111;color:#111}
+body.comic .msgnote.interact.back{background:#fff;border:2px dashed #111;color:#111}
+body.comic .msgnote.interact.pair{background:#eee;border:2px double #111;color:#111}
+body.comic #miniPlayer{background:#fff;border:2px solid #111;color:#111}
 body.comic .mp-btn{color:#111}
 body.comic .mp-bar{background:#ddd}
 body.comic .mp-fill{background:#111}
 body.comic .mp-knob{background:#111}
-body.comic .invite-btn{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
+body.comic .invite-btn{border:2px solid #111;background:#fff;color:#111;border-radius:0}
 body.comic .invite-btn.on{background:#111;color:#fff}
 body.comic .qi-invite{border:2px solid #111;background:#fff;color:#111}
-body.comic .msgmenu{background:#fff;border:3px solid #111;box-shadow:3px 3px 0 #111}
+body.comic .msgmenu{background:#fff;border:2px solid #111}
 body.comic .msgmenu .mi{color:#111;border-bottom:2px solid #111}
 body.comic .msgmenu .mi:last-child{border-bottom:none}
 body.comic .quote-bar{background:#eee;border:2px solid #111;color:#111}
 body.comic .msgnote .quote{background:#eee;border-left:3px solid #111;color:#111}
-body.comic .collection-item{background:#fff;border:3px solid #111;color:#111;border-radius:4px;box-shadow:3px 3px 0 #111}
+body.comic .collection-item{background:#fff;border:2px solid #111;color:#111;border-radius:0}
 
-/* ===== 主题 3 少女手帐 ===== */
-body.girl{background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px),linear-gradient(160deg,#fff7fa,#fce9f1);background-size:18px 18px,100% 100%;color:#7a4a5c}
-body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;box-shadow:0 2px 6px rgba(220,140,170,.25)}
+body.girl{background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px);background-size:18px 18px;color:#7a4a5c}
+body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce}
 body.girl .names span{color:#c05a80}
 body.girl .page{background:#fdf2f6}
 body.girl .page-head{background:rgba(255,233,241,.95);border-bottom:1px solid #f3b8ce}
 body.girl .page-head h2,body.girl .page-head .back{color:#c05a80}
 body.girl #drawer{background:linear-gradient(160deg,#ffe9f1,#ffd6e6);border-right:1px solid #f3b8ce}
 body.girl .drawer-item{color:#7a4a5c}
-body.girl .tool{color:#c05a80;border:1px solid #f3b8ce;background:#fff5f8;border-radius:10px;box-shadow:0 2px 4px rgba(220,140,170,.15)}
-body.girl .card-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px;box-shadow:0 2px 6px rgba(220,140,170,.15)}
+body.girl .tool{color:#c05a80;border:1px solid #f3b8ce;background:#fff5f8;border-radius:10px}
+body.girl .card-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px}
 body.girl .empty-tip{color:#c08aa0}
 body.girl #selectAllRow{color:#c05a80;border-bottom:1px dashed #f3b8ce}
 body.girl #multiBar{background:rgba(255,233,241,.98);border-top:1px solid #f3b8ce}
@@ -384,13 +380,13 @@ body.girl .style-opt{border:2px solid #f3c8d8;background:#fff;color:#7a4a5c;bord
 body.girl .style-opt.on{border:2px solid #f38bb0;background:#ffe9f1}
 body.girl .btn-danger{border:2px solid #f38bb0;background:#ffe9f1;color:#c05a80;border-radius:12px}
 body.girl #composer{background:linear-gradient(transparent,rgba(253,242,246,.95))}
-body.girl .input-note{background:#fff;border:2px solid #ffd6e6;border-radius:14px;box-shadow:0 2px 6px rgba(220,140,170,.15)}
+body.girl .input-note{background:#fff;border:2px solid #ffd6e6;border-radius:14px}
 body.girl #msgInput{color:#7a4a5c}
 body.girl #msgInput::placeholder{color:#d8a8bc}
-body.girl #sendStamp{border:2px solid #f3a8c2;background:radial-gradient(circle at 35% 30%,#fff0f5,#ffd6e6);color:#d86a92;border-radius:50%;transform:none;box-shadow:0 2px 6px rgba(220,140,170,.25)}
-body.girl .msgnote.me{background:#fff;border:2px solid #ffd6e6;color:#a04a6a;border-radius:16px;box-shadow:0 2px 6px rgba(220,140,170,.15)}
+body.girl #sendStamp{border:2px solid #f3a8c2;background:radial-gradient(circle at 35% 30%,#fff0f5,#ffd6e6);color:#d86a92;border-radius:50%;transform:none}
+body.girl .msgnote.me{background:#fff;border:2px solid #ffd6e6;color:#a04a6a;border-radius:16px}
 body.girl .msgnote.me::after{content:"♥";position:absolute;top:-10px;left:-6px;color:#f38bb0;font-size:16px}
-body.girl .msgnote.her{background:#f6f0ff;border:2px solid #ddd0f5;color:#6a5a8a;border-radius:16px;background-image:none;box-shadow:0 2px 6px rgba(180,150,220,.15)}
+body.girl .msgnote.her{background:#f6f0ff;border:2px solid #ddd0f5;color:#6a5a8a;border-radius:16px;background-image:none}
 body.girl .msgnote.her::after{content:"♥";position:absolute;top:-10px;right:-6px;color:#c0a8e8;font-size:16px}
 body.girl .stamp{border:1px solid #f3b8ce;color:#c05a80;background:#fff;border-radius:10px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.girl .waiting{background:#fff0f5;border:2px dashed #f3b8ce;color:#c05a80;border-radius:14px}
@@ -402,7 +398,7 @@ body.girl #quickDrawer{background:#ffe9f1;border-top:1px solid #f3b8ce}
 body.girl .qb{color:#c05a80}
 body.girl .qb:active{background:rgba(243,184,206,.3)}
 body.girl .drawer-handle,body.girl .hold-handle{background:#f3b8ce}
-body.girl .box{background:#ffe9f1;border:1px solid #f3b8ce;box-shadow:inset 0 -3px 0 rgba(220,140,170,.15)}
+body.girl .box{background:#ffe9f1;border:1px solid #f3b8ce}
 body.girl .drawer-cell{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:14px}
 body.girl .drawer-cell.on{border:2px solid #f38bb0}
 body.girl .bg-thumb{border:2px solid #f3c8d8}
@@ -412,7 +408,7 @@ body.girl .qi-item{border:2px solid #f3c8d8;background:#fff;color:#c05a80}
 body.girl .msgnote.interact.touch{background:#fff0f5;border:2px solid #f38bb0;color:#a04a6a}
 body.girl .msgnote.interact.back{background:#f6f0ff;border:2px dashed #c0a8e8;color:#6a5a8a}
 body.girl .msgnote.interact.pair{background:#ffe9f1;border:4px double #f38bb0;color:#c05a80}
-body.girl #miniPlayer{background:#fff;border:2px solid #f38bb0;color:#7a4a5c;box-shadow:0 6px 20px rgba(220,140,170,.35)}
+body.girl #miniPlayer{background:#fff;border:2px solid #f38bb0;color:#7a4a5c}
 body.girl .mp-btn{color:#c05a80}
 body.girl .mp-bar{background:#ffe9f1}
 body.girl .mp-fill{background:#f38bb0}
@@ -425,11 +421,10 @@ body.girl .msgmenu .mi{color:#7a4a5c;border-bottom:1px solid #ffe0ea}
 body.girl .msgmenu .mi:last-child{border-bottom:none}
 body.girl .quote-bar{background:#fff0f5;border:2px solid #ffd6e6;color:#c05a80;border-radius:10px}
 body.girl .msgnote .quote{background:#fff0f5;border-left:3px solid #f38bb0;color:#a04a6a}
-body.girl .collection-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px;box-shadow:0 2px 6px rgba(220,140,170,.15)}
+body.girl .collection-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px}
 
-/* ===== 主题 4 报纸 ===== */
 body.news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.06) 1px, transparent 1px);background-size:100% 26px,26px 100%;color:#2a2a26}
-body.news .topbar{background:#ece6d4;border-bottom:4px double #2a2a26;box-shadow:none}
+body.news .topbar{background:#ece6d4;border-bottom:4px double #2a2a26}
 body.news .names span{color:#2a2a26;font-weight:700;letter-spacing:1px}
 body.news .page{background:#e8e2d0}
 body.news .page-head{background:#ece6d4;border-bottom:4px double #2a2a26}
@@ -437,7 +432,7 @@ body.news .page-head h2,body.news .page-head .back{color:#2a2a26;font-family:"Fa
 body.news #drawer{background:#ece6d4;border-right:4px double #2a2a26}
 body.news .drawer-item{color:#2a2a26;font-family:"FangSong",serif}
 body.news .tool{color:#2a2a26;border:1px solid #6a6350;background:#f2ecda;border-radius:0;font-family:"FangSong",serif}
-body.news .card-item{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;font-family:"FangSong",serif;padding-top:20px;padding-bottom:20px}
+body.news .card-item{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;font-family:"FangSong",serif}
 body.news .card-item::before{content:"❚";position:absolute;left:8px;top:8px;color:#6a6350;font-size:9px}
 body.news .empty-tip{color:#6a6350;font-family:"FangSong",serif}
 body.news #selectAllRow{color:#2a2a26;border-bottom:1px dashed #6a6350}
@@ -456,7 +451,7 @@ body.news .style-opt{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;b
 body.news .style-opt.on{border:2px solid #2a2a26;background:#ddd6c0}
 body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0}
 body.news #composer{background:#e8e2d0;border-top:4px double #2a2a26}
-body.news .input-note{background:#f4eeda;border:1px solid #6a6350;border-radius:0;box-shadow:none}
+body.news .input-note{background:#f4eeda;border:1px solid #6a6350;border-radius:0}
 body.news #msgInput{color:#2a2a26;font-family:"FangSong",serif}
 body.news #msgInput::placeholder{color:#8a8270}
 body.news #sendStamp{border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0;font-family:"FangSong",serif;transform:none}
@@ -474,7 +469,7 @@ body.news #quickDrawer{background:#ece6d4;border-top:4px double #2a2a26}
 body.news .qb{color:#2a2a26;font-family:"FangSong",serif}
 body.news .qb:active{background:#ddd6c0}
 body.news .drawer-handle,body.news .hold-handle{background:#6a6350}
-body.news .box{background:#ece6d4;border:1px solid #6a6350;box-shadow:none}
+body.news .box{background:#ece6d4;border:1px solid #6a6350}
 body.news .drawer-cell{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
 body.news .drawer-cell.on{border:2px solid #2a2a26}
 body.news .bg-thumb{border:1px solid #6a6350;border-radius:0}
@@ -484,7 +479,7 @@ body.news .qi-item{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;fon
 body.news .msgnote.interact.touch{background:#f4eeda;border:2px solid #2a2a26;color:#2a2a26;border-radius:0}
 body.news .msgnote.interact.back{background:#f4eeda;border:2px dashed #6a6350;color:#2a2a26;border-radius:0}
 body.news .msgnote.interact.pair{background:#ddd6c0;border:4px double #2a2a26;color:#2a2a26;border-radius:0}
-body.news #miniPlayer{background:#ece6d4;border:2px solid #6a6350;color:#2a2a26;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+body.news #miniPlayer{background:#ece6d4;border:2px solid #6a6350;color:#2a2a26}
 body.news .mp-btn{color:#2a2a26}
 body.news .mp-bar{background:#ddd6c0}
 body.news .mp-fill{background:#2a2a26}
@@ -499,9 +494,8 @@ body.news .quote-bar{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;b
 body.news .msgnote .quote{background:#ddd6c0;border-left:3px solid #2a2a26;color:#2a2a26;border-radius:0}
 body.news .collection-item{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;font-family:"FangSong",serif}
 
-/* ===== 主题 5 樱花夜 ===== */
 body.sakura{background-color:#241826;background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),radial-gradient(circle at 88% 85%, rgba(255,190,215,.13) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);background-size:120px 120px,150px 150px,130px 130px,170px 170px,100% 100%;color:#f2dbe6}
-body.sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+body.sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350}
 body.sakura .names span{color:#ffc0d8}
 body.sakura .page{background:linear-gradient(160deg,#2b1c2e,#1c1420)}
 body.sakura .page-head{background:rgba(51,34,58,.95);border-bottom:1px solid #4a3350}
@@ -532,10 +526,10 @@ body.sakura .input-note{background:rgba(255,220,235,.08);border:1px solid #5a3f6
 body.sakura #msgInput{color:#f2dbe6}
 body.sakura #msgInput::placeholder{color:#8a6a86}
 body.sakura #sendStamp{border:1px solid #ff9ec4;background:radial-gradient(circle at 35% 30%,#5a3f62,#33223a);color:#ffc0d8;border-radius:50%;transform:none}
-body.sakura .msgnote.me{background:rgba(255,210,230,.12);border:1px solid #6a4a72;color:#ffe6f0;border-radius:4px;box-shadow:0 2px 8px rgba(255,158,196,.12)}
-body.sakura .msgnote.me::after{content:"✿";position:absolute;top:-12px;left:-4px;color:#ff9ec4;font-size:14px;text-shadow:0 0 4px rgba(255,158,196,.6)}
-body.sakura .msgnote.her{background:rgba(255,240,250,.09);border:1px solid #5a3f62;color:#f2dbe6;background-image:none;border-radius:4px;box-shadow:0 2px 8px rgba(255,158,196,.1)}
-body.sakura .msgnote.her::after{content:"✿";position:absolute;top:-12px;right:-4px;color:#c0a8e8;font-size:14px;text-shadow:0 0 4px rgba(192,168,232,.6)}
+body.sakura .msgnote.me{background:rgba(255,210,230,.12);border:1px solid #6a4a72;color:#ffe6f0;border-radius:4px}
+body.sakura .msgnote.me::after{content:"✿";position:absolute;top:-12px;left:-4px;color:#ff9ec4;font-size:14px}
+body.sakura .msgnote.her{background:rgba(255,240,250,.09);border:1px solid #5a3f62;color:#f2dbe6;background-image:none;border-radius:4px}
+body.sakura .msgnote.her::after{content:"✿";position:absolute;top:-12px;right:-4px;color:#c0a8e8;font-size:14px}
 body.sakura .stamp{border:1px solid #7a5a82;color:#e0a8c0;background:rgba(255,190,215,.08);border-radius:8px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.sakura .waiting{background:rgba(255,190,215,.07);border:1px dashed #6a4a72;color:#e0a8c0;border-radius:8px}
 body.sakura .sys{background:rgba(255,190,215,.08);border:1px dashed #6a4a72;color:#e0a8c0}
@@ -546,7 +540,7 @@ body.sakura #quickDrawer{background:#33223a;border-top:1px solid #4a3350}
 body.sakura .qb{color:#ffc0d8}
 body.sakura .qb:active{background:rgba(255,158,196,.12)}
 body.sakura .drawer-handle,body.sakura .hold-handle{background:#5a3f62}
-body.sakura .box{background:#33223a;border:1px solid #5a3f62;box-shadow:inset 0 -3px 0 rgba(0,0,0,.3)}
+body.sakura .box{background:#33223a;border:1px solid #5a3f62}
 body.sakura .drawer-cell{background:rgba(255,220,235,.09);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
 body.sakura .drawer-cell.on{border:2px solid #ff9ec4}
 body.sakura .bg-thumb{border:1px solid #5a3f62}
@@ -556,7 +550,7 @@ body.sakura .qi-item{border:1px solid #5a3f62;background:rgba(255,190,215,.1);co
 body.sakura .msgnote.interact.touch{background:rgba(255,158,196,.22);border:2px solid #ff9ec4;color:#ffe6f0}
 body.sakura .msgnote.interact.back{background:rgba(200,180,255,.16);border:2px dashed #a88ad8;color:#f2dbe6}
 body.sakura .msgnote.interact.pair{background:rgba(255,158,196,.3);border:4px double #ff9ec4;color:#ffc0d8}
-body.sakura #miniPlayer{background:linear-gradient(#33223a,#241826);border:1px solid #ff9ec4;color:#ffc0d8;box-shadow:0 6px 24px rgba(0,0,0,.6)}
+body.sakura #miniPlayer{background:linear-gradient(#33223a,#241826);border:1px solid #ff9ec4;color:#ffc0d8}
 body.sakura .mp-btn{color:#ffc0d8}
 body.sakura .mp-bar{background:rgba(255,158,196,.2)}
 body.sakura .mp-fill{background:#ff9ec4}
@@ -571,17 +565,16 @@ body.sakura .quote-bar{background:rgba(255,190,215,.12);border:1px solid #5a3f62
 body.sakura .msgnote .quote{background:rgba(255,158,196,.18);border-left:3px solid #ff9ec4;color:#ffc0d8}
 body.sakura .collection-item{background:rgba(255,220,235,.08);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
 
-/* ===== 主题 6 玻璃花房 ===== */
 body.glass{background-color:#f4f7f8;background-image:linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#ffffff,#e6eff2);background-size:44px 44px,44px 44px,100% 100%,100% 100%;color:#3a4a52}
-body.glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2;box-shadow:0 2px 8px rgba(140,170,180,.2)}
+body.glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2}
 body.glass .names span{color:#5a7a88}
 body.glass .page{background:linear-gradient(160deg,#ffffff,#e6eff2)}
 body.glass .page-head{background:rgba(255,255,255,.95);border-bottom:1px solid #cfdde2}
 body.glass .page-head h2,body.glass .page-head .back{color:#5a7a88}
 body.glass #drawer{background:linear-gradient(160deg,#ffffff,#e6eff2);border-right:1px solid #cfdde2}
 body.glass .drawer-item{color:#3a4a52}
-body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.85);border-radius:8px;backdrop-filter:blur(4px)}
-body.glass .card-item{background:rgba(255,255,255,.85);border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px;backdrop-filter:blur(4px)}
+body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.85);border-radius:8px}
+body.glass .card-item{background:rgba(255,255,255,.85);border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px}
 body.glass .empty-tip{color:#8aaab4}
 body.glass #selectAllRow{color:#5a7a88;border-bottom:1px dashed #cfdde2}
 body.glass #multiBar{background:rgba(255,255,255,.98);border-top:1px solid #cfdde2}
@@ -592,7 +585,7 @@ body.glass .sheet-cancel{border-top:1px solid #cfdde2;color:#5a7a88}
 body.glass #addArea{background:#fff;border:1px solid #cfdde2;color:#3a4a52;background-image:none;border-radius:10px}
 body.glass #addArea::placeholder{color:#9ab4bc}
 body.glass .save-btn{border:1px solid #8ab4c4;background:linear-gradient(#ffffff,#dcecf2);color:#5a7a88;border-radius:10px}
-body.glass .set-group{background:#fff;border:1px solid #dbe6ea;border-radius:8px;box-shadow:0 2px 8px rgba(150,180,190,.12)}
+body.glass .set-group{background:#fff;border:1px solid #dbe6ea;border-radius:8px}
 body.glass .set-group h3{color:#5a7a88}
 body.glass .field-row span,body.glass .set-row span{color:#5a7a88}
 body.glass .field-row input,body.glass .set-row input{border:1px solid #cfdde2;background:#f7fbfc;color:#3a4a52}
@@ -600,12 +593,12 @@ body.glass .style-opt{border:1px solid #cfdde2;background:#fbfdfe;color:#3a4a52}
 body.glass .style-opt.on{border:2px solid #8ab4c4;background:#eaf4f8}
 body.glass .btn-danger{border:1px solid #c47a8a;background:#fdedf0;color:#a54a5a}
 body.glass #composer{background:linear-gradient(transparent,rgba(244,247,248,.95))}
-body.glass .input-note{background:#fff;border:1px solid #cfdde2;border-radius:10px;backdrop-filter:blur(4px)}
+body.glass .input-note{background:#fff;border:1px solid #cfdde2;border-radius:10px}
 body.glass #msgInput{color:#3a4a52}
 body.glass #msgInput::placeholder{color:#9ab4bc}
 body.glass #sendStamp{border:1px solid #8ab4c4;background:radial-gradient(circle at 35% 30%,#ffffff,#dcecf2);color:#5a7a88;border-radius:50%;transform:none}
-body.glass .msgnote.me{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);color:#3a4a52;border-radius:12px;backdrop-filter:blur(6px);box-shadow:0 4px 12px rgba(140,170,180,.2),inset 0 1px 0 rgba(255,255,255,.8)}
-body.glass .msgnote.her{background:rgba(240,248,250,.72);border:1px solid rgba(255,255,255,.9);color:#3a4a52;background-image:none;border-radius:12px;backdrop-filter:blur(6px);box-shadow:0 4px 12px rgba(140,170,180,.18),inset 0 1px 0 rgba(255,255,255,.8)}
+body.glass .msgnote.me{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);color:#3a4a52;border-radius:12px}
+body.glass .msgnote.her{background:rgba(240,248,250,.72);border:1px solid rgba(255,255,255,.9);color:#3a4a52;background-image:none;border-radius:12px}
 body.glass .msgnote.me::after,body.glass .msgnote.her::after{content:"";position:absolute;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),transparent 70%);top:-6px;left:8px;pointer-events:none}
 body.glass .stamp{border:1px solid #cfdde2;color:#8aaab4;background:rgba(255,255,255,.7);border-radius:8px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.glass .waiting{background:#eef6f9;border:1px dashed #cfdde2;color:#8aaab4;border-radius:8px}
@@ -617,17 +610,17 @@ body.glass #quickDrawer{background:#fff;border-top:1px solid #cfdde2}
 body.glass .qb{color:#5a7a88}
 body.glass .qb:active{background:#eaf4f8}
 body.glass .drawer-handle,body.glass .hold-handle{background:#cfdde2}
-body.glass .box{background:#fff;border:1px solid #dbe6ea;box-shadow:inset 0 -3px 0 rgba(150,180,190,.12)}
+body.glass .box{background:#fff;border:1px solid #dbe6ea}
 body.glass .drawer-cell{background:#f7fbfc;border:1px solid #dbe6ea;color:#5a7a88;border-radius:8px}
 body.glass .drawer-cell.on{border:2px solid #8ab4c4}
 body.glass .bg-thumb{border:1px solid #cfdde2}
 body.glass .stk-cell.sel{outline:2px solid #8ab4c4}
 body.glass .it-tab.on{border:2px solid #8ab4c4;background:#eaf4f8}
 body.glass .qi-item{border:1px solid #cfdde2;background:#f7fbfc;color:#5a7a88}
-body.glass .msgnote.interact.touch{background:rgba(234,244,248,.85);border:2px solid #8ab4c4;color:#3a4a52;backdrop-filter:blur(4px)}
-body.glass .msgnote.interact.back{background:rgba(240,247,250,.85);border:2px dashed #a8ccd8;color:#3a4a52;backdrop-filter:blur(4px)}
-body.glass .msgnote.interact.pair{background:rgba(220,236,242,.9);border:4px double #8ab4c4;color:#3a4a52;backdrop-filter:blur(4px)}
-body.glass #miniPlayer{background:linear-gradient(#ffffff,#dcecf2);border:1px solid #8ab4c4;color:#3a4a52;box-shadow:0 6px 20px rgba(140,170,180,.35)}
+body.glass .msgnote.interact.touch{background:rgba(234,244,248,.85);border:2px solid #8ab4c4;color:#3a4a52}
+body.glass .msgnote.interact.back{background:rgba(240,247,250,.85);border:2px dashed #a8ccd8;color:#3a4a52}
+body.glass .msgnote.interact.pair{background:rgba(220,236,242,.9);border:4px double #8ab4c4;color:#3a4a52}
+body.glass #miniPlayer{background:linear-gradient(#ffffff,#dcecf2);border:1px solid #8ab4c4;color:#3a4a52}
 body.glass .mp-btn{color:#5a7a88}
 body.glass .mp-bar{background:#eaf4f8}
 body.glass .mp-fill{background:#8ab4c4}
@@ -641,10 +634,9 @@ body.glass .msgmenu .mi:last-child{border-bottom:none}
 body.glass .quote-bar{background:#eaf4f8;border:1px solid #cfdde2;color:#5a7a88}
 body.glass .msgnote .quote{background:#eaf4f8;border-left:3px solid #8ab4c4;color:#3a4a52}
 body.glass .collection-item{background:rgba(255,255,255,.85);border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px}
-  
-/* ===== 主题 7 电影票根 ===== */
+
 body.ticket{background-color:#1a1f26;background-image:radial-gradient(circle at 50% 0%, rgba(255,220,150,.12) 0, rgba(255,220,150,0) 55%),linear-gradient(160deg,#232a33,#141a20);color:#e8e2d2}
-body.ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+body.ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f}
 body.ticket .names span{color:#e8c88a}
 body.ticket .page{background:linear-gradient(160deg,#232a33,#141a20)}
 body.ticket .page-head{background:rgba(42,50,60,.95);border-bottom:1px solid #3a434f}
@@ -675,9 +667,9 @@ body.ticket .input-note{background:#f5efdc;border:1px solid #d8cca8;border-radiu
 body.ticket #msgInput{color:#3a3428}
 body.ticket #msgInput::placeholder{color:#a89e80}
 body.ticket #sendStamp{border:2px solid #c9b878;background:radial-gradient(circle at 35% 30%,#f7efd0,#e6d9a8);color:#5a4a20;border-radius:4px;transform:none}
-body.ticket .msgnote.me{background:#f5efdc;border:1px dashed #d8cca8;color:#3a3428;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+body.ticket .msgnote.me{background:#f5efdc;border:1px dashed #d8cca8;color:#3a3428;border-radius:4px}
 body.ticket .msgnote.me::before{content:"";position:absolute;left:-1px;top:0;bottom:0;width:8px;background-image:radial-gradient(circle,#1a1f26 3px,transparent 3px);background-size:8px 14px;background-position:left center;background-repeat:repeat-y}
-body.ticket .msgnote.her{background:#ece4cc;border:1px dashed #d0c4a0;color:#3a3428;border-radius:4px;background-image:none;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+body.ticket .msgnote.her{background:#ece4cc;border:1px dashed #d0c4a0;color:#3a3428;border-radius:4px;background-image:none}
 body.ticket .msgnote.her::before{content:"";position:absolute;right:-1px;top:0;bottom:0;width:8px;background-image:radial-gradient(circle,#1a1f26 3px,transparent 3px);background-size:8px 14px;background-position:right center;background-repeat:repeat-y}
 body.ticket .stamp{border:1px solid #c0b490;color:#8a7a50;background:#faf5e6;border-radius:4px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.ticket .waiting{background:rgba(245,239,220,.12);border:1px dashed #4a5460;color:#c8c0a8;border-radius:4px}
@@ -689,7 +681,7 @@ body.ticket #quickDrawer{background:#2a323c;border-top:1px solid #3a434f}
 body.ticket .qb{color:#e8c88a}
 body.ticket .qb:active{background:rgba(232,200,138,.12)}
 body.ticket .drawer-handle,body.ticket .hold-handle{background:#4a5460}
-body.ticket .box{background:#2a323c;border:1px solid #3a434f;box-shadow:inset 0 -3px 0 rgba(0,0,0,.3)}
+body.ticket .box{background:#2a323c;border:1px solid #3a434f}
 body.ticket .drawer-cell{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px}
 body.ticket .drawer-cell.on{border:2px solid #e8c88a}
 body.ticket .bg-thumb{border:1px solid #4a5460}
@@ -699,7 +691,7 @@ body.ticket .qi-item{border:1px solid #3a434f;background:rgba(255,255,255,.06);c
 body.ticket .msgnote.interact.touch{background:#f5efdc;border:2px solid #c9b878;color:#3a3428}
 body.ticket .msgnote.interact.back{background:#ece4cc;border:2px dashed #c0b490;color:#3a3428}
 body.ticket .msgnote.interact.pair{background:#e6d9a8;border:4px double #c9b878;color:#3a3428}
-body.ticket #miniPlayer{background:linear-gradient(#f7efd0,#e6d9a8);border:1px solid #c9b878;color:#3a3428;box-shadow:0 6px 20px rgba(0,0,0,.6)}
+body.ticket #miniPlayer{background:linear-gradient(#f7efd0,#e6d9a8);border:1px solid #c9b878;color:#3a3428}
 body.ticket .mp-btn{color:#5a4a20}
 body.ticket .mp-bar{background:rgba(120,100,50,.25)}
 body.ticket .mp-fill{background:#c9b878}
@@ -714,9 +706,8 @@ body.ticket .quote-bar{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428
 body.ticket .msgnote .quote{background:#e6d9a8;border-left:3px solid #c9b878;color:#5a4a20}
 body.ticket .collection-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px;border-left:6px dashed #1a1f26}
 
-/* ===== 主题 8 梦里见过 ===== */
 body.dream{background-color:#ece4ee;background-image:radial-gradient(circle at 25% 20%, rgba(220,200,240,.6) 0, rgba(220,200,240,0) 50%),radial-gradient(circle at 80% 70%, rgba(230,210,235,.5) 0, rgba(230,210,235,0) 50%),linear-gradient(160deg,#f0e9f2,#ddd3e2);color:#5f5470}
-body.dream .topbar{background:linear-gradient(#f2ecf4,#e3d9e8);border-bottom:1px solid #cdc0d6;box-shadow:0 2px 10px rgba(160,140,180,.18)}
+body.dream .topbar{background:linear-gradient(#f2ecf4,#e3d9e8);border-bottom:1px solid #cdc0d6}
 body.dream .names span{color:#7a6a92}
 body.dream .page{background:linear-gradient(160deg,#f0e9f2,#ddd3e2)}
 body.dream .page-head{background:rgba(242,236,244,.95);border-bottom:1px solid #cdc0d6}
@@ -743,12 +734,12 @@ body.dream .style-opt{border:1px solid #cdc0d6;background:rgba(255,255,255,.6);c
 body.dream .style-opt.on{border:2px solid #b8a0cc;background:#f0e6f6}
 body.dream .btn-danger{border:1px solid #b08ab0;background:#f6ecf2;color:#8a4a7a;border-radius:12px}
 body.dream #composer{background:linear-gradient(transparent,rgba(236,228,238,.92))}
-body.dream .input-note{background:rgba(255,255,255,.8);border:1px solid #d6cae0;border-radius:12px;backdrop-filter:blur(4px)}
+body.dream .input-note{background:rgba(255,255,255,.8);border:1px solid #d6cae0;border-radius:12px}
 body.dream #msgInput{color:#5f5470}
 body.dream #msgInput::placeholder{color:#b0a0c0}
 body.dream #sendStamp{border:1px solid #b8a0cc;background:radial-gradient(circle at 35% 30%,#fbf7fd,#e3d6ee);color:#7a6a92;border-radius:50%;transform:none}
-body.dream .msgnote.me{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:18px;backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(160,140,180,.22)}
-body.dream .msgnote.her{background:rgba(240,232,248,.8);border:1px solid #cdc0d6;color:#5f5470;border-radius:18px;background-image:none;backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(160,140,180,.18)}
+body.dream .msgnote.me{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:18px}
+body.dream .msgnote.her{background:rgba(240,232,248,.8);border:1px solid #cdc0d6;color:#5f5470;border-radius:18px;background-image:none}
 body.dream .msgnote.me::after,body.dream .msgnote.her::after{content:"";position:absolute;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.7),transparent 70%);top:-10px;pointer-events:none}
 body.dream .stamp{border:1px solid #cdc0d6;color:#a898b8;background:rgba(255,255,255,.6);border-radius:10px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.dream .waiting{background:rgba(255,255,255,.6);border:1px dashed #cdc0d6;color:#a898b8;border-radius:12px}
@@ -760,7 +751,7 @@ body.dream #quickDrawer{background:#f2ecf4;border-top:1px solid #cdc0d6}
 body.dream .qb{color:#7a6a92}
 body.dream .qb:active{background:rgba(184,160,204,.2)}
 body.dream .drawer-handle,body.dream .hold-handle{background:#cdc0d6}
-body.dream .box{background:rgba(255,255,255,.6);border:1px solid #cdc0d6;box-shadow:inset 0 -3px 0 rgba(160,140,180,.12)}
+body.dream .box{background:rgba(255,255,255,.6);border:1px solid #cdc0d6}
 body.dream .drawer-cell{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
 body.dream .drawer-cell.on{border:2px solid #b8a0cc}
 body.dream .bg-thumb{border:1px solid #cdc0d6}
@@ -770,7 +761,7 @@ body.dream .qi-item{border:1px solid #cdc0d6;background:rgba(255,255,255,.7);col
 body.dream .msgnote.interact.touch{background:rgba(255,255,255,.9);border:2px solid #b8a0cc;color:#5f5470}
 body.dream .msgnote.interact.back{background:rgba(240,232,248,.9);border:2px dashed #a8a0d8;color:#5f5470}
 body.dream .msgnote.interact.pair{background:#e3d6ee;border:4px double #b8a0cc;color:#5f5470}
-body.dream #miniPlayer{background:linear-gradient(#fbf7fd,#e3d6ee);border:1px solid #b8a0cc;color:#5f5470;box-shadow:0 6px 20px rgba(160,140,180,.35)}
+body.dream #miniPlayer{background:linear-gradient(#fbf7fd,#e3d6ee);border:1px solid #b8a0cc;color:#5f5470}
 body.dream .mp-btn{color:#7a6a92}
 body.dream .mp-bar{background:#f0e6f6}
 body.dream .mp-fill{background:#b8a0cc}
@@ -785,17 +776,16 @@ body.dream .quote-bar{background:rgba(255,255,255,.8);border:1px solid #d6cae0;c
 body.dream .msgnote .quote{background:#f0e6f6;border-left:3px solid #b8a0cc;color:#5f5470}
 body.dream .collection-item{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
 
-/* ===== 主题 9 咖啡馆手写 ===== */
 body.cafe{background-color:#f3e9d8;background-image:radial-gradient(circle at 25% 20%, rgba(160,120,80,.08) 0 2px, transparent 3px),radial-gradient(circle at 75% 65%, rgba(160,120,80,.06) 0 2px, transparent 3px),linear-gradient(160deg,#f7efe0,#e8d8bf);background-size:56px 56px,90px 90px,100% 100%;color:#5a4632}
-body.cafe .topbar{background:linear-gradient(#f7efe0,#ecdcc2);border-bottom:1px solid #c9b28c;box-shadow:0 2px 6px rgba(120,95,60,.15)}
+body.cafe .topbar{background:linear-gradient(#f7efe0,#ecdcc2);border-bottom:1px solid #c9b28c}
 body.cafe .names span{color:#7a5c3a}
 body.cafe .page{background:linear-gradient(160deg,#f7efe0,#e8d8bf)}
 body.cafe .page-head{background:rgba(247,239,224,.95);border-bottom:1px solid #c9b28c}
 body.cafe .page-head h2,body.cafe .page-head .back{color:#7a5c3a}
 body.cafe #drawer{background:linear-gradient(160deg,#f7efe0,#e8d8bf);border-right:1px solid #c9b28c}
 body.cafe .drawer-item{color:#5a4632}
-body.cafe .tool{color:#8a6a40;border:1px solid #c9b28c;background:linear-gradient(#fffaf0,#f3e6cc);border-radius:2px;box-shadow:0 1px 2px rgba(120,95,60,.12)}
-body.cafe .card-item{background:linear-gradient(#fbf5e8,#f5ecd8);border:1px solid #ddc9a4;color:#5a4632;border-radius:2px;box-shadow:0 2px 4px rgba(120,95,60,.14),inset 0 1px 0 rgba(255,255,255,.6)}
+body.cafe .tool{color:#8a6a40;border:1px solid #c9b28c;background:linear-gradient(#fffaf0,#f3e6cc);border-radius:2px}
+body.cafe .card-item{background:linear-gradient(#fbf5e8,#f5ecd8);border:1px solid #ddc9a4;color:#5a4632;border-radius:2px}
 body.cafe .empty-tip{color:#a89066}
 body.cafe #selectAllRow{color:#8a6a40;border-bottom:1px dashed #c9b28c}
 body.cafe #multiBar{background:rgba(247,239,224,.98);border-top:1px solid #c9b28c}
@@ -817,10 +807,10 @@ body.cafe .input-note{background:#fbf5e8;border:1px solid #ddc9a4;border-radius:
 body.cafe #msgInput{color:#5a4632;font-style:italic}
 body.cafe #msgInput::placeholder{color:#b89a74}
 body.cafe #sendStamp{border:2px solid #b8945c;background:radial-gradient(circle at 35% 30%,#f7e9cc,#e6d0a2);color:#7a5c3a;border-radius:50%;transform:none}
-body.cafe .msgnote.me{background:#fdf6e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:2px;border-left:3px solid #b8945c;box-shadow:0 3px 8px rgba(120,95,60,.18);transform:rotate(-.5deg)}
+body.cafe .msgnote.me{background:#fdf6e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:2px;border-left:3px solid #b8945c;transform:rotate(-.5deg)}
 body.cafe .msgnote.me::after{content:"";position:absolute;right:-4px;bottom:6px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #c69a5e, #8a6334);opacity:.35}
-body.cafe .msgnote.me::before{content:"";position:absolute;top:-6px;left:16px;width:34px;height:12px;background:rgba(200,175,130,.5);transform:rotate(-6deg);box-shadow:0 1px 2px rgba(0,0,0,.1)}
-body.cafe .msgnote.her{background:#fbf5e8;border:1px solid #d8c8a8;color:#5a4632;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 26px,rgba(150,120,85,.16) 26px 27px);border-right:3px solid #a89066;box-shadow:0 3px 8px rgba(120,95,60,.18);transform:rotate(.5deg)}
+body.cafe .msgnote.me::before{content:"";position:absolute;top:-6px;left:16px;width:34px;height:12px;background:rgba(200,175,130,.5);transform:rotate(-6deg)}
+body.cafe .msgnote.her{background:#fbf5e8;border:1px solid #d8c8a8;color:#5a4632;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 26px,rgba(150,120,85,.16) 26px 27px);border-right:3px solid #a89066;transform:rotate(.5deg)}
 body.cafe .stamp{border:1px solid #c9b28c;color:#a89066;background:#fffaf0;border-radius:2px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.cafe .waiting{background:#f7efe0;border:1px dashed #c9b28c;color:#a89066;border-radius:2px}
 body.cafe .sys{background:#fbf5e8;border:1px dashed #c9b28c;color:#a89066}
@@ -831,7 +821,7 @@ body.cafe #quickDrawer{background:#f7efe0;border-top:1px solid #c9b28c}
 body.cafe .qb{color:#7a5c3a}
 body.cafe .qb:active{background:rgba(184,148,92,.18)}
 body.cafe .drawer-handle,body.cafe .hold-handle{background:#c9b28c}
-body.cafe .box{background:#ecdcc2;border:1px solid #c9b28c;box-shadow:inset 0 -3px 0 rgba(150,120,70,.14)}
+body.cafe .box{background:#ecdcc2;border:1px solid #c9b28c}
 body.cafe .drawer-cell{background:#fbf5e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:4px}
 body.cafe .drawer-cell.on{border:2px solid #b8945c}
 body.cafe .bg-thumb{border:1px solid #c9b28c;border-radius:4px}
@@ -841,7 +831,7 @@ body.cafe .qi-item{border:1px solid #c9b28c;background:#fffaf0;color:#7a5c3a;bor
 body.cafe .msgnote.interact.touch{background:#fdf6e8;border:2px solid #b8945c;color:#5a4632;border-radius:2px}
 body.cafe .msgnote.interact.back{background:#fbf5e8;border:2px dashed #c9b28c;color:#5a4632;border-radius:2px}
 body.cafe .msgnote.interact.pair{background:#f7e9cc;border:4px double #b8945c;color:#5a4632;border-radius:2px}
-body.cafe #miniPlayer{background:linear-gradient(#f7e9cc,#e6d0a2);border:1px solid #b8945c;color:#5a4632;box-shadow:0 6px 20px rgba(120,95,60,.35)}
+body.cafe #miniPlayer{background:linear-gradient(#f7e9cc,#e6d0a2);border:1px solid #b8945c;color:#5a4632}
 body.cafe .mp-btn{color:#7a5c3a}
 body.cafe .mp-bar{background:rgba(120,95,60,.2)}
 body.cafe .mp-fill{background:#b8945c}
@@ -856,9 +846,8 @@ body.cafe .quote-bar{background:#fdf6e8;border:1px solid #ddc9a4;color:#7a5c3a;b
 body.cafe .msgnote .quote{background:#f0e2c8;border-left:3px solid #b8945c;color:#5a4632}
 body.cafe .collection-item{background:linear-gradient(#fbf5e8,#f5ecd8);border:1px solid #ddc9a4;color:#5a4632;border-radius:2px}
 
-/* ===== 主题 10 星空信纸 ===== */
 body.starry{background-color:#101530;background-image:radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 1px, transparent 2px),radial-gradient(circle at 42% 32%, rgba(255,240,200,.85) 0 1px, transparent 2px),radial-gradient(circle at 68% 12%, rgba(200,220,255,.8) 0 1px, transparent 2px),radial-gradient(circle at 82% 52%, rgba(255,255,255,.7) 0 1px, transparent 2px),radial-gradient(circle at 28% 72%, rgba(220,230,255,.75) 0 1px, transparent 2px),radial-gradient(circle at 58% 84%, rgba(255,245,220,.7) 0 1px, transparent 2px),radial-gradient(circle at 90% 80%, rgba(200,215,255,.65) 0 1px, transparent 2px),linear-gradient(160deg,#141a3a,#0a0e22);background-size:220px 220px,260px 260px,200px 200px,240px 240px,280px 280px,210px 210px,230px 230px,100% 100%;color:#dfe4ff}
-body.starry .topbar{background:linear-gradient(#1a2246,#141a38);border-bottom:1px solid #3a4478;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+body.starry .topbar{background:linear-gradient(#1a2246,#141a38);border-bottom:1px solid #3a4478}
 body.starry .names span{color:#c8d4ff}
 body.starry .page{background:linear-gradient(160deg,#141a3a,#0a0e22)}
 body.starry .page-head{background:rgba(26,34,70,.95);border-bottom:1px solid #3a4478}
@@ -889,9 +878,9 @@ body.starry .input-note{background:rgba(200,212,255,.08);border:1px solid #3a447
 body.starry #msgInput{color:#dfe4ff}
 body.starry #msgInput::placeholder{color:#6a76a8}
 body.starry #sendStamp{border:1px solid #7a86c8;background:radial-gradient(circle at 35% 30%,#3a4478,#1a2246);color:#c8d4ff;border-radius:50%;transform:none}
-body.starry .msgnote.me{background:rgba(120,140,230,.18);border:1px solid #4a5490;border-bottom:2px solid #8a96d8;color:#eaefff;border-radius:0;box-shadow:0 0 12px rgba(138,150,216,.25)}
-body.starry .msgnote.her{background:rgba(200,212,255,.09);border:1px solid #3a4478;border-bottom:2px solid #6a76a8;color:#dfe4ff;background-image:none;border-radius:0;box-shadow:0 0 12px rgba(138,150,216,.2)}
-body.starry .msgnote.me::after,body.starry .msgnote.her::after{content:"";position:absolute;top:-3px;right:-3px;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 4px #fff}
+body.starry .msgnote.me{background:rgba(120,140,230,.18);border:1px solid #4a5490;border-bottom:2px solid #8a96d8;color:#eaefff;border-radius:0}
+body.starry .msgnote.her{background:rgba(200,212,255,.09);border:1px solid #3a4478;border-bottom:2px solid #6a76a8;color:#dfe4ff;background-image:none;border-radius:0}
+body.starry .msgnote.me::after,body.starry .msgnote.her::after{content:"";position:absolute;top:-3px;right:-3px;width:3px;height:3px;border-radius:50%;background:#fff}
 body.starry .stamp{border:1px solid #4a5490;color:#9aa6d8;background:rgba(200,212,255,.08);border-radius:2px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.starry .waiting{background:rgba(200,212,255,.06);border:1px dashed #4a5490;color:#9aa6d8;border-radius:2px}
 body.starry .sys{background:rgba(200,212,255,.07);border:1px dashed #4a5490;color:#9aa6d8}
@@ -902,7 +891,7 @@ body.starry #quickDrawer{background:#1a2246;border-top:1px solid #3a4478}
 body.starry .qb{color:#c8d4ff}
 body.starry .qb:active{background:rgba(138,150,216,.14)}
 body.starry .drawer-handle,body.starry .hold-handle{background:#3a4478}
-body.starry .box{background:#1a2246;border:1px solid #3a4478;box-shadow:inset 0 -3px 0 rgba(0,0,0,.3)}
+body.starry .box{background:#1a2246;border:1px solid #3a4478}
 body.starry .drawer-cell{background:rgba(200,212,255,.09);border:1px solid #3a4478;color:#dfe4ff;border-radius:2px}
 body.starry .drawer-cell.on{border:2px solid #8a96d8}
 body.starry .bg-thumb{border:1px solid #3a4478}
@@ -912,7 +901,7 @@ body.starry .qi-item{border:1px solid #3a4478;background:rgba(200,212,255,.1);co
 body.starry .msgnote.interact.touch{background:rgba(120,140,230,.26);border:none;border-bottom:2px solid #8a96d8;color:#eaefff;border-radius:0}
 body.starry .msgnote.interact.back{background:rgba(200,212,255,.14);border:none;border-bottom:2px dashed #6a76a8;color:#dfe4ff;border-radius:0}
 body.starry .msgnote.interact.pair{background:rgba(138,150,216,.32);border:none;border-top:2px double #8a96d8;border-bottom:2px double #8a96d8;color:#eaefff;border-radius:0}
-body.starry #miniPlayer{background:linear-gradient(#1a2246,#0e1330);border:1px solid #8a96d8;color:#dfe4ff;box-shadow:0 6px 24px rgba(0,0,0,.6)}
+body.starry #miniPlayer{background:linear-gradient(#1a2246,#0e1330);border:1px solid #8a96d8;color:#dfe4ff}
 body.starry .mp-btn{color:#c8d4ff}
 body.starry .mp-bar{background:rgba(138,150,216,.2)}
 body.starry .mp-fill{background:#8a96d8}
@@ -927,9 +916,8 @@ body.starry .quote-bar{background:rgba(200,212,255,.12);border:1px solid #3a4478
 body.starry .msgnote .quote{background:rgba(138,150,216,.22);border-left:3px solid #8a96d8;color:#eaefff}
 body.starry .collection-item{background:rgba(200,212,255,.08);border:none;border-bottom:1px solid #8a96d8;color:#dfe4ff;border-radius:0}
 
-/* ===== 主题 11 雨天窗边 ===== */
 body.rain{background-color:#dfe7ec;background-image:linear-gradient(rgba(120,150,170,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(120,150,170,.08) 1px, transparent 1px),radial-gradient(circle at 30% 20%, rgba(255,255,255,.7) 0, rgba(255,255,255,0) 40%),linear-gradient(160deg,#e8eef2,#ccd8e0);background-size:100% 22px,34px 100%,100% 100%,100% 100%;color:#3a4a58}
-body.rain .topbar{background:linear-gradient(#e8eef2,#d8e2e8);border-bottom:1px solid #b0c0cc;box-shadow:0 2px 8px rgba(100,130,150,.2)}
+body.rain .topbar{background:linear-gradient(#e8eef2,#d8e2e8);border-bottom:1px solid #b0c0cc}
 body.rain .names span{color:#5a7a90}
 body.rain .page{background:linear-gradient(160deg,#e8eef2,#ccd8e0)}
 body.rain .page-head{background:rgba(232,238,242,.95);border-bottom:1px solid #b0c0cc}
@@ -937,7 +925,7 @@ body.rain .page-head h2,body.rain .page-head .back{color:#5a7a90}
 body.rain #drawer{background:linear-gradient(160deg,#e8eef2,#ccd8e0);border-right:1px solid #b0c0cc}
 body.rain .drawer-item{color:#3a4a58}
 body.rain .tool{color:#5a7a90;border:1px solid #b0c0cc;background:rgba(255,255,255,.75);border-radius:20px}
-body.rain .card-item{background:rgba(255,255,255,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px;box-shadow:0 2px 6px rgba(120,150,170,.12);backdrop-filter:blur(3px)}
+body.rain .card-item{background:rgba(255,255,255,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px}
 body.rain .empty-tip{color:#8aa4b4}
 body.rain #selectAllRow{color:#5a7a90;border-bottom:1px dashed #b0c0cc}
 body.rain #multiBar{background:rgba(232,238,242,.98);border-top:1px solid #b0c0cc}
@@ -948,7 +936,7 @@ body.rain .sheet-cancel{border-top:1px solid #b0c0cc;color:#5a7a90}
 body.rain #addArea{background:rgba(255,255,255,.85);border:1px solid #b0c0cc;color:#3a4a58;background-image:none;border-radius:20px}
 body.rain #addArea::placeholder{color:#9ab4c4}
 body.rain .save-btn{border:1px solid #8aa8bc;background:linear-gradient(#ffffff,#dce8ee);color:#5a7a90;border-radius:20px}
-body.rain .set-group{background:rgba(255,255,255,.82);border:1px solid #c0ced8;border-radius:20px;box-shadow:0 2px 8px rgba(120,150,170,.12)}
+body.rain .set-group{background:rgba(255,255,255,.82);border:1px solid #c0ced8;border-radius:20px}
 body.rain .set-group h3{color:#5a7a90}
 body.rain .field-row span,body.rain .set-row span{color:#5a7a90}
 body.rain .field-row input,body.rain .set-row input{border:1px solid #b0c0cc;background:#f7fafc;color:#3a4a58}
@@ -956,13 +944,13 @@ body.rain .style-opt{border:1px solid #b0c0cc;background:rgba(255,255,255,.7);co
 body.rain .style-opt.on{border:2px solid #8aa8bc;background:#e2eef4}
 body.rain .btn-danger{border:1px solid #a87a8a;background:#f7eef0;color:#8a4a5a;border-radius:20px}
 body.rain #composer{background:linear-gradient(transparent,rgba(223,231,236,.95))}
-body.rain .input-note{background:rgba(255,255,255,.85);border:1px solid #b0c0cc;border-radius:20px;backdrop-filter:blur(4px)}
+body.rain .input-note{background:rgba(255,255,255,.85);border:1px solid #b0c0cc;border-radius:20px}
 body.rain #msgInput{color:#3a4a58}
 body.rain #msgInput::placeholder{color:#9ab4c4}
 body.rain #sendStamp{border:1px solid #8aa8bc;background:radial-gradient(circle at 35% 30%,#ffffff,#dce8ee);color:#5a7a90;border-radius:50%;transform:none}
-body.rain .msgnote.me{background:rgba(255,255,255,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:22px;border-bottom-right-radius:4px;backdrop-filter:blur(5px);box-shadow:0 3px 10px rgba(120,150,170,.2)}
-body.rain .msgnote.her{background:rgba(245,250,252,.82);border:1px solid #c0ced8;color:#3a4a58;background-image:none;border-radius:22px;border-bottom-left-radius:4px;backdrop-filter:blur(5px);box-shadow:0 3px 10px rgba(120,150,170,.18)}
-body.rain .msgnote.me::after,body.rain .msgnote.her::after{content:"";position:absolute;top:-8px;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9),rgba(180,205,220,.5));box-shadow:0 0 3px rgba(120,150,170,.4)}
+body.rain .msgnote.me{background:rgba(255,255,255,.82);border:1px solid #c0ced8;color:#3a4a58;border-radius:22px;border-bottom-right-radius:4px}
+body.rain .msgnote.her{background:rgba(245,250,252,.82);border:1px solid #c0ced8;color:#3a4a58;background-image:none;border-radius:22px;border-bottom-left-radius:4px}
+body.rain .msgnote.me::after,body.rain .msgnote.her::after{content:"";position:absolute;top:-8px;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9),rgba(180,205,220,.5))}
 body.rain .msgnote.me::after{right:12px}
 body.rain .msgnote.her::after{left:12px}
 body.rain .stamp{border:1px solid #b0c0cc;color:#8aa4b4;background:rgba(255,255,255,.7);border-radius:12px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
@@ -975,7 +963,7 @@ body.rain #quickDrawer{background:#e8eef2;border-top:1px solid #b0c0cc}
 body.rain .qb{color:#5a7a90}
 body.rain .qb:active{background:rgba(138,168,188,.18)}
 body.rain .drawer-handle,body.rain .hold-handle{background:#b0c0cc}
-body.rain .box{background:#d8e2e8;border:1px solid #b0c0cc;box-shadow:inset 0 -3px 0 rgba(120,150,170,.14)}
+body.rain .box{background:#d8e2e8;border:1px solid #b0c0cc}
 body.rain .drawer-cell{background:rgba(255,255,255,.85);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px}
 body.rain .drawer-cell.on{border:2px solid #8aa8bc}
 body.rain .bg-thumb{border:1px solid #b0c0cc;border-radius:20px}
@@ -985,7 +973,7 @@ body.rain .qi-item{border:1px solid #b0c0cc;background:rgba(255,255,255,.85);col
 body.rain .msgnote.interact.touch{background:rgba(255,255,255,.95);border:2px solid #8aa8bc;color:#3a4a58;border-radius:22px;border-bottom-right-radius:4px}
 body.rain .msgnote.interact.back{background:rgba(245,250,252,.95);border:2px dashed #a8c0cc;color:#3a4a58;border-radius:22px;border-bottom-left-radius:4px}
 body.rain .msgnote.interact.pair{background:#dce8ee;border:4px double #8aa8bc;color:#3a4a58;border-radius:22px}
-body.rain #miniPlayer{background:linear-gradient(#ffffff,#dce8ee);border:1px solid #8aa8bc;color:#3a4a58;box-shadow:0 6px 20px rgba(120,150,170,.3);border-radius:22px}
+body.rain #miniPlayer{background:linear-gradient(#ffffff,#dce8ee);border:1px solid #8aa8bc;color:#3a4a58;border-radius:22px}
 body.rain .mp-btn{color:#5a7a90}
 body.rain .mp-bar{background:#e2eef4}
 body.rain .mp-fill{background:#8aa8bc}
@@ -1000,9 +988,8 @@ body.rain .quote-bar{background:rgba(255,255,255,.9);border:1px solid #b0c0cc;co
 body.rain .msgnote .quote{background:#dce8ee;border-left:3px solid #8aa8bc;color:#3a4a58}
 body.rain .collection-item{background:rgba(255,255,255,.85);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px}
 
-/* ===== 主题 12 和风宣纸 ===== */
 body.washi{background-color:#f0e8d4;background-image:linear-gradient(rgba(150,130,100,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(150,130,100,.05) 1px, transparent 1px),radial-gradient(circle at 80% 15%, rgba(178,58,42,.06) 0, rgba(178,58,42,0) 35%),linear-gradient(160deg,#f7f0dd,#e6dcc2);background-size:100% 30px,30px 100%,100% 100%,100% 100%;color:#4a3a2a}
-body.washi .topbar{background:linear-gradient(#f7f0dd,#ece2c8);border-bottom:2px solid #c9b48a;box-shadow:none}
+body.washi .topbar{background:linear-gradient(#f7f0dd,#ece2c8);border-bottom:2px solid #c9b48a}
 body.washi .names span{color:#8a5a4a}
 body.washi .page{background:linear-gradient(160deg,#f7f0dd,#e6dcc2)}
 body.washi .page-head{background:rgba(247,240,221,.95);border-bottom:2px solid #c9b48a}
@@ -1045,7 +1032,7 @@ body.washi #quickDrawer{background:#f7f0dd;border-top:2px solid #c9b48a}
 body.washi .qb{color:#8a5a4a}
 body.washi .qb:active{background:rgba(178,58,42,.12)}
 body.washi .drawer-handle,body.washi .hold-handle{background:#c9b48a}
-body.washi .box{background:#ece2c8;border:1px solid #c9b48a;box-shadow:inset 0 -3px 0 rgba(150,130,90,.15)}
+body.washi .box{background:#ece2c8;border:1px solid #c9b48a}
 body.washi .drawer-cell{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0}
 body.washi .drawer-cell.on{border:2px solid #b23a2a}
 body.washi .bg-thumb{border:1px solid #c9b48a;border-radius:0}
@@ -1055,7 +1042,7 @@ body.washi .qi-item{border:1px solid #c9b48a;background:#faf5e6;color:#8a5a4a;bo
 body.washi .msgnote.interact.touch{background:#faf5e6;border:2px solid #b23a2a;color:#4a3a2a;border-radius:0;border-left:4px solid #b23a2a}
 body.washi .msgnote.interact.back{background:#f5eed8;border:2px dashed #8a5a4a;color:#4a3a2a;border-radius:0;border-right:4px solid #8a5a4a}
 body.washi .msgnote.interact.pair{background:#f7eccd;border:4px double #b23a2a;color:#4a3a2a;border-radius:0}
-body.washi #miniPlayer{background:#f7eccd;border:2px solid #b23a2a;color:#4a3a2a;box-shadow:0 6px 20px rgba(120,95,60,.3);border-radius:0}
+body.washi #miniPlayer{background:#f7eccd;border:2px solid #b23a2a;color:#4a3a2a;border-radius:0}
 body.washi .mp-btn{color:#8a5a4a}
 body.washi .mp-bar{background:#ece2c8}
 body.washi .mp-fill{background:#b23a2a}
@@ -1070,9 +1057,8 @@ body.washi .quote-bar{background:#faf5e6;border:1px solid #d8c8a0;color:#8a5a4a;
 body.washi .msgnote .quote{background:#f0e2c8;border-left:3px solid #b23a2a;color:#4a3a2a}
 body.washi .collection-item{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0;border-left:4px solid #b23a2a}
 
-/* ===== 主题 13 磁带青春 ===== */
 body.tape{background-color:#2a2620;background-image:linear-gradient(rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(160deg,#332e26,#1e1a16);background-size:100% 20px,20px 100%,100% 100%;color:#f0e0c0}
-body.tape .topbar{background:linear-gradient(#3a342a,#2a2620);border-bottom:3px solid #d88a30;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+body.tape .topbar{background:linear-gradient(#3a342a,#2a2620);border-bottom:3px solid #d88a30}
 body.tape .names span{color:#f0b060}
 body.tape .page{background:linear-gradient(160deg,#332e26,#1e1a16)}
 body.tape .page-head{background:rgba(58,52,42,.95);border-bottom:3px solid #d88a30}
@@ -1116,7 +1102,7 @@ body.tape #quickDrawer{background:#3a342a;border-top:3px solid #d88a30}
 body.tape .qb{color:#f0b060}
 body.tape .qb:active{background:rgba(240,176,96,.14)}
 body.tape .drawer-handle,body.tape .hold-handle{background:#6a5a3a}
-body.tape .box{background:#3a342a;border:2px solid #6a5a3a;box-shadow:inset 0 -3px 0 rgba(0,0,0,.3)}
+body.tape .box{background:#3a342a;border:2px solid #6a5a3a}
 body.tape .drawer-cell{background:rgba(255,200,120,.1);border:2px solid #6a5a3a;color:#f0e0c0;border-radius:4px}
 body.tape .drawer-cell.on{border:2px solid #f0b060}
 body.tape .bg-thumb{border:2px solid #6a5a3a;border-radius:4px}
@@ -1126,7 +1112,7 @@ body.tape .qi-item{border:1px solid #6a5a3a;background:rgba(255,180,80,.1);color
 body.tape .msgnote.interact.touch{background:rgba(255,190,100,.24);border:2px solid #f0b060;color:#f7ecd0;border-radius:4px;border-left:6px solid #f0b060}
 body.tape .msgnote.interact.back{background:rgba(255,220,160,.14);border:2px dashed #c87a28;color:#f0e0c0;border-radius:4px;border-right:6px solid #c87a28}
 body.tape .msgnote.interact.pair{background:rgba(240,176,96,.3);border:4px double #f0b060;color:#f7ecd0;border-radius:4px}
-body.tape #miniPlayer{background:linear-gradient(#5a4a2a,#332e26);border:2px solid #d88a30;color:#f0e0c0;box-shadow:0 6px 24px rgba(0,0,0,.6);border-radius:6px}
+body.tape #miniPlayer{background:linear-gradient(#5a4a2a,#332e26);border:2px solid #d88a30;color:#f0e0c0;border-radius:6px}
 body.tape .mp-btn{color:#f0b060}
 body.tape .mp-bar{background:rgba(240,176,96,.2)}
 body.tape .mp-fill{background:#d88a30}
@@ -1141,9 +1127,8 @@ body.tape .quote-bar{background:rgba(255,190,100,.14);border:2px solid #6a5a3a;c
 body.tape .msgnote .quote{background:rgba(240,176,96,.24);border-left:3px solid #f0b060;color:#f7ecd0}
 body.tape .collection-item{background:rgba(255,200,120,.1);border:2px solid #6a5a3a;color:#f0e0c0;border-radius:4px;border-left:6px solid #d88a30}
 
-/* ===== 主题 14 薄荷清晨 ===== */
 body.mint{background-color:#f0f7f4;background-image:radial-gradient(circle at 22% 26%, rgba(120,200,170,.14) 0 2px, transparent 3px),radial-gradient(circle at 76% 62%, rgba(120,200,170,.1) 0 2px, transparent 3px),radial-gradient(circle at 50% 15%, rgba(255,255,255,.8) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#f7fcfa,#e0efe8);background-size:64px 64px,84px 84px,100% 100%,100% 100%;color:#2f4a42}
-body.mint .topbar{background:linear-gradient(#f7fcfa,#e6f2ec);border-bottom:1px solid #b8d8cc;box-shadow:0 2px 6px rgba(90,150,130,.15)}
+body.mint .topbar{background:linear-gradient(#f7fcfa,#e6f2ec);border-bottom:1px solid #b8d8cc}
 body.mint .names span{color:#4a8a74}
 body.mint .page{background:linear-gradient(160deg,#f7fcfa,#e0efe8)}
 body.mint .page-head{background:rgba(247,252,250,.95);border-bottom:1px solid #b8d8cc}
@@ -1151,7 +1136,7 @@ body.mint .page-head h2,body.mint .page-head .back{color:#4a8a74}
 body.mint #drawer{background:linear-gradient(160deg,#f7fcfa,#e0efe8);border-right:1px solid #b8d8cc}
 body.mint .drawer-item{color:#2f4a42}
 body.mint .tool{color:#4a8a74;border:1px solid #b8d8cc;background:rgba(255,255,255,.8);border-radius:6px}
-body.mint .card-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;box-shadow:0 2px 6px rgba(90,150,130,.1)}
+body.mint .card-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px}
 body.mint .empty-tip{color:#7aa896}
 body.mint #selectAllRow{color:#4a8a74;border-bottom:1px dashed #b8d8cc}
 body.mint #multiBar{background:rgba(247,252,250,.98);border-top:1px solid #b8d8cc}
@@ -1162,7 +1147,7 @@ body.mint .sheet-cancel{border-top:1px solid #b8d8cc;color:#4a8a74}
 body.mint #addArea{background:#fff;border:1px solid #b8d8cc;color:#2f4a42;background-image:none;border-radius:6px}
 body.mint #addArea::placeholder{color:#8ab8a6}
 body.mint .save-btn{border:1px solid #6ab898;background:linear-gradient(#ffffff,#d8f0e6);color:#4a8a74;border-radius:6px}
-body.mint .set-group{background:#fff;border:1px solid #cce4da;border-radius:6px;box-shadow:0 2px 8px rgba(90,150,130,.1)}
+body.mint .set-group{background:#fff;border:1px solid #cce4da;border-radius:6px}
 body.mint .set-group h3{color:#4a8a74}
 body.mint .field-row span,body.mint .set-row span{color:#4a8a74}
 body.mint .field-row input,body.mint .set-row input{border:1px solid #b8d8cc;background:#f4fbf8;color:#2f4a42}
@@ -1174,9 +1159,9 @@ body.mint .input-note{background:#fff;border:1px solid #b8d8cc;border-radius:6px
 body.mint #msgInput{color:#2f4a42}
 body.mint #msgInput::placeholder{color:#8ab8a6}
 body.mint #sendStamp{border:1px solid #6ab898;background:radial-gradient(circle at 35% 30%,#ffffff,#d8f0e6);color:#4a8a74;border-radius:50%;transform:none}
-body.mint .msgnote.me{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;border-left:3px solid #6ab898;box-shadow:0 2px 6px rgba(90,150,130,.12)}
+body.mint .msgnote.me{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;border-left:3px solid #6ab898}
 body.mint .msgnote.me::after{content:"❋";position:absolute;top:-10px;right:-2px;color:#6ab898;font-size:12px;opacity:.7}
-body.mint .msgnote.her{background:#f4fbf8;border:1px solid #cce4da;color:#2f4a42;background-image:none;border-radius:6px;border-right:3px solid #7ac8a8;box-shadow:0 2px 6px rgba(90,150,130,.1)}
+body.mint .msgnote.her{background:#f4fbf8;border:1px solid #cce4da;color:#2f4a42;background-image:none;border-radius:6px;border-right:3px solid #7ac8a8}
 body.mint .msgnote.her::after{content:"❋";position:absolute;top:-10px;left:-2px;color:#7ac8a8;font-size:12px;opacity:.7}
 body.mint .stamp{border:1px solid #b8d8cc;color:#7aa896;background:#fff;border-radius:4px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.mint .waiting{background:#eaf6f0;border:1px dashed #b8d8cc;color:#7aa896;border-radius:6px}
@@ -1188,7 +1173,7 @@ body.mint #quickDrawer{background:#fff;border-top:1px solid #b8d8cc}
 body.mint .qb{color:#4a8a74}
 body.mint .qb:active{background:#e0f4ec}
 body.mint .drawer-handle,body.mint .hold-handle{background:#b8d8cc}
-body.mint .box{background:#e6f2ec;border:1px solid #b8d8cc;box-shadow:inset 0 -3px 0 rgba(90,150,130,.12)}
+body.mint .box{background:#e6f2ec;border:1px solid #b8d8cc}
 body.mint .drawer-cell{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px}
 body.mint .drawer-cell.on{border:2px solid #6ab898}
 body.mint .bg-thumb{border:1px solid #b8d8cc;border-radius:6px}
@@ -1198,7 +1183,7 @@ body.mint .qi-item{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;border
 body.mint .msgnote.interact.touch{background:#fff;border:2px solid #6ab898;color:#2f4a42;border-radius:6px}
 body.mint .msgnote.interact.back{background:#f4fbf8;border:2px dashed #7ac8a8;color:#2f4a42;border-radius:6px}
 body.mint .msgnote.interact.pair{background:#d8f0e6;border:4px double #6ab898;color:#2f4a42;border-radius:6px}
-body.mint #miniPlayer{background:linear-gradient(#ffffff,#d8f0e6);border:1px solid #6ab898;color:#2f4a42;box-shadow:0 6px 20px rgba(90,150,130,.3);border-radius:10px}
+body.mint #miniPlayer{background:linear-gradient(#ffffff,#d8f0e6);border:1px solid #6ab898;color:#2f4a42;border-radius:10px}
 body.mint .mp-btn{color:#4a8a74}
 body.mint .mp-bar{background:#e0f4ec}
 body.mint .mp-fill{background:#6ab898}
@@ -1211,7 +1196,7 @@ body.mint .msgmenu .mi{color:#2f4a42;border-bottom:1px solid #e0efe8}
 body.mint .msgmenu .mi:last-child{border-bottom:none}
 body.mint .quote-bar{background:#eaf6f0;border:1px solid #b8d8cc;color:#4a8a74;border-radius:6px}
 body.mint .msgnote .quote{background:#e0f4ec;border-left:3px solid #6ab898;color:#2f4a42}
-body.mint .collection-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;box-shadow:0 2px 6px rgba(90,150,130,.1)}
+body.mint .collection-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px}
 </style>
 </head>
 <body class="retro">
@@ -1523,8 +1508,7 @@ function makeNote(m,withAvatar,idx){
   const isInteract=m.type==='interact';
   el.className='msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'')+(isInteract?' interact':'');
   if(isInteract)el.classList.add(m.dir||'touch');
-  if(m.quote){const q=document.createElement('span');q.className='quote';q.textContent='❝ '+(m.quote.text||(m.quote.type==='photo'?'[图片]':''));
-    el.appendChild(q);}
+  if(m.quote){const q=document.createElement('span');q.className='quote';q.textContent='❝ '+(m.quote.text||(m.quote.type==='photo'?'[图片]':''));el.appendChild(q);}
   if(m.type==='sticker'){const img=document.createElement('img');img.className='stkmsg';img.src=m.data;el.appendChild(img);}
   else if(m.type==='photo'){const img=document.createElement('img');img.className='imgmsg';img.src=m.data;el.appendChild(img);}
   else if(isInteract){const tag=document.createElement('span');tag.className='itag';tag.textContent=INTERACT_LABEL[m.dir]||'互动';el.appendChild(tag);el.appendChild(document.createTextNode(m.text));}
@@ -1880,7 +1864,8 @@ function bindCardTools(){
   const all=$('#selectAllChk');if(all)all.addEventListener('change',e=>{const arr=currentCards();if(e.target.checked)arr.forEach(c=>selSet.add(c.id));else selSet.clear();renderCardList();});
 }
 function resetAddPage(){$('#addArea').value='';delete $('#addArea').dataset.editing;$('#addArea').style.display='';$('#musicExtra').style.display='none';$('#mName').value='';$('#mArtist').value='';$('#mFileTip').textContent='';delete $('#addArea').dataset.fileId;delete $('#addArea').dataset.fileName;$('#addTitle').textContent='添加字卡';$('#addArea').placeholder='祂会用这些字卡回复你哦…';}
-  let stkSel=new Set(),stkSelMode=false,stkShown=20,stkLoading=false;
+
+let stkSel=new Set(),stkSelMode=false,stkShown=20,stkLoading=false;
 function renderStickerPanel(p){
   p.innerHTML=`<div class="toolbar" id="stkTools">
     <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
