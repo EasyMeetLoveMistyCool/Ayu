@@ -613,6 +613,10 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
     <div class="qs-head">贴纸</div>
     <div class="qs-scroll"><div class="stk-grid" id="qsBody"></div></div>
   </div>
+  <div id="quickInteract">
+    <div class="qs-head">互动</div>
+    <div class="qs-scroll"><div id="qiBody"></div></div>
+  </div>
 </div>
 
 <div id="drawerMask"></div>
@@ -683,6 +687,12 @@ body.dream .stk-cell.sel{outline:2px solid #b8a0cc}
         <div class="style-opt" data-style="glass">玻璃花房</div>
         <div class="style-opt" data-style="ticket">电影票根</div>
         <div class="style-opt" data-style="dream">梦里见过</div>
+        <div class="style-opt" data-style="cafe">咖啡馆手写</div>
+        <div class="style-opt" data-style="starry">星空信纸</div>
+        <div class="style-opt" data-style="rain">雨天窗边</div>
+        <div class="style-opt" data-style="washi">和风宣纸</div>
+        <div class="style-opt" data-style="tape">磁带青春</div>
+        <div class="style-opt" data-style="mint">薄荷清晨</div>
       </div>
     </div>
     <div class="set-group">
@@ -772,6 +782,7 @@ const FS = {
 };
 
 let cards=[], messages=[], stickers=[];
+let interactions={ touch:[], back:[], pair:[] };
 let stickerCache={};
 let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
   avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',
@@ -784,6 +795,7 @@ const saveCards=()=>FS.write('cards.json',{cards});
 const saveMsgs =()=>FS.write('messages.json',{messages});
 const saveSet  =()=>FS.write('settings.json',settings);
 const saveStickers=()=>FS.write('stickers.json',{stickers});
+const saveInteractions=()=>FS.write('interactions.json',interactions);
 const $=s=>document.querySelector(s);
 const stream=$('#stream'), drawer=$('#drawer'), mask=$('#drawerMask');
 
@@ -833,12 +845,20 @@ function renderBgList(){
 }
 function fmtTime(ts){ const d=new Date(ts); return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); }
 
+const INTERACT_LABEL={ touch:'触碰', back:'回握', pair:'缱绻' };
+
 function makeNote(m, withAvatar){
   const el=document.createElement('div');
-  el.className='msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'');
+  const isInteract = m.type==='interact';
+  el.className='msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'')+(isInteract?' interact':'');
+  if(isInteract && m.dir==='pair') el.classList.add('pair');
   if(m.type==='sticker'){
     const img=document.createElement('img'); img.className='stkmsg'; img.src=m.data;
     el.appendChild(img);
+  }else if(isInteract){
+    const tag=document.createElement('span'); tag.className='itag'; tag.textContent=INTERACT_LABEL[m.dir]||'互动';
+    el.appendChild(tag);
+    el.appendChild(document.createTextNode(m.text));
   }else{
     el.textContent=m.text;
   }
@@ -860,6 +880,13 @@ function appendMessage(m){
 function showSystem(text){ const el=document.createElement('div'); el.className='sys'; el.dataset.sys='1'; el.textContent=text; stream.appendChild(el); scrollBottom(); }
 function removeEmptyTip(){ stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove()); }
 
+function sendInteract(dir){
+  const t=interactions[dir] && interactions[dir].find(x=>!x.locked) || (interactions[dir]||[])[0];
+  if(!t){ toast('还没有'+INTERACT_LABEL[dir]+'的动作'); return; }
+  appendMessage({id:uid(),from:'me',type:'interact',dir,text:t.text,time:Date.now()});
+  triggerReply();
+}
+
 let pendingReply=false;
 function sendMessage(){
   const input=$('#msgInput'); const text=input.value.trim(); if(!text) return;
@@ -867,16 +894,22 @@ function sendMessage(){
   input.value=''; input.style.height='auto'; triggerReply();
 }
 function triggerReply(){
-  const avail=cards.filter(c=>!c.locked); if(avail.length===0) return;
+  const pool=[];
+  cards.filter(c=>!c.locked).forEach(c=>pool.push({kind:'card',text:c.text}));
+  (interactions.back||[]).filter(x=>!x.locked).forEach(x=>pool.push({kind:'interact',dir:'back',text:x.text}));
+  (interactions.pair||[]).filter(x=>!x.locked).forEach(x=>pool.push({kind:'interact',dir:'pair',text:x.text}));
+  if(pool.length===0) return;
   if(pendingReply) return; pendingReply=true;
   const delay=rand(settings.dMin,settings.dMax)*1000;
   setTimeout(async ()=>{
     pendingReply=false;
-    const n=randInt(1,3); const pool=cards.filter(c=>!c.locked);
+    const n=randInt(1,3); const cur=pool.slice();
     for(let i=0;i<n;i++){
-      if(pool.length===0) break;
-      const pick=pool[randInt(0,pool.length-1)];
-      appendMessage({id:uid(),from:'her',type:'text',text:pick.text,time:Date.now()});
+      if(cur.length===0) break;
+      const idx=randInt(0,cur.length-1);
+      const pick=cur.splice(idx,1)[0];
+      if(pick.kind==='card') appendMessage({id:uid(),from:'her',type:'text',text:pick.text,time:Date.now()});
+      else appendMessage({id:uid(),from:'her',type:'interact',dir:pick.dir,text:pick.text,time:Date.now()});
       if(i<n-1) await new Promise(r=>setTimeout(r, rand(settings.gMin,settings.gMax)*1000));
     }
   }, delay);
@@ -887,7 +920,7 @@ $('#sendStamp').addEventListener('click',sendMessage);
 /* 快捷抽屉 */
 const quickItems=[
   {ic:'i-cam',n:'拍照'},{ic:'i-pic',n:'相册'},{ic:'i-vid',n:'视频'},
-  {ic:'i-sticker',n:'贴纸',act:'sticker'},{ic:'i-touch',n:'互动'},{ic:'i-music',n:'音乐'},
+  {ic:'i-sticker',n:'贴纸',act:'sticker'},{ic:'i-touch',n:'互动',act:'interact'},{ic:'i-music',n:'音乐'},
   {ic:'i-ask',n:'回应'},{ic:'i-together',n:'陪伴'},{ic:'i-archive',n:'归档'},
   {ic:'i-sync',n:'同频'}
 ];
@@ -896,12 +929,13 @@ const quickItems=[
   quickItems.forEach(q=>{
     const d=document.createElement('div'); d.className='qb';
     d.innerHTML=`<svg class="ico"><use href="#${q.ic}"/></svg><span>${q.n}</span>`;
-    d.addEventListener('click',()=>{ if(q.act==='sticker') showQuickSticker(); else toast('「'+q.n+'」还在做'); });
+    d.addEventListener('click',()=>{ if(q.act==='sticker') showQuickSticker(); else if(q.act==='interact') showQuickInteract(); else toast('「'+q.n+'」还在做'); });
     g.appendChild(d);
   });
 })();
-function showQuickSticker(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.add('on'); renderQuickSticker(); }
-function hideQuickSticker(){ $('#quickGrid').style.display=''; $('#quickSticker').classList.remove('on'); }
+function showQuickSticker(){ $('#quickGrid').style.display='none'; $('#quickInteract').classList.remove('on'); $('#quickSticker').classList.add('on'); renderQuickSticker(); }
+function hideQuickSticker(){ $('#quickGrid').style.display=''; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.remove('on'); }
+function showQuickInteract(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.add('on'); renderQuickInteract(); }
 let qsShown=20;
 
 async function readStickersBatch(list){
@@ -949,6 +983,27 @@ async function renderQuickStickerBatch(){
     const io=new IntersectionObserver((ents)=>{ if(ents[0].isIntersecting){ io.disconnect(); qsShown+=20; renderQuickStickerBatch(); } });
     io.observe(more);
   }
+}
+function renderQuickInteract(){
+  const box=$('#qiBody'); box.innerHTML='';
+  const groups=[['touch','触碰'],['pair','缱绻']];
+  let any=false;
+  groups.forEach(([k,label])=>{
+    const arr=(interactions[k]||[]).filter(x=>!x.locked);
+    if(arr.length===0) return;
+    any=true;
+    const h=document.createElement('div'); h.className='qs-empty'; h.style.textAlign='left'; h.style.padding='6px 2px'; h.textContent=label;
+    box.appendChild(h);
+    const grid=document.createElement('div'); grid.className='stk-grid'; grid.style.gridTemplateColumns='repeat(3,1fr)';
+    arr.forEach(x=>{
+      const c=document.createElement('div'); c.className='stk-cell';
+      c.style.aspectRatio='auto'; c.style.padding='10px 6px'; c.style.display='flex'; c.style.alignItems='center'; c.style.justifyContent='center'; c.style.textAlign='center'; c.style.fontSize='13px'; c.style.borderRadius='8px'; c.style.border='1px solid currentColor'; c.textContent=x.text;
+      c.addEventListener('click',()=>{ appendMessage({id:uid(),from:'me',type:'interact',dir:k,text:x.text,time:Date.now()}); closeQuick(); triggerReply(); });
+      grid.appendChild(c);
+    });
+    box.appendChild(grid);
+  });
+  if(!any) box.innerHTML='<div class="qs-empty">还没有可发的互动</div>';
 }
 function openQuick(){
   if(document.body.classList.contains('page-open')) return;
@@ -1030,7 +1085,12 @@ const pocketCats=[
 ];
 let curCat=null;
 function openPocket(){ curCat=null; searchKw=''; lockedView=false; renderPocketBox(); showPage('page-pocket'); }
-function catCount(key){ if(key==='card') return cards.length; if(key==='sticker') return stickers.length; return 0; }
+function catCount(key){
+  if(key==='card') return cards.length;
+  if(key==='sticker') return stickers.length;
+  if(key==='interact') return (interactions.touch||[]).length+(interactions.back||[]).length+(interactions.pair||[]).length;
+  return 0;
+}
 function renderPocketBox(){
   $('#pocketTitle').textContent='口袋';
   const box=$('#pocketBox'); box.innerHTML='';
@@ -1047,6 +1107,7 @@ function renderPanel(){
   if(!curCat){ p.innerHTML=''; return; }
   if(curCat==='card'){ renderCardPanel(p); return; }
   if(curCat==='sticker'){ renderStickerPanel(p); return; }
+  if(curCat==='interact'){ renderInteractPanel(p); return; }
   p.innerHTML='<div class="doing">这一类还在做</div>';
 }
 
@@ -1107,7 +1168,7 @@ function renderCardList(){
   updateMultiBar(); updateSelectAll();
 }
 function updateSelectAll(){ const row=$('#selectAllRow'); if(!row) return; if(!selMode){ row.classList.remove('on'); return; } row.classList.add('on'); const arr=currentCards(); $('#selectAllChk').checked = arr.length>0 && arr.every(c=>selSet.has(c.id)); }
-function updateMultiBar(){ $('#multiBar').classList.toggle('on', selMode && (curCat==='card'||curCat==='sticker')); }
+function updateMultiBar(){ $('#multiBar').classList.toggle('on', selMode && (curCat==='card'||curCat==='sticker'||curCat==='interact')); }
 function exitSelMode(){ selMode=false; selSet.clear(); const r=$('#selectAllRow'); if(r) r.classList.remove('on'); $('#multiBar').classList.remove('on'); document.querySelectorAll('.tool[data-t="del"]').forEach(d=>d.classList.remove('on')); }
 function bindCardTools(){
   const tools=$('#cardTools'); if(!tools) return;
@@ -1239,10 +1300,25 @@ $('#mDel').addEventListener('click',async ()=>{
   if(curCat==='card'){
     if(selSet.size===0){ toast('还没选字卡'); return; }
     if(confirm('删除选中的 '+selSet.size+' 张字卡？')){ cards=cards.filter(c=>!selSet.has(c.id)); saveCards(); exitSelMode(); renderCardList(); toast('已删除'); }
+    return;
+  }
+  if(curCat==='interact'){
+    if(itSel.size===0){ toast('还没选互动'); return; }
+    if(confirm('删除选中的 '+itSel.size+' 条互动？')){
+      const dir=itDir;
+      interactions[dir]=(interactions[dir]||[]).filter(x=>!itSel.has(x.id));
+      saveInteractions(); exitInteractSel(); renderInteractList(); renderPocketBox(); toast('已删除');
+    }
   }
 });
-$('#mLock').addEventListener('click',()=>{ if(curCat!=='card') return; if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; }); saveCards(); exitSelMode(); renderCardList(); removeEmptyTip(); toast('已锁上 '+n+' 张'); });
-$('#mUnlock').addEventListener('click',()=>{ if(curCat!=='card') return; if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; }); saveCards(); exitSelMode(); renderCardList(); toast('已解锁 '+n+' 张'); });
+$('#mLock').addEventListener('click',()=>{
+  if(curCat==='card'){ if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; }); saveCards(); exitSelMode(); renderCardList(); removeEmptyTip(); toast('已锁上 '+n+' 张'); return; }
+  if(curCat==='interact'){ if(itSel.size===0){toast('还没选互动');return;} const n=itSel.size; const dir=itDir; (interactions[dir]||[]).forEach(x=>{ if(itSel.has(x.id)) x.locked=true; }); saveInteractions(); exitInteractSel(); renderInteractList(); toast('已锁上 '+n+' 条'); }
+});
+$('#mUnlock').addEventListener('click',()=>{
+  if(curCat==='card'){ if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; }); saveCards(); exitSelMode(); renderCardList(); toast('已解锁 '+n+' 张'); return; }
+  if(curCat==='interact'){ if(itSel.size===0){toast('还没选互动');return;} const n=itSel.size; const dir=itDir; (interactions[dir]||[]).forEach(x=>{ if(itSel.has(x.id)) x.locked=false; }); saveInteractions(); exitInteractSel(); renderInteractList(); toast('已解锁 '+n+' 条'); }
+});
 
 let sheetCardId=null;
 function openSheet(id){
@@ -1323,6 +1399,168 @@ $('#saveCards').addEventListener('click',async ()=>{
   document.body.classList.add('page-open');
 });
 
+/* 互动面板 */
+let itDir='touch', itSel=new Set(), itSelMode=false, itShown=50, itSearch='', itLockedView=false;
+function renderInteractPanel(p){
+  p.innerHTML=`
+    <div class="toolbar" id="itTabs">
+      <div class="tool it-tab on" data-dir="touch">触碰 (${(interactions.touch||[]).length})</div>
+      <div class="tool it-tab" data-dir="back">回握 (${(interactions.back||[]).length})</div>
+      <div class="tool it-tab" data-dir="pair">缱绻 (${(interactions.pair||[]).length})</div>
+    </div>
+    <div class="toolbar" id="itTools">
+      <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
+      <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+      <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+      <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
+      <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+    </div>
+    <div id="selectAllRow"><input type="checkbox" id="itSelectAllChk"><label for="itSelectAllChk">全选</label></div>
+    <div id="itList"></div>`;
+  bindInteractTools(); itShown=50; renderInteractList();
+}
+function bindInteractTools(){
+  const tabs=$('#itTabs');
+  tabs.addEventListener('click',e=>{
+    const t=e.target.closest('.it-tab'); if(!t) return;
+    itDir=t.dataset.dir; itSel.clear(); itSelMode=false; itShown=50; itSearch=''; itLockedView=false;
+    tabs.querySelectorAll('.it-tab').forEach(x=>x.classList.toggle('on',x===t));
+    renderInteractList();
+  });
+  const tools=$('#itTools');
+  tools.addEventListener('click',e=>{
+    const t=e.target.closest('.tool'); if(!t) return;
+    const act=t.dataset.t;
+    if(act==='search'){ const kw=prompt('搜索动作',itSearch); if(kw!==null){ itSearch=kw.trim(); itLockedView=false; itShown=50; renderInteractList(); } }
+    else if(act==='add'){ $('#addArea').value=''; delete $('#addArea').dataset.editing; $('#addArea').dataset.mode='interact'; $('#addArea').dataset.dir=itDir; $('#page-add').querySelector('h2').textContent='添加'+INTERACT_LABEL[itDir]; showPage('page-add'); }
+    else if(act==='del'){ if(!itSelMode){ itSelMode=true; itSel.clear(); t.classList.add('on'); renderInteractList(); } else { exitInteractSel(); renderInteractList(); } }
+    else if(act==='locked'){ itLockedView=!itLockedView; itSelMode=false; itSel.clear(); itSearch=''; itShown=50; renderInteractList(); }
+    else if(act==='more'){ openMoreSheet(); }
+  });
+  const all=$('#itSelectAllChk'); if(all) all.addEventListener('change',e=>{ const arr=currentInteracts(); if(e.target.checked) arr.forEach(c=>itSel.add(c.id)); else itSel.clear(); renderInteractList(); });
+}
+function currentInteracts(){
+  let arr=(interactions[itDir]||[]);
+  if(itLockedView) return arr.filter(x=>x.locked);
+  arr=arr.filter(x=>!x.locked);
+  if(itSearch) arr=arr.filter(x=>x.text.includes(itSearch));
+  return arr;
+}
+function renderInteractList(){
+  const list=$('#itList'); if(!list) return;
+  list.innerHTML='';
+  const arr=currentInteracts();
+  let line='';
+  if(itLockedView) line='锁起来 '+arr.length+' 条';
+  else if(itSearch) line='找到 '+arr.length+' 条';
+  if(line){ const l=document.createElement('div'); l.className='count-line'; l.textContent=line; list.appendChild(l); }
+  if(arr.length===0){
+    const e=document.createElement('div'); e.className='empty-tip';
+    e.innerHTML = itLockedView?'还没有锁上的动作':(itSearch?'没找到':'这个抽屉还没有动作<br>点 ➕ 添加');
+    list.appendChild(e); updateInteractSelRow(); return;
+  }
+  const slice=arr.slice(0,itShown);
+  const frag=document.createDocumentFragment();
+  slice.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':'');
+    el.textContent=c.text;
+    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=itSel.has(c.id)?'✓':''; el.appendChild(chk);
+    el.addEventListener('click',()=>{
+      if(itSelMode){ if(itSel.has(c.id)) itSel.delete(c.id); else itSel.add(c.id); renderInteractList(); }
+      else openInteractSheet(c.id);
+    });
+    frag.appendChild(el);
+  });
+  list.appendChild(frag);
+  if(itShown < arr.length){
+    const more=document.createElement('div'); more.className='empty-tip'; more.style.padding='16px'; more.textContent='加载更多…';
+    list.appendChild(more);
+    const io=new IntersectionObserver((ents)=>{ if(ents[0].isIntersecting){ itShown+=50; io.disconnect(); renderInteractList(); } });
+    io.observe(more);
+  }
+  updateInteractSelRow();
+}
+function updateInteractSelRow(){ const row=$('#selectAllRow'); if(!row) return; if(!itSelMode){ row.classList.remove('on'); return; } row.classList.add('on'); const arr=currentInteracts(); $('#itSelectAllChk').checked = arr.length>0 && arr.every(c=>itSel.has(c.id)); }
+function exitInteractSel(){ itSelMode=false; itSel.clear(); const r=$('#selectAllRow'); if(r) r.classList.remove('on'); $('#multiBar').classList.remove('on'); document.querySelectorAll('#itTools .tool[data-t="del"]').forEach(d=>d.classList.remove('on')); }
+
+let itSheetId=null;
+function openInteractSheet(id){
+  itSheetId=id;
+  const c=(interactions[itDir]||[]).find(x=>x.id===id); if(!c) return;
+  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{
+    el.style.display = ['shEdit','shLock','shDel','shCancel'].includes(el.id) ? 'block' : 'none';
+  });
+  const li=$('#shLock');
+  if(c.locked){ li.textContent='解锁'; li.dataset.act='unlock'; } else { li.textContent='锁上'; li.dataset.act='lock'; }
+  $('#sheetMask').classList.add('on'); $('#sheet').classList.add('on');
+}
+$('#shEdit').addEventListener('click',()=>{
+  const id=sheetCardId;
+  if(id){ closeSheet(); editCard(id); return; }
+  const iid=itSheetId;
+  if(iid){ closeSheet(); editInteract(iid); }
+});
+function editInteract(id){
+  const c=(interactions[itDir]||[]).find(x=>x.id===id); if(!c) return;
+  $('#addArea').value=c.text; $('#addArea').dataset.editing=id; $('#addArea').dataset.mode='interact'; $('#addArea').dataset.dir=itDir;
+  $('#page-add').querySelector('h2').textContent='编辑'+INTERACT_LABEL[itDir];
+  showPage('page-add');
+}
+$('#shLock').addEventListener('click',()=>{
+  const cid=sheetCardId; const c=cards.find(x=>x.id===cid);
+  if(c){ const act=$('#shLock').dataset.act; if(act==='lock'){c.locked=true;toast('已锁上');}else{c.locked=false;toast('已解锁');} saveCards(); closeSheet(); renderCardList(); removeEmptyTip(); return; }
+  const iid=itSheetId; const it=(interactions[itDir]||[]).find(x=>x.id===iid);
+  if(it){ const act=$('#shLock').dataset.act; if(act==='lock'){it.locked=true;toast('已锁上');}else{it.locked=false;toast('已解锁');} saveInteractions(); closeSheet(); renderInteractList(); }
+});
+$('#shDel').addEventListener('click',()=>{
+  const cid=sheetCardId;
+  if(cid){ if(!cards.find(x=>x.id===cid)){closeSheet();return;} if(confirm('删除这张字卡？')){ cards=cards.filter(x=>x.id!==cid); saveCards(); renderCardList(); toast('已删除'); } closeSheet(); return; }
+  const iid=itSheetId;
+  if(iid){ const arr=interactions[itDir]||[]; if(!arr.find(x=>x.id===iid)){closeSheet();return;} if(confirm('删除这条互动？')){ interactions[itDir]=arr.filter(x=>x.id!==iid); saveInteractions(); renderInteractList(); renderPocketBox(); toast('已删除'); } closeSheet(); }
+});
+
+$('#saveCards').addEventListener('click',async ()=>{
+  const area=$('#addArea'); const editingId=area.dataset.editing;
+  const mode=area.dataset.mode; const dir=area.dataset.dir;
+  const lines=area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
+  if(lines.length===0){ toast('还没写呢'); return; }
+  if(mode==='interact'){
+    const arr=interactions[dir]||(interactions[dir]=[]);
+    if(editingId){
+      const it=arr.find(x=>x.id===editingId);
+      if(it){ it.text=area.value.trim(); await saveInteractions(); }
+      delete area.dataset.editing; delete area.dataset.mode; delete area.dataset.dir; area.value=''; toast('已放进口袋');
+    }else{
+      const exist=new Set(arr.map(x=>x.text)); let added=0,skipped=0;
+      lines.forEach(line=>{ if(exist.has(line)){ skipped++; return; } arr.push({id:uid(),text:line,locked:false}); exist.add(line); added++; });
+      await saveInteractions(); area.value='';
+      delete area.dataset.mode; delete area.dataset.dir;
+      toast(skipped? ('放进了 '+added+' 条，跳过 '+skipped+' 条重复') : ('放进了 '+added+' 条互动'));
+    }
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+    renderPocketBox();
+    $('#page-pocket').classList.add('show');
+    document.body.classList.add('page-open');
+    return;
+  }
+  if(editingId){
+    const c=cards.find(x=>x.id===editingId);
+    if(c){ c.text=area.value.trim(); await saveCards(); }
+    delete area.dataset.editing; area.value=''; toast('已放进口袋');
+  }else{
+    const exist=new Set(cards.map(c=>c.text)); let added=0,skipped=0;
+    lines.forEach(line=>{ if(exist.has(line)){ skipped++; return; } cards.push({id:uid(),text:line,locked:false}); exist.add(line); added++; });
+    await saveCards(); area.value='';
+    toast(skipped? ('放进了 '+added+' 张，跳过 '+skipped+' 张重复') : ('放进了 '+added+' 张字卡'));
+  }
+  removeEmptyTip();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+  renderPocketBox();
+  $('#page-pocket').classList.add('show');
+  document.body.classList.add('page-open');
+});
+
 function renderSettings(){
   $('#dMin').value=settings.dMin; $('#dMax').value=settings.dMax;
   $('#gMin').value=settings.gMin; $('#gMax').value=settings.gMax;
@@ -1361,7 +1599,9 @@ async function boot(){
   const m=await FS.read('messages.json',{messages:[]});
   const s=await FS.read('settings.json',null);
   const st=await FS.read('stickers.json',{stickers:[]});
+  const it=await FS.read('interactions.json',null);
   cards=c.cards||[]; messages=m.messages||[]; stickers=st.stickers||[];
+  if(it && typeof it==='object'){ interactions=Object.assign({touch:[],back:[],pair:[]}, it); }
   if(s){ settings=Object.assign(settings,s); if(!Array.isArray(settings.bgs)) settings.bgs=[]; }
   document.body.className=settings.style||'retro';
   applyProfile(); applyBg(); renderMessages();
