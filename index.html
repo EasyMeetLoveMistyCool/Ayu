@@ -15,10 +15,10 @@ body.has-bg #bgLayer,body.has-bg #bgMask{display:block}
 body.has-bg .topbar{background:transparent !important;border-bottom-color:transparent !important;box-shadow:none !important}
 body.has-bg .page,body.has-bg .page-head,body.has-bg #composer{background:transparent !important}
 body.has-bg .page-head{border-bottom-color:transparent !important}
-body.has-bg .set-group{background:rgba(255,252,244,.92) !important;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-body.has-bg .box{background:rgba(255,252,244,.92) !important;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+body.has-bg .set-group{background:rgba(255,252,244,.92) !important;backdrop-filter:blur(6px)}
+body.has-bg .box{background:rgba(255,252,244,.92) !important;backdrop-filter:blur(6px)}
 body.has-bg .card-item{background:rgba(255,252,244,.95) !important}
-body.has-bg .empty-tip,body.has-bg .doing{text-shadow:0 1px 3px rgba(255,255,255,.9),0 0 8px rgba(255,255,255,.8)}
+body.has-bg .empty-tip,body.has-bg .doing{text-shadow:0 1px 3px rgba(255,255,255,.9)}
 body.has-bg .page-head h2,body.has-bg .page-head .back{text-shadow:0 1px 4px rgba(255,255,255,.9)}
 body.has-bg .field-row input,body.has-bg .set-row input{background:rgba(255,255,255,.9) !important}
 body.has-bg .style-opt{background:rgba(255,255,255,.85) !important}
@@ -28,8 +28,6 @@ body.page-open #app{visibility:hidden}
 body.page-open .topbar{visibility:hidden}
 .ico{width:22px;height:22px;display:block;flex:0 0 auto}
 .ico-inline{width:16px;height:16px;display:inline-block;vertical-align:-3px;margin-right:5px}
-
-/* ============ 基础外壳（所有主题共用） ============ */
 .topbar{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:8px 0 calc(6px + env(safe-area-inset-top));position:relative;z-index:5}
 .avatar-wrap{display:flex;flex-direction:column;align-items:center}
 .avatar-group{position:relative;width:72px;height:44px}
@@ -77,7 +75,6 @@ body.page-open .topbar{visibility:hidden}
 #quickMusic.on{display:flex}
 .qs-head{text-align:center;font-size:14px;font-weight:700;padding:4px 0 10px;flex:0 0 auto}
 .qs-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-#quickInteract .qs-scroll,#quickMusic .qs-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
 #drawerMask{position:fixed;inset:0;background:rgba(40,30,20,.4);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
 #drawerMask.on{opacity:1;pointer-events:auto}
 #drawer{position:fixed;top:0;left:0;bottom:0;width:220px;box-shadow:4px 0 16px rgba(0,0,0,.2);transform:translateX(-100%);transition:transform .28s cubic-bezier(.3,.8,.3,1);z-index:21;padding-top:calc(16px + env(safe-area-inset-top));overflow-y:auto;-webkit-overflow-scrolling:touch}
@@ -164,6 +161,13 @@ body.page-open .topbar{visibility:hidden}
 .pv-btns button{flex:1;height:48px;border-radius:8px;border:none;font-family:inherit;font-size:16px;font-weight:700}
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:rgba(40,30,20,.9);color:#fff;font-size:14px;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;z-index:99;pointer-events:none;max-width:80%;text-align:center}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.msgnote.interact{border-style:dashed;padding:10px 14px;margin:18px 0;font-size:15px;max-width:66%}
+.msgnote.interact .itag{display:inline-block;font-size:10px;opacity:.85;margin-right:6px;padding:1px 6px;border:1px solid currentColor;border-radius:6px;vertical-align:1px}
+.msgnote.interact.touch{margin-left:auto;margin-right:20px;border-radius:20px;border-style:solid;border-width:1px}
+.msgnote.interact.touch::before{content:"";position:absolute;left:-3px;top:50%;transform:translateY(-50%);width:4px;height:60%;border-radius:2px;background:currentColor;opacity:.5}
+.msgnote.interact.back{margin-right:auto;margin-left:20px;border-radius:4px;border-style:dashed;border-width:2px}
+.msgnote.interact.back::before{content:"";position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:4px;height:60%;border-radius:2px;background:currentColor;opacity:.5}
+.msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;border-style:double;border-width:4px;border-radius:14px;padding:14px 20px}
 .qi-tabs{display:flex;gap:8px;padding:4px 0 10px;flex:0 0 auto}
 .qi-tab{flex:1;height:38px;display:flex;align-items:center;justify-content:center;font-size:14px;border-radius:8px;border:1px solid currentColor;opacity:.6}
 .qi-tab.on{opacity:1;font-weight:700}
@@ -199,15 +203,19 @@ body.page-open .topbar{visibility:hidden}
 .mp-btn:active{opacity:.6}
 .mp-mode-label{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;background:rgba(40,30,20,.85);color:#fff;padding:2px 8px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;white-space:nowrap}
 .mp-mode-label.on{opacity:1}
-.msgnote.interact{border-style:dashed;padding:10px 14px;margin:18px 0;font-size:15px;max-width:66%}
-.msgnote.interact .itag{display:inline-block;font-size:10px;opacity:.85;margin-right:6px;padding:1px 6px;border:1px solid currentColor;border-radius:6px;vertical-align:1px}
-.msgnote.interact.touch{margin-left:auto;margin-right:20px;border-radius:20px;border-style:solid;border-width:1px}
-.msgnote.interact.touch::before{content:"";position:absolute;left:-3px;top:50%;transform:translateY(-50%);width:4px;height:60%;border-radius:2px;background:currentColor;opacity:.5}
-.msgnote.interact.back{margin-right:auto;margin-left:20px;border-radius:4px;border-style:dashed;border-width:2px}
-.msgnote.interact.back::before{content:"";position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:4px;height:60%;border-radius:2px;background:currentColor;opacity:.5}
-.msgnote.interact.pair{margin-left:auto;margin-right:auto;text-align:center;border-style:double;border-width:4px;border-radius:14px;padding:14px 20px}
+.msgmenu{position:fixed;z-index:80;min-width:120px;border-radius:10px;overflow:hidden;display:none;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.msgmenu.on{display:block}
+.msgmenu .mi{padding:12px 18px;font-size:15px;text-align:center}
+.msgmenu .mi:active{opacity:.6}
+.quote-bar{display:none;margin:0 0 8px;padding:8px 12px;border-radius:8px;font-size:13px;position:relative;opacity:.9}
+.quote-bar.on{display:block}
+.quote-bar .q-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:16px;opacity:.6}
+.msgnote .quote{display:block;font-size:12.5px;line-height:1.4;padding:6px 10px;margin-bottom:6px;border-radius:6px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.collection-item{padding:13px 14px;margin-bottom:10px;font-size:15px;line-height:1.45;word-break:break-word;position:relative}
+.collection-item .ci-time{font-size:11px;opacity:.55;margin-top:6px}
+.collection-item img{max-width:100%;border-radius:8px;display:block;margin-top:6px}
 
-/* ===================== 主题 1：复古手帐信 ===================== */
+/* ===== 主题 1 复古手帐信 ===== */
 body.retro{background-color:#e8dcc0;background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);background-size:60px 60px,80px 80px,100% 100%;color:#4a3b2a}
 body.retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;box-shadow:0 2px 6px rgba(120,95,60,.15)}
 body.retro .names span{color:#6b5334}
@@ -270,8 +278,14 @@ body.retro .mp-knob{background:#7a5f30}
 body.retro .invite-btn{border:1px solid #b89b5e;background:linear-gradient(#f7ecd0,#e6d3a4);color:#7a5f30}
 body.retro .invite-btn.on{background:linear-gradient(#e6d3a4,#f7ecd0);border:2px solid #c47a3a}
 body.retro .qi-invite{border:1px solid #cbb98f;background:#fffaf0;color:#8a6f3c}
+body.retro .msgmenu{background:#f3ead2;border:1px solid #cbb98f}
+body.retro .msgmenu .mi{color:#5a4a2e;border-bottom:1px solid #e0d2b0}
+body.retro .msgmenu .mi:last-child{border-bottom:none}
+body.retro .quote-bar{background:#fdf3c8;border:1px solid #e2cf8a;color:#7a5f30}
+body.retro .msgnote .quote{background:rgba(200,180,130,.3);border-left:3px solid #b89b5e;color:#6b5334}
+body.retro .collection-item{background:linear-gradient(#fbf7ec,#f6f0e0);border:1px solid #d8cba8;color:#4a3b2a;border-radius:3px;box-shadow:0 1px 3px rgba(120,95,60,.1)}
 
-/* ===================== 主题 2：漫画风 ===================== */
+/* ===== 主题 2 漫画风 ===== */
 body.comic{background-color:#fff;background-image:radial-gradient(rgba(0,0,0,.13) 1px, transparent 1.4px);background-size:12px 12px;color:#111}
 body.comic .topbar{background:#fff;border-bottom:3px solid #111;box-shadow:0 3px 0 #111}
 body.comic .names span{color:#111;font-weight:900}
@@ -303,10 +317,10 @@ body.comic .input-note{background:#fff;border:3px solid #111;border-radius:4px}
 body.comic #msgInput{color:#111}
 body.comic #msgInput::placeholder{color:#999}
 body.comic #sendStamp{border:3px solid #111;background:#fff;color:#111;border-radius:4px;transform:none;box-shadow:2px 2px 0 #111}
-body.comic .msgnote.me,body.comic .msgnote.her{background:#fff;border:3px solid #111;color:#111;border-radius:4px;background-image:none;box-shadow:3px 3px 0 #111}
-body.comic .msgnote.me::after,body.comic .msgnote.her::after{content:"";position:absolute;width:0;height:0;border:6px solid transparent}
-body.comic .msgnote.me::after{right:-15px;top:16px;border-left-color:#111}
-body.comic .msgnote.her::after{left:-15px;top:16px;border-right-color:#111}
+body.comic .msgnote.me,body.comic .msgnote.her{background:#fff;border:3px solid #111;color:#111;border-radius:4px;background-image:none;box-shadow:4px 4px 0 #111;position:relative}
+body.comic .msgnote.me::after,body.comic .msgnote.her::after{display:none}
+body.comic .msgnote.me::before{content:"";position:absolute;right:12px;top:12px;width:30px;height:30px;background-image:radial-gradient(#111 1px,transparent 1.4px);background-size:5px 5px;opacity:.55;pointer-events:none}
+body.comic .msgnote.her::before{content:"";position:absolute;right:12px;top:12px;width:30px;height:30px;background-image:radial-gradient(#111 1px,transparent 1.4px);background-size:5px 5px;opacity:.55;pointer-events:none}
 body.comic .stamp{border:2px solid #111;color:#111;background:#fff;border-radius:3px;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px}
 body.comic .waiting{background:#fff;border:2px dashed #111;color:#111;border-radius:4px}
 body.comic .sys{background:#fff;border:2px dashed #111;color:#111}
@@ -335,8 +349,14 @@ body.comic .mp-knob{background:#111}
 body.comic .invite-btn{border:3px solid #111;background:#fff;color:#111;border-radius:4px}
 body.comic .invite-btn.on{background:#111;color:#fff}
 body.comic .qi-invite{border:2px solid #111;background:#fff;color:#111}
+body.comic .msgmenu{background:#fff;border:3px solid #111;box-shadow:3px 3px 0 #111}
+body.comic .msgmenu .mi{color:#111;border-bottom:2px solid #111}
+body.comic .msgmenu .mi:last-child{border-bottom:none}
+body.comic .quote-bar{background:#eee;border:2px solid #111;color:#111}
+body.comic .msgnote .quote{background:#eee;border-left:3px solid #111;color:#111}
+body.comic .collection-item{background:#fff;border:3px solid #111;color:#111;border-radius:4px;box-shadow:3px 3px 0 #111}
 
-/* ===================== 主题 3：少女手帐 ===================== */
+/* ===== 主题 3 少女手帐 ===== */
 body.girl{background-color:#fdf2f6;background-image:radial-gradient(rgba(240,160,190,.35) 1.5px, transparent 2px),linear-gradient(160deg,#fff7fa,#fce9f1);background-size:18px 18px,100% 100%;color:#7a4a5c}
 body.girl .topbar{background:linear-gradient(#ffe9f1,#ffd6e6);border-bottom:1px solid #f3b8ce;box-shadow:0 2px 6px rgba(220,140,170,.25)}
 body.girl .names span{color:#c05a80}
@@ -400,50 +420,57 @@ body.girl .mp-knob{background:#c05a80}
 body.girl .invite-btn{border:2px solid #f38bb0;background:#fff0f5;color:#c05a80;border-radius:14px}
 body.girl .invite-btn.on{background:#ffe9f1;border-color:#e05a88}
 body.girl .qi-invite{border:2px solid #f3c8d8;background:#fff;color:#c05a80}
+body.girl .msgmenu{background:#fff;border:2px solid #f38bb0;border-radius:12px}
+body.girl .msgmenu .mi{color:#7a4a5c;border-bottom:1px solid #ffe0ea}
+body.girl .msgmenu .mi:last-child{border-bottom:none}
+body.girl .quote-bar{background:#fff0f5;border:2px solid #ffd6e6;color:#c05a80;border-radius:10px}
+body.girl .msgnote .quote{background:#fff0f5;border-left:3px solid #f38bb0;color:#a04a6a}
+body.girl .collection-item{background:#fff;border:2px solid #f3c8d8;color:#7a4a5c;border-radius:12px;box-shadow:0 2px 6px rgba(220,140,170,.15)}
 
-/* ===================== 主题 4：报纸 ===================== */
-body.news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.04) 1px, transparent 1px);background-size:100% 26px, 26px 100%;color:#2a2a26}
-body.news .topbar{background:#ece6d4;border-bottom:3px double #2a2a26;box-shadow:none}
+/* ===== 主题 4 报纸 ===== */
+body.news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.06) 1px, transparent 1px);background-size:100% 26px,26px 100%;color:#2a2a26}
+body.news .topbar{background:#ece6d4;border-bottom:4px double #2a2a26;box-shadow:none}
 body.news .names span{color:#2a2a26;font-weight:700;letter-spacing:1px}
 body.news .page{background:#e8e2d0}
-body.news .page-head{background:#ece6d4;border-bottom:3px double #2a2a26}
+body.news .page-head{background:#ece6d4;border-bottom:4px double #2a2a26}
 body.news .page-head h2,body.news .page-head .back{color:#2a2a26;font-family:"FangSong",serif;letter-spacing:2px}
-body.news #drawer{background:#ece6d4;border-right:3px double #2a2a26}
+body.news #drawer{background:#ece6d4;border-right:4px double #2a2a26}
 body.news .drawer-item{color:#2a2a26;font-family:"FangSong",serif}
-body.news .tool{color:#2a2a26;border:1px solid #6a6350;background:#f2ecda;border-radius:0}
-body.news .card-item{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
-body.news .empty-tip{color:#6a6350}
+body.news .tool{color:#2a2a26;border:1px solid #6a6350;background:#f2ecda;border-radius:0;font-family:"FangSong",serif}
+body.news .card-item{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;font-family:"FangSong",serif;padding-top:20px;padding-bottom:20px}
+body.news .card-item::before{content:"❚";position:absolute;left:8px;top:8px;color:#6a6350;font-size:9px}
+body.news .empty-tip{color:#6a6350;font-family:"FangSong",serif}
 body.news #selectAllRow{color:#2a2a26;border-bottom:1px dashed #6a6350}
-body.news #multiBar{background:#ece6d4;border-top:3px double #2a2a26}
+body.news #multiBar{background:#ece6d4;border-top:4px double #2a2a26}
 body.news .mbtn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
-body.news #sheet{background:#ece6d4;border-top:3px double #2a2a26;border-radius:0}
+body.news #sheet{background:#ece6d4;border-top:4px double #2a2a26;border-radius:0}
 body.news .sheet-item{color:#2a2a26;font-family:"FangSong",serif}
 body.news .sheet-cancel{border-top:1px solid #6a6350;color:#2a2a26}
-body.news #addArea{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;background-image:none;border-radius:0;font-family:"FangSong",serif}
+body.news #addArea{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;background-image:none;border-radius:0;font-family:"FangSong",serif}
 body.news .save-btn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;font-family:"FangSong",serif;border-radius:0}
 body.news .set-group{background:#f2ecda;border:1px solid #6a6350;border-radius:0}
-body.news .set-group h3{color:#2a2a26;font-family:"FangSong",serif}
-body.news .field-row span,body.news .set-row span{color:#2a2a26}
+body.news .set-group h3{color:#2a2a26;font-family:"FangSong",serif;border-bottom:2px solid #2a2a26;padding-bottom:6px}
+body.news .field-row span,body.news .set-row span{color:#2a2a26;font-family:"FangSong",serif}
 body.news .field-row input,body.news .set-row input{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
-body.news .style-opt{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0}
+body.news .style-opt{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0;font-family:"FangSong",serif}
 body.news .style-opt.on{border:2px solid #2a2a26;background:#ddd6c0}
 body.news .btn-danger{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0}
-body.news #composer{background:#e8e2d0;border-top:3px double #2a2a26}
-body.news .input-note{background:#f2ecda;border:1px solid #6a6350;border-radius:0;box-shadow:none}
+body.news #composer{background:#e8e2d0;border-top:4px double #2a2a26}
+body.news .input-note{background:#f4eeda;border:1px solid #6a6350;border-radius:0;box-shadow:none}
 body.news #msgInput{color:#2a2a26;font-family:"FangSong",serif}
 body.news #msgInput::placeholder{color:#8a8270}
 body.news #sendStamp{border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0;font-family:"FangSong",serif;transform:none}
-body.news .msgnote.me{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;font-family:"FangSong",serif;border-radius:0;border-left:4px solid #2a2a26}
+body.news .msgnote.me{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;font-family:"FangSong",serif;border-radius:0;border-left:4px solid #2a2a26}
 body.news .msgnote.me::before{content:"◆";position:absolute;left:6px;top:6px;color:#6a6350;font-size:8px}
-body.news .msgnote.her{background:#f2ecda;border:1px solid #6a6350;color:#2a2a26;font-family:"FangSong",serif;border-radius:0;background-image:none;border-right:4px solid #2a2a26}
+body.news .msgnote.her{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;font-family:"FangSong",serif;border-radius:0;background-image:none;border-right:4px solid #2a2a26}
 body.news .msgnote.her::before{content:"◆";position:absolute;right:6px;top:6px;color:#6a6350;font-size:8px}
 body.news .stamp{border:none;border-top:1px solid #6a6350;border-bottom:1px solid #6a6350;color:#2a2a26;background:transparent;border-radius:0;width:auto;height:auto;padding:1px 4px;transform:none;font-size:9px}
-body.news .waiting{background:#f2ecda;border:1px dashed #6a6350;color:#6a6350;border-radius:0}
-body.news .sys{background:#f2ecda;border:1px dashed #6a6350;color:#2a2a26}
+body.news .waiting{background:#f4eeda;border:1px dashed #6a6350;color:#6a6350;border-radius:0}
+body.news .sys{background:#f4eeda;border:1px dashed #6a6350;color:#2a2a26}
 body.news .av-her,body.news .av-me{border:2px solid #2a2a26;border-radius:0}
 body.news .person-av{border:1px solid #6a6350;border-radius:0}
 body.news .msgnote .nav{border:1px solid #6a6350;background-color:#f2ecda;border-radius:0}
-body.news #quickDrawer{background:#ece6d4;border-top:3px double #2a2a26}
+body.news #quickDrawer{background:#ece6d4;border-top:4px double #2a2a26}
 body.news .qb{color:#2a2a26;font-family:"FangSong",serif}
 body.news .qb:active{background:#ddd6c0}
 body.news .drawer-handle,body.news .hold-handle{background:#6a6350}
@@ -453,9 +480,9 @@ body.news .drawer-cell.on{border:2px solid #2a2a26}
 body.news .bg-thumb{border:1px solid #6a6350;border-radius:0}
 body.news .stk-cell.sel{outline:2px solid #2a2a26}
 body.news .it-tab.on{border:2px solid #2a2a26;background:#ddd6c0}
-body.news .qi-item{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
-body.news .msgnote.interact.touch{background:#f2ecda;border:2px solid #2a2a26;color:#2a2a26;border-radius:0}
-body.news .msgnote.interact.back{background:#f2ecda;border:2px dashed #6a6350;color:#2a2a26;border-radius:0}
+body.news .qi-item{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;font-family:"FangSong",serif}
+body.news .msgnote.interact.touch{background:#f4eeda;border:2px solid #2a2a26;color:#2a2a26;border-radius:0}
+body.news .msgnote.interact.back{background:#f4eeda;border:2px dashed #6a6350;color:#2a2a26;border-radius:0}
 body.news .msgnote.interact.pair{background:#ddd6c0;border:4px double #2a2a26;color:#2a2a26;border-radius:0}
 body.news #miniPlayer{background:#ece6d4;border:2px solid #6a6350;color:#2a2a26;box-shadow:0 6px 20px rgba(0,0,0,.3)}
 body.news .mp-btn{color:#2a2a26}
@@ -465,8 +492,14 @@ body.news .mp-knob{background:#2a2a26}
 body.news .invite-btn{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0;font-family:"FangSong",serif}
 body.news .invite-btn.on{background:#ddd6c0;border-color:#2a2a26}
 body.news .qi-invite{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26}
+body.news .msgmenu{background:#ece6d4;border:1px solid #6a6350;border-radius:0}
+body.news .msgmenu .mi{color:#2a2a26;font-family:"FangSong",serif;border-bottom:1px solid #6a6350}
+body.news .msgmenu .mi:last-child{border-bottom:none}
+body.news .quote-bar{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0}
+body.news .msgnote .quote{background:#ddd6c0;border-left:3px solid #2a2a26;color:#2a2a26;border-radius:0}
+body.news .collection-item{background:#f4eeda;border:1px solid #6a6350;color:#2a2a26;border-radius:0;font-family:"FangSong",serif}
 
-/* ===================== 主题 5：樱花夜 ===================== */
+/* ===== 主题 5 樱花夜 ===== */
 body.sakura{background-color:#241826;background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),radial-gradient(circle at 88% 85%, rgba(255,190,215,.13) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);background-size:120px 120px,150px 150px,130px 130px,170px 170px,100% 100%;color:#f2dbe6}
 body.sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 body.sakura .names span{color:#ffc0d8}
@@ -531,8 +564,14 @@ body.sakura .mp-knob{background:#ffc0d8}
 body.sakura .invite-btn{border:1px solid #ff9ec4;background:rgba(255,158,196,.15);color:#ffc0d8;border-radius:10px}
 body.sakura .invite-btn.on{background:rgba(255,158,196,.3);border-color:#ffc0d8}
 body.sakura .qi-invite{border:1px solid #5a3f62;background:rgba(255,190,215,.12);color:#ffc0d8}
+body.sakura .msgmenu{background:#33223a;border:1px solid #5a3f62}
+body.sakura .msgmenu .mi{color:#f2dbe6;border-bottom:1px solid #4a3350}
+body.sakura .msgmenu .mi:last-child{border-bottom:none}
+body.sakura .quote-bar{background:rgba(255,190,215,.12);border:1px solid #5a3f62;color:#ffc0d8}
+body.sakura .msgnote .quote{background:rgba(255,158,196,.18);border-left:3px solid #ff9ec4;color:#ffc0d8}
+body.sakura .collection-item{background:rgba(255,220,235,.08);border:1px solid #5a3f62;color:#f2dbe6;border-radius:8px}
 
-/* ===================== 主题 6：玻璃花房 ===================== */
+/* ===== 主题 6 玻璃花房 ===== */
 body.glass{background-color:#f4f7f8;background-image:linear-gradient(rgba(150,180,190,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(150,180,190,.10) 1px, transparent 1px),radial-gradient(circle at 30% 15%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#ffffff,#e6eff2);background-size:44px 44px,44px 44px,100% 100%,100% 100%;color:#3a4a52}
 body.glass .topbar{background:linear-gradient(#ffffff,#eef4f6);border-bottom:1px solid #cfdde2;box-shadow:0 2px 8px rgba(140,170,180,.2)}
 body.glass .names span{color:#5a7a88}
@@ -541,7 +580,7 @@ body.glass .page-head{background:rgba(255,255,255,.95);border-bottom:1px solid #
 body.glass .page-head h2,body.glass .page-head .back{color:#5a7a88}
 body.glass #drawer{background:linear-gradient(160deg,#ffffff,#e6eff2);border-right:1px solid #cfdde2}
 body.glass .drawer-item{color:#3a4a52}
-body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.85);border-radius:8px}
+body.glass .tool{color:#5a7a88;border:1px solid #cfdde2;background:rgba(255,255,255,.85);border-radius:8px;backdrop-filter:blur(4px)}
 body.glass .card-item{background:rgba(255,255,255,.85);border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px;backdrop-filter:blur(4px)}
 body.glass .empty-tip{color:#8aaab4}
 body.glass #selectAllRow{color:#5a7a88;border-bottom:1px dashed #cfdde2}
@@ -596,8 +635,14 @@ body.glass .mp-knob{background:#5a7a88}
 body.glass .invite-btn{border:1px solid #8ab4c4;background:linear-gradient(#ffffff,#dcecf2);color:#5a7a88}
 body.glass .invite-btn.on{background:#eaf4f8;border-color:#5a7a88}
 body.glass .qi-invite{border:1px solid #cfdde2;background:#f7fbfc;color:#5a7a88}
-
-/* ===================== 主题 7：电影票根 ===================== */
+body.glass .msgmenu{background:#fff;border:1px solid #cfdde2}
+body.glass .msgmenu .mi{color:#3a4a52;border-bottom:1px solid #e6eef2}
+body.glass .msgmenu .mi:last-child{border-bottom:none}
+body.glass .quote-bar{background:#eaf4f8;border:1px solid #cfdde2;color:#5a7a88}
+body.glass .msgnote .quote{background:#eaf4f8;border-left:3px solid #8ab4c4;color:#3a4a52}
+body.glass .collection-item{background:rgba(255,255,255,.85);border:1px solid #dbe6ea;color:#3a4a52;border-radius:8px}
+  
+/* ===== 主题 7 电影票根 ===== */
 body.ticket{background-color:#1a1f26;background-image:radial-gradient(circle at 50% 0%, rgba(255,220,150,.12) 0, rgba(255,220,150,0) 55%),linear-gradient(160deg,#232a33,#141a20);color:#e8e2d2}
 body.ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 body.ticket .names span{color:#e8c88a}
@@ -607,7 +652,7 @@ body.ticket .page-head h2,body.ticket .page-head .back{color:#e8c88a}
 body.ticket #drawer{background:linear-gradient(160deg,#2a323c,#1a1f26);border-right:1px solid #3a434f}
 body.ticket .drawer-item{color:#e8e2d2}
 body.ticket .tool{color:#e8c88a;border:1px solid #3a434f;background:rgba(255,255,255,.05);border-radius:6px}
-body.ticket .card-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px;background-image:radial-gradient(circle at 0% 50%, transparent 5px, #f5efdc 5px),radial-gradient(circle at 100% 50%, transparent 5px, #f5efdc 5px);background-position:left,right;background-size:51% 100%;background-repeat:no-repeat}
+body.ticket .card-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px;border-left:6px dashed #1a1f26;border-right:6px dashed #1a1f26}
 body.ticket .empty-tip{color:#8a8270}
 body.ticket #selectAllRow{color:#e8c88a;border-bottom:1px dashed #3a434f}
 body.ticket #multiBar{background:rgba(42,50,60,.98);border-top:1px solid #3a434f}
@@ -662,8 +707,14 @@ body.ticket .mp-knob{background:#5a4a20}
 body.ticket .invite-btn{border:1px solid #c9b878;background:linear-gradient(#f7efd0,#e6d9a8);color:#5a4a20}
 body.ticket .invite-btn.on{background:#e6d9a8;border-color:#5a4a20}
 body.ticket .qi-invite{border:1px solid #3a434f;background:rgba(255,255,255,.08);color:#e8c88a}
+body.ticket .msgmenu{background:#2a323c;border:1px solid #3a434f}
+body.ticket .msgmenu .mi{color:#e8e2d2;border-bottom:1px solid #3a434f}
+body.ticket .msgmenu .mi:last-child{border-bottom:none}
+body.ticket .quote-bar{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428}
+body.ticket .msgnote .quote{background:#e6d9a8;border-left:3px solid #c9b878;color:#5a4a20}
+body.ticket .collection-item{background:#f5efdc;border:1px solid #d8cca8;color:#3a3428;border-radius:4px;border-left:6px dashed #1a1f26}
 
-/* ===================== 主题 8：梦里见过 ===================== */
+/* ===== 主题 8 梦里见过 ===== */
 body.dream{background-color:#ece4ee;background-image:radial-gradient(circle at 25% 20%, rgba(220,200,240,.6) 0, rgba(220,200,240,0) 50%),radial-gradient(circle at 80% 70%, rgba(230,210,235,.5) 0, rgba(230,210,235,0) 50%),linear-gradient(160deg,#f0e9f2,#ddd3e2);color:#5f5470}
 body.dream .topbar{background:linear-gradient(#f2ecf4,#e3d9e8);border-bottom:1px solid #cdc0d6;box-shadow:0 2px 10px rgba(160,140,180,.18)}
 body.dream .names span{color:#7a6a92}
@@ -727,8 +778,14 @@ body.dream .mp-knob{background:#7a6a92}
 body.dream .invite-btn{border:1px solid #b8a0cc;background:linear-gradient(#fbf7fd,#e3d6ee);color:#7a6a92;border-radius:12px}
 body.dream .invite-btn.on{background:#e3d6ee;border-color:#7a6a92}
 body.dream .qi-invite{border:1px solid #cdc0d6;background:rgba(255,255,255,.8);color:#7a6a92}
+body.dream .msgmenu{background:#f2ecf4;border:1px solid #cdc0d6;border-radius:12px}
+body.dream .msgmenu .mi{color:#5f5470;border-bottom:1px solid #e3d9e8}
+body.dream .msgmenu .mi:last-child{border-bottom:none}
+body.dream .quote-bar{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#7a6a92;border-radius:10px}
+body.dream .msgnote .quote{background:#f0e6f6;border-left:3px solid #b8a0cc;color:#5f5470}
+body.dream .collection-item{background:rgba(255,255,255,.8);border:1px solid #d6cae0;color:#5f5470;border-radius:12px}
 
-/* ===================== 主题 9：咖啡馆手写 ===================== */
+/* ===== 主题 9 咖啡馆手写 ===== */
 body.cafe{background-color:#f3e9d8;background-image:radial-gradient(circle at 25% 20%, rgba(160,120,80,.08) 0 2px, transparent 3px),radial-gradient(circle at 75% 65%, rgba(160,120,80,.06) 0 2px, transparent 3px),linear-gradient(160deg,#f7efe0,#e8d8bf);background-size:56px 56px,90px 90px,100% 100%;color:#5a4632}
 body.cafe .topbar{background:linear-gradient(#f7efe0,#ecdcc2);border-bottom:1px solid #c9b28c;box-shadow:0 2px 6px rgba(120,95,60,.15)}
 body.cafe .names span{color:#7a5c3a}
@@ -757,12 +814,13 @@ body.cafe .style-opt.on{border:2px solid #b8945c;background:#f7e9cc}
 body.cafe .btn-danger{border:1px solid #c47a3a;background:#f7e0d0;color:#a5401a}
 body.cafe #composer{background:linear-gradient(transparent,rgba(243,233,216,.92))}
 body.cafe .input-note{background:#fbf5e8;border:1px solid #ddc9a4;border-radius:2px}
-body.cafe #msgInput{color:#5a4632}
+body.cafe #msgInput{color:#5a4632;font-style:italic}
 body.cafe #msgInput::placeholder{color:#b89a74}
 body.cafe #sendStamp{border:2px solid #b8945c;background:radial-gradient(circle at 35% 30%,#f7e9cc,#e6d0a2);color:#7a5c3a;border-radius:50%;transform:none}
-body.cafe .msgnote.me{background:#fdf6e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:2px;border-left:3px solid #b8945c;box-shadow:0 3px 8px rgba(120,95,60,.18)}
+body.cafe .msgnote.me{background:#fdf6e8;border:1px solid #ddc9a4;color:#5a4632;border-radius:2px;border-left:3px solid #b8945c;box-shadow:0 3px 8px rgba(120,95,60,.18);transform:rotate(-.5deg)}
 body.cafe .msgnote.me::after{content:"";position:absolute;right:-4px;bottom:6px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #c69a5e, #8a6334);opacity:.35}
-body.cafe .msgnote.her{background:#fbf5e8;border:1px solid #d8c8a8;color:#5a4632;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 26px,rgba(150,120,85,.16) 26px 27px);border-right:3px solid #a89066;box-shadow:0 3px 8px rgba(120,95,60,.18)}
+body.cafe .msgnote.me::before{content:"";position:absolute;top:-6px;left:16px;width:34px;height:12px;background:rgba(200,175,130,.5);transform:rotate(-6deg);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+body.cafe .msgnote.her{background:#fbf5e8;border:1px solid #d8c8a8;color:#5a4632;border-radius:2px;background-image:repeating-linear-gradient(transparent 0 26px,rgba(150,120,85,.16) 26px 27px);border-right:3px solid #a89066;box-shadow:0 3px 8px rgba(120,95,60,.18);transform:rotate(.5deg)}
 body.cafe .stamp{border:1px solid #c9b28c;color:#a89066;background:#fffaf0;border-radius:2px;width:auto;height:auto;padding:1px 5px;transform:none;font-size:9px}
 body.cafe .waiting{background:#f7efe0;border:1px dashed #c9b28c;color:#a89066;border-radius:2px}
 body.cafe .sys{background:#fbf5e8;border:1px dashed #c9b28c;color:#a89066}
@@ -791,8 +849,14 @@ body.cafe .mp-knob{background:#7a5c3a}
 body.cafe .invite-btn{border:1px solid #b8945c;background:linear-gradient(#f7e9cc,#e6d0a2);color:#7a5c3a;border-radius:4px}
 body.cafe .invite-btn.on{background:#e6d0a2;border-color:#7a5c3a}
 body.cafe .qi-invite{border:1px solid #c9b28c;background:#fffaf0;color:#7a5c3a}
+body.cafe .msgmenu{background:#f7efe0;border:1px solid #c9b28c;border-radius:4px}
+body.cafe .msgmenu .mi{color:#5a4632;border-bottom:1px solid #e2d4b6}
+body.cafe .msgmenu .mi:last-child{border-bottom:none}
+body.cafe .quote-bar{background:#fdf6e8;border:1px solid #ddc9a4;color:#7a5c3a;border-radius:4px}
+body.cafe .msgnote .quote{background:#f0e2c8;border-left:3px solid #b8945c;color:#5a4632}
+body.cafe .collection-item{background:linear-gradient(#fbf5e8,#f5ecd8);border:1px solid #ddc9a4;color:#5a4632;border-radius:2px}
 
-/* ===================== 主题 10：星空信纸 ===================== */
+/* ===== 主题 10 星空信纸 ===== */
 body.starry{background-color:#101530;background-image:radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 1px, transparent 2px),radial-gradient(circle at 42% 32%, rgba(255,240,200,.85) 0 1px, transparent 2px),radial-gradient(circle at 68% 12%, rgba(200,220,255,.8) 0 1px, transparent 2px),radial-gradient(circle at 82% 52%, rgba(255,255,255,.7) 0 1px, transparent 2px),radial-gradient(circle at 28% 72%, rgba(220,230,255,.75) 0 1px, transparent 2px),radial-gradient(circle at 58% 84%, rgba(255,245,220,.7) 0 1px, transparent 2px),radial-gradient(circle at 90% 80%, rgba(200,215,255,.65) 0 1px, transparent 2px),linear-gradient(160deg,#141a3a,#0a0e22);background-size:220px 220px,260px 260px,200px 200px,240px 240px,280px 280px,210px 210px,230px 230px,100% 100%;color:#dfe4ff}
 body.starry .topbar{background:linear-gradient(#1a2246,#141a38);border-bottom:1px solid #3a4478;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 body.starry .names span{color:#c8d4ff}
@@ -856,8 +920,14 @@ body.starry .mp-knob{background:#c8d4ff}
 body.starry .invite-btn{border:1px solid #8a96d8;background:rgba(138,150,216,.2);color:#c8d4ff;border-radius:2px}
 body.starry .invite-btn.on{background:rgba(138,150,216,.35);border-color:#c8d4ff}
 body.starry .qi-invite{border:1px solid #3a4478;background:rgba(200,212,255,.12);color:#c8d4ff}
+body.starry .msgmenu{background:#1a2246;border:1px solid #3a4478}
+body.starry .msgmenu .mi{color:#dfe4ff;border-bottom:1px solid #3a4478}
+body.starry .msgmenu .mi:last-child{border-bottom:none}
+body.starry .quote-bar{background:rgba(200,212,255,.12);border:1px solid #3a4478;color:#c8d4ff}
+body.starry .msgnote .quote{background:rgba(138,150,216,.22);border-left:3px solid #8a96d8;color:#eaefff}
+body.starry .collection-item{background:rgba(200,212,255,.08);border:none;border-bottom:1px solid #8a96d8;color:#dfe4ff;border-radius:0}
 
-/* ===================== 主题 11：雨天窗边 ===================== */
+/* ===== 主题 11 雨天窗边 ===== */
 body.rain{background-color:#dfe7ec;background-image:linear-gradient(rgba(120,150,170,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(120,150,170,.08) 1px, transparent 1px),radial-gradient(circle at 30% 20%, rgba(255,255,255,.7) 0, rgba(255,255,255,0) 40%),linear-gradient(160deg,#e8eef2,#ccd8e0);background-size:100% 22px,34px 100%,100% 100%,100% 100%;color:#3a4a58}
 body.rain .topbar{background:linear-gradient(#e8eef2,#d8e2e8);border-bottom:1px solid #b0c0cc;box-shadow:0 2px 8px rgba(100,130,150,.2)}
 body.rain .names span{color:#5a7a90}
@@ -923,8 +993,14 @@ body.rain .mp-knob{background:#5a7a90}
 body.rain .invite-btn{border:1px solid #8aa8bc;background:linear-gradient(#ffffff,#dce8ee);color:#5a7a90;border-radius:20px}
 body.rain .invite-btn.on{background:#dce8ee;border-color:#5a7a90}
 body.rain .qi-invite{border:1px solid #b0c0cc;background:rgba(255,255,255,.85);color:#5a7a90;border-radius:18px}
+body.rain .msgmenu{background:#fff;border:1px solid #b0c0cc;border-radius:20px}
+body.rain .msgmenu .mi{color:#3a4a58;border-bottom:1px solid #dbe6ec}
+body.rain .msgmenu .mi:last-child{border-bottom:none}
+body.rain .quote-bar{background:rgba(255,255,255,.9);border:1px solid #b0c0cc;color:#5a7a90;border-radius:18px}
+body.rain .msgnote .quote{background:#dce8ee;border-left:3px solid #8aa8bc;color:#3a4a58}
+body.rain .collection-item{background:rgba(255,255,255,.85);border:1px solid #c0ced8;color:#3a4a58;border-radius:20px}
 
-/* ===================== 主题 12：和风宣纸 ===================== */
+/* ===== 主题 12 和风宣纸 ===== */
 body.washi{background-color:#f0e8d4;background-image:linear-gradient(rgba(150,130,100,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(150,130,100,.05) 1px, transparent 1px),radial-gradient(circle at 80% 15%, rgba(178,58,42,.06) 0, rgba(178,58,42,0) 35%),linear-gradient(160deg,#f7f0dd,#e6dcc2);background-size:100% 30px,30px 100%,100% 100%,100% 100%;color:#4a3a2a}
 body.washi .topbar{background:linear-gradient(#f7f0dd,#ece2c8);border-bottom:2px solid #c9b48a;box-shadow:none}
 body.washi .names span{color:#8a5a4a}
@@ -934,7 +1010,7 @@ body.washi .page-head h2,body.washi .page-head .back{color:#8a5a4a}
 body.washi #drawer{background:linear-gradient(160deg,#f7f0dd,#e6dcc2);border-right:2px solid #c9b48a}
 body.washi .drawer-item{color:#4a3a2a}
 body.washi .tool{color:#8a5a4a;border:1px solid #c9b48a;background:rgba(255,252,240,.85);border-radius:0}
-body.washi .card-item{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0}
+body.washi .card-item{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0;border-left:4px solid #b23a2a}
 body.washi .empty-tip{color:#a89070}
 body.washi #selectAllRow{color:#8a5a4a;border-bottom:1px dashed #c9b48a}
 body.washi #multiBar{background:rgba(247,240,221,.98);border-top:2px solid #c9b48a}
@@ -986,9 +1062,15 @@ body.washi .mp-fill{background:#b23a2a}
 body.washi .mp-knob{background:#8a5a4a}
 body.washi .invite-btn{border:2px solid #b23a2a;background:#faf5e6;color:#b23a2a;border-radius:0}
 body.washi .invite-btn.on{background:#f7eccd;border-color:#8a5a4a}
-body.washi .qi-invite{border:1px solid #c9b48a;background:#faf5e6;color:#8a5a4a;border-radius:0}
+body.washi .qi-invite{border:1px solid #c9b48a;background:#faf5e6;color:#8a5a4a}
+body.washi .msgmenu{background:#f7f0dd;border:1px solid #c9b48a;border-radius:0}
+body.washi .msgmenu .mi{color:#4a3a2a;border-bottom:1px solid #e0d2b0}
+body.washi .msgmenu .mi:last-child{border-bottom:none}
+body.washi .quote-bar{background:#faf5e6;border:1px solid #d8c8a0;color:#8a5a4a;border-radius:0}
+body.washi .msgnote .quote{background:#f0e2c8;border-left:3px solid #b23a2a;color:#4a3a2a}
+body.washi .collection-item{background:#faf5e6;border:1px solid #d8c8a0;color:#4a3a2a;border-radius:0;border-left:4px solid #b23a2a}
 
-/* ===================== 主题 13：磁带青春 ===================== */
+/* ===== 主题 13 磁带青春 ===== */
 body.tape{background-color:#2a2620;background-image:linear-gradient(rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(255,180,80,.06) 1px, transparent 1px),linear-gradient(160deg,#332e26,#1e1a16);background-size:100% 20px,20px 100%,100% 100%;color:#f0e0c0}
 body.tape .topbar{background:linear-gradient(#3a342a,#2a2620);border-bottom:3px solid #d88a30;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 body.tape .names span{color:#f0b060}
@@ -1051,9 +1133,15 @@ body.tape .mp-fill{background:#d88a30}
 body.tape .mp-knob{background:#f0b060}
 body.tape .invite-btn{border:2px solid #d88a30;background:linear-gradient(#f0b060,#c87a28);color:#2a2620;border-radius:4px}
 body.tape .invite-btn.on{background:linear-gradient(#c87a28,#f0b060);border-color:#f0b060}
-body.tape .qi-invite{border:1px solid #6a5a3a;background:rgba(255,180,80,.12);color:#f0b060;border-radius:4px}
+body.tape .qi-invite{border:1px solid #6a5a3a;background:rgba(255,180,80,.12);color:#f0b060}
+body.tape .msgmenu{background:#3a342a;border:2px solid #6a5a3a;border-radius:4px}
+body.tape .msgmenu .mi{color:#f0e0c0;border-bottom:1px solid #6a5a3a}
+body.tape .msgmenu .mi:last-child{border-bottom:none}
+body.tape .quote-bar{background:rgba(255,190,100,.14);border:2px solid #6a5a3a;color:#f0b060;border-radius:4px}
+body.tape .msgnote .quote{background:rgba(240,176,96,.24);border-left:3px solid #f0b060;color:#f7ecd0}
+body.tape .collection-item{background:rgba(255,200,120,.1);border:2px solid #6a5a3a;color:#f0e0c0;border-radius:4px;border-left:6px solid #d88a30}
 
-/* ===================== 主题 14：薄荷清晨 ===================== */
+/* ===== 主题 14 薄荷清晨 ===== */
 body.mint{background-color:#f0f7f4;background-image:radial-gradient(circle at 22% 26%, rgba(120,200,170,.14) 0 2px, transparent 3px),radial-gradient(circle at 76% 62%, rgba(120,200,170,.1) 0 2px, transparent 3px),radial-gradient(circle at 50% 15%, rgba(255,255,255,.8) 0, rgba(255,255,255,0) 45%),linear-gradient(160deg,#f7fcfa,#e0efe8);background-size:64px 64px,84px 84px,100% 100%,100% 100%;color:#2f4a42}
 body.mint .topbar{background:linear-gradient(#f7fcfa,#e6f2ec);border-bottom:1px solid #b8d8cc;box-shadow:0 2px 6px rgba(90,150,130,.15)}
 body.mint .names span{color:#4a8a74}
@@ -1118,6 +1206,12 @@ body.mint .mp-knob{background:#4a8a74}
 body.mint .invite-btn{border:1px solid #6ab898;background:linear-gradient(#ffffff,#d8f0e6);color:#4a8a74;border-radius:6px}
 body.mint .invite-btn.on{background:#d8f0e6;border-color:#4a8a74}
 body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;border-radius:6px}
+body.mint .msgmenu{background:#fff;border:1px solid #b8d8cc;border-radius:6px}
+body.mint .msgmenu .mi{color:#2f4a42;border-bottom:1px solid #e0efe8}
+body.mint .msgmenu .mi:last-child{border-bottom:none}
+body.mint .quote-bar{background:#eaf6f0;border:1px solid #b8d8cc;color:#4a8a74;border-radius:6px}
+body.mint .msgnote .quote{background:#e0f4ec;border-left:3px solid #6ab898;color:#2f4a42}
+body.mint .collection-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;box-shadow:0 2px 6px rgba(90,150,130,.1)}
 </style>
 </head>
 <body class="retro">
@@ -1167,7 +1261,6 @@ body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;bord
   <symbol id="i-mode-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a4 4 0 0 1 0 8H8"/><path d="M7 5l-3 3 3 3"/><path d="M13 19l3-3-3-3"/></symbol>
   <symbol id="i-invite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M18 7v6"/><path d="M15 10h6"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></symbol>
-  <symbol id="i-clean" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></symbol>
 </svg>
 
 <div id="app">
@@ -1184,6 +1277,7 @@ body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;bord
   <div id="stream"></div>
   <div id="composer">
     <div class="hold-bar" id="holdBar"><div class="hold-handle"></div></div>
+    <div id="quoteBar" class="quote-bar"><span id="quoteText"></span><span class="q-x" id="quoteClose">✕</span></div>
     <div class="input-note">
       <textarea id="msgInput" rows="1" placeholder="想对祂说的话…"></textarea>
       <button id="sendStamp">贴</button>
@@ -1200,10 +1294,7 @@ body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;bord
   </div>
   <div id="quickInteract">
     <div class="qs-head">互动</div>
-    <div class="qi-tabs" id="qiTabs">
-      <div class="qi-tab on" data-dir="touch">触碰</div>
-      <div class="qi-tab" data-dir="pair">缱绻</div>
-    </div>
+    <div class="qi-tabs" id="qiTabs"></div>
     <div class="qs-scroll"><div class="qi-list" id="qiBody"></div></div>
   </div>
   <div id="quickMusic">
@@ -1237,6 +1328,11 @@ body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;bord
     </div>
     <button class="save-btn" id="saveCards">放进口袋</button>
   </div>
+</div>
+
+<div class="page" id="page-collection">
+  <div class="page-head"><div class="back" data-back>←</div><h2>收藏匣</h2></div>
+  <div class="page-body"><div id="colList"></div></div>
 </div>
 
 <div class="page" id="page-settings">
@@ -1314,11 +1410,15 @@ body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;bord
   <div class="sheet-item" id="shEdit">编辑</div>
   <div class="sheet-item" id="shLock">锁上</div>
   <div class="sheet-item danger" id="shDel">删除</div>
-  <div class="sheet-item" id="shDedup">去重</div>
   <div class="sheet-item" id="shClean">清互动重复</div>
   <div class="sheet-item" id="shImport">导入</div>
   <div class="sheet-item" id="shExport">导出</div>
   <div class="sheet-item sheet-cancel" id="shCancel">取消</div>
+</div>
+
+<div id="msgMenu" class="msgmenu">
+  <div class="mi" id="mmQuote">引用</div>
+  <div class="mi danger" id="mmDel">删除</div>
 </div>
 
 <div id="previewMask">
@@ -1355,170 +1455,128 @@ body.mint .qi-invite{border:1px solid #b8d8cc;background:#fff;color:#4a8a74;bord
 <input type="file" id="fileInput" accept=".json,.txt" style="display:none">
 
 <script>
-const FS = {
-  dir:null, stickerDir:null, musicDir:null,
-  async init(){
-    try{
-      const root=await navigator.storage.getDirectory();
-      this.dir=await root.getDirectoryHandle('ayu_aliang',{create:true});
-      this.stickerDir=await this.dir.getDirectoryHandle('stickers',{create:true});
-      this.musicDir=await this.dir.getDirectoryHandle('music',{create:true});
-      return true;
-    }catch(e){ this.dir=null; this.stickerDir=null; this.musicDir=null; return false; }
-  },
-  async read(name,def){
-    try{
-      if(this.dir){ const fh=await this.dir.getFileHandle(name); const f=await fh.getFile(); const t=await f.text(); return t?JSON.parse(t):def; }
-      else{ const t=localStorage.getItem('ayu_'+name); return t?JSON.parse(t):def; }
-    }catch(e){ return def; }
-  },
-  async write(name,obj){
-    const t=JSON.stringify(obj);
-    try{
-      if(this.dir){ const fh=await this.dir.getFileHandle(name,{create:true}); const w=await fh.createWritable(); await w.write(t); await w.close(); }
-      else{ localStorage.setItem('ayu_'+name,t); }
-    }catch(e){}
-  },
-  async saveSticker(id, dataUrl){
-    try{
-      const res=await fetch(dataUrl); const blob=await res.blob();
-      if(this.stickerDir){ const fh=await this.stickerDir.getFileHandle(id,{create:true}); const w=await fh.createWritable(); await w.write(blob); await w.close(); return true; }
-      else{ localStorage.setItem('ayustk_'+id, dataUrl); return true; }
-    }catch(e){ return false; }
-  },
-  async readSticker(id){
-    try{
-      if(this.stickerDir){ const fh=await this.stickerDir.getFileHandle(id); const f=await fh.getFile(); return await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(f);}); }
-      else{ return localStorage.getItem('ayustk_'+id); }
-    }catch(e){ return null; }
-  },
-  async delSticker(id){
-    try{ if(this.stickerDir){ await this.stickerDir.removeEntry(id); } else { localStorage.removeItem('ayustk_'+id); } }catch(e){}
-  },
-  async saveMusicFile(id, blob){
-    try{ if(this.musicDir){ const fh=await this.musicDir.getFileHandle(id,{create:true}); const w=await fh.createWritable(); await w.write(blob); await w.close(); return true; } return false; }catch(e){ return false; }
-  },
-  async readMusicFile(id){
-    try{ if(this.musicDir){ const fh=await this.musicDir.getFileHandle(id); const f=await fh.getFile(); return URL.createObjectURL(f); } return null; }catch(e){ return null; }
-  },
-  async delMusicFile(id){ try{ if(this.musicDir){ await this.musicDir.removeEntry(id); } }catch(e){} }
+const FS={
+  dir:null,stickerDir:null,musicDir:null,
+  async init(){try{const root=await navigator.storage.getDirectory();this.dir=await root.getDirectoryHandle('ayu_aliang',{create:true});this.stickerDir=await this.dir.getDirectoryHandle('stickers',{create:true});this.musicDir=await this.dir.getDirectoryHandle('music',{create:true});return true;}catch(e){this.dir=null;this.stickerDir=null;this.musicDir=null;return false;}},
+  async read(name,def){try{if(this.dir){const fh=await this.dir.getFileHandle(name);const f=await fh.getFile();const t=await f.text();return t?JSON.parse(t):def;}else{const t=localStorage.getItem('ayu_'+name);return t?JSON.parse(t):def;}}catch(e){return def;}},
+  async write(name,obj){const t=JSON.stringify(obj);try{if(this.dir){const fh=await this.dir.getFileHandle(name,{create:true});const w=await fh.createWritable();await w.write(t);await w.close();}else{localStorage.setItem('ayu_'+name,t);}}catch(e){}},
+  async saveSticker(id,dataUrl){try{const res=await fetch(dataUrl);const blob=await res.blob();if(this.stickerDir){const fh=await this.stickerDir.getFileHandle(id,{create:true});const w=await fh.createWritable();await w.write(blob);await w.close();return true;}else{localStorage.setItem('ayustk_'+id,dataUrl);return true;}}catch(e){return false;}},
+  async readSticker(id){try{if(this.stickerDir){const fh=await this.stickerDir.getFileHandle(id);const f=await fh.getFile();return await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(f);});}else{return localStorage.getItem('ayustk_'+id);}}catch(e){return null;}},
+  async delSticker(id){try{if(this.stickerDir){await this.stickerDir.removeEntry(id);}else{localStorage.removeItem('ayustk_'+id);}}catch(e){}},
+  async saveMusicFile(id,blob){try{if(this.musicDir){const fh=await this.musicDir.getFileHandle(id,{create:true});const w=await fh.createWritable();await w.write(blob);await w.close();return true;}return false;}catch(e){return false;}},
+  async readMusicFile(id){try{if(this.musicDir){const fh=await this.musicDir.getFileHandle(id);const f=await fh.getFile();return URL.createObjectURL(f);}return null;}catch(e){return null;}},
+  async delMusicFile(id){try{if(this.musicDir){await this.musicDir.removeEntry(id);}}catch(e){}}
 };
-
-let cards=[], messages=[], stickers=[];
-let interactions={ touch:[], back:[], pair:[] };
-let musicList=[];
+let cards=[],messages=[],stickers=[],musicList=[],collection=[];
+let interactions={touch:[],back:[],pair:[]};
 let stickerCache={};
-let settings={ dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',
-  avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',
-  bgs:[], bgCur:null, bgMask:55, mpPos:null, listening:false };
-
+let settings={dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',bgs:[],bgCur:null,bgMask:55,mpPos:null,listening:false};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const rand=(a,b)=>a+Math.random()*(b-a);
 const randInt=(a,b)=>Math.floor(rand(a,b+1));
 const saveCards=()=>FS.write('cards.json',{cards});
-const saveMsgs =()=>FS.write('messages.json',{messages});
-const saveSet  =()=>FS.write('settings.json',settings);
+const saveMsgs=()=>FS.write('messages.json',{messages});
+const saveSet=()=>FS.write('settings.json',settings);
 const saveStickers=()=>FS.write('stickers.json',{stickers});
 const saveInteractions=()=>FS.write('interactions.json',interactions);
 const saveMusic=()=>FS.write('music.json',{musicList});
+const saveCollection=()=>FS.write('collection.json',{collection});
 const $=s=>document.querySelector(s);
-const stream=$('#stream'), drawer=$('#drawer'), mask=$('#drawerMask');
-
+const stream=$('#stream'),drawer=$('#drawer'),mask=$('#drawerMask');
 let toastTimer;
-function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('on'),2000); }
-
-function callHerName(){ return settings.callHer||'祂'; }
-
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2000);}
+function callHerName(){return settings.callHer||'祂';}
+const INTERACT_LABEL={touch:'触碰',back:'回握',pair:'缱绻'};
+const INTERACT_PLACE={touch:'想对祂做的动作…',back:'想让他对你做的动作…',pair:'想一起做的动作…'};
 function applyProfile(){
   const h=settings.avatarHer,m=settings.avatarMe;
   $('#avHer').style.backgroundImage=h?`url(${h})`:'none';
-  $('#avMe').style.backgroundImage =m?`url(${m})`:'none';
+  $('#avMe').style.backgroundImage=m?`url(${m})`:'none';
   $('#setAvHer').style.backgroundImage=h?`url(${h})`:'none';
-  $('#setAvMe').style.backgroundImage =m?`url(${m})`:'none';
+  $('#setAvMe').style.backgroundImage=m?`url(${m})`:'none';
   $('#nameHer').textContent=settings.callHer||'';
-  $('#nameMe').textContent =settings.callMe ||'';
-  $('#setNameHer').value=settings.nameHer||''; $('#setNameMe').value=settings.nameMe||'';
-  $('#setCallHer').value=settings.callHer||''; $('#setCallMe').value=settings.callMe||'';
-  const qm=$('#qmCallHer'); if(qm) qm.textContent=callHerName();
-  const lb=$('#lbName'); if(lb) lb.textContent=callHerName();
+  $('#nameMe').textContent=settings.callMe||'';
+  $('#setNameHer').value=settings.nameHer||'';$('#setNameMe').value=settings.nameMe||'';
+  $('#setCallHer').value=settings.callHer||'';$('#setCallMe').value=settings.callMe||'';
+  const qm=$('#qmCallHer');if(qm)qm.textContent=callHerName();
+  const lb=$('#lbName');if(lb)lb.textContent=callHerName();
   renderInviteLabel();
 }
 function applyBg(){
-  const L=$('#bgLayer'), M=$('#bgMask');
-  const cur = settings.bgs.find(b=>b.id===settings.bgCur);
-  if(cur){
-    document.body.classList.add('has-bg');
-    L.style.backgroundImage=`url(${cur.data})`;
-    const a=(settings.bgMask==null?55:settings.bgMask)/100;
-    M.style.background=`rgba(255,255,255,${a})`;
-  }else{
-    document.body.classList.remove('has-bg');
-    L.style.backgroundImage='none'; M.style.background='none';
-  }
+  const L=$('#bgLayer'),M=$('#bgMask');
+  const cur=settings.bgs.find(b=>b.id===settings.bgCur);
+  if(cur){document.body.classList.add('has-bg');L.style.backgroundImage=`url(${cur.data})`;const a=(settings.bgMask==null?55:settings.bgMask)/100;M.style.background=`rgba(255,255,255,${a})`;}
+  else{document.body.classList.remove('has-bg');L.style.backgroundImage='none';M.style.background='none';}
 }
 function renderBgList(){
-  const box=$('#bgList'); box.innerHTML='';
+  const box=$('#bgList');box.innerHTML='';
   settings.bgs.forEach(b=>{
-    const d=document.createElement('div');
-    d.className='bg-thumb'+(settings.bgCur===b.id?' sel':'');
-    d.style.backgroundImage=`url(${b.data})`;
-    d.addEventListener('click',()=>{ settings.bgCur=(settings.bgCur===b.id)?null:b.id; saveSet(); applyBg(); renderBgList(); });
-    let lt=null;
-    d.addEventListener('touchstart',()=>{ lt=setTimeout(()=>{ if(confirm('删除这张背景？')){ settings.bgs=settings.bgs.filter(x=>x.id!==b.id); if(settings.bgCur===b.id) settings.bgCur=null; saveSet(); applyBg(); renderBgList(); } },600); },{passive:true});
-    d.addEventListener('touchend',()=>clearTimeout(lt));
-    d.addEventListener('touchmove',()=>clearTimeout(lt));
+    const d=document.createElement('div');d.className='bg-thumb'+(settings.bgCur===b.id?' sel':'');d.style.backgroundImage=`url(${b.data})`;
+    d.addEventListener('click',()=>{settings.bgCur=(settings.bgCur===b.id)?null:b.id;saveSet();applyBg();renderBgList();});
     box.appendChild(d);
   });
-  const add=document.createElement('div'); add.className='bg-add'; add.textContent='＋';
-  add.addEventListener('click',()=>bgFile.click());
-  box.appendChild(add);
+  const add=document.createElement('div');add.className='bg-add';add.textContent='＋';add.addEventListener('click',()=>bgFile.click());box.appendChild(add);
 }
-function fmtTime(ts){ const d=new Date(ts); return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); }
-
-const INTERACT_LABEL={ touch:'触碰', back:'回握', pair:'缱绻' };
-const INTERACT_PLACE={ touch:'想对祂做的动作…', back:'想让他对你做的动作…', pair:'想一起做的动作…' };
-
-function makeNote(m, withAvatar){
+function fmtTime(ts){const d=new Date(ts);return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');}
+function makeNote(m,withAvatar,idx){
   const el=document.createElement('div');
-  const isInteract = m.type==='interact';
+  const isInteract=m.type==='interact';
   el.className='msgnote '+(m.from==='me'?'me':'her')+(m.type==='sticker'?' sticker-note':'')+(isInteract?' interact':'');
-  if(isInteract){ el.classList.add(m.dir||'touch'); }
-  if(m.type==='sticker'){
-    const img=document.createElement('img'); img.className='stkmsg'; img.src=m.data;
-    el.appendChild(img);
-  }else if(m.type==='photo'){
-    const img=document.createElement('img'); img.className='imgmsg'; img.src=m.data;
-    el.appendChild(img);
-  }else if(isInteract){
-    const tag=document.createElement('span'); tag.className='itag'; tag.textContent=INTERACT_LABEL[m.dir]||'互动';
-    el.appendChild(tag);
-    el.appendChild(document.createTextNode(m.text));
-  }else{
-    el.textContent=m.text;
-  }
-  if(withAvatar){
-    const av = m.from==='me'?settings.avatarMe:settings.avatarHer;
-    if(av){ const nav=document.createElement('div'); nav.className='nav'; nav.style.backgroundImage=`url(${av})`; el.appendChild(nav); }
-  }
-  const st=document.createElement('div'); st.className='stamp'; st.textContent=fmtTime(m.time);
-  el.appendChild(st); return el;
+  if(isInteract)el.classList.add(m.dir||'touch');
+  if(m.quote){const q=document.createElement('span');q.className='quote';q.textContent='❝ '+(m.quote.text||(m.quote.type==='photo'?'[图片]':''));
+    el.appendChild(q);}
+  if(m.type==='sticker'){const img=document.createElement('img');img.className='stkmsg';img.src=m.data;el.appendChild(img);}
+  else if(m.type==='photo'){const img=document.createElement('img');img.className='imgmsg';img.src=m.data;el.appendChild(img);}
+  else if(isInteract){const tag=document.createElement('span');tag.className='itag';tag.textContent=INTERACT_LABEL[m.dir]||'互动';el.appendChild(tag);el.appendChild(document.createTextNode(m.text));}
+  else{el.textContent=m.text;}
+  if(withAvatar){const av=m.from==='me'?settings.avatarMe:settings.avatarHer;if(av){const nav=document.createElement('div');nav.className='nav';nav.style.backgroundImage=`url(${av})`;el.appendChild(nav);}}
+  const st=document.createElement('div');st.className='stamp';st.textContent=fmtTime(m.time);el.appendChild(st);
+  el.addEventListener('click',(e)=>{if(e.target.closest('.nav'))return;openMsgMenu(idx,el);});
+  return el;
 }
-function firstOfGroup(idx){ if(idx===0) return true; return messages[idx-1].from !== messages[idx].from; }
-function renderMessages(){ stream.innerHTML=''; messages.forEach((m,i)=>stream.appendChild(makeNote(m, firstOfGroup(i)))); scrollBottom(); }
-function scrollBottom(){ requestAnimationFrame(()=>stream.scrollTop=stream.scrollHeight); }
-function appendMessage(m){
-  messages.push(m); saveMsgs();
-  const withAvatar = messages.length===1 || messages[messages.length-2].from!==m.from;
-  stream.appendChild(makeNote(m, withAvatar)); scrollBottom();
+function firstOfGroup(idx){if(idx===0)return true;return messages[idx-1].from!==messages[idx].from;}
+function renderMessages(){stream.innerHTML='';messages.forEach((m,i)=>stream.appendChild(makeNote(m,firstOfGroup(i),i)));scrollBottom();}
+function scrollBottom(){requestAnimationFrame(()=>stream.scrollTop=stream.scrollHeight);}
+function appendMessage(m){messages.push(m);saveMsgs();const withAvatar=messages.length===1||messages[messages.length-2].from!==m.from;stream.appendChild(makeNote(m,withAvatar,messages.length-1));scrollBottom();}
+function showSystem(text){const el=document.createElement('div');el.className='sys';el.dataset.sys='1';el.textContent=text;stream.appendChild(el);scrollBottom();}
+function removeEmptyTip(){stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove());}
+
+let msgMenuIdx=-1,msgMenuEl=null;
+function openMsgMenu(idx,el){
+  msgMenuIdx=idx;msgMenuEl=el;
+  const menu=$('#msgMenu');menu.classList.add('on');
+  const r=el.getBoundingClientRect();
+  menu.style.left=Math.max(8,Math.min(window.innerWidth-140,r.left))+'px';
+  menu.style.top=Math.min(window.innerHeight-110,r.bottom+6)+'px';
 }
-function showSystem(text){ const el=document.createElement('div'); el.className='sys'; el.dataset.sys='1'; el.textContent=text; stream.appendChild(el); scrollBottom(); }
-function removeEmptyTip(){ stream.querySelectorAll('[data-sys="1"]').forEach(n=>n.remove()); }
+function closeMsgMenu(){ $('#msgMenu').classList.remove('on'); msgMenuIdx=-1;msgMenuEl=null; }
+document.addEventListener('click',e=>{ if(!e.target.closest('#msgMenu') && !e.target.closest('.msgnote')) closeMsgMenu(); });
+$('#mmDel').addEventListener('click',()=>{
+  if(msgMenuIdx<0){closeMsgMenu();return;}
+  messages.splice(msgMenuIdx,1);saveMsgs();renderMessages();closeMsgMenu();toast('已删除');
+});
+$('#mmQuote').addEventListener('click',()=>{
+  if(msgMenuIdx<0){closeMsgMenu();return;}
+  const m=messages[msgMenuIdx];
+  pendingQuote={text:m.text||(m.type==='photo'?'[图片]':(m.type==='sticker'?'[贴纸]':''))};
+  $('#quoteText').textContent=pendingQuote.text;
+  $('#quoteBar').classList.add('on');closeMsgMenu();
+});
+let pendingQuote=null;
+$('#quoteClose').addEventListener('click',()=>{pendingQuote=null;$('#quoteBar').classList.remove('on');});
 
 let pendingReply=false;
 function sendMessage(){
-  const input=$('#msgInput'); const text=input.value.trim(); if(!text) return;
-  appendMessage({id:uid(),from:'me',type:'text',text,time:Date.now()});
-  input.value=''; input.style.height='auto'; triggerReply();
+  const input=$('#msgInput');const text=input.value.trim();if(!text)return;
+  const m={id:uid(),from:'me',type:'text',text,time:Date.now()};
+  if(pendingQuote){m.quote=pendingQuote;pendingQuote=null;$('#quoteBar').classList.remove('on');}
+  appendMessage(m);
+  input.value='';input.style.height='auto';triggerReply();
+}
+function saveToCollection(m){
+  if(Math.random()>0.3)return;
+  const item={id:uid(),type:m.type,text:m.text||'',data:m.data||'',time:Date.now()};
+  collection.push(item);saveCollection();
 }
 async function triggerReply(){
   const pool=[];
@@ -1526,992 +1584,602 @@ async function triggerReply(){
   (interactions.back||[]).filter(x=>!x.locked).forEach(x=>pool.push({kind:'interact',dir:'back',text:x.text}));
   (interactions.pair||[]).filter(x=>!x.locked).forEach(x=>pool.push({kind:'interact',dir:'pair',text:x.text}));
   stickers.forEach(s=>pool.push({kind:'sticker',id:s.id}));
-  if(pool.length===0) return;
-  if(pendingReply) return; pendingReply=true;
+  if(pool.length===0)return;
+  if(pendingReply)return;pendingReply=true;
   const delay=rand(settings.dMin,settings.dMax)*1000;
-  setTimeout(async ()=>{
+  setTimeout(async()=>{
     pendingReply=false;
-    const n=randInt(1,3); const cur=pool.slice();
-    for(let i=0;i<n;i++){
-      if(cur.length===0) break;
-      const idx=randInt(0,cur.length-1);
-      const pick=cur.splice(idx,1)[0];
-      if(pick.kind==='card') appendMessage({id:uid(),from:'her',type:'text',text:pick.text,time:Date.now()});
-      else if(pick.kind==='interact') appendMessage({id:uid(),from:'her',type:'interact',dir:pick.dir,text:pick.text,time:Date.now()});
-      else if(pick.kind==='sticker'){
-        let data=stickerCache[pick.id];
-        if(data==null){ data=await FS.readSticker(pick.id); stickerCache[pick.id]=data; }
-        if(data) appendMessage({id:uid(),from:'her',type:'sticker',data,time:Date.now()});
-      }
-      if(i<n-1) await new Promise(r=>setTimeout(r, rand(settings.gMin,settings.gMax)*1000));
+    const n=randInt(1,3);const cur=pool.slice();
+    let quote=null;
+    if(collection.length>0 && Math.random()<0.35){
+      const c=collection[randInt(0,collection.length-1)];
+      quote={text:c.text||(c.type==='photo'?'[图片]':'')};
     }
-  }, delay);
+    for(let i=0;i<n;i++){
+      if(cur.length===0)break;
+      const pick=cur.splice(randInt(0,cur.length-1),1)[0];
+      const m={id:uid(),from:'her',time:Date.now()};
+      if(i===0&&quote)m.quote=quote;
+      if(pick.kind==='card'){m.type='text';m.text=pick.text;}
+      else if(pick.kind==='interact'){m.type='interact';m.dir=pick.dir;m.text=pick.text;}
+      else if(pick.kind==='sticker'){let data=stickerCache[pick.id];if(data==null){data=await FS.readSticker(pick.id);stickerCache[pick.id]=data;}if(!data)continue;m.type='sticker';m.data=data;}
+      appendMessage(m);
+      if(i<n-1)await new Promise(r=>setTimeout(r,rand(settings.gMin,settings.gMax)*1000));
+    }
+  },delay);
 }
-$('#msgInput').addEventListener('input',function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,120)+'px'; });
+$('#msgInput').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';});
 $('#sendStamp').addEventListener('click',sendMessage);
 
-/* 快捷抽屉 */
 const quickItems=[
   {ic:'i-cam',n:'拍照',act:'camera'},{ic:'i-pic',n:'相册',act:'album'},{ic:'i-vid',n:'视频'},
   {ic:'i-sticker',n:'贴纸',act:'sticker'},{ic:'i-touch',n:'互动',act:'interact'},{ic:'i-music',n:'音乐',act:'music'},
-  {ic:'i-ask',n:'回应'},{ic:'i-together',n:'陪伴'},{ic:'i-archive',n:'归档'},
-  {ic:'i-sync',n:'同频'}
+  {ic:'i-ask',n:'回应'},{ic:'i-together',n:'陪伴'},{ic:'i-archive',n:'归档'},{ic:'i-sync',n:'同频'}
 ];
 (function buildQuick(){
   const g=$('#quickGrid');
   quickItems.forEach(q=>{
-    const d=document.createElement('div'); d.className='qb';
+    const d=document.createElement('div');d.className='qb';
     d.innerHTML=`<svg class="ico"><use href="#${q.ic}"/></svg><span>${q.n}</span>`;
     d.addEventListener('click',()=>{
-      if(q.act==='sticker') showQuickSticker();
-      else if(q.act==='interact') showQuickInteract();
-      else if(q.act==='music') showQuickMusic();
-      else if(q.act==='camera') $('#cameraInput').click();
-      else if(q.act==='album') $('#albumInput').click();
+      if(q.act==='sticker')showQuickSticker();
+      else if(q.act==='interact')showQuickInteract();
+      else if(q.act==='music')showQuickMusic();
+      else if(q.act==='camera')$('#cameraInput').click();
+      else if(q.act==='album')$('#albumInput').click();
       else toast('「'+q.n+'」还在做');
     });
     g.appendChild(d);
   });
 })();
-$('#cameraInput').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f) return;
+function handlePhoto(file,from){
+  if(!file)return;
   const r=new FileReader();
-  r.onload=async ()=>{
+  r.onload=async()=>{
     const id=uid();
-    const ok=await FS.saveSticker(id, r.result);
-    if(ok){ stickerCache[id]=r.result; appendMessage({id:uid(),from:'me',type:'photo',data:r.result,time:Date.now()}); }
-    else toast('照片保存失败');
-  };
-  r.readAsDataURL(f);
-  e.target.value='';
-});
-$('#albumInput').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=async ()=>{
-    const id=uid();
-    const ok=await FS.saveSticker(id, r.result);
-    if(ok){ stickerCache[id]=r.result; appendMessage({id:uid(),from:'me',type:'photo',data:r.result,time:Date.now()}); }
+    const ok=await FS.saveSticker(id,r.result);
+    if(ok){stickerCache[id]=r.result;const m={id:uid(),from:from,type:'photo',data:r.result,time:Date.now()};appendMessage(m);if(from==='me'){saveToCollection(m);triggerReply();}}
     else toast('图片保存失败');
   };
-  r.readAsDataURL(f);
-  e.target.value='';
-});
-function showQuickSticker(){ $('#quickGrid').style.display='none'; $('#quickInteract').classList.remove('on'); $('#quickMusic').classList.remove('on'); $('#quickSticker').classList.add('on'); renderQuickSticker(); }
-function hideQuickSticker(){ $('#quickGrid').style.display=''; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.remove('on'); $('#quickMusic').classList.remove('on'); }
+  r.readAsDataURL(file);
+}
+$('#cameraInput').addEventListener('change',e=>{handlePhoto(e.target.files[0],'me');e.target.value='';});
+$('#albumInput').addEventListener('change',e=>{handlePhoto(e.target.files[0],'me');e.target.value='';});
+
+function showQuickSticker(){$('#quickGrid').style.display='none';$('#quickInteract').classList.remove('on');$('#quickMusic').classList.remove('on');$('#quickSticker').classList.add('on');renderQuickSticker();}
+function hideQuickSticker(){$('#quickGrid').style.display='';$('#quickSticker').classList.remove('on');$('#quickInteract').classList.remove('on');$('#quickMusic').classList.remove('on');}
 let qiDir='touch';
-function showQuickInteract(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.remove('on'); $('#quickMusic').classList.remove('on'); $('#quickInteract').classList.add('on'); qiDir='touch'; renderQiTabs(); renderQuickInteract(); }
+function showQuickInteract(){$('#quickGrid').style.display='none';$('#quickSticker').classList.remove('on');$('#quickMusic').classList.remove('on');$('#quickInteract').classList.add('on');qiDir='touch';renderQiTabs();renderQuickInteract();}
 function renderQiTabs(){
-  const tabs=$('#qiTabs'); tabs.innerHTML='';
+  const tabs=$('#qiTabs');tabs.innerHTML='';
   [['touch','触碰'],['pair','缱绻']].forEach(([k,label])=>{
-    const d=document.createElement('div'); d.className='qi-tab'+(qiDir===k?' on':''); d.textContent=label;
-    d.addEventListener('click',()=>{ qiDir=k; renderQiTabs(); renderQuickInteract(); });
+    const d=document.createElement('div');d.className='qi-tab'+(qiDir===k?' on':'');d.textContent=label;
+    d.addEventListener('click',()=>{qiDir=k;renderQiTabs();renderQuickInteract();});
     tabs.appendChild(d);
   });
 }
-let qsShown=20, qsLoading=false;
-async function readStickersBatch(list){
-  await Promise.all(list.map(async s=>{
-    if(stickerCache[s.id]==null){ stickerCache[s.id]=await FS.readSticker(s.id); }
-  }));
-}
-function makeStickerCell(s, data, selMode, selected, onClick){
-  const cell=document.createElement('div');
-  cell.className='stk-cell'+(selMode?' selmode':'')+(selected?' sel':'');
-  const th=document.createElement('div'); th.className='stk-thumb';
-  if(data){ const img=document.createElement('img'); img.loading='lazy'; img.src=data; th.appendChild(img); }
+let qsShown=20,qsLoading=false;
+async function readStickersBatch(list){await Promise.all(list.map(async s=>{if(stickerCache[s.id]==null){stickerCache[s.id]=await FS.readSticker(s.id);}}));}
+function makeStickerCell(s,data,selMode,selected,onClick){
+  const cell=document.createElement('div');cell.className='stk-cell'+(selMode?' selmode':'')+(selected?' sel':'');
+  const th=document.createElement('div');th.className='stk-thumb';
+  if(data){const img=document.createElement('img');img.loading='lazy';img.src=data;th.appendChild(img);}
   cell.appendChild(th);
-  if(selMode){ const chk=document.createElement('div'); chk.className='chk'; chk.textContent=selected?'✓':''; cell.appendChild(chk); }
+  if(selMode){const chk=document.createElement('div');chk.className='chk';chk.textContent=selected?'✓':'';cell.appendChild(chk);}
   cell.addEventListener('click',()=>onClick(s));
   return cell;
 }
-async function renderQuickSticker(){
-  const box=$('#qsBody'); box.innerHTML='';
-  if(stickers.length===0){ box.innerHTML='<div class="qs-empty">还没有贴纸</div>'; return; }
-  qsShown=20;
-  await appendQuickSticker(0, qsShown);
-}
-async function appendQuickSticker(from, count){
-  const box=$('#qsBody');
-  const slice=stickers.slice(from, from+count);
-  if(slice.length===0) return;
+async function renderQuickSticker(){const box=$('#qsBody');box.innerHTML='';if(stickers.length===0){box.innerHTML='<div class="qs-empty">还没有贴纸</div>';return;}qsShown=20;await appendQuickSticker(0,qsShown);}
+async function appendQuickSticker(from,count){
+  const box=$('#qsBody');const slice=stickers.slice(from,from+count);if(slice.length===0)return;
   await readStickersBatch(slice);
   const frag=document.createDocumentFragment();
-  for(const s of slice){
-    const data=stickerCache[s.id];
-    const cell=makeStickerCell(s, data, false, false, (s)=>{
-      if(data){ appendMessage({id:uid(),from:'me',type:'sticker',data,time:Date.now()}); closeQuick(); }
-    });
-    frag.appendChild(cell);
-  }
+  for(const s of slice){const data=stickerCache[s.id];const cell=makeStickerCell(s,data,false,false,(s)=>{if(data){const m={id:uid(),from:'me',type:'sticker',data,time:Date.now()};appendMessage(m);saveToCollection(m);closeQuick();}});frag.appendChild(cell);}
   box.appendChild(frag);
 }
-$('#qsBody').addEventListener('scroll',async ()=>{
-  const box=$('#qsBody');
-  if(qsLoading) return;
-  if(box.scrollTop + box.clientHeight >= box.scrollHeight - 80){
-    if(qsShown < stickers.length){
-      qsLoading=true;
-      const from=qsShown; qsShown=Math.min(stickers.length, qsShown+20);
-      await appendQuickSticker(from, qsShown-from);
-      qsLoading=false;
-    }
-  }
+$('#qsBody').addEventListener('scroll',async()=>{
+  const box=$('#qsBody');if(qsLoading)return;
+  if(box.scrollTop+box.clientHeight>=box.scrollHeight-80){if(qsShown<stickers.length){qsLoading=true;const from=qsShown;qsShown=Math.min(stickers.length,qsShown+20);await appendQuickSticker(from,qsShown-from);qsLoading=false;}}
 });
 function renderQuickInteract(){
-  const box=$('#qiBody'); box.innerHTML='';
+  const box=$('#qiBody');box.innerHTML='';
   const arr=(interactions[qiDir]||[]).filter(x=>!x.locked);
-  if(arr.length===0){ box.innerHTML='<div class="qs-empty" style="grid-column:1/-1">还没有可发的动作</div>'; return; }
+  if(arr.length===0){box.innerHTML='<div class="qs-empty" style="grid-column:1/-1">还没有可发的动作</div>';return;}
   const frag=document.createDocumentFragment();
   arr.forEach(x=>{
-    const c=document.createElement('div'); c.className='qi-item'; c.textContent=x.text;
-    c.addEventListener('click',()=>{ appendMessage({id:uid(),from:'me',type:'interact',dir:qiDir,text:x.text,time:Date.now()}); closeQuick(); triggerReply(); });
+    const c=document.createElement('div');c.className='qi-item';c.textContent=x.text;
+    c.addEventListener('click',()=>{const m={id:uid(),from:'me',type:'interact',dir:qiDir,text:x.text,time:Date.now()};appendMessage(m);saveToCollection(m);closeQuick();triggerReply();});
     frag.appendChild(c);
   });
   box.appendChild(frag);
 }
-function showQuickMusic(){ $('#quickGrid').style.display='none'; $('#quickSticker').classList.remove('on'); $('#quickInteract').classList.remove('on'); $('#quickMusic').classList.add('on'); renderQuickMusic(); }
+function showQuickMusic(){$('#quickGrid').style.display='none';$('#quickSticker').classList.remove('on');$('#quickInteract').classList.remove('on');$('#quickMusic').classList.add('on');renderQuickMusic();}
 function renderQuickMusic(){
   renderInviteLabel();
-  const box=$('#qmBody'); box.innerHTML='';
-  if(musicList.length===0){ box.innerHTML='<div class="qs-empty">还没有歌，去口袋 → 音乐添加</div>'; return; }
+  const box=$('#qmBody');box.innerHTML='';
+  if(musicList.length===0){box.innerHTML='<div class="qs-empty">还没有歌，去口袋 → 音乐添加</div>';return;}
   const frag=document.createDocumentFragment();
   musicList.forEach(m=>{
-    const d=document.createElement('div'); d.className='music-item';
+    const d=document.createElement('div');d.className='music-item';
     d.innerHTML=`<div class="mi-info"><div class="mi-name">${escapeHtml(m.name||'未命名')}</div><div class="mi-sub">${escapeHtml(m.artist||'')}</div></div><div class="qi-invite"><svg class="ico"><use href="#i-invite"/></svg></div>`;
-    d.addEventListener('click',(e)=>{
-      const hitInvite = e.target.closest('.qi-invite');
-      if(hitInvite){ togetherWithSong(m); }
-      else { selfPlaySong(m); }
-      closeQuick();
-    });
+    d.addEventListener('click',(e)=>{if(e.target.closest('.qi-invite')){togetherWithSong(m);}else{selfPlaySong(m);}closeQuick();});
     frag.appendChild(d);
   });
   box.appendChild(frag);
 }
-function renderInviteLabel(){
-  const el=$('#qmInvite'); if(!el) return;
-  const ch=callHerName();
-  if(settings.listening){ el.textContent='♪ 正在和'+ch+'一起听…'; el.classList.add('on'); }
-  else{ el.innerHTML='邀请<span id="qmCallHer">'+ch+'</span>一起听'; el.classList.remove('on'); }
-}
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function openQuick(){
-  if(document.body.classList.contains('page-open')) return;
-  const d=$('#quickDrawer');
-  d.classList.add('on');
-  requestAnimationFrame(()=>{ const h=d.offsetHeight; document.documentElement.style.setProperty('--quick-h', h+'px'); });
-}
-function closeQuick(){ $('#quickDrawer').classList.remove('on'); hideQuickSticker(); }
-function toggleQuick(){ const d=$('#quickDrawer'); if(d.classList.contains('on')) closeQuick(); else openQuick(); }
+function renderInviteLabel(){const el=$('#qmInvite');if(!el)return;const ch=callHerName();if(settings.listening){el.textContent='♪ 正在和'+ch+'一起听…';el.classList.add('on');}else{el.innerHTML='邀请<span id="qmCallHer">'+ch+'</span>一起听';el.classList.remove('on');}}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function openQuick(){if(document.body.classList.contains('page-open'))return;const d=$('#quickDrawer');d.classList.add('on');}
+function closeQuick(){$('#quickDrawer').classList.remove('on');hideQuickSticker();}
+function toggleQuick(){const d=$('#quickDrawer');if(d.classList.contains('on'))closeQuick();else openQuick();}
 $('#qHandle').addEventListener('click',toggleQuick);
 $('#holdBar').addEventListener('click',toggleQuick);
-let sY=0, tracking=false, mode=null;
-let lockGesture=false;
+let sY=0,tracking=false,mode=null,lockGesture=false;
 document.addEventListener('touchstart',e=>{
-  if(e.target.closest('textarea,input')) return;
-  if(document.body.classList.contains('page-open')){ tracking=false; lockGesture=false; return; }
-  if(e.target.closest('#quickDrawer') && !e.target.closest('#qHandle')){ lockGesture=true; tracking=false; return; }
-  lockGesture=false;
-  const t=e.touches[0]; sY=t.clientY;
-  if($('#quickDrawer').classList.contains('on')){ mode='close'; }
-  else if(t.clientY > window.innerHeight-120){ mode='open'; }
-  else{ mode=null; }
+  if(e.target.closest('textarea,input'))return;
+  if(document.body.classList.contains('page-open')){tracking=false;lockGesture=false;return;}
+  if(e.target.closest('#quickDrawer')&&!e.target.closest('#qHandle')){lockGesture=true;tracking=false;return;}
+  lockGesture=false;const t=e.touches[0];sY=t.clientY;
+  if($('#quickDrawer').classList.contains('on')){mode='close';}else if(t.clientY>window.innerHeight-120){mode='open';}else{mode=null;}
   tracking=!!mode;
 },{passive:true});
 document.addEventListener('touchmove',e=>{
-  if(lockGesture || !tracking) return;
-  const dy = sY - e.touches[0].clientY;
-  if(mode==='open' && dy>50){ openQuick(); tracking=false; }
-  if(mode==='close' && dy<-50){ closeQuick(); tracking=false; }
+  if(lockGesture||!tracking)return;const dy=sY-e.touches[0].clientY;
+  if(mode==='open'&&dy>50){openQuick();tracking=false;}
+  if(mode==='close'&&dy<-50){closeQuick();tracking=false;}
 },{passive:true});
-document.addEventListener('touchend',()=>{tracking=false; lockGesture=false;},{passive:true});
+document.addEventListener('touchend',()=>{tracking=false;lockGesture=false;},{passive:true});
 
-/* 音乐播放 */
-const audioEl=$('#audioEl');
-const mp=$('#miniPlayer');
-let mpState={ index:-1, mode:'order', playing:false, dragging:false, objectUrl:null };
+const audioEl=$('#audioEl');const mp=$('#miniPlayer');
+let mpState={index:-1,mode:'order',dragging:false,objectUrl:null};
 const MP_MODES=[['order','顺序播放','i-mode-order'],['one','单曲循环','i-mode-one'],['shuffle','随机播放','i-mode-shuffle'],['all','列表循环','i-mode-all']];
-async function resolveMusicUrl(m){ if(m.fileId){ return await FS.readMusicFile(m.fileId); } return null; }
-async function selfPlaySong(m){ const idx=musicList.findIndex(x=>x.id===m.id); await playIndex(idx); }
-async function togetherWithSong(m){ setListening(true); await selfPlaySong(m); toast(callHerName()+' 正在和你一起听…'); }
+async function selfPlaySong(m){const idx=musicList.findIndex(x=>x.id===m.id);await playIndex(idx);}
+async function togetherWithSong(m){setListening(true);await selfPlaySong(m);toast(callHerName()+' 正在和你一起听…');}
 async function playIndex(idx){
-  if(idx<0 || idx>=musicList.length) return;
-  const m=musicList[idx];
-  mpState.index=idx;
-  $('#mpTitle').textContent=(m.name||'未命名');
-  $('#mpArtist').textContent=(m.artist||'');
-  const url=await resolveMusicUrl(m);
-  if(!url){ toast('这首歌没有音频文件'); return; }
-  if(mpState.objectUrl && mpState.objectUrl.startsWith('blob:')){ try{ URL.revokeObjectURL(mpState.objectUrl); }catch(e){} }
-  mpState.objectUrl=url;
-  audioEl.src=url;
-  try{ await audioEl.play(); }catch(e){ toast('播放失败，可能需要点一下屏幕'); }
-  mp.classList.add('on');
-  applyMpPos();
-  updateMpPlayIcon();
+  if(idx<0||idx>=musicList.length)return;const m=musicList[idx];mpState.index=idx;
+  $('#mpTitle').textContent=(m.name||'未命名');$('#mpArtist').textContent=(m.artist||'');
+  if(!m.fileId){toast('这首歌没有音频文件');return;}
+  const url=await FS.readMusicFile(m.fileId);
+  if(mpState.objectUrl&&mpState.objectUrl.startsWith('blob:')){try{URL.revokeObjectURL(mpState.objectUrl);}catch(e){}}
+  mpState.objectUrl=url;audioEl.src=url;
+  try{await audioEl.play();}catch(e){toast('播放失败，点一下屏幕');}
+  mp.classList.add('on');applyMpPos();updateMpPlayIcon();
 }
-function updateMpPlayIcon(){ $('#mpPlayIcon').setAttribute('href', audioEl.paused?'#i-play':'#i-pause'); }
-function fmtSec(s){ s=Math.max(0,Math.floor(s||0)); const m=Math.floor(s/60); const ss=s%60; return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0'); }
-function updateProgress(){
-  const cur=audioEl.currentTime||0; const dur=audioEl.duration||0;
-  const pct= dur>0 ? (cur/dur*100) : 0;
-  if(!mpState.dragging){ $('#mpFill').style.width=pct+'%'; $('#mpKnob').style.left=pct+'%'; }
-  $('#mpTime').textContent=fmtSec(cur)+' / '+fmtSec(dur);
-}
+function updateMpPlayIcon(){$('#mpPlayIcon').setAttribute('href',audioEl.paused?'#i-play':'#i-pause');}
+function fmtSec(s){s=Math.max(0,Math.floor(s||0));const m=Math.floor(s/60);const ss=s%60;return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0');}
+function updateProgress(){const cur=audioEl.currentTime||0;const dur=audioEl.duration||0;const pct=dur>0?(cur/dur*100):0;if(!mpState.dragging){$('#mpFill').style.width=pct+'%';$('#mpKnob').style.left=pct+'%';}$('#mpTime').textContent=fmtSec(cur)+' / '+fmtSec(dur);}
 audioEl.addEventListener('timeupdate',updateProgress);
 audioEl.addEventListener('loadedmetadata',updateProgress);
-audioEl.addEventListener('play',()=>{ mpState.playing=true; updateMpPlayIcon(); });
-audioEl.addEventListener('pause',()=>{ mpState.playing=false; updateMpPlayIcon(); });
-audioEl.addEventListener('ended',onAudioEnded);
-function onAudioEnded(){
-  const mode=mpState.mode;
-  if(mode==='one'){ audioEl.currentTime=0; audioEl.play(); return; }
-  if(mode==='shuffle'){ playIndex(randInt(0,musicList.length-1)); return; }
-  if(mode==='all'){ playIndex((mpState.index+1)%musicList.length); return; }
-  if(mpState.index<musicList.length-1) playIndex(mpState.index+1);
-  else { audioEl.pause(); updateMpPlayIcon(); }
-}
-$('#mpPlay').addEventListener('click',()=>{ if(audioEl.paused) audioEl.play(); else audioEl.pause(); });
-$('#mpPrev').addEventListener('click',()=>{ if(musicList.length===0) return; playIndex((mpState.index-1+musicList.length)%musicList.length); });
-$('#mpNext').addEventListener('click',()=>{ if(musicList.length===0) return; playIndex((mpState.index+1)%musicList.length); });
-$('#mpClose').addEventListener('click',()=>{ audioEl.pause(); setListening(false); mp.classList.remove('on'); });
-$('#mpMode').addEventListener('click',()=>{
-  const i=MP_MODES.findIndex(m=>m[0]===mpState.mode);
-  const nm=MP_MODES[(i+1)%MP_MODES.length];
-  mpState.mode=nm[0];
-  $('#mpModeIcon').setAttribute('href','#'+nm[2]);
-  const lab=$('#mpModeLabel'); lab.textContent=nm[1]; lab.classList.add('on');
-  clearTimeout(lab._t); lab._t=setTimeout(()=>lab.classList.remove('on'),1400);
-  toast(nm[1]);
-});
-(function(){
-  const bar=$('#mpBar');
-  function posToPct(clientX){ const r=bar.getBoundingClientRect(); let p=(clientX-r.left)/r.width; p=Math.max(0,Math.min(1,p)); return p; }
-  function start(clientX){ if(!audioEl.duration) return; mpState.dragging=true; move(clientX); }
-  function move(clientX){ if(!mpState.dragging) return; const p=posToPct(clientX); $('#mpFill').style.width=(p*100)+'%'; $('#mpKnob').style.left=(p*100)+'%'; $('#mpTime').textContent=fmtSec(p*audioEl.duration)+' / '+fmtSec(audioEl.duration); }
-  function end(clientX){ if(!mpState.dragging) return; const p=posToPct(clientX); if(audioEl.duration) audioEl.currentTime=p*audioEl.duration; mpState.dragging=false; }
-  bar.addEventListener('mousedown',e=>start(e.clientX));
-  document.addEventListener('mousemove',e=>{ if(mpState.dragging) move(e.clientX); });
-  document.addEventListener('mouseup',e=>{ if(mpState.dragging) end(e.clientX); });
-  bar.addEventListener('touchstart',e=>{ start(e.touches[0].clientX); e.preventDefault(); },{passive:false});
-  bar.addEventListener('touchmove',e=>{ move(e.touches[0].clientX); e.preventDefault(); },{passive:false});
-  bar.addEventListener('touchend',e=>{ end((e.changedTouches&&e.changedTouches[0])?e.changedTouches[0].clientX:0); });
-})();
-function applyMpPos(){
-  const w=mp.offsetWidth||(window.innerWidth-24);
-  let left=12, top=window.innerHeight-200;
-  if(settings.mpPos && typeof settings.mpPos.left==='number'){ left=settings.mpPos.left; top=settings.mpPos.top; }
-  left=Math.max(4, Math.min(window.innerWidth-w-4, left));
-  const h=mp.offsetHeight||120;
-  top=Math.max(4, Math.min(window.innerHeight-h-4, top));
-  mp.style.width=w+'px';
-  mp.style.left=left+'px'; mp.style.top=top+'px'; mp.style.right='auto'; mp.style.bottom='auto';
-}
-(function(){
-  let dragging=false, sx=0, sy=0, ox=0, oy=0;
-  function start(x,y){ const r=mp.getBoundingClientRect(); ox=r.left; oy=r.top; sx=x; sy=y; dragging=true; mp.style.right='auto'; mp.style.bottom='auto'; mp.style.left=ox+'px'; mp.style.top=oy+'px'; }
-  function move(x,y){ if(!dragging) return; const w=mp.offsetWidth, h=mp.offsetHeight; let nl=ox+(x-sx), nt=oy+(y-sy); nl=Math.max(4,Math.min(window.innerWidth-w-4,nl)); nt=Math.max(4,Math.min(window.innerHeight-h-4,nt)); mp.style.left=nl+'px'; mp.style.top=nt+'px'; }
-  function end(){ if(!dragging) return; dragging=false; const r=mp.getBoundingClientRect(); settings.mpPos={left:r.left, top:r.top}; saveSet(); }
-  const head=$('#mpDrag');
-  head.addEventListener('touchstart',e=>{ start(e.touches[0].clientX,e.touches[0].clientY); e.stopPropagation(); },{passive:true});
-  head.addEventListener('touchmove',e=>{ move(e.touches[0].clientX,e.touches[0].clientY); e.stopPropagation(); e.preventDefault(); },{passive:false});
-  head.addEventListener('touchend',end);
-  head.addEventListener('mousedown',e=>{ start(e.clientX,e.clientY); });
-  document.addEventListener('mousemove',e=>{ if(dragging) move(e.clientX,e.clientY); });
-  document.addEventListener('mouseup',()=>{ if(dragging) end(); });
-})();
-window.addEventListener('resize',()=>{ if(mp.classList.contains('on')) applyMpPos(); });
-function setListening(on){
-  settings.listening=!!on; saveSet();
-  const b=$('#listenBanner');
-  if(on){ b.classList.add('on'); } else { b.classList.remove('on'); }
-  renderInviteLabel();
-}
-$('#qmInvite').addEventListener('click',()=>{
-  if(settings.listening){ setListening(false); toast('已取消一起听'); }
-  else { setListening(true); if(musicList.length>0){ playIndex(0); } toast(callHerName()+' 正在和你一起听…'); }
-});
+audioEl.addEventListener('play',updateMpPlayIcon);
+audioEl.addEventListener('pause',updateMpPlayIcon);
+audioEl.addEventListener('ended',()=>{const md=mpState.mode;if(md==='one'){audioEl.currentTime=0;audioEl.play();return;}if(md==='shuffle'){playIndex(randInt(0,musicList.length-1));return;}if(md==='all'){playIndex((mpState.index+1)%musicList.length);return;}if(mpState.index<musicList.length-1)playIndex(mpState.index+1);else{audioEl.pause();updateMpPlayIcon();}});
+$('#mpPlay').addEventListener('click',()=>{if(audioEl.paused)audioEl.play();else audioEl.pause();});
+$('#mpPrev').addEventListener('click',()=>{if(musicList.length===0)return;playIndex((mpState.index-1+musicList.length)%musicList.length);});
+$('#mpNext').addEventListener('click',()=>{if(musicList.length===0)return;playIndex((mpState.index+1)%musicList.length);});
+$('#mpClose').addEventListener('click',()=>{audioEl.pause();setListening(false);mp.classList.remove('on');});
+$('#mpMode').addEventListener('click',()=>{const i=MP_MODES.findIndex(x=>x[0]===mpState.mode);const nm=MP_MODES[(i+1)%MP_MODES.length];mpState.mode=nm[0];$('#mpModeIcon').setAttribute('href','#'+nm[2]);const lab=$('#mpModeLabel');lab.textContent=nm[1];lab.classList.add('on');clearTimeout(lab._t);lab._t=setTimeout(()=>lab.classList.remove('on'),1400);toast(nm[1]);});
+(function(){const bar=$('#mpBar');function pct(x){const r=bar.getBoundingClientRect();let p=(x-r.left)/r.width;return Math.max(0,Math.min(1,p));}function st(x){if(!audioEl.duration)return;mpState.dragging=true;mv(x);}function mv(x){if(!mpState.dragging)return;const p=pct(x);$('#mpFill').style.width=(p*100)+'%';$('#mpKnob').style.left=(p*100)+'%';$('#mpTime').textContent=fmtSec(p*audioEl.duration)+' / '+fmtSec(audioEl.duration);}function en(x){if(!mpState.dragging)return;const p=pct(x);if(audioEl.duration)audioEl.currentTime=p*audioEl.duration;mpState.dragging=false;}bar.addEventListener('touchstart',e=>{st(e.touches[0].clientX);e.preventDefault();},{passive:false});bar.addEventListener('touchmove',e=>{mv(e.touches[0].clientX);e.preventDefault();},{passive:false});bar.addEventListener('touchend',e=>{en(e.changedTouches&&e.changedTouches[0]?e.changedTouches[0].clientX:0);});})();
+function applyMpPos(){const w=mp.offsetWidth||(window.innerWidth-24);let left=12,top=window.innerHeight-200;if(settings.mpPos&&typeof settings.mpPos.left==='number'){left=settings.mpPos.left;top=settings.mpPos.top;}left=Math.max(4,Math.min(window.innerWidth-w-4,left));const h=mp.offsetHeight||120;top=Math.max(4,Math.min(window.innerHeight-h-4,top));mp.style.width=w+'px';mp.style.left=left+'px';mp.style.top=top+'px';mp.style.right='auto';mp.style.bottom='auto';}
+(function(){let dragging=false,sx=0,sy=0,ox=0,oy=0;function st(x,y){const r=mp.getBoundingClientRect();ox=r.left;oy=r.top;sx=x;sy=y;dragging=true;mp.style.right='auto';mp.style.bottom='auto';mp.style.left=ox+'px';mp.style.top=oy+'px';}function mv(x,y){if(!dragging)return;const w=mp.offsetWidth,h=mp.offsetHeight;let nl=ox+(x-sx),nt=oy+(y-sy);nl=Math.max(4,Math.min(window.innerWidth-w-4,nl));nt=Math.max(4,Math.min(window.innerHeight-h-4,nt));mp.style.left=nl+'px';mp.style.top=nt+'px';}function en(){if(!dragging)return;dragging=false;const r=mp.getBoundingClientRect();settings.mpPos={left:r.left,top:r.top};saveSet();}const head=$('#mpDrag');head.addEventListener('touchstart',e=>{st(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();},{passive:true});head.addEventListener('touchmove',e=>{mv(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();e.preventDefault();},{passive:false});head.addEventListener('touchend',en);})();
+window.addEventListener('resize',()=>{if(mp.classList.contains('on'))applyMpPos();});
+function setListening(on){settings.listening=!!on;saveSet();const b=$('#listenBanner');if(on)b.classList.add('on');else b.classList.remove('on');renderInviteLabel();}
+$('#qmInvite').addEventListener('click',()=>{if(settings.listening){setListening(false);toast('已取消一起听');}else{setListening(true);if(musicList.length>0)playIndex(0);toast(callHerName()+' 正在和你一起听…');}});
 
-/* 侧栏 */
 const sideItems=[
   {n:'口袋',ic:'i-box',go:'pocket'},{n:'信箱',ic:'i-mail',go:'doing'},
-  {n:'恋人空间',ic:'i-space',go:'doing'},{n:'收藏匣',ic:'i-heart',go:'doing'},
+  {n:'恋人空间',ic:'i-space',go:'doing'},{n:'收藏匣',ic:'i-heart',go:'collection'},
   {n:'时光温存',ic:'i-clock',go:'doing'},{n:'旧梦温存',ic:'i-dream',go:'doing'},
   {n:'备忘录',ic:'i-note',go:'doing'},{n:'心愿单',ic:'i-wish',go:'doing'},
   {n:'重要日',ic:'i-day',go:'doing'},{n:'设置',ic:'i-set',go:'settings'}
 ];
 (function buildDrawer(){
   sideItems.forEach(it=>{
-    const d=document.createElement('div'); d.className='drawer-item';
+    const d=document.createElement('div');d.className='drawer-item';
     d.innerHTML=`<svg class="ico"><use href="#${it.ic}"/></svg>${it.n}`;
-    d.addEventListener('click',()=>{ closeDrawer(); if(it.go==='pocket'){openPocket();} else if(it.go==='settings'){openSettings();} else {openDoing(it.n);} });
+    d.addEventListener('click',()=>{closeDrawer();if(it.go==='pocket')openPocket();else if(it.go==='settings')openSettings();else if(it.go==='collection')openCollection();else openDoing(it.n);});
     drawer.appendChild(d);
   });
 })();
-function openDrawer(){ drawer.classList.add('on'); mask.classList.add('on'); }
-function closeDrawer(){ drawer.classList.remove('on'); mask.classList.remove('on'); }
+function openDrawer(){drawer.classList.add('on');mask.classList.add('on');}
+function closeDrawer(){drawer.classList.remove('on');mask.classList.remove('on');}
 mask.addEventListener('click',closeDrawer);
 let sx=0,sy=0,edge=false;
-document.addEventListener('touchstart',e=>{ if(e.target.closest('textarea,input,#quickDrawer')){ edge=false; return; } const t=e.touches[0]; sx=t.clientX; sy=t.clientY; edge = !drawer.classList.contains('on'); },{passive:true});
-document.addEventListener('touchmove',e=>{ if(!edge) return; const t=e.touches[0]; const dx=t.clientX-sx, dy=Math.abs(t.clientY-sy); if(dx>60 && dy<50){ openDrawer(); edge=false; } },{passive:true});
-document.addEventListener('touchend',()=>{ edge=false; },{passive:true});
+document.addEventListener('touchstart',e=>{if(e.target.closest('textarea,input,#quickDrawer')){edge=false;return;}const t=e.touches[0];sx=t.clientX;sy=t.clientY;edge=!drawer.classList.contains('on');},{passive:true});
+document.addEventListener('touchmove',e=>{if(!edge)return;const t=e.touches[0];const dx=t.clientX-sx,dy=Math.abs(t.clientY-sy);if(dx>60&&dy<50){openDrawer();edge=false;}},{passive:true});
+document.addEventListener('touchend',()=>{edge=false;},{passive:true});
 let cx=0;
-document.addEventListener('touchstart',e=>{ if(drawer.classList.contains('on')) cx=e.touches[0].clientX; },{passive:true});
-document.addEventListener('touchmove',e=>{ if(!drawer.classList.contains('on')) return; if(e.touches[0].clientX - cx < -60) closeDrawer(); },{passive:true});
+document.addEventListener('touchstart',e=>{if(drawer.classList.contains('on'))cx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchmove',e=>{if(!drawer.classList.contains('on'))return;if(e.touches[0].clientX-cx<-60)closeDrawer();},{passive:true});
 
-function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); $('#'+id).classList.add('show'); document.body.classList.add('page-open'); closeQuick(); }
-function hidePages(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); document.body.classList.remove('page-open'); }
-function openDoing(name){ $('#doingTitle').textContent=name; showPage('page-doing'); }
-function openSettings(){ applyProfile(); applyBg(); renderBgList(); renderSettings(); showPage('page-settings'); }
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));$('#'+id).classList.add('show');document.body.classList.add('page-open');closeQuick();}
+function hidePages(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));document.body.classList.remove('page-open');}
+function openDoing(name){$('#doingTitle').textContent=name;showPage('page-doing');}
+function openSettings(){applyProfile();applyBg();renderBgList();renderSettings();showPage('page-settings');}
 document.querySelectorAll('[data-back]').forEach(el=>{
   el.addEventListener('click',()=>{
     if($('#page-add').classList.contains('show')){
       const hasText=$('#addArea').value.trim();
-      const hasMusic=($('#musicExtra').style.display!=='none') && ($('#mName').value.trim()||$('#addArea').dataset.fileId);
-      if(hasText||hasMusic){ if(!confirm('还没放进口袋，确定离开吗？')) return; }
+      const hasMusic=($('#musicExtra').style.display!=='none')&&($('#mName').value.trim()||$('#addArea').dataset.fileId);
+      if(hasText||hasMusic){if(!confirm('还没放进口袋，确定离开吗？'))return;}
       resetAddPage();
     }
-    exitSelMode(); hidePages();
+    exitSelMode();hidePages();
   });
 });
 
-/* 口袋 */
 const pocketCats=[
-  {key:'card', n:'字卡', ic:'i-note'},
-  {key:'sticker', n:'贴纸', ic:'i-sticker'},
-  {key:'interact', n:'互动', ic:'i-touch'},
-  {key:'music', n:'音乐', ic:'i-music'}
+  {key:'card',n:'字卡',ic:'i-note'},{key:'sticker',n:'贴纸',ic:'i-sticker'},
+  {key:'interact',n:'互动',ic:'i-touch'},{key:'music',n:'音乐',ic:'i-music'}
 ];
 let curCat=null;
-function openPocket(){ curCat=null; searchKw=''; lockedView=false; renderPocketBox(); showPage('page-pocket'); }
-function catCount(key){
-  if(key==='card') return cards.length;
-  if(key==='sticker') return stickers.length;
-  if(key==='interact') return (interactions.touch||[]).length+(interactions.back||[]).length+(interactions.pair||[]).length;
-  if(key==='music') return musicList.length;
-  return 0;
-}
+function openPocket(){curCat=null;searchKw='';lockedView=false;renderPocketBox();showPage('page-pocket');}
+function catCount(key){if(key==='card')return cards.length;if(key==='sticker')return stickers.length;if(key==='interact')return(interactions.touch||[]).length+(interactions.back||[]).length+(interactions.pair||[]).length;if(key==='music')return musicList.length;return 0;}
 function renderPocketBox(){
   $('#pocketTitle').textContent='口袋';
-  const box=$('#pocketBox'); box.innerHTML='';
+  const box=$('#pocketBox');box.innerHTML='';
   pocketCats.forEach(c=>{
-    const d=document.createElement('div'); d.className='drawer-cell'+(curCat===c.key?' on':'');
+    const d=document.createElement('div');d.className='drawer-cell'+(curCat===c.key?' on':'');
     d.innerHTML=`<div class="pull"></div><svg class="ico" style="width:20px;height:20px"><use href="#${c.ic}"/></svg><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;
-    d.addEventListener('click',()=>{ curCat=c.key; renderPocketBox(); });
+    d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});
     box.appendChild(d);
   });
   renderPanel();
 }
 function renderPanel(){
-  const p=$('#pocketPanel');
-  if(!curCat){ p.innerHTML=''; return; }
-  if(curCat==='card'){ renderCardPanel(p); return; }
-  if(curCat==='sticker'){ renderStickerPanel(p); return; }
-  if(curCat==='interact'){ renderInteractPanel(p); return; }
-  if(curCat==='music'){ renderMusicPanel(p); return; }
-  p.innerHTML='<div class="doing">这一类还在做</div>';
+  const p=$('#pocketPanel');if(!curCat){p.innerHTML='';return;}
+  if(curCat==='card')renderCardPanel(p);
+  else if(curCat==='sticker')renderStickerPanel(p);
+  else if(curCat==='interact')renderInteractPanel(p);
+  else if(curCat==='music')renderMusicPanel(p);
+  else p.innerHTML='<div class="doing">这一类还在做</div>';
 }
+let addCtx={mode:'card',dir:'touch'};
 
-/* ===== 添加页上下文（防止串存）===== */
-let addCtx={ mode:'card', dir:'touch' };
-
-let selMode=false, selSet=new Set(), searchKw='', lockedView=false;
-let cardShown=50;
+let selMode=false,selSet=new Set(),searchKw='',lockedView=false,cardShown=50;
 function renderCardPanel(p){
-  p.innerHTML=`
-    <div class="toolbar" id="cardTools">
-      <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
-      <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
-      <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
-      <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
-      <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
-    </div>
-    <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
-    <div id="cardList"></div>`;
-  bindCardTools(); cardShown=50; renderCardList();
+  p.innerHTML=`<div class="toolbar" id="cardTools">
+    <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
+    <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+    <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+    <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
+    <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+  </div>
+  <div id="selectAllRow"><input type="checkbox" id="selectAllChk"><label for="selectAllChk">全选</label></div>
+  <div id="cardList"></div>`;
+  bindCardTools();cardShown=50;renderCardList();
 }
-function currentCards(){
-  if(lockedView) return cards.filter(c=>c.locked);
-  let arr=cards.filter(c=>!c.locked);
-  if(searchKw) arr=arr.filter(c=>c.text.includes(searchKw));
-  return arr;
-}
+function currentCards(){if(lockedView)return cards.filter(c=>c.locked);let arr=cards.filter(c=>!c.locked);if(searchKw)arr=arr.filter(c=>c.text.includes(searchKw));return arr;}
 function renderCardList(){
-  const list=$('#cardList'); if(!list) return;
-  list.innerHTML='';
+  const list=$('#cardList');if(!list)return;list.innerHTML='';
   const arr=currentCards();
-  if(arr.length===0){
-    const e=document.createElement('div'); e.className='empty-tip';
-    e.innerHTML = lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧');
-    list.appendChild(e); updateMultiBar(); updateSelectAll(); return;
-  }
-  const slice=arr.slice(0,cardShown);
-  const frag=document.createDocumentFragment();
+  if(arr.length===0){const e=document.createElement('div');e.className='empty-tip';e.innerHTML=lockedView?'还没有锁上的字卡':(searchKw?'没找到':'口袋里还没有字卡<br>点 ➕ 给祂放几张吧');list.appendChild(e);updateMultiBar();updateSelectAll();return;}
+  const slice=arr.slice(0,cardShown);const frag=document.createDocumentFragment();
   slice.forEach(c=>{
-    const el=document.createElement('div');
-    el.className='card-item'+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');
-    el.textContent=c.text;
-    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=selSet.has(c.id)?'✓':''; el.appendChild(chk);
-    el.addEventListener('click',()=>{
-      if(selMode){ if(selSet.has(c.id)) selSet.delete(c.id); else selSet.add(c.id); renderCardList(); }
-      else openSheet(c.id);
-    });
+    const el=document.createElement('div');el.className='card-item'+(selMode?' selmode':'')+(selSet.has(c.id)?' sel':'');el.textContent=c.text;
+    const chk=document.createElement('div');chk.className='chk';chk.textContent=selSet.has(c.id)?'✓':'';el.appendChild(chk);
+    el.addEventListener('click',()=>{if(selMode){if(selSet.has(c.id))selSet.delete(c.id);else selSet.add(c.id);renderCardList();}else openSheet(c.id);});
     frag.appendChild(el);
   });
   list.appendChild(frag);
-  if(cardShown < arr.length){
-    const more=document.createElement('div'); more.className='empty-tip'; more.style.padding='16px'; more.textContent='加载更多…';
-    list.appendChild(more);
-    const io=new IntersectionObserver((ents)=>{ if(ents[0].isIntersecting){ cardShown+=50; io.disconnect(); renderCardList(); } });
-    io.observe(more);
-  }
-  updateMultiBar(); updateSelectAll();
+  if(cardShown<arr.length){const more=document.createElement('div');more.className='empty-tip';more.style.padding='16px';more.textContent='加载更多…';list.appendChild(more);const io=new IntersectionObserver(ents=>{if(ents[0].isIntersecting){cardShown+=50;io.disconnect();renderCardList();}});io.observe(more);}
+  updateMultiBar();updateSelectAll();
 }
-function updateSelectAll(){ const row=$('#selectAllRow'); if(!row) return; if(!selMode){ row.classList.remove('on'); return; } row.classList.add('on'); const arr=currentCards(); $('#selectAllChk').checked = arr.length>0 && arr.every(c=>selSet.has(c.id)); }
-function updateMultiBar(){ $('#multiBar').classList.toggle('on', selMode && (curCat==='card'||curCat==='sticker'||curCat==='interact'||curCat==='music')); }
-function exitSelMode(){ selMode=false; selSet.clear(); const r=$('#selectAllRow'); if(r) r.classList.remove('on'); $('#multiBar').classList.remove('on'); document.querySelectorAll('.tool[data-t="del"]').forEach(d=>d.classList.remove('on')); }
+function updateSelectAll(){const row=$('#selectAllRow');if(!row)return;if(!selMode){row.classList.remove('on');return;}row.classList.add('on');const arr=currentCards();$('#selectAllChk').checked=arr.length>0&&arr.every(c=>selSet.has(c.id));}
+function updateMultiBar(){$('#multiBar').classList.toggle('on',selMode&&(curCat==='card'||curCat==='sticker'||curCat==='interact'));}
+function exitSelMode(){selMode=false;selSet.clear();const r=$('#selectAllRow');if(r)r.classList.remove('on');$('#multiBar').classList.remove('on');document.querySelectorAll('.tool[data-t="del"]').forEach(d=>d.classList.remove('on'));}
 function bindCardTools(){
-  const tools=$('#cardTools'); if(!tools) return;
+  const tools=$('#cardTools');if(!tools)return;
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool'); if(!t) return;
-    const act=t.dataset.t;
-    if(act==='search'){ const kw=prompt('搜索字卡',searchKw); if(kw!==null){ searchKw=kw.trim(); lockedView=false; cardShown=50; renderCardList(); } }
-    else if(act==='add'){ resetAddPage(); addCtx={mode:'card',dir:'touch'}; $('#addTitle').textContent='添加字卡'; $('#addArea').placeholder='祂会用这些字卡回复你哦…'; showPage('page-add'); }
-    else if(act==='del'){ if(!selMode){ selMode=true; selSet.clear(); t.classList.add('on'); renderCardList(); } else{ exitSelMode(); renderCardList(); } }
-    else if(act==='locked'){ lockedView=!lockedView; selMode=false; selSet.clear(); searchKw=''; cardShown=50; renderCardList(); }
-    else if(act==='more'){ openMoreSheet(); }
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
+    if(act==='search'){const kw=prompt('搜索字卡',searchKw);if(kw!==null){searchKw=kw.trim();lockedView=false;cardShown=50;renderCardList();}}
+    else if(act==='add'){resetAddPage();addCtx={mode:'card',dir:'touch'};$('#addTitle').textContent='添加字卡';$('#addArea').placeholder='祂会用这些字卡回复你哦…';showPage('page-add');}
+    else if(act==='del'){if(!selMode){selMode=true;selSet.clear();t.classList.add('on');renderCardList();}else{exitSelMode();renderCardList();}}
+    else if(act==='locked'){lockedView=!lockedView;selMode=false;selSet.clear();searchKw='';cardShown=50;renderCardList();}
+    else if(act==='more')openMoreSheet('card');
   });
-  const all=$('#selectAllChk'); if(all) all.addEventListener('change',e=>{ const arr=currentCards(); if(e.target.checked) arr.forEach(c=>selSet.add(c.id)); else selSet.clear(); renderCardList(); });
+  const all=$('#selectAllChk');if(all)all.addEventListener('change',e=>{const arr=currentCards();if(e.target.checked)arr.forEach(c=>selSet.add(c.id));else selSet.clear();renderCardList();});
 }
-function resetAddPage(){ $('#addArea').value=''; delete $('#addArea').dataset.editing; $('#addArea').style.display=''; $('#musicExtra').style.display='none'; $('#mName').value=''; $('#mArtist').value=''; $('#mFileTip').textContent=''; delete $('#addArea').dataset.fileId; delete $('#addArea').dataset.fileName; $('#addTitle').textContent='添加字卡'; $('#addArea').placeholder='祂会用这些字卡回复你哦…'; }
-/* 贴纸面板 */
-let stkSel=new Set(), stkSelMode=false, stkShown=20, stkLoading=false;
+function resetAddPage(){$('#addArea').value='';delete $('#addArea').dataset.editing;$('#addArea').style.display='';$('#musicExtra').style.display='none';$('#mName').value='';$('#mArtist').value='';$('#mFileTip').textContent='';delete $('#addArea').dataset.fileId;delete $('#addArea').dataset.fileName;$('#addTitle').textContent='添加字卡';$('#addArea').placeholder='祂会用这些字卡回复你哦…';}
+  let stkSel=new Set(),stkSelMode=false,stkShown=20,stkLoading=false;
 function renderStickerPanel(p){
-  p.innerHTML=`
-    <div class="toolbar" id="stkTools">
-      <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
-      <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
-      <div class="tool" data-t="import"><svg class="ico"><use href="#i-import"/></svg></div>
-      <div class="tool" data-t="export"><svg class="ico"><use href="#i-export"/></svg></div>
-    </div>
-    <div id="stkList" class="stk-scroll"></div>`;
-  bindStkTools(); stkShown=20; renderStkList();
+  p.innerHTML=`<div class="toolbar" id="stkTools">
+    <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+    <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+    <div class="tool" data-t="import"><svg class="ico"><use href="#i-import"/></svg></div>
+    <div class="tool" data-t="export"><svg class="ico"><use href="#i-export"/></svg></div>
+  </div>
+  <div id="stkList" class="qs-scroll" style="max-height:60vh"></div>`;
+  bindStkTools();stkShown=20;renderStkList();
 }
 async function renderStkList(){
-  const list=$('#stkList'); if(!list) return;
-  list.innerHTML='';
-  if(stickers.length===0){ list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>'; return; }
-  const grid=document.createElement('div'); grid.className='stk-grid';
-  list.appendChild(grid);
-  stkShown=0;
-  await appendStkBatch(grid, 20);
-  list.onscroll=async ()=>{
-    if(stkLoading) return;
-    if(list.scrollTop + list.clientHeight >= list.scrollHeight - 80){
-      if(stkShown < stickers.length){
-        stkLoading=true;
-        await appendStkBatch(grid, 20);
-        stkLoading=false;
-      }
-    }
-  };
+  const list=$('#stkList');if(!list)return;list.innerHTML='';
+  if(stickers.length===0){list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>';return;}
+  const grid=document.createElement('div');grid.className='stk-grid';list.appendChild(grid);
+  stkShown=0;await appendStkBatch(grid,20);
+  list.onscroll=async()=>{if(stkLoading)return;if(list.scrollTop+list.clientHeight>=list.scrollHeight-80){if(stkShown<stickers.length){stkLoading=true;await appendStkBatch(grid,20);stkLoading=false;}}};
 }
-async function appendStkBatch(grid, count){
-  const slice=stickers.slice(stkShown, stkShown+count);
-  if(slice.length===0) return;
+async function appendStkBatch(grid,count){
+  const slice=stickers.slice(stkShown,stkShown+count);if(slice.length===0)return;
   await readStickersBatch(slice);
   const frag=document.createDocumentFragment();
-  for(const s of slice){
-    const data=stickerCache[s.id];
-    const cell=makeStickerCell(s, data, stkSelMode, stkSel.has(s.id), (s)=>{
-      if(stkSelMode){ if(stkSel.has(s.id)) stkSel.delete(s.id); else stkSel.add(s.id); renderStkList(); }
-    });
-    frag.appendChild(cell);
-  }
-  grid.appendChild(frag);
-  stkShown+=slice.length;
+  for(const s of slice){const data=stickerCache[s.id];const cell=makeStickerCell(s,data,stkSelMode,stkSel.has(s.id),(s)=>{if(stkSelMode){if(stkSel.has(s.id))stkSel.delete(s.id);else stkSel.add(s.id);renderStkList();}});frag.appendChild(cell);}
+  grid.appendChild(frag);stkShown+=slice.length;
 }
 function bindStkTools(){
-  const tools=$('#stkTools'); if(!tools) return;
+  const tools=$('#stkTools');if(!tools)return;
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool'); if(!t) return;
-    const act=t.dataset.t;
-    if(act==='add'){ addStickersFlow(); }
-    else if(act==='del'){ if(!stkSelMode){ stkSelMode=true; stkSel.clear(); t.classList.add('on'); renderStkList(); } else { stkSelMode=false; stkSel.clear(); t.classList.remove('on'); renderStkList(); } }
-    else if(act==='import'){ importStickers(); }
-    else if(act==='export'){ exportStickers(); }
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
+    if(act==='add')addStickersFlow();
+    else if(act==='del'){if(!stkSelMode){stkSelMode=true;stkSel.clear();t.classList.add('on');renderStkList();}else{stkSelMode=false;stkSel.clear();t.classList.remove('on');renderStkList();}}
+    else if(act==='import')importStickers();
+    else if(act==='export')exportStickers();
   });
 }
 let pendingStickers=[];
-const stkFile=document.createElement('input'); stkFile.type='file'; stkFile.accept='image/*'; stkFile.multiple=true; stkFile.style.display='none'; document.body.appendChild(stkFile);
-function addStickersFlow(){ stkFile.value=''; stkFile.click(); }
+const stkFile=document.createElement('input');stkFile.type='file';stkFile.accept='image/*';stkFile.multiple=true;stkFile.style.display='none';document.body.appendChild(stkFile);
+function addStickersFlow(){stkFile.value='';stkFile.click();}
 stkFile.addEventListener('change',e=>{
-  const files=[...e.target.files]; if(!files.length) return;
-  pendingStickers=[];
-  let done=0;
-  files.forEach(f=>{ const r=new FileReader(); r.onload=()=>{ pendingStickers.push(r.result); done++; if(done===files.length) showPreview(); }; r.readAsDataURL(f); });
+  const files=[...e.target.files];if(!files.length)return;pendingStickers=[];let done=0;
+  files.forEach(f=>{const r=new FileReader();r.onload=()=>{pendingStickers.push(r.result);done++;if(done===files.length)showPreview();};r.readAsDataURL(f);});
   e.target.value='';
 });
-function showPreview(){
-  const g=$('#pvGrid'); g.innerHTML='';
-  pendingStickers.forEach(d=>{ const img=document.createElement('img'); img.src=d; g.appendChild(img); });
-  $('#pvCount').textContent=pendingStickers.length;
-  $('#previewMask').classList.add('on');
-}
-$('#pvCancel').addEventListener('click',()=>{ pendingStickers=[]; $('#previewMask').classList.remove('on'); });
-$('#pvOk').addEventListener('click',async ()=>{
-  let added=0;
-  for(const d of pendingStickers){ const id=uid(); const ok=await FS.saveSticker(id,d); if(ok){ stickers.push({id}); stickerCache[id]=d; added++; } }
-  await saveStickers();
-  pendingStickers=[]; $('#previewMask').classList.remove('on');
-  renderStkList(); renderPocketBox();
-  toast('已加入 '+added+' 张贴纸');
-});
-function importStickers(){
-  const inp=document.createElement('input'); inp.type='file'; inp.accept='.json';
-  inp.addEventListener('change',async e=>{
-    const f=e.target.files[0]; if(!f) return;
-    try{
-      const obj=JSON.parse(await f.text());
-      const arr=Array.isArray(obj)?obj:(obj.stickers||[]);
-      let added=0;
-      for(const item of arr){
-        const data = typeof item==='string'?item:(item.data||'');
-        if(!data) continue;
-        const id=uid(); const ok=await FS.saveSticker(id,data);
-        if(ok){ stickers.push({id}); stickerCache[id]=data; added++; }
-      }
-      await saveStickers(); renderStkList(); renderPocketBox();
-      toast('导入了 '+added+' 张贴纸');
-    }catch(err){ toast('文件格式无法识别'); }
-  });
-  inp.click();
-}
-async function exportStickers(){
-  if(stickers.length===0){ toast('还没有贴纸'); return; }
-  const out=[];
-  for(const s of stickers){ const data=stickerCache[s.id]||await FS.readSticker(s.id); if(data) out.push({data}); }
-  const blob=new Blob([JSON.stringify({stickers:out})],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='阿遇♡阿凉贴纸.json'; a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-  toast('已导出 '+out.length+' 张贴纸');
-}
-/* 音乐面板（管理） */
-let musicSel=new Set(), musicSelMode=false;
+function showPreview(){const g=$('#pvGrid');g.innerHTML='';pendingStickers.forEach(d=>{const img=document.createElement('img');img.src=d;g.appendChild(img);});$('#pvCount').textContent=pendingStickers.length;$('#previewMask').classList.add('on');}
+$('#pvCancel').addEventListener('click',()=>{pendingStickers=[];$('#previewMask').classList.remove('on');});
+$('#pvOk').addEventListener('click',async()=>{let added=0;for(const d of pendingStickers){const id=uid();const ok=await FS.saveSticker(id,d);if(ok){stickers.push({id});stickerCache[id]=d;added++;}}await saveStickers();pendingStickers=[];$('#previewMask').classList.remove('on');renderStkList();renderPocketBox();toast('已加入 '+added+' 张贴纸');});
+function importStickers(){const inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());const arr=Array.isArray(obj)?obj:(obj.stickers||[]);let added=0;for(const item of arr){const data=typeof item==='string'?item:(item.data||'');if(!data)continue;const id=uid();const ok=await FS.saveSticker(id,data);if(ok){stickers.push({id});stickerCache[id]=data;added++;}}await saveStickers();renderStkList();renderPocketBox();toast('导入了 '+added+' 张贴纸');}catch(err){toast('文件格式无法识别');}});inp.click();}
+async function exportStickers(){if(stickers.length===0){toast('还没有贴纸');return;}const out=[];for(const s of stickers){const data=stickerCache[s.id]||await FS.readSticker(s.id);if(data)out.push({data});}const blob=new Blob([JSON.stringify({stickers:out})],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='阿遇♡阿凉贴纸.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('已导出 '+out.length+' 张贴纸');}
+
+let musicSel=new Set(),musicSelMode=false;
 function renderMusicPanel(p){
-  p.innerHTML=`
-    <div class="toolbar" id="musicTools">
-      <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
-      <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
-      <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
-      <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
-    </div>
-    <div id="selectAllRowM"><input type="checkbox" id="musicSelectAll"><label for="musicSelectAll">全选</label></div>
-    <div id="musicList"></div>`;
-  bindMusicTools(); renderMusicList();
+  p.innerHTML=`<div class="toolbar" id="musicTools">
+    <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
+    <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+    <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+    <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+  </div>
+  <div id="selectAllRowM" style="display:none;padding:8px 2px;font-size:14px;align-items:center;gap:8px"><input type="checkbox" id="musicSelectAll"><label for="musicSelectAll">全选</label></div>
+  <div id="musicList"></div>`;
+  bindMusicTools();renderMusicList();
 }
 function renderMusicList(){
-  const list=$('#musicList'); if(!list) return;
-  list.innerHTML='';
-  if(musicList.length===0){ list.innerHTML='<div class="empty-tip">还没有歌<br>点 ➕ 添加</div>'; return; }
+  const list=$('#musicList');if(!list)return;list.innerHTML='';
+  if(musicList.length===0){list.innerHTML='<div class="empty-tip">还没有歌<br>点 ➕ 添加</div>';return;}
   const frag=document.createDocumentFragment();
   musicList.forEach(m=>{
-    const el=document.createElement('div');
-    el.className='card-item'+(musicSelMode?' selmode':'')+(musicSel.has(m.id)?' sel':'');
+    const el=document.createElement('div');el.className='card-item'+(musicSelMode?' selmode':'')+(musicSel.has(m.id)?' sel':'');
     el.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
-    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=musicSel.has(m.id)?'✓':''; el.appendChild(chk);
-    el.addEventListener('click',()=>{
-      if(musicSelMode){ if(musicSel.has(m.id)) musicSel.delete(m.id); else musicSel.add(m.id); renderMusicList(); }
-      else editMusic(m.id);
-    });
-    let lt=null;
-    el.addEventListener('touchstart',()=>{ lt=setTimeout(()=>{ if(!musicSelMode && confirm('删除这首歌？')){ delMusic(m.id); } },600); },{passive:true});
-    el.addEventListener('touchend',()=>clearTimeout(lt));
-    el.addEventListener('touchmove',()=>clearTimeout(lt));
+    const chk=document.createElement('div');chk.className='chk';chk.textContent=musicSel.has(m.id)?'✓':'';el.appendChild(chk);
+    el.addEventListener('click',()=>{if(musicSelMode){if(musicSel.has(m.id))musicSel.delete(m.id);else musicSel.add(m.id);renderMusicList();}else editMusic(m.id);});
     frag.appendChild(el);
   });
-  list.appendChild(frag);
-  updateMusicSelRow();
+  list.appendChild(frag);updateMusicSelRow();
 }
-function updateMusicSelRow(){
-  const row=$('#selectAllRowM'); if(!row) return;
-  row.style.display = musicSelMode?'flex':'none';
-  if(!musicSelMode) return;
-  $('#musicSelectAll').checked = musicList.length>0 && musicList.every(m=>musicSel.has(m.id));
-}
+function updateMusicSelRow(){const row=$('#selectAllRowM');if(!row)return;row.style.display=musicSelMode?'flex':'none';if(!musicSelMode)return;$('#musicSelectAll').checked=musicList.length>0&&musicList.every(m=>musicSel.has(m.id));}
 function bindMusicTools(){
-  const tools=$('#musicTools'); if(!tools) return;
+  const tools=$('#musicTools');if(!tools)return;
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool'); if(!t) return;
-    const act=t.dataset.t;
-    if(act==='search'){ const kw=prompt('搜索歌名/歌手'); if(kw!==null){ renderMusicListFilter(kw.trim()); } }
-    else if(act==='add'){ openAddMusic(); }
-    else if(act==='del'){ if(!musicSelMode){ musicSelMode=true; musicSel.clear(); t.classList.add('on'); renderMusicList(); } else { musicSelMode=false; musicSel.clear(); t.classList.remove('on'); renderMusicList(); } }
-    else if(act==='more'){ openMoreSheet(); }
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
+    if(act==='search'){const kw=prompt('搜索歌名/歌手');if(kw!==null)renderMusicListFilter(kw.trim());}
+    else if(act==='add')openAddMusic();
+    else if(act==='del'){if(!musicSelMode){musicSelMode=true;musicSel.clear();t.classList.add('on');renderMusicList();}else{musicSelMode=false;musicSel.clear();t.classList.remove('on');renderMusicList();}}
+    else if(act==='more')openMoreSheet('music');
   });
-  const all=$('#musicSelectAll'); if(all) all.addEventListener('change',e=>{ if(e.target.checked) musicList.forEach(m=>musicSel.add(m.id)); else musicSel.clear(); renderMusicList(); });
+  const all=$('#musicSelectAll');if(all)all.addEventListener('change',e=>{if(e.target.checked)musicList.forEach(m=>musicSel.add(m.id));else musicSel.clear();renderMusicList();});
 }
 function renderMusicListFilter(kw){
-  const list=$('#musicList'); if(!list) return;
-  list.innerHTML='';
+  const list=$('#musicList');if(!list)return;list.innerHTML='';
   const arr=musicList.filter(m=>(m.name||'').includes(kw)||(m.artist||'').includes(kw));
-  if(arr.length===0){ list.innerHTML='<div class="empty-tip">没找到</div>'; return; }
+  if(arr.length===0){list.innerHTML='<div class="empty-tip">没找到</div>';return;}
   const frag=document.createDocumentFragment();
-  arr.forEach(m=>{
-    const el=document.createElement('div'); el.className='card-item';
-    el.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
-    el.addEventListener('click',()=>editMusic(m.id));
-    frag.appendChild(el);
-  });
+  arr.forEach(m=>{const el=document.createElement('div');el.className='card-item';el.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;el.addEventListener('click',()=>editMusic(m.id));frag.appendChild(el);});
   list.appendChild(frag);
 }
-function openAddMusic(){
-  resetAddPage();
-  addCtx={mode:'music',dir:'touch'};
-  $('#addArea').style.display='none';
-  $('#musicExtra').style.display='block';
-  $('#addTitle').textContent='添加音乐';
-  showPage('page-add');
-}
-function editMusic(id){
-  const m=musicList.find(x=>x.id===id); if(!m) return;
-  resetAddPage();
-  addCtx={mode:'music',dir:'touch'};
-  $('#addArea').style.display='none';
-  $('#musicExtra').style.display='block';
-  $('#addTitle').textContent='编辑音乐';
-  $('#addArea').dataset.editing=id;
-  $('#mName').value=m.name||''; $('#mArtist').value=m.artist||'';
-  if(m.fileId){ $('#addArea').dataset.fileId=m.fileId; $('#mFileTip').textContent='已有音频文件'; }
-  showPage('page-add');
-}
-async function delMusic(id){
-  const m=musicList.find(x=>x.id===id); if(!m) return;
-  if(m.fileId) await FS.delMusicFile(m.fileId);
-  musicList=musicList.filter(x=>x.id!==id); await saveMusic();
-  renderMusicList(); renderPocketBox(); toast('已删除');
-}
-$('#mFileBtn').addEventListener('click',()=>{
-  const inp=document.createElement('input'); inp.type='file'; inp.accept='audio/*';
-  inp.addEventListener('change',async e=>{
-    const f=e.target.files[0]; if(!f) return;
-    const fid=uid();
-    const ok=await FS.saveMusicFile(fid, f);
-    if(ok){ $('#addArea').dataset.fileId=fid; $('#addArea').dataset.fileName=f.name; $('#mFileTip').textContent='已选文件：'+f.name; }
-    else { toast('文件保存失败'); }
-  });
-  inp.click();
-});
+function openAddMusic(){resetAddPage();addCtx={mode:'music',dir:'touch'};$('#addArea').style.display='none';$('#musicExtra').style.display='block';$('#addTitle').textContent='添加音乐';showPage('page-add');}
+function editMusic(id){const m=musicList.find(x=>x.id===id);if(!m)return;resetAddPage();addCtx={mode:'music',dir:'touch'};$('#addArea').style.display='none';$('#musicExtra').style.display='block';$('#addTitle').textContent='编辑音乐';$('#addArea').dataset.editing=id;$('#mName').value=m.name||'';$('#mArtist').value=m.artist||'';if(m.fileId){$('#addArea').dataset.fileId=m.fileId;$('#mFileTip').textContent='已有音频文件';}showPage('page-add');}
+async function delMusic(id){const m=musicList.find(x=>x.id===id);if(!m)return;if(m.fileId)await FS.delMusicFile(m.fileId);musicList=musicList.filter(x=>x.id!==id);await saveMusic();renderMusicList();renderPocketBox();toast('已删除');}
+$('#mFileBtn').addEventListener('click',()=>{const inp=document.createElement('input');inp.type='file';inp.accept='audio/*';inp.addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;const fid=uid();const ok=await FS.saveMusicFile(fid,f);if(ok){$('#addArea').dataset.fileId=fid;$('#addArea').dataset.fileName=f.name;$('#mFileTip').textContent='已选文件：'+f.name;}else toast('文件保存失败');});inp.click();});
 
-$('#mDel').addEventListener('click',async ()=>{
-  if(curCat==='sticker'){
-    if(stkSel.size===0){ toast('还没选贴纸'); return; }
-    if(confirm('删除选中的 '+stkSel.size+' 张贴纸？')){
-      for(const id of stkSel){ await FS.delSticker(id); delete stickerCache[id]; }
-      stickers=stickers.filter(s=>!stkSel.has(s.id));
-      await saveStickers();
-      stkSelMode=false; stkSel.clear(); renderStkList(); renderPocketBox(); toast('已删除');
-    }
-    return;
-  }
-  if(curCat==='card'){
-    if(selSet.size===0){ toast('还没选字卡'); return; }
-    if(confirm('删除选中的 '+selSet.size+' 张字卡？')){ cards=cards.filter(c=>!selSet.has(c.id)); saveCards(); exitSelMode(); renderCardList(); toast('已删除'); }
-    return;
-  }
-  if(curCat==='interact'){
-    if(itSel.size===0){ toast('还没选互动'); return; }
-    if(confirm('删除选中的 '+itSel.size+' 条互动？')){
-      const dir=itDir;
-      interactions[dir]=(interactions[dir]||[]).filter(x=>!itSel.has(x.id));
-      saveInteractions(); exitInteractSel(); renderInteractList(); renderPocketBox(); toast('已删除');
-    }
-    return;
-  }
-  if(curCat==='music'){
-    if(musicSel.size===0){ toast('还没选歌'); return; }
-    if(confirm('删除选中的 '+musicSel.size+' 首歌？')){
-      for(const id of musicSel){ const m=musicList.find(x=>x.id===id); if(m&&m.fileId) await FS.delMusicFile(m.fileId); }
-      musicList=musicList.filter(m=>!musicSel.has(m.id));
-      await saveMusic(); musicSelMode=false; musicSel.clear(); renderMusicList(); renderPocketBox(); toast('已删除');
-    }
-  }
+$('#mDel').addEventListener('click',async()=>{
+  if(curCat==='sticker'){if(stkSel.size===0){toast('还没选贴纸');return;}if(confirm('删除选中的 '+stkSel.size+' 张贴纸？')){for(const id of stkSel){await FS.delSticker(id);delete stickerCache[id];}stickers=stickers.filter(s=>!stkSel.has(s.id));await saveStickers();stkSelMode=false;stkSel.clear();renderStkList();renderPocketBox();toast('已删除');}return;}
+  if(curCat==='card'){if(selSet.size===0){toast('还没选字卡');return;}if(confirm('删除选中的 '+selSet.size+' 张字卡？')){cards=cards.filter(c=>!selSet.has(c.id));saveCards();exitSelMode();renderCardList();toast('已删除');}return;}
+  if(curCat==='interact'){if(itSel.size===0){toast('还没选互动');return;}if(confirm('删除选中的 '+itSel.size+' 条互动？')){interactions[itDir]=(interactions[itDir]||[]).filter(x=>!itSel.has(x.id));saveInteractions();exitInteractSel();renderInteractList();renderPocketBox();toast('已删除');}return;}
+  if(curCat==='music'){if(musicSel.size===0){toast('还没选歌');return;}if(confirm('删除选中的 '+musicSel.size+' 首歌？')){for(const id of musicSel){const m=musicList.find(x=>x.id===id);if(m&&m.fileId)await FS.delMusicFile(m.fileId);}musicList=musicList.filter(m=>!musicSel.has(m.id));await saveMusic();musicSelMode=false;musicSel.clear();renderMusicList();renderPocketBox();toast('已删除');}}
 });
 $('#mLock').addEventListener('click',()=>{
-  if(curCat==='card'){ if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=true; }); saveCards(); exitSelMode(); renderCardList(); removeEmptyTip(); toast('已锁上 '+n+' 张'); return; }
-  if(curCat==='interact'){ if(itSel.size===0){toast('还没选互动');return;} const n=itSel.size; const dir=itDir; (interactions[dir]||[]).forEach(x=>{ if(itSel.has(x.id)) x.locked=true; }); saveInteractions(); exitInteractSel(); renderInteractList(); toast('已锁上 '+n+' 条'); }
+  if(curCat==='card'){if(selSet.size===0){toast('还没选字卡');return;}const n=selSet.size;cards.forEach(c=>{if(selSet.has(c.id))c.locked=true;});saveCards();exitSelMode();renderCardList();removeEmptyTip();toast('已锁上 '+n+' 张');return;}
+  if(curCat==='interact'){if(itSel.size===0){toast('还没选互动');return;}const n=itSel.size;(interactions[itDir]||[]).forEach(x=>{if(itSel.has(x.id))x.locked=true;});saveInteractions();exitInteractSel();renderInteractList();toast('已锁上 '+n+' 条');}
 });
 $('#mUnlock').addEventListener('click',()=>{
-  if(curCat==='card'){ if(selSet.size===0){toast('还没选字卡');return;} const n=selSet.size; cards.forEach(c=>{ if(selSet.has(c.id)) c.locked=false; }); saveCards(); exitSelMode(); renderCardList(); toast('已解锁 '+n+' 张'); return; }
-  if(curCat==='interact'){ if(itSel.size===0){toast('还没选互动');return;} const n=itSel.size; const dir=itDir; (interactions[dir]||[]).forEach(x=>{ if(itSel.has(x.id)) x.locked=false; }); saveInteractions(); exitInteractSel(); renderInteractList(); toast('已解锁 '+n+' 条'); }
+  if(curCat==='card'){if(selSet.size===0){toast('还没选字卡');return;}const n=selSet.size;cards.forEach(c=>{if(selSet.has(c.id))c.locked=false;});saveCards();exitSelMode();renderCardList();toast('已解锁 '+n+' 张');return;}
+  if(curCat==='interact'){if(itSel.size===0){toast('还没选互动');return;}const n=itSel.size;(interactions[itDir]||[]).forEach(x=>{if(itSel.has(x.id))x.locked=false;});saveInteractions();exitInteractSel();renderInteractList();toast('已解锁 '+n+' 条');}
 });
 
-let sheetCardId=null, itSheetId=null;
+let sheetCardId=null,itSheetId=null,sheetCtx='card';
 function openSheet(id){
-  sheetCardId=id; itSheetId=null;
-  const c=cards.find(x=>x.id===id); if(!c) return;
-  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{ el.style.display = ['shEdit','shLock','shDel','shCancel'].includes(el.id) ? 'block' : 'none'; });
-  const li=$('#shLock');
-  if(c.locked){ li.textContent='解锁'; li.dataset.act='unlock'; } else { li.textContent='锁上'; li.dataset.act='lock'; }
-  $('#sheetMask').classList.add('on'); $('#sheet').classList.add('on');
+  sheetCardId=id;itSheetId=null;sheetCtx='card';
+  const c=cards.find(x=>x.id===id);if(!c)return;
+  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{el.style.display=['shEdit','shLock','shDel','shCancel'].includes(el.id)?'block':'none';});
+  const li=$('#shLock');if(c.locked){li.textContent='解锁';li.dataset.act='unlock';}else{li.textContent='锁上';li.dataset.act='lock';}
+  $('#sheetMask').classList.add('on');$('#sheet').classList.add('on');
 }
-function openMoreSheet(){
-  sheetCardId=null; itSheetId=null;
-  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{ el.style.display = ['shClean','shImport','shExport','shCancel'].includes(el.id) ? 'block' : 'none'; });
-  $('#sheetMask').classList.add('on'); $('#sheet').classList.add('on');
+function openInteractSheet(id){
+  itSheetId=id;sheetCardId=null;sheetCtx='interact';
+  const c=(interactions[itDir]||[]).find(x=>x.id===id);if(!c)return;
+  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{el.style.display=['shEdit','shLock','shDel','shCancel'].includes(el.id)?'block':'none';});
+  const li=$('#shLock');if(c.locked){li.textContent='解锁';li.dataset.act='unlock';}else{li.textContent='锁上';li.dataset.act='lock';}
+  $('#sheetMask').classList.add('on');$('#sheet').classList.add('on');
 }
-function closeSheet(){ $('#sheetMask').classList.remove('on'); $('#sheet').classList.remove('on'); }
+function openMoreSheet(ctx){
+  sheetCtx=ctx;sheetCardId=null;itSheetId=null;
+  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{
+    let show=false;
+    if(ctx==='card')show=['shClean','shImport','shExport','shCancel'].includes(el.id);
+    else if(ctx==='music')show=['shImport','shExport','shCancel'].includes(el.id);
+    else if(ctx==='interact')show=['shImport','shExport','shCancel'].includes(el.id);
+    el.style.display=show?'block':'none';
+  });
+  $('#sheetMask').classList.add('on');$('#sheet').classList.add('on');
+}
+function closeSheet(){$('#sheetMask').classList.remove('on');$('#sheet').classList.remove('on');}
 $('#sheetMask').addEventListener('click',closeSheet);
 $('#shCancel').addEventListener('click',closeSheet);
-$('#shEdit').addEventListener('click',()=>{
-  const cid=sheetCardId;
-  if(cid){ closeSheet(); editCard(cid); return; }
-  const iid=itSheetId;
-  if(iid){ closeSheet(); editInteract(iid); }
-});
+$('#shEdit').addEventListener('click',()=>{const cid=sheetCardId;if(cid){closeSheet();editCard(cid);return;}const iid=itSheetId;if(iid){closeSheet();editInteract(iid);}});
 $('#shLock').addEventListener('click',()=>{
-  const cid=sheetCardId; const c=cards.find(x=>x.id===cid);
-  if(c){ const act=$('#shLock').dataset.act; if(act==='lock'){c.locked=true;toast('已锁上');}else{c.locked=false;toast('已解锁');} saveCards(); closeSheet(); renderCardList(); removeEmptyTip(); return; }
-  const iid=itSheetId; const it=(interactions[itDir]||[]).find(x=>x.id===iid);
-  if(it){ const act=$('#shLock').dataset.act; if(act==='lock'){it.locked=true;toast('已锁上');}else{it.locked=false;toast('已解锁');} saveInteractions(); closeSheet(); renderInteractList(); }
+  if(sheetCtx==='card'){const c=cards.find(x=>x.id===sheetCardId);if(!c){closeSheet();return;}const act=$('#shLock').dataset.act;if(act==='lock'){c.locked=true;toast('已锁上');}else{c.locked=false;toast('已解锁');}saveCards();closeSheet();renderCardList();removeEmptyTip();}
+  else{const it=(interactions[itDir]||[]).find(x=>x.id===itSheetId);if(!it){closeSheet();return;}const act=$('#shLock').dataset.act;if(act==='lock'){it.locked=true;toast('已锁上');}else{it.locked=false;toast('已解锁');}saveInteractions();closeSheet();renderInteractList();}
 });
 $('#shDel').addEventListener('click',()=>{
-  const cid=sheetCardId;
-  if(cid){ if(!cards.find(x=>x.id===cid)){closeSheet();return;} if(confirm('删除这张字卡？')){ cards=cards.filter(x=>x.id!==cid); saveCards(); renderCardList(); toast('已删除'); } closeSheet(); return; }
-  const iid=itSheetId;
-  if(iid){ const arr=interactions[itDir]||[]; if(!arr.find(x=>x.id===iid)){closeSheet();return;} if(confirm('删除这条互动？')){ interactions[itDir]=arr.filter(x=>x.id!==iid); saveInteractions(); renderInteractList(); renderPocketBox(); toast('已删除'); } closeSheet(); }
+  if(sheetCtx==='card'){if(!cards.find(x=>x.id===sheetCardId)){closeSheet();return;}if(confirm('删除这张字卡？')){cards=cards.filter(x=>x.id!==sheetCardId);saveCards();renderCardList();toast('已删除');}closeSheet();}
+  else{const arr=interactions[itDir]||[];if(!arr.find(x=>x.id===itSheetId)){closeSheet();return;}if(confirm('删除这条互动？')){interactions[itDir]=arr.filter(x=>x.id!==itSheetId);saveInteractions();renderInteractList();renderPocketBox();toast('已删除');}closeSheet();}
 });
-$('#shClean').addEventListener('click',()=>{ closeSheet(); cleanInteractDup(); });
-$('#shImport').addEventListener('click',()=>{ closeSheet(); $('#fileInput').click(); });
-$('#shExport').addEventListener('click',()=>{ closeSheet(); exportCards(); });
+$('#shClean').addEventListener('click',()=>{closeSheet();cleanInteractDup();});
+$('#shImport').addEventListener('click',()=>{closeSheet();importCurrent();});
+$('#shExport').addEventListener('click',()=>{closeSheet();exportCurrent();});
 
 function cleanInteractDup(){
   const set=new Set();
-  ['touch','back','pair'].forEach(k=>{ (interactions[k]||[]).forEach(x=>set.add(x.text)); });
-  const before=cards.length;
+  ['touch','back','pair'].forEach(k=>{(interactions[k]||[]).forEach(x=>set.add(x.text));});
+  const removed=cards.filter(c=>set.has(c.text)).length;
+  if(removed===0){toast('没有和互动重复的字卡');return;}
+  if(!confirm('清掉 '+removed+' 条和互动重复的字卡？'))return;
   cards=cards.filter(c=>!set.has(c.text));
-  const removed=before-cards.length;
-  if(removed===0){ toast('没有和互动重复的字卡'); return; }
-  saveCards(); renderCardList(); toast('清掉了 '+removed+' 条');
+  saveCards();renderCardList();toast('清掉了 '+removed+' 条');
 }
-function editCard(id){ const c=cards.find(x=>x.id===id); if(!c) return; resetAddPage(); addCtx={mode:'card',dir:'touch'}; $('#addArea').value=c.text; $('#addArea').dataset.editing=id; $('#addTitle').textContent='编辑字卡'; showPage('page-add'); }
+function importCurrent(){ if(sheetCtx==='music'){importMusic();}else{$('#fileInput').click();} }
+function exportCurrent(){ if(sheetCtx==='music'){exportMusic();}else{exportCards();} }
+function editCard(id){const c=cards.find(x=>x.id===id);if(!c)return;resetAddPage();addCtx={mode:'card',dir:'touch'};$('#addArea').value=c.text;$('#addArea').dataset.editing=id;$('#addTitle').textContent='编辑字卡';showPage('page-add');}
+
 $('#fileInput').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const text=await f.text(); let incoming=[]; const name=f.name.toLowerCase();
-  try{
-    if(name.endsWith('.json')||text.trim().startsWith('{')){ const obj=JSON.parse(text); const arr=Array.isArray(obj)?obj:(obj.cards||[]); incoming=arr.map(x=>typeof x==='string'?x:(x.text||'')).filter(Boolean); }
-    else{ incoming=text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean); }
-  }catch(err){ toast('文件格式无法识别'); e.target.value=''; return; }
-  const exist=new Set(cards.map(c=>c.text)); let added=0,skipped=0;
-  incoming.forEach(txt=>{ if(exist.has(txt)){ skipped++; return; } cards.push({id:uid(),text:txt,locked:false}); exist.add(txt); added++; });
-  if(added) await saveCards();
-  if(curCat==='card'){ renderCardList(); removeEmptyTip(); }
-  toast('导入 '+added+' 张，跳过 '+skipped+' 张重复');
-  e.target.value='';
+  const f=e.target.files[0];if(!f)return;const text=await f.text();let incoming=[];const name=f.name.toLowerCase();
+  try{if(name.endsWith('.json')||text.trim().startsWith('{')){const obj=JSON.parse(text);const arr=Array.isArray(obj)?obj:(obj.cards||[]);incoming=arr.map(x=>typeof x==='string'?x:(x.text||'')).filter(Boolean);}else{incoming=text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);}}catch(err){toast('文件格式无法识别');e.target.value='';return;}
+  const exist=new Set(cards.map(c=>c.text));let added=0,skipped=0;
+  incoming.forEach(txt=>{if(exist.has(txt)){skipped++;return;}cards.push({id:uid(),text:txt,locked:false});exist.add(txt);added++;});
+  if(added)await saveCards();if(curCat==='card'){renderCardList();removeEmptyTip();}toast('导入 '+added+' 张，跳过 '+skipped+' 张重复');e.target.value='';
 });
-async function exportCards(){
-  const fmt=prompt('导出格式：输入 1 = JSON，2 = TXT','1'); if(fmt!=='1'&&fmt!=='2') return;
-  const out=cards.filter(c=>!c.locked); let data,fname,type;
-  if(fmt==='1'){ data=JSON.stringify({cards:out.map(c=>({text:c.text}))},null,2); fname='阿遇♡阿凉字卡.json'; type='application/json'; }
-  else{ data=out.map(c=>c.text).join('\n'); fname='阿遇♡阿凉字卡.txt'; type='text/plain'; }
-  const blob=new Blob([data],{type}); const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob); a.download=fname; a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000); toast('已导出 '+out.length+' 张字卡');
-}
-$('#saveCards').addEventListener('click',async ()=>{
-  const area=$('#addArea'); const editingId=area.dataset.editing;
+async function exportCards(){const out=cards.filter(c=>!c.locked);const data=JSON.stringify({cards:out.map(c=>({text:c.text}))},null,2);const blob=new Blob([data],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='阿遇♡阿凉字卡.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('已导出 '+out.length+' 张字卡');}
+function importMusic(){const inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());const arr=Array.isArray(obj)?obj:(obj.musicList||[]);toast('歌单导入需带音频，暂仅支持导出');}catch(err){toast('文件格式无法识别');}});inp.click();}
+async function exportMusic(){if(musicList.length===0){toast('还没有歌');return;}const out=musicList.map(m=>({name:m.name,artist:m.artist}));const blob=new Blob([JSON.stringify({musicList:out})],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='阿遇♡阿凉歌单.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('已导出 '+out.length+' 首');}
+
+$('#saveCards').addEventListener('click',async()=>{
+  const area=$('#addArea');const editingId=area.dataset.editing;
   if(addCtx.mode==='music'){
-    const name=$('#mName').value.trim(); const artist=$('#mArtist').value.trim();
-    const fileId=area.dataset.fileId||null;
-    if(!name){ toast('还没写歌名'); return; }
-    if(!fileId){ toast('请选择音频文件'); return; }
-    if(editingId){
-      const old=musicList.find(x=>x.id===editingId);
-      if(old){
-        if(old.fileId && old.fileId!==fileId) await FS.delMusicFile(old.fileId);
-        old.name=name; old.artist=artist; old.fileId=fileId;
-      }
-    }else{
-      musicList.push({id:uid(), name, artist, fileId});
-    }
-    await saveMusic(); resetAddPage();
-    renderMusicList(); renderPocketBox();
-    toast('已保存');
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
-    $('#page-pocket').classList.add('show'); document.body.classList.add('page-open');
-    return;
+    const name=$('#mName').value.trim();const artist=$('#mArtist').value.trim();const fileId=area.dataset.fileId||null;
+    if(!name){toast('还没写歌名');return;}if(!fileId){toast('请选择音频文件');return;}
+    if(editingId){const old=musicList.find(x=>x.id===editingId);if(old){if(old.fileId&&old.fileId!==fileId)await FS.delMusicFile(old.fileId);old.name=name;old.artist=artist;old.fileId=fileId;}}
+    else{musicList.push({id:uid(),name,artist,fileId});}
+    await saveMusic();resetAddPage();renderMusicList();renderPocketBox();toast('已保存');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));$('#page-pocket').classList.add('show');document.body.classList.add('page-open');return;
   }
   const lines=area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
-  if(lines.length===0){ toast('还没写呢'); return; }
+  if(lines.length===0){toast('还没写呢');return;}
   if(addCtx.mode==='interact'){
-    const dir=addCtx.dir;
-    const arr=interactions[dir]||(interactions[dir]=[]);
-    if(editingId){
-      const it=arr.find(x=>x.id===editingId);
-      if(it){ it.text=area.value.trim(); await saveInteractions(); }
-      toast('已保存');
-    }else{
-      const exist=new Set(arr.map(x=>x.text)); let added=0,skipped=0;
-      lines.forEach(line=>{ if(exist.has(line)){ skipped++; return; } arr.push({id:uid(),text:line,locked:false}); exist.add(line); added++; });
-      await saveInteractions();
-      toast(skipped? ('放进了 '+added+' 条，跳过 '+skipped+' 条重复') : ('放进了 '+added+' 条互动'));
-    }
-    resetAddPage();
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
-    renderPocketBox();
-    $('#page-pocket').classList.add('show');
-    document.body.classList.add('page-open');
-    return;
+    const dir=addCtx.dir;const arr=interactions[dir]||(interactions[dir]=[]);
+    if(editingId){const it=arr.find(x=>x.id===editingId);if(it){it.text=area.value.trim();await saveInteractions();}toast('已保存');}
+    else{const exist=new Set(arr.map(x=>x.text));let added=0,skipped=0;lines.forEach(line=>{if(exist.has(line)){skipped++;return;}arr.push({id:uid(),text:line,locked:false});exist.add(line);added++;});await saveInteractions();toast(skipped?('放进了 '+added+' 条，跳过 '+skipped+' 条重复'):('放进了 '+added+' 条互动'));}
+    resetAddPage();document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));renderPocketBox();$('#page-pocket').classList.add('show');document.body.classList.add('page-open');return;
   }
-  if(editingId){
-    const c=cards.find(x=>x.id===editingId);
-    if(c){ c.text=area.value.trim(); await saveCards(); }
-    toast('已保存');
-  }else{
-    const exist=new Set(cards.map(c=>c.text)); let added=0,skipped=0;
-    lines.forEach(line=>{ if(exist.has(line)){ skipped++; return; } cards.push({id:uid(),text:line,locked:false}); exist.add(line); added++; });
-    await saveCards();
-    toast(skipped? ('放进了 '+added+' 张，跳过 '+skipped+' 张重复') : ('放进了 '+added+' 张字卡'));
-  }
-  removeEmptyTip();
-  resetAddPage();
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
-  renderPocketBox();
-  $('#page-pocket').classList.add('show');
-  document.body.classList.add('page-open');
+  if(editingId){const c=cards.find(x=>x.id===editingId);if(c){c.text=area.value.trim();await saveCards();}toast('已保存');}
+  else{const exist=new Set(cards.map(c=>c.text));let added=0,skipped=0;lines.forEach(line=>{if(exist.has(line)){skipped++;return;}cards.push({id:uid(),text:line,locked:false});exist.add(line);added++;});await saveCards();toast(skipped?('放进了 '+added+' 张，跳过 '+skipped+' 张重复'):('放进了 '+added+' 张字卡'));}
+  removeEmptyTip();resetAddPage();document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));renderPocketBox();$('#page-pocket').classList.add('show');document.body.classList.add('page-open');
 });
 
-/* 互动面板 */
-let itDir='touch', itSel=new Set(), itSelMode=false, itShown=50, itSearch='', itLockedView=false;
+let itDir='touch',itSel=new Set(),itSelMode=false,itShown=50,itSearch='',itLockedView=false;
 function renderInteractPanel(p){
-  p.innerHTML=`
-    <div class="toolbar" id="itTabs">
-      <div class="tool it-tab on" data-dir="touch">触碰 (${(interactions.touch||[]).length})</div>
-      <div class="tool it-tab" data-dir="back">回握 (${(interactions.back||[]).length})</div>
-      <div class="tool it-tab" data-dir="pair">缱绻 (${(interactions.pair||[]).length})</div>
-    </div>
-    <div class="toolbar" id="itTools">
-      <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
-      <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
-      <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
-      <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
-      <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
-    </div>
-    <div id="selectAllRow"><input type="checkbox" id="itSelectAllChk"><label for="itSelectAllChk">全选</label></div>
-    <div id="itList"></div>`;
-  bindInteractTools(); itShown=50; renderInteractList();
+  p.innerHTML=`<div class="toolbar" id="itTabs">
+    <div class="tool it-tab on" data-dir="touch">触碰 (${(interactions.touch||[]).length})</div>
+    <div class="tool it-tab" data-dir="back">回握 (${(interactions.back||[]).length})</div>
+    <div class="tool it-tab" data-dir="pair">缱绻 (${(interactions.pair||[]).length})</div>
+  </div>
+  <div class="toolbar" id="itTools">
+    <div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div>
+    <div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div>
+    <div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div>
+    <div class="tool" data-t="locked"><svg class="ico"><use href="#i-lock"/></svg></div>
+    <div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>
+  </div>
+  <div id="selectAllRow"><input type="checkbox" id="itSelectAllChk"><label for="itSelectAllChk">全选</label></div>
+  <div id="itList"></div>`;
+  bindInteractTools();itShown=50;renderInteractList();
 }
 function bindInteractTools(){
   const tabs=$('#itTabs');
-  tabs.addEventListener('click',e=>{
-    const t=e.target.closest('.it-tab'); if(!t) return;
-    itDir=t.dataset.dir; itSel.clear(); itSelMode=false; itShown=50; itSearch=''; itLockedView=false;
-    tabs.querySelectorAll('.it-tab').forEach(x=>x.classList.toggle('on',x===t));
-    renderInteractList();
-  });
+  tabs.addEventListener('click',e=>{const t=e.target.closest('.it-tab');if(!t)return;itDir=t.dataset.dir;itSel.clear();itSelMode=false;itShown=50;itSearch='';itLockedView=false;tabs.querySelectorAll('.it-tab').forEach(x=>x.classList.toggle('on',x===t));renderInteractList();});
   const tools=$('#itTools');
   tools.addEventListener('click',e=>{
-    const t=e.target.closest('.tool'); if(!t) return;
-    const act=t.dataset.t;
-    if(act==='search'){ const kw=prompt('搜索动作',itSearch); if(kw!==null){ itSearch=kw.trim(); itLockedView=false; itShown=50; renderInteractList(); } }
-    else if(act==='add'){ resetAddPage(); addCtx={mode:'interact',dir:itDir}; $('#addTitle').textContent='添加'+INTERACT_LABEL[itDir]; $('#addArea').placeholder=INTERACT_PLACE[itDir]; showPage('page-add'); }
-    else if(act==='del'){ if(!itSelMode){ itSelMode=true; itSel.clear(); t.classList.add('on'); renderInteractList(); } else { exitInteractSel(); renderInteractList(); } }
-    else if(act==='locked'){ itLockedView=!itLockedView; itSelMode=false; itSel.clear(); itSearch=''; itShown=50; renderInteractList(); }
-    else if(act==='more'){ openMoreSheet(); }
+    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
+    if(act==='search'){const kw=prompt('搜索动作',itSearch);if(kw!==null){itSearch=kw.trim();itLockedView=false;itShown=50;renderInteractList();}}
+    else if(act==='add'){resetAddPage();addCtx={mode:'interact',dir:itDir};$('#addTitle').textContent='添加'+INTERACT_LABEL[itDir];$('#addArea').placeholder=INTERACT_PLACE[itDir];showPage('page-add');}
+    else if(act==='del'){if(!itSelMode){itSelMode=true;itSel.clear();t.classList.add('on');renderInteractList();}else{exitInteractSel();renderInteractList();}}
+    else if(act==='locked'){itLockedView=!itLockedView;itSelMode=false;itSel.clear();itSearch='';itShown=50;renderInteractList();}
+    else if(act==='more')openMoreSheet('interact');
   });
-  const all=$('#itSelectAllChk'); if(all) all.addEventListener('change',e=>{ const arr=currentInteracts(); if(e.target.checked) arr.forEach(c=>itSel.add(c.id)); else itSel.clear(); renderInteractList(); });
+  const all=$('#itSelectAllChk');if(all)all.addEventListener('change',e=>{const arr=currentInteracts();if(e.target.checked)arr.forEach(c=>itSel.add(c.id));else itSel.clear();renderInteractList();});
 }
-function currentInteracts(){
-  let arr=(interactions[itDir]||[]);
-  if(itLockedView) return arr.filter(x=>x.locked);
-  arr=arr.filter(x=>!x.locked);
-  if(itSearch) arr=arr.filter(x=>x.text.includes(itSearch));
-  return arr;
-}
+function currentInteracts(){let arr=(interactions[itDir]||[]);if(itLockedView)return arr.filter(x=>x.locked);arr=arr.filter(x=>!x.locked);if(itSearch)arr=arr.filter(x=>x.text.includes(itSearch));return arr;}
 function renderInteractList(){
-  const list=$('#itList'); if(!list) return;
-  list.innerHTML='';
+  const list=$('#itList');if(!list)return;list.innerHTML='';
   const arr=currentInteracts();
-  if(arr.length===0){
-    const e=document.createElement('div'); e.className='empty-tip';
-    e.innerHTML = itLockedView?'还没有锁上的动作':(itSearch?'没找到':'这个抽屉还没有动作<br>点 ➕ 添加');
-    list.appendChild(e); updateInteractSelRow(); return;
-  }
-  const slice=arr.slice(0,itShown);
-  const frag=document.createDocumentFragment();
+  if(arr.length===0){const e=document.createElement('div');e.className='empty-tip';e.innerHTML=itLockedView?'还没有锁上的动作':(itSearch?'没找到':'这个抽屉还没有动作<br>点 ➕ 添加');list.appendChild(e);updateInteractSelRow();return;}
+  const slice=arr.slice(0,itShown);const frag=document.createDocumentFragment();
   slice.forEach(c=>{
-    const el=document.createElement('div');
-    el.className='card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':'');
-    el.textContent=c.text;
-    const chk=document.createElement('div'); chk.className='chk'; chk.textContent=itSel.has(c.id)?'✓':''; el.appendChild(chk);
-    el.addEventListener('click',()=>{
-      if(itSelMode){ if(itSel.has(c.id)) itSel.delete(c.id); else itSel.add(c.id); renderInteractList(); }
-      else openInteractSheet(c.id);
-    });
+    const el=document.createElement('div');el.className='card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':'');el.textContent=c.text;
+    const chk=document.createElement('div');chk.className='chk';chk.textContent=itSel.has(c.id)?'✓':'';el.appendChild(chk);
+    el.addEventListener('click',()=>{if(itSelMode){if(itSel.has(c.id))itSel.delete(c.id);else itSel.add(c.id);renderInteractList();}else openInteractSheet(c.id);});
     frag.appendChild(el);
   });
   list.appendChild(frag);
-  if(itShown < arr.length){
-    const more=document.createElement('div'); more.className='empty-tip'; more.style.padding='16px'; more.textContent='加载更多…';
-    list.appendChild(more);
-    const io=new IntersectionObserver((ents)=>{ if(ents[0].isIntersecting){ itShown+=50; io.disconnect(); renderInteractList(); } });
-    io.observe(more);
-  }
+  if(itShown<arr.length){const more=document.createElement('div');more.className='empty-tip';more.style.padding='16px';more.textContent='加载更多…';list.appendChild(more);const io=new IntersectionObserver(ents=>{if(ents[0].isIntersecting){itShown+=50;io.disconnect();renderInteractList();}});io.observe(more);}
   updateInteractSelRow();
 }
-function updateInteractSelRow(){ const row=$('#selectAllRow'); if(!row) return; if(!itSelMode){ row.classList.remove('on'); return; } row.classList.add('on'); const arr=currentInteracts(); $('#itSelectAllChk').checked = arr.length>0 && arr.every(c=>itSel.has(c.id)); }
-function exitInteractSel(){ itSelMode=false; itSel.clear(); const r=$('#selectAllRow'); if(r) r.classList.remove('on'); $('#multiBar').classList.remove('on'); document.querySelectorAll('#itTools .tool[data-t="del"]').forEach(d=>d.classList.remove('on')); }
-function openInteractSheet(id){
-  itSheetId=id; sheetCardId=null;
-  const c=(interactions[itDir]||[]).find(x=>x.id===id); if(!c) return;
-  document.querySelectorAll('#sheet .sheet-item').forEach(el=>{ el.style.display = ['shEdit','shLock','shDel','shCancel'].includes(el.id) ? 'block' : 'none'; });
-  const li=$('#shLock');
-  if(c.locked){ li.textContent='解锁'; li.dataset.act='unlock'; } else { li.textContent='锁上'; li.dataset.act='lock'; }
-  $('#sheetMask').classList.add('on'); $('#sheet').classList.add('on');
-}
-function editInteract(id){
-  const c=(interactions[itDir]||[]).find(x=>x.id===id); if(!c) return;
-  resetAddPage(); addCtx={mode:'interact',dir:itDir}; $('#addArea').value=c.text; $('#addArea').dataset.editing=id;
-  $('#addTitle').textContent='编辑'+INTERACT_LABEL[itDir]; $('#addArea').placeholder=INTERACT_PLACE[itDir];
-  showPage('page-add');
-}
+function updateInteractSelRow(){const row=$('#selectAllRow');if(!row)return;if(!itSelMode){row.classList.remove('on');return;}row.classList.add('on');const arr=currentInteracts();$('#itSelectAllChk').checked=arr.length>0&&arr.every(c=>itSel.has(c.id));}
+function exitInteractSel(){itSelMode=false;itSel.clear();const r=$('#selectAllRow');if(r)r.classList.remove('on');$('#multiBar').classList.remove('on');document.querySelectorAll('#itTools .tool[data-t="del"]').forEach(d=>d.classList.remove('on'));}
+function editInteract(id){const c=(interactions[itDir]||[]).find(x=>x.id===id);if(!c)return;resetAddPage();addCtx={mode:'interact',dir:itDir};$('#addArea').value=c.text;$('#addArea').dataset.editing=id;$('#addTitle').textContent='编辑'+INTERACT_LABEL[itDir];$('#addArea').placeholder=INTERACT_PLACE[itDir];showPage('page-add');}
 
 function renderSettings(){
-  $('#dMin').value=settings.dMin; $('#dMax').value=settings.dMax;
-  $('#gMin').value=settings.gMin; $('#gMax').value=settings.gMax;
-  $('#bgMaskRange').value = settings.bgMask==null?55:settings.bgMask;
-  $('#bgMaskVal').textContent = $('#bgMaskRange').value;
+  $('#dMin').value=settings.dMin;$('#dMax').value=settings.dMax;$('#gMin').value=settings.gMin;$('#gMax').value=settings.gMax;
+  $('#bgMaskRange').value=settings.bgMask==null?55:settings.bgMask;$('#bgMaskVal').textContent=$('#bgMaskRange').value;
   document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('on',o.dataset.style===settings.style));
 }
-function bindNum(id,key){ $('#'+id).addEventListener('change',e=>{ let v=parseInt(e.target.value)||0; if(v<0)v=0; settings[key]=v; saveSet(); }); }
-bindNum('dMin','dMin'); bindNum('dMax','dMax'); bindNum('gMin','gMin'); bindNum('gMax','gMax');
+function bindNum(id,key){$('#'+id).addEventListener('change',e=>{let v=parseInt(e.target.value)||0;if(v<0)v=0;settings[key]=v;saveSet();});}
+bindNum('dMin','dMin');bindNum('dMax','dMax');bindNum('gMin','gMin');bindNum('gMax','gMax');
 $('#setNameHer').addEventListener('input',e=>{settings.nameHer=e.target.value;saveSet();});
 $('#setNameMe').addEventListener('input',e=>{settings.nameMe=e.target.value;saveSet();});
 $('#setCallHer').addEventListener('input',e=>{settings.callHer=e.target.value;saveSet();applyProfile();});
 $('#setCallMe').addEventListener('input',e=>{settings.callMe=e.target.value;saveSet();applyProfile();});
-document.querySelectorAll('.style-opt').forEach(o=>{ o.addEventListener('click',()=>{
+document.querySelectorAll('.style-opt').forEach(o=>{o.addEventListener('click',()=>{
   document.body.classList.remove('retro','comic','girl','news','sakura','glass','ticket','dream','cafe','starry','rain','washi','tape','mint');
-  document.body.classList.add(o.dataset.style);
-  settings.style=o.dataset.style; saveSet();
+  document.body.classList.add(o.dataset.style);settings.style=o.dataset.style;saveSet();
   document.querySelectorAll('.style-opt').forEach(x=>x.classList.toggle('on',x===o));
-}); });
-$('#clearMsgs').addEventListener('click',()=>{ if(confirm('清空所有聊天记录？此操作不可恢复')){ messages=[]; saveMsgs(); renderMessages(); toast('已清空'); } });
+});});
+$('#clearMsgs').addEventListener('click',()=>{if(confirm('清空所有聊天记录？此操作不可恢复')){messages=[];saveMsgs();renderMessages();toast('已清空');}});
 
-const bgFile=document.createElement('input'); bgFile.type='file'; bgFile.accept='image/*'; bgFile.multiple=true; bgFile.style.display='none'; document.body.appendChild(bgFile);
-bgFile.addEventListener('change',e=>{
-  const files=[...e.target.files]; if(!files.length) return;
-  let done=0;
-  files.forEach(f=>{ const r=new FileReader(); r.onload=()=>{ settings.bgs.push({id:uid(), data:r.result}); done++; if(done===files.length){ saveSet(); renderBgList(); toast('已添加 '+files.length+' 张背景'); } }; r.readAsDataURL(f); });
-  e.target.value='';
-});
-$('#bgMaskRange').addEventListener('input',e=>{ const v=parseInt(e.target.value)||0; settings.bgMask=v; saveSet(); applyBg(); $('#bgMaskVal').textContent=v; });
+const bgFile=document.createElement('input');bgFile.type='file';bgFile.accept='image/*';bgFile.multiple=true;bgFile.style.display='none';document.body.appendChild(bgFile);
+bgFile.addEventListener('change',e=>{const files=[...e.target.files];if(!files.length)return;let done=0;files.forEach(f=>{const r=new FileReader();r.onload=()=>{settings.bgs.push({id:uid(),data:r.result});done++;if(done===files.length){saveSet();renderBgList();toast('已添加 '+files.length+' 张背景');}};r.readAsDataURL(f);});e.target.value='';});
+$('#bgMaskRange').addEventListener('input',e=>{const v=parseInt(e.target.value)||0;settings.bgMask=v;saveSet();applyBg();$('#bgMaskVal').textContent=v;});
 
 let avTarget=null;
-const avFile=document.createElement('input'); avFile.type='file'; avFile.accept='image/*'; avFile.style.display='none'; document.body.appendChild(avFile);
-$('#setAvHer').addEventListener('click',()=>{ avTarget='her'; avFile.click(); });
-$('#setAvMe').addEventListener('click',()=>{ avTarget='me'; avFile.click(); });
-avFile.addEventListener('change',e=>{ const f=e.target.files[0]; if(!f||!avTarget) return; const r=new FileReader(); r.onload=()=>{ if(avTarget==='her') settings.avatarHer=r.result; else settings.avatarMe=r.result; saveSet(); applyProfile(); renderMessages(); toast('已更换头像'); }; r.readAsDataURL(f); e.target.value=''; });
+const avFile=document.createElement('input');avFile.type='file';avFile.accept='image/*';avFile.style.display='none';document.body.appendChild(avFile);
+$('#setAvHer').addEventListener('click',()=>{avTarget='her';avFile.click();});
+$('#setAvMe').addEventListener('click',()=>{avTarget='me';avFile.click();});
+avFile.addEventListener('change',e=>{const f=e.target.files[0];if(!f||!avTarget)return;const r=new FileReader();r.onload=()=>{if(avTarget==='her')settings.avatarHer=r.result;else settings.avatarMe=r.result;saveSet();applyProfile();renderMessages();toast('已更换头像');};r.readAsDataURL(f);e.target.value='';});
+
+function openCollection(){
+  renderCollection();showPage('page-collection');
+}
+function renderCollection(){
+  const box=$('#colList');box.innerHTML='';
+  if(collection.length===0){box.innerHTML='<div class="empty-tip">收藏匣还空着</div>';return;}
+  const arr=collection.slice().sort((a,b)=>b.time-a.time);
+  const frag=document.createDocumentFragment();
+  arr.forEach(c=>{
+    const el=document.createElement('div');el.className='collection-item';
+    if(c.type==='photo'){el.innerHTML=`<img src="${c.data}">`;}
+    else{el.textContent=c.text||'';}
+    const t=document.createElement('div');t.className='ci-time';t.textContent=fmtTime(c.time);el.appendChild(t);
+    frag.appendChild(el);
+  });
+  box.appendChild(frag);
+}
 
 async function boot(){
   await FS.init();
@@ -2521,14 +2189,15 @@ async function boot(){
   const st=await FS.read('stickers.json',{stickers:[]});
   const it=await FS.read('interactions.json',null);
   const mu=await FS.read('music.json',{musicList:[]});
-  cards=c.cards||[]; messages=m.messages||[]; stickers=st.stickers||[];
-  if(it && typeof it==='object'){ interactions=Object.assign({touch:[],back:[],pair:[]}, it); }
-  musicList=mu.musicList||[];
-  if(s){ settings=Object.assign(settings,s); if(!Array.isArray(settings.bgs)) settings.bgs=[]; }
+  const co=await FS.read('collection.json',{collection:[]});
+  cards=c.cards||[];messages=m.messages||[];stickers=st.stickers||[];
+  if(it&&typeof it==='object'){interactions=Object.assign({touch:[],back:[],pair:[]},it);}
+  musicList=mu.musicList||[];collection=co.collection||[];
+  if(s){settings=Object.assign(settings,s);if(!Array.isArray(settings.bgs))settings.bgs=[];}
   document.body.className=settings.style||'retro';
-  applyProfile(); applyBg(); renderMessages();
-  if(settings.listening){ $('#listenBanner').classList.add('on'); }
-  if(cards.length===0) showSystem('口袋里还没有字卡，去给祂放几张吧');
+  applyProfile();applyBg();renderMessages();
+  if(settings.listening)$('#listenBanner').classList.add('on');
+  if(cards.length===0)showSystem('口袋里还没有字卡，去给祂放几张吧');
 }
 boot();
 </script>
