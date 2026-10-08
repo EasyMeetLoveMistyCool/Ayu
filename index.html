@@ -110,7 +110,7 @@ body.page-open .theme-root{visibility:hidden}
 #msgMenu .mi:active{opacity:.6}
 #msgMenu .mi.danger{color:#a5401a}
 .menu-label{padding:8px 18px;font-size:11px;text-align:center;opacity:.6;letter-spacing:2px}
-#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:rgba(40,30,20,.9);color:#fff;font-size:14px;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;z-index:99;pointer-events:none;max-width:80%;text-align:center}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:rgba(40,30,20,.9);color:#fff;font-size:14px;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;z-index:999;pointer-events:none;max-width:80%;text-align:center}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 #previewMask{position:fixed;inset:0;background:rgba(20,15,10,.85);z-index:60;display:none;flex-direction:column;padding:20px}
 #previewMask.on{display:flex}
@@ -483,8 +483,7 @@ body.theme-mint #askBox .ask-btn{border:1px solid #6ab898;background:linear-grad
 body.theme-mint #askBox .ask-q-show{background:#f4fbf8;border:1px solid #cce4da;border-left:4px solid #6ab898;border-radius:8px}
 body.theme-mint #askBox .ask-opt{background:#f4fbf8;border:1px solid #cce4da;border-radius:8px}
 body.theme-mint #askBox .ask-opt.picked{background:#e0f4ec;border:2px solid #6ab898;box-shadow:0 0 20px rgba(120,200,170,.5)}
-
-/* ===== 同频弹窗（含全部主题皮肤） ===== */
+  /* ===== 同频弹窗（含全部主题皮肤） ===== */
 #syncMask{display:none}
 #syncMask.on{display:block;position:fixed;inset:0;pointer-events:none;z-index:92}
 #syncBox{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:88%;max-width:400px;max-height:80vh;border-radius:16px;z-index:93;display:none;flex-direction:column;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.3);background:#f3ead2;color:#5a4a2e;border:1px solid #cbb98f}
@@ -609,8 +608,294 @@ body.theme-mint #syncBox .sync-item{border:1px solid #cce4da;background:#f4fbf8;
 body.theme-mint #syncBox .sync-item.picked{background:#e0f4ec;border:2px solid #6ab898;box-shadow:0 0 20px rgba(120,200,170,.5)}
 body.theme-mint #syncBox .sync-btn{border:1px solid #6ab898;background:linear-gradient(#ffffff,#d8f0e6);color:#4a8a74;border-radius:8px}
 body.theme-mint #syncBox .sync-result{background:#e0f4ec;border:2px solid #6ab898;color:#4a8a74;border-radius:8px}
-  
-/* ===== 收藏匣工具栏各主题皮肤 ===== */
+
+/* ===== 视频通话（基础结构，14 套主题皮肤见下一段） ===== */
+#callBox{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:240px;padding:0 0 14px;border-radius:18px;z-index:100;display:none;flex-direction:column;align-items:center;box-shadow:0 12px 40px rgba(0,0,0,.35);background:#2a2620;color:#f0e0c0;border:1px solid #6a5a3a}
+#callBox.on{display:flex}
+.call-drag{width:100%;padding:8px 0 4px;cursor:move;touch-action:none}
+.call-grip{width:40px;height:4px;border-radius:2px;margin:0 auto;background:rgba(240,224,192,.35)}
+.call-body{display:flex;flex-direction:column;align-items:center;padding:6px 0 10px;width:100%}
+.call-av-wrap{position:relative;width:96px;height:96px;display:flex;align-items:center;justify-content:center;margin:6px 0 10px}
+.call-av{width:72px;height:72px;border-radius:50%;background:#4a3e2a;background-size:cover;background-position:center;border:2px solid #8a7a4a;position:relative;z-index:2}
+.call-ripple{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;border:2px solid #8a7a4a;opacity:0;pointer-events:none}
+#callBox.calling .call-ripple{animation:callRipple 2.4s ease-out infinite}
+#callBox.calling .call-ripple.r2{animation-delay:.8s}
+#callBox.calling .call-ripple.r3{animation-delay:1.6s}
+@keyframes callRipple{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
+#callBox.connected .call-av{border-color:#5ac07a;box-shadow:0 0 16px rgba(90,192,122,.6)}
+#callBox.rejected .call-av{border-color:#8a8a8a;opacity:.7}
+.call-name{font-size:14px;font-weight:700;letter-spacing:1px;margin-bottom:6px}
+.call-status{font-size:13px;opacity:.85;min-height:18px}
+#callBox.connected .call-status{color:#7ce09a;font-weight:700;font-size:15px}
+#callBox.rejected .call-status{color:#c0a0a0}
+.call-btns{display:flex;gap:14px;margin-top:4px}
+.call-btn{min-width:64px;height:36px;padding:0 14px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer}
+.call-btn.mini{border:1px solid #8a7a4a;background:rgba(255,200,120,.12);color:#f0b060}
+.call-btn.hang{border:1px solid #c0392b;background:#c0392b;color:#fff}
+.call-btn:active{opacity:.7}
+#callMini{position:fixed;left:12px;bottom:150px;z-index:100;display:none;align-items:center;gap:8px;padding:8px 12px;border-radius:14px;background:#2a2620;color:#f0e0c0;border:1px solid #6a5a3a;box-shadow:0 6px 20px rgba(0,0,0,.3);touch-action:none}
+#callMini.on{display:flex}
+.cm-av{width:26px;height:26px;border-radius:50%;background:#4a3e2a;background-size:cover;background-position:center;border:1px solid #8a7a4a;flex:0 0 auto}
+.cm-name{font-size:13px;font-weight:700;flex:0 0 auto}
+.cm-status{font-size:12px;opacity:.85;flex:0 0 auto}
+.cm-dot{width:8px;height:8px;border-radius:50%;background:#5ac07a;display:none;flex:0 0 auto;animation:cmDot 1.2s ease-in-out infinite}
+#callMini.connected .cm-dot{display:block}
+@keyframes cmDot{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+.cm-hang{font-size:12px;font-weight:700;color:#fff;background:#c0392b;border-radius:12px;padding:4px 10px;flex:0 0 auto}
+.cm-hang:active{opacity:.7}
+
+/* ===== 陪伴小窗（基础结构，14 套主题皮肤见下一段） ===== */
+#companionBox{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:200px;padding:10px 12px 12px;border-radius:16px;z-index:99;display:none;flex-direction:column;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.3);background:#2a2620;color:#f0e0c0;border:1px solid #6a5a3a;touch-action:none}
+#companionBox.on{display:flex}
+.cp-drag{width:100%;padding:2px 0 4px;cursor:move;touch-action:none}
+.cp-grip{width:34px;height:4px;border-radius:2px;margin:0 auto;background:rgba(240,224,192,.3)}
+.cp-avs{display:flex;align-items:center;justify-content:center;gap:22px;margin:4px 0 2px}
+.cp-av-wrap{display:flex;flex-direction:column;align-items:center;gap:3px}
+.cp-av{width:42px;height:42px;border-radius:50%;background:#4a3e2a;background-size:cover;background-position:center;border:2px solid #8a7a4a}
+.cp-av-name{font-size:10px;opacity:.85}
+.cp-type{font-size:14px;font-weight:700;letter-spacing:1px}
+.cp-time{font-size:12px;opacity:.85}
+.cp-end{margin-top:4px;padding:6px 20px;border-radius:14px;font-size:13px;font-weight:700;border:1px solid #8a7a4a;background:rgba(255,200,120,.12);color:#f0b060;cursor:pointer}
+.cp-end:active{opacity:.7}
+/* 陪伴选择面板 */
+.cp-picker{padding:6px 0 0}
+.cp-picker-title{font-size:12px;font-weight:700;letter-spacing:2px;padding:10px 20px 4px;opacity:.7}
+.cp-picker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0 16px 6px}
+.cp-picker-item{font-size:14px;padding:12px 8px;border-radius:10px;text-align:center;cursor:pointer}
+.cp-picker-item:active{opacity:.7}
+  /* ===== 视频通话 · 14 套主题皮肤 ===== */
+body.theme-retro #callBox{background:linear-gradient(#f7ecd0,#e6d3a4);color:#5a4a2e;border:2px solid #b89b5e;border-radius:6px}
+body.theme-retro #callBox .call-grip{background:rgba(122,95,48,.4)}
+body.theme-retro #callBox .call-av{background:#fff;border:3px solid #fff;box-shadow:0 0 0 2px #c8b68a}
+body.theme-retro #callBox .call-ripple{border-color:#c8b68a}
+body.theme-retro #callBox .call-name{color:#7a5f30}
+body.theme-retro #callBox .call-btn.mini{border:2px solid #b89b5e;background:#fdf3c8;color:#7a5f30;border-radius:6px}
+body.theme-retro #callBox .call-btn.hang{border:2px solid #8a6f3c;background:radial-gradient(circle at 35% 30%,#d89a6a,#a5603a);color:#fffaf0;border-radius:50%;min-width:44px;height:44px;padding:0}
+body.theme-retro #callMini{background:linear-gradient(#f7ecd0,#e6d3a4);color:#5a4a2e;border:2px solid #b89b5e;border-radius:8px}
+body.theme-retro #callMini .cm-av{border-color:#b89b5e}
+body.theme-retro #callMini .cm-hang{background:#a5603a;border-radius:6px}
+body.theme-retro #companionBox{background:linear-gradient(#f7ecd0,#e6d3a4);color:#5a4a2e;border:2px solid #b89b5e;border-radius:6px}
+body.theme-retro #companionBox .cp-grip{background:rgba(122,95,48,.4)}
+body.theme-retro #companionBox .cp-av{background:#fff;border:3px solid #fff;box-shadow:0 0 0 1px #c8b68a}
+body.theme-retro #companionBox .cp-end{border:2px solid #b89b5e;background:#fdf3c8;color:#7a5f30;border-radius:6px}
+body.theme-retro .cp-picker-item{border:1px solid #cbb98f;background:#fffaf0;color:#7a5f30}
+
+body.theme-comic #callBox{background:#fffdf6;color:#111;border:3px solid #111;border-radius:0;box-shadow:8px 8px 0 #111}
+body.theme-comic #callBox .call-grip{background:#111}
+body.theme-comic #callBox .call-av{background:#fff;border:3px solid #111}
+body.theme-comic #callBox .call-ripple{border:3px solid #111}
+body.theme-comic #callBox .call-name{color:#111;font-weight:900}
+body.theme-comic #callBox .call-btn.mini{border:3px solid #111;background:#fff;color:#111;border-radius:0;box-shadow:3px 3px 0 #111;font-weight:900}
+body.theme-comic #callBox .call-btn.hang{border:3px solid #111;background:#ffd9d9;color:#c22a1a;border-radius:0;box-shadow:3px 3px 0 #111;font-weight:900}
+body.theme-comic #callMini{background:#fffdf6;color:#111;border:3px solid #111;border-radius:0;box-shadow:4px 4px 0 #111}
+body.theme-comic #callMini .cm-av{border:3px solid #111}
+body.theme-comic #callMini .cm-hang{background:#ffd9d9;color:#c22a1a;border:2px solid #111;border-radius:0}
+body.theme-comic #companionBox{background:#fffdf6;color:#111;border:3px solid #111;border-radius:0;box-shadow:6px 6px 0 #111}
+body.theme-comic #companionBox .cp-grip{background:#111}
+body.theme-comic #companionBox .cp-av{background:#fff;border:3px solid #111}
+body.theme-comic #companionBox .cp-type{font-weight:900}
+body.theme-comic #companionBox .cp-end{border:3px solid #111;background:#fff;color:#111;border-radius:0;box-shadow:3px 3px 0 #111;font-weight:900}
+body.theme-comic .cp-picker-item{border:3px solid #111;background:#fff;color:#111;border-radius:0;font-weight:700}
+
+body.theme-girl #callBox{background:linear-gradient(160deg,#fff2f7,#ffe4ef);color:#8a4a68;border:2px solid #ffd6e6;border-radius:24px}
+body.theme-girl #callBox .call-grip{background:#ffc0d8}
+body.theme-girl #callBox .call-av{background:#fff;border:3px solid #fff;box-shadow:0 0 0 2px #ffc0d8}
+body.theme-girl #callBox .call-ripple{border-color:#ffc0d8}
+body.theme-girl #callBox .call-name{color:#c05a80}
+body.theme-girl #callBox .call-btn.mini{border:2px solid #ffd6e6;background:#fff;color:#c05a80;border-radius:16px}
+body.theme-girl #callBox .call-btn.hang{border:2px solid #ff9ec4;background:linear-gradient(160deg,#ff9ec4,#ff7fae);color:#fff;border-radius:50%;min-width:44px;height:44px;padding:0}
+body.theme-girl #callMini{background:linear-gradient(160deg,#fff2f7,#ffe4ef);color:#8a4a68;border:2px solid #ffc0d8;border-radius:20px}
+body.theme-girl #callMini .cm-av{border-color:#ffc0d8}
+body.theme-girl #callMini .cm-hang{background:linear-gradient(160deg,#ff9ec4,#ff7fae);border-radius:12px}
+body.theme-girl #companionBox{background:linear-gradient(160deg,#fff2f7,#ffe4ef);color:#8a4a68;border:2px solid #ffd6e6;border-radius:22px}
+body.theme-girl #companionBox .cp-grip{background:#ffc0d8}
+body.theme-girl #companionBox .cp-av{background:#fff;border:3px solid #fff;box-shadow:0 0 0 2px #ffc0d8}
+body.theme-girl #companionBox .cp-type{color:#c05a80}
+body.theme-girl #companionBox .cp-end{border:2px solid #ffd6e6;background:#fff;color:#c05a80;border-radius:14px}
+body.theme-girl .cp-picker-item{border:2px solid #ffd6e6;background:#fff;color:#8a4a68;border-radius:14px}
+
+body.theme-news #callBox{background:#ece6d4;color:#2a2a26;border:3px solid #2a2a26;border-radius:0}
+body.theme-news #callBox .call-grip{background:#2a2a26}
+body.theme-news #callBox .call-av{background:#f2ecda;border:2px solid #2a2a26;border-radius:0}
+body.theme-news #callBox .call-ripple{border:2px solid #6a6350;border-radius:0}
+body.theme-news #callBox .call-name{color:#2a2a26;font-weight:900;letter-spacing:3px}
+body.theme-news #callBox .call-btn.mini{border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0}
+body.theme-news #callBox .call-btn.hang{border:2px solid #2a2a26;background:#8a2a1a;color:#f4eeda;border-radius:0}
+body.theme-news #callMini{background:#ece6d4;color:#2a2a26;border:2px solid #2a2a26;border-radius:0}
+body.theme-news #callMini .cm-av{border:2px solid #2a2a26;border-radius:0}
+body.theme-news #callMini .cm-hang{background:#8a2a1a;border-radius:0}
+body.theme-news #companionBox{background:#ece6d4;color:#2a2a26;border:3px solid #2a2a26;border-radius:0}
+body.theme-news #companionBox .cp-grip{background:#2a2a26}
+body.theme-news #companionBox .cp-av{background:#f2ecda;border:2px solid #2a2a26;border-radius:0}
+body.theme-news #companionBox .cp-type{font-weight:900;letter-spacing:2px}
+body.theme-news #companionBox .cp-end{border:2px solid #2a2a26;background:#f2ecda;color:#2a2a26;border-radius:0}
+body.theme-news .cp-picker-item{border:1px solid #6a6350;background:#f2ecda;color:#2a2a26;border-radius:0}
+
+body.theme-sakura #callBox{background:#33223a;color:#f2dbe6;border:1px solid #5a3f62;border-radius:12px;box-shadow:0 0 24px rgba(255,158,196,.35)}
+body.theme-sakura #callBox .call-grip{background:rgba(255,192,216,.4)}
+body.theme-sakura #callBox .call-av{background:#2b1c2e;border:2px solid #ff9ec4;box-shadow:0 0 16px rgba(255,158,196,.5)}
+body.theme-sakura #callBox .call-ripple{border:1px solid #ff9ec4}
+body.theme-sakura #callBox .call-name{color:#ffc0d8}
+body.theme-sakura #callBox .call-btn.mini{border:1px solid #ff9ec4;background:rgba(255,158,196,.15);color:#ffc0d8;border-radius:10px}
+body.theme-sakura #callBox .call-btn.hang{border:1px solid #ff7fae;background:rgba(255,127,174,.9);color:#fff;border-radius:50%;min-width:44px;height:44px;padding:0}
+body.theme-sakura #callMini{background:#33223a;color:#f2dbe6;border:1px solid #ff9ec4;border-radius:12px;box-shadow:0 0 16px rgba(255,158,196,.35)}
+body.theme-sakura #callMini .cm-av{border-color:#ff9ec4}
+body.theme-sakura #callMini .cm-hang{background:rgba(255,127,174,.9);border-radius:10px}
+body.theme-sakura #companionBox{background:#33223a;color:#f2dbe6;border:1px solid #5a3f62;border-radius:14px;box-shadow:0 0 20px rgba(255,158,196,.35)}
+body.theme-sakura #companionBox .cp-grip{background:rgba(255,192,216,.4)}
+body.theme-sakura #companionBox .cp-av{background:#2b1c2e;border:1px solid #ff9ec4;box-shadow:0 0 12px rgba(255,158,196,.5)}
+body.theme-sakura #companionBox .cp-end{border:1px solid #ff9ec4;background:rgba(255,158,196,.15);color:#ffc0d8;border-radius:10px}
+body.theme-sakura .cp-picker-item{border:1px solid #5a3f62;background:rgba(255,220,235,.08);color:#f2dbe6}
+
+body.theme-glass #callBox{background:rgba(255,255,255,.92);color:#3a4a52;border:1px solid #cfdde2;border-radius:16px;backdrop-filter:blur(10px)}
+body.theme-glass #callBox .call-grip{background:#cfdde2}
+body.theme-glass #callBox .call-av{background:#fff;border:2px solid #cfdde2;box-shadow:inset 0 0 8px rgba(180,210,220,.6)}
+body.theme-glass #callBox .call-ripple{border:2px solid #8ab4c4}
+body.theme-glass #callBox .call-name{color:#5a7a88}
+body.theme-glass #callBox .call-btn.mini{border:1px solid #cfdde2;background:#f7fbfc;color:#5a7a88;border-radius:12px}
+body.theme-glass #callBox .call-btn.hang{border:1px solid #c47a8a;background:#c47a8a;color:#fff;border-radius:12px}
+body.theme-glass #callMini{background:rgba(255,255,255,.95);color:#3a4a52;border:1px solid #cfdde2;border-radius:12px}
+body.theme-glass #callMini .cm-av{border-color:#cfdde2}
+body.theme-glass #callMini .cm-hang{background:#c47a8a;border-radius:10px}
+body.theme-glass #companionBox{background:rgba(255,255,255,.92);color:#3a4a52;border:1px solid #cfdde2;border-radius:16px;backdrop-filter:blur(10px)}
+body.theme-glass #companionBox .cp-grip{background:#cfdde2}
+body.theme-glass #companionBox .cp-av{background:#fff;border:2px solid #cfdde2}
+body.theme-glass #companionBox .cp-end{border:1px solid #cfdde2;background:#f7fbfc;color:#5a7a88;border-radius:12px}
+body.theme-glass .cp-picker-item{border:1px solid #dbe6ea;background:#f7fbfc;color:#3a4a52}
+
+body.theme-ticket #callBox{background:#2a323c;color:#e8e2d2;border:1px solid #3a434f;border-radius:6px;box-shadow:inset 0 0 20px rgba(255,220,150,.06)}
+body.theme-ticket #callBox .call-grip{background:#4a5460}
+body.theme-ticket #callBox .call-av{background:#1a1f26;border:2px solid #e8c88a}
+body.theme-ticket #callBox .call-ripple{border:1px solid #e8c88a}
+body.theme-ticket #callBox .call-name{color:#e8c88a}
+body.theme-ticket #callBox .call-btn.mini{border:1px solid #c9b878;background:rgba(232,200,138,.15);color:#e8c88a;border-radius:4px}
+body.theme-ticket #callBox .call-btn.hang{border:1px solid #c9b878;background:#c0392b;color:#fff;border-radius:4px}
+body.theme-ticket #callMini{background:#2a323c;color:#e8e2d2;border:1px solid #e8c88a;border-radius:6px}
+body.theme-ticket #callMini .cm-av{border-color:#e8c88a}
+body.theme-ticket #callMini .cm-hang{background:#c0392b;border-radius:4px}
+body.theme-ticket #companionBox{background:#2a323c;color:#e8e2d2;border:1px solid #3a434f;border-radius:6px}
+body.theme-ticket #companionBox .cp-grip{background:#4a5460}
+body.theme-ticket #companionBox .cp-av{background:#1a1f26;border:2px solid #e8c88a}
+body.theme-ticket #companionBox .cp-type{color:#e8c88a}
+body.theme-ticket #companionBox .cp-end{border:1px solid #c9b878;background:rgba(232,200,138,.15);color:#e8c88a;border-radius:4px}
+body.theme-ticket .cp-picker-item{border:1px solid #3a434f;background:rgba(255,255,255,.05);color:#e8e2d2;border-radius:6px}
+
+body.theme-dream #callBox{background:linear-gradient(#faf6fc,#e3d6ee);color:#5f5470;border:1px solid #b8a0cc;border-radius:18px;box-shadow:0 0 24px rgba(184,160,204,.4)}
+body.theme-dream #callBox .call-grip{background:#cdc0d6}
+body.theme-dream #callBox .call-av{background:#faf6fc;border:1px solid #b8a0cc;box-shadow:0 0 14px rgba(184,160,204,.6)}
+body.theme-dream #callBox .call-ripple{border:1px solid #b8a0cc}
+body.theme-dream #callBox .call-name{color:#7a6a92}
+body.theme-dream #callBox .call-btn.mini{border:1px solid #b8a0cc;background:#faf6fc;color:#7a6a92;border-radius:14px}
+body.theme-dream #callBox .call-btn.hang{border:1px solid #b8a0cc;background:#b08ab0;color:#fff;border-radius:14px}
+body.theme-dream #callMini{background:linear-gradient(#faf6fc,#e3d6ee);color:#5f5470;border:1px solid #b8a0cc;border-radius:14px}
+body.theme-dream #callMini .cm-av{border-color:#b8a0cc}
+body.theme-dream #callMini .cm-hang{background:#b08ab0;border-radius:12px}
+body.theme-dream #companionBox{background:linear-gradient(#faf6fc,#e3d6ee);color:#5f5470;border:1px solid #b8a0cc;border-radius:18px;box-shadow:0 0 22px rgba(184,160,204,.4)}
+body.theme-dream #companionBox .cp-grip{background:#cdc0d6}
+body.theme-dream #companionBox .cp-av{background:#faf6fc;border:1px solid #b8a0cc}
+body.theme-dream #companionBox .cp-end{border:1px solid #b8a0cc;background:#faf6fc;color:#7a6a92;border-radius:14px}
+body.theme-dream .cp-picker-item{border:1px solid #d6cae0;background:#faf6fc;color:#5f5470;border-radius:12px}
+
+body.theme-cafe #callBox{background:linear-gradient(#fbf5e8,#f5ecd8);color:#5a4632;border:2px solid #c9b28c;border-radius:4px}
+body.theme-cafe #callBox .call-grip{background:#c9b28c}
+body.theme-cafe #callBox .call-av{background:#fff;border:2px solid #b8945c}
+body.theme-cafe #callBox .call-ripple{border:2px solid #b8945c}
+body.theme-cafe #callBox .call-name{color:#7a5c3a;font-style:italic}
+body.theme-cafe #callBox .call-btn.mini{border:1px solid #c9b28c;background:#fffaf0;color:#7a5c3a;border-radius:4px}
+body.theme-cafe #callBox .call-btn.hang{border:1px solid #8a6334;background:#a5603a;color:#fffaf0;border-radius:4px}
+body.theme-cafe #callMini{background:linear-gradient(#fbf5e8,#f5ecd8);color:#5a4632;border:2px solid #c9b28c;border-radius:4px}
+body.theme-cafe #callMini .cm-av{border-color:#b8945c}
+body.theme-cafe #callMini .cm-hang{background:#a5603a;border-radius:4px}
+body.theme-cafe #companionBox{background:linear-gradient(#fbf5e8,#f5ecd8);color:#5a4632;border:2px solid #c9b28c;border-radius:4px}
+body.theme-cafe #companionBox .cp-grip{background:#c9b28c}
+body.theme-cafe #companionBox .cp-av{background:#fff;border:2px solid #b8945c}
+body.theme-cafe #companionBox .cp-type{color:#7a5c3a;font-style:italic}
+body.theme-cafe #companionBox .cp-end{border:1px solid #c9b28c;background:#fffaf0;color:#7a5c3a;border-radius:4px}
+body.theme-cafe .cp-picker-item{border:1px solid #ddc9a4;background:#fbf5e8;color:#5a4632;border-radius:4px}
+
+body.theme-starry #callBox{background:linear-gradient(#1a2246,#0e1330);color:#dfe4ff;border:1px solid #8a96d8;border-radius:6px;box-shadow:0 0 24px rgba(138,150,216,.5)}
+body.theme-starry #callBox .call-grip{background:#3a4478}
+body.theme-starry #callBox .call-av{background:#1a2246;border:1px solid #8a96d8;box-shadow:0 0 16px rgba(138,150,216,.75)}
+body.theme-starry #callBox .call-ripple{border:1px solid #8a96d8}
+body.theme-starry #callBox .call-name{color:#c8d4ff}
+body.theme-starry #callBox .call-btn.mini{border:1px solid #8a96d8;background:rgba(138,150,216,.18);color:#c8d4ff;border-radius:4px}
+body.theme-starry #callBox .call-btn.hang{border:1px solid #8a96d8;background:#3a4478;color:#fff;border-radius:4px}
+body.theme-starry #callMini{background:linear-gradient(#1a2246,#0e1330);color:#dfe4ff;border:1px solid #8a96d8;border-radius:6px;box-shadow:0 0 16px rgba(138,150,216,.4)}
+body.theme-starry #callMini .cm-av{border-color:#8a96d8}
+body.theme-starry #callMini .cm-hang{background:#3a4478;border-radius:4px}
+body.theme-starry #companionBox{background:linear-gradient(#1a2246,#0e1330);color:#dfe4ff;border:1px solid #8a96d8;border-radius:6px;box-shadow:0 0 20px rgba(138,150,216,.5)}
+body.theme-starry #companionBox .cp-grip{background:#3a4478}
+body.theme-starry #companionBox .cp-av{background:#1a2246;border:1px solid #8a96d8;box-shadow:0 0 12px rgba(138,150,216,.6)}
+body.theme-starry #companionBox .cp-type{color:#c8d4ff}
+body.theme-starry #companionBox .cp-end{border:1px solid #8a96d8;background:rgba(138,150,216,.18);color:#c8d4ff;border-radius:4px}
+body.theme-starry .cp-picker-item{border:1px solid #3a4478;background:rgba(200,212,255,.07);color:#dfe4ff;border-radius:4px}
+
+body.theme-rain #callBox{background:linear-gradient(#ffffff,#dce8ee);color:#3a4a58;border:3px solid #b0c0cc;border-radius:14px}
+body.theme-rain #callBox .call-grip{background:#b0c0cc}
+body.theme-rain #callBox .call-av{background:#fff;border:2px solid #8aa8bc}
+body.theme-rain #callBox .call-ripple{border:2px solid #8aa8bc}
+body.theme-rain #callBox .call-name{color:#5a7a90}
+body.theme-rain #callBox .call-btn.mini{border:1px solid #b0c0cc;background:#f7fafc;color:#5a7a90;border-radius:16px}
+body.theme-rain #callBox .call-btn.hang{border:1px solid #8a5a6a;background:#a06070;color:#fff;border-radius:16px}
+body.theme-rain #callMini{background:linear-gradient(#ffffff,#dce8ee);color:#3a4a58;border:2px solid #b0c0cc;border-radius:14px}
+body.theme-rain #callMini .cm-av{border-color:#8aa8bc}
+body.theme-rain #callMini .cm-hang{background:#a06070;border-radius:12px}
+body.theme-rain #companionBox{background:linear-gradient(#ffffff,#dce8ee);color:#3a4a58;border:3px solid #b0c0cc;border-radius:16px}
+body.theme-rain #companionBox .cp-grip{background:#b0c0cc}
+body.theme-rain #companionBox .cp-av{background:#fff;border:2px solid #8aa8bc}
+body.theme-rain #companionBox .cp-end{border:1px solid #b0c0cc;background:#f7fafc;color:#5a7a90;border-radius:16px}
+body.theme-rain .cp-picker-item{border:1px solid #c0ced8;background:#f7fafc;color:#3a4a58;border-radius:16px}
+
+body.theme-washi #callBox{background:#faf5e6;color:#4a3a2a;border:2px solid #b23a2a;border-radius:0}
+body.theme-washi #callBox .call-grip{background:#c9b48a}
+body.theme-washi #callBox .call-av{background:#fff;border:2px solid #b23a2a;border-radius:0}
+body.theme-washi #callBox .call-ripple{border:1px solid #b23a2a;border-radius:0}
+body.theme-washi #callBox .call-name{color:#8a5a4a}
+body.theme-washi #callBox .call-btn.mini{border:1px solid #c9b48a;background:#fffcf0;color:#8a5a4a;border-radius:0}
+body.theme-washi #callBox .call-btn.hang{border:1px solid #b23a2a;background:#b23a2a;color:#fff;border-radius:0}
+body.theme-washi #callMini{background:#faf5e6;color:#4a3a2a;border:1px solid #b23a2a;border-radius:0}
+body.theme-washi #callMini .cm-av{border:1px solid #b23a2a;border-radius:0}
+body.theme-washi #callMini .cm-hang{background:#b23a2a;border-radius:0}
+body.theme-washi #companionBox{background:#faf5e6;color:#4a3a2a;border:2px solid #b23a2a;border-radius:0}
+body.theme-washi #companionBox .cp-grip{background:#c9b48a}
+body.theme-washi #companionBox .cp-av{background:#fff;border:2px solid #b23a2a;border-radius:0}
+body.theme-washi #companionBox .cp-end{border:1px solid #b23a2a;background:#fffcf0;color:#8a5a4a;border-radius:0}
+body.theme-washi .cp-picker-item{border:1px solid #c9b48a;background:#faf5e6;color:#4a3a2a;border-radius:0}
+
+body.theme-tape #callBox{background:linear-gradient(#5a4a2a,#332e26);color:#f0e0c0;border:2px solid #d88a30;border-radius:8px;box-shadow:inset 0 0 20px rgba(0,0,0,.4)}
+body.theme-tape #callBox .call-grip{background:#6a5a3a}
+body.theme-tape #callBox .call-av{background:#3a342a;border:2px solid #f0b060}
+body.theme-tape #callBox .call-ripple{border:1px solid #f0b060}
+body.theme-tape #callBox .call-name{color:#f0b060}
+body.theme-tape #callBox .call-btn.mini{border:2px solid #6a5a3a;background:rgba(255,180,80,.1);color:#f0b060;border-radius:4px}
+body.theme-tape #callBox .call-btn.hang{border:2px solid #d88a30;background:#a05a3a;color:#fff;border-radius:4px}
+body.theme-tape #callMini{background:linear-gradient(#5a4a2a,#332e26);color:#f0e0c0;border:2px solid #d88a30;border-radius:6px}
+body.theme-tape #callMini .cm-av{border-color:#f0b060}
+body.theme-tape #callMini .cm-hang{background:#a05a3a;border-radius:4px}
+body.theme-tape #companionBox{background:linear-gradient(#5a4a2a,#332e26);color:#f0e0c0;border:2px solid #d88a30;border-radius:8px;box-shadow:inset 0 0 20px rgba(0,0,0,.4)}
+body.theme-tape #companionBox .cp-grip{background:#6a5a3a}
+body.theme-tape #companionBox .cp-av{background:#3a342a;border:2px solid #f0b060}
+body.theme-tape #companionBox .cp-type{color:#f0b060}
+body.theme-tape #companionBox .cp-end{border:2px solid #6a5a3a;background:rgba(255,180,80,.1);color:#f0b060;border-radius:4px}
+body.theme-tape .cp-picker-item{border:2px solid #6a5a3a;background:rgba(255,200,120,.1);color:#f0e0c0;border-radius:4px}
+
+body.theme-mint #callBox{background:#fff;color:#2f4a42;border:1px solid #b8d8cc;border-radius:14px;box-shadow:0 6px 20px rgba(120,200,170,.25)}
+body.theme-mint #callBox .call-grip{background:#b8d8cc}
+body.theme-mint #callBox .call-av{background:#f4fbf8;border:2px solid #6ab898}
+body.theme-mint #callBox .call-ripple{border:2px solid #7ac8a8}
+body.theme-mint #callBox .call-name{color:#4a8a74}
+body.theme-mint #callBox .call-btn.mini{border:1px solid #b8d8cc;background:#f4fbf8;color:#4a8a74;border-radius:10px}
+body.theme-mint #callBox .call-btn.hang{border:1px solid #6ab898;background:#c47a8a;color:#fff;border-radius:10px}
+body.theme-mint #callMini{background:#fff;color:#2f4a42;border:1px solid #6ab898;border-radius:12px}
+body.theme-mint #callMini .cm-av{border-color:#6ab898}
+body.theme-mint #callMini .cm-hang{background:#c47a8a;border-radius:10px}
+body.theme-mint #companionBox{background:#fff;color:#2f4a42;border:1px solid #b8d8cc;border-radius:16px;box-shadow:0 6px 20px rgba(120,200,170,.25)}
+body.theme-mint #companionBox .cp-grip{background:#b8d8cc}
+body.theme-mint #companionBox .cp-av{background:#f4fbf8;border:2px solid #6ab898}
+body.theme-mint #companionBox .cp-type{color:#4a8a74}
+body.theme-mint #companionBox .cp-end{border:1px solid #b8d8cc;background:#f4fbf8;color:#4a8a74;border-radius:10px}
+body.theme-mint .cp-picker-item{border:1px solid #cce4da;background:#f4fbf8;color:#2f4a42;border-radius:8px}
+  /* ===== 收藏匣工具栏各主题皮肤 ===== */
 body.theme-retro #collectionTools .tool{border:1px solid #cbb98f;background:linear-gradient(#fffaf0,#f3ead2);border-radius:6px;color:#7a5f30}
 body.theme-comic #collectionTools .tool{border:3px solid #111;background:#fff;border-radius:0;box-shadow:3px 3px 0 #111;color:#111}
 body.theme-girl #collectionTools .tool{border:2px solid #ffd6e6;background:#fff;border-radius:14px;color:#c05a80}
@@ -1098,8 +1383,7 @@ body.theme-tape .collection-item .col-body{background:rgba(240,176,96,.28);box-s
 body.theme-mint .collection-item{background:#fff;border:1px solid #cce4da;color:#2f4a42;border-radius:6px;box-shadow:0 1px 6px rgba(120,200,170,.12)}
 body.theme-mint .collection-item .col-mark{color:#6ab898}
 body.theme-mint .collection-item .col-body{background:rgba(180,230,210,.5);box-shadow:0 1px 0 rgba(180,230,210,.5)}
-  
-/* ===== 主题主配色：retro ===== */
+  /* ===== 主题主配色：retro ===== */
 body.theme-retro{background-color:#e8dcc0;background-image:radial-gradient(circle at 20% 30%, rgba(160,130,90,.08) 0 2px, transparent 3px),radial-gradient(circle at 70% 60%, rgba(160,130,90,.06) 0 2px, transparent 3px),linear-gradient(160deg,#efe4c8,#e3d5b4);color:#4a3b2a}
 body.theme-retro .topbar{background:linear-gradient(#f3ead2,#e9dcbc);border-bottom:1px solid #cbb98f;padding:12px 0 calc(10px + env(safe-area-inset-top));box-shadow:var(--sh-1);flex-direction:column}
 body.theme-retro .retro-cover{display:flex;align-items:flex-end;justify-content:space-between;width:100%;max-width:360px;position:relative;padding:14px 16px 0;gap:10px}
@@ -1134,9 +1418,9 @@ body.theme-retro .msgnote .imgmsg{border-radius:10px}
 body.theme-retro .msgnote .nav{border:1px solid #cbb98f;background-color:#fff;border-radius:7px;box-shadow:var(--sh-1)}
 body.theme-retro .msgnote.me .nav{right:-13px;bottom:-13px}
 body.theme-retro .msgnote.her .nav{left:-13px;bottom:-13px}
-body.theme-retro .msgnote .stamp{border:1px solid #c8b68a;color:#a08a5f;background:rgba(255,255,255,.35);border-radius:50%;width:auto;height:auto;min-width:52px;min-height:52px;transform:rotate(-12deg);padding:6px 8px;flex-direction:column;gap:3px;line-height:1.15}
-body.theme-retro .msgnote .stamp .st-date{font-size:11px;line-height:1.15;letter-spacing:0}
-body.theme-retro .msgnote .stamp .st-time{font-size:10px;line-height:1.15;margin-top:0;letter-spacing:0}
+body.theme-retro .msgnote .stamp{border:1px solid #c8b68a;color:#a08a5f;background:rgba(255,255,255,.35);border-radius:50%;width:auto;height:auto;min-width:40px;min-height:40px;transform:rotate(-12deg);padding:4px 5px;flex-direction:column;gap:2px;line-height:1.1}
+body.theme-retro .msgnote .stamp .st-date{font-size:9.5px;line-height:1.1;letter-spacing:0}
+body.theme-retro .msgnote .stamp .st-time{font-size:8.5px;line-height:1.1;margin-top:0;letter-spacing:0}
 body.theme-retro .msgnote.me .stamp{right:22px}
 body.theme-retro .msgnote.interact{border-style:dashed;padding:10px 14px;margin:18px 0;font-size:15px;max-width:66%}
 body.theme-retro .msgnote.interact.touch{margin-left:auto;margin-right:20px;background:#fdf3c8;border:1px solid #b89b5e;color:#5a4a2e;border-radius:20px;border-style:solid}
@@ -1437,7 +1721,7 @@ body.theme-girl .quote-bar{padding:10px 32px 10px 34px;background:linear-gradien
 body.theme-girl .quote-bar::before{content:"❀";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#ff9ec4;font-size:13px}
 body.theme-girl .msgnote .quote{display:block;font-size:12.5px;line-height:1.45;padding:8px 14px 8px 30px;margin-bottom:8px;background:linear-gradient(160deg,#fff6fa,#ffeaf2);border:1px solid #ffd0e2;border-radius:14px;color:#c05a80;position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
 body.theme-girl .msgnote .quote::before{content:"❀";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#ff9ec4;font-size:11px}
-  
+
 /* ===== 主题主配色：news ===== */
 body.theme-news{background-color:#e8e2d0;background-image:linear-gradient(rgba(120,110,80,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(120,110,80,.06) 1px, transparent 1px);background-size:100% 26px,26px 100%;color:#2a2a26;font-family:"FangSong","STFangsong",serif}
 body.theme-news .topbar{background:#ece6d4;border-bottom:4px double #2a2a26;padding:8px 0 calc(6px + env(safe-area-inset-top));flex-direction:column}
@@ -1547,8 +1831,7 @@ body.theme-news .theme-preview-news #pvCancel{background:#f2ecda;color:#2a2a26}
 body.theme-news .quote-bar{padding:8px 28px 8px 22px;background:#f4eeda;border:1px solid #6a6350;border-left:4px double #2a2a26;color:#2a2a26;border-radius:0;font-style:italic;position:relative}
 body.theme-news .quote-bar::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:#2a2a26}
 body.theme-news .msgnote .quote{display:block;font-size:12.5px;line-height:1.5;padding:8px 12px 8px 20px;margin-bottom:8px;background:#ece6d4;border:1px solid #6a6350;border-left:3px double #2a2a26;border-radius:0;color:#2a2a26;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-/* ===== 主题主配色：sakura ===== */
+  /* ===== 主题主配色：sakura ===== */
 body.theme-sakura{background-color:#241826;background-image:radial-gradient(circle at 15% 20%, rgba(255,180,210,.20) 0 2px, transparent 4px),radial-gradient(circle at 75% 35%, rgba(255,200,220,.16) 0 2px, transparent 4px),radial-gradient(circle at 45% 75%, rgba(255,170,200,.15) 0 2px, transparent 4px),linear-gradient(160deg,#2b1c2e,#1c1420);background-size:120px 120px,150px 150px,130px 130px,100% 100%;color:#f2dbe6}
 body.theme-sakura .topbar{background:linear-gradient(#33223a,#2a1c30);border-bottom:1px solid #4a3350;padding:12px 0 calc(10px + env(safe-area-inset-top));position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.4);flex-direction:column}
 body.theme-sakura .sakura-head{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:340px;padding:0 14px;gap:10px}
@@ -1754,7 +2037,7 @@ body.theme-glass .quote-bar{padding:10px 32px 10px 30px;background:rgba(255,255,
 body.theme-glass .quote-bar::before{content:"";position:absolute;left:11px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#dff2f8,#8ab4c4);box-shadow:0 0 0 2px rgba(255,255,255,.6)}
 body.theme-glass .msgnote .quote{display:block;font-size:12.5px;line-height:1.45;padding:8px 14px 8px 26px;margin-bottom:8px;background:rgba(234,244,248,.75);border:1px solid rgba(255,255,255,.95);border-radius:10px;color:#5a7a88;backdrop-filter:blur(6px);position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
 body.theme-glass .msgnote .quote::before{content:"";position:absolute;left:9px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#dff2f8,#8ab4c4)}
-  
+
 /* ===== 主题主配色：ticket ===== */
 body.theme-ticket{background-color:#1a1f26;background-image:radial-gradient(circle at 50% 0%, rgba(255,220,150,.12) 0, rgba(255,220,150,0) 55%),linear-gradient(160deg,#232a33,#141a20);color:#e8e2d2}
 body.theme-ticket .topbar{background:linear-gradient(#2a323c,#20262e);border-bottom:1px solid #3a434f;padding:10px 0 calc(8px + env(safe-area-inset-top));box-shadow:0 2px 12px rgba(0,0,0,.5)}
@@ -2599,6 +2882,7 @@ body.theme-mint .quote-bar::before{content:"❋";position:absolute;left:11px;top
 body.theme-mint .msgnote .quote{display:block;font-size:12.5px;line-height:1.45;padding:8px 14px 8px 26px;margin-bottom:8px;background:#f4fbf8;border:1px solid #cce4da;border-left:4px solid #7ac8a8;border-radius:8px;color:#4a8a74;position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
 body.theme-mint .msgnote .quote::before{content:"❋";position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#6ab898;font-size:11px}
 </style>
+</style>
 </head>
 <body class="theme-retro">
 <div id="bgLayer"></div>
@@ -3226,6 +3510,44 @@ body.theme-mint .msgnote .quote::before{content:"❋";position:absolute;left:9px
   </div>
 </div>
 
+<!-- 视频通话主窗 -->
+<div id="callBox">
+  <div class="call-drag" id="callDrag"><div class="call-grip"></div></div>
+  <div class="call-body">
+    <div class="call-av-wrap">
+      <div class="call-ripple r1"></div><div class="call-ripple r2"></div><div class="call-ripple r3"></div>
+      <div class="call-av" id="callAv"></div>
+    </div>
+    <div class="call-name" id="callName">阿遇</div>
+    <div class="call-status" id="callStatus">正在呼叫…</div>
+  </div>
+  <div class="call-btns">
+    <div class="call-btn mini" id="callMin">缩小</div>
+    <div class="call-btn hang" id="callHang">挂断</div>
+  </div>
+</div>
+
+<!-- 视频通话迷你横条 -->
+<div id="callMini">
+  <div class="cm-av" id="callMiniAv"></div>
+  <div class="cm-name" id="callMiniName">阿遇</div>
+  <div class="cm-status" id="callMiniStatus">正在呼叫…</div>
+  <div class="cm-dot"></div>
+  <div class="cm-hang" id="callMiniHang">挂断</div>
+</div>
+
+<!-- 陪伴小窗 -->
+<div id="companionBox">
+  <div class="cp-drag" id="cpDrag"><div class="cp-grip"></div></div>
+  <div class="cp-avs">
+    <div class="cp-av-wrap"><div class="cp-av" id="cpAvHer"></div><div class="cp-av-name" id="cpNameHer">阿遇</div></div>
+    <div class="cp-av-wrap"><div class="cp-av" id="cpAvMe"></div><div class="cp-av-name" id="cpNameMe">阿凉</div></div>
+  </div>
+  <div class="cp-type" id="cpType">陪你发呆</div>
+  <div class="cp-time" id="cpTime">已陪 0 分钟</div>
+  <div class="cp-end" id="cpEnd">结束陪伴</div>
+</div>
+
 <div id="dialogMask"></div>
 <div id="dialogBox">
   <div class="dlg-title" id="dlgTitle"></div>
@@ -3307,7 +3629,7 @@ let stickerCache={};
 let archive={days:[]};
 let wishes=[];
 let importantDays=[];
-let settings={dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',bgs:[],bgCur:null,bgMask:55,mpPos:null,listening:false,quoteRate:'low',askPos:null,syncPos:null};
+let settings={dMin:30,dMax:60,gMin:5,gMax:8,style:'retro',avatarHer:null,avatarMe:null,nameHer:'',nameMe:'',callHer:'',callMe:'',bgs:[],bgCur:null,bgMask:55,mpPos:null,listening:false,quoteRate:'low',askPos:null,syncPos:null,callPos:null,callMiniPos:null,companionPos:null,companion:null};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const rand=(a,b)=>a+Math.random()*(b-a);
 const randInt=(a,b)=>Math.floor(rand(a,b+1));
@@ -3326,6 +3648,7 @@ const saveImportant=()=>FS.write('important.json',{days:importantDays});
 let toastTimer;
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2000);}
 function callHerName(){return settings.callHer||'祂';}
+function callMeName(){return settings.callMe||'我';}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 const THEMES=['retro','comic','girl','news','sakura','glass','ticket','dream','cafe','starry','rain','washi','tape','mint'];
 const THEME_NAMES={retro:'复古手帐信',comic:'漫画风',girl:'少女手帐',news:'报纸',sakura:'樱花夜',glass:'玻璃花房',ticket:'电影票根',dream:'梦里见过',cafe:'咖啡馆手写',starry:'星空信纸',rain:'雨天窗边',washi:'和风宣纸',tape:'磁带青春',mint:'薄荷清晨'};
@@ -3353,10 +3676,8 @@ function stampNode(time){
   const d=new Date(time);
   const dateStr=(d.getMonth()+1)+'/'+d.getDate();
   const timeStr=d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
-  const dEl=el('span','st-date',dateStr);
-  const tEl=el('span','st-time',timeStr);
-  e.appendChild(dEl);
-  e.appendChild(tEl);
+  e.appendChild(el('span','st-date',dateStr));
+  e.appendChild(el('span','st-time',timeStr));
   return e;
 }
 function quoteNode(m){if(!m.quote)return null;const q=el('span','quote');q.textContent=(m.quote.text||(m.quote.type==='photo'?'[图片]':(m.quote.type==='sticker'?'[贴纸]':'')));return q;}
@@ -3411,6 +3732,8 @@ function applyProfile(){
   const qm=$('#qmCallHer');if(qm)qm.textContent=callHerName();
   const ch=document.getElementById('retroCapHer');if(ch)ch.textContent=settings.callHer||'阿遇';
   const cm=document.getElementById('retroCapMe');if(cm)cm.textContent=settings.callMe||'阿凉';
+  const cp1=$('#cpNameHer');if(cp1)cp1.textContent=callHerName();
+  const cp2=$('#cpNameMe');if(cp2)cp2.textContent=callMeName();
   renderInviteLabel();
 }
 function applyBg(){
@@ -3428,31 +3751,12 @@ function renderBgList(){
   });
   const add=document.createElement('div');add.className='bg-add';add.textContent='＋';add.addEventListener('click',()=>bgFile.click());box.appendChild(add);
 }
-function updateNewsDate(){
-  const el=document.getElementById('newsIssue');if(!el)return;
-  const d=new Date();const y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate();
-  el.textContent=`民国${y-1911}年 ${m}月${day}日 · 公元 ${y}年`;
-}
-function updateComicEpisode(){
-  const el=document.getElementById('comicEp');if(!el)return;
-  const d=new Date();
-  el.textContent=`连载中　${d.getMonth()+1}月${d.getDate()}日更新`;
-}
-function updateRetroDate(){
-  const el=document.getElementById('retroDate');if(!el)return;
-  const d=new Date();
-  el.textContent=`${d.getFullYear()} · ${String(d.getMonth()+1).padStart(2,'0')} · ${String(d.getDate()).padStart(2,'0')}`;
-}
-function updateCafeDate(){
-  const el=document.getElementById('cafeDate');if(!el)return;
-  const d=new Date();
-  el.textContent='EST. '+d.getFullYear();
-}
+function updateNewsDate(){const el=document.getElementById('newsIssue');if(!el)return;const d=new Date();const y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate();el.textContent=`民国${y-1911}年 ${m}月${day}日 · 公元 ${y}年`;}
+function updateComicEpisode(){const el=document.getElementById('comicEp');if(!el)return;const d=new Date();el.textContent=`连载中　${d.getMonth()+1}月${d.getDate()}日更新`;}
+function updateRetroDate(){const el=document.getElementById('retroDate');if(!el)return;const d=new Date();el.textContent=`${d.getFullYear()} · ${String(d.getMonth()+1).padStart(2,'0')} · ${String(d.getDate()).padStart(2,'0')}`;}
+function updateCafeDate(){const el=document.getElementById('cafeDate');if(!el)return;const d=new Date();el.textContent='EST. '+d.getFullYear();}
 function clearListenBanner(){THEMES.forEach(th=>{const b=document.getElementById('lb-'+th);if(b)b.classList.remove('on');});}
-function showListenBanner(on){
-  clearListenBanner();
-  if(on){const b=lbEl();if(b)b.classList.add('on');}
-}
+function showListenBanner(on){clearListenBanner();if(on){const b=lbEl();if(b)b.classList.add('on');}}
 
 UI_THEMES.retro={
   note(m,w,idx){const e=baseNote(m);if(m.type!=='sticker'&&m.type!=='photo')e.appendChild(el('div','retro-tape-deco'));fillNote(e,m);return finishNote(e,m,w,idx);},
@@ -3567,7 +3871,6 @@ UI_THEMES.mint={
   pocketBox(box){box.innerHTML='';pocketCats.forEach(c=>{const d=el('div','drawer-cell'+(curCat===c.key?' on':''));d.innerHTML=`<div class="mint-leaf-shape"></div><span>${c.n}</span><span class="cnt">${catCount(c.key)}</span>`;d.addEventListener('click',()=>{curCat=c.key;renderPocketBox();});box.appendChild(d);});}
 };
 function UI(){return UI_THEMES[curTheme()]||UI_THEMES.retro;}
-
 function makeNote(m,withAvatar,idx){return UI().note(m,withAvatar,idx);}
 function firstOfGroup(idx){if(idx===0)return true;return messages[idx-1].from!==messages[idx].from;}
 function renderMessages(){const s=streamEl();if(!s)return;s.innerHTML='';messages.forEach((m,i)=>s.appendChild(makeNote(m,firstOfGroup(i),i)));scrollBottom();}
@@ -3582,18 +3885,12 @@ function removeEmptyTip(){const s=streamEl();if(!s)return;s.querySelectorAll('[d
 
 let msgMenuIdx=-1,msgMenuEl=null;
 function buildMsgMenu(){
-  const menu=$('#msgMenu');
-  const t=curTheme();
-  menu.className='msgmenu theme-menu-'+t;
-  menu.innerHTML='';
-  const labelMap={comic:'菜单',news:'操 作',washi:'批 注',tape:'A 面'};
-  if(labelMap[t])menu.appendChild(el('div','menu-label',labelMap[t]));
+  const menu=$('#msgMenu');menu.className='msgmenu';menu.innerHTML='';
   const quote=el('div','mi','引用');
   const del=el('div','mi danger','删除');
   quote.addEventListener('click',onMenuQuote);
   del.addEventListener('click',onMenuDel);
-  menu.appendChild(quote);
-  menu.appendChild(del);
+  menu.appendChild(quote);menu.appendChild(del);
 }
 function openMsgMenu(idx,e){
   msgMenuIdx=idx;msgMenuEl=e;
@@ -3614,10 +3911,7 @@ function onMenuQuote(){
   const qb=quoteBarEl();if(qb)qb.classList.add('on');
   closeMsgMenu();
 }
-function onMenuDel(){
-  if(msgMenuIdx<0){closeMsgMenu();return;}
-  messages.splice(msgMenuIdx,1);saveMsgs();renderMessages();closeMsgMenu();toast('已删除');
-}
+function onMenuDel(){if(msgMenuIdx<0){closeMsgMenu();return;}messages.splice(msgMenuIdx,1);saveMsgs();renderMessages();closeMsgMenu();toast('已删除');}
 THEMES.forEach(t=>{const qx=document.getElementById('quoteClose-'+t);if(qx)qx.addEventListener('click',()=>{pendingQuote=null;const qb=document.getElementById('quoteBar-'+t);if(qb)qb.classList.remove('on');});});
 
 function sendMessage(){
@@ -3643,13 +3937,7 @@ function makeQuoteFromMe(excludeIds,excludeText){
   }
   return null;
 }
-function isTextMsgUsable(m){
-  if(!m)return false;
-  if(m.type!=='text')return false;
-  if(typeof m.text!=='string')return false;
-  if(m.text.trim().length===0)return false;
-  return true;
-}
+function isTextMsgUsable(m){if(!m)return false;if(m.type!=='text')return false;if(typeof m.text!=='string')return false;if(m.text.trim().length===0)return false;return true;}
 function makeCollectionFromMe(){
   const pool=messages.filter(m=>isTextMsgUsable(m));
   if(pool.length===0)return null;
@@ -3672,8 +3960,7 @@ async function triggerReply(){
   setTimeout(async()=>{
     pendingReply=false;
     const n=randInt(1,3);const cur=pool.slice();
-    const usedQuoteIds=new Set();
-    const usedQuoteTexts=new Set();
+    const usedQuoteIds=new Set(),usedQuoteTexts=new Set();
     for(let i=0;i<n;i++){
       if(cur.length===0)break;
       const pick=cur.splice(randInt(0,cur.length-1),1)[0];
@@ -3684,10 +3971,7 @@ async function triggerReply(){
       if(m.type==='text'){
         const rate=QUOTE_RATE[settings.quoteRate]!==undefined?QUOTE_RATE[settings.quoteRate]:0.15;
         const allowQuote=(i===0)&&(Math.random()<rate);
-        if(allowQuote){
-          const got=makeQuoteFromMe(usedQuoteIds,usedQuoteTexts);
-          if(got){m.quote=got.q;usedQuoteIds.add(got.id);usedQuoteTexts.add(got.text);lastQuotedMsgId=got.id;}
-        }
+        if(allowQuote){const got=makeQuoteFromMe(usedQuoteIds,usedQuoteTexts);if(got){m.quote=got.q;usedQuoteIds.add(got.id);usedQuoteTexts.add(got.text);lastQuotedMsgId=got.id;}}
       }
       appendMessage(m);
       if(i<n-1)await new Promise(r=>setTimeout(r,rand(settings.gMin,settings.gMax)*1000));
@@ -3704,12 +3988,12 @@ THEMES.forEach(t=>{
 const quickItems=[
   {ic:'i-cam',n:'拍照',act:'camera'},
   {ic:'i-pic',n:'相册',act:'album'},
-  {ic:'i-vid',n:'视频'},
+  {ic:'i-vid',n:'视频',act:'call'},
   {ic:'i-sticker',n:'贴纸',act:'sticker'},
   {ic:'i-touch',n:'互动',act:'interact'},
   {ic:'i-music',n:'音乐',act:'music'},
   {ic:'i-reply',n:'回应',act:'ask'},
-  {ic:'i-together',n:'陪伴'},
+  {ic:'i-together',n:'陪伴',act:'companion'},
   {ic:'i-archive',n:'归档',act:'archive'},
   {ic:'i-sync',n:'同频',act:'sync'}
 ];
@@ -3727,6 +4011,8 @@ const quickItems=[
       else if(q.act==='archive')enterArchiveMode();
       else if(q.act==='ask'){closeQuick();openAskBox();}
       else if(q.act==='sync'){closeQuick();openSyncBox();}
+      else if(q.act==='call'){closeQuick();openCall();}
+      else if(q.act==='companion'){closeQuick();openCompanionPicker();}
       else toast('「'+q.n+'」还在做');
     });
     g.appendChild(d);
@@ -3815,21 +4101,10 @@ function renderQuickInteract(){
   arr.forEach(x=>{const c=el('div','qi-item',x.text);c.addEventListener('click',()=>{const m={id:uid(),from:'me',type:'interact',dir:qiDir,text:x.text,time:Date.now()};appendMessage(m);closeQuick();triggerReply();});frag.appendChild(c);});
   box.appendChild(frag);
 }
-  
+
 $('#qmInvite').addEventListener('click',()=>{
-  if(settings.listening){
-    audioEl.pause();
-    settings.listening=false;saveSet();
-    renderInviteLabel();
-    clearListenBanner();
-    toast('已取消一起听');
-  }else{
-    if(musicList.length===0){toast('还没有歌');return;}
-    settings.listening=true;saveSet();
-    renderInviteLabel();
-    playIndex(0);
-    toast(callHerName()+' 正在和你一起听…');
-  }
+  if(settings.listening){audioEl.pause();settings.listening=false;saveSet();renderInviteLabel();clearListenBanner();toast('已取消一起听');}
+  else{if(musicList.length===0){toast('还没有歌');return;}settings.listening=true;saveSet();renderInviteLabel();playIndex(0);toast(callHerName()+' 正在和你一起听…');}
 });
 
 const audioEl=$('#audioEl');
@@ -3837,11 +4112,7 @@ const mp=$('#miniPlayer');
 let mpState={index:-1,mode:'order',dragging:false,objectUrl:null};
 const MP_MODES=[['order','顺序播放','i-mode-order'],['one','单曲循环','i-mode-one'],['shuffle','随机播放','i-mode-shuffle'],['all','列表循环','i-mode-all']];
 async function selfPlaySong(m){const idx=musicList.findIndex(x=>x.id===m.id);await playIndex(idx);}
-async function togetherWithSong(m){
-  settings.listening=true;saveSet();renderInviteLabel();
-  await selfPlaySong(m);
-  toast(callHerName()+' 正在和你一起听…');
-}
+async function togetherWithSong(m){settings.listening=true;saveSet();renderInviteLabel();await selfPlaySong(m);toast(callHerName()+' 正在和你一起听…');}
 async function playIndex(idx){
   if(idx<0||idx>=musicList.length)return;
   const m=musicList[idx];mpState.index=idx;
@@ -3913,25 +4184,15 @@ async function backFromPage(){
   }
   const impOpen=$('#page-important-edit').classList.contains('show');
   if(impOpen){closeImportantForm();showPageFrom('page-important','');return;}
-  exitSelMode();
-  exitInteractSel();
-  exitColSel();
-  stopTimePlay();
+  exitSelMode();exitInteractSel();exitColSel();stopTimePlay();
   if(pageFrom==='pocket'){$$('.page').forEach(p=>p.classList.remove('show'));renderPocketBox();$('#page-pocket').classList.add('show');document.body.classList.add('page-open');pageFrom='';}
   else hidePages();
 }
 function openDoing(name){$('#doingTitle').textContent=name;showPageFrom('page-doing','');}
 function openSettings(){applyProfile();applyBg();renderBgList();renderSettings();showPageFrom('page-settings','');}
 function openCollection(){renderCollection();showPageFrom('page-collection','');}
-function openMemo(){
-  showPageFrom('page-memo','');
-  const area=$('#memoArea');
-  FS.readMemo().then(t=>{area.value=t||'';});
-}
-function openTime(){
-  showPageFrom('page-time','');
-  showTimeList();
-}
+function openMemo(){showPageFrom('page-memo','');FS.readMemo().then(t=>{$('#memoArea').value=t||'';});}
+function openTime(){showPageFrom('page-time','');showTimeList();}
 $$('[data-back]').forEach(e=>{e.addEventListener('click',backFromPage);});
 
 function openThemeSheet(){
@@ -3950,110 +4211,34 @@ function openThemeSheet(){
     });
     g.appendChild(d);
   });
-  $('#sheetMask').classList.add('on');
-  $('#themeSheet').classList.add('on');
+  $('#sheetMask').classList.add('on');$('#themeSheet').classList.add('on');
 }
 function closeThemeSheet(){$('#sheetMask').classList.remove('on');$('#themeSheet').classList.remove('on');}
 $('#tsCancel').addEventListener('click',closeThemeSheet);
 $('#sheetMask').addEventListener('click',()=>{closeThemeSheet();closeSheet();});
+$('#memoSave').addEventListener('click',async()=>{const ok=await FS.saveMemo($('#memoArea').value);toast(ok?'已保存':'保存失败');});
 
-$('#memoSave').addEventListener('click',async()=>{
-  const area=$('#memoArea');
-  const ok=await FS.saveMemo(area.value);
-  toast(ok?'已保存':'保存失败');
-});
-
-let timeDays=[];
-let timeCur=null;
-let timeIdx=0;
-let timePlaying=false;
-let timeTimer=null;
-function loadArchiveDays(){
-  timeDays=Array.isArray(archive.days)?archive.days.slice():[];
-  timeDays.sort((a,b)=>(a.date<b.date?1:-1));
-}
+let timeDays=[],timeCur=null,timeIdx=0,timePlaying=false,timeTimer=null;
+function loadArchiveDays(){timeDays=Array.isArray(archive.days)?archive.days.slice():[];timeDays.sort((a,b)=>(a.date<b.date?1:-1));}
 function showTimeList(){
-  stopTimePlay();
-  $('#timePlay').classList.remove('on');
-  const list=$('#timeList');list.innerHTML='';
-  loadArchiveDays();
+  stopTimePlay();$('#timePlay').classList.remove('on');
+  const list=$('#timeList');list.innerHTML='';loadArchiveDays();
   if(timeDays.length===0){const e=el('div','empty-tip');e.textContent='还没有归档';list.appendChild(e);return;}
   const frag=document.createDocumentFragment();
-  timeDays.forEach(d=>{
-    const item=el('div','time-day');
-    const cnt=(d.items||[]).length;
-    item.innerHTML=`<div class="td-date">${escapeHtml(d.date||'')}</div><div class="td-count">共 ${cnt} 条</div><div class="td-arrow">›</div>`;
-    item.addEventListener('click',()=>openTimeDay(d.date));
-    frag.appendChild(item);
-  });
+  timeDays.forEach(d=>{const item=el('div','time-day');const cnt=(d.items||[]).length;item.innerHTML=`<div class="td-date">${escapeHtml(d.date||'')}</div><div class="td-count">共 ${cnt} 条</div><div class="td-arrow">›</div>`;item.addEventListener('click',()=>openTimeDay(d.date));frag.appendChild(item);});
   list.appendChild(frag);
 }
-function openTimeDay(date){
-  loadArchiveDays();
-  const day=timeDays.find(d=>d.date===date);
-  if(!day)return;
-  timeCur=day;timeIdx=0;timePlaying=false;
-  $('#timeList').style.display='none';
-  $('#timePlay').classList.add('on');
-  $('#timePlayDate').textContent=date;
-  renderTimeStage();
-}
-function renderTimeStage(){
-  const stage=$('#timePlayStage');stage.innerHTML='';
-  if(!timeCur){return;}
-  const items=timeCur.items||[];
-  for(let i=0;i<=timeIdx&&i<items.length;i++){
-    stage.appendChild(makeTimeNote(items[i],i));
-  }
-  const pct=items.length>1?(timeIdx/(items.length-1))*100:100;
-  $('#timePlayFill').style.width=pct+'%';
-  stage.scrollTop=stage.scrollHeight;
-}
-function makeTimeNote(m,idx){
-  const note=baseNote(m);
-  fillNote(note,m);
-  return note;
-}
-function tpPlayPause(){
-  if(!timeCur)return;
-  const items=timeCur.items||[];
-  if(timeIdx>=items.length-1&&timePlaying){timePlaying=false;updateTimePlayBtn();return;}
-  timePlaying=!timePlaying;
-  updateTimePlayBtn();
-  if(timePlaying)tickTime();
-}
-function tickTime(){
-  if(timeTimer)clearTimeout(timeTimer);
-  if(!timePlaying)return;
-  const items=timeCur.items||[];
-  if(timeIdx>=items.length-1){timePlaying=false;updateTimePlayBtn();return;}
-  timeTimer=setTimeout(()=>{
-    if(!timePlaying)return;
-    timeIdx++;
-    renderTimeStage();
-    tickTime();
-  },1800);
-}
-function updateTimePlayBtn(){
-  const btn=$('#tpPlay');
-  btn.innerHTML=timePlaying?'<svg class="ico"><use href="#i-pause"/></svg>':'<svg class="ico"><use href="#i-play"/></svg>';
-}
-function stopTimePlay(){
-  timePlaying=false;
-  if(timeTimer){clearTimeout(timeTimer);timeTimer=null;}
-  updateTimePlayBtn();
-}
+function openTimeDay(date){loadArchiveDays();const day=timeDays.find(d=>d.date===date);if(!day)return;timeCur=day;timeIdx=0;timePlaying=false;$('#timeList').style.display='none';$('#timePlay').classList.add('on');$('#timePlayDate').textContent=date;renderTimeStage();}
+function renderTimeStage(){const stage=$('#timePlayStage');stage.innerHTML='';if(!timeCur)return;const items=timeCur.items||[];for(let i=0;i<=timeIdx&&i<items.length;i++)stage.appendChild(makeTimeNote(items[i]));const pct=items.length>1?(timeIdx/(items.length-1))*100:100;$('#timePlayFill').style.width=pct+'%';stage.scrollTop=stage.scrollHeight;}
+function makeTimeNote(m){const note=baseNote(m);fillNote(note,m);return note;}
+function tpPlayPause(){if(!timeCur)return;const items=timeCur.items||[];if(timeIdx>=items.length-1&&timePlaying){timePlaying=false;updateTimePlayBtn();return;}timePlaying=!timePlaying;updateTimePlayBtn();if(timePlaying)tickTime();}
+function tickTime(){if(timeTimer)clearTimeout(timeTimer);if(!timePlaying)return;const items=timeCur.items||[];if(timeIdx>=items.length-1){timePlaying=false;updateTimePlayBtn();return;}timeTimer=setTimeout(()=>{if(!timePlaying)return;timeIdx++;renderTimeStage();tickTime();},1800);}
+function updateTimePlayBtn(){const btn=$('#tpPlay');btn.innerHTML=timePlaying?'<svg class="ico"><use href="#i-pause"/></svg>':'<svg class="ico"><use href="#i-play"/></svg>';}
+function stopTimePlay(){timePlaying=false;if(timeTimer){clearTimeout(timeTimer);timeTimer=null;}updateTimePlayBtn();}
 function tpPrev(){if(!timeCur)return;if(timeIdx>0){timeIdx--;renderTimeStage();}}
 function tpNext(){if(!timeCur)return;const items=timeCur.items||[];if(timeIdx<items.length-1){timeIdx++;renderTimeStage();}}
 function tpReplay(){if(!timeCur)return;timeIdx=0;timePlaying=false;stopTimePlay();renderTimeStage();}
-async function tpDelDay(){
-  if(!timeCur)return;
-  const r=await Dlg.confirm('删除','删除这一天的归档？','删除');
-  if(!r)return;
-  archive.days=archive.days.filter(d=>d.date!==timeCur.date);
-  saveArchive();
-  showTimeList();
-}
+async function tpDelDay(){if(!timeCur)return;const r=await Dlg.confirm('删除','删除这一天的归档？','删除');if(!r)return;archive.days=archive.days.filter(d=>d.date!==timeCur.date);saveArchive();showTimeList();}
 $('#tpPlay').addEventListener('click',tpPlayPause);
 $('#tpPrev').addEventListener('click',tpPrev);
 $('#tpNext').addEventListener('click',tpNext);
@@ -4061,144 +4246,54 @@ $('#tpReplay').addEventListener('click',tpReplay);
 $('#timePlayBack').addEventListener('click',()=>{stopTimePlay();$('#timePlay').classList.remove('on');$('#timeList').style.display='';showTimeList();});
 $('#timePlayDel').addEventListener('click',tpDelDay);
 
-let archiveSel=new Set();
-let archiveRunning=false;
-function enterArchiveMode(){
-  if(messages.length===0){toast('没有可归档的消息');return;}
-  closeQuick();
-  archiveSel.clear();
-  document.body.classList.add('archive-mode');
-  $('#archiveBar').classList.add('on');
-  applyArchivePick();
-}
-function exitArchiveMode(){
-  archiveSel.clear();
-  document.body.classList.remove('archive-mode');
-  $('#archiveBar').classList.remove('on');
-  renderMessages();
-}
-function applyArchivePick(){
-  const s=streamEl();if(!s)return;
-  const notes=s.querySelectorAll('.msgnote');
-  notes.forEach((n,i)=>{
-    n.classList.add('archive-pick');
-    if(archiveSel.has(i))n.classList.add('archive-sel');
-    else n.classList.remove('archive-sel');
-  });
-}
-function toggleArchivePick(idx,node){
-  if(archiveSel.has(idx))archiveSel.delete(idx);
-  else archiveSel.add(idx);
-  if(node){if(archiveSel.has(idx))node.classList.add('archive-sel');else node.classList.remove('archive-sel');}
-}
-$('#abAll').addEventListener('click',()=>{
-  archiveSel.clear();
-  messages.forEach((m,i)=>archiveSel.add(i));
-  applyArchivePick();
-});
+let archiveSel=new Set(),archiveRunning=false;
+function enterArchiveMode(){if(messages.length===0){toast('没有可归档的消息');return;}closeQuick();archiveSel.clear();document.body.classList.add('archive-mode');$('#archiveBar').classList.add('on');applyArchivePick();}
+function exitArchiveMode(){archiveSel.clear();document.body.classList.remove('archive-mode');$('#archiveBar').classList.remove('on');renderMessages();}
+function applyArchivePick(){const s=streamEl();if(!s)return;const notes=s.querySelectorAll('.msgnote');notes.forEach((n,i)=>{n.classList.add('archive-pick');if(archiveSel.has(i))n.classList.add('archive-sel');else n.classList.remove('archive-sel');});}
+function toggleArchivePick(idx,node){if(archiveSel.has(idx))archiveSel.delete(idx);else archiveSel.add(idx);if(node){if(archiveSel.has(idx))node.classList.add('archive-sel');else node.classList.remove('archive-sel');}}
+$('#abAll').addEventListener('click',()=>{archiveSel.clear();messages.forEach((m,i)=>archiveSel.add(i));applyArchivePick();});
 $('#abExit').addEventListener('click',exitArchiveMode);
-$('#abAuto').addEventListener('click',()=>{
-  if(archiveRunning)return;
-  openDatePick();
-});
-function openDatePick(){
-  const d=new Date();
-  const pad=n=>String(n).padStart(2,'0');
-  const v=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
-  $('#dpDate').value=v;
-  updateDpDateText();
-  $('#datePick').classList.add('on');
-}
-function updateDpDateText(){
-  const v=$('#dpDate').value;
-  const t=$('#dpDateText');
-  if(!t)return;
-  if(!v){t.textContent='选择日期';return;}
-  const parts=v.split('-');
-  if(parts.length===3)t.textContent=parts[0]+'年'+parts[1]+'月'+parts[2]+'日';
-  else t.textContent=v;
-}
+$('#abAuto').addEventListener('click',()=>{if(archiveRunning)return;openDatePick();});
+function openDatePick(){const d=new Date();const pad=n=>String(n).padStart(2,'0');$('#dpDate').value=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());updateDpDateText();$('#datePick').classList.add('on');}
+function updateDpDateText(){const v=$('#dpDate').value;const t=$('#dpDateText');if(!t)return;if(!v){t.textContent='选择日期';return;}const p=v.split('-');t.textContent=p.length===3?(p[0]+'年'+p[1]+'月'+p[2]+'日'):v;}
 $('#dpDate').addEventListener('change',updateDpDateText);
 $('#dpCancel').addEventListener('click',()=>{$('#datePick').classList.remove('on');});
-$('#dpOk').addEventListener('click',()=>{
-  const date=$('#dpDate').value;
-  if(!date){toast('请选择日期');return;}
-  $('#datePick').classList.remove('on');
-  runArchive(date);
-});
+$('#dpOk').addEventListener('click',()=>{const date=$('#dpDate').value;if(!date){toast('请选择日期');return;}$('#datePick').classList.remove('on');runArchive(date);});
 function runArchive(date){
-  if(archiveRunning)return;
-  archiveRunning=true;
-  const total=messages.length;
-  if(total===0){archiveRunning=false;exitArchiveMode();return;}
-  $('#archiveProg').classList.add('on');
-  $('#apFill').style.width='0%';
-  $('#apNum').textContent='0 / '+total;
-  let done=0;
-  const moved=[];
+  if(archiveRunning)return;archiveRunning=true;
+  const total=messages.length;if(total===0){archiveRunning=false;exitArchiveMode();return;}
+  $('#archiveProg').classList.add('on');$('#apFill').style.width='0%';$('#apNum').textContent='0 / '+total;
+  let done=0;const moved=[];
   const step=()=>{
-    if(done>=total){
-      finishArchive(date,moved);
-      return;
-    }
+    if(done>=total){finishArchive(date,moved);return;}
     const m=messages[done];
-    if(archiveSel.size>0&&!archiveSel.has(done)){
-      done++;
-      $('#apFill').style.width=((done/total)*100)+'%';
-      $('#apNum').textContent=done+' / '+total;
-      setTimeout(step,20);
-      return;
-    }
-    moved.push(m);
-    done++;
-    $('#apFill').style.width=((done/total)*100)+'%';
-    $('#apNum').textContent=done+' / '+total;
-    setTimeout(step,40);
+    if(archiveSel.size>0&&!archiveSel.has(done)){done++;$('#apFill').style.width=((done/total)*100)+'%';$('#apNum').textContent=done+' / '+total;setTimeout(step,20);return;}
+    moved.push(m);done++;$('#apFill').style.width=((done/total)*100)+'%';$('#apNum').textContent=done+' / '+total;setTimeout(step,40);
   };
   step();
 }
 function finishArchive(date,moved){
-  moved.forEach(m=>{
-    const idx=messages.indexOf(m);
-    if(idx>=0)messages.splice(idx,1);
-  });
-  let day=archive.days.find(d=>d.date===date);
-  if(!day){day={date:date,items:[]};archive.days.push(day);}
+  moved.forEach(m=>{const idx=messages.indexOf(m);if(idx>=0)messages.splice(idx,1);});
+  let day=archive.days.find(d=>d.date===date);if(!day){day={date:date,items:[]};archive.days.push(day);}
   moved.forEach(m=>{day.items.push(m);});
-  saveArchive();
-  saveMsgs();
-  archiveRunning=false;
-  $('#archiveProg').classList.remove('on');
-  archiveSel.clear();
-  document.body.classList.remove('archive-mode');
-  $('#archiveBar').classList.remove('on');
-  renderMessages();
-  toast('已归档到 '+date);
+  saveArchive();saveMsgs();archiveRunning=false;$('#archiveProg').classList.remove('on');
+  archiveSel.clear();document.body.classList.remove('archive-mode');$('#archiveBar').classList.remove('on');
+  renderMessages();toast('已归档到 '+date);
 }
 
 function safeItem(item){
   if(!item||typeof item!=='object')return null;
-  if(item.type==='ask'||item.ask){return {
-    id:item.id||uid(),savedAt:item.savedAt||Date.now(),type:'ask',
-    question:item.question||'',options:Array.isArray(item.options)?item.options:[],
-    picked:(typeof item.picked==='number')?item.picked:-1
-  };}
+  if(item.type==='ask'||item.ask){return {id:item.id||uid(),savedAt:item.savedAt||Date.now(),type:'ask',question:item.question||'',options:Array.isArray(item.options)?item.options:[],picked:(typeof item.picked==='number')?item.picked:-1};}
   const out={id:item.id||uid(),savedAt:item.savedAt||Date.now()};
-  if(item.msg&&typeof item.msg==='object'){
-    out.from=item.msg.from;out.type=item.msg.type;out.time=item.msg.time;
-    out.text=item.msg.text;out.data=item.msg.data;out.dir=item.msg.dir;
-  }else{
-    out.from=item.from;out.type=item.type;out.time=item.time;
-    out.text=item.text;out.data=item.data;out.dir=item.dir;
-  }
+  if(item.msg&&typeof item.msg==='object'){out.from=item.msg.from;out.type=item.msg.type;out.time=item.msg.time;out.text=item.msg.text;out.data=item.msg.data;out.dir=item.msg.dir;}
+  else{out.from=item.from;out.type=item.type;out.time=item.time;out.text=item.text;out.data=item.data;out.dir=item.dir;}
   if(out.type==='sticker'||out.type==='interact')return null;
   return out;
 }
 function renderCollection(){
   const toolBox=$('#collectionTools');if(!toolBox)return;
   toolBox.innerHTML=`<div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div><div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div><div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div>`;
-  bindCollectionTools();
-  renderCollectionList();
+  bindCollectionTools();renderCollectionList();
 }
 function bindCollectionTools(){
   const toolBox=$('#collectionTools');if(!toolBox)return;
@@ -4213,12 +4308,8 @@ function bindCollectionTools(){
   const all=$('#collectionSelectAll');if(all)all.onchange=e=>{if(e.target.checked)currentCollection().forEach(c=>colSel.add(c.id));else colSel.clear();renderCollectionList();};
 }
 function currentCollection(){
-  let arr=collection.map(safeItem).filter(Boolean);
-  arr.reverse();
-  if(colSearch)arr=arr.filter(c=>{
-    if(c.type==='ask')return (c.question||'').includes(colSearch)||(c.options||[]).some(o=>o.includes(colSearch));
-    return safeText(c).includes(colSearch);
-  });
+  let arr=collection.map(safeItem).filter(Boolean);arr.reverse();
+  if(colSearch)arr=arr.filter(c=>{if(c.type==='ask')return (c.question||'').includes(colSearch)||(c.options||[]).some(o=>o.includes(colSearch));return safeText(c).includes(colSearch);});
   return arr;
 }
 function safeText(c){try{return (c&&c.text)?String(c.text):'';}catch(e){return '';}}
@@ -4231,86 +4322,50 @@ function renderCollectionList(){
   arr.forEach(item=>{
     const d=el('div','collection-item'+(colSelMode?' selmode':'')+(colSel.has(item.id)?' sel':''));
     const chk=el('div','chk',colSel.has(item.id)?'✓':'');d.appendChild(chk);
-    const markEl=el('span','col-mark',mark);
-    d.appendChild(markEl);
+    d.appendChild(el('span','col-mark',mark));
     if(item.type==='ask'){
-      const q=el('div','collection-ask-q');q.textContent='问：'+(item.question||'');
-      d.appendChild(q);
+      const q=el('div','collection-ask-q');q.textContent='问：'+(item.question||'');d.appendChild(q);
       const a=el('div','collection-ask-a');
       const picked=(item.picked>=0&&item.picked<item.options.length)?item.options[item.picked]:'（无回应）';
-      a.textContent='祂答：'+picked;
-      d.appendChild(a);
+      a.textContent='祂答：'+picked;d.appendChild(a);
       const others=(item.options||[]).filter((_,i)=>i!==item.picked);
-      if(others.length){
-        const o=el('div','collection-ask-others');
-        o.textContent='其他：'+others.join('　');
-        d.appendChild(o);
-      }
+      if(others.length){const o=el('div','collection-ask-others');o.textContent='其他：'+others.join('　');d.appendChild(o);}
     }else if(item.type==='photo'){
-      if(item.data){
-        const img=el('img','collection-img');
-        img.src=item.data;
-        d.appendChild(img);
-        if(item.text){const t=el('div');t.textContent=item.text;d.appendChild(t);}
-      }else{
-        const body=el('span','col-body');body.textContent='[图片已丢失]';
-        d.appendChild(body);
-      }
-    }else{
-      const body=el('span','col-body');body.textContent=safeText(item)||'[空]';d.appendChild(body);
-    }
-    const t=el('span','col-time');
-    const ts=(item&&item.savedAt)?item.savedAt:Date.now();
-    t.textContent='祂在 '+fmtTime(ts)+' 收下';
-    d.appendChild(t);
+      if(item.data){const img=el('img','collection-img');img.src=item.data;d.appendChild(img);if(item.text){const t=el('div');t.textContent=item.text;d.appendChild(t);}}
+      else{const body=el('span','col-body');body.textContent='[图片已丢失]';d.appendChild(body);}
+    }else{const body=el('span','col-body');body.textContent=safeText(item)||'[空]';d.appendChild(body);}
+    const t=el('span','col-time');const ts=(item&&item.savedAt)?item.savedAt:Date.now();t.textContent='祂在 '+fmtTime(ts)+' 收下';d.appendChild(t);
     d.addEventListener('click',()=>{if(colSelMode){if(colSel.has(item.id))colSel.delete(item.id);else colSel.add(item.id);renderCollectionList();}});
     frag.appendChild(d);
   });
-  list.appendChild(frag);
-  updateColSel();
+  list.appendChild(frag);updateColSel();
 }
 function updateColSel(){const row=$('#collectionSelRow');if(!row)return;row.classList.toggle('on',colSelMode);const all=$('#collectionSelectAll');if(all)all.checked=currentCollection().length>0&&currentCollection().every(c=>colSel.has(c.id));}
 let colSelMode=false,colSel=new Set(),colSearch='';
 function showCollectionBar(){
-  const bar=$('#multiBar');
-  bar.classList.add('on');
-  const lockBtn=$('#mLock'),unlockBtn=$('#mUnlock'),delBtn=$('#mDel');
-  if(lockBtn)lockBtn.style.display='none';
-  if(unlockBtn)unlockBtn.style.display='none';
-  if(delBtn)delBtn.style.display='';
+  const bar=$('#multiBar');bar.classList.add('on');
+  $('#mLock').style.display='none';$('#mUnlock').style.display='none';$('#mDel').style.display='';
   bar.dataset.ctx='collection';
 }
 function hideCollectionBar(){
   const bar=$('#multiBar');
-  if(bar.dataset.ctx==='collection'){
-    bar.classList.remove('on');
-    bar.dataset.ctx='';
-    const lockBtn=$('#mLock'),unlockBtn=$('#mUnlock'),delBtn=$('#mDel');
-    if(lockBtn)lockBtn.style.display='';
-    if(unlockBtn)unlockBtn.style.display='';
-    if(delBtn)delBtn.style.display='';
-  }
+  if(bar.dataset.ctx==='collection'){bar.classList.remove('on');bar.dataset.ctx='';$('#mLock').style.display='';$('#mUnlock').style.display='';$('#mDel').style.display='';}
 }
 function exitColSel(){colSelMode=false;colSel.clear();const row=$('#collectionSelRow');if(row)row.classList.remove('on');$$('#collectionTools .tool[data-t="del"]').forEach(d=>d.classList.remove('on'));hideCollectionBar();}
 async function deleteSelectedCollection(){
   if(colSel.size===0){toast('还没选收藏');return;}
-  const r=await Dlg.confirm('删除','删除选中的 '+colSel.size+' 条收藏？','删除');
-  if(!r)return;
+  const r=await Dlg.confirm('删除','删除选中的 '+colSel.size+' 条收藏？','删除');if(!r)return;
   collection=collection.filter(c=>{const s=safeItem(c);return !(s&&colSel.has(s.id));});
   saveCollection();exitColSel();renderCollectionList();toast('已删除');
 }
 
-const pocketCats=[
-  {key:'card',n:'字卡',ic:'i-note'},{key:'sticker',n:'贴纸',ic:'i-sticker'},
-  {key:'interact',n:'互动',ic:'i-touch'},{key:'music',n:'音乐',ic:'i-music'}
-];
+const pocketCats=[{key:'card',n:'字卡',ic:'i-note'},{key:'sticker',n:'贴纸',ic:'i-sticker'},{key:'interact',n:'互动',ic:'i-touch'},{key:'music',n:'音乐',ic:'i-music'}];
 let curCat=null;
 function openPocket(){curCat=null;searchKw='';lockedView=false;renderPocketBox();showPageFrom('page-pocket','');}
 function catCount(key){if(key==='card')return cards.length;if(key==='sticker')return stickers.length;if(key==='interact')return(interactions.touch||[]).length+(interactions.back||[]).length+(interactions.pair||[]).length;if(key==='music')return musicList.length;return 0;}
 function renderPocketBox(){$('#pocketTitle').textContent='口袋';UI().pocketBox($('#pocketBox'));renderPanel();}
 function renderPanel(){
-  const p=$('#pocketPanel');
-  if(!curCat){p.innerHTML='';return;}
+  const p=$('#pocketPanel');if(!curCat){p.innerHTML='';return;}
   if(curCat==='card')renderCardPanel(p);
   else if(curCat==='sticker')renderStickerPanel(p);
   else if(curCat==='interact')renderInteractPanel(p);
@@ -4323,17 +4378,17 @@ function backToPocket(){$$('.page').forEach(p=>p.classList.remove('show'));rende
 $('#saveCards').addEventListener('click',async()=>{
   const area=$('#addArea');const editingId=area.dataset.editing;
   if(addCtx.mode==='music'){
-    const name=$('#mName').value.trim();const artist=$('#mArtist').value.trim();const fileId=area.dataset.fileId||null;
+    const name=$('#mName').value.trim(),artist=$('#mArtist').value.trim(),fileId=area.dataset.fileId||null;
     if(!name){toast('还没写歌名');return;}
     if(!fileId){toast('请选择音频文件');return;}
     if(editingId){const old=musicList.find(x=>x.id===editingId);if(old){if(old.fileId&&old.fileId!==fileId)await FS.delMusicFile(old.fileId);old.name=name;old.artist=artist;old.fileId=fileId;}}
-    else{musicList.push({id:uid(),name,artist,fileId});}
+    else musicList.push({id:uid(),name,artist,fileId});
     await saveMusic();resetAddPage();backToPocket();toast('已保存');return;
   }
   const lines=area.value.split(/\r?\n/).map(s=>s.replace(/\s+$/,'')).filter(s=>s.trim());
   if(lines.length===0){toast('还没写呢');return;}
   if(addCtx.mode==='interact'){
-    const dir=addCtx.dir;const arr=interactions[dir]||(interactions[dir]=[]);
+    const dir=addCtx.dir,arr=interactions[dir]||(interactions[dir]=[]);
     if(editingId){const it=arr.find(x=>x.id===editingId);if(it){it.text=area.value.trim();await saveInteractions();}toast('已保存');}
     else{const exist=new Set(arr.map(x=>x.text));let added=0,skipped=0;lines.forEach(line=>{if(exist.has(line)){skipped++;return;}arr.push({id:uid(),text:line,locked:false});exist.add(line);added++;});await saveInteractions();toast(skipped?('放进了 '+added+' 条，跳过 '+skipped+' 条重复'):('放进了 '+added+' 条互动'));}
     resetAddPage();backToPocket();return;
@@ -4384,34 +4439,12 @@ function bindCardTools(){
 }
 function editCard(id){const c=cards.find(x=>x.id===id);if(!c)return;resetAddPage();addCtx={mode:'card',dir:'touch'};$('#addArea').value=c.text;$('#addArea').dataset.editing=id;$('#addTitle').textContent='编辑字卡';pageFrom='pocket';showPage('page-add');}
 let stkSel=new Set(),stkSelMode=false,stkShown=20,stkLoading=false;
-function renderStickerPanel(p){
-  p.innerHTML=`<div class="toolbar" id="stkTools"><div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div><div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div><div class="tool" data-t="import"><svg class="ico"><use href="#i-import"/></svg></div><div class="tool" data-t="export"><svg class="ico"><use href="#i-export"/></svg></div></div><div id="stkList"></div>`;
-  bindStkTools();stkShown=20;renderStkList();
-}
-async function renderStkList(){
-  const list=$('#stkList');if(!list)return;list.innerHTML='';
-  if(stickers.length===0){list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>';return;}
-  const grid=el('div','stk-grid');list.appendChild(grid);stkShown=0;await appendStkBatch(grid,20);ensureStkPanelScrollable(grid);
-}
+function renderStickerPanel(p){p.innerHTML=`<div class="toolbar" id="stkTools"><div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div><div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div><div class="tool" data-t="import"><svg class="ico"><use href="#i-import"/></svg></div><div class="tool" data-t="export"><svg class="ico"><use href="#i-export"/></svg></div></div><div id="stkList"></div>`;bindStkTools();stkShown=20;renderStkList();}
+async function renderStkList(){const list=$('#stkList');if(!list)return;list.innerHTML='';if(stickers.length===0){list.innerHTML='<div class="empty-tip">还没有贴纸<br>点 ➕ 从相册添加</div>';return;}const grid=el('div','stk-grid');list.appendChild(grid);stkShown=0;await appendStkBatch(grid,20);ensureStkPanelScrollable(grid);}
 function ensureStkPanelScrollable(grid){const list=$('#stkList');if(!list)return;setTimeout(()=>{if(list.scrollHeight<=list.clientHeight&&stkShown<stickers.length){appendStkBatch(grid,20).then(()=>ensureStkPanelScrollable(grid));}},50);}
-async function appendStkBatch(grid,count){
-  const slice=stickers.slice(stkShown,stkShown+count);if(slice.length===0)return;
-  await readStickersBatch(slice);
-  const frag=document.createDocumentFragment();
-  for(const s of slice){const data=stickerCache[s.id];const cell=makeStickerCell(s,data,stkSelMode,stkSel.has(s.id),(s)=>{if(stkSelMode){if(stkSel.has(s.id))stkSel.delete(s.id);else stkSel.add(s.id);renderStkList();}});frag.appendChild(cell);}
-  grid.appendChild(frag);stkShown+=slice.length;
-}
+async function appendStkBatch(grid,count){const slice=stickers.slice(stkShown,stkShown+count);if(slice.length===0)return;await readStickersBatch(slice);const frag=document.createDocumentFragment();for(const s of slice){const data=stickerCache[s.id];const cell=makeStickerCell(s,data,stkSelMode,stkSel.has(s.id),(s)=>{if(stkSelMode){if(stkSel.has(s.id))stkSel.delete(s.id);else stkSel.add(s.id);renderStkList();}});frag.appendChild(cell);}grid.appendChild(frag);stkShown+=slice.length;}
 document.addEventListener('scroll',e=>{const list=e.target;if(list&&list.id==='stkList'){if(stkLoading)return;if(list.scrollTop+list.clientHeight>=list.scrollHeight-80){const grid=list.querySelector('.stk-grid');if(grid&&stkShown<stickers.length){stkLoading=true;appendStkBatch(grid,20).then(()=>{stkLoading=false;});}}}},true);
-function bindStkTools(){
-  const tools=$('#stkTools');if(!tools)return;
-  tools.onclick=e=>{
-    const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
-    if(act==='add')addStickersFlow();
-    else if(act==='del'){if(!stkSelMode){stkSelMode=true;stkSel.clear();t.classList.add('on');renderStkList();}else{stkSelMode=false;stkSel.clear();t.classList.remove('on');renderStkList();}}
-    else if(act==='import')importStickers();
-    else if(act==='export')exportStickers();
-  };
-}
+function bindStkTools(){const tools=$('#stkTools');if(!tools)return;tools.onclick=e=>{const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;if(act==='add')addStickersFlow();else if(act==='del'){if(!stkSelMode){stkSelMode=true;stkSel.clear();t.classList.add('on');renderStkList();}else{stkSelMode=false;stkSel.clear();t.classList.remove('on');renderStkList();}}else if(act==='import')importStickers();else if(act==='export')exportStickers();};}
 let pendingStickers=[];
 const stkFile=document.createElement('input');stkFile.type='file';stkFile.accept='image/*';stkFile.multiple=true;stkFile.style.display='none';document.body.appendChild(stkFile);
 function addStickersFlow(){stkFile.value='';stkFile.click();}
@@ -4420,8 +4453,7 @@ function showPreview(){
   const g=$('#pvGrid');g.innerHTML='';
   pendingStickers.forEach(d=>{const img=el('img');img.src=d;g.appendChild(img);});
   $('#pvCount').textContent=pendingStickers.length;
-  const pm=$('#previewMask');
-  pm.className='theme-preview-'+curTheme()+' on';
+  const pm=$('#previewMask');pm.className='theme-preview-'+curTheme()+' on';
   $('#pvOk').onclick=async()=>{let added=0;for(const d of pendingStickers){const id=uid();const ok=await FS.saveSticker(id,d);if(ok){stickers.push({id});stickerCache[id]=d;added++;}}await saveStickers();pendingStickers=[];$('#previewMask').classList.remove('on');renderStkList();renderPocketBox();toast('已加入 '+added+' 张贴纸');};
   $('#pvCancel').onclick=()=>{pendingStickers=[];$('#previewMask').classList.remove('on');};
 }
@@ -4434,8 +4466,7 @@ function renderInteractPanel(p){
   bindInteractTools();itShown=50;renderInteractList();
 }
 function bindInteractTools(){
-  const tabs=$('#itTabs');
-  tabs.onclick=e=>{const t=e.target.closest('.it-tab');if(!t)return;itDir=t.dataset.dir;itSel.clear();itSelMode=false;itShown=50;itSearch='';itLockedView=false;tabs.querySelectorAll('.it-tab').forEach(x=>x.classList.toggle('on',x===t));renderInteractList();};
+  const tabs=$('#itTabs');tabs.onclick=e=>{const t=e.target.closest('.it-tab');if(!t)return;itDir=t.dataset.dir;itSel.clear();itSelMode=false;itShown=50;itSearch='';itLockedView=false;tabs.querySelectorAll('.it-tab').forEach(x=>x.classList.toggle('on',x===t));renderInteractList();};
   const tools=$('#itTools');
   tools.onclick=e=>{
     const t=e.target.closest('.tool');if(!t)return;const act=t.dataset.t;
@@ -4455,12 +4486,7 @@ function renderInteractList(){
   const arr=currentInteracts();
   if(arr.length===0){const e=el('div','empty-tip');e.innerHTML=itLockedView?'还没有锁上的动作':(itSearch?'没找到':'这个抽屉还没有动作<br>点 ➕ 添加');list.appendChild(e);updateInteractSelRow();return;}
   const slice=arr.slice(0,itShown);const frag=document.createDocumentFragment();
-  slice.forEach(c=>{
-    const e=el('div','card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':''),c.text);
-    const chk=el('div','chk',itSel.has(c.id)?'✓':'');e.appendChild(chk);
-    e.addEventListener('click',()=>{if(itSelMode){if(itSel.has(c.id))itSel.delete(c.id);else itSel.add(c.id);renderInteractList();}else openInteractSheet(c.id);});
-    frag.appendChild(e);
-  });
+  slice.forEach(c=>{const e=el('div','card-item'+(itSelMode?' selmode':'')+(itSel.has(c.id)?' sel':''),c.text);const chk=el('div','chk',itSel.has(c.id)?'✓':'');e.appendChild(chk);e.addEventListener('click',()=>{if(itSelMode){if(itSel.has(c.id))itSel.delete(c.id);else itSel.add(c.id);renderInteractList();}else openInteractSheet(c.id);});frag.appendChild(e);});
   list.appendChild(frag);
   if(itShown<arr.length){const more=el('div','empty-tip');more.style.padding='16px';more.textContent='加载更多…';list.appendChild(more);const io=new IntersectionObserver(ents=>{if(ents[0].isIntersecting){itShown+=50;io.disconnect();renderInteractList();}});io.observe(more);}
   updateInteractSelRow();
@@ -4469,21 +4495,12 @@ function updateInteractSelRow(){const row=$('#selectAllRow');if(!row)return;if(!
 function exitInteractSel(){itSelMode=false;itSel.clear();const r=$('#selectAllRow');if(r)r.classList.remove('on');$('#multiBar').classList.remove('on');$$('#itTools .tool[data-t="del"]').forEach(d=>d.classList.remove('on'));}
 function editInteract(id){const c=(interactions[itDir]||[]).find(x=>x.id===id);if(!c)return;resetAddPage();addCtx={mode:'interact',dir:itDir};$('#addArea').value=c.text;$('#addArea').dataset.editing=id;$('#addTitle').textContent='编辑'+INTERACT_LABEL[itDir];$('#addArea').placeholder=INTERACT_PLACE[itDir];pageFrom='pocket';showPage('page-add');}
 let musicSel=new Set(),musicSelMode=false;
-function renderMusicPanel(p){
-  p.innerHTML=`<div class="toolbar" id="musicTools"><div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div><div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div><div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div><div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div></div><div id="selectAllRowM" style="display:none;padding:8px 2px;font-size:14px;align-items:center;gap:8px"><input type="checkbox" id="musicSelectAll"><label for="musicSelectAll">全选</label></div><div id="musicList"></div>`;
-  bindMusicTools();renderMusicList();
-}
+function renderMusicPanel(p){p.innerHTML=`<div class="toolbar" id="musicTools"><div class="tool" data-t="search"><svg class="ico"><use href="#i-search"/></svg></div><div class="tool" data-t="add"><svg class="ico"><use href="#i-add"/></svg></div><div class="tool" data-t="del"><svg class="ico"><use href="#i-del"/></svg></div><div class="tool" data-t="more"><svg class="ico"><use href="#i-more"/></svg></div></div><div id="selectAllRowM" style="display:none;padding:8px 2px;font-size:14px;align-items:center;gap:8px"><input type="checkbox" id="musicSelectAll"><label for="musicSelectAll">全选</label></div><div id="musicList"></div>`;bindMusicTools();renderMusicList();}
 function renderMusicList(){
   const list=$('#musicList');if(!list)return;list.innerHTML='';
   if(musicList.length===0){list.innerHTML='<div class="empty-tip">还没有歌<br>点 ➕ 添加</div>';return;}
   const frag=document.createDocumentFragment();
-  musicList.forEach(m=>{
-    const e=el('div','card-item'+(musicSelMode?' selmode':'')+(musicSel.has(m.id)?' sel':''));
-    e.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;
-    const chk=el('div','chk',musicSel.has(m.id)?'✓':'');e.appendChild(chk);
-    e.addEventListener('click',()=>{if(musicSelMode){if(musicSel.has(m.id))musicSel.delete(m.id);else musicSel.add(m.id);renderMusicList();}else editMusic(m.id);});
-    frag.appendChild(e);
-  });
+  musicList.forEach(m=>{const e=el('div','card-item'+(musicSelMode?' selmode':'')+(musicSel.has(m.id)?' sel':''));e.innerHTML=`<div style="font-size:15px">${escapeHtml(m.name||'未命名')}</div><div style="font-size:12px;opacity:.6;margin-top:3px">${escapeHtml(m.artist||'')}</div>`;const chk=el('div','chk',musicSel.has(m.id)?'✓':'');e.appendChild(chk);e.addEventListener('click',()=>{if(musicSelMode){if(musicSel.has(m.id))musicSel.delete(m.id);else musicSel.add(m.id);renderMusicList();}else editMusic(m.id);});frag.appendChild(e);});
   list.appendChild(frag);updateMusicSelRow();
 }
 function updateMusicSelRow(){const row=$('#selectAllRowM');if(!row)return;row.style.display=musicSelMode?'flex':'none';if(!musicSelMode)return;$('#musicSelectAll').checked=musicList.length>0&&musicList.every(m=>musicSel.has(m.id));}
@@ -4531,67 +4548,25 @@ $('#mUnlock').addEventListener('click',async()=>{
 let sheetCardId=null,itSheetId=null,sheetCtx='card';
 function openSheet(id){sheetCardId=id;itSheetId=null;sheetCtx='card';const c=cards.find(x=>x.id===id);if(!c)return;buildSheet(['edit','lock','del'],c.locked?'解锁':'锁上');}
 function openInteractSheet(id){itSheetId=id;sheetCardId=null;sheetCtx='interact';const c=(interactions[itDir]||[]).find(x=>x.id===id);if(!c)return;buildSheet(['edit','lock','del'],c.locked?'解锁':'锁上');}
-function openMoreSheet(ctx){
-  sheetCtx=ctx;sheetCardId=null;itSheetId=null;
-  if(ctx==='card')buildSheet(['clean','import','export','cancel']);
-  else if(ctx==='music')buildSheet(['import','export','cancel']);
-  else if(ctx==='interact')buildSheet(['import','export','cancel']);
-  else if(ctx==='collection')buildSheet(['delAll','cancel']);
-}
+function openMoreSheet(ctx){sheetCtx=ctx;sheetCardId=null;itSheetId=null;if(ctx==='card')buildSheet(['clean','import','export','cancel']);else if(ctx==='music')buildSheet(['import','export','cancel']);else if(ctx==='interact')buildSheet(['import','export','cancel']);else if(ctx==='collection')buildSheet(['delAll','cancel']);}
 function buildSheet(items,lockText){
-  const t=curTheme();
-  const sheet=$('#sheet');
-  sheet.className='theme-sheet-'+t;
-  sheet.innerHTML='';
-  const map={
-    edit:['编辑'],
-    lock:[lockText||'锁上'],
-    del:['删除','danger'],
-    clean:['清互动重复'],
-    import:['导入'],
-    export:['导出'],
-    delAll:['清空收藏匣','danger'],
-    cancel:['取消','cancel']
-  };
-  items.forEach(k=>{
-    const info=map[k];
-    const cls='sheet-item'+(info[1]==='danger'?' danger':'')+(info[1]==='cancel'?' sheet-cancel':'');
-    const d=el('div',cls,info[0]);
-    d.addEventListener('click',()=>handleSheetAction(k));
-    sheet.appendChild(d);
-  });
-  $('#sheetMask').classList.add('on');
-  sheet.classList.add('on');
+  const sheet=$('#sheet');sheet.className='theme-sheet-'+curTheme();sheet.innerHTML='';
+  const map={edit:['编辑'],lock:[lockText||'锁上'],del:['删除','danger'],clean:['清互动重复'],import:['导入'],export:['导出'],delAll:['清空收藏匣','danger'],cancel:['取消','cancel']};
+  items.forEach(k=>{const info=map[k];const cls='sheet-item'+(info[1]==='danger'?' danger':'')+(info[1]==='cancel'?' sheet-cancel':'');const d=el('div',cls,info[0]);d.addEventListener('click',()=>handleSheetAction(k));sheet.appendChild(d);});
+  $('#sheetMask').classList.add('on');sheet.classList.add('on');
 }
 function closeSheet(){$('#sheetMask').classList.remove('on');$('#sheet').classList.remove('on');}
 async function handleSheetAction(k){
   if(k==='cancel'){closeSheet();return;}
   if(k==='edit'){const cid=sheetCardId;if(cid){closeSheet();editCard(cid);return;}const iid=itSheetId;if(iid){closeSheet();editInteract(iid);}return;}
   if(k==='lock'){
-    if(sheetCtx==='card'){
-      const c=cards.find(x=>x.id===sheetCardId);if(!c){closeSheet();return;}
-      c.locked=!c.locked;toast(c.locked?'已锁上':'已解锁');
-      saveCards();closeSheet();renderCardList();removeEmptyTip();
-    }else{
-      const it=(interactions[itDir]||[]).find(x=>x.id===itSheetId);if(!it){closeSheet();return;}
-      it.locked=!it.locked;toast(it.locked?'已锁上':'已解锁');
-      saveInteractions();closeSheet();renderInteractList();
-    }
+    if(sheetCtx==='card'){const c=cards.find(x=>x.id===sheetCardId);if(!c){closeSheet();return;}c.locked=!c.locked;toast(c.locked?'已锁上':'已解锁');saveCards();closeSheet();renderCardList();removeEmptyTip();}
+    else{const it=(interactions[itDir]||[]).find(x=>x.id===itSheetId);if(!it){closeSheet();return;}it.locked=!it.locked;toast(it.locked?'已锁上':'已解锁');saveInteractions();closeSheet();renderInteractList();}
     return;
   }
   if(k==='del'){
-    if(sheetCtx==='card'){
-      if(!cards.find(x=>x.id===sheetCardId)){closeSheet();return;}
-      const r=await Dlg.confirm('删除','删除这张字卡？','删除');
-      if(r){cards=cards.filter(x=>x.id!==sheetCardId);saveCards();renderCardList();toast('已删除');}
-      closeSheet();
-    }else{
-      const arr=interactions[itDir]||[];
-      if(!arr.find(x=>x.id===itSheetId)){closeSheet();return;}
-      const r=await Dlg.confirm('删除','删除这条互动？','删除');
-      if(r){interactions[itDir]=arr.filter(x=>x.id!==itSheetId);saveInteractions();renderInteractList();renderPocketBox();toast('已删除');}
-      closeSheet();
-    }
+    if(sheetCtx==='card'){if(!cards.find(x=>x.id===sheetCardId)){closeSheet();return;}const r=await Dlg.confirm('删除','删除这张字卡？','删除');if(r){cards=cards.filter(x=>x.id!==sheetCardId);saveCards();renderCardList();toast('已删除');}closeSheet();}
+    else{const arr=interactions[itDir]||[];if(!arr.find(x=>x.id===itSheetId)){closeSheet();return;}const r=await Dlg.confirm('删除','删除这条互动？','删除');if(r){interactions[itDir]=arr.filter(x=>x.id!==itSheetId);saveInteractions();renderInteractList();renderPocketBox();toast('已删除');}closeSheet();}
     return;
   }
   if(k==='clean'){closeSheet();cleanInteractDup();return;}
@@ -4599,17 +4574,9 @@ async function handleSheetAction(k){
   if(k==='export'){closeSheet();exportCurrent();return;}
   if(k==='delAll'){closeSheet();const r=await Dlg.confirm('清空','清空收藏匣？此操作不可恢复','清空');if(!r)return;collection=[];saveCollection();renderCollectionList();toast('收藏匣已清空');return;}
 }
-async function cleanInteractDup(){
-  const set=new Set();
-  ['touch','back','pair'].forEach(k=>{(interactions[k]||[]).forEach(x=>set.add(x.text));});
-  const removed=cards.filter(c=>set.has(c.text)).length;
-  if(removed===0){toast('没有和互动重复的字卡');return;}
-  const r=await Dlg.confirm('清理','清掉 '+removed+' 条和互动重复的字卡？','清掉');
-  if(!r)return;
-  cards=cards.filter(c=>!set.has(c.text));saveCards();renderCardList();toast('清掉了 '+removed+' 条');
-}
-function importCurrent(){if(sheetCtx==='music'){importMusic();}else{$('#fileInput').click();}}
-function exportCurrent(){if(sheetCtx==='music'){exportMusic();}else{exportCards();}}
+async function cleanInteractDup(){const set=new Set();['touch','back','pair'].forEach(k=>{(interactions[k]||[]).forEach(x=>set.add(x.text));});const removed=cards.filter(c=>set.has(c.text)).length;if(removed===0){toast('没有和互动重复的字卡');return;}const r=await Dlg.confirm('清理','清掉 '+removed+' 条和互动重复的字卡？','清掉');if(!r)return;cards=cards.filter(c=>!set.has(c.text));saveCards();renderCardList();toast('清掉了 '+removed+' 条');}
+function importCurrent(){if(sheetCtx==='music')importMusic();else $('#fileInput').click();}
+function exportCurrent(){if(sheetCtx==='music')exportMusic();else exportCards();}
 $('#fileInput').addEventListener('change',async e=>{
   const f=e.target.files[0];if(!f)return;
   const text=await f.text();let incoming=[];const name=f.name.toLowerCase();
@@ -4637,23 +4604,9 @@ $('#setNameHer').addEventListener('input',e=>{settings.nameHer=e.target.value;sa
 $('#setNameMe').addEventListener('input',e=>{settings.nameMe=e.target.value;saveSet();});
 $('#setCallHer').addEventListener('input',e=>{settings.callHer=e.target.value;saveSet();applyProfile();});
 $('#setCallMe').addEventListener('input',e=>{settings.callMe=e.target.value;saveSet();applyProfile();});
-const quoteRateEl=$('#quoteRate');
-if(quoteRateEl)quoteRateEl.addEventListener('change',e=>{settings.quoteRate=e.target.value||'low';saveSet();});
-$$('.style-opt').forEach(o=>{
-  o.addEventListener('click',()=>{
-    settings.style=o.dataset.style;saveSet();
-    applyThemeActive();applyProfile();renderMessages();
-    const inp=msgInputEl();if(inp)inp.placeholder=themePlaceholder();
-    if($('#page-pocket').classList.contains('show'))renderPocketBox();
-    if($('#page-collection').classList.contains('show'))renderCollection();
-    if($('#page-time').classList.contains('show'))showTimeList();
-    $$('.style-opt').forEach(x=>x.classList.toggle('on',x===o));
-  });
-});
-$('#clearMsgs').addEventListener('click',async()=>{
-  const r=await Dlg.confirm('清空','清空所有聊天记录？此操作不可恢复','清空');
-  if(r){messages=[];saveMsgs();renderMessages();toast('已清空');}
-});
+const quoteRateEl=$('#quoteRate');if(quoteRateEl)quoteRateEl.addEventListener('change',e=>{settings.quoteRate=e.target.value||'low';saveSet();});
+$$('.style-opt').forEach(o=>{o.addEventListener('click',()=>{settings.style=o.dataset.style;saveSet();applyThemeActive();applyProfile();renderMessages();const inp=msgInputEl();if(inp)inp.placeholder=themePlaceholder();if($('#page-pocket').classList.contains('show'))renderPocketBox();if($('#page-collection').classList.contains('show'))renderCollection();if($('#page-time').classList.contains('show'))showTimeList();$$('.style-opt').forEach(x=>x.classList.toggle('on',x===o));});});
+$('#clearMsgs').addEventListener('click',async()=>{const r=await Dlg.confirm('清空','清空所有聊天记录？此操作不可恢复','清空');if(r){messages=[];saveMsgs();renderMessages();toast('已清空');}});
 const bgFile=document.createElement('input');bgFile.type='file';bgFile.accept='image/*';bgFile.multiple=true;bgFile.style.display='none';document.body.appendChild(bgFile);
 bgFile.addEventListener('change',e=>{const files=[...e.target.files];if(!files.length)return;let done=0;files.forEach(f=>{const r=new FileReader();r.onload=()=>{settings.bgs.push({id:uid(),data:r.result});done++;if(done===files.length){saveSet();renderBgList();toast('已添加 '+files.length+' 张背景');}};r.readAsDataURL(f);});e.target.value='';});
 $('#bgMaskRange').addEventListener('input',e=>{const v=parseInt(e.target.value)||0;settings.bgMask=v;saveSet();applyBg();$('#bgMaskVal').textContent=v;});
@@ -4667,48 +4620,25 @@ const Dlg={
   _resolve:null,_mode:null,_input:null,_textarea:null,
   open(opts){
     return new Promise(resolve=>{
-      this._resolve=resolve;
-      this._mode=opts.mode||'confirm';
+      this._resolve=resolve;this._mode=opts.mode||'confirm';
       const box=$('#dialogBox'),mask=$('#dialogMask');
       $('#dlgTitle').textContent=opts.title||'';
       const body=$('#dlgBody');body.innerHTML='';
       if(opts.body){const p=el('div');p.textContent=opts.body;body.appendChild(p);}
       this._input=null;this._textarea=null;
-      if(this._mode==='input'){
-        const f=document.createElement('input');
-        f.type='text';f.value=opts.value||'';f.placeholder=opts.placeholder||'';
-        body.appendChild(f);this._input=f;
-      }else if(this._mode==='textarea'){
-        const f=document.createElement('textarea');
-        f.value=opts.value||'';f.placeholder=opts.placeholder||'';
-        body.appendChild(f);this._textarea=f;
-      }
+      if(this._mode==='input'){const f=document.createElement('input');f.type='text';f.value=opts.value||'';f.placeholder=opts.placeholder||'';body.appendChild(f);this._input=f;}
+      else if(this._mode==='textarea'){const f=document.createElement('textarea');f.value=opts.value||'';f.placeholder=opts.placeholder||'';body.appendChild(f);this._textarea=f;}
       const btns=$('#dlgBtns');btns.innerHTML='';
-      if(this._mode==='alert'){
-        const ok=el('div','dbtn primary',opts.okText||'知道了');
-        ok.addEventListener('click',()=>this._done(true));
-        btns.appendChild(ok);
-      }else{
-        const cancel=el('div','dbtn',opts.cancelText||'取消');
-        const ok=el('div','dbtn primary'+(opts.danger?' danger':''),opts.okText||'确定');
-        cancel.addEventListener('click',()=>this._done(false));
-        ok.addEventListener('click',()=>this._done(true));
-        btns.appendChild(cancel);btns.appendChild(ok);
-      }
+      if(this._mode==='alert'){const ok=el('div','dbtn primary',opts.okText||'知道了');ok.addEventListener('click',()=>this._done(true));btns.appendChild(ok);}
+      else{const cancel=el('div','dbtn',opts.cancelText||'取消');const ok=el('div','dbtn primary'+(opts.danger?' danger':''),opts.okText||'确定');cancel.addEventListener('click',()=>this._done(false));ok.addEventListener('click',()=>this._done(true));btns.appendChild(cancel);btns.appendChild(ok);}
       mask.classList.add('on');box.classList.add('on');
       setTimeout(()=>{if(this._input)this._input.focus();else if(this._textarea)this._textarea.focus();},50);
     });
   },
   _done(ok){
-    const box=$('#dialogBox'),mask=$('#dialogMask');
-    box.classList.remove('on');mask.classList.remove('on');
-    const resolve=this._resolve;this._resolve=null;
-    let val=null;
-    if(ok){
-      if(this._mode==='input')val=this._input?this._input.value:'';
-      else if(this._mode==='textarea')val=this._textarea?this._textarea.value:'';
-      else val=true;
-    }
+    const box=$('#dialogBox'),mask=$('#dialogMask');box.classList.remove('on');mask.classList.remove('on');
+    const resolve=this._resolve;this._resolve=null;let val=null;
+    if(ok){if(this._mode==='input')val=this._input?this._input.value:'';else if(this._mode==='textarea')val=this._textarea?this._textarea.value:'';else val=true;}
     if(resolve)resolve(val);
   },
   confirm(title,body,okText){return this.open({title,body,mode:'confirm',okText});},
@@ -4718,55 +4648,28 @@ const Dlg={
 };
 
 let wishSel=new Set(),wishSelMode=false;
-function openWish(){
-  showPageFrom('page-wish','');
-  renderWishList();
-}
+function openWish(){showPageFrom('page-wish','');renderWishList();}
 function renderWishList(){
   const list=$('#wishList');if(!list)return;list.innerHTML='';
   const arr=wishes.slice();
   if(arr.length===0){list.innerHTML='<div class="empty-tip">还没有心愿<br>点右上角 ＋ 写一个吧</div>';return;}
   const frag=document.createDocumentFragment();
-  arr.forEach(w=>{
-    const d=el('div','wish-item'+(w.done?' done':''));
-    const chk=el('div','wish-check',w.done?'✓':'');d.appendChild(chk);
-    const t=el('div','wish-text',w.text);d.appendChild(t);
-    const tm=el('span','wish-time','写下于 '+fmtTime(w.createdAt||Date.now()));
-    d.appendChild(tm);
-    d.addEventListener('click',()=>openWishSheet(w.id));
-    frag.appendChild(d);
-  });
+  arr.forEach(w=>{const d=el('div','wish-item'+(w.done?' done':''));const chk=el('div','wish-check',w.done?'✓':'');d.appendChild(chk);const t=el('div','wish-text',w.text);d.appendChild(t);const tm=el('span','wish-time','写下于 '+fmtTime(w.createdAt||Date.now()));d.appendChild(tm);d.addEventListener('click',()=>openWishSheet(w.id));frag.appendChild(d);});
   list.appendChild(frag);
 }
 function openWishSheet(id){
   const w=wishes.find(x=>x.id===id);if(!w)return;
-  window._wishSheetId=id;
-  sheetCtx='wish';sheetCardId=null;itSheetId=null;
-  const items=['toggle','edit','del','cancel'];
-  const lockText=w.done?'标记未完成':'标记完成';
-  const t=curTheme();
-  const sheet=$('#sheet');sheet.className='theme-sheet-'+t;sheet.innerHTML='';
-  const map={
-    toggle:[lockText],
-    edit:['编辑'],
-    del:['删除','danger'],
-    cancel:['取消','cancel']
-  };
-  items.forEach(k=>{
-    const info=map[k];
-    const cls='sheet-item'+(info[1]==='danger'?' danger':'')+(info[1]==='cancel'?' sheet-cancel':'');
-    const d=el('div',cls,info[0]);
-    d.addEventListener('click',()=>handleWishAction(k));
-    sheet.appendChild(d);
-  });
-  $('#sheetMask').classList.add('on');
-  sheet.classList.add('on');
+  window._wishSheetId=id;sheetCtx='wish';sheetCardId=null;itSheetId=null;
+  const items=['toggle','edit','del','cancel'];const lockText=w.done?'标记未完成':'标记完成';
+  const sheet=$('#sheet');sheet.className='theme-sheet-'+curTheme();sheet.innerHTML='';
+  const map={toggle:[lockText],edit:['编辑'],del:['删除','danger'],cancel:['取消','cancel']};
+  items.forEach(k=>{const info=map[k];const cls='sheet-item'+(info[1]==='danger'?' danger':'')+(info[1]==='cancel'?' sheet-cancel':'');const d=el('div',cls,info[0]);d.addEventListener('click',()=>handleWishAction(k));sheet.appendChild(d);});
+  $('#sheetMask').classList.add('on');sheet.classList.add('on');
 }
 function handleWishAction(k){
   const id=window._wishSheetId;
   if(k==='cancel'){closeSheet();return;}
-  const w=wishes.find(x=>x.id===id);
-  if(!w){closeSheet();return;}
+  const w=wishes.find(x=>x.id===id);if(!w){closeSheet();return;}
   if(k==='toggle'){w.done=!w.done;saveWishes();closeSheet();renderWishList();toast(w.done?'已完成':'未完成');return;}
   if(k==='edit'){closeSheet();editWish(id);return;}
   if(k==='del'){closeSheet();deleteWish(id);return;}
@@ -4774,137 +4677,58 @@ function handleWishAction(k){
 $('#wishHeadAdd').addEventListener('click',async()=>{
   const txt=await Dlg.textarea('写下心愿','','一行一个，可以写多条…');
   if(txt===null)return;
-  const lines=txt.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
-  if(lines.length===0)return;
-  const exist=new Set(wishes.map(w=>w.text));
-  let added=0;
+  const lines=txt.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);if(lines.length===0)return;
+  const exist=new Set(wishes.map(w=>w.text));let added=0;
   lines.forEach(line=>{if(exist.has(line))return;wishes.push({id:uid(),text:line,done:false,createdAt:Date.now()});exist.add(line);added++;});
-  if(added){saveWishes();renderWishList();toast('写下了 '+added+' 个心愿');}
-  else toast('都和已有的重复了');
+  if(added){saveWishes();renderWishList();toast('写下了 '+added+' 个心愿');}else toast('都和已有的重复了');
 });
-async function editWish(id){
-  const w=wishes.find(x=>x.id===id);if(!w)return;
-  const txt=await Dlg.input('编辑心愿',w.text);
-  if(txt===null)return;
-  const val=txt.trim();
-  if(!val)return;
-  w.text=val;saveWishes();renderWishList();toast('已保存');
-}
-async function deleteWish(id){
-  const r=await Dlg.confirm('删除','删除这个心愿？','删除');
-  if(!r)return;
-  wishes=wishes.filter(x=>x.id!==id);
-  saveWishes();renderWishList();toast('已删除');
-}
-async function deleteSelectedWishes(){
-  if(wishSel.size===0){toast('还没选心愿');return;}
-  const r=await Dlg.confirm('删除','删除选中的 '+wishSel.size+' 个心愿？','删除');
-  if(!r)return;
-  wishes=wishes.filter(w=>!wishSel.has(w.id));
-  saveWishes();wishSelMode=false;wishSel.clear();
-  renderWishList();
-  const bar=$('#multiBar');if(bar&&bar.dataset.ctx==='wish'){bar.classList.remove('on');bar.dataset.ctx='';}
-  toast('已删除');
-}
+async function editWish(id){const w=wishes.find(x=>x.id===id);if(!w)return;const txt=await Dlg.input('编辑心愿',w.text);if(txt===null)return;const val=txt.trim();if(!val)return;w.text=val;saveWishes();renderWishList();toast('已保存');}
+async function deleteWish(id){const r=await Dlg.confirm('删除','删除这个心愿？','删除');if(!r)return;wishes=wishes.filter(x=>x.id!==id);saveWishes();renderWishList();toast('已删除');}
+async function deleteSelectedWishes(){if(wishSel.size===0){toast('还没选心愿');return;}const r=await Dlg.confirm('删除','删除选中的 '+wishSel.size+' 个心愿？','删除');if(!r)return;wishes=wishes.filter(w=>!wishSel.has(w.id));saveWishes();wishSelMode=false;wishSel.clear();renderWishList();const bar=$('#multiBar');if(bar&&bar.dataset.ctx==='wish'){bar.classList.remove('on');bar.dataset.ctx='';}toast('已删除');}
 
 let importantSel=new Set(),importantSelMode=false,importantEditingId=null;
-function openImportant(){
-  showPageFrom('page-important','');
-  renderImportantPanel();
-}
-function renderImportantPanel(){
-  renderImportantHero();
-  renderImportantList();
-}
+function openImportant(){showPageFrom('page-important','');renderImportantPanel();}
+function renderImportantPanel(){renderImportantHero();renderImportantList();}
 function openImportantForm(id){
-  importantEditingId=id||null;
-  $('#importantEditTitle').textContent=id?'编辑重要日':'添加重要日';
-  if(id){
-    const d=importantDays.find(x=>x.id===id);if(!d)return;
-    $('#impTitle').value=d.title||'';$('#impDate').value=d.date||'';
-    $('#impRepeat').value=d.repeat||'none';$('#impNote').value=d.note||'';
-  }else{
-    $('#impTitle').value='';$('#impDate').value='';$('#impRepeat').value='none';$('#impNote').value='';
-  }
-  updateImpDateText();
-  pageFrom='important';
-  showPage('page-important-edit');
+  importantEditingId=id||null;$('#importantEditTitle').textContent=id?'编辑重要日':'添加重要日';
+  if(id){const d=importantDays.find(x=>x.id===id);if(!d)return;$('#impTitle').value=d.title||'';$('#impDate').value=d.date||'';$('#impRepeat').value=d.repeat||'none';$('#impNote').value=d.note||'';}
+  else{$('#impTitle').value='';$('#impDate').value='';$('#impRepeat').value='none';$('#impNote').value='';}
+  updateImpDateText();pageFrom='important';showPage('page-important-edit');
 }
 function closeImportantForm(){importantEditingId=null;}
-function updateImpDateText(){
-  const v=$('#impDate').value;
-  const t=$('#impDateText');
-  if(!t)return;
-  if(!v){t.textContent='选择日期';return;}
-  const parts=v.split('-');
-  if(parts.length===3)t.textContent=parts[0]+'年'+parts[1]+'月'+parts[2]+'日';
-  else t.textContent=v;
-}
+function updateImpDateText(){const v=$('#impDate').value;const t=$('#impDateText');if(!t)return;if(!v){t.textContent='选择日期';return;}const p=v.split('-');t.textContent=p.length===3?(p[0]+'年'+p[1]+'月'+p[2]+'日'):v;}
 $('#impDate').addEventListener('change',updateImpDateText);
 function saveImportantForm(){
-  const title=$('#impTitle').value.trim();
-  const date=$('#impDate').value;
-  const repeat=$('#impRepeat').value;
-  const note=$('#impNote').value.trim();
+  const title=$('#impTitle').value.trim(),date=$('#impDate').value,repeat=$('#impRepeat').value,note=$('#impNote').value.trim();
   if(!title){toast('还没写名称');return;}
   if(!date){toast('请选择日期');return;}
-  if(importantEditingId){
-    const d=importantDays.find(x=>x.id===importantEditingId);
-    if(d){d.title=title;d.date=date;d.repeat=repeat;d.note=note;}
-  }else{
-    importantDays.push({id:uid(),title,date,repeat,note,bg:null,createdAt:Date.now()});
-  }
+  if(importantEditingId){const d=importantDays.find(x=>x.id===importantEditingId);if(d){d.title=title;d.date=date;d.repeat=repeat;d.note=note;}}
+  else importantDays.push({id:uid(),title,date,repeat,note,bg:null,createdAt:Date.now()});
   saveImportant();closeImportantForm();showPageFrom('page-important','');renderImportantPanel();toast('已保存');
 }
 $('#impSave').addEventListener('click',saveImportantForm);
 $('#impCancel').addEventListener('click',()=>{closeImportantForm();showPageFrom('page-important','');});
 $('#importantHeadAdd').addEventListener('click',()=>openImportantForm(null));
 function nextOccurrence(d){
-  const base=new Date(d.date+'T00:00:00');
-  const now=new Date();now.setHours(0,0,0,0);
+  const base=new Date(d.date+'T00:00:00');const now=new Date();now.setHours(0,0,0,0);
   if(d.repeat==='none')return base;
-  if(d.repeat==='yearly'){
-    const y=now.getFullYear();
-    let t=new Date(y,base.getMonth(),base.getDate());
-    if(t<now)t=new Date(y+1,base.getMonth(),base.getDate());
-    return t;
-  }
-  if(d.repeat==='monthly'){
-    let t=new Date(now.getFullYear(),now.getMonth(),base.getDate());
-    if(t<now)t=new Date(now.getFullYear(),now.getMonth()+1,base.getDate());
-    return t;
-  }
-  if(d.repeat==='weekly'){
-    const diff=(base.getDay()-now.getDay()+7)%7;
-    let t=new Date(now);t.setDate(now.getDate()+diff);
-    if(t<now)t.setDate(t.getDate()+7);
-    return t;
-  }
+  if(d.repeat==='yearly'){const y=now.getFullYear();let t=new Date(y,base.getMonth(),base.getDate());if(t<now)t=new Date(y+1,base.getMonth(),base.getDate());return t;}
+  if(d.repeat==='monthly'){let t=new Date(now.getFullYear(),now.getMonth(),base.getDate());if(t<now)t=new Date(now.getFullYear(),now.getMonth()+1,base.getDate());return t;}
+  if(d.repeat==='weekly'){const diff=(base.getDay()-now.getDay()+7)%7;let t=new Date(now);t.setDate(now.getDate()+diff);if(t<now)t.setDate(t.getDate()+7);return t;}
   return base;
 }
-function daysBetween(a,b){
-  const ms=24*60*60*1000;
-  return Math.round((b.getTime()-a.getTime())/ms);
-}
+function daysBetween(a,b){return Math.round((b.getTime()-a.getTime())/86400000);}
 function repeatLabel(r){return {none:'不重复',yearly:'每年',monthly:'每月',weekly:'每周'}[r]||'不重复';}
 function renderImportantHero(){
   const box=$('#importantHero');if(!box)return;box.innerHTML='';
   const arr=importantDays.slice();
-  if(arr.length===0){
-    const empty=el('div','pin-empty','还没有重要日<br>点右上角 ＋ 添加一个吧');
-    box.appendChild(empty);
-    return;
-  }
+  if(arr.length===0){const empty=el('div','pin-empty','还没有重要日<br>点右上角 ＋ 添加一个吧');box.appendChild(empty);return;}
   arr.sort((a,b)=>nextOccurrence(a)-nextOccurrence(b));
-  const top=arr[0];
-  const now=new Date();now.setHours(0,0,0,0);
-  const next=nextOccurrence(top);
-  const diff=daysBetween(now,next);
-  const card=el('div','hero-card');
-  if(top.bg){card.style.backgroundImage=`url(${top.bg})`;}
+  const top=arr[0];const now=new Date();now.setHours(0,0,0,0);
+  const next=nextOccurrence(top);const diff=daysBetween(now,next);
+  const card=el('div','hero-card');if(top.bg)card.style.backgroundImage=`url(${top.bg})`;
   card.innerHTML=`<div class="hero-mask"></div><div class="hero-title">${escapeHtml(top.title)}</div><div class="hero-days">${diff>=0?diff:'—'}<small>${diff>=0?'天后':'已过'}</small></div><div class="hero-next">下次：${next.getFullYear()}-${String(next.getMonth()+1).padStart(2,'0')}-${String(next.getDate()).padStart(2,'0')}<span class="hero-repeat">${repeatLabel(top.repeat)}</span></div>`;
-  card.addEventListener('click',()=>openImportantSheet(top.id));
-  box.appendChild(card);
+  card.addEventListener('click',()=>openImportantSheet(top.id));box.appendChild(card);
 }
 function renderImportantList(){
   const list=$('#importantList');if(!list)return;list.innerHTML='';
@@ -4912,19 +4736,14 @@ function renderImportantList(){
   const topId=sorted[0]?sorted[0].id:null;
   const arr=importantDays.filter(d=>d.id!==topId);
   if(arr.length===0){list.innerHTML='';return;}
-  const now=new Date();now.setHours(0,0,0,0);
-  arr.sort((a,b)=>nextOccurrence(a)-nextOccurrence(b));
+  const now=new Date();now.setHours(0,0,0,0);arr.sort((a,b)=>nextOccurrence(a)-nextOccurrence(b));
   const frag=document.createDocumentFragment();
   arr.forEach(d=>{
-    const next=nextOccurrence(d);
-    const diff=daysBetween(now,next);
+    const next=nextOccurrence(d);const diff=daysBetween(now,next);
     const item=el('div','important-item'+(importantSelMode?' selmode':'')+(importantSel.has(d.id)?' sel':''));
     const chk=el('div','chk',importantSel.has(d.id)?'✓':'');item.appendChild(chk);
     item.innerHTML=`<div class="imp-top"><div class="imp-title">${escapeHtml(d.title)}</div></div><div class="imp-days">${diff>=0?diff:'—'}<small>${diff>=0?'天后':'已过'}</small></div><div class="imp-sub"><span class="imp-repeat">${repeatLabel(d.repeat)}</span>${next.getFullYear()}-${String(next.getMonth()+1).padStart(2,'0')}-${String(next.getDate()).padStart(2,'0')}${d.note?' · '+escapeHtml(d.note):''}</div>`;
-    item.addEventListener('click',()=>{
-      if(importantSelMode){if(importantSel.has(d.id))importantSel.delete(d.id);else importantSel.add(d.id);renderImportantList();}
-      else{openImportantSheet(d.id);}
-    });
+    item.addEventListener('click',()=>{if(importantSelMode){if(importantSel.has(d.id))importantSel.delete(d.id);else importantSel.add(d.id);renderImportantList();}else openImportantSheet(d.id);});
     frag.appendChild(item);
   });
   list.appendChild(frag);
@@ -4932,160 +4751,83 @@ function renderImportantList(){
 function openImportantSheet(id){
   sheetCtx='important';sheetCardId=null;itSheetId=null;
   const d=importantDays.find(x=>x.id===id);if(!d)return;
-  window._impSheetId=id;
-  const t=curTheme();
-  const sheet=$('#sheet');sheet.className='theme-sheet-'+t;sheet.innerHTML='';
-  const items=['edit','del','cancel'];
-  const map={edit:['编辑'],del:['删除','danger'],cancel:['取消','cancel']};
-  items.forEach(k=>{
-    const info=map[k];
-    const cls='sheet-item'+(info[1]==='danger'?' danger':'')+(info[1]==='cancel'?' sheet-cancel':'');
-    const dd=el('div',cls,info[0]);
-    dd.addEventListener('click',()=>handleImpSheet(k));
-    sheet.appendChild(dd);
-  });
-  $('#sheetMask').classList.add('on');
-  sheet.classList.add('on');
+  window._impSheetId=id;const sheet=$('#sheet');sheet.className='theme-sheet-'+curTheme();sheet.innerHTML='';
+  const items=['edit','del','cancel'];const map={edit:['编辑'],del:['删除','danger'],cancel:['取消','cancel']};
+  items.forEach(k=>{const info=map[k];const cls='sheet-item'+(info[1]==='danger'?' danger':'')+(info[1]==='cancel'?' sheet-cancel':'');const dd=el('div',cls,info[0]);dd.addEventListener('click',()=>handleImpSheet(k));sheet.appendChild(dd);});
+  $('#sheetMask').classList.add('on');sheet.classList.add('on');
 }
 async function handleImpSheet(k){
   const id=window._impSheetId;
   if(k==='cancel'){closeSheet();return;}
-  const d=importantDays.find(x=>x.id===id);
-  if(!d){closeSheet();return;}
+  const d=importantDays.find(x=>x.id===id);if(!d){closeSheet();return;}
   if(k==='edit'){closeSheet();openImportantForm(id);return;}
-  if(k==='del'){
-    closeSheet();
-    const r=await Dlg.confirm('删除','删除这个重要日？','删除');
-    if(r){importantDays=importantDays.filter(x=>x.id!==id);saveImportant();renderImportantPanel();toast('已删除');}
-    return;
-  }
+  if(k==='del'){closeSheet();const r=await Dlg.confirm('删除','删除这个重要日？','删除');if(r){importantDays=importantDays.filter(x=>x.id!==id);saveImportant();renderImportantPanel();toast('已删除');}return;}
 }
 async function deleteSelectedImportant(){
   if(importantSel.size===0){toast('还没选重要日');return;}
-  const r=await Dlg.confirm('删除','删除选中的 '+importantSel.size+' 个重要日？','删除');
-  if(!r)return;
-  importantDays=importantDays.filter(d=>!importantSel.has(d.id));
-  saveImportant();importantSelMode=false;importantSel.clear();
-  renderImportantPanel();
-  const bar=$('#multiBar');if(bar&&bar.dataset.ctx==='important'){bar.classList.remove('on');bar.dataset.ctx='';}
-  toast('已删除');
+  const r=await Dlg.confirm('删除','删除选中的 '+importantSel.size+' 个重要日？','删除');if(!r)return;
+  importantDays=importantDays.filter(d=>!importantSel.has(d.id));saveImportant();importantSelMode=false;importantSel.clear();renderImportantPanel();
+  const bar=$('#multiBar');if(bar&&bar.dataset.ctx==='important'){bar.classList.remove('on');bar.dataset.ctx='';}toast('已删除');
 }
 
 let askState={thinking:false,picked:-1,question:'',options:[],timer:null,thinkTimer:null};
-function parseOptions(text){
-  return text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
-}
+function parseOptions(text){return text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);}
 function openAskBox(){
   if($('#syncBox').classList.contains('on'))closeSyncBox();
   const mask=$('#askMask'),box=$('#askBox');
   if(askState.timer){clearTimeout(askState.timer);askState.timer=null;}
   if(askState.thinkTimer){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}
-  askState.thinking=false;
-  askState.picked=-1;
-  askState.question='';
-  askState.options=[];
-  renderAskInput();
-  mask.classList.add('on');box.classList.add('on');
-  applyAskPos();
+  askState.thinking=false;askState.picked=-1;askState.question='';askState.options=[];
+  renderAskInput();mask.classList.add('on');box.classList.add('on');applyAskPos();
 }
 function closeAskBox(){
   if(askState.timer){clearTimeout(askState.timer);askState.timer=null;}
   if(askState.thinkTimer){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}
-  askState.thinking=false;
-  askState.picked=-1;
-  askState.question='';
-  askState.options=[];
-  $('#askMask').classList.remove('on');
-  $('#askBox').classList.remove('on');
+  askState.thinking=false;askState.picked=-1;askState.question='';askState.options=[];
+  $('#askMask').classList.remove('on');$('#askBox').classList.remove('on');
 }
 function renderAskInput(){
   const body=$('#askBody');body.innerHTML='';
-  const qf=el('div','ask-field');
-  const ql=el('label','','问题');
-  const qa=document.createElement('textarea');
+  const qf=el('div','ask-field');const ql=el('label','','问题');const qa=document.createElement('textarea');
   qa.className='ask-q';qa.placeholder='想问祂什么…';qa.value=askState.question||'';
   qf.appendChild(ql);qf.appendChild(qa);body.appendChild(qf);
-  const of=el('div','ask-field');
-  const ol=el('label','','选项（一行一个）');
-  const oa=document.createElement('textarea');
+  const of=el('div','ask-field');const ol=el('label','','选项（一行一个）');const oa=document.createElement('textarea');
   oa.className='ask-opts';oa.placeholder='一行一个选项…';oa.value=(askState.options||[]).join('\n');
   of.appendChild(ol);of.appendChild(oa);body.appendChild(of);
   const btn=el('div','ask-btn','问祂');
-  btn.addEventListener('click',()=>{
-    const q=qa.value.trim();
-    const opts=parseOptions(oa.value);
-    if(!q){toast('还没写问题');return;}
-    if(opts.length<2){toast('至少两个选项');return;}
-    askState.question=q;askState.options=opts;askState.picked=-1;
-    renderAskThinking();
-  });
+  btn.addEventListener('click',()=>{const q=qa.value.trim(),opts=parseOptions(oa.value);if(!q){toast('还没写问题');return;}if(opts.length<2){toast('至少两个选项');return;}askState.question=q;askState.options=opts;askState.picked=-1;renderAskThinking();});
   body.appendChild(btn);
 }
 function renderAskThinking(){
   const body=$('#askBody');body.innerHTML='';
-  body.appendChild(buildAskDisplay(-1,true));
-  const think=el('div','ask-thinking','祂在思考…');
-  think.id='askThinking';
-  body.appendChild(think);
-  const waitSec=randInt(15,30);
-  let sec=waitSec;
-  const t0=$('#askThinking');
-  if(t0)t0.textContent='祂在思考… '+sec+'s';
-  askState.thinkTimer=setInterval(()=>{
-    sec--;
-    const t=$('#askThinking');
-    if(t)t.textContent='祂在思考… '+Math.max(0,sec)+'s';
-    if(sec<=0){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}
-  },1000);
-  askState.timer=setTimeout(()=>{
-    if(askState.thinkTimer){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}
-    const picked=randInt(0,askState.options.length-1);
-    askState.picked=picked;
-    finishAsk(picked);
-  },waitSec*1000);
+  body.appendChild(buildAskDisplay(-1));
+  const think=el('div','ask-thinking','祂在思考…');think.id='askThinking';body.appendChild(think);
+  const waitSec=randInt(15,30);let sec=waitSec;
+  const t0=$('#askThinking');if(t0)t0.textContent='祂在思考… '+sec+'s';
+  askState.thinkTimer=setInterval(()=>{sec--;const t=$('#askThinking');if(t)t.textContent='祂在思考… '+Math.max(0,sec)+'s';if(sec<=0){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}},1000);
+  askState.timer=setTimeout(()=>{if(askState.thinkTimer){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}const picked=randInt(0,askState.options.length-1);askState.picked=picked;finishAsk(picked);},waitSec*1000);
 }
-function buildAskDisplay(picked,thinking){
+function buildAskDisplay(picked){
   const wrap=el('div','ask-display');
-  const q=el('div','ask-q-show');q.textContent=askState.question;
-  wrap.appendChild(q);
-  askState.options.forEach((opt,i)=>{
-    const o=el('div','ask-opt');
-    o.textContent=opt;
-    if(picked===i)o.classList.add('picked');
-    wrap.appendChild(o);
-  });
+  const q=el('div','ask-q-show');q.textContent=askState.question;wrap.appendChild(q);
+  askState.options.forEach((opt,i)=>{const o=el('div','ask-opt');o.textContent=opt;if(picked===i)o.classList.add('picked');wrap.appendChild(o);});
   return wrap;
 }
 function finishAsk(picked){
   const body=$('#askBody');body.innerHTML='';
-  body.appendChild(buildAskDisplay(picked,false));
+  body.appendChild(buildAskDisplay(picked));
   const again=el('div','ask-btn ask-again','再次提问');
-  again.addEventListener('click',()=>{
-    if(askState.timer){clearTimeout(askState.timer);askState.timer=null;}
-    if(askState.thinkTimer){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}
-    askState.picked=-1;askState.question='';askState.options=[];
-    renderAskInput();
-  });
+  again.addEventListener('click',()=>{if(askState.timer){clearTimeout(askState.timer);askState.timer=null;}if(askState.thinkTimer){clearInterval(askState.thinkTimer);askState.thinkTimer=null;}askState.picked=-1;askState.question='';askState.options=[];renderAskInput();});
   body.appendChild(again);
-  collection.push({
-    id:uid(),savedAt:Date.now(),type:'ask',
-    question:askState.question,options:askState.options.slice(),picked:picked
-  });
-  if(collection.length>200)collection.shift();
-  saveCollection();
-  toast('祂的回应已存入收藏匣');
+  collection.push({id:uid(),savedAt:Date.now(),type:'ask',question:askState.question,options:askState.options.slice(),picked:picked});
+  if(collection.length>200)collection.shift();saveCollection();toast('祂的回应已存入收藏匣');
 }
 function applyAskPos(){
-  const box=$('#askBox');
-  const w=box.offsetWidth||Math.min(400,window.innerWidth*0.88);
-  const h=box.offsetHeight||400;
-  let left=(window.innerWidth-w)/2;
-  let top=(window.innerHeight-h)/2;
+  const box=$('#askBox');const w=box.offsetWidth||Math.min(400,window.innerWidth*0.88);const h=box.offsetHeight||400;
+  let left=(window.innerWidth-w)/2,top=(window.innerHeight-h)/2;
   if(settings.askPos&&typeof settings.askPos.left==='number'){left=settings.askPos.left;top=settings.askPos.top;}
-  left=Math.max(4,Math.min(window.innerWidth-w-4,left));
-  top=Math.max(4,Math.min(window.innerHeight-h-4,top));
-  box.style.left=left+'px';box.style.top=top+'px';
-  box.style.transform='none';
+  left=Math.max(4,Math.min(window.innerWidth-w-4,left));top=Math.max(4,Math.min(window.innerHeight-h-4,top));
+  box.style.left=left+'px';box.style.top=top+'px';box.style.transform='none';
 }
 (function askDrag(){
   const head=$('#askDrag'),box=$('#askBox');
@@ -5118,24 +4860,20 @@ const SYNC_WORDS=[
   '要抱抱','要亲亲','耍赖','装可怜','闹脾气','要吃醋','要撒娇','要黏着','要贴贴','要哄',
   '就要闹','不讲理','躺平了','你快哄我','我不管',
   '喜欢你','很想你','特别想','超想','偷偷想','一直想','想得睡不着','今天也想','每天都想',
-  '梦见你了','昨天也想了','现在就想着','看到什么都想到你','想一直这样',
-  '靠着你','摸摸你','等你'
+  '梦见你了','昨天也想了','现在就想着','看到什么都想到你','想一直这样','靠着你','摸摸你','等你'
 ];
-let syncState={picked:-1,result:'',thinking:false,timer:null,thinkTimer:null};
+let syncState={picked:-1,thinking:false,timer:null,thinkTimer:null};
 function openSyncBox(){
   if($('#askBox').classList.contains('on'))closeAskBox();
   const mask=$('#syncMask'),box=$('#syncBox');
-  syncState={picked:-1,result:'',thinking:false,timer:null,thinkTimer:null};
-  renderSyncInput();
-  mask.classList.add('on');box.classList.add('on');
-  applySyncPos();
+  syncState={picked:-1,thinking:false,timer:null,thinkTimer:null};
+  renderSyncInput();mask.classList.add('on');box.classList.add('on');applySyncPos();
 }
 function closeSyncBox(){
   if(syncState.timer){clearTimeout(syncState.timer);syncState.timer=null;}
   if(syncState.thinkTimer){clearInterval(syncState.thinkTimer);syncState.thinkTimer=null;}
   syncState.thinking=false;
-  $('#syncMask').classList.remove('on');
-  $('#syncBox').classList.remove('on');
+  $('#syncMask').classList.remove('on');$('#syncBox').classList.remove('on');
 }
 function renderSyncInput(){
   const body=$('#syncBody');body.innerHTML='';
@@ -5146,122 +4884,46 @@ function renderSyncInput(){
     d.addEventListener('click',()=>{syncState.picked=i;renderSyncInput();});
     list.appendChild(d);
   });
-  scroll.appendChild(list);
-  body.appendChild(scroll);
+  scroll.appendChild(list);body.appendChild(scroll);
   const show=el('div','sync-show');
   const line1=el('div','sync-line');
   line1.appendChild(el('span','sync-who','你想'));
   const mineVal=el('span','sync-val'+(syncState.picked<0?' empty':''),syncState.picked<0?'未选择':SYNC_WORDS[syncState.picked]);
-  line1.appendChild(mineVal);
-  show.appendChild(line1);
+  mineVal.id='syncMineVal';line1.appendChild(mineVal);show.appendChild(line1);
   const line2=el('div','sync-line');
   line2.appendChild(el('span','sync-who','祂想'));
-  const herVal=el('span','sync-val empty','等待回应');
-  line2.appendChild(herVal);
-  show.appendChild(line2);
+  const herVal=el('span','sync-val empty','等待回应');herVal.id='syncHerVal';
+  line2.appendChild(herVal);show.appendChild(line2);
   body.appendChild(show);
   const foot=el('div','sync-foot');
-  const btn=el('div','sync-btn','同频');
+  const btn=el('div','sync-btn','同频');btn.id='syncBtn';
   if(syncState.picked<0)btn.style.opacity='.5';
   btn.addEventListener('click',()=>{if(syncState.picked<0){toast('先选一个');return;}startSyncThinking();});
-  foot.appendChild(btn);
-  body.appendChild(foot);
+  foot.appendChild(btn);body.appendChild(foot);
 }
 function startSyncThinking(){
-  const body=$('#syncBody');body.innerHTML='';
   const pickedWord=SYNC_WORDS[syncState.picked];
-  const scroll=el('div','sync-scroll');
-  const show=el('div','sync-show');
-  const line1=el('div','sync-line');
-  line1.appendChild(el('span','sync-who','你想'));
-  line1.appendChild(el('span','sync-val',pickedWord));
-  show.appendChild(line1);
-  const line2=el('div','sync-line');
-  line2.appendChild(el('span','sync-who','祂想'));
-  const herVal=el('span','sync-val empty','祂在感受…');
-  herVal.id='syncHerVal';
-  line2.appendChild(herVal);
-  show.appendChild(line2);
-  body.appendChild(show);
-  const foot=el('div','sync-foot');
-  const btn=el('div','sync-btn','同频中…');
-  btn.style.opacity='.5';btn.style.pointerEvents='none';
-  foot.appendChild(btn);
-  body.appendChild(foot);
+  const mineVal=$('#syncMineVal');if(mineVal){mineVal.classList.remove('empty');mineVal.textContent=pickedWord;}
+  const herVal=$('#syncHerVal');const btn=$('#syncBtn');
+  if(btn){btn.textContent='同频中…';btn.style.opacity='.5';btn.style.pointerEvents='none';}
   syncState.thinking=true;
-  const waitSec=randInt(15,30);
-  let sec=waitSec;
-  const h=$('#syncHerVal');
-  if(h)h.textContent='祂在感受… '+sec+'s';
-  syncState.thinkTimer=setInterval(()=>{
-    sec--;
-    const hh=$('#syncHerVal');
-    if(hh)hh.textContent='祂在感受… '+Math.max(0,sec)+'s';
-    if(sec<=0){clearInterval(syncState.thinkTimer);syncState.thinkTimer=null;}
-  },1000);
-  syncState.timer=setTimeout(()=>{
-    if(syncState.thinkTimer){clearInterval(syncState.thinkTimer);syncState.thinkTimer=null;}
-    const herWord=SYNC_WORDS[randInt(0,SYNC_WORDS.length-1)];
-    finishSync(herWord);
-  },waitSec*1000);
+  const waitSec=randInt(15,30);let sec=waitSec;
+  if(herVal){herVal.classList.remove('empty');herVal.textContent='祂在感受… '+sec+'s';}
+  syncState.thinkTimer=setInterval(()=>{sec--;if(herVal)herVal.textContent='祂在感受… '+Math.max(0,sec)+'s';if(sec<=0){clearInterval(syncState.thinkTimer);syncState.thinkTimer=null;}},1000);
+  syncState.timer=setTimeout(()=>{if(syncState.thinkTimer){clearInterval(syncState.thinkTimer);syncState.thinkTimer=null;}const herWord=SYNC_WORDS[randInt(0,SYNC_WORDS.length-1)];finishSync(herWord);},waitSec*1000);
 }
 function finishSync(herWord){
-  const body=$('#syncBody');body.innerHTML='';
-  const pickedWord=SYNC_WORDS[syncState.picked];
-  const same=(pickedWord===herWord);
-  if(same){
-    const scroll=el('div','sync-scroll');
-    const tag=el('div','sync-result','✦ 同频了 ✦');
-    scroll.appendChild(tag);
-    body.appendChild(scroll);
-    const show=el('div','sync-show');
-    const line1=el('div','sync-line');
-    line1.appendChild(el('span','sync-who','你想'));
-    line1.appendChild(el('span','sync-val',pickedWord));
-    show.appendChild(line1);
-    const line2=el('div','sync-line');
-    line2.appendChild(el('span','sync-who','祂想'));
-    line2.appendChild(el('span','sync-val',herWord));
-    show.appendChild(line2);
-    body.appendChild(show);
-    const foot=el('div','sync-foot');
-    const again=el('div','sync-btn','再来一次');
-    again.addEventListener('click',()=>{syncState.picked=-1;syncState.result='';renderSyncInput();});
-    foot.appendChild(again);
-    const close=el('div','sync-btn','关闭');
-    close.style.marginTop='8px';
-    close.addEventListener('click',closeSyncBox);
-    foot.appendChild(close);
-    body.appendChild(foot);
-    toast('✦ 完全同频 ✦');
-  }else{
-    const scroll=el('div','sync-scroll');
-    const tag=el('div','sync-result','这次没同频');
-    scroll.appendChild(tag);
-    body.appendChild(scroll);
-    const foot=el('div','sync-foot');
-    const again=el('div','sync-btn','再来一次');
-    again.addEventListener('click',()=>{syncState.picked=-1;syncState.result='';renderSyncInput();});
-    foot.appendChild(again);
-    const close=el('div','sync-btn','关闭');
-    close.style.marginTop='8px';
-    close.addEventListener('click',closeSyncBox);
-    foot.appendChild(close);
-    body.appendChild(foot);
-    toast('这次没同频');
-  }
+  const herVal=$('#syncHerVal');
+  if(herVal){herVal.classList.remove('empty');herVal.textContent=herWord;}
+  const btn=$('#syncBtn');
+  if(btn){btn.textContent='再来一次';btn.style.opacity='1';btn.style.pointerEvents='auto';btn.onclick=()=>{syncState.picked=-1;renderSyncInput();};}
 }
 function applySyncPos(){
-  const box=$('#syncBox');
-  const w=box.offsetWidth||Math.min(400,window.innerWidth*0.88);
-  const h=box.offsetHeight||400;
-  let left=(window.innerWidth-w)/2;
-  let top=(window.innerHeight-h)/2;
+  const box=$('#syncBox');const w=box.offsetWidth||Math.min(400,window.innerWidth*0.88);const h=box.offsetHeight||400;
+  let left=(window.innerWidth-w)/2,top=(window.innerHeight-h)/2;
   if(settings.syncPos&&typeof settings.syncPos.left==='number'){left=settings.syncPos.left;top=settings.syncPos.top;}
-  left=Math.max(4,Math.min(window.innerWidth-w-4,left));
-  top=Math.max(4,Math.min(window.innerHeight-h-4,top));
-  box.style.left=left+'px';box.style.top=top+'px';
-  box.style.transform='none';
+  left=Math.max(4,Math.min(window.innerWidth-w-4,left));top=Math.max(4,Math.min(window.innerHeight-h-4,top));
+  box.style.left=left+'px';box.style.top=top+'px';box.style.transform='none';
 }
 (function syncDrag(){
   const head=$('#syncDrag'),box=$('#syncBox');
@@ -5278,6 +4940,198 @@ function applySyncPos(){
 })();
 $('#syncClose').addEventListener('click',closeSyncBox);
 
+/* ===== 视频通话 ===== */
+const callState={active:false,status:'idle',connectedTime:0,timer:null,tickTimer:null,mini:false};
+function fmtDur(sec){
+  sec=Math.max(0,Math.floor(sec));
+  const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;const p=n=>String(n).padStart(2,'0');
+  return h>0?(p(h)+':'+p(m)+':'+p(s)):(p(m)+':'+p(s));
+}
+function openCall(){
+  const box=$('#callBox');
+  callState.active=true;callState.status='calling';callState.mini=false;
+  const av=settings.avatarHer;
+  $('#callAv').style.backgroundImage=av?`url(${av})`:'none';
+  $('#callMiniAv').style.backgroundImage=av?`url(${av})`:'none';
+  $('#callName').textContent=callHerName();$('#callMiniName').textContent=callHerName();
+  box.className='on calling';
+  box.classList.remove('connected','rejected');
+  $('#callStatus').textContent='正在呼叫…';$('#callMiniStatus').textContent='正在呼叫…';
+  $('#callMini').classList.remove('connected');
+  applyCallPos();
+  const waitSec=randInt(15,30);
+  if(callState.timer)clearTimeout(callState.timer);
+  callState.timer=setTimeout(()=>{
+    if(callState.status!=='calling')return;
+    if(Math.random()<0.25){
+      callState.status='rejected';
+      box.classList.remove('calling');box.classList.add('rejected');
+      $('#callStatus').textContent='暂时无法接听';$('#callMiniStatus').textContent='暂时无法接听';
+    }else{
+      callState.status='connected';callState.connectedTime=Date.now();
+      box.classList.remove('calling');box.classList.add('connected');
+      $('#callMini').classList.add('connected');
+      startCallTick();
+    }
+  },waitSec*1000);
+}
+function startCallTick(){
+  if(callState.tickTimer)clearInterval(callState.tickTimer);
+  const upd=()=>{
+    if(callState.status!=='connected')return;
+    const dur=(Date.now()-callState.connectedTime)/1000;
+    $('#callStatus').textContent='通话中 '+fmtDur(dur);
+    $('#callMiniStatus').textContent=fmtDur(dur);
+  };
+  upd();callState.tickTimer=setInterval(upd,1000);
+}
+function endCall(){
+  callState.active=false;callState.status='idle';
+  if(callState.timer){clearTimeout(callState.timer);callState.timer=null;}
+  if(callState.tickTimer){clearInterval(callState.tickTimer);callState.tickTimer=null;}
+  $('#callBox').classList.remove('on');$('#callMini').classList.remove('on');callState.mini=false;
+}
+function minimizeCall(){
+  callState.mini=true;
+  $('#callBox').classList.remove('on');$('#callMini').classList.add('on');
+  applyCallMiniPos();
+  if(callState.status==='connected')$('#callMini').classList.add('connected');
+}
+function restoreCall(){
+  callState.mini=false;
+  $('#callMini').classList.remove('on');$('#callBox').classList.add('on');
+  applyCallPos();
+}
+$('#callMin').addEventListener('click',minimizeCall);
+$('#callHang').addEventListener('click',endCall);
+$('#callMiniHang').addEventListener('click',endCall);
+$('#callMini').addEventListener('click',(e)=>{if(!e.target.closest('.cm-hang'))restoreCall();});
+(function callDrag(){
+  const box=$('#callBox'),head=$('#callDrag');
+  let dragging=false,sx=0,sy=0,ox=0,oy=0;
+  function st(x,y){const r=box.getBoundingClientRect();ox=r.left;oy=r.top;sx=x;sy=y;dragging=true;box.style.transform='none';}
+  function mv(x,y){if(!dragging)return;const w=box.offsetWidth,h=box.offsetHeight;let nl=ox+(x-sx),nt=oy+(y-sy);nl=Math.max(4,Math.min(window.innerWidth-w-4,nl));nt=Math.max(4,Math.min(window.innerHeight-h-4,nt));box.style.left=nl+'px';box.style.top=nt+'px';}
+  function en(){if(!dragging)return;dragging=false;const r=box.getBoundingClientRect();settings.callPos={left:r.left,top:r.top};saveSet();}
+  head.addEventListener('touchstart',e=>{st(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();},{passive:true});
+  head.addEventListener('touchmove',e=>{mv(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();e.preventDefault();},{passive:false});
+  head.addEventListener('touchend',en);
+  head.addEventListener('mousedown',e=>{st(e.clientX,e.clientY);e.preventDefault();});
+  window.addEventListener('mousemove',e=>{if(dragging)mv(e.clientX,e.clientY);});
+  window.addEventListener('mouseup',en);
+})();
+(function callMiniDrag(){
+  const box=$('#callMini');
+  let dragging=false,sx=0,sy=0,ox=0,oy=0;
+  function st(x,y){const r=box.getBoundingClientRect();ox=r.left;oy=r.top;sx=x;sy=y;dragging=true;}
+  function mv(x,y){if(!dragging)return;const w=box.offsetWidth,h=box.offsetHeight;let nl=ox+(x-sx),nt=oy+(y-sy);nl=Math.max(4,Math.min(window.innerWidth-w-4,nl));nt=Math.max(4,Math.min(window.innerHeight-h-4,nt));box.style.left=nl+'px';box.style.top=nt+'px';box.style.bottom='auto';}
+  function en(){if(!dragging)return;dragging=false;const r=box.getBoundingClientRect();settings.callMiniPos={left:r.left,top:r.top};saveSet();}
+  box.addEventListener('touchstart',e=>{if(e.target.closest('.cm-hang'))return;st(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();},{passive:true});
+  box.addEventListener('touchmove',e=>{mv(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();e.preventDefault();},{passive:false});
+  box.addEventListener('touchend',en);
+  box.addEventListener('mousedown',e=>{if(e.target.closest('.cm-hang'))return;st(e.clientX,e.clientY);e.preventDefault();});
+  window.addEventListener('mousemove',e=>{if(dragging)mv(e.clientX,e.clientY);});
+  window.addEventListener('mouseup',en);
+})();
+function applyCallPos(){
+  const box=$('#callBox');box.style.transform='none';
+  const w=box.offsetWidth||240,h=box.offsetHeight||320;
+  let left=(window.innerWidth-w)/2,top=(window.innerHeight-h)/2;
+  if(settings.callPos&&typeof settings.callPos.left==='number'){left=settings.callPos.left;top=settings.callPos.top;}
+  left=Math.max(4,Math.min(window.innerWidth-w-4,left));top=Math.max(4,Math.min(window.innerHeight-h-4,top));
+  box.style.left=left+'px';box.style.top=top+'px';
+}
+function applyCallMiniPos(){
+  const box=$('#callMini');
+  const w=box.offsetWidth||200,h=box.offsetHeight||44;
+  let left=12,top=window.innerHeight-200;
+  if(settings.callMiniPos&&typeof settings.callMiniPos.left==='number'){left=settings.callMiniPos.left;top=settings.callMiniPos.top;}
+  left=Math.max(4,Math.min(window.innerWidth-w-4,left));top=Math.max(4,Math.min(window.innerHeight-h-4,top));
+  box.style.left=left+'px';box.style.top=top+'px';box.style.bottom='auto';
+}
+
+/* ===== 陪伴 ===== */
+const COMPANION_GROUPS=[
+  {title:'日常',items:['陪你写东西','陪你发呆','陪你吃饭','陪你回家','陪你散步','陪你等车','陪你逛超市','陪你排队','陪你收拾屋子']},
+  {title:'睡',items:['陪你睡觉','陪你午睡','陪你赖床','陪你熬夜','陪你到睡着']},
+  {title:'静',items:['陪你看书','陪你听歌','陪你看电影','陪你看剧','陪你打游戏']},
+  {title:'情绪',items:['陪你想事情','陪你静一静','陪你开心','陪你放空','陪你什么都不做']}
+];
+let companionTimer=null;
+function openCompanionPicker(){
+  sheetCtx='companion';sheetCardId=null;itSheetId=null;
+  const sheet=$('#sheet');sheet.className='theme-sheet-'+curTheme();sheet.innerHTML='';
+  const box=el('div','cp-picker');
+  COMPANION_GROUPS.forEach(g=>{
+    box.appendChild(el('div','cp-picker-title',g.title));
+    const grid=el('div','cp-picker-grid');
+    g.items.forEach(txt=>{
+      const d=el('div','cp-picker-item',txt);
+      d.addEventListener('click',()=>{startCompanion(txt);closeSheet();});
+      grid.appendChild(d);
+    });
+    box.appendChild(grid);
+  });
+  const cancel=el('div','sheet-item sheet-cancel','取消');
+  cancel.addEventListener('click',closeSheet);
+  sheet.appendChild(box);sheet.appendChild(cancel);
+  $('#sheetMask').classList.add('on');sheet.classList.add('on');
+}
+function startCompanion(type){
+  settings.companion={active:true,type:type,startTime:Date.now()};
+  saveSet();showCompanionBox();
+}
+function showCompanionBox(){
+  const c=settings.companion;
+  if(!c||!c.active){$('#companionBox').classList.remove('on');return;}
+  const av=settings.avatarHer,am=settings.avatarMe;
+  $('#cpAvHer').style.backgroundImage=av?`url(${av})`:'none';
+  $('#cpAvMe').style.backgroundImage=am?`url(${am})`:'none';
+  $('#cpNameHer').textContent=callHerName();
+  $('#cpNameMe').textContent=callMeName();
+  $('#cpType').textContent=c.type||'陪你发呆';
+  updateCompanionTime();
+  $('#companionBox').classList.add('on');
+  applyCompanionPos();
+  if(companionTimer)clearInterval(companionTimer);
+  companionTimer=setInterval(updateCompanionTime,60000);
+}
+function updateCompanionTime(){
+  const c=settings.companion;if(!c||!c.active)return;
+  const mins=Math.max(0,Math.floor((Date.now()-c.startTime)/60000));
+  let txt;
+  if(mins<60)txt='已陪 '+mins+' 分钟';
+  else if(mins<1440){const h=Math.floor(mins/60),m=mins%60;txt='已陪 '+h+' 小时'+(m?' '+m+' 分钟':'');}
+  else{const d=Math.floor(mins/1440),h=Math.floor((mins%1440)/60);txt='已陪 '+d+' 天'+(h?' '+h+' 小时':'');}
+  $('#cpTime').textContent=txt;
+}
+function endCompanion(){
+  settings.companion=null;saveSet();
+  if(companionTimer){clearInterval(companionTimer);companionTimer=null;}
+  $('#companionBox').classList.remove('on');
+}
+$('#cpEnd').addEventListener('click',endCompanion);
+(function companionDrag(){
+  const box=$('#companionBox'),head=$('#cpDrag');
+  let dragging=false,sx=0,sy=0,ox=0,oy=0;
+  function st(x,y){const r=box.getBoundingClientRect();ox=r.left;oy=r.top;sx=x;sy=y;dragging=true;box.style.transform='none';}
+  function mv(x,y){if(!dragging)return;const w=box.offsetWidth,h=box.offsetHeight;let nl=ox+(x-sx),nt=oy+(y-sy);nl=Math.max(4,Math.min(window.innerWidth-w-4,nl));nt=Math.max(4,Math.min(window.innerHeight-h-4,nt));box.style.left=nl+'px';box.style.top=nt+'px';}
+  function en(){if(!dragging)return;dragging=false;const r=box.getBoundingClientRect();settings.companionPos={left:r.left,top:r.top};saveSet();}
+  head.addEventListener('touchstart',e=>{st(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();},{passive:true});
+  head.addEventListener('touchmove',e=>{mv(e.touches[0].clientX,e.touches[0].clientY);e.stopPropagation();e.preventDefault();},{passive:false});
+  head.addEventListener('touchend',en);
+  head.addEventListener('mousedown',e=>{st(e.clientX,e.clientY);e.preventDefault();});
+  window.addEventListener('mousemove',e=>{if(dragging)mv(e.clientX,e.clientY);});
+  window.addEventListener('mouseup',en);
+})();
+function applyCompanionPos(){
+  const box=$('#companionBox');box.style.transform='none';
+  const w=box.offsetWidth||200,h=box.offsetHeight||180;
+  let left=(window.innerWidth-w)/2,top=(window.innerHeight-h)/2+80;
+  if(settings.companionPos&&typeof settings.companionPos.left==='number'){left=settings.companionPos.left;top=settings.companionPos.top;}
+  left=Math.max(4,Math.min(window.innerWidth-w-4,left));top=Math.max(4,Math.min(window.innerHeight-h-4,top));
+  box.style.left=left+'px';box.style.top=top+'px';
+}
+
 async function boot(){
   await FS.init();
   const c=await FS.read('cards.json',{cards:[]});
@@ -5292,8 +5146,7 @@ async function boot(){
   const im=await FS.read('important.json',{days:[]});
   cards=c.cards||[];messages=m.messages||[];stickers=st.stickers||[];
   if(it&&typeof it==='object'){interactions=Object.assign({touch:[],back:[],pair:[]},it);}
-  musicList=mu.musicList||[];
-  collection=co.collection||[];
+  musicList=mu.musicList||[];collection=co.collection||[];
   archive=ar&&typeof ar==='object'&&Array.isArray(ar.days)?ar:{days:[]};
   wishes=Array.isArray(wi&&wi.wishes)?wi.wishes:[];
   importantDays=Array.isArray(im&&im.days)?im.days:[];
@@ -5302,15 +5155,15 @@ async function boot(){
   updateNewsDate();updateComicEpisode();updateRetroDate();updateCafeDate();
   const inp=msgInputEl();if(inp)inp.placeholder=themePlaceholder();
   settings.listening=false;saveSet();
-  clearListenBanner();
-  renderInviteLabel();
+  clearListenBanner();renderInviteLabel();
+  if(settings.companion&&settings.companion.active)showCompanionBox();
   if(cards.length===0)showSystem('口袋里还没有字卡，去给祂放几张吧');
 }
 boot();
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateProgress();});
 document.addEventListener('gesturestart',e=>e.preventDefault());
 document.addEventListener('dblclick',e=>e.preventDefault());
-console.log('阿遇♡阿凉 · 14 套独立 UI 框架已加载（含回应弹窗/同频/自绘弹窗）');
+console.log('阿遇♡阿凉 · 14 套主题 · 视频通话 + 陪伴已加载');
 </script>
 </body>
 </html>
